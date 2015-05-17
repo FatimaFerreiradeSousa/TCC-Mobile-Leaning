@@ -61,7 +61,7 @@ public class UploadArquivo implements Serializable {
     }
 
     public StreamedContent getContent() {
-        File foto = new File("C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Imagens\\imgPadrao\\imgPadrao\\perfil.png");
+        File foto = new File("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\imgPadrao\\perfil.png");
 
         DefaultStreamedContent content = null;
         try {
@@ -83,7 +83,7 @@ public class UploadArquivo implements Serializable {
 
     //Faz Upload
     public void upload() {
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Arquivos\\doc\\";
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Arquivos\\doc\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {
@@ -108,7 +108,7 @@ public class UploadArquivo implements Serializable {
                     out.write(bytes, 0, read);
                 }
 
-                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Imagens\\imgPadrao\\doc.png";
+                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\imgPadrao\\doc.png";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpSession session = (HttpSession) context.getSession(false);
                 Grupo grupo = (Grupo) session.getAttribute("grupo");
@@ -141,7 +141,7 @@ public class UploadArquivo implements Serializable {
 
     //Faz Download
     public StreamedContent donwload() throws FileNotFoundException {
-        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Arquivos\\doc\\test.pdf");
+        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Arquivos\\doc\\doc.pdf");
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 "test.pdf");
         return fileDownload;

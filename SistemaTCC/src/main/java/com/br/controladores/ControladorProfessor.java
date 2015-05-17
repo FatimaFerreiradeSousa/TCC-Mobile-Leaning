@@ -101,7 +101,7 @@ public class ControladorProfessor implements Serializable {
 
     public void salvarProfessor() throws IOException {
         String caminho
-                = "C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Imagens\\imgPadrao\\perfil.png";
+                = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\imgPadrao\\perfil.png";
 
         if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
                 && professor.getSenha().length() > 0) {
@@ -211,7 +211,7 @@ public class ControladorProfessor implements Serializable {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         professorLogado = (Professor) this.session.getAttribute("usuario");
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\sistema-tcc\\SistemaTCC\\Imagens\\"
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\"
                 + professorLogado.getLogin() + "\\";
         File dir = new File(caminho);
         if (!dir.exists()) {
