@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <style type="text/css">
+            img{border-radius: 100px;}
+        </style>
+
+    </h:head>
+    <h:body>
+        <h:outputLabel value="#{usuario.nome}"/>
+
+        <h:form enctype="multipart/form-data">
+            Upload de Arquivos <br/>
+            <p:fileUpload 
+                value="#{gerenciadorUpload.fileUpload}"
+                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                mode="simple" 
+                />
+            <br/>
+
+            <p:commandLink value="Submit" ajax="false" actionListener="#{gerenciadorUpload.upload()}" 
+                           disabled="false" update="@all" id="linkFoto"/>
+        </h:form>
+        <br/><br/><br/>
+        <hr />
+        <h:form>
+            Download de Arquivos <br/>
+            
+            <p:commandButton value="Download" ajax="false">
+                <p:fileDownload value="#{gerenciadorUpload.donwload()}" />
+            </p:commandButton>
+        </h:form>
+    </h:body>
+</html>
+

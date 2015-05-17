@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Home</title>
+        <meta charset="utf-8"/>
+        <meta name="format-detection" content="telephone=no" />
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="fonts/font-awesome/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="estilo/styleHome.css"/>	
+
+    </h:head>
+
+    <h:body class="page1" id="top">
+
+        <h:form>
+
+            <div class="slide story" id="slide-1" data-slide="1">
+                <div class="container">
+                    <div id="home-row-2" class="row clearfix">
+                        <div class="col-12 col-sm-4">
+                            <div class="home-hover navigation-slide" data-slide="4">
+                                <h:commandLink action="#{controladorProfessor.paginaInicialProfessor()}">
+                                    <img src="img/s02.png"/>
+                                </h:commandLink>
+                            </div>
+                            <span>PROFESSOR</span>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <div class="home-hover navigation-slide" data-slide="3">
+                                <h:commandLink action="#{controladorAluno.paginaInicialAluno()}">
+                                    <img src="img/s01.png"/>
+                                </h:commandLink>
+                            </div>
+                            <span>ALUNO</span>
+                        </div>
+                    </div><!-- /row -->
+                </div><!-- /container -->
+            </div><!-- /slide1 -->
+            
+        </h:form>
+    </h:body>
+</html>
+

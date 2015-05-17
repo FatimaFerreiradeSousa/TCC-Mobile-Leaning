@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="moduloAluno/gruposAluno.xhtml" x="51" y="289" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/respondeTeste.xhtml" x="438" y="71" zoom="true"/>
+        <Node id="index.xhtml" x="97" y="535" zoom="false"/>
+        <Node id="moduloProfessor/grupos/pagInicialGrupo.xhtml" x="546" y="476" zoom="true"/>
+        <Node id="indexAluno.xhtml" x="61" y="433" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/cadQuestoes.xhtml" x="525" y="26" zoom="true"/>
+        <Node id="moduloProfessor/grupos/gruposGerenciados.xhtml" x="533" y="336" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/testesCadastrados.xhtml" x="434" y="222" zoom="true"/>
+        <Node id="moduloProfessor/grupos/cadGrupo.xhtml" x="1016" y="370" zoom="true"/>
+        <Node id="testImg.xhtml" x="415" y="283" zoom="true"/>
+        <Node id="moduloAluno/resultadosTestes.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/resultadosTestes.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/cadExercicio.xhtml" x="43" y="161" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/addQuestaoTeste.xhtml" x="25" y="8" zoom="true"/>
+        <Node id="moduloAluno/configAluno.xhtml" x="893" y="91" zoom="true"/>
+        <Node id="moduloProfessor/paginaConfig.xhtml" x="82" y="223" zoom="true"/>
+        <Node id="moduloAluno/pageInicialAluno.xhtml" x="1000" y="177" zoom="true"/>
+        <Node id="moduloAluno/perfilAluno.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="inicialPage.xhtml" x="627" y="547" zoom="true"/>
+        <Node id="indexProfessor.xhtml" x="353" y="423" zoom="true"/>
+        <Node id="moduloProfessor/paginaInicialProfessor.xhtml" x="56" y="361" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
