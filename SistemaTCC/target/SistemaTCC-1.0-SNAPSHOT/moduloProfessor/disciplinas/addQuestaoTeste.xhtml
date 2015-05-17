@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Questoes Testes</title>
+        <meta charset="UTF-8"></meta>
+        <link href="../../estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../../estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+        <link href="../../estilo/estilo.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+        <script src="../../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../assets/dist/js/app.min.js" type="text/javascript"></script>
+
+    </h:head>
+
+    <h:body class="skin-blue">
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                <!-- Pagina Inicial Link -->
+                <a href="../paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+
+                <!-- Menu Topo -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle butão-->
+                    <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Menu da Direita -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown messages-menu">
+                                <!-- Menu toggle button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="label label-success">4</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Mensagens</li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu">
+                                            <li><!-- start message -->
+                                                <a href="#">
+                                                    <div class="pull-left">
+                                                        <!-- User Image -->
+                                                        <p:graphicImage id="imgPerfil1" 
+                                                                        value="#{controladorProfessor.content}"/>
+                                                    </div>
+                                                    <!-- Message title and timestamp -->
+                                                    <h4>                            
+                                                        Teste
+                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                    </h4>
+                                                    <!-- The message -->
+                                                    <p>Teste</p>
+                                                </a>
+                                            </li><!-- end message -->                      
+                                        </ul><!-- /.menu -->
+                                    </li><!--Fim LI-->
+                                    <li class="footer">
+
+                                    </li>
+                                </ul>
+                            </li><!-- /.messages-menu -->
+
+                            <!-- Notifications Menu -->
+                            <li class="dropdown notifications-menu">
+                                <!-- Menu toggle button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">10</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Notificações</li>
+                                    <li>
+                                        <!-- Inner Menu: contains the notifications -->
+                                        <ul class="menu">
+                                            <li><!-- start notification -->
+                                                <a href="#">
+                                                    <i class="fa fa-users text-aqua"></i> Teste
+                                                </a>
+                                            </li><!-- end notification -->                      
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Tasks Menu -->
+                            <li class="dropdown tasks-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-flag-o"></i>
+                                    <span class="label label-danger">9</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Grupos</li>
+                                    <li>
+                                        <!-- Inner menu: contains the tasks -->
+                                        <ul class="menu">
+                                            <li><!-- Task item -->
+                                                <a href="#">
+                                                    <!-- Task title and progress text -->
+                                                    <h3>
+                                                        Teste
+                                                        <small class="pull-right">20%</small>
+                                                    </h3>
+                                                    <!-- The progress bar -->
+                                                    <div class="progress xs">
+                                                        <!-- Change the css width attribute to simulate progress -->
+                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            <span class="sr-only">20% Teste</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li><!-- end task item -->                      
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                </a>
+                                <ul class="dropdown-menu menuSair">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <p:graphicImage id="imgPerfil41" 
+                                                        value="#{controladorProfessor.content}"/><p>
+                                            #{usuario.nome} - Professor
+                                            <small>Membro desde de Março de 2015</small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Seguidores</a>
+                                        </div>
+
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Seguidores</a>
+                                        </div>
+
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Amigos</a>
+                                        </div>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <h:form>
+
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="paginaConfig.xhtml" class="button">Perfil</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <h:commandLink value="Sair" class="button"
+                                                               action="#{controladorProfessor.logout()}"/>
+                                            </div>
+                                        </li>
+                                        <br /><br /><br />
+
+                                    </h:form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <p:graphicImage id="imgPerfil31" 
+                                            value="#{controladorProfessor.content}"/>
+                        </div>
+                        <div class="pull-left info">
+                            <p>#{usuario.nome}</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- search form (Optional) -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+
+                    <ul class="sidebar-menu">
+                        <li class="header">Opções</li>
+
+                        <li class="treeview">
+                            <li class="treeview">
+                                <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="cadQuestoes.xhtml">Cadastrar Questões</a></li>
+                                    <li><a href="cadExercicio.xhtml">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.xhtml">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.xhtml">Resultados Testes</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Arquivos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#">Cadastrar Arquivo</a></li>
+                                    <li><a href="#">Submeter Arquivo</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#">Criar Grupo</a></li>
+                                    <li><a href="#">Meus Grupos</a></li>
+                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper formatar">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="banner-form">
+                        <h:form>
+                            <h4 class="h-info" id="myModalLabel">Questões Disponiveis</h4>
+
+                            <h:dataTable class="table table-responsive" border="1" 
+                                         value="#{controladorExercicio.listarQuestoes()}" var="questao">
+
+                                <h:column>
+                                    <f:facet name="header">Codigo</f:facet>
+                                    <h:outputLabel value="#{questao.codigo}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Enunciado</f:facet>
+                                    <h:outputLabel value="#{questao.enunciado}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Confirmar</f:facet>
+                                    <div class="col-xs-6">
+                                        <h:commandLink value="Adicionar" action="#{controladorExercicio.addQuestaoTeste(questao)}" 
+                                                       class="button1"/>
+                                    </div>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Remover</f:facet>
+                                    <div class="col-xs-6">
+                                        <h:commandLink value="Remover" action="#{controladorExercicio.addQuestaoTeste(questao)}" 
+                                                       class="button1"/>
+                                    </div>
+                                </h:column>
+
+                            </h:dataTable>
+
+                            <hr />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h:commandLink value="Cadastrar Teste" class="button1" action="#{controladorExercicio.salvar()}"/>
+                                    <h:commandLink value="Cancelar" class="button1" action="#{controladorExercicio.cancelarCadastro()}"/>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+        </div><!-- ./wrapper -->
+    </h:body>
+</html>
+
