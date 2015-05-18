@@ -118,7 +118,7 @@ public class ControladorAluno implements Serializable {
 
     public void salvarAluno() throws IOException {
         String caminho
-                = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\imgPadrao\\perfil.png";
+                = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\SistemaTCC\\Imagens\\imgPadrao\\perfil.png";
 
         if (aluno.getNome().length() > 0 && aluno.getEmail().length() > 0 && aluno.getLogin().length() > 0
                 && aluno.getSenha().length() > 0) {
