@@ -9,7 +9,6 @@ formatar{
 
 .modal-content-foto{
     background-color:whitesmoke;
-    opacity: 0.9;
     width: 400px;
     left: auto;
 }
@@ -62,6 +61,5 @@ a.button:hover{
 }
 
 .menuSair{
-    background-color:#000;
-    opacity: 0.8;
+    background-color:#999999;
 }
