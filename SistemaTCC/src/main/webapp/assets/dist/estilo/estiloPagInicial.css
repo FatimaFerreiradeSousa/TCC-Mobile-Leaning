@@ -1,5 +1,10 @@
-.linkFoto{
-    
+formatar{
+    background: url("../img/intro-bg.jpg") no-repeat center center fixed;
+    background-color: rgb(100, 100, 100);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: rgb(255, 255, 255);
 }
 
 .modal-content-foto{
