@@ -60,10 +60,11 @@
                                     <h:form>
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <h:commandLink value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"/>
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                               action="paginaConfig.xhtml"/>
                                             </div>
                                             <div class="pull-right">
-                                                <h:commandLink value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
                                                                action="#{controladorProfessor.logout()}"/>
                                             </div>
                                         </li>
@@ -128,8 +129,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Anotações</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="grupos/cadGrupo.xhtml">Minhas Anotações</a></li>
-                                    <li><a href="grupos/gruposGerenciados.xhtml">Gerenciador</a></li>
+                                    <li><a href="#">Nova Anotações</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -139,7 +139,7 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+            <div class="content-wrapper formatar">
                 <section class="content-header">
                     <h1>
                         Lembretes...
@@ -200,17 +200,18 @@
                         </div>
                     </div><!-- /.row -->
 
-                    <hr />
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
+                                    
                                     <i class="ion ion-clipboard"></i>
                                     <h3 class="box-title">Minhas Anotações</h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                     </div>
+                                    
                                 </div><!-- /.box-header -->
 
                                 <div class="box-body">

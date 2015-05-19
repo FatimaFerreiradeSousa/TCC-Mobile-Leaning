@@ -1,10 +1,25 @@
-formatar{
-    background: url("../img/intro-bg.jpg") no-repeat center center fixed;
-    background-color: rgb(100, 100, 100);
+.formatar{
+    background: url("../../../img/intro-bg.jpg") no-repeat center center fixed;
+    background-color: red;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     color: rgb(255, 255, 255);
+}
+
+.box-header{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #0199e6;
+    font-size: 1.2em;
+    color: #fff;
+    outline: none;
+    font-weight: 400;
+    display:inline-block;
+    background:transparent;
+    border-left:3px solid #0199e6;
+    border-radius:3px;
+    margin-right:1em;
 }
 
 .modal-content-foto{
@@ -66,14 +81,15 @@ a.button:hover{
 
 .footer{
     background:#15141a;
-    padding:3em 0;
+    padding:2em 0;
+    height: 10px;
 }
+
 .footer p{
     color: #3e3d43;
-    font-size: 1.1em;
-    font-weight: 200;
+    font-size: 1em;
+    font-weight: 100;
     text-transform:uppercase;
-    margin-top:1em;
     color: #fff;
 }
 .footer p a{

@@ -8,8 +8,9 @@
         <title>Pagina Inicial Professor</title>
         <meta charset="UTF-8"></meta>
 
-        <link href="../estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
@@ -39,105 +40,10 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <!-- Menu toggle button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Mensagens</li>
-                                    <li>
-                                        <!-- inner menu: contains the messages -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <!-- User Image -->
-                                                        <p:graphicImage id="imgPerfil5" 
-                                                                        value="#{controladorProfessor.content}"/>
-                                                    </div>
-                                                    <!-- Message title and timestamp -->
-                                                    <h4>                            
-                                                        Teste
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <!-- The message -->
-                                                    <p>Teste</p>
-                                                </a>
-                                            </li><!-- end message -->                      
-                                        </ul><!-- /.menu -->
-                                    </li><!--Fim LI-->
-                                    <li class="footer">
-
-                                    </li>
-                                </ul>
-                            </li><!-- /.messages-menu -->
-
-                            <!-- Notifications Menu -->
-                            <li class="dropdown notifications-menu">
-                                <!-- Menu toggle button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Notificações</li>
-                                    <li>
-                                        <!-- Inner Menu: contains the notifications -->
-                                        <ul class="menu">
-                                            <li><!-- start notification -->
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> Teste
-                                                </a>
-                                            </li><!-- end notification -->                      
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Tasks Menu -->
-                            <li class="dropdown tasks-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-flag-o"></i>
-                                    <span class="label label-danger">9</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Grupos</li>
-                                    <li>
-                                        <!-- Inner menu: contains the tasks -->
-                                        <ul class="menu">
-                                            <li><!-- Task item -->
-                                                <a href="#">
-                                                    <!-- Task title and progress text -->
-                                                    <h3>
-                                                        Teste
-                                                        <small class="pull-right">20%</small>
-                                                    </h3>
-                                                    <!-- The progress bar -->
-                                                    <div class="progress xs">
-                                                        <!-- Change the css width attribute to simulate progress -->
-                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">20% Teste</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li><!-- end task item -->                      
-                                        </ul>
-                                    </li>
-                                    <li class="footer">
-
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">#{usuario.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
@@ -150,30 +56,16 @@
                                             <small>Membro desde de Março de 2015</small>
                                         </p>
                                     </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Amigos</a>
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
                                     <h:form>
 
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="paginaConfig.xhtml" class="button">Perfil</a>
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="paginaConfig.xhtml"/>
                                             </div>
                                             <div class="pull-right">
-                                                <h:commandLink value="Sair" class="button"
-                                                               action="#{controladorProfessor.logout()}"/>
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorProfessor.logout()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -248,7 +140,6 @@
                         </li>
                     </ul>
                 </section>
-                <!-- /.sidebar -->
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
@@ -258,9 +149,21 @@
                     <div class="banner-form">
                         <h:form>
                             <h4 class="h-info" id="myModalLabel">Configurações</h4>
+                            <hr />
 
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-3">
+                                    <div class="user-panel">
+                                            <div class="fotoAtualizar img-responsive">
+                                                <p:graphicImage id="imgPerfilAtualizar" 
+                                                                value="#{controladorProfessor.content}"/>
+
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-9">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Nome">Nome </label>
@@ -269,7 +172,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Email">Email </label>
@@ -279,8 +182,9 @@
                                 </div>
                             </div>
 
+                            <br />
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Login">Login </label>
@@ -289,7 +193,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="senha">Senha </label>
@@ -297,10 +201,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="date">
                                             <label class="control-label" for="senha">Data de Nascimento </label>
@@ -346,6 +248,13 @@
             </div><!-- /.content-wrapper -->
 
         </div><!-- ./wrapper -->
+
+        <div class="footer text-center">
+            <div class="container">
+                <p class="wow bounceIn" data-wow-delay="0.4s">Copyright &copy; 2015 Fatinha All rights reserved | Mobile Learning  
+                    <a href="http://github.com/FatimaFerreiradeSousa/TCC-Mobile-Learning">  GitHub</a></p>
+            </div>
+        </div>
     </h:body>
 </html>
 

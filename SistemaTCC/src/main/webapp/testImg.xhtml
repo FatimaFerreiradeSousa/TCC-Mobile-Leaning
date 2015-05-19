@@ -29,11 +29,20 @@
         <hr />
         <h:form>
             Download de Arquivos <br/>
-            
+
             <p:commandButton value="Download" ajax="false">
                 <p:fileDownload value="#{gerenciadorUpload.donwload()}" />
             </p:commandButton>
         </h:form>
+
+        <br />
+        <div class="fotoAtualizar img-responsive">
+            
+            <a href="#">
+            <p:graphicImage id="imgPerfilAtualizar" 
+                            value="#{controladorProfessor.content}"/>
+            </a>
+        </div>
     </h:body>
 </html>
 

@@ -2,35 +2,167 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Pagina Inicial Professor</title>
         <meta charset="UTF-8"></meta>
 
-
         <link href="assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
         <link href="fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <script src="../js/jQuery-2.1.3.min.js"></script>
-        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/dist/js/app.min.js" type="text/javascript"></script>
-
-        <style type="text/css">
-            body{
-                background-color:#666666;
-            }
-        </style>
-
+        <script src="assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="assets/dist/js/app.min.js" type="text/javascript"></script>
     </h:head>
 
 
-    <h:body>
+    <h:body class="skin-blue">
+        <div class="wrapper">
 
+            <header class="main-header">
 
+                <!-- Pagina Inicial Link -->
+                <a href="paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+
+                <!-- Menu Topo -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle butão-->
+                    <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Menu da Direita -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                </a>
+                                <ul class="dropdown-menu menuSair">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <p:graphicImage id="imgPerfil1" 
+                                                        value="#{controladorProfessor.content}"/>
+                                        <p>
+                                            #{usuario.nome} - Professor
+                                            <small>Membro desde de Março de 2015</small>
+                                        </p>
+                                    </li>
+                                    <h:form>
+
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="paginaConfig.xhtml"/>
+                                            </div>
+                                            <div class="pull-right">
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorProfessor.logout()}"/>
+                                            </div>
+                                        </li>
+                                        <br /><br /><br />
+
+                                    </h:form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <p:graphicImage id="imgPerfil" 
+                                            value="#{controladorProfessor.content}"/>
+                        </div>
+                        <div class="pull-left info">
+                            <p>#{usuario.nome}</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- search form (Optional) -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+
+                    <ul class="sidebar-menu">
+                        <li class="header">Opções</li>
+
+                        <li class="treeview">
+                            <li class="treeview">
+                                <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
+                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
+                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
+                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Arquivos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#">Cadastrar Arquivo</a></li>
+                                    <li><a href="#">Submeter Arquivo</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#">Criar Grupo</a></li>
+                                    <li><a href="#">Meus Grupos</a></li>
+                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper formatar">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="banner-form">
+                        <h:form>
+                            
+
+                        </h:form>
+                    </div>
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+        </div><!-- ./wrapper -->
+
+        <div class="footer text-center">
+            <div class="container">
+                <p class="wow bounceIn" data-wow-delay="0.4s">Copyright &copy; 2015 Fatinha All rights reserved | Mobile Learning  
+                    <a href="http://github.com/FatimaFerreiradeSousa/TCC-Mobile-Learning">  GitHub</a></p>
+            </div>
+        </div>
     </h:body>
 </html>
 
