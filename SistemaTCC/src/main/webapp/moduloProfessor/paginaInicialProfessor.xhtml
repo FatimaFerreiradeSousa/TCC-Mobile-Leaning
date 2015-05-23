@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Pagina Inicial Professor</title>
         <meta charset="UTF-8"></meta>
@@ -61,11 +63,11 @@
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                               action="paginaConfig.xhtml"/>
+                                                                 action="paginaConfig.xhtml"/>
                                             </div>
                                             <div class="pull-right">
                                                 <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                               action="#{controladorProfessor.logout()}"/>
+                                                                 action="#{controladorProfessor.logout()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -204,14 +206,14 @@
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    
+
                                     <i class="ion ion-clipboard"></i>
                                     <h3 class="box-title">Minhas Anotações</h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                     </div>
-                                    
+
                                 </div><!-- /.box-header -->
 
                                 <div class="box-body">
@@ -269,7 +271,18 @@
                                 </div>
 
                                 <div class="box-footer clearfix no-border">
-                                    <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Visualizar Todas</button>
+                                    <h:form>
+                                        <h:commandButton class="btn btn-primary pull-right" 
+                                                         value="Visualizar Todas" action="#">
+                                        </h:commandButton>
+
+                                        <div class="button-anotacao button-anotacao">
+                                            <a action="#" class="btn btn-default pull-right"
+                                               href="#signup" data-toggle="modal" data-target="#modalAnotacao">
+                                                Nova
+                                            </a> 
+                                        </div>
+                                    </h:form>
                                 </div>
 
                             </div>
@@ -278,6 +291,57 @@
                 </section>
             </div><!-- /.content-wrapper -->
         </div><!-- ./wrapper -->
+
+        <div class="modal fade" id="modalAnotacao">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Nova Anotação</h4>
+                    </div>
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="titulo">Titulo </label>
+                                        <h:inputText value="#{controladorAnotacao.anotacao.titulo}" 
+                                                     class="form-control" pt:placeholde="Titulo"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="conteudo">Conteúdo </label>
+                                        <h:inputTextarea rows="5" value="#{controladorAnotacao.anotacao.conteudo}" 
+                                                         class="form-control" pt:placeholde="Conteudo"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="conteudo">Data: </label>
+                                        <p:calendar id="popup" 
+                                                    value="#{controladorAnotacao.anotacao.dataConclusao}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <h:commandLink value="Cadastrar" class="btn btn-primary" 
+                                           action="#{controladorAnotacao.salvarAnotacao()}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
 
         <div class="footer text-center">
             <div class="container">

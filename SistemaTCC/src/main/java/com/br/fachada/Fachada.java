@@ -33,6 +33,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoPGrupo daoPaGrupo;
     @EJB
     private InterfaceDaoTopico daoTopico;
+    @EJB
+    private InterfaceDaoAnotacao daoAnotacao;
     
     public Fachada() {
     }
@@ -185,5 +187,22 @@ public class Fachada implements Serializable {
     
     public boolean atualizarTopico(Topico topico){
         return daoTopico.atualizar(topico);
+    }
+    
+    /*CRUD Anotacao*/
+    public boolean salvarAnotacao(Anotacao anotacao){
+        return daoAnotacao.salvarAnotacao(anotacao);
+    }
+    
+    public boolean atualizarAnotacao(Anotacao anotacao){
+        return daoAnotacao.atualizarAnotacao(anotacao);
+    }
+    
+    public boolean removerAnotacao(Anotacao anotacao){
+        return daoAnotacao.removerAnotacao(anotacao);
+    }
+    
+    public List<Anotacao> listarAnotacao(Professor professor){
+        return daoAnotacao.listarAnotacao(professor);
     }
 }
