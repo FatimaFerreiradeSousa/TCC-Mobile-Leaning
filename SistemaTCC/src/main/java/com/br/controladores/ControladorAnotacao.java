@@ -1,10 +1,13 @@
 package com.br.controladores;
 
+import com.br.datas.FormatData;
 import com.br.entidades.Anotacao;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -42,6 +45,7 @@ public class ControladorAnotacao implements Serializable {
         Professor professorLogado = (Professor) session.getAttribute("usuario");
         anotacao.setProfessor(professorLogado);
         fachada.salvarAnotacao(anotacao);
+        anotacao = new Anotacao();
         return null;
     }
     
@@ -50,7 +54,7 @@ public class ControladorAnotacao implements Serializable {
         return null;
     }
     
-    public String removerAnotacao(){
+    public String removerAnotacao(Anotacao anotacao){
         fachada.removerAnotacao(anotacao);
         return null;
     }
@@ -62,6 +66,4 @@ public class ControladorAnotacao implements Serializable {
         
         return fachada.listarAnotacao(professorLogado);
     }
-    
-    
 }

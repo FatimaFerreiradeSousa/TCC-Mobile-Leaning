@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding="iso-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Pagina Inicial Professor</title>
-        <meta charset="UTF-8"></meta>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -33,7 +32,7 @@
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle butão-->
+                    <!-- Sidebar toggle but�o-->
                     <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
@@ -62,7 +61,7 @@
                                     <h:form>
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                <h:commandButton value="Configura��es" class="btn btn-default btn-flat btn-flat-menu-sair"
                                                                  action="paginaConfig.xhtml"/>
                                             </div>
                                             <div class="pull-right">
@@ -107,13 +106,13 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">Opções</li>
+                        <li class="header">Op��es</li>
 
                         <li class="treeview">
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
+                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Quest�es</a></li>
                                     <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
                                     <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
                                     <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
@@ -129,9 +128,9 @@
                             </li>
 
                             <li class="treeview">
-                                <a href="#"><span>Anotações</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <a href="#"><span>Anota��es</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Nova Anotações</a></li>
+                                    <li><a href="#">Nova Anota��es</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -152,52 +151,60 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <label>Anotação 01</label>
-                                    <p>Panel Funcionou Panel Funcionou Panel Funcionou Panel Funcionou</p>
+                                    <label>#{controladorListAnt.ant1.titulo}</label>
+                                    <p>#{controladorListAnt.ant1.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Continuar Lendo<i class="fa fa-arrow-circle-right"></i></a>
+                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant1.dataConclusao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <label>Anotação 01</label>
-                                    <p>Panel Funcionou Panel Funcionou Panel Funcionou Panel Funcionou</p>
+                                    <label>#{controladorListAnt.ant2.titulo}</label>
+                                    <p>#{controladorListAnt.ant2.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Continuar Lendo<i class="fa fa-arrow-circle-right"></i></a>
+                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant3.dataConclusao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <label>Anotação 01</label>
-                                    <p>Panel Funcionou Panel Funcionou Panel Funcionou Panel Funcionou</p>
+                                    <label>#{controladorListAnt.ant3.titulo}</label>
+                                    <p>#{controladorListAnt.ant3.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Continuar Lendo<i class="fa fa-arrow-circle-right"></i></a>
+                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant3.dataConclusao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-red">
                                 <div class="inner">
-                                    <label>Anotação 01</label>
-                                    <p>Panel Funcionou Panel Funcionou Panel Funcionou Panel Funcionou</p>
+                                    <label>#{controladorListAnt.ant4.titulo}</label>
+                                    <p>#{controladorListAnt.ant4.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Continuar Lendo<i class="fa fa-arrow-circle-right"></i></a>
+                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant4.dataConclusao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
                             </div>
                         </div>
                     </div><!-- /.row -->
@@ -208,7 +215,7 @@
                                 <div class="box-header">
 
                                     <i class="ion ion-clipboard"></i>
-                                    <h3 class="box-title">Minhas Anotações</h3>
+                                    <h3 class="box-title">Minhas Anota��es</h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -216,58 +223,31 @@
 
                                 </div><!-- /.box-header -->
 
-                                <div class="box-body">
-                                    <ul class="todo-list">
-                                        <li>
-                                            <input type="checkbox" value="" name=""/>
-                                            <!-- todo text -->
-                                            <span class="text">ANotação 01</span>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
+                                <div style="height:250px; overflow: auto;" >
+                                    <h:form>
+                                        <h:dataTable class="table table-responsive"
+                                                     value="#{controladorAnotacao.listarTodas()}" var="anotacao">
+                                            <h:column>
+                                                <div class="box-body">
+                                                    <ul class="todo-list">
+                                                        <li>
+                                                            <input type="checkbox" value="" name=""/>
+                                                            <!-- todo text -->
+                                                            <span class="text">#{anotacao.titulo}</span>
+                                                            <div class="tools">
+                                                                <a action="#" class="fa fa-edit"
+                                                                   href="#signup" data-toggle="modal" data-target="#modalAnotacao">
+                                                                </a> 
+                                                                <h:commandLink value="" class="fa fa-trash-o" 
+                                                                               action="#{controladorAnotacao.removerAnotacao(anotacao)}"/>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </h:column>
 
-                                        <li>
-                                            <input type="checkbox" value="" name=""/>
-                                            <!-- todo text -->
-                                            <span class="text">ANotação 01</span>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <input type="checkbox" value="" name=""/>
-                                            <!-- todo text -->
-                                            <span class="text">ANotação 01</span>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <input type="checkbox" value="" name=""/>
-                                            <!-- todo text -->
-                                            <span class="text">ANotação 01</span>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <input type="checkbox" value="" name=""/>
-                                            <!-- todo text -->
-                                            <span class="text">ANotação 01</span>
-                                            <div class="tools">
-                                                <i class="fa fa-edit"></i>
-                                                <i class="fa fa-trash-o"></i>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        </h:dataTable>
+                                    </h:form>
                                 </div>
 
                                 <div class="box-footer clearfix no-border">
@@ -297,9 +277,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-success">Nova Anotação</h4>
+                        <h4 class="modal-title text-success">Nova Anota��o</h4>
                     </div>
-                    <h:form enctype="multipart/form-data">
+                    <h:form>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-xs-12">
@@ -314,7 +294,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label" for="conteudo">Conteúdo </label>
+                                        <label class="control-label" for="conteudo">Conte�do </label>
                                         <h:inputTextarea rows="5" value="#{controladorAnotacao.anotacao.conteudo}" 
                                                          class="form-control" pt:placeholde="Conteudo"/>
                                     </div>
@@ -325,8 +305,9 @@
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label" for="conteudo">Data: </label>
-                                        <p:calendar id="popup" 
-                                                    value="#{controladorAnotacao.anotacao.dataConclusao}"/>
+                                        <h:inputText value="#{controladorAnotacao.anotacao.dataConclusao}" class="form-control">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:inputText>
                                     </div>
                                 </div>
                             </div>

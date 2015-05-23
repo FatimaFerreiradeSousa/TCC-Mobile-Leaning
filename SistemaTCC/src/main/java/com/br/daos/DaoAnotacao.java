@@ -48,7 +48,7 @@ public class DaoAnotacao implements InterfaceDaoAnotacao{
     public boolean removerAnotacao(Anotacao anotacao) {
         
         try{
-            em.remove(anotacao);
+            em.remove(em.merge(anotacao));
             return true;
         }catch(Exception e){
             e.printStackTrace();
@@ -58,9 +58,19 @@ public class DaoAnotacao implements InterfaceDaoAnotacao{
 
     @Override
     public List<Anotacao> listarAnotacao(Professor professor) {
-        Query query = em.createQuery("select a from Anotacao a where a.professor.login := login");
-        query.setParameter("aluno", professor.getLogin());
+        Query query = em.createQuery("select a from Anotacao a where a.professor.login = :login");
+        query.setParameter("login", professor.getLogin());
         
         return (List<Anotacao>) query.getResultList();
+    }
+    
+    @Override
+    public List<Anotacao> listarAnotacaoSemana(Professor professor){
+        Query query = em.createQuery("select a from Anotacao a where a.professor.login = :login");
+        query.setParameter("login", professor.getLogin());
+        
+        List<Anotacao> anotacoes =  (List<Anotacao>) query.getResultList();
+        
+        return anotacoes;
     }
 }

@@ -18,4 +18,6 @@ public interface InterfaceDaoAnotacao {
     public boolean removerAnotacao(Anotacao anotacao);
     
     public List<Anotacao> listarAnotacao(Professor professor);
+    
+    public List<Anotacao> listarAnotacaoSemana(Professor professor);
 }
