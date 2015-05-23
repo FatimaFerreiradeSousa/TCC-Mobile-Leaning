@@ -148,7 +148,10 @@
                 <section class="content">
                     <div class="banner-form">
                         <h:form>
-                            
+                            <a action="#" class="buttonMsg"
+                               href="#signup" data-toggle="modal" data-target="#modalFoto">
+                                Atualizar Foto
+                            </a>
 
                         </h:form>
                     </div>
@@ -156,6 +159,35 @@
             </div><!-- /.content-wrapper -->
 
         </div><!-- ./wrapper -->
+
+        <div class="modal fade" id="modalFoto">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Atualizar Foto</h4>
+                    </div>
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <label class="text-success">Escolha uma nova foto de perfil</label>
+                            <p:fileUpload 
+                                value="#{controladorProfessor.file}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                />
+                            <br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <p:commandLink value="Atualizar" ajax="false" actionListener="#{controladorProfessor.upload()}" 
+                                           disabled="false" update="@all" id="linkFoto" styleClass="btn btn-primary"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
 
         <div class="footer text-center">
             <div class="container">

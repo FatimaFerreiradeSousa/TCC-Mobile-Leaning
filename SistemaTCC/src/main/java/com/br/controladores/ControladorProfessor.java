@@ -15,7 +15,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -140,7 +139,7 @@ public class ControladorProfessor implements Serializable {
                 mensagem = "Login ou senha inválidos!";
                 professor = new Professor();
             }
-        }else{
+        } else {
             mensagem = "Preencha todos os campos";
         }
     }
@@ -224,9 +223,6 @@ public class ControladorProfessor implements Serializable {
                 InputStream inputStream = file.getInputstream();
 
                 String tipoArquivo = file.getFileName();
-                //tipoArquivo = tipoArquivo.substring(tipoArquivo.lastIndexOf("."), tipoArquivo.length());
-                System.out.println("tipo do arquivo: " + tipoArquivo);
-
                 OutputStream out = new FileOutputStream(new File(targetFolder,
                         professorLogado.getLogin() + tipoArquivo));
                 int read = 0;
@@ -239,13 +235,14 @@ public class ControladorProfessor implements Serializable {
                 out.flush();
                 out.close();
                 professorLogado.setFoto(caminho + professorLogado.getLogin() + tipoArquivo);
+                atualizarProfessor();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-    
-    public String paginaInicialProfessor(){
+
+    public String paginaInicialProfessor() {
         return "indexProfessor?faces-redirect=true";
     }
 }

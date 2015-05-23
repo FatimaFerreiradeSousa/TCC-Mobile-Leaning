@@ -154,12 +154,14 @@
                             <div class="row">
                                 <div class="col-xs-3">
                                     <div class="user-panel">
-                                            <div class="fotoAtualizar img-responsive">
-                                                <p:graphicImage id="imgPerfilAtualizar" 
-                                                                value="#{controladorProfessor.content}"/>
-
-                                            </div>
-                                        
+                                        <div class="fotoAtualizar img-responsive">
+                                            <p:graphicImage id="imgPerfilAtualizar" 
+                                                            value="#{controladorProfessor.content}"/>
+                                            <a action="#" class="text-atualizar-foto"
+                                               href="#signup" data-toggle="modal" data-target="#modalFoto">
+                                                Atualizar Foto
+                                            </a> 
+                                        </div>
                                     </div>
                                 </div>
 
@@ -255,6 +257,35 @@
                     <a href="http://github.com/FatimaFerreiradeSousa/TCC-Mobile-Learning">  GitHub</a></p>
             </div>
         </div>
+
+        <div class="modal fade" id="modalFoto">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Atualizar Foto</h4>
+                    </div>
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <label class="text-success">Escolha uma nova foto de perfil</label>
+                            <p:fileUpload 
+                                value="#{controladorProfessor.file}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                />
+                            <br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <p:commandLink value="Atualizar" ajax="false" actionListener="#{controladorProfessor.upload()}" 
+                                           disabled="false" update="@all" id="linkFoto" styleClass="btn btn-primary"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
     </h:body>
 </html>
 
