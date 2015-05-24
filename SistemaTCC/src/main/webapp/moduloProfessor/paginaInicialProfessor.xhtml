@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding="iso-8859-1" ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -32,7 +32,7 @@
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle butão-->
+                    <!-- Sidebar toggle butï¿½o-->
                     <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
@@ -61,7 +61,7 @@
                                     <h:form>
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                <h:commandButton value="ConfiguraÃ§Ãµes" class="btn btn-default btn-flat btn-flat-menu-sair"
                                                                  action="paginaConfig.xhtml"/>
                                             </div>
                                             <div class="pull-right">
@@ -106,13 +106,13 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">Opções</li>
+                        <li class="header">OpÃ§Ãµes</li>
 
                         <li class="treeview">
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
+                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar QuestÃµes</a></li>
                                     <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
                                     <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
                                     <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
@@ -128,9 +128,9 @@
                             </li>
 
                             <li class="treeview">
-                                <a href="#"><span>Anotações</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <a href="#"><span>AnotaÃ§Ãµes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Nova Anotações</a></li>
+                                    <li><a href="#">Nova Anotaï¿½ï¿½es</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -151,8 +151,9 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <label>#{controladorListAnt.ant1.titulo}</label>
-                                    <p>#{controladorListAnt.ant1.conteudo}</p>
+                                    <label>Lembrete 01</label>
+                                    <p>#{controladorListAnt.ant1.titulo} <br /> 
+                                        #{controladorListAnt.ant1.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -166,13 +167,14 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <label>#{controladorListAnt.ant2.titulo}</label>
-                                    <p>#{controladorListAnt.ant2.conteudo}</p>
+                                    <label>Lembrete 02</label>
+                                    <p>#{controladorListAnt.ant2.titulo} <br />
+                                        #{controladorListAnt.ant2.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant3.dataConclusao}">
+                                <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant2.dataConclusao}">
                                     <f:convertDateTime pattern="dd/MM/yyyy" />
                                 </h:outputLabel>
                             </div>
@@ -181,8 +183,9 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <label>#{controladorListAnt.ant3.titulo}</label>
-                                    <p>#{controladorListAnt.ant3.conteudo}</p>
+                                    <label>Lembrete 03</label>
+                                    <p>#{controladorListAnt.ant3.titulo} <br />
+                                        #{controladorListAnt.ant3.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -196,8 +199,8 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-red">
                                 <div class="inner">
-                                    <label>#{controladorListAnt.ant4.titulo}</label>
-                                    <p>#{controladorListAnt.ant4.conteudo}</p>
+                                    <label>Lembrete 04</label>
+                                    <p>#{controladorListAnt.ant4.titulo} <br /> #{controladorListAnt.ant4.conteudo}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
@@ -215,7 +218,7 @@
                                 <div class="box-header">
 
                                     <i class="ion ion-clipboard"></i>
-                                    <h3 class="box-title">Minhas Anotações</h3>
+                                    <h3 class="box-title">Minhas AnotaÃ§Ãµes</h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -252,16 +255,11 @@
 
                                 <div class="box-footer clearfix no-border">
                                     <h:form>
-                                        <h:commandButton class="btn btn-primary pull-right" 
-                                                         value="Visualizar Todas" action="#">
-                                        </h:commandButton>
 
-                                        <div class="button-anotacao button-anotacao">
-                                            <a action="#" class="btn btn-default pull-right"
-                                               href="#signup" data-toggle="modal" data-target="#modalAnotacao">
-                                                Nova
-                                            </a> 
-                                        </div>
+                                        <a action="#" class="btn btn-success pull-right"
+                                           href="#signup" data-toggle="modal" data-target="#modalAnotacao">
+                                            Nova AnotaÃ§Ã£o
+                                        </a> 
                                     </h:form>
                                 </div>
 
@@ -277,7 +275,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-success">Nova Anotação</h4>
+                        <h4 class="modal-title text-success">Nova AnotaÃ§Ãµes</h4>
                     </div>
                     <h:form>
                         <div class="modal-body">
@@ -294,7 +292,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label" for="conteudo">Conteúdo </label>
+                                        <label class="control-label" for="conteudo">ConteÃºdo </label>
                                         <h:inputTextarea rows="5" value="#{controladorAnotacao.anotacao.conteudo}" 
                                                          class="form-control" pt:placeholde="Conteudo"/>
                                     </div>

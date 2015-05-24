@@ -25,13 +25,33 @@
 
     <h:body class="skin-blue">
 
-        <h:form>
-            <h:commandButton value="Clicke" action="#{controladorListAnt.lembretes}" class="btn btn-default"/>
-        </h:form>
+        <div class="content-wrapper formatar">
+            <section class="content-header">
+                <h1>
+                    Lembretes...
+                </h1>
 
-        <label>
-            #{controladorListAnt.ant4.titulo}
-        </label>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <label>#{controladorListAnt.ant1.titulo}</label>
+                                <p>#{controladorListAnt.ant1.conteudo}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant1.dataConclusao}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputLabel>
+                        </div>
+                    </div>
+
+                    
+                </div><!-- /.row -->
+            </section>
+        </div><!-- /.content-wrapper -->
     </h:body>
 </html>
 

@@ -44,48 +44,101 @@ public class ControladorListAnt implements Serializable {
         anotacoes = new ArrayList();
     }
 
-    public Anotacao getAnt1() throws ParseException{
+    public Anotacao getAnt1() throws ParseException {
         lembretes();
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         this.anotacoes = (List<Anotacao>) this.session.getAttribute("anotacoes");
-        return ant1 = this.anotacoes.get(0);
+
+        if (this.anotacoes.size() >= 1 && this.anotacoes.size() > 0) {
+            if (this.anotacoes.get(0) != null) {
+                return ant1 = this.anotacoes.get(0);
+            }else{
+                return ant1 = new Anotacao();
+            }
+        }
+
+        if (this.anotacoes.isEmpty()) {
+            return ant1 = new Anotacao();
+        } else {
+            return ant1 = new Anotacao();
+        }
     }
 
     public void setAnt1(Anotacao ant1) {
         this.ant1 = ant1;
     }
 
-    public Anotacao getAnt2() throws ParseException{
+    public Anotacao getAnt2() throws ParseException {
         lembretes();
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         this.anotacoes = (List<Anotacao>) this.session.getAttribute("anotacoes");
-        return ant2 = this.anotacoes.get(1);
+
+        if (this.anotacoes.size() >= 2 && this.anotacoes.size() > 0) {
+            if (this.anotacoes.get(1) != null) {
+                return ant2 = this.anotacoes.get(1);
+            }else{
+                return ant2 = new Anotacao();
+            }
+        }
+
+        if (this.anotacoes.isEmpty()) {
+            return ant2 = new Anotacao();
+        } else {
+            return ant2 = new Anotacao();
+        }
+
     }
 
     public void setAnt2(Anotacao ant2) {
         this.ant2 = ant2;
     }
 
-    public Anotacao getAnt3() throws ParseException{
+    public Anotacao getAnt3() throws ParseException {
         lembretes();
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         this.anotacoes = (List<Anotacao>) this.session.getAttribute("anotacoes");
-        return ant3 = this.anotacoes.get(2);
+
+        if (this.anotacoes.size() >= 3 && this.anotacoes.size() > 0) {
+            if (this.anotacoes.get(2) != null) {
+                return ant3 = this.anotacoes.get(2);
+            }else{
+                return ant3 = new Anotacao();
+            }
+        }
+
+        if (this.anotacoes.isEmpty()) {
+            return ant3 = new Anotacao();
+        } else {
+            return ant3 = new Anotacao();
+        }
     }
 
     public void setAnt3(Anotacao ant3) {
         this.ant3 = ant3;
     }
 
-    public Anotacao getAnt4() throws ParseException{
+    public Anotacao getAnt4() throws ParseException {
         lembretes();
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         this.anotacoes = (List<Anotacao>) this.session.getAttribute("anotacoes");
-        return ant4 = this.anotacoes.get(3);
+
+        if (this.anotacoes.size() == 4 && this.anotacoes.size() > 0) {
+            if (this.anotacoes.get(3) != null) {
+                return ant4 = this.anotacoes.get(3);
+            }else{
+                return ant4 = new Anotacao();
+            }
+        }
+
+        if (this.anotacoes.isEmpty()) {
+            return ant4 = new Anotacao();
+        } else {
+            return ant4 = new Anotacao();
+        }
     }
 
     public void setAnt4(Anotacao ant4) {
@@ -99,19 +152,21 @@ public class ControladorListAnt implements Serializable {
     public void setAnotacoes(List<Anotacao> anotacoes) {
         this.anotacoes = anotacoes;
     }
-    
-    public String lembretes() throws ParseException {
+
+    public void lembretes() throws ParseException {
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         Professor professorLogado = (Professor) this.session.getAttribute("usuario");
 
         List<Anotacao> ant = fachada.listarAnotacao(professorLogado);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = dateFormat.parse("18/05/2015");
-        this.anotacoes = FormatData.comparaData(data, ant);
-        context.getSessionMap().put("anotacoes", this.anotacoes);
-        return null;
+        if (!ant.isEmpty()) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = dateFormat.parse("18/05/2015");
+            this.anotacoes = FormatData.comparaData(data, ant);
+            context.getSessionMap().put("anotacoes", this.anotacoes);
+        } else {
+            context.getSessionMap().put("anotacoes", new ArrayList());
+        }
     }
-
 }
