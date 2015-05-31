@@ -83,7 +83,7 @@ public class UploadArquivo implements Serializable {
 
     //Faz Upload
     public void upload() {
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Arquivos\\doc\\";
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\SistemaTCC\\Arquivos\\doc\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {
@@ -95,12 +95,11 @@ public class UploadArquivo implements Serializable {
                 File targetFolder = new File(caminho);
                 InputStream inputStream = fileUpload.getInputstream();
 
-                /*
-                String tipoArquivo = fileUpload.getFileName();
-                tipoArquivo = tipoArquivo.substring(tipoArquivo.lastIndexOf("."), tipoArquivo.length());
-                */
+                //String tipoArquivo = fileUpload.getFileName();
+                //tipoArquivo = tipoArquivo.substring(tipoArquivo.lastIndexOf("."), tipoArquivo.length());
+               
                 OutputStream out = new FileOutputStream(new File(targetFolder,
-                        fileUpload.getFileName()+System.currentTimeMillis()));
+                        fileUpload.getFileName()));
                 int read = 0;
                 byte[] bytes = new byte[1024];
 
@@ -108,14 +107,14 @@ public class UploadArquivo implements Serializable {
                     out.write(bytes, 0, read);
                 }
 
-                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Imagens\\imgPadrao\\doc.png";
+                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\SistemaTCC\\Imagens\\imgPadrao\\doc.png";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpSession session = (HttpSession) context.getSession(false);
                 Grupo grupo = (Grupo) session.getAttribute("grupo");
                 Professor professorLogado = (Professor) session.getAttribute("usuario");
 
                 arquivo.setFoto(caminhoFoto);
-                arquivo.setCaminho(caminho+fileUpload.getFileName()+System.currentTimeMillis());
+                arquivo.setCaminho(caminho+fileUpload.getFileName());
                 arquivo.setNome(fileUpload.getFileName());
                 arquivo.setGrupoArquivo(grupo);
                 arquivo.setProfessor(professorLogado);
@@ -141,7 +140,7 @@ public class UploadArquivo implements Serializable {
 
     //Faz Download
     public StreamedContent donwload() throws FileNotFoundException {
-        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Leaning\\SistemaTCC\\Arquivos\\doc\\doc.pdf");
+        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\SistemaTCC\\Arquivos\\doc\\doc.pdf");
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 "test.pdf");
         return fileDownload;

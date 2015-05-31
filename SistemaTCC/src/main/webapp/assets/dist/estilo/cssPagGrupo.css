@@ -1,3 +1,27 @@
+.bt-link-grupo{
+    padding-right: 10px;
+}
+
+.user-panel>.fotoGrupo>img{
+    width:60px;
+    height:60px;
+}
+
+.box-header-grupo{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #0199e6;
+    font-size: 1.2em;
+    color: #fff;
+    outline: none;
+    font-weight: 400;
+    display:inline-block;
+    background:transparent;
+    border-left:3px solid #0199e6;
+    border-radius:3px;
+    margin-right:1em;
+}
+
 .panel-config{
     width: 35em;
     margin-right: 1em;
