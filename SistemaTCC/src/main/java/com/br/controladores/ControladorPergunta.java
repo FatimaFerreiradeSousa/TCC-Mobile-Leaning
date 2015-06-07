@@ -1,7 +1,7 @@
 package com.br.controladores;
 
 import com.br.entidades.Professor;
-import com.br.entidades.Questao;
+import com.br.entidades.Pergunta;
 import com.br.entidades.Resposta;
 import com.br.fachada.Fachada;
 import javax.enterprise.context.SessionScoped;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class ControladorPergunta implements Serializable {
 
-    private Questao questao;
+    private Pergunta questao;
     private Resposta resposta1;
     private Resposta resposta2;
     private Resposta resposta3;
@@ -33,7 +33,7 @@ public class ControladorPergunta implements Serializable {
     Fachada fachada;
 
     public ControladorPergunta() {
-        this.questao = new Questao();
+        this.questao = new Pergunta();
         this.resposta1 = new Resposta();
         this.resposta2 = new Resposta();
         this.resposta3 = new Resposta();
@@ -81,11 +81,11 @@ public class ControladorPergunta implements Serializable {
         this.resposta5 = resposta5;
     }
 
-    public Questao getQuestao() {
+    public Pergunta getQuestao() {
         return questao;
     }
 
-    public void setQuestao(Questao questao) {
+    public void setQuestao(Pergunta questao) {
         this.questao = questao;
     }
 
@@ -124,7 +124,7 @@ public class ControladorPergunta implements Serializable {
             fachada.atualizarQuestao(questao);
 
             mensagem = "Salvo com sucesso!";
-            this.questao = new Questao();
+            this.questao = new Pergunta();
             this.resposta1 = new Resposta();
             this.resposta2 = new Resposta();
             this.resposta3 = new Resposta();
@@ -137,14 +137,14 @@ public class ControladorPergunta implements Serializable {
         return null;
     }
 
-    public List<Questao> listarPerguntas() {
+    public List<Pergunta> listarPerguntas() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession session = (HttpSession) externalContext.getSession(false);
         Professor professorLogado = (Professor) session.getAttribute("professor");
         return fachada.listarQuestoes(professorLogado.getLogin());
     }
     
-    public String removerPergunta(Questao questao){
+    public String removerPergunta(Pergunta questao){
         this.resposta1 = this.questao.getRespostas().get(0);
         this.resposta2 = this.questao.getRespostas().get(1);
         this.resposta3 = this.questao.getRespostas().get(2);
@@ -161,8 +161,13 @@ public class ControladorPergunta implements Serializable {
         return null;
     }
     
-    public String visualizarPergunta(Questao pergunta){
+    public String visualizarPergunta(Pergunta pergunta){
         this.questao = pergunta;
+        this.resposta1 = this.questao.getRespostas().get(0);
+        this.resposta2 = this.questao.getRespostas().get(1);
+        this.resposta3 = this.questao.getRespostas().get(2);
+        this.resposta4 = this.questao.getRespostas().get(3);
+        this.resposta5 = this.questao.getRespostas().get(4);
         return "cadastrarPergunta?faces-redirect=true";
     }
     

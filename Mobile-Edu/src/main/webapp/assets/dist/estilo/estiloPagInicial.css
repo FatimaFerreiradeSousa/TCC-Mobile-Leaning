@@ -1,0 +1,46 @@
+.box-header{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #0199e6;
+    font-size: 1.2em;
+    color: #fff;
+    outline: none;
+    font-weight: 400;
+    display:inline-block;
+    background:transparent;
+    border-left:3px solid #0199e6;
+    border-radius:3px;
+    margin-right:1em;
+}
+
+.modal-content-foto{
+    background-color:whitesmoke;
+    width: 400px;
+    left: auto;
+}
+
+img{
+    border-radius: 100px;
+}
+
+a.button {
+    margin-top: 1em;
+    background:#008ed6;
+    color: #000;
+    display:inline-block;
+    text-decoration:none;
+    margin-right:2em;
+    padding: 10px 2em 5px 2em;
+    border-radius:3px;
+    border:1px solid #008ed6;
+    font-weight:600;
+    margin-left: 1em;
+}
+
+a.button:hover{
+    border:1px solid #999999;
+}
+
+.menuSair{
+    background-color:#999999;
+}

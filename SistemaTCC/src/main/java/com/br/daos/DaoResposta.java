@@ -16,7 +16,7 @@ import javax.persistence.Query;
 @Stateless
 public class DaoResposta implements InterfaceDaoResposta {
 
-    @PersistenceContext(unitName = "Sistema-TCC-UP")
+    @PersistenceContext(unitName = "Mobile-Edu-UP")
     private EntityManager em;
 
     @Override

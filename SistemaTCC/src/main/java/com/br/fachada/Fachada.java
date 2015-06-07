@@ -59,23 +59,23 @@ public class Fachada implements Serializable {
     }
 
     /*Crud Questão*/
-    public void salvarQuestao(Questao questao) {
+    public void salvarQuestao(Pergunta questao) {
         daoQuestao.salvar(questao);
     }
 
-    public void atualizarQuestao(Questao questao) {
+    public void atualizarQuestao(Pergunta questao) {
         daoQuestao.atualizar(questao);
     }
 
-    public Questao consultarQuestao(String codigo) {
+    public Pergunta consultarQuestao(String codigo) {
         return daoQuestao.consultar(codigo);
     }
 
-    public void removerQuestao(Questao questao) {
+    public void removerQuestao(Pergunta questao) {
         daoQuestao.remover(questao);
     }
 
-    public List<Questao> listarQuestoes(String login) {
+    public List<Pergunta> listarQuestoes(String login) {
         return daoQuestao.listarQuestoes(login);
     }
 
@@ -122,15 +122,15 @@ public class Fachada implements Serializable {
     }
 
     /*Crud AddQuestao*/
-    public boolean addQuestaoTeste(Questao questao) {
+    public boolean addQuestaoTeste(Pergunta questao) {
         return daoAddQuestao.addQuestaoTeste(questao);
     }
 
-    public boolean removerQuestaoTeste(Questao questao) {
+    public boolean removerQuestaoTeste(Pergunta questao) {
         return daoAddQuestao.deletarQuestao(questao);
     }
 
-    public List<Questao> listarQuestaoTeste() {
+    public List<Pergunta> listarQuestaoTeste() {
         return daoAddQuestao.listarQuestoes();
     }
 

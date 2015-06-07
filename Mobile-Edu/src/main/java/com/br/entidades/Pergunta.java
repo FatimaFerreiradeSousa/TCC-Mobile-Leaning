@@ -15,12 +15,12 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
-public class Questao implements Serializable{
+public class Pergunta implements Serializable{
     
     @Id
     private String codigo;
     private String enunciado;
-    @OneToMany
+    @OneToMany(mappedBy = "pergunta")
     private List<Resposta> respostas;
     private float pontuacao;
     @ManyToMany(mappedBy = "questoesExercicios")
@@ -28,11 +28,11 @@ public class Questao implements Serializable{
     @ManyToOne
     private Professor professor;
     
-    public Questao(){
+    public Pergunta(){
     
     }
 
-    public Questao(String codigo, String enunciado, float pontuacao, Professor professor) {
+    public Pergunta(String codigo, String enunciado, float pontuacao, Professor professor) {
         this.codigo = codigo;
         this.enunciado = enunciado;
         this.respostas = new ArrayList();

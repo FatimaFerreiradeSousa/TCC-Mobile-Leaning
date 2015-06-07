@@ -1,0 +1,450 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Grupo</title>
+        <link href="../../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+        <script src="../../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../assets/dist/js/app.min.js" type="text/javascript"></script>
+    </h:head>
+
+    <h:body class="skin-blue">
+
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="../../moduloProfessor/paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="../assets/dist/img/user7-128x128.jpg" class="user-image" alt="User Image"/>
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                </a>
+                                <ul class="dropdown-menu menuSair">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+
+                                        <p:graphicImage id="imgPerfil2" value="#{controladorProfessor.content}"/>
+
+                                        <p>
+                                            #{usuario.nome} - Professor
+                                            <small>Membro desde de #{controladorProfessor.mes} de 
+                                                #{controladorProfessor.ano}</small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Seguidores</a>
+                                        </div>
+
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Seguidores</a>
+                                        </div>
+
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Amigos</a>
+                                        </div>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <h:form>
+
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="paginaConfig.xhtml" class="button">Perfil</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <h:commandLink value="Sair" class="button"
+                                                               action="#{controladorProfessor.logout()}"/>
+                                            </div>
+                                        </li>
+                                        <br /><br /><br />
+
+                                    </h:form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <section class="sidebar">
+
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <p:graphicImage id="imgPerfil3" value="#{controladorProfessor.content}"/>
+                        </div>
+                        <div class="pull-left info">
+                            <p>#{usuario.nome}</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- search form (Optional) -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+
+                    <ul class="sidebar-menu">
+                        <li class="header">Opções</li>
+
+                        <li class="treeview">
+                            <li class="treeview">
+                                <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
+                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
+                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
+                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="cadGrupo.xhtml">Criar Grupo</a></li>
+                                    <li><a href="gruposGerenciados.xhtml">Gerenciador</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+
+                </section>
+
+            </aside>
+
+
+            <div class="content-wrapper">
+
+                <section class="content-header">
+                    <h1>
+                        #{grupo.nome}<br />
+                    </h1>
+
+                    <small>#{grupo.descricao}</small><br />
+
+                    <a action="#" class="bt-link-grupo"
+                       href="#signup" data-toggle="modal" data-target="#modalPostagem">
+                        Publicar
+                    </a>
+
+                    <a action="#" class="bt-link-grupo"
+                       href="#signup" data-toggle="modal" data-target="#modalArquivo">
+                        Arquivo
+                    </a>
+                </section>
+
+                <section class="content">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="box box-success">
+                                <br />
+                                <div class="box-body chat" id="chat-box">
+                                    <div class="item">
+                                        <img src="../../img/perfil.png" alt="user image" class="online"/>
+                                        <p class="message">
+                                            <a href="#" class="name">
+                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                                                Fatinha
+                                            </a>
+                                            Fazendo TCC :)
+                                        </p>
+
+                                        <div class="attachment">
+                                            <div class="item">
+                                                <img src="../../img/perfil.png" alt="user image" class="online"/>
+                                                <p class="message">
+                                                    <a href="#" class="name">
+                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                                                        Fatinha
+                                                    </a>
+                                                    Fazendo TCC :)
+                                                </p>
+                                            </div>
+
+                                            <div class="">
+                                                <div class="input-group">
+                                                    <input class="form-control" placeholder="Comentar..."/>
+                                                    <div class="input-group-btn">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-warning btn-flat">Comentar</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.attachment -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!--Fim da div topico-->
+
+                        <div class="col-md-4">
+                            <div class="box box-danger">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Membros</h3>
+                                </div><!-- /.box-header -->
+
+                                <div class="box-body no-padding">
+
+                                    <ul class="users-list clearfix">
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Alexander Pierce</a>
+                                            <span class="users-list-date">Today</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Norman</a>
+                                            <span class="users-list-date">Yesterday</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Jane</a>
+                                            <span class="users-list-date">12 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">John</a>
+                                            <span class="users-list-date">12 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Alexander</a>
+                                            <span class="users-list-date">13 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Sarah</a>
+                                            <span class="users-list-date">14 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Nora</a>
+                                            <span class="users-list-date">15 Jan</span>
+                                        </li>
+                                        <li>
+                                            <img src="../../img/perfil.png" alt="User Image"/>
+                                            <a class="users-list-name" href="#">Nadia</a>
+                                            <span class="users-list-date">15 Jan</span>
+                                        </li>
+                                    </ul><!-- /.users-list -->
+
+                                    <div class="box-footer">
+                                        <form action="#" method="post">
+                                            <div class="input-group">
+                                                <input type="text" name="message" placeholder="Pesquisar Usuario..." class="form-control"/>
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-warning btn-flat">Pesquisar</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div><!-- /.box-footer-->
+
+                                    <div class="box-footer text-center">
+                                        <a href="javascript::" class="uppercase">Ver todos os usuarios...</a>
+                                    </div><!-- /.box-footer -->
+                                </div>
+                            </div>
+
+
+                            <div class="info-box bg-yellow">
+                                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Inventory</span>
+                                    <span class="info-box-number">5,200</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        50% Increase in 30 Days
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+
+                            <div class="info-box bg-green">
+                                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Mentions</span>
+                                    <span class="info-box-number">92,050</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        20% Increase in 30 Days
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+
+                            <div class="info-box bg-red">
+                                <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Downloads</span>
+                                    <span class="info-box-number">114,381</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        70% Increase in 30 Days
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Direct Messages</span>
+                                    <span class="info-box-number">163,921</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 40%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        40% Increase in 30 Days
+                                    </span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div><!--Fim da div col-md-4-->
+
+                    </div><!--Fim da div row-->
+                </section><!--Fim da section-->
+            </div>
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Versão</b> 2.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.
+                </strong> All rights reserved.
+            </footer>
+
+
+        </div>
+
+        <div class="modal fade bs-modal-sm" id="modalArquivo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modalGrupo">
+
+                    <br />
+                    <div class="bs-example bs-example-tabs">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="text-cadastrar">Selecione um arquivo</li>
+                        </ul>
+                    </div>
+
+                    <br />
+                    <h:form enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="panel-arquivo">
+                                    <div class="panel-body">
+
+                                        <h:inputTextarea class="form-control counted message-text" id="message" 
+                                                         pt:placeholder="Escreva Algo..." rows="5" value="#{gerenciadorUpload.arquivo.descricao}">
+
+                                        </h:inputTextarea>
+
+                                    </div>  
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alinhamentoTest">
+                            <p:fileUpload 
+                                value="#{gerenciadorUpload.fileUpload}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                />
+                            <br/>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <p:commandButton value="Enviar" ajax="false" actionListener="#{gerenciadorUpload.upload()}" 
+                                             disabled="false" update="@all" id="linkFoto" />
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>           
+
+
+        <div class="modal fade bs-modal-sm" id="modalPostagem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modalGrupo">
+
+                    <br />
+                    <div class="bs-example bs-example-tabs">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="text-cadastrar">Novo Topico</li>
+                        </ul>
+                    </div>
+
+                    <br />
+                    <h:form>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="panel-arquivo">
+                                    <div class="panel-body">
+
+                                        <h:inputTextarea class="form-control counted message-text" id="message" 
+                                                         pt:placeholder="Escreva Algo..." rows="7" 
+                                                         value="#{controladorTopico.topico.conteudo}">
+                                        </h:inputTextarea>
+
+                                    </div>  
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <h:commandLink value="Publicar" action="#{controladorTopico.salvarTopico()}" 
+                                             class="btn btn-success btn-flat btn-flat-menu-sair"/>
+                            <button type="button" class="btn btn-primary " data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>           
+
+    </h:body>
+</html>
+

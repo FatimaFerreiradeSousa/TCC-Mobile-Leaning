@@ -37,7 +37,6 @@ com\br\interfaces\InterfaceDaoAnotacao.class
 com\br\interfaces\InterfaceDaoResposta.class
 com\br\entidades\Resposta.class
 com\br\entidades\Anotacao.class
-com\br\entidades\Questao.class
 com\br\interfaces\InterfaceDaoTopico.class
 com\br\daos\DaoAluno.class
 com\br\entidades\Aluno.class

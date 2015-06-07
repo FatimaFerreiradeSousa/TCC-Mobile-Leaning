@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="moduloProfessor/disciplinas/respondeTeste.xhtml" x="340" y="323" zoom="true"/>
+        <Node id="testCss.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="indexAluno.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="moduloProfessor/grupos/cadGrupo.xhtml" x="1171" y="38" zoom="true"/>
+        <Node id="testImg.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="moduloAluno/resultadosTestes.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/resultadosTestes.xhtml" x="125" y="17" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/perguntasCadastradas.xhtml" x="1100" y="335" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/addQuestaoTeste.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="moduloAluno/pageInicialAluno.xhtml" x="1030" y="217" zoom="true"/>
+        <Node id="moduloAluno/configAluno.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="inicialPage.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="moduloAluno/perfilAluno.xhtml" x="967" y="77" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/cadastrarPergunta.xhtml" x="1121" y="661" zoom="true"/>
+        <Node id="moduloProfessor/paginaInicialProfessor.xhtml" x="568" y="45" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/addPerguntaTeste.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="moduloAluno/gruposAluno.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="index.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="moduloProfessor/grupos/pagInicialGrupo.xhtml" x="37" y="163" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/visualizarPergunta.xhtml" x="1069" y="537" zoom="true"/>
+        <Node id="moduloProfessor/grupos/gruposGerenciados.xhtml" x="16" y="80" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/testesCadastrados.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="moduloProfessor/disciplinas/cadExercicio.xhtml" x="483" y="271" zoom="true"/>
+        <Node id="moduloProfessor/paginaConfig.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="indexProfessor.xhtml" x="426" y="121" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

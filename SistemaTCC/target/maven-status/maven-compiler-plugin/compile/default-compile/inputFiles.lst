@@ -16,6 +16,7 @@ C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\interfaces\InterfaceDaoAluno.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\seguranca\GerarSenha.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\datas\FormatData.java
+C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\Pergunta.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\controladores\ControladorListAnt.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\controlResp\ControladorTeste.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\Professor.java
@@ -51,7 +52,6 @@ C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\Anotacao.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\gerenciadores\InterfaceGerenciadorQuestao.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\interfaces\InterfacePergunta.java
-C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\Questao.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\RespondeExercicio.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\entidades\Topico.java
 C:\Users\Fatinha\Documents\Repositorios\TCC-Mobile-Learning\SistemaTCC\src\main\java\com\br\daos\DaoAnotacao.java
