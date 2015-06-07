@@ -156,7 +156,7 @@ public class ControladorListAnt implements Serializable {
     public void lembretes() throws ParseException {
         this.context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) this.session.getAttribute("usuario");
+        Professor professorLogado = (Professor) this.session.getAttribute("professor");
 
         List<Anotacao> ant = fachada.listarAnotacao(professorLogado);
 

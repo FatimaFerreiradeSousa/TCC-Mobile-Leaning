@@ -20,7 +20,7 @@ public class Questao implements Serializable{
     @Id
     private String codigo;
     private String enunciado;
-    @OneToMany(mappedBy = "questao")
+    @OneToMany
     private List<Resposta> respostas;
     private float pontuacao;
     @ManyToMany(mappedBy = "questoesExercicios")
@@ -39,6 +39,7 @@ public class Questao implements Serializable{
         this.pontuacao = pontuacao;
         this.exerciciosQuestoes = new ArrayList();
         this.professor = professor;
+        this.respostas = new ArrayList();
     }
 
     public String getCodigo() {

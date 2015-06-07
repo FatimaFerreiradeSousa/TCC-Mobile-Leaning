@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pagina Inicial Professor</title>
+        <meta charset="UTF-8"></meta>
+
+        <link href="../../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
+        <link href="../../assets/dist/estilo/estilo.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+        <script src="../../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../assets/dist/js/app.min.js" type="text/javascript"></script>
+    </h:head>
+
+
+    <h:body class="skin-blue">
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                <!-- Pagina Inicial Link -->
+                <a href="../paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
+
+                <!-- Menu Topo -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle butão-->
+                    <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Menu da Direita -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="../../img/icPerfil.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">#{professor.nome}</span>
+                                </a>
+                                <ul class="dropdown-menu menuSair">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <p:graphicImage id="imgPerfil12" 
+                                                        value="#{controladorProfessor.content}"/>
+                                        <p>
+                                            #{professor.nome} - Professor
+                                            <small>Membro desde de Março de 2015</small>
+                                        </p>
+                                    </li>
+
+                                    <h:form>
+
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="../paginaConfig.jsf"/>
+                                            </div>
+                                            <div class="pull-right">
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorProfessor.logout()}"/>
+                                            </div>
+                                        </li>
+                                        <br /><br /><br />
+
+                                    </h:form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <p:graphicImage id="imgPerfil11" 
+                                            value="#{controladorProfessor.content}"/>
+                        </div>
+                        <div class="pull-left info">
+                            <p>#{professor.nome}</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- search form (Optional) -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+
+                    <ul class="sidebar-menu">
+                        <li class="header">Opções</li>
+
+                        <li class="treeview">
+                            <li class="treeview">
+                                <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
+                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="../grupos/cadGrupo.jsf">Grupo</a></li>
+                                    <li><a href="../grupos/gruposGerenciados.jsf">Meus Grupos</a></li>
+                                    <li><a href="../grupos/pagInicialGrupo.jsf">Grupos Gerenciados</a></li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper formatar">
+                <!-- Main content -->
+                <section class="content">
+                    <h4 class="h-info" id="myModalLabel">Cadastrar Pergunta</h4>
+                    <div class="invoice">
+                        <h:form>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                            <label class="control-label" for="Nome">Codigo </label>
+                                            <h:inputText value="#{ControladorPergunta.questao.codigo}" class="form-control" 
+                                                         pt:placeholder="Codigo"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                            <label class="control-label" for="Email">Peso </label>
+                                            <h:inputText value="#{ControladorPergunta.questao.pontuacao}" class="form-control" 
+                                                         pt:placeholder="Peso"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                            <label class="control-label" for="Login">Enunciado </label>
+                                            <h:inputText value="#{ControladorPergunta.questao.enunciado}" class="form-control" 
+                                                         pt:placeholder="Enunciado"/>
+                                        </div>
+                                    </div>
+                                </div> <br />
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta1.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta1.respostaCerta}"/>
+                                    </div>
+                                </div>
+
+                            </div><br />
+
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta2.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp2" value="#{ControladorPergunta.resposta2.respostaCerta}"/>
+                                    </div>
+                                </div>
+
+                            </div><br />
+
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta3.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp3" value="#{ControladorPergunta.resposta3.respostaCerta}"/>
+                                    </div>
+                                </div>
+
+                            </div><br />
+
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta4.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp4" value="#{ControladorPergunta.resposta4.respostaCerta}"/>
+                                    </div>
+                                </div>
+
+                            </div><br />
+
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta5.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp5" value="#{ControladorPergunta.resposta5.respostaCerta}"/>
+                                    </div>
+                                </div>
+                            </div><br />
+
+                            <div class="row">
+                                <div class="col-xs-12 form-inline">
+                                    <h:commandButton value="Cadastrar" class="btn btn-success btn-cad-questao" action="#{ControladorPergunta.salvarPergunta()}"/>
+                                    <h:commandButton value="Atualizar" class="btn btn-success btn-cad-questao" action="#{ControladorPergunta.atualizarPergunta()}"/>
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </div>
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Versão</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="#">FFS - Developers</a>.
+                </strong> All rights reserved.
+            </footer>
+
+        </div><!-- ./wrapper -->
+    </h:body>
+</html>
+

@@ -66,7 +66,7 @@ public class ControladorExercicio implements Serializable {
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
         exercicio = (Teste) this.session.getAttribute("teste");
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         
         if (exercicio.getCodigo() != null) {
             if (fachada.buscarExercicio(exercicio.getCodigo()) == null) {
@@ -142,7 +142,7 @@ public class ControladorExercicio implements Serializable {
             List<Questao> aux = new ArrayList();
             exercicio.setQuestoesExercicios(aux);
             externalContext.getSessionMap().put("teste", exercicio);
-            return "addQuestao";
+            return "addPerguntaTeste?faces-redirect=true";
         } else {
             facesMessage = new FacesMessage("Codigo Invalido!");
             this.context = FacesContext.getCurrentInstance();
@@ -154,7 +154,7 @@ public class ControladorExercicio implements Serializable {
     public List<Questao> listarQuestoes() {
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         return fachada.listarQuestoes(professorLogado.getLogin());
     }
 
@@ -170,13 +170,13 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String cancelarCadastro() {
-        return "voltarPage";
+        return "cadExercicio?faces-redirect=true";
     }
 
     public List<Teste> testesCadastrados() {
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         return fachada.listarTestes(professorLogado.getLogin());
     }
 }

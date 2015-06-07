@@ -20,16 +20,13 @@ public class Resposta implements Serializable{
     private int codigo;
     private String conteudo;
     private boolean respostaCerta;
-    @ManyToOne
-    private Questao questao;
     
     public Resposta(){
     
     }
     
-    public Resposta(String conteudo, boolean respostaCerta, Questao questao){
+    public Resposta(String conteudo, boolean respostaCerta){
         this.conteudo = conteudo;
-        this.questao = questao;
         this.respostaCerta = respostaCerta;
     }
     
@@ -55,13 +52,5 @@ public class Resposta implements Serializable{
     
     public void setRespostaCerta(boolean respostaCerta){
         this.respostaCerta = respostaCerta;
-    }
-    
-    public Questao getQuestao(){
-        return questao;
-    }
-    
-    public void setQuestao(Questao questao){
-        this.questao = questao;
     }
 }

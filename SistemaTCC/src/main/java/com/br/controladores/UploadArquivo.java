@@ -111,7 +111,7 @@ public class UploadArquivo implements Serializable {
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpSession session = (HttpSession) context.getSession(false);
                 Grupo grupo = (Grupo) session.getAttribute("grupo");
-                Professor professorLogado = (Professor) session.getAttribute("usuario");
+                Professor professorLogado = (Professor) session.getAttribute("professor");
 
                 arquivo.setFoto(caminhoFoto);
                 arquivo.setCaminho(caminho+fileUpload.getFileName());

@@ -5,13 +5,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Pagina Inicial Professor</title>
+        <title>Configurações</title>
         <meta charset="UTF-8"></meta>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
 
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -29,7 +30,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -44,7 +45,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                    <span class="hidden-xs">#{professor.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
@@ -52,7 +53,7 @@
                                         <p:graphicImage id="imgPerfil1" 
                                                         value="#{controladorProfessor.content}"/>
                                         <p>
-                                            #{usuario.nome} - Professor
+                                            #{professor.nome} - Professor
                                             <small>Membro desde de Março de 2015</small>
                                         </p>
                                     </li>
@@ -61,7 +62,7 @@
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                                 action="paginaConfig.xhtml"/>
+                                                                 action="paginaConfig.jsf"/>
                                             </div>
                                             <div class="pull-right">
                                                 <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
@@ -90,7 +91,7 @@
                                             value="#{controladorProfessor.content}"/>
                         </div>
                         <div class="pull-left info">
-                            <p>#{usuario.nome}</p>
+                            <p>#{professor.nome}</p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -114,18 +115,11 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
-                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#"><span>Arquivos</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#">Cadastrar Arquivo</a></li>
-                                    <li><a href="#">Submeter Arquivo</a></li>
+                                    <li><a href="disciplinas/cadastrarPergunta.jsf">Cadastrar Questões</a></li>
+                                    <li><a href="disciplinas/perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="disciplinas/cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="disciplinas/testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="disciplinas/resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
@@ -143,10 +137,10 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper formatar">
+            <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
-                    <div class="banner-form">
+                    <div class="invoice">
                         <h:form>
                             <h4 class="h-info" id="myModalLabel">Configurações</h4>
                             <hr />
@@ -167,18 +161,18 @@
 
                                 <div class="col-xs-9">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" >
                                             <label class="control-label" for="Nome">Nome </label>
-                                            <h:inputText value="#{usuario.nome}" class="form-control"/>
+                                            <h:inputText value="#{professor.nome}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-9">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s">
                                             <label class="control-label" for="Email">Email </label>
-                                            <h:inputText value="#{usuario.email}" class="form-control"/>
+                                            <h:inputText value="#{professor.email}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -188,27 +182,27 @@
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s">
                                             <label class="control-label" for="Login">Login </label>
-                                            <h:inputText value="#{usuario.login}" class="form-control" disabled="true"/>
+                                            <h:inputText value="#{professor.login}" class="form-control" disabled="true"/>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-4">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" >
                                             <label class="control-label" for="senha">Senha </label>
-                                            <h:inputText value="#{usuario.senha}" class="form-control"/>
+                                            <h:inputText value="#{professor.senha}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-4">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="date">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s">
                                             <label class="control-label" for="senha">Data de Nascimento </label>
-                                            <h:inputText value="#{usuario.dataNascimento}" class="form-control">
+                                            <h:inputText value="#{professor.dataNascimento}" class="form-control">
                                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:inputText>
                                         </div>
@@ -219,9 +213,9 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" >
                                             <label class="control-label" for="instituicao">Instituição </label>
-                                            <h:inputText value="#{usuario.instituicao}" class="form-control"/>
+                                            <h:inputText value="#{professor.instituicao}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -230,9 +224,9 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" >
                                             <label class="control-label" for="instituicao">Escreva algo sobre você </label>
-                                            <h:inputText value="#{usuario.descricao}" class="form-control"/>
+                                            <h:inputTextarea rows="7" value="#{professor.descricao}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +234,8 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <h:commandLink value="Atualizar Informações" class="button1" action="#{controladorProfessor.atualizarProfessor()}"/>
+                                    <h:commandButton value="Atualizar Informações" class="btn btn-success" 
+                                                     action="#{controladorProfessor.atualizarProfessor()}"/>
                                 </div>
                             </div>
 
@@ -249,14 +244,16 @@
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 
-        </div><!-- ./wrapper -->
 
-        <div class="footer text-center">
-            <div class="container">
-                <p class="wow bounceIn" data-wow-delay="0.4s">Copyright &copy; 2015 Fatinha All rights reserved | Mobile Learning  
-                    <a href="http://github.com/FatimaFerreiradeSousa/TCC-Mobile-Learning">  GitHub</a></p>
-            </div>
-        </div>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Versão</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="#">FFS - Developers</a>.
+                </strong> All rights reserved.
+            </footer>
+
+        </div><!-- ./wrapper -->
 
         <div class="modal fade" id="modalFoto">
             <div class="modal-dialog">

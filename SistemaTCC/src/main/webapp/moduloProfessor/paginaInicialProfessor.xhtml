@@ -28,7 +28,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -43,7 +43,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                    <span class="hidden-xs">#{professor.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
@@ -52,7 +52,7 @@
                                         <p:graphicImage id="imgPerfil2" value="#{controladorProfessor.content}"/>
 
                                         <p>
-                                            #{usuario.nome} - Professor
+                                            #{professor.nome} - Professor
                                             <small>Membro desde de #{controladorProfessor.mes} de 
                                                 #{controladorProfessor.ano}</small>
                                         </p>
@@ -62,7 +62,7 @@
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                                 action="paginaConfig.xhtml"/>
+                                                                 action="paginaConfig.jsf"/>
                                             </div>
                                             <div class="pull-right">
                                                 <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
@@ -89,7 +89,7 @@
                             <p:graphicImage id="imgPerfil3" value="#{controladorProfessor.content}"/>
                         </div>
                         <div class="pull-left info">
-                            <p>#{usuario.nome}</p>
+                            <p>#{professor.nome}</p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -97,7 +97,7 @@
                     <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
                             <span class="input-group-btn">
                                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
@@ -112,25 +112,19 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
-                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
+                                    <li><a href="disciplinas/cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
+                                    <li><a href="disciplinas/perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="disciplinas/cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="disciplinas/testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="disciplinas/resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="grupos/cadGrupo.xhtml">Criar Grupo</a></li>
-                                    <li><a href="grupos/gruposGerenciados.xhtml">Gerenciador</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#"><span>Anotações</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#">Nova Anotações</a></li>
+                                    <li><a href="grupos/cadGrupo.jsf">Grupo</a></li>
+                                    <li><a href="grupos/gruposGerenciados.jsf">Gerenciador</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -144,9 +138,8 @@
                 <section class="content-header">
                     <h1>
                         Lembretes...
-                    </h1>
-
-                    <hr />
+                    </h1><br />
+                    
                     <div class="row">
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
@@ -239,7 +232,7 @@
                                                             <span class="text">#{anotacao.titulo}</span>
                                                             <div class="tools">
                                                                 <a action="#" class="fa fa-edit"
-                                                                   href="#signup" data-toggle="modal" data-target="#modalAnotacao">
+                                                                   href="#signup" data-toggle="modal" data-target="#modalAnotacaoAtualizar">
                                                                 </a> 
                                                                 <h:commandLink value="" class="fa fa-trash-o" 
                                                                                action="#{controladorAnotacao.removerAnotacao(anotacao)}"/>
@@ -268,6 +261,14 @@
                     </div>
                 </section>
             </div><!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Versão</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
+                </strong> All rights reserved.
+            </footer>
         </div><!-- ./wrapper -->
 
         <div class="modal fade" id="modalAnotacao">
@@ -321,15 +322,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="footer text-center">
-            <div class="container">
-                <p class="wow bounceIn" data-wow-delay="0.4s">Copyright &copy; 2015 Fatinha All rights reserved | Mobile Learning  
-                    <a href="http://github.com/FatimaFerreiradeSousa/TCC-Mobile-Learning">  GitHub</a></p>
-            </div>
-        </div>
-
-
     </h:body>
 </html>
 

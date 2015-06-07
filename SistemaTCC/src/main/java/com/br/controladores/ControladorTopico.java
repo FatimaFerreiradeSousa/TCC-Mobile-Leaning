@@ -54,7 +54,7 @@ public class ControladorTopico implements Serializable {
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             HttpSession session = (HttpSession) context.getSession(false);
             Grupo grupo = (Grupo) session.getAttribute("grupo");
-            Professor professorLogado = (Professor) session.getAttribute("usuario");
+            Professor professorLogado = (Professor) session.getAttribute("professor");
             List<Topico> topicos = professorLogado.getTopicosCriados();
             topicos.size();
             

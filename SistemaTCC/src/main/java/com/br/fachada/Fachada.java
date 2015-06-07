@@ -18,7 +18,7 @@ public class Fachada implements Serializable {
     @EJB
     private InterfaceDaoProfessor daoProfessor;
     @EJB
-    private InterfaceQuestao daoQuestao;
+    private InterfacePergunta daoQuestao;
     @EJB
     private InterfaceExercicio daoExercicio;
     @EJB

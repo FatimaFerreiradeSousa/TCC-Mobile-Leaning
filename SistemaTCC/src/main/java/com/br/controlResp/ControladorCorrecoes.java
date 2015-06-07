@@ -84,44 +84,44 @@ public class ControladorCorrecoes implements Serializable {
     }
 
     public String respostasRecebidas() {
-        System.out.println("Resposta Selecionada 1: " + respostaSelecionada1);
-        System.out.println("Resposta Selecionada 2: " + respostaSelecionada2);
-        System.out.println("Resposta Selecionada 3: " + respostaSelecionada3);
-        System.out.println("Resposta Selecionada 4: " + respostaSelecionada4);
-        System.out.println("Resposta Selecionada 5: " + respostaSelecionada5);
+//        System.out.println("Resposta Selecionada 1: " + respostaSelecionada1);
+//        System.out.println("Resposta Selecionada 2: " + respostaSelecionada2);
+//        System.out.println("Resposta Selecionada 3: " + respostaSelecionada3);
+//        System.out.println("Resposta Selecionada 4: " + respostaSelecionada4);
+//        System.out.println("Resposta Selecionada 5: " + respostaSelecionada5);
+//
+//        Resposta resp1 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada1));
+//        Resposta resp2 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada2));
+//        Resposta resp3 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada3));
+//        Resposta resp4 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada4));
+//        Resposta resp5 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada5));
+//
+//        if (resp1.getRespostaCerta() == true) {
+//            System.out.println("Resposta Correta: " + resp1.getConteudo());
+//            this.pontuacao += resp1.getQuestao().getPontuacao();
+//        }
+//
+//        if (resp2.getRespostaCerta() == true) {
+//            System.out.println("Resposta Correta: " + resp2.getConteudo());
+//            this.pontuacao += resp2.getQuestao().getPontuacao();
+//        }
+//
+//        if (resp3.getRespostaCerta() == true) {
+//            System.out.println("Resposta Correta: " + resp3.getConteudo());
+//            this.pontuacao += resp3.getQuestao().getPontuacao();
+//        }
+//
+//        if (resp4.getRespostaCerta() == true) {
+//            System.out.println("Resposta Correta: " + resp4.getConteudo());
+//            this.pontuacao += resp4.getQuestao().getPontuacao();
+//        }
 
-        Resposta resp1 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada1));
-        Resposta resp2 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada2));
-        Resposta resp3 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada3));
-        Resposta resp4 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada4));
-        Resposta resp5 = fachada.buscarRespostaCodigo(Integer.parseInt(respostaSelecionada5));
-
-        if (resp1.getRespostaCerta() == true) {
-            System.out.println("Resposta Correta: " + resp1.getConteudo());
-            this.pontuacao += resp1.getQuestao().getPontuacao();
-        }
-
-        if (resp2.getRespostaCerta() == true) {
-            System.out.println("Resposta Correta: " + resp2.getConteudo());
-            this.pontuacao += resp2.getQuestao().getPontuacao();
-        }
-
-        if (resp3.getRespostaCerta() == true) {
-            System.out.println("Resposta Correta: " + resp3.getConteudo());
-            this.pontuacao += resp3.getQuestao().getPontuacao();
-        }
-
-        if (resp4.getRespostaCerta() == true) {
-            System.out.println("Resposta Correta: " + resp4.getConteudo());
-            this.pontuacao += resp4.getQuestao().getPontuacao();
-        }
-
-        if (resp5.getRespostaCerta() == true) {
-            System.out.println("Resposta Correta: " + resp5.getConteudo());
-            this.pontuacao += resp5.getQuestao().getPontuacao();
-        }
-
-        System.out.println("Pontuação: " +this.pontuacao);
+//        if (resp5.getRespostaCerta() == true) {
+//            System.out.println("Resposta Correta: " + resp5.getConteudo());
+//            this.pontuacao += resp5.getQuestao().getPontuacao();
+//        }
+//
+//        System.out.println("Pontuação: " +this.pontuacao);
         return null;
     }
 }

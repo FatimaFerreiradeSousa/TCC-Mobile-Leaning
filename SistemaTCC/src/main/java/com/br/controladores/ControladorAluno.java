@@ -145,7 +145,7 @@ public class ControladorAluno implements Serializable {
 
             if (a != null) {
                 aluno = a;
-                String loginPage = "/faces/moduloAluno/pageInicialAluno.xhtml";
+                String loginPage = "/moduloAluno/pageInicialAluno.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 this.session = (HttpSession) context.getSession(false);

@@ -15,10 +15,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.faces.application.Application;
-import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +69,7 @@ public class ControladorProfessor implements Serializable {
     public String getMes() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("usuario");
+        professorLogado = (Professor) this.session.getAttribute("professor");
         this.mes = FormatData.pegarMes(professorLogado.getDataParticipacao());
         return mes;
     }
@@ -84,7 +81,7 @@ public class ControladorProfessor implements Serializable {
     public String getAno() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("usuario");
+        professorLogado = (Professor) this.session.getAttribute("professor");
         this.ano = FormatData.pegarAno(professorLogado.getDataParticipacao());
         return ano;
     }
@@ -131,12 +128,12 @@ public class ControladorProfessor implements Serializable {
 
             if (p != null) {
                 professor = p;
-                String loginPage = "/faces/moduloProfessor/paginaInicialProfessor.xhtml";
+                String loginPage = "/moduloProfessor/paginaInicialProfessor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 this.session = (HttpSession) context.getSession(false);
-                context.getSessionMap().put("usuario", professor);
-                professorLogado = (Professor) session.getAttribute("usuario");
+                context.getSessionMap().put("professor", professor);
+                professorLogado = (Professor) session.getAttribute("professor");
                 context.redirect(request.getContextPath() + loginPage);
             } else {
                 mensagem = "Login ou senha inválidos!";
@@ -164,7 +161,7 @@ public class ControladorProfessor implements Serializable {
     public String atualizarProfessor() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("usuario");
+        professorLogado = (Professor) this.session.getAttribute("professor");
         fachada.atualizarProfessor(professorLogado);
         return null;
     }
@@ -188,7 +185,7 @@ public class ControladorProfessor implements Serializable {
     public StreamedContent getContent() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("usuario");
+        professorLogado = (Professor) this.session.getAttribute("professor");
         File foto = new File(professorLogado.getFoto());
 
         DefaultStreamedContent content = null;
@@ -212,7 +209,7 @@ public class ControladorProfessor implements Serializable {
     public void upload() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("usuario");
+        professorLogado = (Professor) this.session.getAttribute("professor");
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\SistemaTCC\\Imagens\\"
                 + professorLogado.getLogin() + "\\";
         File dir = new File(caminho);

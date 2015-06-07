@@ -42,7 +42,7 @@ public class ControladorAnotacao implements Serializable {
     public String salvarAnotacao(){
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         anotacao.setProfessor(professorLogado);
         fachada.salvarAnotacao(anotacao);
         anotacao = new Anotacao();
@@ -62,7 +62,7 @@ public class ControladorAnotacao implements Serializable {
     public List<Anotacao> listarTodas(){
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         
         return fachada.listarAnotacao(professorLogado);
     }

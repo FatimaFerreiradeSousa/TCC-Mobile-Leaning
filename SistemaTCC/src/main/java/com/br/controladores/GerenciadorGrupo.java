@@ -53,7 +53,7 @@ public class GerenciadorGrupo implements Serializable {
     public String salvarGrupo(){
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
         
         grupo.setDataCriacao(new Date());
         grupo.setProfessorGrupos(professorLogado);
@@ -65,7 +65,7 @@ public class GerenciadorGrupo implements Serializable {
     public List<Grupo> gruposCriados() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("usuario");
+        Professor professorLogado = (Professor) session.getAttribute("professor");
 
         return fachada.meusGrupos(professorLogado.getLogin());
     }

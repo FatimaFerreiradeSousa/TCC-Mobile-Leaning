@@ -887,7 +887,27 @@ a:hover,a:active,a:focus{
     margin: 1em;
 }
 
-@media (max-width:991px){.navbar-custom-menu>.navbar-nav{float:right}.navbar-custom-menu>.navbar-nav>li{position:static}.navbar-custom-menu>.navbar-nav>li>.dropdown-menu{position:absolute;right:5%;left:auto;border:1px solid #ddd;background:#fff}}.form-control{border-radius:0 !important;box-shadow:none;border-color:#d2d6de}.form-control:focus{border-color:#3c8dbc !important;box-shadow:none}.form-control::-moz-placeholder{color:#bbb;opacity:1}.form-control:-ms-input-placeholder{color:#bbb}.form-control::-webkit-input-placeholder{color:#bbb}.form-control:not(select){-webkit-appearance:none;-moz-appearance:none;appearance:none}.form-group.has-success label{color:#00a65a}.form-group.has-success .form-control{border-color:#00a65a !important;box-shadow:none}.form-group.has-warning label{color:#f39c12}.form-group.has-warning .form-control{border-color:#f39c12 !important;box-shadow:none}.form-group.has-error label{color:#dd4b39}.form-group.has-error .form-control{border-color:#dd4b39 !important;box-shadow:none}.input-group .input-group-addon{border-radius:0;border-color:#d2d6de;background-color:#fff}
+@media (max-width:991px){.navbar-custom-menu>.navbar-nav{float:right}.navbar-custom-menu>.navbar-nav>li{position:static}.navbar-custom-menu>.navbar-nav>li>.dropdown-menu{position:absolute;right:5%;left:auto;border:1px solid #ddd;background:#fff}}
+
+.form-control{border-radius:0 !important;box-shadow:none;border-color:#d2d6de}
+.form-control:focus{border-color:#3c8dbc !important;box-shadow:none}
+.form-control::-moz-placeholder{color:#bbb;opacity:1}
+.form-control:-ms-input-placeholder{color:#bbb}
+.form-control::-webkit-input-placeholder{color:#bbb}
+.form-control:not(select){-webkit-appearance:none;-moz-appearance:none;appearance:none}
+
+.form-group.has-success label{color:#00a65a}
+.form-group.has-success 
+
+.form-control{border-color:#00a65a !important;box-shadow:none}
+.form-group.has-warning label{color:#f39c12}
+.form-group.has-warning 
+.form-control{border-color:#f39c12 !important;box-shadow:none}
+.form-group.has-error label{color:#dd4b39}
+.form-group.has-error 
+.form-control{border-color:#dd4b39 !important;box-shadow:none}
+
+.input-group .input-group-addon{border-radius:0;border-color:#d2d6de;background-color:#fff}
 
 .btn-group-vertical .btn.btn-flat:first-of-type,.btn-group-vertical .btn.btn-flat:last-of-type{
     border-radius:0
