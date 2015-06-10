@@ -69,4 +69,21 @@
             <to-view-id>/moduloProfessor/disciplinas/visualizarPergunta.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/moduloProfessor/disciplinas/cadastrarPergunta.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cadastrarResposta</from-outcome>
+            <to-view-id>/moduloProfessor/disciplinas/cadastrarResposta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/moduloProfessor/disciplinas/cadastrarResposta.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>cadastrarPergunta</from-outcome>
+            <to-view-id>/moduloProfessor/disciplinas/cadastrarPergunta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

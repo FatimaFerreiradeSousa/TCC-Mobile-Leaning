@@ -71,8 +71,8 @@ public class Fachada implements Serializable {
         return daoQuestao.consultar(codigo);
     }
 
-    public void removerQuestao(Pergunta questao) {
-        daoQuestao.remover(questao);
+    public boolean removerQuestao(Pergunta questao) {
+        return daoQuestao.remover(questao);
     }
 
     public List<Pergunta> listarQuestoes(String login) {
@@ -80,8 +80,8 @@ public class Fachada implements Serializable {
     }
 
     /*Crud Teste*/
-    public void salvarExercicio(Teste exe) {
-        daoExercicio.salvar(exe);
+    public boolean salvarExercicio(Teste exe) {
+        return daoExercicio.salvar(exe);
     }
 
     public Teste buscarExercicio(String codigo) {
@@ -113,8 +113,8 @@ public class Fachada implements Serializable {
         return daoResposta.atualizarResposta(resposta);
     }
 
-    public boolean removerResposta(Resposta resposta) {
-        return daoResposta.removerResposta(resposta);
+    public boolean removerResposta(List<Resposta> respostas) {
+        return daoResposta.removerResposta(respostas);
     }
 
     /*Crud AddQuestao*/

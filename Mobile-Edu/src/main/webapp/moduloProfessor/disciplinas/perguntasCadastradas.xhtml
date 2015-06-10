@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Perguntas</title>
         <meta charset="UTF-8"></meta>
@@ -148,29 +149,36 @@
                     <div class="invoice">
                         <div style="height:450px; overflow: auto;" >
                             <h:form>
-                                <h:dataTable class="table table-responsive"
-                                             value="#{ControladorPergunta.listarPerguntas()}" var="pergunta">
-                                    <h:column>
-                                        <div class="box-body">
-                                            <ul class="todo-list">
-                                                <li>
-                                                    <input type="checkbox" value="" name=""/>
-                                                    <!-- todo text -->
-                                                    <span class="text">#{pergunta.enunciado}</span>
-                                                    <div class="tools">
-                                                        <h:commandLink value="" class="fa fa-edit" 
-                                                                       action="#{ControladorPergunta.visualizarPergunta(pergunta)}"/>
-                                                        
-                                                        <h:commandLink value="" class="fa fa-trash-o" 
-                                                                       action="#{ControladorPergunta.removerPergunta(pergunta)}"/>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </h:column>
+                                <c:if test="#{ControladorPergunta.listarPerguntas().size() > 0}">
+                                    <h:dataTable class="table table-responsive"
+                                                 value="#{ControladorPergunta.listarPerguntas()}" var="pergunta">
+                                        <h:column>
+                                            <div class="box-body">
+                                                <ul class="todo-list">
+                                                    <li>
+                                                        <input type="checkbox" value="" name=""/>
+                                                        <!-- todo text -->
+                                                        <span class="text">#{pergunta.enunciado}</span>
+                                                        <div class="tools">
 
-                                </h:dataTable>
+                                                            <h:commandLink value="" class="fa fa-trash-o" 
+                                                                           action="#{ControladorPergunta.removerPergunta(pergunta)}"/>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </c:if>
                             </h:form>
+
+                            <c:if test="#{ControladorPergunta.listarPerguntas().size() == 0}">
+                                <div class="alert alert-danger" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                     Nenhuma Pergunta Cadastrada
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </section><!-- /.content -->

@@ -5,7 +5,7 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Pagina Inicial Professor</title>
+        <title>Cadastrar Resposta</title>
         <meta charset="UTF-8"></meta>
 
         <link href="../../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -143,127 +143,40 @@
             <div class="content-wrapper formatar">
                 <!-- Main content -->
                 <section class="content">
-                    <h4 id="myModalLabel">Pergunta</h4>
+                    <h3>Adicionar Respostas</h3>
                     <div class="invoice">
                         <h:form>
+                            <h5><h:outputLabel>Pergunta: #{pergunta.enunciado}</h:outputLabel></h5>
+                            
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Nome">Codigo </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.codigo}" class="form-control" 
-                                                         pt:placeholder="Codigo"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Email">Peso </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.pontuacao}" class="form-control" 
-                                                         pt:placeholder="Peso"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Login">Enunciado </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.enunciado}" class="form-control" 
-                                                         pt:placeholder="Enunciado"/>
-                                        </div>
-                                    </div>
-                                </div> <br />
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-xs-9">
+                                <div class="col-xs-7">
                                     <label class="control-label" for="Resposta">Conteudo </label>
-                                    <h:inputText value="#{ControladorPergunta.resposta1.conteudo}" class="form-control" 
+                                    <h:inputText value="#{ControladorPergunta.resposta.conteudo}" class="form-control" 
                                                  pt:placeholder="Resposta"/>
                                 </div>
 
                                 <div class="col-xs-3">
                                     <label class="control-label" for="Resposta">Resposta Certa </label><br />
                                     <div style="margin-left: 2em; margin-top: 5px">
-                                        <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta1.respostaCerta}"/>
+                                        <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta.respostaCerta}"/>
                                     </div>
+                                </div>
+                                
+                                <div class="col-xs-2">
+                                    <label class="control-label" for="Resposta">Respostas</label><br />
+                                    <label class="text-blue"  style="margin-left: 2em;">
+                                        #{pergunta.qtdRespostas}</label>
                                 </div>
 
                             </div><br />
-
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <label class="control-label" for="Resposta">Conteudo </label>
-                                    <h:inputText value="#{ControladorPergunta.resposta2.conteudo}" class="form-control" 
-                                                 pt:placeholder="Resposta"/>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
-                                    <div style="margin-left: 2em; margin-top: 5px">
-                                        <h:selectBooleanCheckbox id="resp2" value="#{ControladorPergunta.resposta2.respostaCerta}"/>
-                                    </div>
-                                </div>
-
-                            </div><br />
-
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <label class="control-label" for="Resposta">Conteudo </label>
-                                    <h:inputText value="#{ControladorPergunta.resposta3.conteudo}" class="form-control" 
-                                                 pt:placeholder="Resposta"/>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
-                                    <div style="margin-left: 2em; margin-top: 5px">
-                                        <h:selectBooleanCheckbox id="resp3" value="#{ControladorPergunta.resposta3.respostaCerta}"/>
-                                    </div>
-                                </div>
-
-                            </div><br />
-
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <label class="control-label" for="Resposta">Conteudo </label>
-                                    <h:inputText value="#{ControladorPergunta.resposta4.conteudo}" class="form-control" 
-                                                 pt:placeholder="Resposta"/>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
-                                    <div style="margin-left: 2em; margin-top: 5px">
-                                        <h:selectBooleanCheckbox id="resp4" value="#{ControladorPergunta.resposta4.respostaCerta}"/>
-                                    </div>
-                                </div>
-
-                            </div><br />
-
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <label class="control-label" for="Resposta">Conteudo </label>
-                                    <h:inputText value="#{ControladorPergunta.resposta5.conteudo}" class="form-control" 
-                                                 pt:placeholder="Resposta"/>
-                                </div>
-
-                                <div class="col-xs-3">
-                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
-                                    <div style="margin-left: 2em; margin-top: 5px">
-                                        <h:selectBooleanCheckbox id="resp5" value="#{ControladorPergunta.resposta5.respostaCerta}"/>
-                                    </div>
-                                </div>
-                            </div><br />
-
+                            
                             <div class="row">
                                 <div class="col-xs-12 form-inline">
-                                    <h:commandButton value="Consultar" class="btn btn-default btn-cad-questao" action="#{ControladorPergunta.consultarPergunta()}"/>
-                                    <h:commandButton value="Atualizar" class="btn btn-default btn-cad-questao" action="#{ControladorPergunta.atualizarPergunta()}"/>
+                                    <h:commandButton value="Adicionar Pergunta" class="btn btn-default btn-cad-questao" 
+                                                     action="#{ControladorPergunta.salvarResposta()}"/>
+
+                                    <h:commandButton value="Cadastrar" class="btn btn-default btn-cad-questao" 
+                                                     action="#{ControladorPergunta.removerAtributosSessao()}"/>
                                 </div>
                             </div>
 

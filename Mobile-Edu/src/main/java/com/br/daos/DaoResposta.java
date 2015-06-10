@@ -44,10 +44,12 @@ public class DaoResposta implements InterfaceDaoResposta {
     }
 
     @Override
-    public boolean removerResposta(Resposta resposta) {
+    public boolean removerResposta(List<Resposta> respostas) {
 
         try {
-            em.remove(em.merge(resposta));
+            for (Resposta r : respostas) {
+                em.remove(em.merge(r));
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,25 +64,5 @@ public class DaoResposta implements InterfaceDaoResposta {
         query.setParameter("codigo", codigoQuestao);
         respostas = (List<Resposta>) query.getResultList();
         return respostas;
-    }
-    
-    @Override
-    public Resposta buscarResposta(String codigo){
-        
-        try{
-            Query query = em.createQuery("select r from Resposta r where r.pergunta.codigo = :codigo");
-            query.setParameter("codigo", codigo);
-            
-            List<Resposta> resposta = query.getResultList();
-            
-            if(resposta.size() > 0){
-                return resposta.get(0);
-            }else{
-                return null;
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
     }
 }

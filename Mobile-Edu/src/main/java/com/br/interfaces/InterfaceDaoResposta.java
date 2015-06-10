@@ -13,10 +13,8 @@ public interface InterfaceDaoResposta {
     
     public boolean atualizarResposta(Resposta resposta);
     
-    public boolean removerResposta(Resposta resposta);
+    public boolean removerResposta(List<Resposta> respostas);
     
     public List<Resposta> listarResposta(String codigoQuestao);
-    
-    public Resposta buscarResposta(String codigo);
    
 }

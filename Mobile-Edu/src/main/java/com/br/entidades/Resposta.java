@@ -1,12 +1,10 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,28 +16,26 @@ public class Resposta implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+    private int numero;
     private String conteudo;
     private boolean respostaCerta;
-    @ManyToOne
-    private Pergunta pergunta;
     
     public Resposta(){
     
     }
     
-    public Resposta(String conteudo, boolean respostaCerta, Pergunta pergunta){
+    public Resposta(int numero, String conteudo, boolean respostaCerta){
+        this.numero = numero;
         this.conteudo = conteudo;
         this.respostaCerta = respostaCerta;
-        this.pergunta = pergunta;
     }
     
-    public int getCodigo(){
-        return codigo;
+    public int getNumero(){
+        return numero;
     }
     
-    public void setCodigo(int codigo){
-        this.codigo = codigo;
+    public void setNumero(int numero){
+        this.numero = numero;
     }
     
     public String getConteudo(){
@@ -56,13 +52,5 @@ public class Resposta implements Serializable{
     
     public void setRespostaCerta(boolean respostaCerta){
         this.respostaCerta = respostaCerta;
-    }
-
-    public Pergunta getPergunta() {
-        return pergunta;
-    }
-
-    public void setPergunta(Pergunta pergunta) {
-        this.pergunta = pergunta;
     }
 }
