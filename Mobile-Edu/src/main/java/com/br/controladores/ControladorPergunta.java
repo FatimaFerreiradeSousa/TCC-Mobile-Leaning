@@ -115,7 +115,7 @@ public class ControladorPergunta implements Serializable {
             this.resposta3.setPergunta(questao);
             this.resposta4.setPergunta(questao);
             this.resposta5.setPergunta(questao);
-            
+
             fachada.salvarResposta(resposta1);
             fachada.salvarResposta(resposta2);
             fachada.salvarResposta(resposta3);
@@ -163,21 +163,28 @@ public class ControladorPergunta implements Serializable {
     }
 
     public String atualizarPergunta() {
+        this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        this.session = (HttpSession) externalContext.getSession(false);
+        Professor professorLogado = (Professor) this.session.getAttribute("professor");
+
+        this.questao.setProfessor(professorLogado);
         fachada.atualizarQuestao(questao);
-        
+
+        System.out.println("Resposta: " +respostasPergunta(questao).get(0).getCodigo());
+        this.resposta1 = respostasPergunta(questao).get(0);
+        this.resposta1.setPergunta(questao);
         fachada.atualizarResposta(resposta1);
-        fachada.atualizarResposta(resposta2);
-        fachada.atualizarResposta(resposta3);
-        fachada.atualizarResposta(resposta4);
-        fachada.atualizarResposta(resposta5);
-        
         return null;
+    }
+    
+    public List<Resposta> respostasPergunta(Pergunta pergunta){
+        return fachada.listarRespostas(pergunta.getCodigo());
     }
 
     public String consultarPergunta() {
         this.questao = fachada.consultarQuestao(this.questao.getCodigo());
 
-        if(this.questao != null){
+        if (this.questao != null) {
             List<Resposta> respostas = fachada.listarRespostas(this.questao.getCodigo());
             this.resposta1 = respostas.get(0);
             this.resposta2 = respostas.get(1);
