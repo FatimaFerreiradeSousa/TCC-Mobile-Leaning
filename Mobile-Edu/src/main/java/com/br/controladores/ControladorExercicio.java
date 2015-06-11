@@ -24,13 +24,13 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class ControladorExercicio implements Serializable {
 
-    Teste exercicio;
-    FacesMessage facesMessage;
-    FacesContext context;
-    List<Pergunta> questoesTeste;
-    Pergunta questao;
-    HttpSession session;
-    ExternalContext externalContext;
+    private Teste exercicio;
+    private FacesMessage facesMessage;
+    private FacesContext context;
+    private List<Pergunta> questoesTeste;
+    private Pergunta questao;
+    private HttpSession session;
+    private ExternalContext externalContext;
 
     @EJB
     Fachada fachada;

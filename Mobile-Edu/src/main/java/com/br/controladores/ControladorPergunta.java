@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class ControladorPergunta implements Serializable {
 
-    private Pergunta questao;
+    private Pergunta pergunta;
     private Resposta resposta;
     private String mensagem;
 
@@ -32,7 +32,7 @@ public class ControladorPergunta implements Serializable {
     Fachada fachada;
 
     public ControladorPergunta() {
-        this.questao = new Pergunta();
+        this.pergunta = new Pergunta();
         this.resposta = new Resposta();
     }
 
@@ -44,12 +44,12 @@ public class ControladorPergunta implements Serializable {
         this.resposta = resposta;
     }
 
-    public Pergunta getQuestao() {
-        return questao;
+    public Pergunta getPergunta() {
+        return pergunta;
     }
 
-    public void setQuestao(Pergunta questao) {
-        this.questao = questao;
+    public void setPergunta(Pergunta pergunta) {
+        this.pergunta = pergunta;
     }
 
     public String getMensagem() {
@@ -62,17 +62,17 @@ public class ControladorPergunta implements Serializable {
 
     public String salvarPergunta() {
 
-        if (fachada.consultarQuestao(questao.getCodigo()) == null) {
+        if (fachada.consultarQuestao(pergunta.getCodigo()) == null) {
             this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
             this.session = (HttpSession) externalContext.getSession(false);
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             Professor professorLogado = (Professor) this.session.getAttribute("professor");
 
-            questao.setQtdRespostas(0);
-            questao.setProfessor(professorLogado);
-            fachada.salvarQuestao(questao);
+            pergunta.setQtdRespostas(0);
+            pergunta.setProfessor(professorLogado);
+            fachada.salvarQuestao(pergunta);
 
-            context.getSessionMap().put("pergunta", questao);
+            context.getSessionMap().put("perguntaSessao", pergunta);
             mensagem = "Salvo com sucesso!";
             return "cadastrarResposta?faces-redirect=true";
         } else {
@@ -85,14 +85,14 @@ public class ControladorPergunta implements Serializable {
         this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
 
-        Pergunta pergunta = (Pergunta) this.session.getAttribute("pergunta");
+        Pergunta perguntaAux = (Pergunta) this.session.getAttribute("perguntaSessao");
         Professor professorLogado = (Professor) this.session.getAttribute("professor");
 
         this.fachada.salvarResposta(resposta);
-        pergunta.getRespostas().add(resposta);
-        pergunta.setProfessor(professorLogado);
-        pergunta.setQtdRespostas(pergunta.getQtdRespostas() + 1);
-        fachada.atualizarQuestao(pergunta);
+        perguntaAux.getRespostas().add(resposta);
+        perguntaAux.setProfessor(professorLogado);
+        perguntaAux.setQtdRespostas(perguntaAux.getQtdRespostas() + 1);
+        fachada.atualizarQuestao(perguntaAux);
 
         this.resposta = new Resposta();
         return null;
@@ -121,7 +121,7 @@ public class ControladorPergunta implements Serializable {
     public String removerAtributosSessao() {
         this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
-        this.session.removeAttribute("pergunta");
+        this.session.removeAttribute("perguntaSessao");
 
         return "cadastrarPergunta?faces-redirect=true";
     }

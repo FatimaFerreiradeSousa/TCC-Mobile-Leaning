@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Pagina Inicial Professor</title>
         <meta charset="UTF-8"></meta>
@@ -147,15 +148,16 @@
                     <h4 id="myModalLabel">Cadastrar Pergunta</h4>
                     <div class="invoice">
                         <h:form>
-                            <p><h:outputLabel value="#{ControladorPergunta.mensagem}" id="erroPergunta"
-                                              class="text-danger"/></p>
-                            
+
+                            <p><h:outputText value="#{ControladorPergunta.mensagem}" 
+                                             id="erroPergunta" class="text-danger"/></p>
+
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Nome">Codigo </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.codigo}" class="form-control" 
+                                            <h:inputText value="#{ControladorPergunta.pergunta.codigo}" class="form-control" 
                                                          pt:placeholder="Codigo" id="codigoPergunta" required="true"/>
                                         </div>
                                     </div>
@@ -165,7 +167,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Email">Peso </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.pontuacao}" class="form-control" 
+                                            <h:inputText value="#{ControladorPergunta.pergunta.pontuacao}" class="form-control" 
                                                          pt:placeholder="Peso" id="peso" required="true"/>
                                         </div>
                                     </div>
@@ -177,19 +179,31 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Login">Enunciado </label>
-                                            <h:inputText value="#{ControladorPergunta.questao.enunciado}" class="form-control" 
+                                            <h:inputText value="#{ControladorPergunta.pergunta.enunciado}" class="form-control" 
                                                          pt:placeholder="Enunciado" id="enunciado" required="true"/>
                                         </div>
                                     </div>
-                                </div> <br />
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
+                                            <label class="control-label" for="categoria">Categoria </label>
+                                            <h:inputText value="#{ControladorPergunta.pergunta.categoria}" class="form-control"
+                                                         pt:placeholder="Categoria" id="categoria" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-12 form-inline">
                                     <h:commandButton value="Adicionar Respostas" class="btn btn-success btn-cad-questao" 
                                                      action="#{ControladorPergunta.salvarPergunta()}">
-                                    
-                                        <f:ajax execute="codigoPergunta peso enunciado" render="erroPergunta"/>
+
+                                        <f:ajax execute="codigoPergunta peso enunciado categoria" render="erroPergunta"/>
                                     </h:commandButton>
                                 </div>
                             </div>

@@ -21,6 +21,7 @@ public class Pergunta implements Serializable{
     private String codigo;
     private String enunciado;
     private int qtdRespostas;
+    private String categoria;
     
     @OneToMany
     private List<Resposta> respostas;
@@ -34,10 +35,11 @@ public class Pergunta implements Serializable{
     
     }
 
-    public Pergunta(String codigo, String enunciado, int qtdRespostas, float pontuacao, Professor professor) {
+    public Pergunta(String codigo, String enunciado, int qtdRespostas, String categoria, float pontuacao, Professor professor) {
         this.codigo = codigo;
         this.enunciado = enunciado;
         this.qtdRespostas = qtdRespostas;
+        this.categoria = categoria;
         this.respostas = new ArrayList();
         this.pontuacao = pontuacao;
         this.exerciciosQuestoes = new ArrayList();
@@ -75,6 +77,14 @@ public class Pergunta implements Serializable{
 
     public void setQtdRespostas(int qtdRespostas) {
         this.qtdRespostas = qtdRespostas;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public List<Teste> getExerciciosQuestoes() {

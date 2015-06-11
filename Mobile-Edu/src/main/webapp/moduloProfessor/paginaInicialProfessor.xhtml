@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Pagina Inicial Professor</title>
 
@@ -139,13 +140,13 @@
                     <h1>
                         Lembretes...
                     </h1><br />
-                    
+
                     <div class="row">
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <label>Lembrete 01</label>
-                                    <p>#{controladorListAnt.ant1.titulo} <br /> 
+                                    <p>#{controladorListAnt.ant1.id} <br /> 
                                         #{controladorListAnt.ant1.conteudo}</p>
                                 </div>
                                 <div class="icon">
@@ -219,32 +220,41 @@
 
                                 </div><!-- /.box-header -->
 
-                                <div style="height:250px; overflow: auto;" >
-                                    <h:form>
-                                        <h:dataTable class="table table-responsive"
-                                                     value="#{controladorAnotacao.listarTodas()}" var="anotacao">
-                                            <h:column>
-                                                <div class="box-body">
-                                                    <ul class="todo-list">
-                                                        <li>
-                                                            <input type="checkbox" value="" name=""/>
-                                                            <!-- todo text -->
-                                                            <span class="text">#{anotacao.titulo}</span>
-                                                            <div class="tools">
-                                                                <a action="#" class="fa fa-edit"
-                                                                   href="#signup" data-toggle="modal" data-target="#modalAnotacaoAtualizar">
-                                                                </a> 
-                                                                <h:commandLink value="" class="fa fa-trash-o" 
-                                                                               action="#{controladorAnotacao.removerAnotacao(anotacao)}"/>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </h:column>
+                                <c:if test="#{controladorAnotacao.listarTodas().size() > 0}">
+                                    <div style="height:250px; overflow: auto;" >
+                                        <h:form>
+                                            <h:dataTable class="table table-responsive"
+                                                         value="#{controladorAnotacao.listarTodas()}" var="anotacao">
+                                                <h:column>
+                                                    <div class="box-body">
+                                                        <ul class="todo-list">
+                                                            <li>
+                                                                <input type="checkbox" value="" name=""/>
+                                                                <!-- todo text -->
+                                                                <span class="text">#{anotacao.titulo}</span>
+                                                                <div class="tools">
+                                                                    <a action="#" class="fa fa-edit"
+                                                                       href="#signup" data-toggle="modal" data-target="#modalAnotacaoAtualizar">
+                                                                    </a> 
+                                                                    <h:commandLink value="" class="fa fa-trash-o" 
+                                                                                   action="#{controladorAnotacao.removerAnotacao(anotacao)}"/>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </h:column>
 
-                                        </h:dataTable>
-                                    </h:form>
-                                </div>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </c:if>
+
+                                <c:if test="#{controladorAnotacao.listarTodas().size() == 0}">
+                                    <div class="alert" role="alert">
+                                        <span class="sr-only">Error:</span>
+                                        Você não possui nenhuma anotação
+                                    </div>
+                                </c:if>
 
                                 <div class="box-footer clearfix no-border">
                                     <h:form>
@@ -255,7 +265,6 @@
                                         </a> 
                                     </h:form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
