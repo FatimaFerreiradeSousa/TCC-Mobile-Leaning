@@ -12,7 +12,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -93,5 +92,10 @@ public class ControladorExercicio implements Serializable {
         this.session = (HttpSession) externalContext.getSession(false);
         Professor professorLogado = (Professor) session.getAttribute("professor");
         return fachada.listarTestes(professorLogado.getLogin());
+    }
+    
+    public String removerTeste(Teste teste){
+        fachada.removerExercicio(teste);
+        return "testesCadastrados?faces-redirect=true";
     }
 }

@@ -1,7 +1,6 @@
 package com.br.fachada;
 
 import com.br.entidades.*;
-import com.br.gerenciadores.InterfaceGerenciadorQuestao;
 import com.br.interfaces.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,8 +22,6 @@ public class Fachada implements Serializable {
     private InterfaceExercicio daoExercicio;
     @EJB
     private InterfaceDaoResposta daoResposta;
-    @EJB
-    private InterfaceGerenciadorQuestao daoAddQuestao;
     @EJB
     private InterfaceDaoAluno daoAluno;
     @EJB
@@ -119,23 +116,6 @@ public class Fachada implements Serializable {
 
     public boolean removerResposta(List<Resposta> respostas) {
         return daoResposta.removerResposta(respostas);
-    }
-
-    /*Crud AddQuestao*/
-    public boolean addQuestaoTeste(Pergunta questao) {
-        return daoAddQuestao.addQuestaoTeste(questao);
-    }
-
-    public boolean removerQuestaoTeste(Pergunta questao) {
-        return daoAddQuestao.deletarQuestao(questao);
-    }
-
-    public List<Pergunta> listarQuestaoTeste() {
-        return daoAddQuestao.listarQuestoes();
-    }
-
-    public void concluirTeste() {
-        daoAddQuestao.concluir();
     }
 
     /*CRUD Aluno*/
