@@ -72,4 +72,12 @@ public class DaoPergunta implements InterfacePergunta {
 
         return (List<Pergunta>) query.getResultList();
     }
+    
+    @Override
+    public List<Pergunta> listarPerguntasPorCategoria(String categoria, int qtd){
+        Query query = em.createQuery("select p from Pergunta p where p.categoria = :categoria");
+        query.setParameter("categoria", categoria);
+        
+        return (List<Pergunta>) query.setMaxResults(qtd).setFirstResult(0).getResultList();
+    }
 }

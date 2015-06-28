@@ -18,4 +18,6 @@ public interface InterfacePergunta {
     public boolean remover(Pergunta questao);
     
     public List<Pergunta> listarQuestoes(String login);
+    
+    public List<Pergunta> listarPerguntasPorCategoria(String categoria, int qtd);
 }

@@ -78,6 +78,10 @@ public class Fachada implements Serializable {
     public List<Pergunta> listarQuestoes(String login) {
         return daoQuestao.listarQuestoes(login);
     }
+    
+    public List<Pergunta> listarPerguntasCategoria(String categoria, int qtd){
+        return daoQuestao.listarPerguntasPorCategoria(categoria, qtd);
+    }
 
     /*Crud Teste*/
     public boolean salvarExercicio(Teste exe) {

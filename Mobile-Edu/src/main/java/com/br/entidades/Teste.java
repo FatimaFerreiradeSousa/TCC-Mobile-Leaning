@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -21,12 +23,16 @@ import javax.persistence.TemporalType;
 public class Teste implements Serializable{
     
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codigo;
     private String nome;
     private String disciplina;
     private String assunto;
     @Temporal(TemporalType.DATE)
     private Date dataEntrega;
+    private String categoria;
+    private int qtdPerguntas;
+    
     @ManyToMany
     private List<RespondeExercicio> exerciciosRespondidos;
     @ManyToMany
@@ -38,22 +44,24 @@ public class Teste implements Serializable{
     
     }
 
-    public Teste(String codigo, String nome, String disciplina, String assunto, Date dataEntrega, Professor professor) {
-        this.codigo = codigo;
+    public Teste(String nome, String disciplina, String assunto, Date dataEntrega, String categoria,
+            int qtdPerguntas, Professor professor) {
         this.nome = nome;
         this.disciplina = disciplina;
         this.assunto = assunto;
         this.dataEntrega = dataEntrega;
+        this.categoria = categoria;
+        this.qtdPerguntas = qtdPerguntas;
         this.exerciciosRespondidos = new ArrayList();
         this.questoesExercicios = new ArrayList();
         this.professor = professor;
     }
     
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -87,6 +95,22 @@ public class Teste implements Serializable{
 
     public void setDataEntrega(Date dataEntrega) {
         this.dataEntrega = dataEntrega;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getQtdPerguntas() {
+        return qtdPerguntas;
+    }
+
+    public void setQtdPerguntas(int qtdPerguntas) {
+        this.qtdPerguntas = qtdPerguntas;
     }
 
     public List<RespondeExercicio> getExerciciosRespondidos() {
