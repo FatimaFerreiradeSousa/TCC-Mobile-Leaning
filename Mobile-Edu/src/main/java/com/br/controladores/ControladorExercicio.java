@@ -98,4 +98,10 @@ public class ControladorExercicio implements Serializable {
         fachada.removerExercicio(teste);
         return "testesCadastrados?faces-redirect=true";
     }
+    
+    public String removerPergunta(){
+        System.out.println("Chamando o metodo");
+        
+        return null;
+    }
 }
