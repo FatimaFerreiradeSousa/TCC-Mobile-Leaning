@@ -19,4 +19,19 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-rule>
+        <from-view-id>/md-professor/editarPergunta.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarResposta</from-outcome>
+            <to-view-id>/md-professor/editarResposta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/md-professor/editarResposta.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editarPergunta</from-outcome>
+            <to-view-id>/md-professor/editarPergunta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

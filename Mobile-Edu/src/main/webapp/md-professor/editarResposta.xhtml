@@ -3,10 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Pergunta</title>
+        <title>Editar Resposta</title>
         <meta charset="UTF-8"></meta>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -144,91 +143,31 @@
             <div class="content-wrapper formatar">
                 <!-- Main content -->
                 <section class="content">
-                    <h4 id="myModalLabel">Cadastrar Pergunta</h4>
+                    <h3>Atualizar</h3>
                     <div class="invoice">
                         <h:form>
-
-                            <p><h:outputText value="#{ControladorPergunta.mensagem}" 
-                                             id="erroPergunta" class="text-success"/></p>
-
+                            <h5><h:outputLabel>Pergunta: #{ControladorPergunta.pergunta.enunciado}</h:outputLabel></h5>
+                            
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Nome">Codigo </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.codigo}" class="form-control" 
-                                                         pt:placeholder="Codigo" id="codigo" required="true"/>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-7">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
                                 </div>
 
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Email">Peso </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.pontuacao}" class="form-control" 
-                                                         pt:placeholder="Peso" id="peso" required="true"/>
-                                        </div>
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta.respostaCerta}"/>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Login">Enunciado </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.enunciado}" class="form-control" 
-                                                         pt:placeholder="Enunciado" id="enunciado" required="true"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="categoria">Categoria </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.categoria}" class="form-control"
-                                                         pt:placeholder="Categoria" id="categoria" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <br />
-                            </div>
-
+                            </div><br />
+                            
                             <div class="row">
                                 <div class="col-xs-12 form-inline">
-                                    <h:commandButton value="Atualizar Perguntas" class="btn btn-success btn-cad-questao" 
-                                                     action="#{ControladorPergunta.atualizarPergunta()}">
-
-                                        <f:ajax execute="codigo peso enunciado categoria" render="erroPergunta"/>
-                                    </h:commandButton>
+                                    <h:commandButton value="Alterar" class="btn btn-default btn-cad-questao" 
+                                                     action="#{ControladorPergunta.atualizarResposta()}"/>
                                 </div>
-                            </div>
-
-                            <div style="height:450px; overflow: auto;" >
-                                <h:dataTable class="table table-responsive"
-                                             value="#{ControladorPergunta.pergunta.respostas}" var="resposta">
-                                    <h:column>
-                                        <div class="box-body">
-                                            <ul class="todo-list">
-                                                <li>
-                                                    <span class="text">#{resposta.conteudo}</span>
-                                                    <div class="tools">
-
-                                                        <h:commandLink value="" class="fa fa-edit" 
-                                                                       action="#{ControladorPergunta.paginaAtualizarResposta(resposta)}"/>
-
-                                                        <h:commandLink value="" class="fa fa-trash-o" 
-                                                                       action="#{ControladorPergunta.removerPergunta(pergunta)}"/>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </h:column>
-                                </h:dataTable>
-
                             </div>
 
                         </h:form>

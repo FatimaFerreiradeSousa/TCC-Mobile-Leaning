@@ -118,7 +118,22 @@ public class ControladorPergunta implements Serializable {
     }
     
     public String paginaAtualizar(Pergunta pergunta) {
-        System.out.println("Pergunta: " +pergunta.getEnunciado());
+        this.pergunta = pergunta;
+        return "editarPergunta?faces-redirect=true";
+    }
+    
+    public String atualizarPergunta(){
+        fachada.atualizarQuestao(pergunta);
+        return "editarPergunta?faces-redirect=true";
+    }
+    
+    public String paginaAtualizarResposta(Resposta resposta){
+        this.resposta = resposta;
+        return "editarResposta?faces-redirect=true";
+    }
+    
+    public String atualizarResposta(){
+        fachada.atualizarResposta(resposta);
         return "editarPergunta?faces-redirect=true";
     }
 }
