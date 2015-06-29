@@ -6,27 +6,28 @@ import com.br.entidades.Resposta;
 import com.br.fachada.Fachada;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fatinha de Sousa
  */
-@ManagedBean(name = "ControladorPergunta")
+@Named(value = "ControladorPergunta")
 @SessionScoped
 public class ControladorPergunta implements Serializable {
 
     private Pergunta pergunta;
     private Resposta resposta;
     private String mensagem;
-
     private ExternalContext externalContext;
     private HttpSession session;
+    private List<Resposta> respostas;
 
     @EJB
     Fachada fachada;
@@ -34,6 +35,7 @@ public class ControladorPergunta implements Serializable {
     public ControladorPergunta() {
         this.pergunta = new Pergunta();
         this.resposta = new Resposta();
+        this.respostas = new ArrayList();
     }
 
     public Resposta getResposta() {
@@ -60,42 +62,30 @@ public class ControladorPergunta implements Serializable {
         this.mensagem = mensagem;
     }
 
-    public String salvarPergunta() {
+    public String adicionarRespostas() {
 
         if (fachada.consultarQuestao(pergunta.getCodigo()) == null) {
-            this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            this.session = (HttpSession) externalContext.getSession(false);
-            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-            Professor professorLogado = (Professor) this.session.getAttribute("professor");
-
             pergunta.setQtdRespostas(0);
-            pergunta.setProfessor(professorLogado);
-            fachada.salvarQuestao(pergunta);
-
-            context.getSessionMap().put("perguntaSessao", pergunta);
-            mensagem = "Salvo com sucesso!";
             return "cadastrarResposta?faces-redirect=true";
         } else {
             mensagem = "Codigo inválido!";
-            return null;
+            return "cadastrarPergunta?faces-redirect=true";
         }
     }
 
     public String salvarResposta() {
         this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
-
-        Pergunta perguntaAux = (Pergunta) this.session.getAttribute("perguntaSessao");
         Professor professorLogado = (Professor) this.session.getAttribute("professor");
 
         this.fachada.salvarResposta(resposta);
-        perguntaAux.getRespostas().add(resposta);
-        perguntaAux.setProfessor(professorLogado);
-        perguntaAux.setQtdRespostas(perguntaAux.getQtdRespostas() + 1);
-        fachada.atualizarQuestao(perguntaAux);
-
+        this.respostas.add(resposta);
+        pergunta.setRespostas(respostas);
+        pergunta.setProfessor(professorLogado);
+        pergunta.setQtdRespostas(respostas.size());
+        
         this.resposta = new Resposta();
-        return null;
+        return "cadastrarResposta?faces-redirect=true";
     }
 
     public List<Pergunta> listarPerguntas() {
@@ -106,9 +96,9 @@ public class ControladorPergunta implements Serializable {
     }
 
     public String removerPergunta(Pergunta questao) {
-        List<Resposta> respostas = questao.getRespostas();
+        List<Resposta> respostas1 = questao.getRespostas();
         boolean status = fachada.removerQuestao(questao);
-        boolean status1 = fachada.removerResposta(respostas);
+        boolean status1 = fachada.removerResposta(respostas1);
 
         if (status == true && status1 == true) {
             this.mensagem = "Nenhuma Pergunta Cadastrada";
@@ -118,11 +108,17 @@ public class ControladorPergunta implements Serializable {
         }
     }
 
-    public String removerAtributosSessao() {
-        this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) externalContext.getSession(false);
-        this.session.removeAttribute("perguntaSessao");
-
+    public String salvarPergunta() {
+        fachada.salvarQuestao(pergunta);
+        this.pergunta = new Pergunta();
+        this.respostas = new ArrayList();
+        
+        this.pergunta = new Pergunta();
         return "cadastrarPergunta?faces-redirect=true";
+    }
+    
+    public String paginaAtualizar(Pergunta pergunta) {
+        System.out.println("Pergunta: " +pergunta.getEnunciado());
+        return "editarPergunta?faces-redirect=true";
     }
 }

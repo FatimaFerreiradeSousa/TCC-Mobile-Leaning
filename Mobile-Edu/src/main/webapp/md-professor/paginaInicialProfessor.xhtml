@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Pagina Inicial Professor</title>
+        <title>Professor</title>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -29,7 +29,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicial - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -113,19 +113,19 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
-                                    <li><a href="disciplinas/perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
-                                    <li><a href="disciplinas/cadExercicio.jsf">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.jsf">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.jsf">Resultados Testes</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
+                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="grupos/cadGrupo.jsf">Grupo</a></li>
-                                    <li><a href="grupos/gruposGerenciados.jsf">Gerenciador</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupo</a></li>
+                                    <li><a href="gruposGerenciados.jsf">Gerenciador</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -146,7 +146,7 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <label>Lembrete 01</label>
-                                    <p>#{controladorListAnt.ant1.id} <br /> 
+                                    <p>#{controladorListAnt.ant1.titulo} <br /> 
                                         #{controladorListAnt.ant1.conteudo}</p>
                                 </div>
                                 <div class="icon">

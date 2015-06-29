@@ -9,16 +9,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fatinha de Sousa
  */
-@ManagedBean(name = "controladorExercicio")
+@Named(value = "controladorExercicio")
 @SessionScoped
 public class ControladorExercicio implements Serializable {
 
@@ -102,6 +102,13 @@ public class ControladorExercicio implements Serializable {
     public String removerPergunta(){
         System.out.println("Chamando o metodo");
         
+        return null;
+    }
+    
+    public String visualizarTeste(Teste teste){
+        System.out.println("Teste: " +teste.getAssunto());
+        
+        //return "visualizarTeste?faces-redirect=true";
         return null;
     }
 }

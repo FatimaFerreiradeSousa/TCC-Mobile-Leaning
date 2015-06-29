@@ -6,21 +6,19 @@ import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import static javafx.scene.input.KeyCode.P;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fatinha
  */
-@ManagedBean(name = "controladorTopico")
+@Named(value = "controladorTopico")
 @SessionScoped
 public class ControladorTopico implements Serializable {
 

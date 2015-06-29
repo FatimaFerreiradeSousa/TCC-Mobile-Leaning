@@ -2,25 +2,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Testes Cadastrados </title>
+        <title>Cadastrar Resposta</title>
         <meta charset="UTF-8"></meta>
-        <link href="../../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
-        <link href="../../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
 
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
-        <link href="../../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estilo.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <script src="../../assets/jQuery/jQuery-2.1.3.min.js"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../assets/dist/js/app.min.js" type="text/javascript"></script>
+        <script src="../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/dist/js/app.min.js" type="text/javascript"></script>
     </h:head>
+
 
     <h:body class="skin-blue">
         <div class="wrapper">
@@ -28,7 +30,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="../paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -43,17 +45,18 @@
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="../../img/icPerfil.png" class="user-image" alt="User Image"/>
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">#{professor.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <p:graphicImage id="imgPerfil891" 
+                                        <p:graphicImage id="imgPerfil12" 
                                                         value="#{controladorProfessor.content}"/>
                                         <p>
                                             #{professor.nome} - Professor
-                                            <small>Membro desde de Março de 2015</small>
+                                            <small>Membro desde de #{controladorProfessor.mes} de 
+                                                #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
 
@@ -87,7 +90,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <p:graphicImage id="imgPerfil195" 
+                            <p:graphicImage id="imgPerfil11" 
                                             value="#{controladorProfessor.content}"/>
                         </div>
                         <div class="pull-left info">
@@ -115,7 +118,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Pergunta</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
                                     <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
                                     <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
                                     <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
@@ -126,9 +129,8 @@
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Criar Grupo</a></li>
-                                    <li><a href="#">Meus Grupos</a></li>
-                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupo</a></li>
+                                    <li><a href="gruposGerenciados.jsf">Meus Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -138,40 +140,47 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+            <div class="content-wrapper formatar">
                 <!-- Main content -->
                 <section class="content">
-                    <h4 id="myModalLabel">Resultados</h4>
+                    <h3>Adicionar Respostas</h3>
                     <div class="invoice">
-                        <div class="box box-primary">
-                            <h:form>
-                                <div style="height:250px; overflow: auto;" >
-                                    <h:dataTable class="table table-responsive" 
-                                                 value="#{controladorExercicio.testesCadastrados()}" var="teste">
-
-                                        <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <input type="checkbox" value="" name=""/>
-                                                        <!-- todo text -->
-                                                        <span class="text">#{teste.nome}</span>
-                                                        <div class="tools">
-
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorAnotacao.removerAnotacao(anotacao)}"/>
-
-                                                            <h:commandLink value="Visualizar" class="buttonSelecTest" 
-                                                                           action="#{controladorRespTest.mostrarTesteSelecionado(teste)}"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </h:column>
-                                    </h:dataTable>
+                        <h:form>
+                            <h5><h:outputLabel>Pergunta: #{ControladorPergunta.pergunta.enunciado}</h:outputLabel></h5>
+                            
+                            <div class="row">
+                                <div class="col-xs-7">
+                                    <label class="control-label" for="Resposta">Conteudo </label>
+                                    <h:inputText value="#{ControladorPergunta.resposta.conteudo}" class="form-control" 
+                                                 pt:placeholder="Resposta"/>
                                 </div>
-                            </h:form>
-                        </div>
+
+                                <div class="col-xs-3">
+                                    <label class="control-label" for="Resposta">Resposta Certa </label><br />
+                                    <div style="margin-left: 2em; margin-top: 5px">
+                                        <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta.respostaCerta}"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-2">
+                                    <label class="control-label" for="Resposta">Respostas</label><br />
+                                    <label class="text-blue"  style="margin-left: 2em;">
+                                        #{ControladorPergunta.pergunta.qtdRespostas}</label>
+                                </div>
+
+                            </div><br />
+                            
+                            <div class="row">
+                                <div class="col-xs-12 form-inline">
+                                    <h:commandButton value="Adicionar Resposta" class="btn btn-default btn-cad-questao" 
+                                                     action="#{ControladorPergunta.salvarResposta()}"/>
+
+                                    <h:commandButton value="Cadastrar" class="btn btn-default btn-cad-questao" 
+                                                     action="#{ControladorPergunta.salvarPergunta()}"/>
+                                </div>
+                            </div>
+
+                        </h:form>
                     </div>
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
@@ -180,9 +189,10 @@
                 <div class="pull-right hidden-xs">
                     <b>Versão</b> 1.0
                 </div>
-                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
+                <strong>Copyright &copy; 2014-2015 <a href="#">FFS - Developers</a>.
                 </strong> All rights reserved.
             </footer>
+
         </div><!-- ./wrapper -->
     </h:body>
 </html>

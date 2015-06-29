@@ -15,9 +15,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
@@ -28,7 +28,7 @@ import org.primefaces.model.UploadedFile;
  *
  * @author Fatinha de Sousa
  */
-@ManagedBean(name = "controladorProfessor")
+@Named(value = "controladorProfessor")
 @SessionScoped
 public class ControladorProfessor implements Serializable {
 
@@ -128,7 +128,7 @@ public class ControladorProfessor implements Serializable {
 
             if (p != null) {
                 professor = p;
-                String loginPage = "/moduloProfessor/paginaInicialProfessor.jsf";
+                String loginPage = "/md-professor/paginaInicialProfessor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 this.session = (HttpSession) context.getSession(false);
@@ -163,7 +163,7 @@ public class ControladorProfessor implements Serializable {
         this.session = (HttpSession) context.getSession(false);
         professorLogado = (Professor) this.session.getAttribute("professor");
         fachada.atualizarProfessor(professorLogado);
-        return null;
+        return "paginaConfig?faces-redirect=true";
     }
 
     public String urlCadProfessor() throws IOException {

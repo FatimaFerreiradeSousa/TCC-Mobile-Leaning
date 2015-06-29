@@ -15,10 +15,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -28,7 +28,7 @@ import org.primefaces.model.UploadedFile;
  *
  * @author Fatinha
  */
-@ManagedBean(name = "gerenciadorUpload")
+@Named(value = "gerenciadorUpload")
 @SessionScoped
 public class UploadArquivo implements Serializable {
 

@@ -1,25 +1,22 @@
 package com.br.controladores;
 
-import com.br.datas.FormatData;
 import com.br.entidades.Anotacao;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Fatinha
  */
-@ManagedBean(name = "controladorAnotacao")
+@Named(value = "controladorAnotacao")
 @SessionScoped
 public class ControladorAnotacao implements Serializable {
 
@@ -46,17 +43,17 @@ public class ControladorAnotacao implements Serializable {
         anotacao.setProfessor(professorLogado);
         fachada.salvarAnotacao(anotacao);
         anotacao = new Anotacao();
-        return null;
+        return "paginaInicialProfessor?faces-redirect=true";
     }
     
     public String atualizarAnotacao(){
         fachada.atualizarAnotacao(anotacao);
-        return null;
+        return "paginaInicialProfessor?faces-redirect=true";
     }
     
     public String removerAnotacao(Anotacao anotacao){
         fachada.removerAnotacao(anotacao);
-        return null;
+        return "paginaInicialProfessor?faces-redirect=true";
     }
     
     public List<Anotacao> listarTodas(){

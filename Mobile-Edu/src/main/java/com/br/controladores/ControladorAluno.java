@@ -12,9 +12,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
@@ -24,7 +24,7 @@ import org.primefaces.model.StreamedContent;
  *
  * @author Fatinha
  */
-@ManagedBean(name = "controladorAluno")
+@Named(value = "controladorAluno")
 @SessionScoped
 public class ControladorAluno implements Serializable {
 
