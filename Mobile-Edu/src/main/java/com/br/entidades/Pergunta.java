@@ -111,4 +111,54 @@ public class Pergunta implements Serializable{
     public void setRespostas(List<Resposta> respostas) {
         this.respostas = respostas;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.codigo);
+        hash = 79 * hash + Objects.hashCode(this.enunciado);
+        hash = 79 * hash + this.qtdRespostas;
+        hash = 79 * hash + Objects.hashCode(this.categoria);
+        hash = 79 * hash + Objects.hashCode(this.respostas);
+        hash = 79 * hash + Float.floatToIntBits(this.pontuacao);
+        hash = 79 * hash + Objects.hashCode(this.exerciciosQuestoes);
+        hash = 79 * hash + Objects.hashCode(this.professor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pergunta other = (Pergunta) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.enunciado, other.enunciado)) {
+            return false;
+        }
+        if (this.qtdRespostas != other.qtdRespostas) {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.respostas, other.respostas)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.pontuacao) != Float.floatToIntBits(other.pontuacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.exerciciosQuestoes, other.exerciciosQuestoes)) {
+            return false;
+        }
+        if (!Objects.equals(this.professor, other.professor)) {
+            return false;
+        }
+        return true;
+    }
 }

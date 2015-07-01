@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 public class ControladorExercicio implements Serializable {
 
     private Teste exercicio;
-    private Teste teste;
     private List<Pergunta> questoesTeste;
     private HttpSession session;
     private ExternalContext externalContext;
@@ -34,7 +33,6 @@ public class ControladorExercicio implements Serializable {
     public ControladorExercicio() {
         exercicio = new Teste();
         questoesTeste = new ArrayList();
-        teste = new Teste();
     }
 
     public Teste getExercicio() {
@@ -49,29 +47,19 @@ public class ControladorExercicio implements Serializable {
         return questoesTeste;
     }
 
-    public Teste getTeste() {
-        return teste;
-    }
-
-    public void setTeste(Teste teste) {
-        this.teste = teste;
-    }
-
-    public String salvarPergunta() {
+    public String salvarTeste() {
 
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) externalContext.getSession(false);
         Professor professorLogado = (Professor) session.getAttribute("professor");
-        exercicio = (Teste) this.session.getAttribute("teste");
-
+        
         exercicio.setProfessor(professorLogado);
         fachada.salvarExercicio(exercicio);
 
-        this.session.removeAttribute("teste");
         exercicio = new Teste();
         this.questoesTeste = new ArrayList();
 
-        return null;
+        return "cadExercicio?faces-redirect=true";
     }
 
     public String buscarPerguntas() {
@@ -79,12 +67,7 @@ public class ControladorExercicio implements Serializable {
         questoesTeste = fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas());
         exercicio.setQuestoesExercicios(questoesTeste);
 
-        externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        session = (HttpSession) externalContext.getSession(false);
-        externalContext.getSessionMap().put("teste", exercicio);
-
-        exercicio = (Teste) this.session.getAttribute("teste");
-        return null;
+        return "cadExercicio?faces-redirect=true";
     }
 
     public List<Teste> testesCadastrados() {
@@ -99,16 +82,25 @@ public class ControladorExercicio implements Serializable {
         return "testesCadastrados?faces-redirect=true";
     }
     
-    public String removerPergunta(){
-        System.out.println("Chamando o metodo");
+    public String visualizarTeste(Teste teste){
+        this.exercicio = teste;
+        this.questoesTeste = teste.getQuestoesExercicios();
         
-        return null;
+        return "editarTeste?faces-redirect=true";
     }
     
-    public String visualizarTeste(Teste teste){
-        System.out.println("Teste: " +teste.getAssunto());
+    public String atualizarTeste(){
+        exercicio.setQtdPerguntas(this.questoesTeste.size());
+        exercicio.setQuestoesExercicios(questoesTeste);
+        fachada.atualizarExercicio(exercicio);
         
-        //return "visualizarTeste?faces-redirect=true";
-        return null;
+        return "editarTeste?faces-redirect=true";
+    }
+    
+    public String removerPergunta(Pergunta pergunta){
+        
+        this.questoesTeste.remove(pergunta);
+        
+        return "editarTeste?faces-redirect=true";
     }
 }

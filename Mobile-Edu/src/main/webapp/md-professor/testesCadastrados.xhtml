@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Testes Cadastrados </title>
@@ -166,13 +165,15 @@
                                                     <li>
                                                         <input type="checkbox" value="" name=""/>
                                                         <!-- todo text -->
-                                                        <span class="text">#{teste.nome}</span>
+                                                        <span class="text">#{teste.assunto}</span>
                                                         <div class="tools">
 
+                                                            <h:commandLink value="" class="fa fa-edit" 
+                                                                           action="#{controladorExercicio.visualizarTeste(teste)}"/>
+                                                            
                                                             <h:commandLink value="" class="fa fa-trash-o" 
                                                                            action="#{controladorExercicio.removerTeste(teste)}"/>
 
-                                                            
                                                         </div>
                                                     </li>
                                                 </ul>

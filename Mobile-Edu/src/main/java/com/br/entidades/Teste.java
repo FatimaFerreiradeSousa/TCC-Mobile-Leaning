@@ -26,7 +26,6 @@ public class Teste implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    private String nome;
     private String disciplina;
     private String assunto;
     @Temporal(TemporalType.DATE)
@@ -45,9 +44,8 @@ public class Teste implements Serializable{
     
     }
 
-    public Teste(String nome, String disciplina, String assunto, Date dataEntrega, String categoria,
+    public Teste(String disciplina, String assunto, Date dataEntrega, String categoria,
             int qtdPerguntas, Professor professor) {
-        this.nome = nome;
         this.disciplina = disciplina;
         this.assunto = assunto;
         this.dataEntrega = dataEntrega;
@@ -64,14 +62,6 @@ public class Teste implements Serializable{
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDisciplina() {

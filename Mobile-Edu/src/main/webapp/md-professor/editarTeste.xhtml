@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Cadastrar Exercicio</title>
+        <title>Editar Teste</title>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
@@ -143,7 +143,7 @@
             <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
-                    <h4>Cadastrar Teste</h4>
+                    <h4>Atualizar</h4>
 
                     <div class="invoice">
                         <h:form>
@@ -219,8 +219,6 @@
                                     </div>
                                 </div>
 
-                                <h:commandButton value="Buscar Perguntas" class="btn btn-default btn-cad-questao"
-                                                 action="#{controladorExercicio.buscarPerguntas()}" style="margin-top: 1.7em"/>
                             </div>
 
                             <div class="row">
@@ -241,13 +239,27 @@
 
                                             <div style="height:250px; overflow: auto;" >
                                                 <h:dataTable class="table table-responsive"
-                                                             value="#{controladorExercicio.questoesTeste}" var="p">
+                                                             value="#{controladorExercicio.questoesTeste}" var="pergunta">
 
                                                     <h:column>
                                                         <div class="box-body">
                                                             <ul class="todo-list">
                                                                 <li>
-                                                                    <span class="text">#{p.enunciado}</span>
+                                                                    <span class="text">#{pergunta.enunciado}</span>
+
+                                                                    <div class="tools">
+                                                                        <h:commandLink value="" class="fa fa-trash-o" 
+                                                                                       action="#{controladorExercicio.removerPergunta(pergunta)}"/>
+                                                                    </div>
+
+                                                                    <h:dataTable class="table table-responsive"
+                                                                                 value="#{pergunta.respostas}" var="resposta">
+
+                                                                        <h:column>
+                                                                            <span class="text">#{resposta.conteudo}</span>
+                                                                        </h:column>
+                                                                    </h:dataTable>
+
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -255,19 +267,17 @@
 
                                                 </h:dataTable>
                                             </div>
-
-                                            <div class="box-footer clearfix no-border">
-                                                <h:form>
-
-                                                    <h:commandButton value="Salvar" class="btn btn-success pull-right"
-                                                                     action="#{controladorExercicio.salvarTeste()}"/>
-                                                </h:form>
-                                            </div>
-
-
                                         </div>
                                     </div>
                                 </c:if>
+
+                                <div class="box-footer clearfix no-border">
+                                    <h:form>
+
+                                        <h:commandButton value="Atualizar Teste" class="btn btn-success pull-right"
+                                                         action="#{controladorExercicio.atualizarTeste()}"/>
+                                    </h:form>
+                                </div>
                             </div>
                         </h:form>
 
