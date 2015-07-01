@@ -228,26 +228,24 @@
 
                                     <div class="col-md-12">
                                         <div class="box box-primary">
-                                            <div class="box-header">
 
-                                                <i class="ion ion-clipboard"></i>
-                                                <h3 class="box-title">Perguntas</h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                                </div>
-                                            </div><!-- /.box-header -->
-
+                                            <i class="ion ion-clipboard"></i>
+                                            <h4 class="box-title">Perguntas</h4>
 
                                             <div style="height:250px; overflow: auto;" >
                                                 <h:dataTable class="table table-responsive"
-                                                             value="#{controladorExercicio.questoesTeste}" var="p">
+                                                             value="#{controladorExercicio.questoesTeste}" var="pergunta">
 
                                                     <h:column>
                                                         <div class="box-body">
                                                             <ul class="todo-list">
                                                                 <li>
-                                                                    <span class="text">#{p.enunciado}</span>
+                                                                    <span class="text">#{pergunta.enunciado}</span>
+
+                                                                    <div class="tools">
+                                                                        <h:commandLink value="" class="fa fa-trash-o" 
+                                                                                       action="#{controladorExercicio.removerPerguntaCadastrar(pergunta)}"/>
+                                                                    </div>
                                                                 </li>
                                                             </ul>
                                                         </div>

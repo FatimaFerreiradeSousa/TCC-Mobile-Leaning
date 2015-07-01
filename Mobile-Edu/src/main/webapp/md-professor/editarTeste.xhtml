@@ -154,7 +154,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Assunto">Assunto </label>
-                                            <h:inputText value="#{controladorExercicio.exercicio.assunto}" class="form-control" 
+                                            <h:inputText value="#{controladorExercicio.teste.assunto}" class="form-control" 
                                                          pt:placeholder="Assunto" required="true" requiredMessage="Campo Obrigatório"/>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="DataEntrega">Data de Entrega </label>
-                                            <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" class="form-control" 
+                                            <h:inputText value="#{controladorExercicio.teste.dataEntrega}" class="form-control" 
                                                          pt:placeholder="Data de Entrega"  required="true" requiredMessage="Campo Obrigatório">
                                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                                             </h:inputText>
@@ -180,7 +180,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Disciplina">Disciplina </label>
-                                            <h:inputText value="#{controladorExercicio.exercicio.disciplina}" class="form-control" 
+                                            <h:inputText value="#{controladorExercicio.teste.disciplina}" class="form-control" 
                                                          pt:placeholder="Disciplina"/>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="Categoria">Categoria </label>
-                                            <h:inputText value="#{controladorExercicio.exercicio.categoria}" class="form-control" 
+                                            <h:inputText value="#{controladorExercicio.teste.categoria}" class="form-control" 
                                                          pt:placeholder="Categoria"  required="true" requiredMessage="Campo Obrigatório"/>
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
                                             <label class="control-label" for="qtdPerguntas">Quantidade</label>
-                                            <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
+                                            <h:selectOneListbox value="#{controladorExercicio.teste.qtdPerguntas}" id="qtdPergunta"
                                                                 size="1" class="form-control">
                                                 <f:selectItem itemValue="1"/>
                                                 <f:selectItem itemValue="2"/>
@@ -226,15 +226,9 @@
 
                                     <div class="col-md-12">
                                         <div class="box box-primary">
-                                            <div class="box-header">
 
-                                                <i class="ion ion-clipboard"></i>
-                                                <h3 class="box-title">Perguntas</h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                                </div>
-                                            </div><!-- /.box-header -->
+                                            <i class="ion ion-clipboard"></i>
+                                            <h4 class="box-title">Perguntas</h4>
 
 
                                             <div style="height:250px; overflow: auto;" >

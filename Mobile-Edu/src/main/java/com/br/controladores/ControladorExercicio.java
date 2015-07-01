@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 public class ControladorExercicio implements Serializable {
 
     private Teste exercicio;
+    private Teste teste;
     private List<Pergunta> questoesTeste;
     private HttpSession session;
     private ExternalContext externalContext;
@@ -33,6 +34,7 @@ public class ControladorExercicio implements Serializable {
     public ControladorExercicio() {
         exercicio = new Teste();
         questoesTeste = new ArrayList();
+        teste = new Teste();
     }
 
     public Teste getExercicio() {
@@ -47,6 +49,14 @@ public class ControladorExercicio implements Serializable {
         return questoesTeste;
     }
 
+    public Teste getTeste() {
+        return teste;
+    }
+
+    public void setTeste(Teste teste) {
+        this.teste = teste;
+    }
+
     public String salvarTeste() {
 
         externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -59,6 +69,15 @@ public class ControladorExercicio implements Serializable {
         exercicio = new Teste();
         this.questoesTeste = new ArrayList();
 
+        return "cadExercicio?faces-redirect=true";
+    }
+    
+        
+    public String removerPerguntaCadastrar(Pergunta pergunta){
+        
+        this.questoesTeste.remove(pergunta);
+        this.exercicio.setQtdPerguntas(this.questoesTeste.size());
+        
         return "cadExercicio?faces-redirect=true";
     }
 
@@ -83,16 +102,16 @@ public class ControladorExercicio implements Serializable {
     }
     
     public String visualizarTeste(Teste teste){
-        this.exercicio = teste;
+        this.teste = teste;
         this.questoesTeste = teste.getQuestoesExercicios();
         
         return "editarTeste?faces-redirect=true";
     }
     
     public String atualizarTeste(){
-        exercicio.setQtdPerguntas(this.questoesTeste.size());
-        exercicio.setQuestoesExercicios(questoesTeste);
-        fachada.atualizarExercicio(exercicio);
+        teste.setQtdPerguntas(this.questoesTeste.size());
+        teste.setQuestoesExercicios(questoesTeste);
+        fachada.atualizarExercicio(teste);
         
         return "editarTeste?faces-redirect=true";
     }
@@ -100,7 +119,9 @@ public class ControladorExercicio implements Serializable {
     public String removerPergunta(Pergunta pergunta){
         
         this.questoesTeste.remove(pergunta);
+        this.teste.setQtdPerguntas(this.questoesTeste.size());
         
         return "editarTeste?faces-redirect=true";
     }
+
 }
