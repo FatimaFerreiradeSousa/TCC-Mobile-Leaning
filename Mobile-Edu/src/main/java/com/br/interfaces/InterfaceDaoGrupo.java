@@ -1,6 +1,7 @@
 package com.br.interfaces;
 
 import com.br.entidades.Grupo;
+import com.br.entidades.Topico;
 import java.util.List;
 
 /**
@@ -18,4 +19,6 @@ public interface InterfaceDaoGrupo {
     public boolean remover(Grupo grupo);
     
     public List<Grupo> gruposProfessor(String login);
+    
+    public List<Topico> topicosGrupo(int codigoGrupo);
 }

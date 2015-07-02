@@ -117,7 +117,7 @@ public class UploadArquivo implements Serializable {
                 arquivo.setCaminho(caminho+fileUpload.getFileName());
                 arquivo.setNome(fileUpload.getFileName());
                 arquivo.setGrupoArquivo(grupo);
-                arquivo.setProfessor(professorLogado);
+                arquivo.setPessoa(professorLogado);
                 fachadaModArquivo.salvarArquivo(arquivo);
                 arquivo = new Arquivo();
                 

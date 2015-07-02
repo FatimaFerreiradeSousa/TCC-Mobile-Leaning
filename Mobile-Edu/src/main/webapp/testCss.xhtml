@@ -22,34 +22,12 @@
     <h:body>
 
 
-        <section class="sidebar">
-            <ul class="sidebar-menu">
-                <li class="header">Opções</li>
-
-                <li class="">
-                    <li class="treeview">
-                        <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="cadastrarPergunta.jsf">Cadastrar Pergunta</a></li>
-                            <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
-                            <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
-                            <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
-                            <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Criar Grupo</a></li>
-                            <li><a href="#">Meus Grupos</a></li>
-                            <li><a href="#">Grupos Gerenciados</a></li>
-                        </ul>
-                    </li>
-                </li>
-            </ul>
-        </section>
-
+        <br /><br /><br /><br /><br />
+        <h:form>
+            <h:commandButton value="Buscar" class="btn btn-default" style="margin: 10%" 
+                             action="#{controladorGrupo.topicos()}"/>
+        </h:form>
+        
 
     </h:body>
 </html>

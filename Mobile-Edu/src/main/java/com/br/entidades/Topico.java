@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,17 +31,19 @@ public class Topico implements Serializable{
     private List<Comentario> comentarios;
     @ManyToOne
     private Grupo grupo;
-    
+    @ManyToOne
+    private Pessoa pessoa;
     
     public Topico(){
     
     }
 
-    public Topico(String conteudo, Date dataCriacao, Grupo grupo) {
+    public Topico(String conteudo, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
+        this.pessoa = pessoa;
     }
 
     public int getCodigo() {
@@ -83,5 +84,13 @@ public class Topico implements Serializable{
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

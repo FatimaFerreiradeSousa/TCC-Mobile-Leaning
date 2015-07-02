@@ -2,13 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Cadastro de Grupos</title>
+        <title>Gerenciador</title>
         <meta charset="UTF-8"></meta>
 
-        <link href="../estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
+
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
@@ -37,10 +40,8 @@
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <img src="../assets/dist/img/user7-128x128.jpg" class="user-image" alt="User Image"/>
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">#{professor.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
@@ -49,35 +50,22 @@
                                         <p:graphicImage id="imgPerfil2" value="#{controladorProfessor.content}"/>
 
                                         <p>
-                                            #{usuario.nome} - Professor
+                                            #{professor.nome} - Professor
                                             <small>Membro desde de #{controladorProfessor.mes} de 
                                                 #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
 
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Amigos</a>
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
                                     <h:form>
 
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="paginaConfig.xhtml" class="button">Perfil</a>
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="paginaConfig.jsf"/>
                                             </div>
                                             <div class="pull-right">
-                                                <h:commandLink value="Sair" class="button"
-                                                               action="#{controladorProfessor.logout()}"/>
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorProfessor.logout()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -125,26 +113,18 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
-                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#"><span>Arquivos</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#">Cadastrar Arquivo</a></li>
-                                    <li><a href="#">Submeter Arquivo</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
+                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadGrupo.xhtml">Criar Grupo</a></li>
-                                    <li><a href="gruposGerenciados.xhtml">Gerenciador</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupo</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -154,44 +134,105 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper formatar">
-                <!-- Main content -->
+            <div class="content-wrapper">
                 <section class="content">
-                    <div class="banner-form">
-                        <h:form enctype="multipart/form-data">
-                            <h4 class="h-info" id="myModalLabel">Criar Grupo</h4>
+                    <div class="invoice">
 
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Nome">Nome </label>
-                                            <h:inputText value="#{gerenciadorGrupo.grupo.nome}" class="form-control"/>
-                                        </div>
-                                    </div>
+                        <div class="box box-primary">
+
+                            <div style="padding-top: 1em">
+                                <h:form>
+                                    <a action="#" class="btn btn-success pull-right"
+                                       href="#signup" data-toggle="modal" data-target="#modalGrupo">
+                                        Criar Grupo
+                                    </a> 
+                                </h:form>
+                            </div>
+                            <h4 class="box-title">Grupos</h4>
+
+                            <h:form>
+                                <div style="height:250px; overflow: auto;" >
+                                    <h:dataTable class="table table-responsive" 
+                                                 value="#{controladorGrupo.gruposCriados()}" var="grupo">
+
+                                        <h:column>
+                                            <div class="box-body">
+                                                <ul class="todo-list">
+                                                    <li>
+                                                        <label>
+                                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
+                                                        </label>
+                                                        <div class="tools">
+
+                                                            <h:commandLink value="" class="fa fa-trash-o" 
+                                                                           action="#{controladorGrupo.removerGrupo(grupo)}"/>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
                                 </div>
+                            </h:form>
 
-                                <div class="col-xs-6">
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Versão</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
+                </strong> All rights reserved.
+            </footer>
+        </div>
+
+        <div class="modal fade" id="modalGrupo">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Cadastrar Grupo</h4>
+                    </div>
+
+                    <h:form>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
                                     <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Descricao">Descrição </label>
-                                            <h:inputText value="#{gerenciadorGrupo.grupo.descricao}" class="form-control"/>
-                                        </div>
+                                        <label class="control-label" for="nome">Nome </label>
+                                        <h:inputText value="#{controladorGrupo.grupo.nome}" 
+                                                     class="form-control" pt:placeholde="Nome"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <h:commandLink value="Cadastrar" action="#{gerenciadorGrupo.salvarGrupo()}" 
-                                                   class="button1"/>
+                                    <div class="form-group">
+                                        <label class="control-label" for="descricao">Descrição </label>
+                                        <h:inputText value="#{controladorGrupo.grupo.descricao}" 
+                                                     class="form-control" pt:placeholde="Descrição"/>
+                                    </div>
                                 </div>
                             </div>
 
-                        </h:form>
-                    </div>
-                </section><!-- /.content -->
-            </div><!-- /.content-wrapper -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <h:commandLink value="Cadastrar" class="btn btn-primary" 
+                                               action="#{controladorGrupo.salvarGrupo()}"/>
+                            </div>
+
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
         </div>
     </h:body>
 </html>

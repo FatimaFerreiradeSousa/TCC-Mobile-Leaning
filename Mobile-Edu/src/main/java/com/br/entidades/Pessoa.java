@@ -1,14 +1,15 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,6 +34,13 @@ public class Pessoa implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataParticipacao;
     
+    @OneToMany(mappedBy = "pessoa")
+    private List<Topico> topicos;
+    @OneToMany(mappedBy = "pessoa")
+    private List<Comentario> comentarios;
+    @OneToMany(mappedBy = "pessoa")
+    private List<Arquivo> arquivos;
+    
     public Pessoa(){
     
     }
@@ -47,6 +55,9 @@ public class Pessoa implements Serializable{
         this.email = email;
         this.descricao = descricao;
         this.dataParticipacao = dataParticipacao;
+        this.topicos = new ArrayList();
+        this.comentarios = new ArrayList();
+        this.arquivos = new ArrayList();
     }
 
     public String getLogin() {
@@ -111,5 +122,29 @@ public class Pessoa implements Serializable{
     
     public void setDataParticipacao(Date dataParticipacao){
         this.dataParticipacao = dataParticipacao;
+    }
+
+    public List<Topico> getTopicos() {
+        return topicos;
+    }
+
+    public void setTopicos(List<Topico> topicos) {
+        this.topicos = topicos;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<Arquivo> getArquivos() {
+        return arquivos;
+    }
+
+    public void setArquivos(List<Arquivo> arquivos) {
+        this.arquivos = arquivos;
     }
 }

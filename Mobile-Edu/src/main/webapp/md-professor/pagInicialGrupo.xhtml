@@ -2,31 +2,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Grupo</title>
-        <link href="../../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
-        <link href="../../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
 
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
-        <link href="../../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-        <script src="../../assets/jQuery/jQuery-2.1.3.min.js"></script>
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../assets/dist/js/app.min.js" type="text/javascript"></script>
+        <script src="../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/dist/js/app.min.js" type="text/javascript"></script>
     </h:head>
 
     <h:body class="skin-blue">
 
         <div class="wrapper">
             <header class="main-header">
-                <a href="paginaInicialProfessor.xhtml" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
 
                 <nav class="navbar navbar-static-top" role="navigation">
                     <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
@@ -39,10 +38,8 @@
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <img src="../assets/dist/img/user7-128x128.jpg" class="user-image" alt="User Image"/>
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">#{usuario.nome}</span>
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">#{professor.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
@@ -51,35 +48,22 @@
                                         <p:graphicImage id="imgPerfil2" value="#{controladorProfessor.content}"/>
 
                                         <p>
-                                            #{usuario.nome} - Professor
+                                            #{professor.nome} - Professor
                                             <small>Membro desde de #{controladorProfessor.mes} de 
                                                 #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
 
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Amigos</a>
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
                                     <h:form>
 
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="paginaConfig.jsf" class="button">Perfil</a>
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="paginaConfig.jsf"/>
                                             </div>
                                             <div class="pull-right">
-                                                <h:commandLink value="Sair" class="button"
-                                                               action="#{controladorProfessor.logout()}"/>
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorProfessor.logout()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -124,18 +108,18 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
-                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
+                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadGrupo.xhtml">Criar Grupo</a></li>
-                                    <li><a href="gruposGerenciados.xhtml">Gerenciador</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupo</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -150,10 +134,10 @@
 
                 <section class="content-header">
                     <h1>
-                        #{grupo.nome}<br />
+                        #{controladorGrupo.grupo.nome}<br />
                     </h1>
 
-                    <small>#{grupo.descricao}</small><br />
+                    <small>#{controladorGrupo.grupo.descricao}</small><br />
 
                     <a action="#" class="bt-link-grupo"
                        href="#signup" data-toggle="modal" data-target="#modalPostagem">
@@ -167,50 +151,59 @@
                 </section>
 
                 <section class="content">
+
                     <div class="row">
-
                         <div class="col-md-8">
-                            <div class="box box-success">
-                                <br />
-                                <div class="box-body chat" id="chat-box">
-                                    <div class="item">
-                                        <img src="../../img/perfil.png" alt="user image" class="online"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                Fatinha
-                                            </a>
-                                            Fazendo TCC :)
-                                        </p>
+                            <h:dataTable class="table table-responsive" value="#{controladorGrupo.topicos()}" var="topico">
 
-                                        <div class="attachment">
+                                <h:column>
+                                    <div class="box box-success">
+                                        <br />
+
+                                        <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <img src="../../img/perfil.png" alt="user image" class="online"/>
+                                                <p:graphicImage id="coisa" value="#{topico.pessoa.foto}"/>
+
                                                 <p class="message">
                                                     <a href="#" class="name">
-                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                        Fatinha
+                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 
+                                                            #{topico.dataCriacao}</small>
+                                                            #{topico.pessoa.nome}
                                                     </a>
-                                                    Fazendo TCC :)
+                                                    #{topico.conteudo}
                                                 </p>
-                                            </div>
 
-                                            <div class="">
-                                                <div class="input-group">
-                                                    <input class="form-control" placeholder="Comentar..."/>
-                                                    <div class="input-group-btn">
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-warning btn-flat">Comentar</button>
-                                                        </span>
+                                                <div class="attachment">
+                                                    <div class="item">
+                                                        <img src="../img/perfil.png" alt="user image" class="online"/>
+                                                        <p class="message">
+                                                            <a href="#" class="name">
+                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                                                                Fatinha
+                                                            </a>
+                                                            Fazendo TCC :)
+                                                        </p>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.attachment -->
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div><!--Fim da div topico-->
+                                                    <div class="">
+                                                        <div class="input-group">
+                                                            <input class="form-control" placeholder="Comentar..."/>
+                                                            <div class="input-group-btn">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-warning btn-flat">Comentar</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.attachment -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </h:column>
+
+                            </h:dataTable>
+                        </div>
 
                         <div class="col-md-4">
                             <div class="box box-danger">
@@ -223,42 +216,42 @@
 
                                     <ul class="users-list clearfix">
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Alexander Pierce</a>
                                             <span class="users-list-date">Today</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Norman</a>
                                             <span class="users-list-date">Yesterday</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Jane</a>
                                             <span class="users-list-date">12 Jan</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">John</a>
                                             <span class="users-list-date">12 Jan</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Alexander</a>
                                             <span class="users-list-date">13 Jan</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Sarah</a>
                                             <span class="users-list-date">14 Jan</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/icPerfil.png" alt="User Image"/>
+                                            <img src="../img/icPerfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Nora</a>
                                             <span class="users-list-date">15 Jan</span>
                                         </li>
                                         <li>
-                                            <img src="../../img/perfil.png" alt="User Image"/>
+                                            <img src="../img/perfil.png" alt="User Image"/>
                                             <a class="users-list-name" href="#">Nadia</a>
                                             <span class="users-list-date">15 Jan</span>
                                         </li>
@@ -352,20 +345,17 @@
             </footer>
 
 
-        </div>
+        </div>           
 
-        <div class="modal fade bs-modal-sm" id="modalArquivo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content modalGrupo">
+        <div class="modal fade" id="modalArquivo">
+            <div class="modal-dialog">
 
-                    <br />
-                    <div class="bs-example bs-example-tabs">
-                        <ul id="myTab" class="nav nav-tabs">
-                            <li class="text-cadastrar">Selecione um arquivo</li>
-                        </ul>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Novo Arquivo</h4>
                     </div>
 
-                    <br />
                     <h:form enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-4 col-md-4">
@@ -373,7 +363,7 @@
                                     <div class="panel-body">
 
                                         <h:inputTextarea class="form-control counted message-text" id="message" 
-                                                         pt:placeholder="Escreva Algo..." rows="5" value="#{gerenciadorUpload.arquivo.descricao}">
+                                                         pt:placeholder="Escreva Algo..." rows="5" value="#{controladorGrupo.arquivo.descricao}">
 
                                         </h:inputTextarea>
 
@@ -385,7 +375,7 @@
 
                         <div class="alinhamentoTest">
                             <p:fileUpload 
-                                value="#{gerenciadorUpload.fileUpload}"
+                                value="#{controladorGrupo.fileUpload}"
                                 allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
                                 mode="simple" 
                                 />
@@ -394,57 +384,52 @@
 
 
                         <div class="modal-footer">
-                            <p:commandButton value="Enviar" ajax="false" actionListener="#{gerenciadorUpload.upload()}" 
+                            <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
                                              disabled="false" update="@all" id="linkFoto" />
 
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
 
                         </div>
                     </h:form>
+
                 </div>
             </div>
-        </div>           
+        </div>
 
 
-        <div class="modal fade bs-modal-sm" id="modalPostagem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content modalGrupo">
+        <div class="modal fade" id="modalPostagem">
+            <div class="modal-dialog">
 
-                    <br />
-                    <div class="bs-example bs-example-tabs">
-                        <ul id="myTab" class="nav nav-tabs">
-                            <li class="text-cadastrar">Novo Topico</li>
-                        </ul>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Novo Topico</h4>
                     </div>
 
-                    <br />
                     <h:form>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-4">
-                                <div class="panel-arquivo">
-                                    <div class="panel-body">
-
-                                        <h:inputTextarea class="form-control counted message-text" id="message" 
-                                                         pt:placeholder="Escreva Algo..." rows="7" 
-                                                         value="#{controladorTopico.topico.conteudo}">
-                                        </h:inputTextarea>
-
-                                    </div>  
-
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="escrevaAlgo">Escreva Algo</label>
+                                        <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
+                                                         class="form-control" pt:placeholde="Escreva Algo..." rows="5"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="modal-footer">
-                            <h:commandLink value="Publicar" action="#{controladorTopico.salvarTopico()}" 
-                                             class="btn btn-success btn-flat btn-flat-menu-sair"/>
-                            <button type="button" class="btn btn-primary " data-dismiss="modal">Cancelar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <h:commandLink value="Cadastrar" class="btn btn-primary" 
+                                               action="#{controladorGrupo.salvarTopicoProfessor()}"/>
+                            </div>
+
                         </div>
                     </h:form>
+
                 </div>
             </div>
-        </div>           
-
+        </div>
     </h:body>
 </html>
 

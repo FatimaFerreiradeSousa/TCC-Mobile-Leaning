@@ -42,4 +42,12 @@
             <to-view-id>/md-professor/editarTeste.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/md-professor/cadGrupo.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>pagInicialGrupo</from-outcome>
+            <to-view-id>/md-professor/pagInicialGrupo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -2,15 +2,15 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="md-professor/testesCadastrados.xhtml" x="-4" y="436" zoom="true"/>
-        <Node id="md-aluno/pageInicialAluno.xhtml" x="141" y="628" zoom="true"/>
+        <Node id="md-professor/testesCadastrados.xhtml" x="-2" y="366" zoom="true"/>
+        <Node id="md-aluno/pageInicialAluno.xhtml" x="36" y="710" zoom="true"/>
         <Node id="testCss.xhtml" x="735" y="386" zoom="true"/>
-        <Node id="indexAluno.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="indexAluno.xhtml" x="423" y="700" zoom="true"/>
         <Node id="md-aluno/perfilAluno.xhtml" x="891" y="32" zoom="true"/>
         <Node id="md-professor/cadastrarResposta.xhtml" x="-16" y="202" zoom="true"/>
         <Node id="md-professor/paginaInicialProfessor.xhtml" x="1150" y="300" zoom="true"/>
-        <Node id="md-professor/cadGrupo.xhtml" x="551" y="454" zoom="true"/>
-        <Node id="testImg.xhtml" x="549" y="497" zoom="true"/>
+        <Node id="md-professor/cadGrupo.xhtml" x="310" y="445" zoom="true"/>
+        <Node id="testImg.xhtml" x="638" y="440" zoom="true"/>
         <Node id="md-aluno/gruposAluno.xhtml" x="794" y="503" zoom="true"/>
         <Node id="md-professor/cadExercicio.xhtml" x="620" y="95" zoom="true"/>
         <Node id="inicialPage.xhtml" x="492" y="392" zoom="true"/>
@@ -19,14 +19,13 @@
         <Node id="md-professor/perguntasCadastradas.xhtml" x="365" y="340" zoom="true"/>
         <Node id="index.xhtml" x="650" y="600" zoom="true"/>
         <Node id="md-professor/editarResposta.xhtml" x="143" y="34" zoom="false"/>
-        <Node id="md-professor/gruposGerenciados.xhtml" x="900" y="150" zoom="true"/>
         <Node id="md-professor/resultadosTestes.xhtml" x="753" y="313" zoom="true"/>
-        <Node id="md-professor/editarTeste.xhtml" x="51" y="507" zoom="true"/>
+        <Node id="md-professor/editarTeste.xhtml" x="6" y="475" zoom="true"/>
         <Node id="md-professor/paginaConfig.xhtml" x="773" y="237" zoom="true"/>
-        <Node id="md-professor/cadastrarPergunta.xhtml" x="-7" y="373" zoom="true"/>
-        <Node id="md-professor/pagInicialGrupo.xhtml" x="530" y="26" zoom="true"/>
+        <Node id="md-professor/cadastrarPergunta.xhtml" x="-6" y="300" zoom="true"/>
+        <Node id="md-professor/pagInicialGrupo.xhtml" x="301" y="572" zoom="true"/>
         <Node id="indexProfessor.xhtml" x="150" y="750" zoom="true"/>
-        <Node id="md-aluno/resultadosTestes.xhtml" x="70" y="553" zoom="true"/>
+        <Node id="md-aluno/resultadosTestes.xhtml" x="-39" y="562" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

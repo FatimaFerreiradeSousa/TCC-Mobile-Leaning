@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,22 +28,19 @@ public class Comentario implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataComentario;
     @ManyToMany(mappedBy = "comentarios")
-    private List<Professor> professores;
-    @ManyToMany(mappedBy = "comentariosTopico")
-    private List<Aluno> alunos;
-    @ManyToMany(mappedBy = "comentarios")
     private List<Topico> topicos;
+    @ManyToOne
+    private Pessoa pessoa;
     
     public Comentario(){
     
     }
 
-    public Comentario(String comentario, Date data) {
+    public Comentario(String comentario, Date data, Pessoa pessoa) {
         this.comentario = comentario;
         this.dataComentario = data;
-        this.professores = new ArrayList();
-        this.alunos = new ArrayList();
         this.topicos = new ArrayList();
+        this.pessoa = pessoa;
     }
 
     public int getCodigo() {
@@ -70,27 +67,19 @@ public class Comentario implements Serializable{
         this.dataComentario = dataComentario;
     }
 
-    public List<Professor> getProfessores() {
-        return professores;
-    }
-
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
-    }
-
     public List<Topico> getTopicos() {
         return topicos;
     }
 
     public void setTopicos(List<Topico> topicos) {
         this.topicos = topicos;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

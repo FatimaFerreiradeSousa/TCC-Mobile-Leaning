@@ -1,7 +1,9 @@
 package com.br.daos;
 
 import com.br.entidades.Grupo;
+import com.br.entidades.Topico;
 import com.br.interfaces.InterfaceDaoGrupo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -77,5 +79,13 @@ public class DaoGrupo implements InterfaceDaoGrupo {
         }else{
             return null;
         }
+    }
+    
+    @Override
+    public List<Topico> topicosGrupo(int codigoGrupo){
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo ORDER BY t.codigo DESC");
+        query.setParameter("codigoGrupo", codigoGrupo);
+        
+        return (List<Topico>) query.getResultList();
     }
 }

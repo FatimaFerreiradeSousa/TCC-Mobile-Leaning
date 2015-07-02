@@ -1,5 +1,6 @@
 package com.br.fachada;
 
+import com.br.daos.DaoArquivo;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
@@ -32,6 +33,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoTopico daoTopico;
     @EJB
     private InterfaceDaoAnotacao daoAnotacao;
+    @EJB
+    private InterfaceDaoArquivo interfaceDaoArquivo;
     
     public Fachada() {
     }
@@ -156,6 +159,14 @@ public class Fachada implements Serializable {
         return daoPaGrupo.atualizarSolicitacao(participaGrupo);
     }
     
+    public boolean removerGrupo(Grupo grupo){
+        return daoGrupo.remover(grupo);
+    }
+    
+    public List<Topico> topicosGrupo(int codigoGrupo){
+        return daoGrupo.topicosGrupo(codigoGrupo);
+    }
+    
     /*CRUD Topicos*/
     public boolean salvarTopico(Topico topico){
         return daoTopico.salvar(topico);
@@ -184,5 +195,19 @@ public class Fachada implements Serializable {
     
     public List<Anotacao> listarAnotacao(Professor professor){
         return daoAnotacao.listarAnotacao(professor);
+    }
+    
+    /*CRUD Arquivo*/
+    
+    public void salvarArquivo(Arquivo arquivo){
+        interfaceDaoArquivo.salvar(arquivo);
+    }
+    
+    public void removerArquivo(Arquivo arquivo){
+        interfaceDaoArquivo.remover(arquivo);
+    }
+    
+    public List<Arquivo> listarArquivos(String login){
+        return interfaceDaoArquivo.listarArquivos(login);
     }
 }

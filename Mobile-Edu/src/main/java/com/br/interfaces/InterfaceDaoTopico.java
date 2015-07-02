@@ -15,4 +15,5 @@ public interface InterfaceDaoTopico {
     public Topico consultar(String codigo);
     
     public boolean remover(Topico topico);
+    
 }

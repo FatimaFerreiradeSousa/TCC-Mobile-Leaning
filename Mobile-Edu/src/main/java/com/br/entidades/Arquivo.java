@@ -23,21 +23,22 @@ public class Arquivo implements Serializable{
     private String descricao;
     private String foto;
     private String caminho;
-    @ManyToOne
-    private Professor professor;
+    
     @ManyToOne
     private Grupo grupoArquivo;
+    @ManyToOne
+    private Pessoa pessoa;
     
     public Arquivo(){
     
     }
 
-    public Arquivo(String nome, String descricao, String foto, String caminho, Professor professor, Grupo grupo) {
+    public Arquivo(String nome, String descricao, String foto, String caminho, Pessoa pessoa, Grupo grupo) {
         this.nome = nome;
         this.descricao = descricao;
         this.foto = foto;
         this.caminho = caminho;
-        this.professor = professor;
+        this.pessoa = pessoa;
         this.grupoArquivo = new Grupo();
     }
 
@@ -81,12 +82,12 @@ public class Arquivo implements Serializable{
         this.caminho = caminho;
     }
     
-    public Professor getProfessor(){
-        return professor;
+    public Pessoa getPessoa(){
+        return pessoa;
     }
     
-    public void setProfessor(Professor professor){
-        this.professor = professor;
+    public void setPessoa(Pessoa pessoa){
+        this.pessoa = pessoa;
     }
 
     public Grupo getGrupoArquivo() {
