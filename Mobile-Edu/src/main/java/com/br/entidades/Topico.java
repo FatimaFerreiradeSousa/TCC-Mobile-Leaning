@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,7 +27,7 @@ public class Topico implements Serializable{
     private String conteudo;
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
-    @ManyToMany
+    @OneToMany(mappedBy = "topico")
     private List<Comentario> comentarios;
     @ManyToOne
     private Grupo grupo;

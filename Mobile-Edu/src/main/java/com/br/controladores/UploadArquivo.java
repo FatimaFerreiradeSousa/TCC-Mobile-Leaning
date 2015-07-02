@@ -3,7 +3,7 @@ package com.br.controladores;
 import com.br.entidades.Arquivo;
 import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
-import com.br.fachada.FachadaModArquivo;
+import com.br.fachada.Fachada;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -38,7 +38,7 @@ public class UploadArquivo implements Serializable {
     private Arquivo arquivo;
 
     @EJB
-    FachadaModArquivo fachadaModArquivo;
+    Fachada fachadaModArquivo;
 
     public UploadArquivo() {
         arquivo = new Arquivo();

@@ -1,14 +1,11 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,23 +21,24 @@ public class Comentario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    private String comentario;
+    private String conteudo;
     @Temporal(TemporalType.DATE)
     private Date dataComentario;
-    @ManyToMany(mappedBy = "comentarios")
-    private List<Topico> topicos;
+    
     @ManyToOne
     private Pessoa pessoa;
+    @ManyToOne
+    private Topico topico;
     
     public Comentario(){
     
     }
 
-    public Comentario(String comentario, Date data, Pessoa pessoa) {
-        this.comentario = comentario;
+    public Comentario(String conteudo, Date data, Pessoa pessoa, Topico topico) {
+        this.conteudo = conteudo;
         this.dataComentario = data;
-        this.topicos = new ArrayList();
         this.pessoa = pessoa;
+        this.topico = topico;
     }
 
     public int getCodigo() {
@@ -51,12 +49,12 @@ public class Comentario implements Serializable{
         this.codigo = codigo;
     }
 
-    public String getComentario() {
-        return comentario;
+    public String getConteudo() {
+        return conteudo;
     }
 
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
 
     public Date getDataComentario() {
@@ -66,20 +64,20 @@ public class Comentario implements Serializable{
     public void setDataComentario(Date dataComentario) {
         this.dataComentario = dataComentario;
     }
-
-    public List<Topico> getTopicos() {
-        return topicos;
-    }
-
-    public void setTopicos(List<Topico> topicos) {
-        this.topicos = topicos;
-    }
-
+    
     public Pessoa getPessoa() {
         return pessoa;
     }
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Topico getTopico() {
+        return topico;
+    }
+
+    public void setTopico(Topico topico) {
+        this.topico = topico;
     }
 }

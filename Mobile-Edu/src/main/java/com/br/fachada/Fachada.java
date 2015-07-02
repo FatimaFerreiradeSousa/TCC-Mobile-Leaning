@@ -1,6 +1,7 @@
 package com.br.fachada;
 
 import com.br.daos.DaoArquivo;
+import com.br.daos.DaoComentario;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
@@ -35,6 +36,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoAnotacao daoAnotacao;
     @EJB
     private InterfaceDaoArquivo interfaceDaoArquivo;
+    @EJB
+    private InterfaceDaoComentario daoComentario;
     
     public Fachada() {
     }
@@ -209,5 +212,18 @@ public class Fachada implements Serializable {
     
     public List<Arquivo> listarArquivos(String login){
         return interfaceDaoArquivo.listarArquivos(login);
+    }
+    
+    /*CRUD Comentarios*/
+    public boolean salvarComentario(Comentario comentario){
+        return daoComentario.salvar(comentario);
+    }
+    
+    public boolean alterarComentario(Comentario comentario){
+        return daoComentario.atualizar(comentario);
+    }
+    
+    public boolean removerComentario(Comentario comentario){
+        return daoComentario.remover(comentario);
     }
 }

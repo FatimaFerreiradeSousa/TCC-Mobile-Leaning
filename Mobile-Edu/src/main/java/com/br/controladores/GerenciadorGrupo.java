@@ -1,6 +1,7 @@
 package com.br.controladores;
 
 import com.br.entidades.Arquivo;
+import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
 import com.br.entidades.Topico;
@@ -43,11 +44,14 @@ public class GerenciadorGrupo implements Serializable {
     private StreamedContent content;
     private StreamedContent fileDownload;
     private Arquivo arquivo;
-
+    private Comentario comentarioTopico;
+    private String mensagem;
+    
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
         arquivo = new Arquivo();
+        comentarioTopico = new Comentario();
     }
 
     public Grupo getGrupo() {
@@ -64,38 +68,6 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setTopico(Topico topico) {
         this.topico = topico;
-    }
-
-    public StreamedContent getContent() {
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
-    }
-
-    public StreamedContent getFileDownload() {
-        return fileDownload;
-    }
-
-    public void setFileDownload(StreamedContent fileDownload) {
-        this.fileDownload = fileDownload;
-    }
-
-    public UploadedFile getFileUpload() {
-        return fileUpload;
-    }
-
-    public void setFileUpload(UploadedFile fileUpload) {
-        this.fileUpload = fileUpload;
-    }
-
-    public Arquivo getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(Arquivo arquivo) {
-        this.arquivo = arquivo;
     }
 
     public String salvarGrupo() {
@@ -147,16 +119,47 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public List<Topico> topicos() {
-        for(Topico t: fachada.topicosGrupo(grupo.getCodigo())){
-            System.out.println("Usuario: "+t.getPessoa().getFoto());
-        }
-        
         return fachada.topicosGrupo(grupo.getCodigo());
-        
-        
     }
     
+    public String removerTopico(Topico topico){
+        fachada.removerTopico(topico);
+        return "pagInicialGrupo?faces-redirect=true";
+    }
+
     /*Upload de Arquivos*/
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
+    }
+
+    public StreamedContent getFileDownload() {
+        return fileDownload;
+    }
+
+    public void setFileDownload(StreamedContent fileDownload) {
+        this.fileDownload = fileDownload;
+    }
+
+    public UploadedFile getFileUpload() {
+        return fileUpload;
+    }
+
+    public void setFileUpload(UploadedFile fileUpload) {
+        this.fileUpload = fileUpload;
+    }
+
+    public Arquivo getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(Arquivo arquivo) {
+        this.arquivo = arquivo;
+    }
+
     public void upload() {
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
 
@@ -185,13 +188,13 @@ public class GerenciadorGrupo implements Serializable {
                 Professor professorLogado = (Professor) session.getAttribute("professor");
 
                 arquivo.setFoto(caminhoFoto);
-                arquivo.setCaminho(caminho+fileUpload.getFileName());
+                arquivo.setCaminho(caminho + fileUpload.getFileName());
                 arquivo.setNome(fileUpload.getFileName());
                 arquivo.setGrupoArquivo(grupo);
                 arquivo.setPessoa(professorLogado);
                 fachada.salvarArquivo(arquivo);
                 arquivo = new Arquivo();
-                
+
                 inputStream.close();
                 out.flush();
                 out.close();
@@ -200,12 +203,50 @@ public class GerenciadorGrupo implements Serializable {
             }
         }
     }
-    
+
     //Faz Download
     public StreamedContent donwload() throws FileNotFoundException {
         InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\doc.pdf");
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 "test.pdf");
         return fileDownload;
+    }
+
+    /*Comentario*/
+    public Comentario getComentarioTopico() {
+        return comentarioTopico;
+    }
+
+    public void setComentarioTopico(Comentario comentarioTopico) {
+        this.comentarioTopico = comentarioTopico;
+    }
+
+    public String salvarComentarioProfessor(Topico  topico) {
+        context = FacesContext.getCurrentInstance().getExternalContext();
+        this.session = (HttpSession) context.getSession(false);
+        Professor professorLogado = (Professor) session.getAttribute("professor");
+        
+        comentarioTopico.setDataComentario(new Date());
+        comentarioTopico.setPessoa(professorLogado);
+        comentarioTopico.setTopico(topico);
+        
+        if(fachada.salvarComentario(comentarioTopico) == true){
+            mensagem = "Salvo com sucesso!";
+            comentarioTopico = new Comentario();
+        }
+        
+        return "pagInicialGrupo?faces-redirect=true";
+    }
+    
+    public String alterarComentario(Comentario comentario){
+        fachada.alterarComentario(comentario);
+        
+        return "pagInicialGrupo?faces-redirect=true";
+    }
+    
+    public String removerComentario(Comentario comentario){
+        fachada.removerComentario(comentario);
+        
+        return "pagInicialGrupo?faces-redirect=true";
     }
 }

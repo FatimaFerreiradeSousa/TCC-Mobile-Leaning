@@ -158,6 +158,13 @@
 
                                 <h:column>
                                     <div class="box box-success">
+                                        <div class="box-tools pull-right">
+                                            <h:form>
+                                                <h:commandLink class="fa fa-trash-o" 
+                                                               action="#{controladorGrupo.removerTopico(topico)}">
+                                                </h:commandLink>
+                                            </h:form>
+                                        </div>
                                         <br />
 
                                         <div class="box-body chat" id="chat-box">
@@ -165,37 +172,56 @@
                                                 <p:graphicImage id="coisa" value="#{topico.pessoa.foto}"/>
 
                                                 <p class="message">
+                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 
+                                                        #{topico.dataCriacao}</small>
                                                     <a href="#" class="name">
-                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 
-                                                            #{topico.dataCriacao}</small>
-                                                            #{topico.pessoa.nome}
+                                                        #{topico.pessoa.nome}
                                                     </a>
                                                     #{topico.conteudo}
                                                 </p>
 
                                                 <div class="attachment">
-                                                    <div class="item">
-                                                        <img src="../img/perfil.png" alt="user image" class="online"/>
-                                                        <p class="message">
-                                                            <a href="#" class="name">
-                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                                Fatinha
-                                                            </a>
-                                                            Fazendo TCC :)
-                                                        </p>
-                                                    </div>
+                                                    <h:dataTable value="#{topico.comentarios}" var="comentario">
+                                                        <h:column>
+                                                            <div class="item">
+                                                                <div class="box-tools pull-right">
+                                                                    <h:form>
+                                                                        <h:commandLink class="fa fa-trash-o" 
+                                                                                       action="#{controladorGrupo.removerComentario(comentario)}">
+                                                                        </h:commandLink>
+                                                                    </h:form>
+                                                                </div>
+                                                                
+                                                                <p:graphicImage id="coisa" value="#{comentario.pessoa.foto}"/>
+                                                                <p class="message">
+                                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+
+                                                                    <a href="#" class="name">
+                                                                        #{comentario.pessoa.nome}
+                                                                    </a>
+                                                                    #{comentario.conteudo}
+                                                                </p>
+                                                            </div>
+                                                        </h:column>
+
+                                                    </h:dataTable>
+
 
                                                     <div class="">
-                                                        <div class="input-group">
-                                                            <input class="form-control" placeholder="Comentar..."/>
-                                                            <div class="input-group-btn">
-                                                                <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-warning btn-flat">Comentar</button>
-                                                                </span>
+                                                        <h:form>
+                                                            <div class="input-group">
+                                                                <h:inputText value="#{controladorGrupo.comentarioTopico.conteudo}" class="form-control" 
+                                                                             pt:placeholder="Comentar..."/>
+                                                                <div class="input-group-btn">
+                                                                    <span class="input-group-btn">
+                                                                        <h:commandButton value="Comentar" class="btn btn-warning btn-flat"
+                                                                                         action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </h:form>
                                                     </div>
-                                                </div><!-- /.attachment -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -357,39 +383,38 @@
                     </div>
 
                     <h:form enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-sm-4 col-md-4">
-                                <div class="panel-arquivo">
-                                    <div class="panel-body">
-
-                                        <h:inputTextarea class="form-control counted message-text" id="message" 
-                                                         pt:placeholder="Escreva Algo..." rows="5" value="#{controladorGrupo.arquivo.descricao}">
-
-                                        </h:inputTextarea>
-
-                                    </div>  
-
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="escrevaAlgo">Escreva Algo</label>
+                                        <h:inputTextarea value="#{controladorGrupo.arquivo.descricao}" 
+                                                         class="form-control" pt:placeholde="Escreva Algo..." rows="5"/>
+                                    </div>
                                 </div>
                             </div>
+
+
+                            <div class="alinhamentoTest">
+                                <p:fileUpload 
+                                    value="#{controladorGrupo.fileUpload}"
+                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                    mode="simple" 
+                                    />
+                                <br/>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
+                                                 disabled="false" update="@all" id="linkFoto" />
+
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+
+                            </div>
+
                         </div>
 
-                        <div class="alinhamentoTest">
-                            <p:fileUpload 
-                                value="#{controladorGrupo.fileUpload}"
-                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                mode="simple" 
-                                />
-                            <br/>
-                        </div>
-
-
-                        <div class="modal-footer">
-                            <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
-                                             disabled="false" update="@all" id="linkFoto" />
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-
-                        </div>
                     </h:form>
 
                 </div>
