@@ -181,13 +181,15 @@
                                                     #{topico.conteudo}
                                                 </p>
 
+
                                                 <div class="attachment">
                                                     <h:dataTable value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario">
                                                         <h:column>
                                                             <div class="item">
                                                                 <p:graphicImage id="coisa" 
                                                                                 value="#{controladorGrupo.mostrarFotoComentario(comentario.pessoa.foto)}"/>
-                                                                <div class="box-tools pull-right">
+                                                                
+                                                                <div class="pull-right">
                                                                     <h:form>
                                                                         <h:commandLink class="btn btn-box-tool" 
                                                                                        action="#{controladorGrupo.removerComentario(comentario)}">
@@ -196,7 +198,6 @@
                                                                     </h:form>
                                                                 </div>
 
-                                                                
                                                                 <p class="message">
                                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
 
@@ -205,11 +206,10 @@
                                                                     </a>
                                                                     #{comentario.conteudo}
                                                                 </p>
+
                                                             </div>
                                                         </h:column>
-
                                                     </h:dataTable>
-
 
                                                     <h:form>
                                                         <div class="input-group">
@@ -224,6 +224,9 @@
                                                         </div>
                                                     </h:form>
                                                 </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>

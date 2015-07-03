@@ -250,6 +250,10 @@ public class GerenciadorGrupo implements Serializable {
     }
     
     public List<Comentario> comentariosTopico(Topico topico){
+        for(Comentario c: fachada.listarComentariosTopico(topico.getCodigo())){
+            System.out.println("Comentario: " +c.getConteudo());
+        }
+        
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
 
