@@ -1,10 +1,13 @@
 package com.br.daos;
 
+import com.br.entidades.Comentario;
 import com.br.entidades.Topico;
 import com.br.interfaces.InterfaceDaoTopico;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -61,5 +64,13 @@ public class DaoTopico implements InterfaceDaoTopico {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    @Override
+    public List<Comentario> comentariosTopico(int codigoTopico){
+        Query query = em.createQuery("select c from Comentario c where c.topico.codigo = :codigo");
+        query.setParameter("codigo", codigoTopico);
+        
+        return (List<Comentario>) query.getResultList();
     }
 }

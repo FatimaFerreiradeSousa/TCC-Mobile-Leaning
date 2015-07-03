@@ -183,6 +183,10 @@ public class Fachada implements Serializable {
         return daoTopico.atualizar(topico);
     }
     
+    public List<Comentario> listarComentariosTopico(int codigoTopico){
+        return daoTopico.comentariosTopico(codigoTopico);
+    }
+    
     /*CRUD Anotacao*/
     public boolean salvarAnotacao(Anotacao anotacao){
         return daoAnotacao.salvarAnotacao(anotacao);

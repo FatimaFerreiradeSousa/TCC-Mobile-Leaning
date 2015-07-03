@@ -250,9 +250,7 @@ public class GerenciadorGrupo implements Serializable {
     }
     
     public List<Comentario> comentariosTopico(Topico topico){
-        System.out.println("Topico Comentario: " +topico.getComentarios().size());
-        
-        return topico.getComentarios();
+        return fachada.listarComentariosTopico(topico.getCodigo());
     }
 
     /*Mostrar Foto dos usuarios*/

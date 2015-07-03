@@ -1,6 +1,8 @@
 package com.br.interfaces;
 
+import com.br.entidades.Comentario;
 import com.br.entidades.Topico;
+import java.util.List;
 
 /**
  *
@@ -15,5 +17,7 @@ public interface InterfaceDaoTopico {
     public Topico consultar(String codigo);
     
     public boolean remover(Topico topico);
+    
+    public List<Comentario> comentariosTopico(int codigoTopico);
     
 }
