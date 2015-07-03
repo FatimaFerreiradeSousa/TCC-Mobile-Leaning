@@ -160,8 +160,9 @@
                                     <div class="box box-success">
                                         <div class="box-tools pull-right">
                                             <h:form>
-                                                <h:commandLink class="fa fa-trash-o" 
+                                                <h:commandLink class="btn btn-box-tool" 
                                                                action="#{controladorGrupo.removerTopico(topico)}">
+                                                    <i class="fa fa-times"></i>
                                                 </h:commandLink>
                                             </h:form>
                                         </div>
@@ -169,7 +170,7 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{topico.pessoa.foto}"/>
+                                                <p:graphicImage id="coisa" value="#{controladorGrupo.mostrarFoto(topico.pessoa.foto)}"/>
 
                                                 <p class="message">
                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 
@@ -186,13 +187,14 @@
                                                             <div class="item">
                                                                 <div class="box-tools pull-right">
                                                                     <h:form>
-                                                                        <h:commandLink class="fa fa-trash-o" 
+                                                                        <h:commandLink class="btn btn-box-tool" 
                                                                                        action="#{controladorGrupo.removerComentario(comentario)}">
+                                                                            <i class="fa fa-times"></i>
                                                                         </h:commandLink>
                                                                     </h:form>
                                                                 </div>
-                                                                
-                                                                <p:graphicImage id="coisa" value="#{comentario.pessoa.foto}"/>
+
+                                                                <p:graphicImage id="coisa" value="#{controladorGrupo.mostrarFoto(comentario.pessoa.foto)}"/>
                                                                 <p class="message">
                                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
 
@@ -207,20 +209,18 @@
                                                     </h:dataTable>
 
 
-                                                    <div class="">
-                                                        <h:form>
-                                                            <div class="input-group">
-                                                                <h:inputText value="#{controladorGrupo.comentarioTopico.conteudo}" class="form-control" 
-                                                                             pt:placeholder="Comentar..."/>
-                                                                <div class="input-group-btn">
-                                                                    <span class="input-group-btn">
-                                                                        <h:commandButton value="Comentar" class="btn btn-warning btn-flat"
-                                                                                         action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
-                                                                    </span>
-                                                                </div>
+                                                    <h:form>
+                                                        <div class="input-group">
+                                                            <h:inputText value="#{controladorGrupo.comentarioTopico.conteudo}" class="form-control" 
+                                                                         pt:placeholder="Comentar..."/>
+                                                            <div class="input-group-btn">
+                                                                <span class="input-group-btn">
+                                                                    <h:commandButton value="Comentar" class="btn btn-warning btn-flat"
+                                                                                     action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
+                                                                </span>
                                                             </div>
-                                                        </h:form>
-                                                    </div>
+                                                        </div>
+                                                    </h:form>
                                                 </div>
                                             </div>
                                         </div>

@@ -6,6 +6,8 @@ import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -46,7 +48,7 @@ public class GerenciadorGrupo implements Serializable {
     private Arquivo arquivo;
     private Comentario comentarioTopico;
     private String mensagem;
-    
+
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
@@ -121,21 +123,17 @@ public class GerenciadorGrupo implements Serializable {
     public List<Topico> topicos() {
         return fachada.topicosGrupo(grupo.getCodigo());
     }
-    
-    public String removerTopico(Topico topico){
+
+    public Topico buscarTopico() {
+        return fachada.topicosGrupo(grupo.getCodigo()).get(0);
+    }
+
+    public String removerTopico(Topico topico) {
         fachada.removerTopico(topico);
         return "pagInicialGrupo?faces-redirect=true";
     }
 
     /*Upload de Arquivos*/
-    public StreamedContent getContent() {
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
-    }
-
     public StreamedContent getFileDownload() {
         return fileDownload;
     }
@@ -221,32 +219,63 @@ public class GerenciadorGrupo implements Serializable {
         this.comentarioTopico = comentarioTopico;
     }
 
-    public String salvarComentarioProfessor(Topico  topico) {
+    public String salvarComentarioProfessor(Topico topico) {
         context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         Professor professorLogado = (Professor) session.getAttribute("professor");
-        
+
         comentarioTopico.setDataComentario(new Date());
         comentarioTopico.setPessoa(professorLogado);
         comentarioTopico.setTopico(topico);
-        
-        if(fachada.salvarComentario(comentarioTopico) == true){
+
+        if (fachada.salvarComentario(comentarioTopico) == true) {
             mensagem = "Salvo com sucesso!";
             comentarioTopico = new Comentario();
         }
-        
+
         return "pagInicialGrupo?faces-redirect=true";
     }
-    
-    public String alterarComentario(Comentario comentario){
+
+    public String alterarComentario(Comentario comentario) {
         fachada.alterarComentario(comentario);
-        
+
         return "pagInicialGrupo?faces-redirect=true";
     }
-    
-    public String removerComentario(Comentario comentario){
+
+    public String removerComentario(Comentario comentario) {
         fachada.removerComentario(comentario);
-        
+
         return "pagInicialGrupo?faces-redirect=true";
+    }
+
+    /*Mostrar Foto dos usuarios*/
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
+    }
+
+    public StreamedContent mostrarFoto(String caminho) {
+        DefaultStreamedContent content = null;
+
+        if (caminho != null) {
+
+            context = FacesContext.getCurrentInstance().getExternalContext();
+            this.session = (HttpSession) context.getSession(false);
+            File foto = new File(caminho);
+
+            try {
+                BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                in.close();
+                content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return content;
     }
 }
