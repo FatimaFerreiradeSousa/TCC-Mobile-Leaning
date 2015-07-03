@@ -44,6 +44,7 @@ public class GerenciadorGrupo implements Serializable {
     private ExternalContext context;
     private UploadedFile fileUpload;
     private StreamedContent content;
+    private StreamedContent contentComentario;
     private StreamedContent fileDownload;
     private Arquivo arquivo;
     private Comentario comentarioTopico;
@@ -247,6 +248,12 @@ public class GerenciadorGrupo implements Serializable {
 
         return "pagInicialGrupo?faces-redirect=true";
     }
+    
+    public List<Comentario> comentariosTopico(Topico topico){
+        System.out.println("Topico Comentario: " +topico.getComentarios().size());
+        
+        return topico.getComentarios();
+    }
 
     /*Mostrar Foto dos usuarios*/
     public StreamedContent getContent() {
@@ -257,25 +264,47 @@ public class GerenciadorGrupo implements Serializable {
         this.content = content;
     }
 
+    public StreamedContent getContentComentario() {
+        return contentComentario;
+    }
+
+    public void setContentComentario(StreamedContent contentComentario) {
+        this.contentComentario = contentComentario;
+    }
+
     public StreamedContent mostrarFoto(String caminho) {
-        DefaultStreamedContent content = null;
+        File foto = new File(caminho);
 
-        if (caminho != null) {
-
-            context = FacesContext.getCurrentInstance().getExternalContext();
-            this.session = (HttpSession) context.getSession(false);
-            File foto = new File(caminho);
-
-            try {
-                BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-                byte[] bytes = new byte[in.available()];
-                in.read(bytes);
-                in.close();
-                content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            in.close();
+            this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return content;
+
+        return this.content;
+    }
+    
+    public StreamedContent mostrarFotoComentario(String caminho) {
+        File foto = new File(caminho);
+
+        try {
+            
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            in.close();
+            this.contentComentario = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return this.contentComentario;
     }
 }

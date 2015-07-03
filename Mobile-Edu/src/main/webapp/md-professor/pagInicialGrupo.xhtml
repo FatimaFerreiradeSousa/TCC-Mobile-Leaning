@@ -182,9 +182,11 @@
                                                 </p>
 
                                                 <div class="attachment">
-                                                    <h:dataTable value="#{topico.comentarios}" var="comentario">
+                                                    <h:dataTable value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario">
                                                         <h:column>
                                                             <div class="item">
+                                                                <p:graphicImage id="coisa" 
+                                                                                value="#{controladorGrupo.mostrarFotoComentario(comentario.pessoa.foto)}"/>
                                                                 <div class="box-tools pull-right">
                                                                     <h:form>
                                                                         <h:commandLink class="btn btn-box-tool" 
@@ -194,7 +196,7 @@
                                                                     </h:form>
                                                                 </div>
 
-                                                                <p:graphicImage id="coisa" value="#{controladorGrupo.mostrarFoto(comentario.pessoa.foto)}"/>
+                                                                
                                                                 <p class="message">
                                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
 
