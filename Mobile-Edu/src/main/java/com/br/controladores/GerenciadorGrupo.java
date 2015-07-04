@@ -129,12 +129,13 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.topicosGrupo(grupo.getCodigo()).get(0);
     }
 
-    public String removerTopico(Topico topico) {
+    public String removerTopico(Topico topico){
+        
         fachada.removerTopico(topico);
         return "pagInicialGrupo?faces-redirect=true";
     }
 
-    /*Upload de Arquivos*/
+    /*Upload e download de Arquivos*/
     public StreamedContent getFileDownload() {
         return fileDownload;
     }
@@ -250,10 +251,6 @@ public class GerenciadorGrupo implements Serializable {
     }
     
     public List<Comentario> comentariosTopico(Topico topico){
-        for(Comentario c: fachada.listarComentariosTopico(topico.getCodigo())){
-            System.out.println("Comentario: " +c.getConteudo());
-        }
-        
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
 

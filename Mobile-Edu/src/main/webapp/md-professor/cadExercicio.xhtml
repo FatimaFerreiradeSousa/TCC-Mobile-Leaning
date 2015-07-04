@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Cadastrar Exercicio</title>
+        <title>Cadastrar Teste</title>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
@@ -31,7 +31,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -128,9 +128,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Criar Grupo</a></li>
-                                    <li><a href="#">Meus Grupos</a></li>
-                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -143,9 +141,13 @@
             <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
-                    <h4>Cadastrar Teste</h4>
-
                     <div class="invoice">
+                        <div class="box box-primary">
+                            
+                            <h4 class="afastamento h-info">Cadastrar Teste</h4>
+                            
+                        </div>
+                        
                         <h:form>
 
                             <div class="row">
@@ -219,7 +221,7 @@
                                     </div>
                                 </div>
 
-                                <h:commandButton value="Buscar Perguntas" class="btn btn-default btn-cad-questao"
+                                <h:commandButton value="Buscar Perguntas" class="btn btn-success btn-cad-questao"
                                                  action="#{controladorExercicio.buscarPerguntas()}" style="margin-top: 1.7em"/>
                             </div>
 

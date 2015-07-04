@@ -30,7 +30,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Professor - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -55,7 +55,8 @@
                                                         value="#{controladorProfessor.content}"/>
                                         <p>
                                             #{professor.nome} - Professor
-                                            <small>Membro desde de Março de 2015</small>
+                                            <small>Membro desde de #{controladorProfessor.mes} de 
+                                                #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
 
@@ -128,9 +129,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="../grupos/cadGrupo.jsf">Grupo</a></li>
-                                    <li><a href="../grupos/gruposGerenciados.jsf">Meus Grupos</a></li>
-                                    <li><a href="../grupos/pagInicialGrupo.jsf">Grupos Gerenciados</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -143,9 +142,11 @@
             <div class="content-wrapper formatar">
                 <!-- Main content -->
                 <section class="content">
-                    <h4 id="myModalLabel">Banco de Perguntas</h4>
-
                     <div class="invoice">
+                        <div class="box box-primary">
+                            <h4 class="h-info afastamento" id="myModalLabel">Banco de Perguntas</h4>
+                        </div>
+                        
                         <div style="height:450px; overflow: auto;" >
                             <h:form>
                                 <c:if test="#{ControladorPergunta.listarPerguntas().size() > 0}">
@@ -155,7 +156,8 @@
                                             <div class="box-body">
                                                 <ul class="todo-list">
                                                     <li>
-                                                        <span class="text">#{pergunta.enunciado} - #{pergunta.categoria}</span>
+                                                        <span class="text text-green">#{pergunta.enunciado}</span>
+                                                        <span class="text-blue text-bold"> - #{pergunta.categoria}</span>
                                                         <div class="tools">
 
                                                             <h:commandLink value="" class="fa fa-edit" 

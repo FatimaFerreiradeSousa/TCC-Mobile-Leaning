@@ -116,20 +116,18 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="md-testes/cadastrarPergunta.jsf">Cadastrar Questões</a></li>
-                                    <li><a href="md-testes/perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
-                                    <li><a href="md-testes/cadExercicio.jsf">Cadastrar Teste</a></li>
-                                    <li><a href="md-testes/testesCadastrados.jsf">Testes Elaborados</a></li>
-                                    <li><a href="md-testes/resultadosTestes.jsf">Resultados Testes</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Questões</a></li>
+                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
+                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
+                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Criar Grupo</a></li>
-                                    <li><a href="#">Meus Grupos</a></li>
-                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                    <li><a href="cadGrupo.jsf">Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -143,8 +141,9 @@
                 <section class="content">
                     <div class="invoice">
                         <h:form>
-                            <h4 class="h-info" id="myModalLabel">Configurações</h4>
-                            <hr />
+                            <div class="box box-primary">
+                                <h4 class="h-info afastamento" id="myModalLabel">Configurações</h4>
+                            </div>
 
                             <div class="row">
                                 <div class="col-xs-3">
@@ -185,7 +184,7 @@
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s">
                                             <label class="control-label" for="Login">Login </label>
-                                            <h:inputText value="#{professor.login}" class="form-control" disabled="true"/>
+                                            <h:inputText value="#{professor.login}" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>

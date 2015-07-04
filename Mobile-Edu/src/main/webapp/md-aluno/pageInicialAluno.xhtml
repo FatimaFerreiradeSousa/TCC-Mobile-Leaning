@@ -136,7 +136,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="../assets/dist/img/user7-128x128.jpg" class="user-image" alt="User Image"/>
+                                    <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">#{aluno.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
@@ -149,30 +149,17 @@
                                                 #{controladorAluno.ano}</small>
                                         </p>
                                     </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Seguidores</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Amigos</a>
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
+                                    
                                     <h:form>
 
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="configAluno.xhtml" class="button">Perfil</a>
+                                                <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="configAluno.jsf"/>
                                             </div>
                                             <div class="pull-right">
-                                                <h:commandLink value="Sair" class="button"
-                                                               action="#{controladorAluno.logoutAluno()}"/>
+                                                <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
+                                                                 action="#{controladorAluno.logoutAluno()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -220,27 +207,15 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="disciplinas/cadQuestoes.xhtml">Cadastrar Questões</a></li>
-                                    <li><a href="disciplinas/cadExercicio.xhtml">Cadastrar Teste</a></li>
-                                    <li><a href="disciplinas/testesCadastrados.xhtml">Testes Elaborados</a></li>
-                                    <li><a href="disciplinas/resultadosTestes.xhtml">Resultados Testes</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#"><span>Arquivos</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#">Cadastrar Arquivo</a></li>
-                                    <li><a href="#">Submeter Arquivo</a></li>
+                                    <li><a href="testes.jsf">Testes</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Criar Grupo</a></li>
-                                    <li><a href="#">Meus Grupos</a></li>
-                                    <li><a href="#">Grupos Gerenciados</a></li>
+                                    <li><a href="grupos-Pag-Inicial.jsf">Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -253,7 +228,7 @@
             <div class="content-wrapper formatar">
                 <!-- Main content -->
                 <section class="content">
-
+                    
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 
