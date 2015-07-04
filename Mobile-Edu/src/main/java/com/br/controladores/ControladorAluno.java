@@ -7,7 +7,10 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -32,6 +36,7 @@ public class ControladorAluno implements Serializable {
     Aluno alunoLogado;
     HttpSession session;
     private StreamedContent content;
+    private UploadedFile file;
     private String mes;
     private String ano;
     private String mensagem;
@@ -74,7 +79,7 @@ public class ControladorAluno implements Serializable {
         alunoLogado = (Aluno) this.session.getAttribute("aluno");
         File foto = new File(alunoLogado.getFoto());
 
-        DefaultStreamedContent content = null;
+        //DefaultStreamedContent content = null;
         try {
             BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
             byte[] bytes = new byte[in.available()];
@@ -90,6 +95,14 @@ public class ControladorAluno implements Serializable {
 
     public void setContent(StreamedContent content) {
         this.content = content;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     public String getMes() {
@@ -122,7 +135,7 @@ public class ControladorAluno implements Serializable {
 
         if (aluno.getNome().length() > 0 && aluno.getEmail().length() > 0 && aluno.getLogin().length() > 0
                 && aluno.getSenha().length() > 0) {
-            if (fachada.buscarAluno(aluno) == null) {
+            if (fachada.buscarAluno(aluno.getLogin()) == null && fachada.buscarProfessor(aluno.getLogin()) == null) {
                 aluno.setFoto(caminho);
                 aluno.setDataParticipacao(new Date());
                 fachada.salvarAluno(aluno);
@@ -185,5 +198,41 @@ public class ControladorAluno implements Serializable {
     
     public String paginaInicialAluno(){
         return "indexAluno?faces-redirect=true";
+    }
+    
+    public void upload() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        this.session = (HttpSession) context.getSession(false);
+        alunoLogado = (Aluno) this.session.getAttribute("aluno");
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
+                +alunoLogado.getLogin()+"\\";
+        File dir = new File(caminho);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        if (file != null) {
+            try {
+                File targetFolder = new File(caminho);
+                InputStream inputStream = file.getInputstream();
+
+                String tipoArquivo = file.getFileName();
+                OutputStream out = new FileOutputStream(new File(targetFolder,
+                        alunoLogado.getLogin() + tipoArquivo));
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputStream.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+                inputStream.close();
+                out.flush();
+                out.close();
+                alunoLogado.setFoto(caminho + alunoLogado.getLogin() + tipoArquivo);
+                atualizarAluno();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

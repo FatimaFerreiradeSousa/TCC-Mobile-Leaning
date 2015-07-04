@@ -104,7 +104,7 @@ public class ControladorProfessor implements Serializable {
 
         if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
                 && professor.getSenha().length() > 0) {
-            if (fachada.buscarProfessor(professor) == null) {
+            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null) {
                 professor.setFoto(caminho);
                 professor.setDataParticipacao(new Date());
                 fachada.salvarProfessor(professor);
@@ -188,7 +188,7 @@ public class ControladorProfessor implements Serializable {
         professorLogado = (Professor) this.session.getAttribute("professor");
         File foto = new File(professorLogado.getFoto());
 
-        DefaultStreamedContent content = null;
+        //DefaultStreamedContent content = null;
         try {
             BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
             byte[] bytes = new byte[in.available()];
@@ -210,8 +210,10 @@ public class ControladorProfessor implements Serializable {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         professorLogado = (Professor) this.session.getAttribute("professor");
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\"
-                + professorLogado.getLogin() + "\\";
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
+                +professorLogado.getLogin()+"\\";
+        
+        System.out.println("FOto: " +caminho);
         File dir = new File(caminho);
         if (!dir.exists()) {
             dir.mkdir();
@@ -234,7 +236,7 @@ public class ControladorProfessor implements Serializable {
                 inputStream.close();
                 out.flush();
                 out.close();
-                professorLogado.setFoto(caminho + professorLogado.getLogin() + tipoArquivo);
+                professorLogado.setFoto(caminho+professorLogado.getLogin()+tipoArquivo);
                 atualizarProfessor();
             } catch (IOException e) {
                 e.printStackTrace();

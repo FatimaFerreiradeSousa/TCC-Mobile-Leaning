@@ -48,8 +48,8 @@ public class Fachada implements Serializable {
         return true;
     }
 
-    public Professor buscarProfessor(Professor professor) {
-        return daoProfessor.buscarProfessor(professor.getLogin());
+    public Professor buscarProfessor(String login) {
+        return daoProfessor.buscarProfessor(login);
     }
 
     public Professor loginProfessor(String login, String senha) {
@@ -133,8 +133,8 @@ public class Fachada implements Serializable {
         return daoAluno.atualizarAluno(aluno);
     }
 
-    public Aluno buscarAluno(Aluno aluno) {
-        return daoAluno.buscarAluno(aluno.getLogin());
+    public Aluno buscarAluno(String login) {
+        return daoAluno.buscarAluno(login);
     }
 
     public boolean removerAluno(Aluno aluno) {
