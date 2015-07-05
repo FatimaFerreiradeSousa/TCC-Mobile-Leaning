@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Gerenciador</title>
         <meta charset="UTF-8"></meta>
@@ -151,7 +152,8 @@
                             <h4 class="box-title">Grupos</h4>
 
                             <h:form>
-                                <div style="height:250px; overflow: auto;" >
+
+                                <c:if test="#{controladorGrupo.gruposCriados().size() > 0}">
                                     <h:dataTable class="table table-responsive" 
                                                  value="#{controladorGrupo.gruposCriados()}" var="grupo">
 
@@ -172,7 +174,19 @@
                                             </div>
                                         </h:column>
                                     </h:dataTable>
-                                </div>
+
+                                    <div class="box-footer clearfix no-border">
+                                        <h:form>
+                                            <ul class="pagination pagination-sm no-margin pull-right">
+                                                <li><a href="#">&laquo;</a></li>
+                                                <li><a href="#">1</a></li>
+                                                <li><a href="#">2</a></li>
+                                                <li><a href="#">3</a></li>
+                                                <li><a href="#">&raquo;</a></li>
+                                            </ul>
+                                        </h:form>
+                                    </div>
+                                </c:if>
                             </h:form>
 
                         </div>

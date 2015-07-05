@@ -153,34 +153,25 @@
                                              id="erroPergunta" class="text-success"/></p>
 
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-12">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Nome">Codigo </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.codigo}" class="form-control" 
-                                                         pt:placeholder="Codigo" id="codigo" required="true"/>
+                                            <label class="control-label" for="Login">Enunciado </label>
+                                            <h:inputText value="#{ControladorPergunta.pergunta.enunciado}" class="form-control" 
+                                                         pt:placeholder="Enunciado" id="enunciado" required="true"/>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Email">Peso </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.pontuacao}" class="form-control" 
-                                                         pt:placeholder="Peso" id="peso" required="true"/>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <div class="wow fadeInRight" data-wow-delay="0.5s" type="text">
-                                            <label class="control-label" for="Login">Enunciado </label>
-                                            <h:inputText value="#{ControladorPergunta.pergunta.enunciado}" class="form-control" 
-                                                         pt:placeholder="Enunciado" id="enunciado" required="true"/>
+                                            <label class="control-label" for="Email">Peso </label>
+                                            <h:inputText value="#{ControladorPergunta.pergunta.pontuacao}" class="form-control" 
+                                                         pt:placeholder="Peso" id="peso" required="true"/>
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +194,7 @@
                                     <h:commandButton value="Adicionar Respostas" class="btn btn-success btn-cad-questao" 
                                                      action="#{ControladorPergunta.adicionarRespostas()}">
 
-                                        <f:ajax execute="codigo peso enunciado categoria" render="erroPergunta"/>
+                                        <f:ajax execute="peso enunciado categoria" render="erroPergunta"/>
                                     </h:commandButton>
                                 </div>
                             </div>

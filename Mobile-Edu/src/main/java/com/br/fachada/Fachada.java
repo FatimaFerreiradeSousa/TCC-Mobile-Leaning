@@ -70,7 +70,7 @@ public class Fachada implements Serializable {
         daoQuestao.atualizar(questao);
     }
 
-    public Pergunta consultarQuestao(String codigo) {
+    public Pergunta consultarQuestao(int codigo) {
         return daoQuestao.consultar(codigo);
     }
 

@@ -43,7 +43,7 @@ public class DaoPergunta implements InterfacePergunta {
     }
 
     @Override
-    public Pergunta consultar(String codigo) {
+    public Pergunta consultar(int codigo) {
 
         try {
             return em.find(Pergunta.class, codigo);

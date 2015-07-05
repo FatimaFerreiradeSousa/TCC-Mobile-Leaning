@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,8 @@ import javax.persistence.OneToMany;
 public class Pergunta implements Serializable{
     
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codigo;
     private String enunciado;
     private int qtdRespostas;
     private String categoria;
@@ -36,7 +39,7 @@ public class Pergunta implements Serializable{
     
     }
 
-    public Pergunta(String codigo, String enunciado, int qtdRespostas, String categoria, float pontuacao, Professor professor) {
+    public Pergunta(int codigo, String enunciado, int qtdRespostas, String categoria, float pontuacao, Professor professor) {
         this.codigo = codigo;
         this.enunciado = enunciado;
         this.qtdRespostas = qtdRespostas;
@@ -48,11 +51,11 @@ public class Pergunta implements Serializable{
         this.respostas = new ArrayList();
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

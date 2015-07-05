@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Testes Cadastrados </title>
         <meta charset="UTF-8"></meta>
@@ -139,39 +140,48 @@
             <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
-                    <div class="invoice">
-                        <div class="box box-primary">
-
-                            <h4 class="h-info afastamento">Testes Cadastrados</h4>
-
-                            <h:form>
-                                <div style="height:250px; overflow: auto;" >
-                                    <h:dataTable class="table table-responsive" 
-                                                 value="#{controladorExercicio.testesCadastrados()}" var="teste">
-
-                                        <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <span class="text">#{teste.assunto}</span>
-                                                        <div class="tools">
-
-                                                            <h:commandLink value="" class="fa fa-edit" 
-                                                                           action="#{controladorExercicio.visualizarTeste(teste)}"/>
-
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorExercicio.removerTeste(teste)}"/>
-
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </h:column>
-                                    </h:dataTable>
-                                </div>
-                            </h:form>
-                        </div>
+                    <div class="box box-primary">
+                        <h4 class="text h-info afastamento">Testes Cadastrados</h4>
                     </div>
+                    <h:form>
+                        <c:if test="#{controladorExercicio.testesCadastrados().size() > 0}">
+                            <h:dataTable class="table table-responsive" 
+                                         value="#{controladorExercicio.testesCadastrados()}" var="teste">
+
+                                <h:column>
+                                    <div class="box-body">
+                                        <ul class="todo-list">
+                                            <li>
+                                                <span class="text">#{teste.assunto}</span>
+                                                <div class="tools">
+
+                                                    <h:commandLink value="" class="fa fa-edit" 
+                                                                   action="#{controladorExercicio.visualizarTeste(teste)}"/>
+
+                                                    <h:commandLink value="" class="fa fa-trash-o" 
+                                                                   action="#{controladorExercicio.removerTeste(teste)}"/>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+
+                            <div class="box-footer clearfix no-border">
+                                <h:form>
+                                    <ul class="pagination pagination-sm no-margin pull-right">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
+                                </h:form>
+                            </div>
+                        </c:if>
+
+                    </h:form>
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 

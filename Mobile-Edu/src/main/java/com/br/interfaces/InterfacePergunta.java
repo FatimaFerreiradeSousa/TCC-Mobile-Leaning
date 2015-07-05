@@ -13,7 +13,7 @@ public interface InterfacePergunta {
     
     public boolean atualizar(Pergunta questao);
     
-    public Pergunta consultar(String codigo);
+    public Pergunta consultar(int codigo);
     
     public boolean remover(Pergunta questao);
     

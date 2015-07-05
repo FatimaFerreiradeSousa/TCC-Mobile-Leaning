@@ -213,7 +213,6 @@ public class ControladorProfessor implements Serializable {
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
                 +professorLogado.getLogin()+"\\";
         
-        System.out.println("FOto: " +caminho);
         File dir = new File(caminho);
         if (!dir.exists()) {
             dir.mkdir();
