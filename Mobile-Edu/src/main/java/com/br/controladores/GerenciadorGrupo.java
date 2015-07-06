@@ -1,8 +1,10 @@
 package com.br.controladores;
 
+import com.br.entidades.Aluno;
 import com.br.entidades.Arquivo;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
+import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Professor;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
@@ -49,12 +51,16 @@ public class GerenciadorGrupo implements Serializable {
     private Arquivo arquivo;
     private Comentario comentarioTopico;
     private String mensagem;
+    private Aluno aluno;
+    private ParticipaGrupo participaGrupo;
 
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
         arquivo = new Arquivo();
         comentarioTopico = new Comentario();
+        aluno = new Aluno();
+        participaGrupo = new ParticipaGrupo();
     }
 
     public Grupo getGrupo() {
@@ -71,6 +77,30 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setTopico(Topico topico) {
         this.topico = topico;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    public ParticipaGrupo getParticipaGrupo() {
+        return participaGrupo;
+    }
+
+    public void setParticipaGrupo(ParticipaGrupo participaGrupo) {
+        this.participaGrupo = participaGrupo;
     }
 
     public String salvarGrupo() {
@@ -305,5 +335,36 @@ public class GerenciadorGrupo implements Serializable {
         }
 
         return this.contentComentario;
+    }
+    
+    /*Membros do grupo*/
+    public String buscarAluno(){
+        this.aluno = fachada.buscarAluno(aluno.getLogin());
+        
+        if(this.aluno != null){
+            return "pag-buscar-usuario?faces-redirect=true";
+        }else{
+            mensagem = "Nenhum Usuario Encontrado";
+            aluno = new Aluno();
+            return "pag-buscar-usuario?faces-redirect=true";
+        }
+    }
+    
+    public String adicionarMembro(){
+        
+        this.participaGrupo.setAceito(true);
+        this.participaGrupo.setAluno(aluno);
+        this.participaGrupo.setGrupo(grupo);
+        this.participaGrupo.setDataParticipacao(new Date());
+        
+        fachada.adicionarMembro(participaGrupo);
+        this.participaGrupo = new ParticipaGrupo();
+        this.aluno = new Aluno();
+        
+        return "pag-listar-membros?faces-redirect=true";
+    }
+    
+    public List<Aluno> listarMembros(){
+        return fachada.listarMembrosGrupo(this.grupo.getCodigo());
     }
 }

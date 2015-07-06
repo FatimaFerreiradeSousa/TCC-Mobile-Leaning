@@ -1,12 +1,14 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -20,6 +22,8 @@ public class ParticipaGrupo implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private boolean aceito;
+    @Temporal(TemporalType.DATE)
+    private Date dataParticipacao;
     @OneToOne
     private Grupo grupo;
     @OneToOne
@@ -28,11 +32,11 @@ public class ParticipaGrupo implements Serializable{
     public ParticipaGrupo(){
     }
 
-    public ParticipaGrupo(int id, boolean aceito, Grupo grupo, Aluno aluno) {
-        this.id = id;
+    public ParticipaGrupo(boolean aceito, Grupo grupo, Aluno aluno, Date dataParticipacao) {
         this.aceito = aceito;
         this.grupo = grupo;
         this.aluno = aluno;
+        this.dataParticipacao = dataParticipacao;
     }
 
     public int getId() {
@@ -65,5 +69,13 @@ public class ParticipaGrupo implements Serializable{
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Date getDataParticipacao() {
+        return dataParticipacao;
+    }
+
+    public void setDataParticipacao(Date dataParticipacao) {
+        this.dataParticipacao = dataParticipacao;
     }
 }

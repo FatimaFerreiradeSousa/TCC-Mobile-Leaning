@@ -2,46 +2,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Editar Resposta</title>
-        <meta charset="UTF-8"></meta>
+        <title>Professor</title>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/dist/estilo/estilo.css" rel="stylesheet" type="text/css"/>
-
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../assets/dist/css/skins/skin-purple.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <script src="../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../js/jQuery-2.1.3.min.js"></script>
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/dist/js/app.min.js" type="text/javascript"></script>
+
     </h:head>
 
 
-    <h:body class="skin-blue">
+    <h:body class="skin-purple">
         <div class="wrapper">
 
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicial - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle butão-->
+                    <!-- Sidebar toggle but�o-->
                     <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,17 +50,17 @@
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <p:graphicImage id="imgPerfil12" 
-                                                        value="#{controladorProfessor.content}"/>
+
+                                        <p:graphicImage id="imgPerfil2" value="#{controladorProfessor.content}"/>
+
                                         <p>
                                             #{professor.nome} - Professor
                                             <small>Membro desde de #{controladorProfessor.mes} de 
                                                 #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
-
+                                    <!-- Menu Body -->
                                     <h:form>
-
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
@@ -82,25 +81,22 @@
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
 
+            <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-
-                    <!-- Sidebar user panel (optional) -->
+                    <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <p:graphicImage id="imgPerfil11" 
-                                            value="#{controladorProfessor.content}"/>
+                            <p:graphicImage id="imgPerfil3" value="#{controladorProfessor.content}"/>
                         </div>
                         <div class="pull-left info">
                             <p>#{professor.nome}</p>
-                            <!-- Status -->
+
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-
-                    <!-- search form (Optional) -->
+                    <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
@@ -110,7 +106,7 @@
                         </div>
                     </form>
                     <!-- /.search form -->
-
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">Opções</li>
 
@@ -137,9 +133,9 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
-
+            
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper formatar">
+            <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
                     <div class="invoice">
@@ -177,15 +173,14 @@
                     </div>
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-
+            
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>Versão</b> 1.0
                 </div>
-                <strong>Copyright &copy; 2014-2015 <a href="#">FFS - Developers</a>.
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
                 </strong> All rights reserved.
             </footer>
-
         </div><!-- ./wrapper -->
     </h:body>
 </html>

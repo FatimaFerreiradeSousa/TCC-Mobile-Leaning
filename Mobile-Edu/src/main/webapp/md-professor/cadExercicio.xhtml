@@ -15,7 +15,7 @@
 
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../assets/dist/css/skins/skin-purple.min.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
@@ -25,7 +25,7 @@
 
     </h:head>
 
-    <h:body class="skin-blue">
+    <h:body class="skin-purple">
         <div class="wrapper">
 
             <header class="main-header">
@@ -143,11 +143,11 @@
                 <section class="content">
                     <div class="invoice">
                         <div class="box box-primary">
-                            
+
                             <h4 class="afastamento h-info">Cadastrar Teste</h4>
-                            
+
                         </div>
-                        
+
                         <h:form>
 
                             <div class="row">
@@ -242,12 +242,16 @@
                                                         <div class="box-body">
                                                             <ul class="todo-list">
                                                                 <li>
-                                                                    <span class="text">#{pergunta.enunciado}</span>
-
                                                                     <div class="tools">
                                                                         <h:commandLink value="" class="fa fa-trash-o" 
                                                                                        action="#{controladorExercicio.removerPerguntaCadastrar(pergunta)}"/>
                                                                     </div>
+                                                                    
+                                                                    <span class="text text-green">Enunciado:</span>
+                                                                    <span class="text text-blue">#{pergunta.enunciado}</span><br />
+                                                                    <span class="text text-green text-bold">Categoria:</span>
+                                                                    <span class="text text-blue text-bold">#{pergunta.categoria}</span>
+
                                                                 </li>
                                                             </ul>
                                                         </div>

@@ -154,20 +154,29 @@ public class Fachada implements Serializable {
         return daoGrupo.gruposProfessor(login);
     }
     
-    public boolean participarGrupo(ParticipaGrupo participaGrupo){
-        return daoPaGrupo.participaGrupo(participaGrupo);
-    }
-    
-    public boolean atualizarSolicitacao(ParticipaGrupo participaGrupo){
-        return daoPaGrupo.atualizarSolicitacao(participaGrupo);
-    }
-    
     public boolean removerGrupo(Grupo grupo){
         return daoGrupo.remover(grupo);
     }
     
     public List<Topico> topicosGrupo(int codigoGrupo){
         return daoGrupo.topicosGrupo(codigoGrupo);
+    }
+    
+    /*CRUD participar Grupo*/
+    public boolean adicionarMembro(ParticipaGrupo participaGrupo){
+        return daoPaGrupo.addMembro(participaGrupo);
+    }
+    
+    public boolean atualizarSolicitacao(ParticipaGrupo participaGrupo){
+        return daoPaGrupo.atualizarSolicitacao(participaGrupo);
+    }
+    
+    public boolean removerMembro(ParticipaGrupo participaGrupo){
+        return daoPaGrupo.removerMembro(participaGrupo);
+    }
+    
+    public List<Aluno> listarMembrosGrupo(int codGrupo){
+        return daoPaGrupo.listarMembros(codGrupo);
     }
     
     /*CRUD Topicos*/
