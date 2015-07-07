@@ -5,6 +5,7 @@ import com.br.entidades.Arquivo;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
+import com.br.entidades.Pessoa;
 import com.br.entidades.Professor;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
@@ -45,8 +46,6 @@ public class GerenciadorGrupo implements Serializable {
     private Topico topico;
     private ExternalContext context;
     private UploadedFile fileUpload;
-    private StreamedContent content;
-    private StreamedContent contentComentario;
     private StreamedContent fileDownload;
     private Arquivo arquivo;
     private Comentario comentarioTopico;
@@ -159,8 +158,8 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.topicosGrupo(grupo.getCodigo()).get(0);
     }
 
-    public String removerTopico(Topico topico){
-        
+    public String removerTopico(Topico topico) {
+
         fachada.removerTopico(topico);
         return "pagInicialGrupo?faces-redirect=true";
     }
@@ -279,92 +278,59 @@ public class GerenciadorGrupo implements Serializable {
 
         return "pagInicialGrupo?faces-redirect=true";
     }
-    
-    public List<Comentario> comentariosTopico(Topico topico){
+
+    public List<Comentario> comentariosTopico(Topico topico) {
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
 
-    /*Mostrar Foto dos usuarios*/
-    public StreamedContent getContent() {
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
-    }
-
-    public StreamedContent getContentComentario() {
-        return contentComentario;
-    }
-
-    public void setContentComentario(StreamedContent contentComentario) {
-        this.contentComentario = contentComentario;
-    }
-
-    public StreamedContent mostrarFoto(String caminho) {
-        File foto = new File(caminho);
-
-        try {
-            
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return this.content;
-    }
-    
-    public StreamedContent mostrarFotoComentario(String caminho) {
-        File foto = new File(caminho);
-
-        try {
-            
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            this.contentComentario = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return this.contentComentario;
-    }
-    
     /*Membros do grupo*/
-    public String buscarAluno(){
+    public String buscarAluno() {
         this.aluno = fachada.buscarAluno(aluno.getLogin());
-        
-        if(this.aluno != null){
+
+        if (this.aluno != null) {
             return "pag-buscar-usuario?faces-redirect=true";
-        }else{
+        } else {
             mensagem = "Nenhum Usuario Encontrado";
             aluno = new Aluno();
             return "pag-buscar-usuario?faces-redirect=true";
         }
     }
-    
-    public String adicionarMembro(){
-        
-        this.participaGrupo.setAceito(true);
-        this.participaGrupo.setAluno(aluno);
-        this.participaGrupo.setGrupo(grupo);
-        this.participaGrupo.setDataParticipacao(new Date());
-        
-        fachada.adicionarMembro(participaGrupo);
-        this.participaGrupo = new ParticipaGrupo();
-        this.aluno = new Aluno();
+
+    public String adicionarMembro() {
+
+        if (fachada.verificaMembro(aluno.getLogin(), grupo.getCodigo()) == false) {
+
+            this.participaGrupo.setAceito(true);
+            this.participaGrupo.setAluno(aluno);
+            this.participaGrupo.setGrupo(grupo);
+            this.participaGrupo.setDataParticipacao(new Date());
+
+            fachada.adicionarMembro(participaGrupo);
+            this.participaGrupo = new ParticipaGrupo();
+            this.aluno = new Aluno();
+        }
         
         return "pag-listar-membros?faces-redirect=true";
     }
+
+    public List<Aluno> listarMembros() {
+        List<Aluno> alunos = fachada.listarMembrosGrupo(this.grupo.getCodigo());
+        return alunos;
+    }
     
-    public List<Aluno> listarMembros(){
-        return fachada.listarMembrosGrupo(this.grupo.getCodigo());
+    public boolean verificarMembro(){
+        return fachada.verificaMembro(aluno.getLogin(), grupo.getCodigo());
+    }
+    
+    public String paginaRemover(Aluno aluno){
+        this.aluno = aluno;
+        
+        return "remover-membro-grupo?faces-redirect=true";
+    }
+    
+    public String removerMembro(){
+        fachada.removerMembro(aluno.getLogin(), grupo.getCodigo());
+        
+        return "pag-listar-membros?faces-redirect=true";
     }
 }

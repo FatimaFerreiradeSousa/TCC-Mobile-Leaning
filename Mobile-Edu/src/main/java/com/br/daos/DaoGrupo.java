@@ -88,4 +88,12 @@ public class DaoGrupo implements InterfaceDaoGrupo {
         
         return (List<Topico>) query.getResultList();
     }
+    
+    @Override
+    public List<Grupo> pesquisarGrupoPorNome(String nome){
+        Query query = em.createQuery("select g from Grupo g where g.nome = :nome");
+        query.setParameter("nome", nome);
+        
+        return (List<Grupo>) query.getResultList();
+    }
 }

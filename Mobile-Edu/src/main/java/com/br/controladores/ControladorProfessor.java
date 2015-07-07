@@ -3,10 +3,7 @@ package com.br.controladores;
 import com.br.datas.FormatData;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +17,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -37,7 +32,6 @@ public class ControladorProfessor implements Serializable {
     HttpSession session;
 
     private UploadedFile file;
-    private StreamedContent content;
     private String mes;
     private String ano;
     private String mensagem;
@@ -182,37 +176,13 @@ public class ControladorProfessor implements Serializable {
         this.file = file;
     }
 
-    public StreamedContent getContent() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("professor");
-        File foto = new File(professorLogado.getFoto());
-
-        //DefaultStreamedContent content = null;
-        try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
-    }
-
     public void upload() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         professorLogado = (Professor) this.session.getAttribute("professor");
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
-                +professorLogado.getLogin()+"\\";
-        
+                + professorLogado.getLogin() + "\\";
+
         File dir = new File(caminho);
         if (!dir.exists()) {
             dir.mkdir();
@@ -235,7 +205,7 @@ public class ControladorProfessor implements Serializable {
                 inputStream.close();
                 out.flush();
                 out.close();
-                professorLogado.setFoto(caminho+professorLogado.getLogin()+tipoArquivo);
+                professorLogado.setFoto(caminho + professorLogado.getLogin() + tipoArquivo);
                 atualizarProfessor();
             } catch (IOException e) {
                 e.printStackTrace();

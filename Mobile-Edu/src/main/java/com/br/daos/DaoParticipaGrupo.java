@@ -44,10 +44,14 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
     }
 
     @Override
-    public boolean removerMembro(ParticipaGrupo participaGrupo){
+    public boolean removerMembro(String login, int codigoGrupo){
         
         try{
-            em.remove(em.merge(participaGrupo));
+            Query query = em.createQuery("delete from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigo");
+            query.setParameter("login", login);
+            query.setParameter("codigo", codigoGrupo);
+            query.executeUpdate();
+            
             return true;
         }catch(Exception e){
             e.printStackTrace();
@@ -62,5 +66,20 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
         query.setParameter("codGrupo", codigoGrupo);
         
         return (List<Aluno>) query.getResultList();
+    }
+    
+    @Override
+    public boolean verificaSeJaEhMembro(String login, int codigoGrupo){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = true");
+        query.setParameter("login", login);
+        query.setParameter("codigoGrupo", codigoGrupo);
+        
+        List<ParticipaGrupo> participaGrupos = query.getResultList();
+        
+        if(participaGrupos.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

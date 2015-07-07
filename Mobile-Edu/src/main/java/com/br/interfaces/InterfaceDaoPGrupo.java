@@ -15,7 +15,9 @@ public interface InterfaceDaoPGrupo {
     
     public boolean atualizarSolicitacao(ParticipaGrupo ParticipaGrupo);
     
-    public boolean removerMembro(ParticipaGrupo participaGrupo);
+    public boolean removerMembro(String login, int codigoGrupo);
     
     public List<Aluno> listarMembros(int codigoGrupo);
+    
+    public boolean verificaSeJaEhMembro(String login, int codigoGrupo);
 }

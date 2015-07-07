@@ -1,5 +1,9 @@
 package com.br.entidades;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +16,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -40,6 +47,9 @@ public class Pessoa implements Serializable{
     private List<Comentario> comentarios;
     @OneToMany(mappedBy = "pessoa")
     private List<Arquivo> arquivos;
+    
+    @Transient
+    private StreamedContent content;
     
     public Pessoa(){
     
@@ -146,5 +156,27 @@ public class Pessoa implements Serializable{
 
     public void setArquivos(List<Arquivo> arquivos) {
         this.arquivos = arquivos;
+    }
+
+    public StreamedContent getContent() {
+        
+        File fotoUsuario = new File(foto);
+
+        try {
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            in.close();
+            this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        };
+        
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
     }
 }

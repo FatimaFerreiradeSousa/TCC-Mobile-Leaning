@@ -3,10 +3,7 @@ package com.br.controladores;
 import com.br.datas.FormatData;
 import com.br.entidades.Aluno;
 import com.br.fachada.Fachada;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +17,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -35,7 +30,6 @@ public class ControladorAluno implements Serializable {
     Aluno aluno;
     Aluno alunoLogado;
     HttpSession session;
-    private StreamedContent content;
     private UploadedFile file;
     private String mes;
     private String ano;
@@ -71,30 +65,6 @@ public class ControladorAluno implements Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
-    }
-
-    public StreamedContent getContent() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        alunoLogado = (Aluno) this.session.getAttribute("aluno");
-        File foto = new File(alunoLogado.getFoto());
-
-        //DefaultStreamedContent content = null;
-        try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
     }
 
     public UploadedFile getFile() {

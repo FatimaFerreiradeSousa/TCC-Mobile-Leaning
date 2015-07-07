@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Usuarios</title>
+        <title>Professor | Grupos | Membros</title>
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
@@ -51,10 +51,11 @@
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
                                         <p:graphicImage id="imgPerfil155" 
-                                                        value="#{controladorProfessor.content}"/>
+                                                        value="#{professor.content}"/>
                                         <p>
                                             #{professor.nome} - Professor
-                                            <small>Membro desde de Março de 2015</small>
+                                            <small>Membro desde de #{controladorProfessor.mes} de 
+                                                #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
 
@@ -89,7 +90,7 @@
                     <div class="user-panel">
                         <div class="pull-left image">
                             <p:graphicImage id="imgPerfil01" 
-                                            value="#{controladorProfessor.content}"/>
+                                            value="#{professor.content}"/>
                         </div>
                         <div class="pull-left info">
                             <p>#{professor.nome}</p>
@@ -153,45 +154,40 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <c:if test="#{controladorGrupo.listarMembros().size() > 0}">
-                                <div class="example-modal">
-                                    <div class="modal">
-                                        <div class="modal-content lockscreen">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">
-                                                    <h:outputText value="Membros" 
-                                                                  class="text-blue"/>
-                                                </h4>
-                                            </div>
+                            <div class="box box-danger">
 
+                                <c:if test="#{controladorGrupo.listarMembros().size() == 0}">
+                                    <div style="margin-left: 1em; text-align: center">
+                                        <h4 class="box-title">Nenhum Membro</h4>
+                                    </div><!-- /.box-header -->
+                                </c:if>
+
+                                <c:if test="#{controladorGrupo.listarMembros().size() > 0}">
+                                    <div style="margin-left: 1em; text-align: center">
+                                        <h4 class="box-title">Todos os membros</h4>
+                                    </div>
+
+                                    <div class="row">
+                                        <h:form>
                                             <h:dataTable class="table no-border" value="#{controladorGrupo.listarMembros()}" var="aluno">
-
                                                 <h:column>
-                                                    #{aluno.nome}
+                                                    <div class="box-body no-padding">
+                                                        <ul class="users-list clearfix">
+                                                            <li>
+                                                                <p:graphicImage id="membros" 
+                                                                                value="#{aluno.content}"/>
+                                                                <h:commandLink value="#{aluno.login}" class="users-list-name" action="#{controladorGrupo.paginaRemover(aluno)}"/>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
                                                 </h:column>
-
                                             </h:dataTable>
-                                        </div>
+                                        </h:form>
                                     </div>
-                                </div>
-                            </c:if>
+                                </c:if>
 
-                            <c:if test="#{controladorGrupo.listarMembros().size() == 0}">
-                                <div class="example-modal">
-                                    <div class="modal">
-                                        <div class="modal-content lockscreen">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">
-                                                    <h:outputText value="Nenhum Membro" 
-                                                                  class="text-blue"/>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:if>
+                            </div>
                         </div>
 
                         <div class="col-md-4">

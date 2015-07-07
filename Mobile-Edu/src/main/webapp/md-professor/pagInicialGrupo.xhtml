@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Grupo</title>
+        <title>Professor | Pagina Inicial Grupo</title>
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
@@ -49,10 +49,11 @@
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
                                         <p:graphicImage id="imgPerfil155" 
-                                                        value="#{controladorProfessor.content}"/>
+                                                        value="#{professor.content}"/>
                                         <p>
                                             #{professor.nome} - Professor
-                                            <small>Membro desde de Março de 2015</small>
+                                            <small>Membro desde de #{controladorProfessor.mes} de 
+                                                #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
 
@@ -87,7 +88,7 @@
                     <div class="user-panel">
                         <div class="pull-left image">
                             <p:graphicImage id="imgPerfil01" 
-                                            value="#{controladorProfessor.content}"/>
+                                            value="#{professor.content}"/>
                         </div>
                         <div class="pull-left info">
                             <p>#{professor.nome}</p>
@@ -176,7 +177,7 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{controladorGrupo.mostrarFoto(topico.pessoa.foto)}"/>
+                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.pessoa.foto)}"/>
 
                                                 <p class="message">
                                                     <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
@@ -204,7 +205,7 @@
 
                                                             <div class="item">
                                                                 <p:graphicImage id="coisa" 
-                                                                                value="#{controladorGrupo.mostrarFotoComentario(comentario.pessoa.foto)}"/>
+                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.pessoa.foto)}"/>
 
                                                                 <p class="message">
                                                                     <a href="#" class="name">

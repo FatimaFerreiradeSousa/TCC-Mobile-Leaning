@@ -1,7 +1,5 @@
 package com.br.fachada;
 
-import com.br.daos.DaoArquivo;
-import com.br.daos.DaoComentario;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
@@ -171,12 +169,20 @@ public class Fachada implements Serializable {
         return daoPaGrupo.atualizarSolicitacao(participaGrupo);
     }
     
-    public boolean removerMembro(ParticipaGrupo participaGrupo){
-        return daoPaGrupo.removerMembro(participaGrupo);
+    public boolean removerMembro(String login, int codigoGrupo){
+        return daoPaGrupo.removerMembro(login, codigoGrupo);
     }
     
     public List<Aluno> listarMembrosGrupo(int codGrupo){
         return daoPaGrupo.listarMembros(codGrupo);
+    }
+    
+    public boolean verificaMembro(String login, int codGrupo){
+        return daoPaGrupo.verificaSeJaEhMembro(login, codGrupo);
+    }
+    
+    public List<Grupo> buscarGruposPorNome(String nome){
+        return daoGrupo.pesquisarGrupoPorNome(nome);
     }
     
     /*CRUD Topicos*/

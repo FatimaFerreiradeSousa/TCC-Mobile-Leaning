@@ -4,14 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Professor | Grupos | Usuarios</title>
+        <title>Aluno | Pagina Inicial Grupo</title>
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/dist/estilo/estiloModal.css" rel="stylesheet" type="text/css"/>
 
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
@@ -30,7 +29,7 @@
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
+                <a href="pageInicialAluno.jsf" class="logo"><b>Inicio - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -41,21 +40,22 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                            <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
                                     <img src="../img/icPerfil.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs">#{professor.nome}</span>
+                                    <span class="hidden-xs">#{aluno.nome}</span>
                                 </a>
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <p:graphicImage id="imgPerfil155" 
-                                                        value="#{professor.content}"/>
+                                        <p:graphicImage id="imgPerfil2" value="#{aluno.content}"/>
                                         <p>
-                                            #{professor.nome} - Professor
-                                            <small>Membro desde de #{controladorProfessor.mes} de 
-                                                #{controladorProfessor.ano}</small>
+                                            #{aluno.nome} - Aluno
+                                            <small>Membro desde de #{controladorAluno.mes} de 
+                                                #{controladorAluno.ano}</small>
                                         </p>
                                     </li>
 
@@ -64,11 +64,11 @@
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                                 action="paginaConfig.jsf"/>
+                                                                 action="configAluno.jsf"/>
                                             </div>
                                             <div class="pull-right">
                                                 <h:commandButton value="Sair" class="btn btn-default btn-flat btn-flat-menu-sair"
-                                                                 action="#{controladorProfessor.logout()}"/>
+                                                                 action="#{controladorAluno.logoutAluno()}"/>
                                             </div>
                                         </li>
                                         <br /><br /><br />
@@ -89,11 +89,10 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <p:graphicImage id="imgPerfil01" 
-                                            value="#{professor.content}"/>
+                            <p:graphicImage id="imgPerfilv2" value="#{aluno.content}"/>
                         </div>
                         <div class="pull-left info">
-                            <p>#{professor.nome}</p>
+                            <p>#{aluno.nome}</p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -117,18 +116,15 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Pergunta</a></li>
-                                    <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
-                                    <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
-                                    <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
-                                    <li><a href="resultadosTestes.jsf">Resultados Testes</a></li>
+                                    <li><a href="testes.jsf">Testes</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados</a></li>
                                 </ul>
                             </li>
 
                             <li class="treeview">
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadGrupo.jsf">Grupos</a></li>
+                                    <li><a href="gruposAluno.jsf">Grupos</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -140,101 +136,126 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <div class="callout callout-warning">
-                        <h4>
-                            #{controladorGrupo.grupo.nome}<br />
-                        </h4>
+                    <h:form>
+                        <div class="callout callout-warning">
+                            <h4>
+                                #{controladorGrupoAluno.grupo.nome}<br />
+                            </h4>
 
-                        <small>#{controladorGrupo.grupo.descricao}</small><br />
-                    </div>
+                            <small>#{controladorGrupoAluno.grupo.descricao}</small><br />
+                        </div>
+
+                        <a action="#" class="bt-link-grupo btn btn-primary btn-xs"
+                           href="#signup" data-toggle="modal" data-target="#modalPostagem">
+                            Publicar
+                        </a>
+
+                        <a action="#" class="bt-link-grupo btn btn-danger btn-xs"
+                           href="#signup" data-toggle="modal" data-target="#modalArquivo">
+                            Arquivo
+                        </a>
+
+                        <c:if test="#{controladorGrupoAluno.aceito == false}">
+                            <h:commandLink value="Enviar Solicitação" action="#{controladorGrupoAluno.participarGrupo()}" 
+                                           class="bt-link-grupo btn btn-success btn-xs" style="margin-left: 5px"/>
+                        </c:if>
+
+                        <c:if test="#{controladorGrupoAluno.aceito == true}">
+                            <h:commandLink value="Solicitação Enviada" action="#{controladorGrupoAluno.participarGrupo()}" 
+                                           class="bt-link-grupo btn btn-success btn-xs" style="margin-left: 5px"/>
+                        </c:if>
+                        
+                    </h:form>
                 </section>
 
                 <section class="content">
 
                     <div class="row">
                         <div class="col-md-8">
-                            <c:if test="#{controladorGrupo.aluno.nome == null}">
-                                <div class="example-modal">
-                                    <div class="modal">
-                                        <div class="modal-content lockscreen">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">
-                                                    <h:outputText value="#{controladorGrupo.mensagem}" 
-                                                                  id="erroPesquisarUsuario" class="text-danger"/>
-                                                </h4>
+                            <h:dataTable class="table table-responsive" value="#{controladorGrupoAluno.topicos()}" var="topico">
+
+                                <h:column>
+                                    <div class="box box-success">
+                                        <div class="box-tools pull-right">
+                                            <h:form>
+                                                <h:commandLink class="btn btn-box-tool" 
+                                                               action="#{controladorGrupo.removerTopico(topico)}">
+                                                    <i class="fa fa-times"></i>
+                                                </h:commandLink>
+                                            </h:form>
+                                        </div>
+                                        <br />
+
+                                        <div class="box-body chat" id="chat-box">
+                                            <div class="item">
+                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.pessoa.foto)}"/>
+
+                                                <p class="message">
+                                                    <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
+                                                        <i class="fa fa-clock-o"></i> 
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputLabel>
+
+                                                    <a href="#" class="name">
+                                                        #{topico.pessoa.nome}
+                                                    </a>
+                                                    #{topico.conteudo}
+                                                </p>
+
+                                                <div class="attachment">
+                                                    <h:dataTable class="table" value="#{controladorGrupoAluno.comentariosTopico(topico)}" var="comentario">
+                                                        <h:column>
+                                                            <div class="box-tools pull-right">
+                                                                <h:form>
+                                                                    <h:commandLink class="btn btn-box-tool" 
+                                                                                   action="#{controladorGrupo.removerComentario(comentario)}">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                            </div>
+
+                                                            <div class="item">
+                                                                <p:graphicImage id="coisa" 
+                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.pessoa.foto)}"/>
+
+                                                                <p class="message">
+                                                                    <a href="#" class="name">
+                                                                        #{comentario.pessoa.nome}
+                                                                    </a>
+                                                                    <h:outputLabel class="justify-text" style="font-size: 15px;" value="#{comentario.conteudo}"/> 
+
+                                                                    <h:outputLabel value="#{comentario.dataComentario}" style="font-size: 10px; margin-left: 10px">
+                                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                                    </h:outputLabel>
+
+                                                                </p>
+                                                            </div>
+                                                        </h:column>
+                                                    </h:dataTable>
+
+                                                    <h:form>
+                                                        <div class="input-group">
+                                                            <h:inputText value="#{controladorGrupo.comentarioTopico.conteudo}" class="form-control" 
+                                                                         pt:placeholder="Comentar..."/>
+                                                            <div class="input-group-btn">
+                                                                <span class="input-group-btn">
+                                                                    <h:commandButton value="Comentar" class="btn btn-warning btn-flat"
+                                                                                     action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </h:form>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </c:if>
-
-                            <c:if test="#{controladorGrupo.aluno.nome != null}">
-
-                                <div class="example-modal">
-                                    <div class="modal">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content lockscreen">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title">Resultado da pesquisa</h4>
-                                                </div>
-
-                                                <br />
-                                                <!-- User name -->
-                                                <!-- START LOCK SCREEN ITEM -->
-                                                <div class="lockscreen-item">
-                                                    <!-- lockscreen image -->
-                                                    <div class="lockscreen-image">
-                                                        <p:graphicImage id="coisa" 
-                                                                        value="#{controladorGrupo.aluno.content}"/>
-
-                                                    </div>
-                                                    <!-- /.lockscreen-image -->
-                                                </div><!-- /.lockscreen-item -->
-
-                                                <br />
-                                                <div class="lockscreen-name">
-                                                    <h:outputText value="#{controladorGrupo.aluno.nome}" id="nome-aluno"/>
-                                                </div>
-
-                                                <div class="help-block text-center">
-                                                    <h:outputText value="#{controladorGrupo.aluno.instituicao}" id="instituicao-aluno"/>
-                                                </div>
-
-                                                <div class="text-center">
-                                                    <h:outputText value="#{controladorGrupo.aluno.descricao}" id="descricao-aluno"/>
-                                                </div>
-                                                <br />
-
-                                                <c:if test="#{controladorGrupo.verificarMembro() == false}">
-                                                    <div class="modal-footer">
-                                                        <h:form>
-                                                            <h:commandButton value="Cancelar" class="btn btn-default pull-left" 
-                                                                             action="pag-listar-membros.jsf"/>
-
-                                                            <h:commandButton value="Adicionar" class="btn btn-primary" 
-                                                                             action="#{controladorGrupo.adicionarMembro()}"/>
-                                                        </h:form>
-                                                    </div>
-                                                </c:if>
-                                                
-                                                <c:if test="#{controladorGrupo.verificarMembro() == true}">
-                                                    <div class="modal-footer">
-                                                        <h4 class="modal-title text-center">Este usuario já é membro</h4>
-                                                    </div>
-                                                </c:if>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-                                </div><!-- /.example-modal -->
-                            </c:if>
-
+                                </h:column>
+                            </h:dataTable>
                         </div>
 
                         <div class="col-md-4">
                             <div class="box box-danger">
-
                                 <div style="margin-left: 1em; text-align: center">
                                     <h4 class="box-title">Membros</h4>
                                 </div><!-- /.box-header -->
@@ -287,13 +308,16 @@
                                     <div class="box-footer">
                                         <h:form>
                                             <div class="input-group">
+                                                <h:outputText value="#{controladorGrupo.mensagem}" 
+                                                              id="erroPesquisarUsuario" class="text-danger"/>
+
                                                 <h:inputText pt:placeholder="Pesquisar Usuario..." value="#{controladorGrupo.aluno.login}" 
                                                              class="form-control" id="pesquisarUsuario"/>
 
                                                 <span class="input-group-btn">
                                                     <h:commandButton value="Pesquisar" class="btn btn-warning btn-flat"
                                                                      action="#{controladorGrupo.buscarAluno()}">
-
+                                                        <f:ajax execute="pesquisarUsuario" render="erroPesquisarUsuario"/>
                                                     </h:commandButton>
                                                 </span>
                                             </div>
@@ -301,7 +325,7 @@
                                     </div><!-- /.box-footer-->
 
                                     <div class="box-footer text-center">
-                                        <a href="pag-listar-membros.jsf" class="uppercase">Ver todos os usuarios...</a>
+                                        <a href="pag-listar-membros.jsf" class="uppercase">Ver todos os membros...</a>
                                     </div><!-- /.box-footer -->
                                 </div>
                             </div>
@@ -375,7 +399,93 @@
                 <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.
                 </strong> All rights reserved.
             </footer>
+
+
         </div>           
+
+
+        <div class="modal fade" id="modalArquivo">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Novo Arquivo</h4>
+                    </div>
+
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="escrevaAlgo">Escreva Algo</label>
+                                        <h:inputTextarea value="#{controladorGrupo.arquivo.descricao}" 
+                                                         class="form-control" pt:placeholde="Escreva Algo..." rows="5"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="alinhamentoTest">
+                                <p:fileUpload 
+                                    value="#{controladorGrupo.fileUpload}"
+                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                    mode="simple" 
+                                    />
+                                <br/>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
+                                                 disabled="false" update="@all" id="linkFoto" />
+
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+
+                            </div>
+
+                        </div>
+
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalPostagem">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Novo Topico</h4>
+                    </div>
+
+                    <h:form>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="escrevaAlgo">Escreva Algo</label>
+                                        <h:inputTextarea value="#{controladorGrupoAluno.topico.conteudo}" 
+                                                         class="form-control" pt:placeholde="Escreva Algo..." rows="5"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <h:commandLink value="Cadastrar" class="btn btn-primary" 
+                                               action="#{controladorGrupoAluno.salvarTopicoAluno()}"/>
+                            </div>
+
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 

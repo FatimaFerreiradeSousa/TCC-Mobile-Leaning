@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Professor | Grupos | Usuarios</title>
+        <title>Professor | Grupos | Remover Membro</title>
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
@@ -207,23 +207,16 @@
                                                 </div>
                                                 <br />
 
-                                                <c:if test="#{controladorGrupo.verificarMembro() == false}">
-                                                    <div class="modal-footer">
-                                                        <h:form>
-                                                            <h:commandButton value="Cancelar" class="btn btn-default pull-left" 
-                                                                             action="pag-listar-membros.jsf"/>
 
-                                                            <h:commandButton value="Adicionar" class="btn btn-primary" 
-                                                                             action="#{controladorGrupo.adicionarMembro()}"/>
-                                                        </h:form>
-                                                    </div>
-                                                </c:if>
-                                                
-                                                <c:if test="#{controladorGrupo.verificarMembro() == true}">
-                                                    <div class="modal-footer">
-                                                        <h4 class="modal-title text-center">Este usuario já é membro</h4>
-                                                    </div>
-                                                </c:if>
+                                                <div class="modal-footer">
+                                                    <h:form>
+                                                        <h:commandButton value="Cancelar" class="btn btn-default pull-left" 
+                                                                         action="pag-listar-membros.jsf"/>
+
+                                                        <h:commandButton value="Remover" class="btn btn-primary" 
+                                                                         action="#{controladorGrupo.removerMembro()}"/>                                           </h:form>
+                                                </div>
+
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->

@@ -24,6 +24,8 @@ public class ControladorFotos implements Serializable {
     @EJB
     Fachada fachada;
     private StreamedContent content;
+    private StreamedContent fotosMembros;
+    private StreamedContent contentComentario;
 
     public ControladorFotos() {
 
@@ -35,6 +37,22 @@ public class ControladorFotos implements Serializable {
 
     public void setContent(StreamedContent content) {
         this.content = content;
+    }
+
+    public StreamedContent getFotosMembros() {
+        return fotosMembros;
+    }
+
+    public void setFotosMembros(StreamedContent fotosMembros) {
+        this.fotosMembros = fotosMembros;
+    }
+
+    public StreamedContent getContentComentario() {
+        return contentComentario;
+    }
+
+    public void setContentComentario(StreamedContent contentComentario) {
+        this.contentComentario = contentComentario;
     }
 
     public StreamedContent mostrarFotoUsuario(String fotoPerfil) {
@@ -53,5 +71,39 @@ public class ControladorFotos implements Serializable {
         }
 
         return content;
+    }
+    
+    public StreamedContent mostrarFotosMembros(String caminho){
+        File foto = new File(caminho);
+        
+        try{
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(foto));
+            byte [] bytes = new byte[bufferedInputStream.available()];
+            bufferedInputStream.read(bytes);
+            bufferedInputStream.close();
+            fotosMembros = new DefaultStreamedContent(new ByteArrayInputStream(bytes),"image/jpeg");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return fotosMembros;
+    }
+    
+    public StreamedContent mostrarFotoComentario(String caminho) {
+        File foto = new File(caminho);
+
+        try {
+            
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            in.close();
+            this.contentComentario = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return this.contentComentario;
     }
 }

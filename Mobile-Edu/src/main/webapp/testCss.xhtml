@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Teste</title>
@@ -19,99 +21,20 @@
 
     <h:body class="lockscreen">
 
-        <section class="content">
+        <h:dataTable class="table no-border" value="#{controladorGrupo.listarMembros()}" var="aluno">
+            <h:column>
 
-            <div class="example-modal">
-                <div class="modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content lockscreen">
-                            <div class="modal-header">
-                                <h:outputText value="#{controladorGrupo.aluno.nome}"/>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Resultado da pesquisa</h4>
-                            </div>
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix">
+                        <li>
+                            <p:graphicImage id="membros" value="#{aluno.content}"/>
+                            <a class="users-list-name" href="#">#{aluno.nome}</a>
+                        </li>
+                    </ul>
+                </div>
 
-                            <br />
-                            <!-- User name -->
-                            <!-- START LOCK SCREEN ITEM -->
-                            <div class="lockscreen-item">
-                                <!-- lockscreen image -->
-                                <div class="lockscreen-image">
-                                    <img src="img/perfil.png" alt="user image"/>
-                                </div>
-                                <!-- /.lockscreen-image -->
-                            </div><!-- /.lockscreen-item -->
-
-                            <br />
-                            <div class="lockscreen-name">Fatinha Ferreira</div>
-
-                            <div class="help-block text-center">
-                                Instituto Federal de Educacao, Ciencia e Tecnologia da Paraiba - Campus Cajazeiras
-                            </div>
-
-                            <div class="text-center">
-                                Algo Sobre Voce....
-                            </div>
-                            <br />
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Adicionar</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            </div><!-- /.example-modal -->
-
-        </section>
-
-        <a action="#" class="btn btn-default "
-           href="#signup" data-toggle="modal" data-target="#modalUsuario">
-            Usuarios Encontrados
-        </a>
-
-
-
-        <div class="modal fade" id="modalUsuario">
-
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Resultado da pesquisa</h4>
-                    </div>
-
-                    <br />
-                    <!-- User name -->
-                    <!-- START LOCK SCREEN ITEM -->
-                    <div class="lockscreen-item">
-                        <!-- lockscreen image -->
-                        <div class="lockscreen-image">
-                            <img src="img/perfil.png" alt="user image"/>
-                        </div>
-                        <!-- /.lockscreen-image -->
-                    </div><!-- /.lockscreen-item -->
-
-                    <br />
-                    <div class="lockscreen-name">Fatinha Ferreira</div>
-
-                    <div class="help-block text-center">
-                        Instituto Federal de Educacao, Ciencia e Tecnologia da Paraiba - Campus Cajazeiras
-                    </div>
-
-                    <div class="text-center">
-                        Algo Sobre Voce....
-                    </div>
-                    <br />
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Adicionar</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-
-        </div>
+            </h:column>
+        </h:dataTable>
 
     </h:body>
 </html>
