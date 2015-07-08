@@ -66,34 +66,34 @@ public class DaoGrupo implements InterfaceDaoGrupo {
             return false;
         }
     }
-    
+
     @Override
-    public List<Grupo> gruposProfessor(String login){
+    public List<Grupo> gruposProfessor(String login) {
         Query query = em.createQuery("select g from Grupo g where g.professorGrupos.login = :login");
         query.setParameter("login", login);
-        
+
         List<Grupo> grupos = (List<Grupo>) query.getResultList();
-        
-        if(!grupos.isEmpty()){
+
+        if (!grupos.isEmpty()) {
             return grupos;
-        }else{
+        } else {
             return null;
         }
     }
-    
+
     @Override
-    public List<Topico> topicosGrupo(int codigoGrupo){
+    public List<Topico> topicosGrupo(int codigoGrupo) {
         Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);
-        
+
         return (List<Topico>) query.getResultList();
     }
-    
+
     @Override
-    public List<Grupo> pesquisarGrupoPorNome(String nome){
+    public List<Grupo> pesquisarGrupoPorNome(String nome) {
         Query query = em.createQuery("select g from Grupo g where g.nome = :nome");
         query.setParameter("nome", nome);
-        
+
         return (List<Grupo>) query.getResultList();
     }
 }

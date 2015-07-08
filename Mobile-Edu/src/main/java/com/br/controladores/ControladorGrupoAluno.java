@@ -92,9 +92,27 @@ public class ControladorGrupoAluno implements Serializable {
         return fachada.buscarGruposPorNome(nomeGrupo);
     }
 
-    public String paginaInicialGrupo(Grupo grupo) {
+    public List<ParticipaGrupo> meusGrupos() {
+        return fachada.listarGruposAlunos(pegarAlunoDaSessao().getLogin());
+    }
+
+    public List<ParticipaGrupo> solicitacoesPendentes() {
+        return fachada.listarGruposPendentes(pegarAlunoDaSessao().getLogin());
+    }
+
+    public String paginaSolicitacaoGrupo(Grupo grupo) {
         this.grupo = grupo;
 
+        if (fachada.verificaMembro(pegarAlunoDaSessao().getLogin(), grupo.getCodigo()) == false) {
+            return "pagina-inicial-grupo?faces-redirect=true";
+        } else {
+            this.aceito = fachada.verificaSolicitacaoPendente(pegarAlunoDaSessao().getLogin(), this.grupo.getCodigo());
+            return "pagina-grupo-solicitacao?faces-redirect=true";
+        }
+    }
+
+    public String paginaInicialGrupo(Grupo grupo) {
+        this.grupo = grupo;
         return "pagina-inicial-grupo?faces-redirect=true";
     }
 
@@ -109,12 +127,22 @@ public class ControladorGrupoAluno implements Serializable {
         participaGrupo.setDataParticipacao(new Date());
         participaGrupo.setGrupo(grupo);
 
-        aceito = true;
-
         fachada.adicionarMembro(participaGrupo);
         participaGrupo = new ParticipaGrupo();
+        aceito = fachada.verificaSolicitacaoPendente(pegarAlunoDaSessao().getLogin(), this.grupo.getCodigo());
+        return "pagina-grupo-solicitacao?faces-redirect=true";
+    }
 
-        return "pagina-inicial-grupo?faces-redirect=true";
+    public String cancelarSolicitacao() {
+        fachada.removerMembro(pegarAlunoDaSessao().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(pegarAlunoDaSessao().getLogin(), this.grupo.getCodigo());
+        return "pagina-grupo-solicitacao?faces-redirect=true";
+    }
+    
+    public String sairGrupo(){
+        fachada.removerMembro(pegarAlunoDaSessao().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(pegarAlunoDaSessao().getLogin(), this.grupo.getCodigo());
+        return "pagina-grupo-solicitacao?faces-redirect=true";
     }
 
     public List<Topico> topicos() {
@@ -141,5 +169,12 @@ public class ControladorGrupoAluno implements Serializable {
         }
 
         return "pagina-inicial-grupo?faces-redirect=true";
+    }
+
+    public Aluno pegarAlunoDaSessao() {
+        context = FacesContext.getCurrentInstance().getExternalContext();
+        this.session = (HttpSession) context.getSession(false);
+        return (Aluno) session.getAttribute("aluno");
+
     }
 }

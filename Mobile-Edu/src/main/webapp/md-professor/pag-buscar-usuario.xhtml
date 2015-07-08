@@ -207,7 +207,7 @@
                                                 </div>
                                                 <br />
 
-                                                <c:if test="#{controladorGrupo.verificarMembro() == false}">
+                                                <c:if test="#{controladorGrupo.verificarMembro() == true}">
                                                     <div class="modal-footer">
                                                         <h:form>
                                                             <h:commandButton value="Cancelar" class="btn btn-default pull-left" 
@@ -219,7 +219,7 @@
                                                     </div>
                                                 </c:if>
                                                 
-                                                <c:if test="#{controladorGrupo.verificarMembro() == true}">
+                                                <c:if test="#{controladorGrupo.verificarMembro() == false}">
                                                     <div class="modal-footer">
                                                         <h4 class="modal-title text-center">Este usuario já é membro</h4>
                                                     </div>

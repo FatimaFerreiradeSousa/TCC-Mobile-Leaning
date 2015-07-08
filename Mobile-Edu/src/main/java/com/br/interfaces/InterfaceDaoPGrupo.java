@@ -20,4 +20,12 @@ public interface InterfaceDaoPGrupo {
     public List<Aluno> listarMembros(int codigoGrupo);
     
     public boolean verificaSeJaEhMembro(String login, int codigoGrupo);
+    
+    public List<ParticipaGrupo> listarGruposAluno(String login);
+    
+    public List<ParticipaGrupo> listarGruposPendentes(String login);
+    
+    public boolean verificaSolicitacao(String login, int codigoGrupo);
+    
+    public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor);
 }

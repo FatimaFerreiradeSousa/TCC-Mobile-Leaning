@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
-        <title>Aluno | Grupos</title>
+        <title>Aluno | Solicitações</title>
         <meta charset="UTF-8"></meta>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -146,32 +145,22 @@
                     <div class="invoice">
 
                         <div class="box box-primary">
-                            <br />
-                            <h:form>
-                                <label>Pesquisar Grupo: </label>
-                                <div class="input-group margin">
-                                    <h:inputText value="#{controladorGrupoAluno.nomeGrupo}" class="form-control"/>
-                                    <span class="input-group-btn">
-                                        <h:commandButton class="btn btn-info btn-flat" value="Buscar" action="#{controladorGrupoAluno.listarGruposPorNome()}"
-                                                         pt:placeholde="Pesquisar Grupo"/>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </h:form>
 
-                            <c:if test="#{controladorGrupoAluno.listarGruposPorNome().size() > 0}">
+                            <c:if test="#{controladorGrupoAluno.solicitacoesPendentes().size() > 0}">
 
                                 <br />
 
-                                <h5 class="text-blue" id="myModalLabel">Resultados encontrados</h5>
+                                <h5 class="text-blue" id="myModalLabel">Solicitações Enviadas</h5>
 
                                 <h:form>
-                                    <h:dataTable value="#{controladorGrupoAluno.listarGruposPorNome()}" var="grupo" class="table">
+                                    <h:dataTable value="#{controladorGrupoAluno.solicitacoesPendentes()}" var="participaGrupo" class="table">
                                         <h:column>
                                             <div class="box-body">
                                                 <ul class="todo-list">
                                                     <li>
                                                         <label>
-                                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(grupo)}"
+                                                            <h:commandLink value="#{participaGrupo.grupo.nome}" 
+                                                                           action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(participaGrupo.grupo)}"
                                                                            class="text-success"/>
                                                         </label>
                                                         <div class="tools">
@@ -187,9 +176,10 @@
                                 </h:form>
                             </c:if>
 
-                            <c:if test="#{controladorGrupoAluno.listarGruposPorNome().size() == 0}">
+                            <c:if test="#{controladorGrupoAluno.solicitacoesPendentes().size() == 0}">
                                 <br />
-                                <h5 class="text-blue" id="myModalLabel">Nenhum resultado encontrado</h5>
+                                <h5 class="text-blue" id="myModalLabel">Você não tem nenhum solicitação pendente</h5>
+                                <br />
                             </c:if>
 
                         </div>

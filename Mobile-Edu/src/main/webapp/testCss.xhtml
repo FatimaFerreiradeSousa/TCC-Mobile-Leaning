@@ -21,20 +21,9 @@
 
     <h:body class="lockscreen">
 
-        <h:dataTable class="table no-border" value="#{controladorGrupo.listarMembros()}" var="aluno">
-            <h:column>
-
-                <div class="box-body no-padding">
-                    <ul class="users-list clearfix">
-                        <li>
-                            <p:graphicImage id="membros" value="#{aluno.content}"/>
-                            <a class="users-list-name" href="#">#{aluno.nome}</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </h:column>
-        </h:dataTable>
+        <h:form>
+            <h:commandButton value="Listar" action="#{controladorGrupo.notificacoes()}" class="btn btn-default"/>
+        </h:form>
 
     </h:body>
 </html>

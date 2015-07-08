@@ -125,6 +125,8 @@
                                 <a href="#"><span>Grupos</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li><a href="gruposAluno.jsf">Grupos</a></li>
+                                    <li><a href="meus-grupos.jsf">Meus Grupos</a></li>
+                                    <li><a href="solicitacoes-grupos.jsf">Solicitações</a></li>
                                 </ul>
                             </li>
                         </li>
@@ -150,21 +152,13 @@
                             Publicar
                         </a>
 
-                        <a action="#" class="bt-link-grupo btn btn-danger btn-xs"
+                        <a action="#" class="bt-link-grupo btn btn-success btn-xs"
                            href="#signup" data-toggle="modal" data-target="#modalArquivo">
                             Arquivo
                         </a>
 
-                        <c:if test="#{controladorGrupoAluno.aceito == false}">
-                            <h:commandLink value="Enviar Solicitação" action="#{controladorGrupoAluno.participarGrupo()}" 
-                                           class="bt-link-grupo btn btn-success btn-xs" style="margin-left: 5px"/>
-                        </c:if>
-
-                        <c:if test="#{controladorGrupoAluno.aceito == true}">
-                            <h:commandLink value="Solicitação Enviada" action="#{controladorGrupoAluno.participarGrupo()}" 
-                                           class="bt-link-grupo btn btn-success btn-xs" style="margin-left: 5px"/>
-                        </c:if>
-                        
+                        <h:commandLink value="Sair do grupo" action="#{controladorGrupoAluno.sairGrupo()}" 
+                                       class="bt-link-grupo btn btn-danger btn-xs" style="margin-left: 5px"/>
                     </h:form>
                 </section>
 

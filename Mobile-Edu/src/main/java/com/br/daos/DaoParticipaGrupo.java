@@ -61,7 +61,6 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
 
     @Override
     public List<Aluno> listarMembros(int codigoGrupo){
-        String sql = "select q from Hotel h JOIN h.quartos q WHERE h.codigo = :codHotel";
         Query query = em.createQuery("select a from ParticipaGrupo p INNER JOIN p.aluno a where p.aceito = TRUE and p.grupo.codigo = :codGrupo");
         query.setParameter("codGrupo", codigoGrupo);
         
@@ -77,9 +76,49 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
         List<ParticipaGrupo> participaGrupos = query.getResultList();
         
         if(participaGrupos.size() > 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    @Override
+    public List<ParticipaGrupo> listarGruposAluno(String login){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = true");
+        query.setParameter("login", login);
+        
+        return (List<ParticipaGrupo>) query.getResultList();
+    }
+    
+    @Override
+    public List<ParticipaGrupo> listarGruposPendentes(String login){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = false");
+        query.setParameter("login", login);
+        
+        return (List<ParticipaGrupo>) query.getResultList();
+    }
+    
+    @Override
+    public boolean verificaSolicitacao(String login, int codigoGrupo){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = false");
+        query.setParameter("login", login);
+        query.setParameter("codigoGrupo", codigoGrupo);
+        
+        List<ParticipaGrupo> participaGrupos = query.getResultList();
+        
+        if(participaGrupos.size() > 0){
             return true;
         }else{
             return false;
         }
+    }
+    
+    @Override
+    public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor){
+        String sql = "select a from ParticipaGrupo p INNER JOIN p.aluno a where p.aceito = TRUE and p.grupo.codigo = :codGrupo";
+        Query query = em.createQuery("select p from ParticipaGrupo p INNER JOIN p.grupo g where g.professorGrupos.login = :loginProfessor and p.aceito = false");
+        query.setParameter("loginProfessor", loginProfessor);
+        
+        return (List<ParticipaGrupo>) query.getResultList();
     }
 }

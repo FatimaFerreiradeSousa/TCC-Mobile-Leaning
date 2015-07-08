@@ -5,12 +5,9 @@ import com.br.entidades.Arquivo;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
-import com.br.entidades.Pessoa;
 import com.br.entidades.Professor;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -298,7 +295,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public String adicionarMembro() {
 
-        if (fachada.verificaMembro(aluno.getLogin(), grupo.getCodigo()) == false) {
+        if (fachada.verificaMembro(aluno.getLogin(), grupo.getCodigo()) == true) {
 
             this.participaGrupo.setAceito(true);
             this.participaGrupo.setAluno(aluno);
@@ -332,5 +329,16 @@ public class GerenciadorGrupo implements Serializable {
         fachada.removerMembro(aluno.getLogin(), grupo.getCodigo());
         
         return "pag-listar-membros?faces-redirect=true";
+    }
+    
+    public List<ParticipaGrupo> notificacoes(){
+        
+        return fachada.listarNotificacoesProfessor(pegarProfessorSessao().getLogin());
+    }
+    
+    public Professor pegarProfessorSessao(){
+        context = FacesContext.getCurrentInstance().getExternalContext();
+        this.session = (HttpSession) context.getSession(false);
+        return (Professor) session.getAttribute("professor");
     }
 }

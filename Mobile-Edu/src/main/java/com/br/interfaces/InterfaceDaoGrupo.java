@@ -23,4 +23,5 @@ public interface InterfaceDaoGrupo {
     public List<Topico> topicosGrupo(int codigoGrupo);
     
     public List<Grupo> pesquisarGrupoPorNome(String nome);
+    
 }
