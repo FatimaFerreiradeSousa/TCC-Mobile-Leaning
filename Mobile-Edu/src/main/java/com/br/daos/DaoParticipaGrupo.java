@@ -115,7 +115,6 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
     
     @Override
     public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor){
-        String sql = "select a from ParticipaGrupo p INNER JOIN p.aluno a where p.aceito = TRUE and p.grupo.codigo = :codGrupo";
         Query query = em.createQuery("select p from ParticipaGrupo p INNER JOIN p.grupo g where g.professorGrupos.login = :loginProfessor and p.aceito = false");
         query.setParameter("loginProfessor", loginProfessor);
         

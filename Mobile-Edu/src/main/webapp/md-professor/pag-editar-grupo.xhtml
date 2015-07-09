@@ -3,38 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Professor | Grupo</title>
-        <meta charset="UTF-8"></meta>
+        <title>Professor | Atualizar Grupo</title>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/dist/estilo/estiloPagConfig.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
-
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/dist/css/skins/skin-purple.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="../assets/dist/css/skins/skin-purple.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-        <script src="../assets/jQuery/jQuery-2.1.3.min.js"></script>
+        <script src="../js/jQuery-2.1.3.min.js"></script>
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/dist/js/app.min.js" type="text/javascript"></script>
+
     </h:head>
 
-    <h:body class="skin-purple">
 
+    <h:body class="skin-purple">
         <div class="wrapper">
+
             <header class="main-header">
 
                 <!-- Pagina Inicial Link -->
-                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicio - </b>LTE</a>
+                <a href="paginaInicialProfessor.jsf" class="logo"><b>Inicial - </b>LTE</a>
 
                 <!-- Menu Topo -->
                 <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle butão-->
+                    <!-- Sidebar toggle but�o-->
                     <a href="#" class="sidebar-toggle"  data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
@@ -50,17 +48,17 @@
                                 <ul class="dropdown-menu menuSair">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <p:graphicImage id="imgPerfil155" 
-                                                        value="#{professor.content}"/>
+
+                                        <p:graphicImage id="imgPerfil2" value="#{professor.content}"/>
+
                                         <p>
                                             #{professor.nome} - Professor
                                             <small>Membro desde de #{controladorProfessor.mes} de 
                                                 #{controladorProfessor.ano}</small>
                                         </p>
                                     </li>
-
+                                    <!-- Menu Body -->
                                     <h:form>
-
                                         <li class="user-footer">
                                             <div class="pull-left">
                                                 <h:commandButton value="Configurações" class="btn btn-default btn-flat btn-flat-menu-sair"
@@ -81,25 +79,22 @@
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
 
+            <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-
-                    <!-- Sidebar user panel (optional) -->
+                    <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <p:graphicImage id="imgPerfil01" 
-                                            value="#{professor.content}"/>
+                            <p:graphicImage id="imgPerfil3" value="#{professor.content}"/>
                         </div>
                         <div class="pull-left info">
                             <p>#{professor.nome}</p>
-                            <!-- Status -->
+
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
-
-                    <!-- search form (Optional) -->
+                    <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Pesquisar..."/>
@@ -109,7 +104,7 @@
                         </div>
                     </form>
                     <!-- /.search form -->
-
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">Opções</li>
 
@@ -117,7 +112,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Pergunta</a></li>
+                                    <li><a href="cadastrarPergunta.jsf">Cadastrar Perguntas</a></li>
                                     <li><a href="perguntasCadastradas.jsf">Perguntas Cadastradas</a></li>
                                     <li><a href="cadExercicio.jsf">Cadastrar Teste</a></li>
                                     <li><a href="testesCadastrados.jsf">Testes Elaborados</a></li>
@@ -139,69 +134,43 @@
             
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
+                <!-- Main content -->
                 <section class="content">
                     <div class="invoice">
-
+                        
                         <div class="box box-primary">
-
-                            <div style="padding-top: 1em">
-                                <h:form>
-                                    <a action="#" class="btn btn-success pull-right"
-                                       href="#signup" data-toggle="modal" data-target="#modalGrupo">
-                                        Criar Grupo
-                                    </a> 
-                                </h:form>
-                            </div>
-                            <h4 class="box-title afastamento">Grupos</h4>
-
-                            <h:form>
-
-                                <c:if test="#{controladorGrupo.gruposCriados().size() > 0}">
-                                    <h:dataTable class="table table-responsive" 
-                                                 value="#{controladorGrupo.gruposCriados()}" var="grupo">
-
-                                        <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <label>
-                                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
-                                                        </label>
-                                                        <div class="tools">
-                                                            
-                                                            <h:commandLink value="" class="fa fa-edit" 
-                                                                           action="#{controladorGrupo.paginaAtualizarGrupo(grupo)}"/>
-
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorGrupo.removerGrupo(grupo)}"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </h:column>
-                                    </h:dataTable>
-
-                                    <div class="box-footer clearfix no-border">
-                                        <h:form>
-                                            <ul class="pagination pagination-sm no-margin pull-right">
-                                                <li><a href="#">&laquo;</a></li>
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">&raquo;</a></li>
-                                            </ul>
-                                        </h:form>
-                                    </div>
-                                </c:if>
-                            </h:form>
-
+                            <h4 class="h-info afastamento">Atualizar Dados</h4>
                         </div>
+                        
+                        <h:form>
+                            <h5><h:outputLabel>Grupo: #{controladorGrupo.grupo.nome}</h:outputLabel></h5>
+                            
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label class="control-label" for="Resposta">Nome </label>
+                                    <h:inputText value="#{controladorGrupo.grupo.nome}" class="form-control" 
+                                                 pt:placeholder="Nome"/>
+                                </div>
 
+                                <div class="col-xs-6">
+                                    <label class="control-label" for="Resposta">Descricao </label><br />
+                                    <h:inputText value="#{controladorGrupo.grupo.descricao}" class="form-control" 
+                                                 pt:placeholder="Descrição"/>
+                                </div>
+                            </div><br />
+                            
+                            <div class="row">
+                                <div class="col-xs-12 form-inline">
+                                    <h:commandButton value="Alterar Informações" class="btn btn-success btn-cad-questao" 
+                                                     action="#{controladorGrupo.atualizarGrupo()}"/>
+                                </div>
+                            </div>
+
+                        </h:form>
                     </div>
-                </section>
-
-            </div>
-
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+            
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>Versão</b> 1.0
@@ -209,51 +178,7 @@
                 <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
                 </strong> All rights reserved.
             </footer>
-        </div>
-
-        <div class="modal fade" id="modalGrupo">
-            <div class="modal-dialog">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-success">Cadastrar Grupo</h4>
-                    </div>
-
-                    <h:form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="nome">Nome </label>
-                                        <h:inputText value="#{controladorGrupo.grupo.nome}" 
-                                                     class="form-control" pt:placeholde="Nome"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="descricao">Descrição </label>
-                                        <h:inputText value="#{controladorGrupo.grupo.descricao}" 
-                                                     class="form-control" pt:placeholde="Descrição"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <h:commandLink value="Cadastrar" class="btn btn-primary" 
-                                               action="#{controladorGrupo.salvarGrupo()}"/>
-                            </div>
-
-                        </div>
-                    </h:form>
-
-                </div>
-            </div>
-        </div>
+        </div><!-- ./wrapper -->
     </h:body>
 </html>
 

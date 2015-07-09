@@ -306,7 +306,7 @@ public class GerenciadorGrupo implements Serializable {
             this.participaGrupo = new ParticipaGrupo();
             this.aluno = new Aluno();
         }
-        
+
         return "pag-listar-membros?faces-redirect=true";
     }
 
@@ -314,31 +314,59 @@ public class GerenciadorGrupo implements Serializable {
         List<Aluno> alunos = fachada.listarMembrosGrupo(this.grupo.getCodigo());
         return alunos;
     }
-    
-    public boolean verificarMembro(){
+
+    public boolean verificarMembro() {
         return fachada.verificaMembro(aluno.getLogin(), grupo.getCodigo());
     }
-    
-    public String paginaRemover(Aluno aluno){
+
+    public String paginaRemover(Aluno aluno) {
         this.aluno = aluno;
-        
+
         return "remover-membro-grupo?faces-redirect=true";
     }
-    
-    public String removerMembro(){
+
+    public String removerMembro() {
         fachada.removerMembro(aluno.getLogin(), grupo.getCodigo());
-        
+
         return "pag-listar-membros?faces-redirect=true";
     }
-    
-    public List<ParticipaGrupo> notificacoes(){
-        
+
+    public List<ParticipaGrupo> notificacoes() {
+
         return fachada.listarNotificacoesProfessor(pegarProfessorSessao().getLogin());
     }
-    
-    public Professor pegarProfessorSessao(){
+
+    public Professor pegarProfessorSessao() {
         context = FacesContext.getCurrentInstance().getExternalContext();
         this.session = (HttpSession) context.getSession(false);
         return (Professor) session.getAttribute("professor");
+    }
+
+    public String paginaAtualizarGrupo(Grupo grupo) {
+        this.grupo = grupo;
+        return "pag-editar-grupo?faces-redirect=true";
+    }
+
+    public String atualizarGrupo() {
+        fachada.atualizarGrupo(grupo);
+        return "cadGrupo?faces-redirect=true";
+    }
+
+    public String rejeitarSolicitacao(ParticipaGrupo participaGrupo) {
+        fachada.removerMembro(participaGrupo.getAluno().getLogin(), participaGrupo.getGrupo().getCodigo());
+
+        return "pagina-notificacoes?faces-redirect=true";
+    }
+
+    public String aceitarSolicitacao(ParticipaGrupo participaGrupo) {
+        participaGrupo.setAceito(true);
+        
+        if (fachada.atualizarSolicitacao(participaGrupo) == true) {
+            System.out.println("Okay");
+        } else {
+            System.out.println("Erro!");
+        }
+
+        return "pagina-notificacoes?faces-redirect=true";
     }
 }

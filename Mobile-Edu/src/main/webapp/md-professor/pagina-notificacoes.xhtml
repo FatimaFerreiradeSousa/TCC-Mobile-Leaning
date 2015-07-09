@@ -3,8 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Professor | Notificacoes</title>
@@ -41,6 +39,64 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">#{controladorGrupo.notificacoes().size()}</span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <c:if test="#{controladorGrupo.notificacoes().size() == 0}">
+                                        <li class="header"></li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf.jsf">
+                                                        <i class="fa fa-users text-aqua"></i>nenhuma notificação
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    </c:if>
+
+                                    <c:if test="#{controladorGrupo.notificacoes().size() == 1}">
+                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificação</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf.jsf">
+                                                        <i class="fa fa-users text-aqua"></i>#{controladorGrupo.notificacoes().size()} novo membro
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </c:if>
+
+                                    <c:if test="#{controladorGrupo.notificacoes().size() > 1}">
+                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificações</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf.jsf">
+                                                        <i class="fa fa-users text-aqua"></i>#{controladorGrupo.notificacoes().size()} novos membros
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
+                                    </c:if>                                    
+                                </ul>
+                            </li>
+
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -260,12 +316,67 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                <section class="content-header">
+                <section class="content">
+
                     <div class="invoice">
 
+                        <h:form>
+                            <c:if test="#{controladorGrupo.notificacoes().size() > 0}">
+
+                                <h5>Todas as notificações</h5>
+
+                                <h:dataTable class="table table-responsive"
+                                             value="#{controladorGrupo.notificacoes()}" var="participaGrupo">
+                                    <h:column>
+                                        <div class="box-body">
+
+                                            <ul class="todo-list">
+                                                <li>
+                                                    <span class="text text-aqua">#{participaGrupo.aluno.nome} solicitou participar do grupo
+                                                        #{participaGrupo.grupo.nome}
+                                                    </span>
+
+                                                    <div class="tools">
+                                                        <h:commandLink value="" class="fa fa-check" 
+                                                                       action="#{controladorGrupo.aceitarSolicitacao(participaGrupo)}"/>
+
+                                                        <h:commandLink value="" class="fa fa-trash-o" 
+                                                                       action="#{controladorGrupo.rejeitarSolicitacao(participaGrupo)}"/>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
+
+                                <div class="box-footer clearfix no-border">
+                                    <h:form>
+                                        <ul class="pagination pagination-sm no-margin pull-right">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </h:form>
+                                </div>
+                            </c:if>
+
+
+                            <c:if test="#{controladorGrupo.notificacoes().size() == 0}">
+                                <div class="alert alert-success" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                    Nenhuma notificação
+                                </div>
+                            </c:if>
+                        </h:form>
+
                     </div>
+
                 </section>
             </div><!-- /.content-wrapper -->
+
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>Versão</b> 1.0

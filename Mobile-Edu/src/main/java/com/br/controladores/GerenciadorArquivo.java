@@ -4,40 +4,32 @@ import com.br.entidades.Arquivo;
 import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
  *
  * @author Fatinha
  */
-@Named(value = "controladorArquivo")
+@Named(value = "gerenciadorArquivo")
 @SessionScoped
-public class UploadArquivo implements Serializable {
+public class GerenciadorArquivo implements Serializable {
 
     private UploadedFile fileUpload;
-    private StreamedContent content;
-    private StreamedContent fileDownload;
+    private UploadedFile fileDownload;
     private Arquivo arquivo;
-
     @EJB
     Fachada fachadaModArquivo;
 
-    public UploadArquivo() {
+    public GerenciadorArquivo() {
         arquivo = new Arquivo();
     }
 
@@ -49,6 +41,14 @@ public class UploadArquivo implements Serializable {
         this.fileUpload = fileUpload;
     }
 
+    public UploadedFile getFileDownload() {
+        return fileDownload;
+    }
+
+    public void setFileDownload(UploadedFile fileDownload) {
+        this.fileDownload = fileDownload;
+    }
+
     public Arquivo getArquivo() {
         return arquivo;
     }
@@ -56,30 +56,8 @@ public class UploadArquivo implements Serializable {
     public void setArquivo(Arquivo arquivo) {
         this.arquivo = arquivo;
     }
-
-    public StreamedContent getContent() {
-        File foto = new File("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\doc.png");
-
-        DefaultStreamedContent content = null;
-        try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return content;
-    }
-
-    public void setContent(StreamedContent content) {
-        this.content = content;
-    }
-
-    //Faz Upload
-    public void upload() {
+    
+    public String uploadArquivo(){
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
 
         File dir = new File(caminho);
@@ -128,23 +106,7 @@ public class UploadArquivo implements Serializable {
                 e.printStackTrace();
             }
         }
+    
+        return null;
     }
-
-    public StreamedContent getFileDownload() {
-        return fileDownload;
-    }
-
-    public void setFileDownload(StreamedContent fileDownload) {
-        this.fileDownload = fileDownload;
-    }
-
-    //Faz Download
-    public StreamedContent donwload(String caminho) throws FileNotFoundException {
-        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\doc.pdf");
-        fileDownload = new DefaultStreamedContent(stream, "application/pdf",
-                "test.pdf");
-        return fileDownload;
-    }
-
-    /*Salvar Arquivo*/
 }

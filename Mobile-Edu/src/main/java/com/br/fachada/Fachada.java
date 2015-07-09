@@ -156,6 +156,10 @@ public class Fachada implements Serializable {
         return daoGrupo.remover(grupo);
     }
     
+    public boolean atualizarGrupo(Grupo grupo){
+        return daoGrupo.atualizar(grupo);
+    }
+    
     public List<Topico> topicosGrupo(int codigoGrupo){
         return daoGrupo.topicosGrupo(codigoGrupo);
     }
