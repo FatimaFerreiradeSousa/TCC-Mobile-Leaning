@@ -1,10 +1,12 @@
 package com.br.controladores;
 
-import com.br.entidades.Arquivo;
 import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
+import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.io.OutputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import javax.ejb.EJB;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -24,13 +29,14 @@ import org.primefaces.model.UploadedFile;
 public class GerenciadorArquivo implements Serializable {
 
     private UploadedFile fileUpload;
-    private UploadedFile fileDownload;
-    private Arquivo arquivo;
+    private StreamedContent fileDownload;
+    private Topico topico;
+            
     @EJB
     Fachada fachadaModArquivo;
 
     public GerenciadorArquivo() {
-        arquivo = new Arquivo();
+        topico = new Topico();
     }
 
     public UploadedFile getFileUpload() {
@@ -41,21 +47,22 @@ public class GerenciadorArquivo implements Serializable {
         this.fileUpload = fileUpload;
     }
 
-    public UploadedFile getFileDownload() {
+    public StreamedContent getFileDownload() {
         return fileDownload;
     }
 
-    public void setFileDownload(UploadedFile fileDownload) {
+    public void setFileDownload(StreamedContent fileDownload) {
         this.fileDownload = fileDownload;
     }
 
-    public Arquivo getArquivo() {
-        return arquivo;
+    public Topico getTopico() {
+        return topico;
     }
 
-    public void setArquivo(Arquivo arquivo) {
-        this.arquivo = arquivo;
+    public void setTopico(Topico topico) {
+        this.topico = topico;
     }
+
     
     public String uploadArquivo(){
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
@@ -90,14 +97,16 @@ public class GerenciadorArquivo implements Serializable {
                 Professor professorLogado = new Professor();
                 professorLogado.setLogin("Fatinha");
                 
-                arquivo.setFoto(caminhoFoto);
-                arquivo.setCaminho(caminho+fileUpload.getFileName());
-                arquivo.setNome(fileUpload.getFileName());
-                arquivo.setGrupoArquivo(grupo);
-                arquivo.setPessoa(professorLogado);
-                arquivo.setDescricao("Arquivo de teste");
-                fachadaModArquivo.salvarArquivo(arquivo);
-                arquivo = new Arquivo();
+                topico.setFoto(caminhoFoto);
+                topico.setCaminho(caminho+fileUpload.getFileName());
+                topico.setNome(fileUpload.getFileName());
+                topico.setGrupo(grupo);
+                topico.setPessoa(professorLogado);
+                topico.setConteudo("Arquivo de teste");
+                topico.setDataCriacao(new Date());
+                
+                fachadaModArquivo.salvarTopico(topico);
+                topico = new Topico();
                 
                 inputStream.close();
                 out.flush();
@@ -108,5 +117,12 @@ public class GerenciadorArquivo implements Serializable {
         }
     
         return null;
+    }
+    
+     public StreamedContent donwload(String caminho) throws FileNotFoundException {
+        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\doc.pdf");
+        fileDownload = new DefaultStreamedContent(stream, "application/pdf",
+                "test.pdf");
+        return fileDownload;
     }
 }

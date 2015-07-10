@@ -124,6 +124,7 @@ public class ControladorPergunta implements Serializable {
     
     public String atualizarPergunta(){
         fachada.atualizarQuestao(pergunta);
+        
         return "editarPergunta?faces-redirect=true";
     }
     

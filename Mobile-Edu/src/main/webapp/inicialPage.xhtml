@@ -14,19 +14,17 @@
     </h:head>
 
     <h:body>
-        <h:outputLabel value="Pergunta"/>
-        <h:outputLabel value="#{ControladorPergunta.pergunta.enunciado}"/>
-
+        
         <h:form enctype="multipart/form-data">
             Upload de Arquivos PrimeFaces<br/>
             <p:fileUpload 
-                value="#{gerenciadorUpload.fileUpload}"
+                value="#{gerenciadorArquivo.fileUpload}"
                 allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
                 mode="simple" 
                 />
             <br/>
 
-            <p:commandLink value="Submit" ajax="false" actionListener="#{gerenciadorUpload.upload()}" 
+            <p:commandLink value="Submit" ajax="false" actionListener="#{gerenciadorArquivo.uploadArquivo()}" 
                            disabled="false" update="@all" id="linkFoto"/>
         </h:form>
         <br/><br/><br/>
@@ -35,7 +33,7 @@
             Download de Arquivos <br/>
 
             <p:commandButton value="Download" ajax="false">
-                <p:fileDownload value="#{gerenciadorUpload.donwload()}" />
+                <p:fileDownload value="#" />
             </p:commandButton>
         </h:form>
 

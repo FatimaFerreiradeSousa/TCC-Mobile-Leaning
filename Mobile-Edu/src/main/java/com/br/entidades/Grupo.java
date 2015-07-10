@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,8 +32,6 @@ public class Grupo implements Serializable{
     private List<Topico> topicos;
     @ManyToOne
     private Professor professorGrupos;
-    @OneToMany(mappedBy = "grupoArquivo")
-    private List<Arquivo> meusArquivos;
     
     public Grupo(){
     
@@ -46,7 +43,6 @@ public class Grupo implements Serializable{
         this.descricao = descricao;
         this.topicos = new ArrayList();
         this.professorGrupos = professor;
-        this.meusArquivos = new ArrayList();
     }
 
     public int getCodigo() {
@@ -95,13 +91,5 @@ public class Grupo implements Serializable{
 
     public void setProfessorGrupos(Professor professorGrupos) {
         this.professorGrupos = professorGrupos;
-    }
-
-    public List<Arquivo> getMeusArquivos() {
-        return meusArquivos;
-    }
-
-    public void setMeusArquivos(List<Arquivo> meusArquivos) {
-        this.meusArquivos = meusArquivos;
     }
 }

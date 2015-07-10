@@ -1,7 +1,6 @@
 package com.br.controladores;
 
 import com.br.entidades.Aluno;
-import com.br.entidades.Arquivo;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
@@ -44,7 +43,6 @@ public class GerenciadorGrupo implements Serializable {
     private ExternalContext context;
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
-    private Arquivo arquivo;
     private Comentario comentarioTopico;
     private String mensagem;
     private Aluno aluno;
@@ -53,7 +51,6 @@ public class GerenciadorGrupo implements Serializable {
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
-        arquivo = new Arquivo();
         comentarioTopico = new Comentario();
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
@@ -178,14 +175,6 @@ public class GerenciadorGrupo implements Serializable {
         this.fileUpload = fileUpload;
     }
 
-    public Arquivo getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(Arquivo arquivo) {
-        this.arquivo = arquivo;
-    }
-
     public void upload() {
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
 
@@ -213,14 +202,14 @@ public class GerenciadorGrupo implements Serializable {
                 session = (HttpSession) context.getSession(false);
                 Professor professorLogado = (Professor) session.getAttribute("professor");
 
-                arquivo.setFoto(caminhoFoto);
-                arquivo.setCaminho(caminho + fileUpload.getFileName());
-                arquivo.setNome(fileUpload.getFileName());
-                arquivo.setGrupoArquivo(grupo);
-                arquivo.setPessoa(professorLogado);
-                fachada.salvarArquivo(arquivo);
-                arquivo = new Arquivo();
-
+                topico.setFoto(caminhoFoto);
+                topico.setCaminho(caminho + fileUpload.getFileName());
+                topico.setNome(fileUpload.getFileName());
+                topico.setGrupo(grupo);
+                topico.setPessoa(professorLogado);
+                fachada.salvarTopico(topico);
+                topico = new Topico();
+                
                 inputStream.close();
                 out.flush();
                 out.close();

@@ -25,6 +25,10 @@ public class Topico implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String conteudo;
+    private String nome;
+    private String foto;
+    private String caminho;
+    
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
     @OneToMany(mappedBy = "topico")
@@ -38,8 +42,11 @@ public class Topico implements Serializable{
     
     }
 
-    public Topico(String conteudo, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+    public Topico(String conteudo, String nome, String foto, String caminho, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
+        this.nome = nome;
+        this.foto = foto;
+        this.caminho = caminho;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
@@ -60,6 +67,30 @@ public class Topico implements Serializable{
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
     }
 
     public Date getDataCriacao() {

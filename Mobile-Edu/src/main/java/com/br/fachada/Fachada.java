@@ -33,8 +33,6 @@ public class Fachada implements Serializable {
     @EJB
     private InterfaceDaoAnotacao daoAnotacao;
     @EJB
-    private InterfaceDaoArquivo interfaceDaoArquivo;
-    @EJB
     private InterfaceDaoComentario daoComentario;
     
     public Fachada() {
@@ -237,20 +235,6 @@ public class Fachada implements Serializable {
     
     public List<Anotacao> listarAnotacao(Professor professor){
         return daoAnotacao.listarAnotacao(professor);
-    }
-    
-    /*CRUD Arquivo*/
-    
-    public void salvarArquivo(Arquivo arquivo){
-        interfaceDaoArquivo.salvar(arquivo);
-    }
-    
-    public void removerArquivo(Arquivo arquivo){
-        interfaceDaoArquivo.remover(arquivo);
-    }
-    
-    public List<Arquivo> listarArquivos(String login){
-        return interfaceDaoArquivo.listarArquivos(login);
     }
     
     /*CRUD Comentarios*/

@@ -45,8 +45,6 @@ public class Pessoa implements Serializable{
     private List<Topico> topicos;
     @OneToMany(mappedBy = "pessoa")
     private List<Comentario> comentarios;
-    @OneToMany(mappedBy = "pessoa")
-    private List<Arquivo> arquivos;
     
     @Transient
     private StreamedContent content;
@@ -67,7 +65,6 @@ public class Pessoa implements Serializable{
         this.dataParticipacao = dataParticipacao;
         this.topicos = new ArrayList();
         this.comentarios = new ArrayList();
-        this.arquivos = new ArrayList();
     }
 
     public String getLogin() {
@@ -148,14 +145,6 @@ public class Pessoa implements Serializable{
 
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
-    }
-
-    public List<Arquivo> getArquivos() {
-        return arquivos;
-    }
-
-    public void setArquivos(List<Arquivo> arquivos) {
-        this.arquivos = arquivos;
     }
 
     public StreamedContent getContent() {
