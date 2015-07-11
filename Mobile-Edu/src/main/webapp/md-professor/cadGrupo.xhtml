@@ -41,6 +41,51 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">#{controladorGrupo.notificacoes().size()}</span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <c:if test="#{controladorGrupo.notificacoes().size() == 1}">
+                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificação</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf">
+                                                        <i class="fa fa-users text-aqua"></i> #{controladorGrupo.notificacoes().size()} 
+                                                        novo membro
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    </c:if>
+
+                                    <c:if test="#{controladorGrupo.notificacoes().size() > 1}">
+                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificações</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf">
+                                                        <i class="fa fa-users text-aqua"></i> #{controladorGrupo.notificacoes().size()} 
+                                                        novos membros
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </c:if>                                    
+
+
+                                    <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
+                                </ul>
+                            </li>
+                            
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

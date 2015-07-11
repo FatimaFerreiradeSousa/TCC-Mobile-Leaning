@@ -4,9 +4,9 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
-import com.br.entidades.Professor;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,10 +19,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -38,16 +35,14 @@ public class GerenciadorGrupo implements Serializable {
     @EJB
     private Fachada fachada;
     private Grupo grupo;
-    private HttpSession session;
     private Topico topico;
-    private ExternalContext context;
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
     private Comentario comentarioTopico;
     private String mensagem;
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
-
+    
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
@@ -97,23 +92,15 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String salvarGrupo() {
-        context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("professor");
-
         grupo.setDataCriacao(new Date());
-        grupo.setProfessorGrupos(professorLogado);
+        grupo.setProfessorGrupos(PegarUsuarioSessao.pegarProfessorSessao());
         fachada.salvarGrupo(grupo);
         grupo = new Grupo();
         return null;
     }
 
     public List<Grupo> gruposCriados() {
-        context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("professor");
-
-        return fachada.meusGrupos(professorLogado.getLogin());
+        return fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
     public String removerGrupo(Grupo grupo) {
@@ -129,13 +116,11 @@ public class GerenciadorGrupo implements Serializable {
     /*Topicos*/
     public String salvarTopicoProfessor() {
         if (topico.getConteudo().length() > 0) {
-            context = FacesContext.getCurrentInstance().getExternalContext();
-            this.session = (HttpSession) context.getSession(false);
-            Professor professorLogado = (Professor) session.getAttribute("professor");
-
+            
             topico.setDataCriacao(new Date());
             topico.setGrupo(grupo);
-            topico.setPessoa(professorLogado);
+            topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+            topico.setTipo("PUBLICACAO");
 
             fachada.salvarTopico(topico);
             topico = new Topico();
@@ -176,7 +161,8 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public void upload() {
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
+        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\"
+                +grupo.getCodigo()+grupo.getNome()+"\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {
@@ -198,21 +184,22 @@ public class GerenciadorGrupo implements Serializable {
                 }
 
                 String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\doc.png";
-                context = FacesContext.getCurrentInstance().getExternalContext();
-                session = (HttpSession) context.getSession(false);
-                Professor professorLogado = (Professor) session.getAttribute("professor");
-
+                
                 topico.setFoto(caminhoFoto);
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
-                topico.setPessoa(professorLogado);
-                fachada.salvarTopico(topico);
-                topico = new Topico();
+                topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+                topico.setDataCriacao(new Date());
+                topico.setTipo("ARQUIVO");
                 
+                fachada.salvarTopico(topico);
                 inputStream.close();
                 out.flush();
                 out.close();
+                
+                topico = new Topico();
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -220,10 +207,10 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     //Faz Download
-    public StreamedContent donwload() throws FileNotFoundException {
-        InputStream stream = new FileInputStream("C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\doc.pdf");
+    public StreamedContent donwload(String caminho, String nome) throws FileNotFoundException {
+        InputStream stream = new FileInputStream(caminho);
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
-                "test.pdf");
+                nome);
         return fileDownload;
     }
 
@@ -237,12 +224,8 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String salvarComentarioProfessor(Topico topico) {
-        context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("professor");
-
         comentarioTopico.setDataComentario(new Date());
-        comentarioTopico.setPessoa(professorLogado);
+        comentarioTopico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
         comentarioTopico.setTopico(topico);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
@@ -322,13 +305,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public List<ParticipaGrupo> notificacoes() {
 
-        return fachada.listarNotificacoesProfessor(pegarProfessorSessao().getLogin());
-    }
-
-    public Professor pegarProfessorSessao() {
-        context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        return (Professor) session.getAttribute("professor");
+        return fachada.listarNotificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
     public String paginaAtualizarGrupo(Grupo grupo) {

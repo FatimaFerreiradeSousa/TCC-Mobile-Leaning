@@ -4,6 +4,7 @@ import com.br.datas.FormatData;
 import com.br.entidades.Anotacao;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -154,11 +155,10 @@ public class ControladorListAnt implements Serializable {
     }
 
     public void lembretes() throws ParseException {
-        this.context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        Professor professorLogado = (Professor) this.session.getAttribute("professor");
-
-        List<Anotacao> ant = fachada.listarAnotacao(professorLogado);
+        context = FacesContext.getCurrentInstance().getExternalContext();
+        session = (HttpSession) context.getSession(false);
+        Professor  professor = (Professor) session.getAttribute("professor");
+        List<Anotacao> ant = fachada.listarAnotacao(professor);
 
         if (!ant.isEmpty()) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

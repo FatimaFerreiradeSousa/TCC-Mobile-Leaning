@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,6 +31,8 @@ public class Topico implements Serializable{
     private String foto;
     private String caminho;
     
+    private String tipo;
+    
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
     @OneToMany(mappedBy = "topico")
@@ -42,11 +46,12 @@ public class Topico implements Serializable{
     
     }
 
-    public Topico(String conteudo, String nome, String foto, String caminho, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+    public Topico(String conteudo, String nome, String foto, String caminho, String tipo, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.nome = nome;
         this.foto = foto;
         this.caminho = caminho;
+        this.tipo = tipo;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
@@ -91,6 +96,14 @@ public class Topico implements Serializable{
 
     public void setCaminho(String caminho) {
         this.caminho = caminho;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Date getDataCriacao() {

@@ -4,6 +4,7 @@ import com.br.entidades.Professor;
 import com.br.entidades.Pergunta;
 import com.br.entidades.Teste;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,9 +26,7 @@ public class ControladorExercicio implements Serializable {
     private Teste exercicio;
     private Teste teste;
     private List<Pergunta> questoesTeste;
-    private HttpSession session;
-    private ExternalContext externalContext;
-
+    
     @EJB
     Fachada fachada;
 
@@ -58,12 +57,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String salvarTeste() {
-
-        externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("professor");
-        
-        exercicio.setProfessor(professorLogado);
+        exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();
@@ -90,10 +84,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<Teste> testesCadastrados() {
-        externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) session.getAttribute("professor");
-        return fachada.listarTestes(professorLogado.getLogin());
+        return fachada.listarTestes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
     
     public String removerTeste(Teste teste){

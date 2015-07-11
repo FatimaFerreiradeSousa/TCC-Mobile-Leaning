@@ -20,4 +20,6 @@ public interface InterfaceDaoProfessor {
     
     public Professor loginProfessor(String login, String senha);
     
+    public Professor buscarProfessorEmail(String email);
+    
 }

@@ -20,4 +20,5 @@ public interface InterfaceDaoAluno {
     
     public Aluno loginAluno(String login, String senha);
     
+    public Aluno buscarAlunoEmail(String email);
 }

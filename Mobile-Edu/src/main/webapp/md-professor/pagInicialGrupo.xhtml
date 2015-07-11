@@ -40,141 +40,6 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">#{controladorGrupo.notificacoes().size()}</span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-
-                                    <c:if test="#{controladorGrupo.notificacoes().size() == 0}">
-                                        <li class="header"></li>
-
-                                        <li>
-                                            <!-- inner menu: contains the actual data -->
-                                            <ul class="menu">
-                                                <li>
-                                                    <a href="pagina-notificacoes.jsf.jsf">
-                                                        <i class="fa fa-users text-aqua"></i>nenhuma notificação
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                    </c:if>
-
-                                    <c:if test="#{controladorGrupo.notificacoes().size() == 1}">
-                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificação</li>
-
-                                        <li>
-                                            <!-- inner menu: contains the actual data -->
-                                            <ul class="menu">
-                                                <li>
-                                                    <a href="pagina-notificacoes.jsf.jsf">
-                                                        <i class="fa fa-users text-aqua"></i>#{controladorGrupo.notificacoes().size()} novo membro
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </c:if>
-
-                                    <c:if test="#{controladorGrupo.notificacoes().size() > 1}">
-                                        <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificações</li>
-
-                                        <li>
-                                            <!-- inner menu: contains the actual data -->
-                                            <ul class="menu">
-                                                <li>
-                                                    <a href="pagina-notificacoes.jsf.jsf">
-                                                        <i class="fa fa-users text-aqua"></i>#{controladorGrupo.notificacoes().size()} novos membros
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
-                                    </c:if>                                    
-                                </ul>
-                            </li>
-
-                            <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../img/perfil.png" class="img-circle" alt="User Image"/>
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li><!-- end message -->
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../img/perfil.png" class="img-circle" alt="user image"/>
-                                                    </div>
-                                                    <h4>
-                                                        AdminLTE Design Team
-                                                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../img/perfil.png" class="img-circle" alt="user image"/>
-                                                    </div>
-                                                    <h4>
-                                                        Developers
-                                                        <small><i class="fa fa-clock-o"></i> Today</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../img/perfil.png" class="img-circle" alt="user image"/>
-                                                    </div>
-                                                    <h4>
-                                                        Sales Department
-                                                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <img src="../img/perfil.png" class="img-circle" alt="user image"/>
-                                                    </div>
-                                                    <h4>
-                                                        Reviewers
-                                                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
-                                </ul>
-                            </li>
 
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -185,44 +50,42 @@
                                 <ul class="dropdown-menu">
                                     <c:if test="#{controladorGrupo.notificacoes().size() == 1}">
                                         <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificação</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf">
+                                                        <i class="fa fa-users text-aqua"></i> #{controladorGrupo.notificacoes().size()} 
+                                                        novo membro
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
                                     </c:if>
 
                                     <c:if test="#{controladorGrupo.notificacoes().size() > 1}">
                                         <li class="header">Voce possui #{controladorGrupo.notificacoes().size()} notificações</li>
+
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="pagina-notificacoes.jsf">
+                                                        <i class="fa fa-users text-aqua"></i> #{controladorGrupo.notificacoes().size()} 
+                                                        novos membros
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                     </c:if>                                    
 
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> #{controladorGrupo.notificacoes().size()} 
-                                                    novos membros
-                                                </a>
-                                            </li>
 
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-red"></i> 5 new members joined
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-user text-red"></i> You changed your username
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                    <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -372,7 +235,17 @@
                                                     <a href="#" class="name">
                                                         #{topico.pessoa.nome}
                                                     </a>
+
                                                     #{topico.conteudo}
+
+                                                    <h:form>
+                                                        <div class="texto-arquivo">
+                                                            <p:commandLink value="#{topico.nome}" ajax="false" >
+                                                                <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome)}" />
+                                                            </p:commandLink>
+                                                        </div>
+                                                    </h:form>
+
                                                 </p>
 
                                                 <div class="attachment">
@@ -482,8 +355,8 @@
                                         <h:form>
                                             <div class="input-group">
                                                 <h:outputText value="#{controladorGrupo.mensagem}" 
-                                                                 id="erroPesquisarUsuario" class="text-danger"/>
-                                                                 
+                                                              id="erroPesquisarUsuario" class="text-danger"/>
+
                                                 <h:inputText pt:placeholder="Pesquisar Usuario..." value="#{controladorGrupo.aluno.login}" 
                                                              class="form-control" id="pesquisarUsuario"/>
 
@@ -598,15 +471,15 @@
                                 </div>
                             </div>
 
+                            <label class="control-label" for="escrevaAlgo">Adicionar Arquivo</label>
 
-                            <div class="alinhamentoTest">
-                                <p:fileUpload 
-                                    value="#{controladorGrupo.fileUpload}"
-                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                    mode="simple" 
-                                    />
-                                <br/>
-                            </div>
+                            <p:fileUpload 
+                                value="#{controladorGrupo.fileUpload}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                />
+
+                            <br/>
 
 
                             <div class="modal-footer">

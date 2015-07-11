@@ -53,8 +53,11 @@ public class Fachada implements Serializable {
     }
 
     public boolean atualizarProfessor(Professor professor) {
-        daoProfessor.atualizar(professor);
-        return true;
+        return daoProfessor.atualizar(professor);
+    }
+    
+    public Professor buscarProfessorEmail(String email){
+        return daoProfessor.buscarProfessorEmail(email);
     }
 
     /*Crud Questão*/
@@ -139,6 +142,10 @@ public class Fachada implements Serializable {
 
     public Aluno loginAluno(String login, String senha) {
         return daoAluno.loginAluno(login, senha);
+    }
+    
+    public Aluno buscarAlunoEmail(String email){
+        return daoAluno.buscarAlunoEmail(email);
     }
     
     /*CRUD Grupo*/

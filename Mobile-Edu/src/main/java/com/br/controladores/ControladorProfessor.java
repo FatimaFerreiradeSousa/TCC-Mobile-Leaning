@@ -3,6 +3,7 @@ package com.br.controladores;
 import com.br.datas.FormatData;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,8 +30,8 @@ public class ControladorProfessor implements Serializable {
 
     Professor professor;
     Professor professorLogado;
-    HttpSession session;
-
+    private HttpSession session;
+    
     private UploadedFile file;
     private String mes;
     private String ano;
@@ -61,9 +62,7 @@ public class ControladorProfessor implements Serializable {
     }
 
     public String getMes() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("professor");
+        professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
         this.mes = FormatData.pegarMes(professorLogado.getDataParticipacao());
         return mes;
     }
@@ -73,9 +72,7 @@ public class ControladorProfessor implements Serializable {
     }
 
     public String getAno() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("professor");
+        professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
         this.ano = FormatData.pegarAno(professorLogado.getDataParticipacao());
         return ano;
     }
@@ -98,7 +95,8 @@ public class ControladorProfessor implements Serializable {
 
         if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
                 && professor.getSenha().length() > 0) {
-            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null) {
+            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null &&
+                    fachada.buscarAlunoEmail(professor.getEmail()) == null && fachada.buscarProfessorEmail(professor.getEmail()) == null) {
                 professor.setFoto(caminho);
                 professor.setDataParticipacao(new Date());
                 fachada.salvarProfessor(professor);
@@ -125,7 +123,7 @@ public class ControladorProfessor implements Serializable {
                 String loginPage = "/md-professor/paginaInicialProfessor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
-                this.session = (HttpSession) context.getSession(false);
+                session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("professor", professor);
                 professorLogado = (Professor) session.getAttribute("professor");
                 context.redirect(request.getContextPath() + loginPage);
@@ -153,9 +151,7 @@ public class ControladorProfessor implements Serializable {
     }
 
     public String atualizarProfessor() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("professor");
+        professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
         fachada.atualizarProfessor(professorLogado);
         return "paginaConfig?faces-redirect=true";
     }
@@ -177,9 +173,7 @@ public class ControladorProfessor implements Serializable {
     }
 
     public void upload() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        professorLogado = (Professor) this.session.getAttribute("professor");
+        professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
                 + professorLogado.getLogin() + "\\";
 

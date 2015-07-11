@@ -1,18 +1,15 @@
 package com.br.controladores;
 
-import com.br.entidades.Professor;
 import com.br.entidades.Pergunta;
 import com.br.entidades.Resposta;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,8 +22,6 @@ public class ControladorPergunta implements Serializable {
     private Pergunta pergunta;
     private Resposta resposta;
     private String mensagem;
-    private ExternalContext externalContext;
-    private HttpSession session;
     private List<Resposta> respostas;
 
     @EJB
@@ -74,25 +69,18 @@ public class ControladorPergunta implements Serializable {
     }
 
     public String salvarResposta() {
-        this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) this.session.getAttribute("professor");
-
         this.fachada.salvarResposta(resposta);
         this.respostas.add(resposta);
         pergunta.setRespostas(respostas);
-        pergunta.setProfessor(professorLogado);
+        pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         pergunta.setQtdRespostas(respostas.size());
         
         this.resposta = new Resposta();
         return "cadastrarResposta?faces-redirect=true";
     }
 
-    public List<Pergunta> listarPerguntas() {
-        this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) externalContext.getSession(false);
-        Professor professorLogado = (Professor) this.session.getAttribute("professor");
-        return fachada.listarQuestoes(professorLogado.getLogin());
+    public List<Pergunta> listarPerguntas() {        
+        return fachada.listarQuestoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
     public String removerPergunta(Pergunta questao) {

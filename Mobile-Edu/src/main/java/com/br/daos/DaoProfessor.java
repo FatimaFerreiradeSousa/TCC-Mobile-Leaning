@@ -79,4 +79,18 @@ public class DaoProfessor implements InterfaceDaoProfessor {
             return null;
         }
     }
+    
+    @Override
+    public Professor buscarProfessorEmail(String email){
+        Query query = em.createQuery("select p from Professor p where p.email = :email");
+        query.setParameter("email", email);
+        
+        List<Professor> professor = (List<Professor>) query.getResultList();
+
+        if (!professor.isEmpty()) {
+            return professor.get(0);
+        } else {
+            return null;
+        }
+    }
 }

@@ -79,4 +79,18 @@ public class DaoAluno implements InterfaceDaoAluno {
             return null;
         }
     }
+    
+    @Override
+    public Aluno buscarAlunoEmail(String email){
+        Query query = em.createQuery("select a from Aluno a where a.email = :email");
+        query.setParameter("email", email);
+        
+        List<Aluno> alunos = (List<Aluno>) query.getResultList();
+
+        if (!alunos.isEmpty()) {
+            return alunos.get(0);
+        } else {
+            return null;
+        }
+    }
 }

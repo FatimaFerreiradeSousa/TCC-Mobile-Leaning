@@ -3,6 +3,7 @@ package com.br.controladores;
 import com.br.datas.FormatData;
 import com.br.entidades.Aluno;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -76,9 +77,7 @@ public class ControladorAluno implements Serializable {
     }
 
     public String getMes() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        alunoLogado = (Aluno) this.session.getAttribute("aluno");
+        alunoLogado = PegarUsuarioSessao.pegarAlunoSessao();
         this.mes = FormatData.pegarMes(alunoLogado.getDataParticipacao());
         return mes;
     }
@@ -88,9 +87,7 @@ public class ControladorAluno implements Serializable {
     }
 
     public String getAno() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        alunoLogado = (Aluno) this.session.getAttribute("aluno");
+        alunoLogado = PegarUsuarioSessao.pegarAlunoSessao();
         this.ano = FormatData.pegarAno(alunoLogado.getDataParticipacao());
         return ano;
     }
@@ -105,7 +102,8 @@ public class ControladorAluno implements Serializable {
 
         if (aluno.getNome().length() > 0 && aluno.getEmail().length() > 0 && aluno.getLogin().length() > 0
                 && aluno.getSenha().length() > 0) {
-            if (fachada.buscarAluno(aluno.getLogin()) == null && fachada.buscarProfessor(aluno.getLogin()) == null) {
+            if (fachada.buscarAluno(aluno.getLogin()) == null && fachada.buscarProfessor(aluno.getLogin()) == null
+                    && fachada.buscarAlunoEmail(aluno.getEmail()) == null && fachada.buscarProfessorEmail(aluno.getEmail()) == null) {
                 aluno.setFoto(caminho);
                 aluno.setDataParticipacao(new Date());
                 fachada.salvarAluno(aluno);
@@ -159,10 +157,8 @@ public class ControladorAluno implements Serializable {
     }
 
     public String atualizarAluno() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        alunoLogado = (Aluno) this.session.getAttribute("aluno");
-        fachada.atualizarAluno(aluno);
+        alunoLogado = PegarUsuarioSessao.pegarAlunoSessao();
+        fachada.atualizarAluno(alunoLogado);
         return null;
     }
     
@@ -171,9 +167,7 @@ public class ControladorAluno implements Serializable {
     }
     
     public void upload() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        this.session = (HttpSession) context.getSession(false);
-        alunoLogado = (Aluno) this.session.getAttribute("aluno");
+        alunoLogado = PegarUsuarioSessao.pegarAlunoSessao();
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
                 +alunoLogado.getLogin()+"\\";
         File dir = new File(caminho);
