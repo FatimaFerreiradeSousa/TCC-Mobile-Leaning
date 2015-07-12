@@ -8,6 +8,9 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Professor | Pagina Inicial Grupo</title>
+        
+        <meta charset="UTF-8"/>
+        
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/cssPagGrupo.css" rel="stylesheet" type="text/css"/>
@@ -483,11 +486,10 @@
 
 
                             <div class="modal-footer">
-                                <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
-                                                 disabled="false" update="@all" id="linkFoto" />
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-
+                                <p:commandLink value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
+                                               disabled="false" update="@all" id="linkFoto" styleClass="btn btn-primary"/>
                             </div>
 
                         </div>

@@ -45,7 +45,7 @@ public class DaoGrupo implements InterfaceDaoGrupo {
     }
 
     @Override
-    public Grupo consultar(String codigo) {
+    public Grupo consultar(int codigo) {
 
         try {
             return em.find(Grupo.class, codigo);

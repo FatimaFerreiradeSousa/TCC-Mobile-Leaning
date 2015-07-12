@@ -30,8 +30,8 @@ public class Topico implements Serializable{
     private String nome;
     private String foto;
     private String caminho;
-    
     private String tipo;
+    private int codigoTeste;
     
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
@@ -46,12 +46,14 @@ public class Topico implements Serializable{
     
     }
 
-    public Topico(String conteudo, String nome, String foto, String caminho, String tipo, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+    public Topico(String conteudo, String nome, String foto, String caminho, String tipo, int codigoTeste,
+            Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.nome = nome;
         this.foto = foto;
         this.caminho = caminho;
         this.tipo = tipo;
+        this.codigoTeste = codigoTeste;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
@@ -104,6 +106,14 @@ public class Topico implements Serializable{
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public int getCodigoTeste() {
+        return codigoTeste;
+    }
+
+    public void setCodigoTeste(int codigoTeste) {
+        this.codigoTeste = codigoTeste;
     }
 
     public Date getDataCriacao() {

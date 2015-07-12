@@ -14,7 +14,7 @@ public interface InterfaceDaoGrupo {
     
     public boolean atualizar(Grupo grupo);
     
-    public Grupo consultar(String codigo);
+    public Grupo consultar(int codigo);
     
     public boolean remover(Grupo grupo);
     

@@ -162,7 +162,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public void upload() {
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\"
-                +grupo.getCodigo()+grupo.getNome()+"\\";
+                +grupo.getCodigo()+ " - " +grupo.getNome()+"\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {
@@ -199,7 +199,7 @@ public class GerenciadorGrupo implements Serializable {
                 out.close();
                 
                 topico = new Topico();
-                
+                fileUpload = null;
             } catch (IOException e) {
                 e.printStackTrace();
             }
