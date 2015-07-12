@@ -14,7 +14,9 @@ import java.io.OutputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -31,12 +33,23 @@ public class GerenciadorArquivo implements Serializable {
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
     private Topico topico;
+    private String nome;
+    private boolean opcao;
+    private List<String> cidades;
             
     @EJB
     Fachada fachadaModArquivo;
 
     public GerenciadorArquivo() {
         topico = new Topico();
+        nome = "Fatinha";
+        opcao = false;
+        cidades = new ArrayList();
+        cidades.add("Cajazeiras");
+        cidades.add("Serra Grande");
+        cidades.add("Sousa");
+        cidades.add("Natal");
+        cidades.add("Patos");
     }
 
     public UploadedFile getFileUpload() {
@@ -63,7 +76,30 @@ public class GerenciadorArquivo implements Serializable {
         this.topico = topico;
     }
 
-    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(boolean opcao) {
+        this.opcao = opcao;
+    }
+
+    public List<String> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(List<String> cidades) {
+        this.cidades = cidades;
+    }
+
     public String uploadArquivo(){
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\";
 

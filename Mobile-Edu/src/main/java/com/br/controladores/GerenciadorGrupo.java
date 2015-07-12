@@ -120,7 +120,7 @@ public class GerenciadorGrupo implements Serializable {
             topico.setDataCriacao(new Date());
             topico.setGrupo(grupo);
             topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
-            topico.setTipo("PUBLICACAO");
+            topico.setTipo("Publicacao");
 
             fachada.salvarTopico(topico);
             topico = new Topico();
@@ -191,7 +191,7 @@ public class GerenciadorGrupo implements Serializable {
                 topico.setGrupo(grupo);
                 topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
                 topico.setDataCriacao(new Date());
-                topico.setTipo("ARQUIVO");
+                topico.setTipo("Arquivo");
                 
                 fachada.salvarTopico(topico);
                 inputStream.close();
