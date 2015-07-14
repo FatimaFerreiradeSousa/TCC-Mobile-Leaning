@@ -162,7 +162,7 @@ public class ControladorExercicio implements Serializable {
         topico.setDataCriacao(new Date());
         topico.setTipo("Atividade");
         topico.setGrupo(grupo);
-        topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+        topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
         
         fachada.salvarTopico(topico);
         

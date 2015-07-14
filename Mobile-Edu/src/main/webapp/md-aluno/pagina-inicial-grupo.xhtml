@@ -182,7 +182,7 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.pessoa.foto)}"/>
+                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.loginUsuario)}"/>
 
                                                 <p class="message">
                                                     <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
@@ -191,7 +191,7 @@
                                                     </h:outputLabel>
 
                                                     <a href="#" class="name">
-                                                        #{topico.pessoa.nome}
+                                                        #{topico.loginUsuario}
                                                     </a>
                                                     #{topico.conteudo}
                                                 </p>
@@ -210,11 +210,11 @@
 
                                                             <div class="item">
                                                                 <p:graphicImage id="coisa" 
-                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.pessoa.foto)}"/>
+                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.loginUsuario)}"/>
 
                                                                 <p class="message">
                                                                     <a href="#" class="name">
-                                                                        #{comentario.pessoa.nome}
+                                                                        #{comentario.loginUsuario}
                                                                     </a>
                                                                     <h:outputLabel class="justify-text" style="font-size: 15px;" value="#{comentario.conteudo}"/> 
 
@@ -413,7 +413,7 @@
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label class="control-label" for="escrevaAlgo">Escreva Algo</label>
-                                        <h:inputTextarea value="#{controladorGrupo.arquivo.descricao}" 
+                                        <h:inputTextarea value="#{controladorGrupoAluno.topico.conteudo}" 
                                                          class="form-control" pt:placeholde="Escreva Algo..." rows="5"/>
                                     </div>
                                 </div>
@@ -422,7 +422,7 @@
 
                             <div class="alinhamentoTest">
                                 <p:fileUpload 
-                                    value="#{controladorGrupo.fileUpload}"
+                                    value="#{controladorGrupoAluno.fileUpload}"
                                     allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
                                     mode="simple" 
                                     />
@@ -431,10 +431,11 @@
 
 
                             <div class="modal-footer">
-                                <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupo.upload()}" 
-                                                 disabled="false" update="@all" id="linkFoto" />
 
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+                                <p:commandButton value="Enviar" ajax="false" actionListener="#{controladorGrupoAluno.uploadArquivo()}" 
+                                                 disabled="false" update="@all" id="linkFoto" styleClass="btn-primary" />
 
                             </div>
 

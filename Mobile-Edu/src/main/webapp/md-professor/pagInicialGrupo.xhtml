@@ -228,7 +228,7 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.pessoa.foto)}"/>
+                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.loginUsuario)}"/>
 
                                                 <p class="message">
                                                     <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
@@ -237,7 +237,7 @@
                                                     </h:outputLabel>
 
                                                     <a href="#" class="name">
-                                                        #{topico.pessoa.nome}
+                                                        #{topico.loginUsuario}
                                                     </a>
 
                                                     #{topico.conteudo} 
@@ -266,11 +266,11 @@
 
                                                             <div class="item">
                                                                 <p:graphicImage id="coisa" 
-                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.pessoa.foto)}"/>
+                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.loginUsuario)}"/>
 
                                                                 <p class="message">
                                                                     <a href="#" class="name">
-                                                                        #{comentario.pessoa.nome}
+                                                                        #{comentario.loginUsuario}
                                                                     </a>
                                                                     <h:outputLabel class="justify-text" style="font-size: 15px;" value="#{comentario.conteudo}"/> 
 

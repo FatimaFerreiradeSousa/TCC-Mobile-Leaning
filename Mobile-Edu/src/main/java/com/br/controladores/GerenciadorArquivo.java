@@ -137,7 +137,7 @@ public class GerenciadorArquivo implements Serializable {
                 topico.setCaminho(caminho+fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
-                topico.setPessoa(professorLogado);
+                //topico.setPessoa(professorLogado);
                 topico.setConteudo("Arquivo de teste");
                 topico.setDataCriacao(new Date());
                 

@@ -22,11 +22,10 @@ public class Comentario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String conteudo;
+    private String loginUsuario;
     @Temporal(TemporalType.DATE)
     private Date dataComentario;
     
-    @ManyToOne
-    private Pessoa pessoa;
     @ManyToOne
     private Topico topico;
     
@@ -34,10 +33,10 @@ public class Comentario implements Serializable{
     
     }
 
-    public Comentario(String conteudo, Date data, Pessoa pessoa, Topico topico) {
+    public Comentario(String conteudo, String loginUsuairo, Date data, Topico topico) {
         this.conteudo = conteudo;
+        this.loginUsuario = loginUsuairo;
         this.dataComentario = data;
-        this.pessoa = pessoa;
         this.topico = topico;
     }
 
@@ -57,6 +56,14 @@ public class Comentario implements Serializable{
         this.conteudo = conteudo;
     }
 
+    public String getLoginUsuario() {
+        return loginUsuario;
+    }
+
+    public void setLoginUsuario(String loginUsuario) {
+        this.loginUsuario = loginUsuario;
+    }
+
     public Date getDataComentario() {
         return dataComentario;
     }
@@ -65,14 +72,6 @@ public class Comentario implements Serializable{
         this.dataComentario = dataComentario;
     }
     
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
     public Topico getTopico() {
         return topico;
     }

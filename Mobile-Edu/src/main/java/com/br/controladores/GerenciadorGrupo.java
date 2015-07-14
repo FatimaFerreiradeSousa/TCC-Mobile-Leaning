@@ -119,7 +119,7 @@ public class GerenciadorGrupo implements Serializable {
             
             topico.setDataCriacao(new Date());
             topico.setGrupo(grupo);
-            topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+            topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
             topico.setTipo("Publicacao");
 
             fachada.salvarTopico(topico);
@@ -189,7 +189,7 @@ public class GerenciadorGrupo implements Serializable {
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
-                topico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+                topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
                 topico.setDataCriacao(new Date());
                 topico.setTipo("Arquivo");
                 
@@ -225,7 +225,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public String salvarComentarioProfessor(Topico topico) {
         comentarioTopico.setDataComentario(new Date());
-        comentarioTopico.setPessoa(PegarUsuarioSessao.pegarProfessorSessao());
+        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
         comentarioTopico.setTopico(topico);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {

@@ -33,32 +33,33 @@ public class Topico implements Serializable{
     
     private String tipo;
     private int codigoTeste;
+    private String loginUsuario;
     
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
+    
     @OneToMany(mappedBy = "topico")
     private List<Comentario> comentarios;
+    
     @ManyToOne
     private Grupo grupo;
-    @ManyToOne
-    private Pessoa pessoa;
     
     public Topico(){
     
     }
 
     public Topico(String conteudo, String nome, String foto, String caminho, String tipo, int codigoTeste,
-            Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+            String loginUsuario, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.nome = nome;
         this.foto = foto;
         this.caminho = caminho;
         this.tipo = tipo;
         this.codigoTeste = codigoTeste;
+        this.loginUsuario = loginUsuario;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
-        this.pessoa = pessoa;
     }
 
     public int getCodigo() {
@@ -108,13 +109,21 @@ public class Topico implements Serializable{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
+    
     public int getCodigoTeste() {
         return codigoTeste;
     }
 
     public void setCodigoTeste(int codigoTeste) {
         this.codigoTeste = codigoTeste;
+    }
+
+    public String getLoginUsuario() {
+        return loginUsuario;
+    }
+
+    public void setLoginUsuario(String loginUsuario) {
+        this.loginUsuario = loginUsuario;
     }
 
     public Date getDataCriacao() {
@@ -139,13 +148,5 @@ public class Topico implements Serializable{
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
     }
 }
