@@ -228,7 +228,9 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.loginUsuario)}"/>
+                                                <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
+                                                    <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                </p:graphicImage>
 
                                                 <p class="message">
                                                     <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
@@ -266,7 +268,9 @@
 
                                                             <div class="item">
                                                                 <p:graphicImage id="coisa" 
-                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.loginUsuario)}"/>
+                                                                                value="#{controladorFotos.mostrarFotoComentario()}">
+                                                                    <f:param name="loginComentario" value="#{comentario.loginUsuario}"/>
+                                                                </p:graphicImage>
 
                                                                 <p class="message">
                                                                     <a href="#" class="name">

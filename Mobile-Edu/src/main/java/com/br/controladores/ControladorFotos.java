@@ -1,6 +1,6 @@
 package com.br.controladores;
 
-import com.br.entidades.Aluno;
+import com.br.entidades.Pessoa;
 import com.br.fachada.Fachada;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -24,86 +25,76 @@ public class ControladorFotos implements Serializable {
     @EJB
     Fachada fachada;
     private StreamedContent content;
-    private StreamedContent fotosMembros;
-    private StreamedContent contentComentario;
 
     public ControladorFotos() {
 
     }
 
     public StreamedContent getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(StreamedContent content) {
         this.content = content;
     }
 
-    public StreamedContent getFotosMembros() {
-        return fotosMembros;
-    }
+    public StreamedContent mostrarFoto() {
 
-    public void setFotosMembros(StreamedContent fotosMembros) {
-        this.fotosMembros = fotosMembros;
-    }
+        String loginUsuario = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginUsuario");
+        
+        if (loginUsuario != null) {
+            Pessoa pessoa = new Pessoa();
 
-    public StreamedContent getContentComentario() {
-        return contentComentario;
-    }
+            if (fachada.buscarProfessor(loginUsuario) != null) {
+                pessoa = fachada.buscarProfessor(loginUsuario);
+            } else {
+                pessoa = fachada.buscarAluno(loginUsuario);
+            }
 
-    public void setContentComentario(StreamedContent contentComentario) {
-        this.contentComentario = contentComentario;
-    }
+            File fotoUsuario = new File(pessoa.getFoto());
 
-    public StreamedContent mostrarFotoUsuario(String fotoPerfil) {
-        File foto = new File(fotoPerfil);
+            try {
+                BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                in.close();
+                this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
 
-        try {
-
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+                return content;
+            } catch (Exception e) {
+                e.printStackTrace();
+            };
         }
-
-        return content;
+        return new DefaultStreamedContent();
     }
     
-    public StreamedContent mostrarFotosMembros(String caminho){
-        File foto = new File(caminho);
-        
-        try{
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(foto));
-            byte [] bytes = new byte[bufferedInputStream.available()];
-            bufferedInputStream.read(bytes);
-            bufferedInputStream.close();
-            fotosMembros = new DefaultStreamedContent(new ByteArrayInputStream(bytes),"image/jpeg");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        return fotosMembros;
-    }
-    
-    public StreamedContent mostrarFotoComentario(String caminho) {
-        File foto = new File(caminho);
+    public StreamedContent mostrarFotoComentario() {
 
-        try {
-            
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(foto));
-            byte[] bytes = new byte[in.available()];
-            in.read(bytes);
-            in.close();
-            this.contentComentario = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String loginComentario = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginComentario");
+        
+        if (loginComentario != null) {
+            Pessoa pessoa = new Pessoa();
 
-        return this.contentComentario;
+            if (fachada.buscarProfessor(loginComentario) != null) {
+                pessoa = fachada.buscarProfessor(loginComentario);
+            } else {
+                pessoa = fachada.buscarAluno(loginComentario);
+            }
+
+            File fotoUsuario = new File(pessoa.getFoto());
+
+            try {
+                BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                in.close();
+                this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+
+                return content;
+            } catch (Exception e) {
+                e.printStackTrace();
+            };
+        }
+        return new DefaultStreamedContent();
     }
 }
