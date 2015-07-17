@@ -20,4 +20,6 @@ public interface InterfaceDaoTopico {
     
     public List<Comentario> comentariosTopico(int codigoTopico);
     
+    public List<Topico> listarTestesGrupo(int codigoGrupo);
+    
 }

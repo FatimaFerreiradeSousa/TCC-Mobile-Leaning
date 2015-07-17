@@ -47,3 +47,11 @@
 .texto-arquivo{
     margin-left: 55px;
 }
+
+.btn-link-teste:hover{
+    color: orange;
+}
+
+.btn-link-teste{
+    color: #fff;
+}

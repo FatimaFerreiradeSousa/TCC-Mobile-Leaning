@@ -4,7 +4,10 @@ import com.br.datas.FormatData;
 import com.br.entidades.Professor;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +21,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -31,7 +36,8 @@ public class ControladorProfessor implements Serializable {
     Professor professor;
     Professor professorLogado;
     private HttpSession session;
-    
+    private StreamedContent content;
+
     private UploadedFile file;
     private String mes;
     private String ano;
@@ -95,8 +101,8 @@ public class ControladorProfessor implements Serializable {
 
         if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
                 && professor.getSenha().length() > 0) {
-            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null &&
-                    fachada.buscarAlunoEmail(professor.getEmail()) == null && fachada.buscarProfessorEmail(professor.getEmail()) == null) {
+            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null
+                    && fachada.buscarAlunoEmail(professor.getEmail()) == null && fachada.buscarProfessorEmail(professor.getEmail()) == null) {
                 professor.setFoto(caminho);
                 professor.setDataParticipacao(new Date());
                 fachada.salvarProfessor(professor);
@@ -209,5 +215,31 @@ public class ControladorProfessor implements Serializable {
 
     public String paginaInicialProfessor() {
         return "indexProfessor?faces-redirect=true";
+    }
+
+    public StreamedContent mostrarFoto() {
+
+        String loginProfessor = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginProfessor");
+        System.out.println("Login: " +loginProfessor);
+        
+        if (loginProfessor != null) {
+            Professor p = fachada.buscarProfessor(loginProfessor);
+
+            File fotoUsuario = new File(p.getFoto());
+
+            try {
+                BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                in.close();
+                
+                this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+                return content;
+            } catch (Exception e) {
+                e.printStackTrace();
+            };
+        }
+
+        return new DefaultStreamedContent();
     }
 }

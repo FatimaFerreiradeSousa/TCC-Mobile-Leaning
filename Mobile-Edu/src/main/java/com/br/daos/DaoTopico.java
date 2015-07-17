@@ -1,6 +1,7 @@
 package com.br.daos;
 
 import com.br.entidades.Comentario;
+import com.br.entidades.Teste;
 import com.br.entidades.Topico;
 import com.br.interfaces.InterfaceDaoTopico;
 import java.util.List;
@@ -72,5 +73,13 @@ public class DaoTopico implements InterfaceDaoTopico {
         query.setParameter("codigo", codigoTopico);
         
         return (List<Comentario>) query.getResultList();
+    }
+
+    @Override
+    public List<Topico> listarTestesGrupo(int codigoGrupo) {
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Atividade' ORDER BY t.codigo DESC");
+        query.setParameter("codigoGrupo", codigoGrupo);
+        
+        return (List<Topico>) query.getResultList();
     }
 }

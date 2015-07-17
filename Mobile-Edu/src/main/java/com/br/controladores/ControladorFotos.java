@@ -1,5 +1,6 @@
 package com.br.controladores;
 
+import com.br.entidades.Aluno;
 import com.br.entidades.Pessoa;
 import com.br.fachada.Fachada;
 import java.io.BufferedInputStream;

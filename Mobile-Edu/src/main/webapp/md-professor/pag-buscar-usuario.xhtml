@@ -200,7 +200,7 @@
 
                     <div class="row">
                         <div class="col-md-8">
-                            <c:if test="#{controladorGrupo.aluno.nome == null}">
+                            <c:if test="#{controladorGrupo.aluno.login == null}">
                                 <div class="example-modal">
                                     <div class="modal">
                                         <div class="modal-content lockscreen">
@@ -216,7 +216,7 @@
                                 </div>
                             </c:if>
 
-                            <c:if test="#{controladorGrupo.aluno.nome != null}">
+                            <c:if test="#{controladorGrupo.aluno.login != null}">
 
                                 <div class="example-modal">
                                     <div class="modal">
@@ -242,7 +242,7 @@
 
                                                 <br />
                                                 <div class="lockscreen-name">
-                                                    <h:outputText value="#{controladorGrupo.aluno.nome}" id="nome-aluno"/>
+                                                    <h:outputText value="#{controladorGrupo.aluno.login}" id="nome-aluno"/>
                                                 </div>
 
                                                 <div class="help-block text-center">

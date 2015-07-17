@@ -83,7 +83,7 @@ public class DaoGrupo implements InterfaceDaoGrupo {
 
     @Override
     public List<Topico> topicosGrupo(int codigoGrupo) {
-        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo ORDER BY t.codigo DESC");
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo <> 'Atividade' ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);
 
         return (List<Topico>) query.getResultList();

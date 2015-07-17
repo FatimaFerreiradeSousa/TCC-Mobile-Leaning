@@ -7,6 +7,8 @@ import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +21,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -42,7 +45,8 @@ public class GerenciadorGrupo implements Serializable {
     private String mensagem;
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
-    
+    private StreamedContent content;
+
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
@@ -116,7 +120,7 @@ public class GerenciadorGrupo implements Serializable {
     /*Topicos*/
     public String salvarTopicoProfessor() {
         if (topico.getConteudo().length() > 0) {
-            
+
             topico.setDataCriacao(new Date());
             topico.setGrupo(grupo);
             topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
@@ -162,7 +166,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public void upload() {
         String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Arquivos\\doc\\"
-                +grupo.getCodigo()+ " - " +grupo.getNome()+"\\";
+                + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {
@@ -184,7 +188,7 @@ public class GerenciadorGrupo implements Serializable {
                 }
 
                 String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\doc.png";
-                
+
                 topico.setFoto(caminhoFoto);
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
@@ -192,12 +196,12 @@ public class GerenciadorGrupo implements Serializable {
                 topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
                 topico.setDataCriacao(new Date());
                 topico.setTipo("Arquivo");
-                
+
                 fachada.salvarTopico(topico);
                 inputStream.close();
                 out.flush();
                 out.close();
-                
+
                 topico = new Topico();
                 fileUpload = null;
             } catch (IOException e) {
@@ -326,7 +330,7 @@ public class GerenciadorGrupo implements Serializable {
 
     public String aceitarSolicitacao(ParticipaGrupo participaGrupo) {
         participaGrupo.setAceito(true);
-        
+
         if (fachada.atualizarSolicitacao(participaGrupo) == true) {
             System.out.println("Okay");
         } else {
@@ -335,4 +339,57 @@ public class GerenciadorGrupo implements Serializable {
 
         return "pagina-notificacoes?faces-redirect=true";
     }
+
+    /*Membros Grupo*/
+    public List<Aluno> membrosGrupo() {
+        List<Aluno> alunos = fachada.listarMembrosGrupo(grupo.getCodigo());
+
+        if (alunos.isEmpty()) {
+            return null;
+        } else {
+            return alunos;
+        }
+    }
+
+    /*Fotos usuarios*/
+    public StreamedContent mostrarFotosUsuarios() {
+
+        String loginAluno = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginAluno");
+
+        if (loginAluno != null) {
+            for (Aluno al : fachada.listarMembrosGrupo(this.grupo.getCodigo())) {
+
+                if (loginAluno.equalsIgnoreCase(al.getLogin())) {
+                    File fotoUsuario = new File(al.getFoto());
+
+                    try {
+                        BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+                        byte[] bytes = new byte[in.available()];
+                        in.read(bytes);
+                        in.close();
+                        this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+                        return content;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    };
+                }
+            }
+        }
+
+        return new DefaultStreamedContent();
+    }
+
+    public String paginaInicialGrupo(){
+        return "pagInicialGrupo?faces-redirect=true";
+    }
+    
+    /*Exercicios*/
+    public List<Topico> listarTestesGrupo() {
+        return fachada.listarTestesGrupo(grupo.getCodigo());
+    }
+    
+    public String paginaListarTeste(){
+        return "pagina-listar-testes?faces-redirect=true";
+    }
+
 }

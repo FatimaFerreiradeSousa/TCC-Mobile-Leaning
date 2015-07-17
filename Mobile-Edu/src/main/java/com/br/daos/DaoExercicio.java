@@ -43,7 +43,7 @@ public class DaoExercicio implements InterfaceExercicio {
     }
 
     @Override
-    public Teste consultar(String codigo) {
+    public Teste consultar(int codigo) {
 
         try {
             return em.find(Teste.class, codigo);

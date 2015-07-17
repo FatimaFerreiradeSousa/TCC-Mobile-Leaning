@@ -90,7 +90,7 @@ public class Fachada implements Serializable {
         return daoExercicio.salvar(exe);
     }
 
-    public Teste buscarExercicio(String codigo) {
+    public Teste buscarExercicio(int codigo) {
         return daoExercicio.consultar(codigo);
     }
 
@@ -171,6 +171,10 @@ public class Fachada implements Serializable {
     
     public List<Topico> topicosGrupo(int codigoGrupo){
         return daoGrupo.topicosGrupo(codigoGrupo);
+    }
+    
+    public List<Topico> listarTestesGrupo(int codigoGrupo){
+        return daoTopico.listarTestesGrupo(codigoGrupo);
     }
     
     /*CRUD participar Grupo*/

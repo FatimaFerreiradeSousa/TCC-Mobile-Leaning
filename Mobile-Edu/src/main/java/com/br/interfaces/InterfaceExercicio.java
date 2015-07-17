@@ -13,7 +13,7 @@ public interface InterfaceExercicio {
     
     public boolean atualizar(Teste exercicio);
     
-    public Teste consultar(String codigo);
+    public Teste consultar(int codigo);
     
     public boolean remover(Teste exercicio);
     
