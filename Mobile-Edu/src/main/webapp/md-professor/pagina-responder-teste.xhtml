@@ -187,7 +187,7 @@
             <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content-header">
-                    <div class="callout callout-warning">
+                    <div class="alert alert-info">
                         <h4>
                             #{controladorGrupo.grupo.nome}<br />
                         </h4>
@@ -199,23 +199,29 @@
                 <section class="content">
                     #{controladorTeste.teste.assunto}
                     <hr />
-                    
+
                     <h:dataTable value="#{controladorTeste.teste.questoesExercicios}" var="pergunta">
-                        
+
                         <h:column>
                             #{pergunta.enunciado}
-                            
-                            <h:dataTable value="#{pergunta.respostas}" var="resposta">
-                                
-                                <h:column>
-                                    #{resposta.conteudo}
-                                </h:column>
-                                
-                            </h:dataTable>
-                            
+                            <h:form>
+                                <h:dataTable value="#{pergunta.respostas}" var="resposta">
+
+                                    <h:column>
+                                        <h:selectManyCheckbox id="resposta" layout="pageDirection" value="#{controladorTeste.respostas}">
+                                            <f:selectItem itemValue="#{resposta.numero}" itemLabel="#{resposta.conteudo}"/>
+                                        </h:selectManyCheckbox>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
                         </h:column>
-                    
                     </h:dataTable>
+
+                    <h:form>
+                        <h:commandButton value="Enviar Respostas" class="btn btn-success"
+                                         action="#{controladorTeste.enviarRespostas()}"/>
+                    </h:form>
+
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 
