@@ -221,4 +221,12 @@ public class ControladorGrupoAluno implements Serializable {
             }
         }
     }
+    
+    public List<Topico> listarTestesGrupo() {
+        return fachada.listarTestesGrupo(grupo.getCodigo());
+    }
+    
+    public String paginaListarTeste(){
+        return "md-listar-teste?faces-redirect=true";
+    }
 }
