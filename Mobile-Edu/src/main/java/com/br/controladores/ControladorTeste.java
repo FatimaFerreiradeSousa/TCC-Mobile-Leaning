@@ -2,10 +2,12 @@ package com.br.controladores;
 
 import com.br.entidades.*;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -20,24 +22,24 @@ public class ControladorTeste implements Serializable {
     @EJB
     private Fachada fachada; 
     private Teste teste;
-    private List<Resposta> respostas;
     private int tamanho;
     private List<Pergunta> perguntas;
     private Pergunta pergunta;
     private boolean comecar = false;
     private int contador;
     private float resultado;
-    private List<Integer> codPerguntas;
+    private boolean salvarTeste;
+    private RespondeExercicio respondeExercicio;
     
     public ControladorTeste() {
         teste = new Teste();
-        respostas = new ArrayList();
         tamanho = 0;
         perguntas = new ArrayList();
         pergunta = new Pergunta();
         contador = 1;
         resultado = 0;
-        codPerguntas = new ArrayList();
+        salvarTeste = false;
+        respondeExercicio = new RespondeExercicio();
     }
 
     public Teste getTeste() {
@@ -46,14 +48,6 @@ public class ControladorTeste implements Serializable {
 
     public void setTeste(Teste teste) {
         this.teste = teste;
-    }
-
-    public List<Resposta> getRespostas() {
-        return respostas;
-    }
-
-    public void setRespostas(List<Resposta> respostas) {
-        this.respostas = respostas;
     }
 
     public int getTamanho() {
@@ -104,14 +98,22 @@ public class ControladorTeste implements Serializable {
         this.resultado = resultado;
     }
 
-    public List<Integer> getCodPerguntas() {
-        return codPerguntas;
+    public boolean isSalvarTeste() {
+        return salvarTeste;
     }
 
-    public void setCodPerguntas(List<Integer> codPerguntas) {
-        this.codPerguntas = codPerguntas;
+    public void setSalvarTeste(boolean salvarTeste) {
+        this.salvarTeste = salvarTeste;
     }
-    
+
+    public RespondeExercicio getRespondeExercicio() {
+        return respondeExercicio;
+    }
+
+    public void setRespondeExercicio(RespondeExercicio respondeExercicio) {
+        this.respondeExercicio = respondeExercicio;
+    }
+
     public String comecarAResponder(){
         comecar = true;
         tamanho = 0;
@@ -126,9 +128,11 @@ public class ControladorTeste implements Serializable {
         return "md-visualizar-teste?faces-redirect=true";
     }
     
-    public String enviarRespostas(Resposta resposta, int codigoPergunta){
-        this.respostas.add(resposta);
-        this.codPerguntas.add(codigoPergunta);
+    public String enviarRespostas(Resposta resposta, float pontuacao){
+        
+        if(resposta.getRespostaCerta() == true){
+            resultado += pontuacao;
+        }
         
         int aux = teste.getQtdPerguntas();
         
@@ -147,26 +151,19 @@ public class ControladorTeste implements Serializable {
         return "md-visualizar-teste?faces-redirect=true";
     }
     
-    public String corrigirTeste(){
+    public String salvarTeste(){    
+        respondeExercicio.setCodTeste(teste.getCodigo());
+        respondeExercicio.setDataResposta(new Date());
+        respondeExercicio.setNota(resultado);
+        respondeExercicio.setRespondido(true);
+        fachada.salvarRespondeTeste(respondeExercicio);
         
-        for(Resposta r: respostas){
-            System.out.println(pergarValorPergunta(r));
-        }
-        
+        Aluno aluno = PegarUsuarioSessao.pegarAlunoSessao();
+        aluno.getRespondeExercicio().add(respondeExercicio);
+        fachada.atualizarAluno(aluno);
+        salvarTeste = true;
+        contador = 0;
+        tamanho = 0;
         return "pagina-visualizar-resultado?faces-redirect=true";
-    }
-    
-    public float pergarValorPergunta(Resposta resposta){
-        float valor = 0;
-        
-        for(Pergunta p: perguntas){
-            for(Resposta r: p.getRespostas()){
-                if(r.getNumero() == resposta.getNumero()){
-                    valor = p.getPontuacao();
-                }
-            }
-        }
-        
-        return valor;
     }
 }

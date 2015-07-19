@@ -1,11 +1,9 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,8 +32,6 @@ public class Teste implements Serializable{
     private int qtdPerguntas;
     
     @ManyToMany
-    private List<RespondeExercicio> exerciciosRespondidos;
-    @ManyToMany
     private List<Pergunta> questoesExercicios;
     @ManyToOne
     private Professor professor;
@@ -51,7 +47,6 @@ public class Teste implements Serializable{
         this.dataEntrega = dataEntrega;
         this.categoria = categoria;
         this.qtdPerguntas = qtdPerguntas;
-        this.exerciciosRespondidos = new ArrayList();
         this.questoesExercicios = new ArrayList();
         this.professor = professor;
     }
@@ -102,14 +97,6 @@ public class Teste implements Serializable{
 
     public void setQtdPerguntas(int qtdPerguntas) {
         this.qtdPerguntas = qtdPerguntas;
-    }
-
-    public List<RespondeExercicio> getExerciciosRespondidos() {
-        return exerciciosRespondidos;
-    }
-
-    public void setExerciciosRespondidos(List<RespondeExercicio> exerciciosRespondidos) {
-        this.exerciciosRespondidos = exerciciosRespondidos;
     }
 
     public List<Pergunta> getQuestoesExercicios() {

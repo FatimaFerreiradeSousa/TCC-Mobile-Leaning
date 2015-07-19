@@ -137,11 +137,15 @@
 
                 <section class="content">
                     
-                    Resultado: #{controladorTeste.resultado}
+                   
+                        <h:form>
+                            <h:commandLink value="Ver Resultado" action="#{controladorTeste.salvarTeste()}"/>
+                        </h:form>
+                   
+                    <c:if test="#{controladorTeste.salvarTeste == true}">
+                        Resultado: #{controladorTeste.resultado}
+                    </c:if>
                     
-                    <h:form>
-                        <h:commandButton value="Ver Resultado" action="#{controladorTeste.corrigirTeste()}" class="btn btn-success"/>
-                    </h:form>
                 </section><!-- /.content -->
 
             </div>

@@ -160,15 +160,13 @@
                                 <h:form>
                                     <div class="alert alert-success">
                                         <h:commandLink value="#{resposta.conteudo}" 
-                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.codigo)}" />
+                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.pontuacao)}" />
                                     </div>
                                 </h:form>
                             </h:column>
 
                         </h:dataTable>
-                        
                     </c:if>
-
                 </section><!-- /.content -->
 
             </div>
