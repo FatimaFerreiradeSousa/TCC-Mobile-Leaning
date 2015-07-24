@@ -26,4 +26,45 @@ DELETE ON Topico
 FOR EACH ROW
 EXECUTE PROCEDURE excluiComentarios();
 
-/*Excluir todos dados da tabela responde teste quando um grupo for excluido*/
+/*Excluir todos os membros de um grupo sempre que o mesmo for excluido*/
+CREATE OR REPLACE FUNCTION excluiMembroGrupo() RETURNS TRIGGER 
+AS'
+  BEGIN
+     DELETE FROM ParticipaGrupo CASCADE WHERE grupo_codigo = OLD.codigo;
+     RETURN OLD;
+  END '
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TriggerExcluirMembroGrupo BEFORE
+DELETE ON Grupo
+FOR EACH ROW
+EXECUTE PROCEDURE excluiMembroGrupo();
+
+/*Excluir as informações da tabela responde teste sempre que um grupo for excluido*/
+CREATE OR REPLACE FUNCTION excluiRespondeTeste() RETURNS TRIGGER 
+AS'
+  BEGIN
+     DELETE FROM respondeExercicio CASCADE WHERE codteste = OLD.codigoteste;
+     RETURN OLD;
+  END '
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TriggerRespondeTeste BEFORE
+DELETE ON Topico
+FOR EACH ROW
+EXECUTE PROCEDURE excluiRespondeTeste();
+
+/*Atualizar Aluno*/
+
+CREATE OR REPLACE FUNCTION respondeAlunoRespTeste() RETURNS TRIGGER 
+AS'
+  BEGIN
+     DELETE FROM aluno_respondeExercicio CASCADE WHERE respondeexercicio_id = OLD.id;
+     RETURN OLD;
+  END '
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TriggerAlunoRespTeste BEFORE
+DELETE ON respondeExercicio
+FOR EACH ROW
+EXECUTE PROCEDURE respondeAlunoRespTeste();
