@@ -44,80 +44,94 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
     }
 
     @Override
-    public boolean removerMembro(String login, int codigoGrupo){
-        
-        try{
+    public boolean removerMembro(String login, int codigoGrupo) {
+
+        try {
             Query query = em.createQuery("delete from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigo");
             query.setParameter("login", login);
             query.setParameter("codigo", codigoGrupo);
             query.executeUpdate();
-            
+
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
     @Override
-    public List<Aluno> listarMembros(int codigoGrupo){
+    public List<Aluno> listarMembros(int codigoGrupo) {
         Query query = em.createQuery("select a from ParticipaGrupo p INNER JOIN p.aluno a where p.aceito = TRUE and p.grupo.codigo = :codGrupo");
         query.setParameter("codGrupo", codigoGrupo);
-        
+
         return (List<Aluno>) query.getResultList();
     }
-    
+
     @Override
-    public boolean verificaSeJaEhMembro(String login, int codigoGrupo){
+    public boolean verificaSeJaEhMembro(String login, int codigoGrupo) {
         Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = true");
         query.setParameter("login", login);
         query.setParameter("codigoGrupo", codigoGrupo);
-        
+
         List<ParticipaGrupo> participaGrupos = query.getResultList();
-        
-        if(participaGrupos.size() > 0){
+
+        if (participaGrupos.size() > 0) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
-    
+
     @Override
-    public List<ParticipaGrupo> listarGruposAluno(String login){
+    public List<ParticipaGrupo> listarGruposAluno(String login) {
         Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = true");
         query.setParameter("login", login);
-        
+
         return (List<ParticipaGrupo>) query.getResultList();
     }
-    
+
     @Override
-    public List<ParticipaGrupo> listarGruposPendentes(String login){
+    public List<ParticipaGrupo> listarGruposPendentes(String login) {
         Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = false");
         query.setParameter("login", login);
-        
+
         return (List<ParticipaGrupo>) query.getResultList();
     }
-    
+
     @Override
-    public boolean verificaSolicitacao(String login, int codigoGrupo){
+    public boolean verificaSolicitacao(String login, int codigoGrupo) {
         Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = false");
         query.setParameter("login", login);
         query.setParameter("codigoGrupo", codigoGrupo);
-        
+
         List<ParticipaGrupo> participaGrupos = query.getResultList();
-        
-        if(participaGrupos.size() > 0){
+
+        if (participaGrupos.size() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     @Override
-    public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor){
+    public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor) {
         Query query = em.createQuery("select p from ParticipaGrupo p INNER JOIN p.grupo g where g.professorGrupos.login = :loginProfessor and p.aceito = false");
         query.setParameter("loginProfessor", loginProfessor);
-        
+
         return (List<ParticipaGrupo>) query.getResultList();
+    }
+
+    @Override
+    public boolean removerMembros(int codigoGrupo) {
+
+        try {
+            Query query = em.createQuery("DELETE FROM ParticipaGrupo p where p.grupo.codigo = :codigoGrupo");
+            query.setParameter("codigoGrupo", codigoGrupo);
+            query.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

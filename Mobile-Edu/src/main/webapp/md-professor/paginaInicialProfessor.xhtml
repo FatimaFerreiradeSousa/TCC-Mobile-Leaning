@@ -252,8 +252,10 @@
                                                          value="#{controladorAnotacao.listarTodas()}" var="anotacao">
                                                 <h:column>
                                                     <div class="alert alert-success alert-dismissable">
-                                                        <h:commandLink value="" class="close" action="#{controladorAnotacao.removerAnotacao(anotacao)}">
-                                                            &times;</h:commandLink>
+                                                            <h:commandLink value="" class="close btn-link-remover" 
+                                                                           action="#{controladorAnotacao.removerAnotacao(anotacao)}">&times;
+                                                            </h:commandLink>
+                                                        
                                                         #{anotacao.titulo} - #{anotacao.conteudo}
                                                     </div>
                                                 </h:column>

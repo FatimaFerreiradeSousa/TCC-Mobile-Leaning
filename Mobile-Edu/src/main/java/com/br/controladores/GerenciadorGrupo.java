@@ -108,7 +108,10 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String removerGrupo(Grupo grupo) {
-        this.fachada.removerGrupo(grupo);
+        fachada.removerMembroGrupo(grupo.getCodigo());
+        fachada.removerTopicosGrupo(grupo.getCodigo());
+        fachada.removerGrupo(grupo);
+        
         return "cadGrupo?faces-redirect=true";
     }
 
@@ -379,16 +382,16 @@ public class GerenciadorGrupo implements Serializable {
         return new DefaultStreamedContent();
     }
 
-    public String paginaInicialGrupo(){
+    public String paginaInicialGrupo() {
         return "pagInicialGrupo?faces-redirect=true";
     }
-    
+
     /*Exercicios*/
     public List<Topico> listarTestesGrupo() {
         return fachada.listarTestesGrupo(grupo.getCodigo());
     }
-    
-    public String paginaListarTeste(){
+
+    public String paginaListarTeste() {
         return "pagina-listar-testes?faces-redirect=true";
     }
 

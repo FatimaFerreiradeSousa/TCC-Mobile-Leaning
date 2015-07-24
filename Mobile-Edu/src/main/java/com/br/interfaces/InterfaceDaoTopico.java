@@ -22,4 +22,6 @@ public interface InterfaceDaoTopico {
     
     public List<Topico> listarTestesGrupo(int codigoGrupo);
     
+    public boolean removerTopicosGrupo(int codigoGrupo);
+    
 }

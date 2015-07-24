@@ -220,6 +220,10 @@ public class Fachada implements Serializable {
         return daoPaGrupo.solicitacoesRecebidas(loginProfessor);
     }
     
+    public boolean removerMembroGrupo(int codigoGrupo){
+        return daoPaGrupo.removerMembros(codigoGrupo);
+    }
+    
     /*CRUD Topicos*/
     public boolean salvarTopico(Topico topico){
         return daoTopico.salvar(topico);
@@ -235,6 +239,10 @@ public class Fachada implements Serializable {
     
     public List<Comentario> listarComentariosTopico(int codigoTopico){
         return daoTopico.comentariosTopico(codigoTopico);
+    }
+    
+    public boolean removerTopicosGrupo(int codigoGrupo){
+        return daoTopico.removerTopicosGrupo(codigoGrupo);
     }
     
     /*CRUD Anotacao*/
