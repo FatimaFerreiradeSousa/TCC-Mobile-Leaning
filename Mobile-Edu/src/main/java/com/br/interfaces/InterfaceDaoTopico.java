@@ -14,14 +14,12 @@ public interface InterfaceDaoTopico {
     
     public boolean atualizar(Topico topico);
     
-    public Topico consultar(String codigo);
+    public Topico consultarTopico(int codigo);
     
     public boolean remover(Topico topico);
     
     public List<Comentario> comentariosTopico(int codigoTopico);
     
     public List<Topico> listarTestesGrupo(int codigoGrupo);
-    
-    public boolean removerTopicosGrupo(int codigoGrupo);
     
 }

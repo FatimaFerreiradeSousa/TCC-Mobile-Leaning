@@ -108,13 +108,11 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String removerGrupo(Grupo grupo) {
-        fachada.removerMembroGrupo(grupo.getCodigo());
-        fachada.removerTopicosGrupo(grupo.getCodigo());
         fachada.removerGrupo(grupo);
         
         return "cadGrupo?faces-redirect=true";
     }
-
+    
     public String pagInicialGrupo(Grupo grupo) {
         this.grupo = grupo;
         return "pagInicialGrupo?faces-redirect=true";
@@ -139,7 +137,7 @@ public class GerenciadorGrupo implements Serializable {
     public List<Topico> topicos() {
         return fachada.topicosGrupo(grupo.getCodigo());
     }
-
+    
     public Topico buscarTopico() {
         return fachada.topicosGrupo(grupo.getCodigo()).get(0);
     }
@@ -190,9 +188,7 @@ public class GerenciadorGrupo implements Serializable {
                     out.write(bytes, 0, read);
                 }
 
-                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\doc.png";
-
-                topico.setFoto(caminhoFoto);
+                topico.setQtdDownloads(0);
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
@@ -201,6 +197,7 @@ public class GerenciadorGrupo implements Serializable {
                 topico.setTipo("Arquivo");
 
                 fachada.salvarTopico(topico);
+                topico = new Topico();
                 inputStream.close();
                 out.flush();
                 out.close();
@@ -214,10 +211,16 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     //Faz Download
-    public StreamedContent donwload(String caminho, String nome) throws FileNotFoundException {
+    public StreamedContent donwload(String caminho, String nome, int codigo) throws FileNotFoundException {
         InputStream stream = new FileInputStream(caminho);
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 nome);
+        
+        topico = fachada.buscarTopico(codigo);
+        topico.setQtdDownloads(topico.getQtdDownloads() + 1);
+        
+        fachada.atualizarTopico(topico);
+        
         return fileDownload;
     }
 
@@ -236,7 +239,6 @@ public class GerenciadorGrupo implements Serializable {
         comentarioTopico.setTopico(topico);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
-            mensagem = "Salvo com sucesso!";
             comentarioTopico = new Comentario();
         }
 
@@ -266,7 +268,6 @@ public class GerenciadorGrupo implements Serializable {
         if (this.aluno != null) {
             return "pag-buscar-usuario?faces-redirect=true";
         } else {
-            mensagem = "Nenhum Usuario Encontrado";
             aluno = new Aluno();
             return "pag-buscar-usuario?faces-redirect=true";
         }
@@ -394,5 +395,15 @@ public class GerenciadorGrupo implements Serializable {
     public String paginaListarTeste() {
         return "pagina-listar-testes?faces-redirect=true";
     }
-
+    
+    public int quantidadeDownload(){
+        List<Topico> topicos = fachada.topicosGrupo(grupo.getCodigo());
+        int qtdDownload = 0;
+        
+        for(Topico t: topicos){
+            qtdDownload += t.getQtdDownloads();
+        }
+        
+        return qtdDownload;
+    }
 }

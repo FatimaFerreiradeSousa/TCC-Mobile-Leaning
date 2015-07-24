@@ -15,4 +15,5 @@ public interface InterfaceDaoComentario {
     public Comentario consultar(String codigo);
     
     public boolean remover(Comentario comentario);
+    
 }

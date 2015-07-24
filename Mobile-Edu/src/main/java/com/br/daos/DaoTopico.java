@@ -1,7 +1,6 @@
 package com.br.daos;
 
 import com.br.entidades.Comentario;
-import com.br.entidades.Teste;
 import com.br.entidades.Topico;
 import com.br.interfaces.InterfaceDaoTopico;
 import java.util.List;
@@ -45,7 +44,7 @@ public class DaoTopico implements InterfaceDaoTopico {
     }
 
     @Override
-    public Topico consultar(String codigo) {
+    public Topico consultarTopico(int codigo) {
 
         try {
             return em.find(Topico.class, codigo);
@@ -81,19 +80,5 @@ public class DaoTopico implements InterfaceDaoTopico {
         query.setParameter("codigoGrupo", codigoGrupo);
         
         return (List<Topico>) query.getResultList();
-    }
-    
-    @Override
-    public boolean removerTopicosGrupo(int codigoGrupo){
-        
-        try{
-            Query query = em.createQuery("DELETE FROM Topico t where t.grupo.codigo = :codigoGrupo");
-            query.setParameter("codigoGrupo", codigoGrupo);
-            query.executeUpdate();
-            return true;
-        }catch(Exception e){
-            e.printStackTrace();
-            return false;
-        }
     }
 }

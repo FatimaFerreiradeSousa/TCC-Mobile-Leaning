@@ -241,8 +241,8 @@ public class Fachada implements Serializable {
         return daoTopico.comentariosTopico(codigoTopico);
     }
     
-    public boolean removerTopicosGrupo(int codigoGrupo){
-        return daoTopico.removerTopicosGrupo(codigoGrupo);
+    public Topico buscarTopico(int codigo){
+        return daoTopico.consultarTopico(codigo);
     }
     
     /*CRUD Anotacao*/

@@ -199,9 +199,6 @@ public class ControladorGrupoAluno implements Serializable {
                     out.write(bytes, 0, read);
                 }
 
-                String caminhoFoto = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\doc.png";
-
-                topico.setFoto(caminhoFoto);
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);

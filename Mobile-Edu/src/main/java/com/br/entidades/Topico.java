@@ -26,13 +26,12 @@ public class Topico implements Serializable{
     private int codigo;
     private String conteudo;
     private String nome;
-    private String foto;
     private String caminho;
-    
     private String tipo;
     private int codigoTeste;
     private String loginUsuario;
     private boolean disponivel;
+    private int qtdDownloads;
     
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
@@ -47,16 +46,16 @@ public class Topico implements Serializable{
     
     }
 
-    public Topico(String conteudo, String nome, String foto, String caminho, String tipo, int codigoTeste,
-            String loginUsuario, boolean disponivel, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+    public Topico(String conteudo, String nome, String caminho, String tipo, int codigoTeste,
+            String loginUsuario, boolean disponivel, int qtdDownloads, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.nome = nome;
-        this.foto = foto;
         this.caminho = caminho;
         this.tipo = tipo;
         this.codigoTeste = codigoTeste;
         this.loginUsuario = loginUsuario;
         this.disponivel = disponivel;
+        this.qtdDownloads = qtdDownloads;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
@@ -84,14 +83,6 @@ public class Topico implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 
     public String getCaminho() {
@@ -132,6 +123,14 @@ public class Topico implements Serializable{
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public int getQtdDownloads() {
+        return qtdDownloads;
+    }
+
+    public void setQtdDownloads(int qtdDownloads) {
+        this.qtdDownloads = qtdDownloads;
     }
 
     public Date getDataCriacao() {
