@@ -8,7 +8,7 @@
         <title>Professor | Perguntas Cadastradas</title>
 
         <meta charset="UTF-8"/>
-        
+
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -41,7 +41,7 @@
                     <!-- Menu da Direita -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            
+
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -86,7 +86,7 @@
                                     <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -190,27 +190,14 @@
 
                     <h:form>
                         <c:if test="#{ControladorPergunta.listarPerguntas().size() > 0}">
-                            <h:dataTable class="table table-responsive"
+                            <h:dataTable class="table table-responsive table-hover"
                                          value="#{ControladorPergunta.listarPerguntas()}" var="pergunta">
                                 <h:column>
                                     <div class="box-body">
-
-                                        <ul class="todo-list">
-                                            <li>
-                                                <span class="text text-green">Enunciado:</span>
-                                                <span class="text text-blue">#{pergunta.enunciado}</span><br />
-                                                <span class="text text-green text-bold">Categoria:</span>
-                                                <span class="text text-blue text-bold">#{pergunta.categoria}</span>
-
-                                                <div class="tools">
-                                                    <h:commandLink value="" class="fa fa-edit" 
-                                                                   action="#{ControladorPergunta.paginaAtualizar(pergunta)}"/>
-
-                                                    <h:commandLink value="" class="fa fa-trash-o" 
-                                                                   action="#{ControladorPergunta.removerPergunta(pergunta)}"/>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <span class="text text-green">Pergunta:</span>
+                                        <span class="text text-blue">
+                                            <h:commandLink value="#{pergunta.enunciado}" action="#{ControladorPergunta.paginaAtualizar(pergunta)}"/>
+                                        </span>
                                     </div>
                                 </h:column>
                             </h:dataTable>

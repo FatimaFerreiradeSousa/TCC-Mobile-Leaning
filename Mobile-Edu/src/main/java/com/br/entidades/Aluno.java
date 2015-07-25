@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 public class Aluno extends Pessoa implements Serializable{
     
     private String curso;
-    private String pontuacao;
+    private int pontuacao;
     
     @ManyToMany
     private List<RespondeExercicio> respondeExercicio;
@@ -25,7 +25,7 @@ public class Aluno extends Pessoa implements Serializable{
     
     }
 
-    public Aluno(String curso, String pontuacao, String email, String login, String senha, 
+    public Aluno(String curso, int pontuacao, String email, String login, String senha, 
             String nome, String instituicao, String foto, String descricao, Date dataParticipacao) {
         super(email, login, senha, nome, instituicao, foto, descricao, dataParticipacao);
         this.curso = curso;
@@ -41,11 +41,11 @@ public class Aluno extends Pessoa implements Serializable{
         this.curso = curso;
     }
 
-    public String getPontuacao() {
+    public int getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(String pontuacao) {
+    public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
     }
 

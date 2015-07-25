@@ -193,7 +193,7 @@
                     <div class="invoice">
 
                         <div class="box box-primary">
-                            <h4 class="h-info afastamento">Enviar Teste</h4>
+                            <h4 class="h-info afastamento">Teste</h4>
                         </div>
 
                         <h:form>
@@ -272,36 +272,18 @@
                                 <c:if test="#{controladorExercicio.perguntasTeste().size() > 0}">
 
                                     <div class="col-md-12">
-                                        <div class="box box-primary">
+                                        <div class="box box-default">
 
                                             <h4 class="h-info afastamento">Perguntas</h4>
 
+                                            <h:dataTable class="table table-hover"
+                                                         value="#{controladorExercicio.perguntasTeste()}" var="pergunta">
 
-                                            <div style="height:250px; overflow: auto;" >
-                                                <h:dataTable class="table table-responsive"
-                                                             value="#{controladorExercicio.perguntasTeste()}" var="pergunta">
+                                                <h:column>
+                                                    <h:outputText value="#{pergunta.enunciado}"/>
+                                                </h:column>
 
-                                                    <h:column>
-                                                        <div class="box-body">
-                                                            <ul class="todo-list">
-                                                                <li>
-                                                                    <span class="text text-green">#{pergunta.enunciado}</span>
-
-                                                                    <h:dataTable class="table table-responsive"
-                                                                                 value="#{pergunta.respostas}" var="resposta">
-
-                                                                        <h:column>
-                                                                            <span class="text text-blue">#{resposta.conteudo}</span>
-                                                                        </h:column>
-                                                                    </h:dataTable>
-
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </h:column>
-
-                                                </h:dataTable>
-                                            </div>
+                                            </h:dataTable>
                                         </div>
                                     </div>
                                 </c:if>

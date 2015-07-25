@@ -277,32 +277,15 @@
                                 <c:if test="#{controladorExercicio.questoesTeste.size() > 0}">
 
                                     <div class="col-md-12">
-                                        <div class="box box-primary">
-
-                                            <i class="ion ion-clipboard"></i>
+                                        <div class="box box-default">
                                             <h4 class="box-title">Perguntas</h4>
 
                                             <div style="height:250px; overflow: auto;" >
-                                                <h:dataTable class="table table-responsive"
+                                                <h:dataTable class="table table-hover"
                                                              value="#{controladorExercicio.questoesTeste}" var="pergunta">
 
                                                     <h:column>
-                                                        <div class="box-body">
-                                                            <ul class="todo-list">
-                                                                <li>
-                                                                    <div class="tools">
-                                                                        <h:commandLink value="" class="fa fa-trash-o" 
-                                                                                       action="#{controladorExercicio.removerPerguntaCadastrar(pergunta)}"/>
-                                                                    </div>
-
-                                                                    <span class="text text-green">Enunciado:</span>
-                                                                    <span class="text text-blue">#{pergunta.enunciado}</span><br />
-                                                                    <span class="text text-green text-bold">Categoria:</span>
-                                                                    <span class="text text-blue text-bold">#{pergunta.categoria}</span>
-
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                        <label class="text-blue">#{pergunta.enunciado}</label>
                                                     </h:column>
 
                                                 </h:dataTable>

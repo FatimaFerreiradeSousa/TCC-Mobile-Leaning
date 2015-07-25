@@ -116,8 +116,7 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="testes.jsf">Testes</a></li>
-                                    <li><a href="resultadosTestes.jsf">Resultados</a></li>
+                                    <li><a href="resultadosTestes.jsf">Testes</a></li>
                                 </ul>
                             </li>
 
@@ -145,7 +144,7 @@
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>150</h3>
+                                    <h3>#{aluno.respondeExercicio.size()}</h3>
                                     <p>Testes Resolvidos</p>
                                 </div>
 
@@ -159,8 +158,8 @@
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                    <p>Pontuação</p>
+                                    <h3>#{aluno.pontuacao}</h3>
+                                    <p>Pontuação Geral</p>
                                 </div>
 
                                 <a href="#" class="small-box-footer">
@@ -187,11 +186,11 @@
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">
-                                    <h3>65</h3>
+                                    <h3>#{controladorGrupoAluno.meusGrupos().size()}</h3>
                                     <p>Grupos</p>
                                 </div>
 
-                                <a href="#" class="small-box-footer">
+                                <a href="meus-grupos.jsf" class="small-box-footer">
                                     Mais info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -237,7 +236,7 @@
                 <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">FFS - Developers</a>.
                 </strong> All rights reserved.
             </footer>
-            
+
         </div><!-- ./wrapper -->
     </h:body>
 </html>

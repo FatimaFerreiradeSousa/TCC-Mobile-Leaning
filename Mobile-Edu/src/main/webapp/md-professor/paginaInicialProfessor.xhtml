@@ -177,8 +177,9 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <p>#{controladorListAnt.ant1.titulo} <br />
-                                        #{controladorListAnt.ant1.conteudo}</p>
-                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant2.dataConclusao}">
+                                        #{controladorListAnt.ant1.conteudo}
+                                    </p>
+                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant1.dataConclusao}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:outputLabel>
                                 </div>
@@ -273,16 +274,11 @@
                                     <div class="box-footer clearfix no-border">
                                         <h:form>
                                             <ul class="pagination pagination-sm no-margin pull-right">
-                                                <li><a href="#">&laquo;</a></li>
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">&raquo;</a></li>
-
                                                 <li><a action="#" class="btn btn-success pull-right"
                                                        href="#signup" data-toggle="modal" data-target="#modalAnotacao">
                                                         Nova Anotação
-                                                    </a></li>
+                                                    </a>
+                                                </li>
                                             </ul>
 
                                         </h:form>

@@ -35,6 +35,7 @@ public class ControladorAluno implements Serializable {
     private String mes;
     private String ano;
     private String mensagem;
+    private String mensagemLogin;
 
     @EJB
     Fachada fachada;
@@ -66,6 +67,14 @@ public class ControladorAluno implements Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public String getMensagemLogin() {
+        return mensagemLogin;
+    }
+
+    public void setMensagemLogin(String mensagemLogin) {
+        this.mensagemLogin = mensagemLogin;
     }
 
     public UploadedFile getFile() {
@@ -134,11 +143,11 @@ public class ControladorAluno implements Serializable {
                 alunoLogado = (Aluno) session.getAttribute("aluno");
                 context.redirect(request.getContextPath() + loginPage);
             } else {
-                mensagem = "Login ou senha inválidos!";
+                mensagemLogin = "Login ou senha invÃ¡lidos!";
                 aluno = new Aluno();
             }
         } else {
-            mensagem = "Preencha todos os campos!";
+            mensagemLogin = "Preencha todos os campos!";
         }
     }
 

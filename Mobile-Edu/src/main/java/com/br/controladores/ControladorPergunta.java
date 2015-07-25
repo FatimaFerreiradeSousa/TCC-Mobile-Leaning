@@ -83,16 +83,16 @@ public class ControladorPergunta implements Serializable {
         return fachada.listarQuestoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
-    public String removerPergunta(Pergunta questao) {
-        List<Resposta> respostas1 = questao.getRespostas();
-        boolean status = fachada.removerQuestao(questao);
+    public String removerPergunta() {
+        List<Resposta> respostas1 = pergunta.getRespostas();
+        boolean status = fachada.removerQuestao(pergunta);
         boolean status1 = fachada.removerResposta(respostas1);
 
         if (status == true && status1 == true) {
             this.mensagem = "Nenhuma Pergunta Cadastrada";
-            return this.mensagem;
+            return "perguntasCadastradas?faces-redirect=true";
         } else {
-            return null;
+            return "perguntasCadastradas?faces-redirect=true";
         }
     }
 
@@ -123,6 +123,12 @@ public class ControladorPergunta implements Serializable {
     
     public String atualizarResposta(){
         fachada.atualizarResposta(resposta);
+        return "editarPergunta?faces-redirect=true";
+    }
+    
+    public String removerResposta(){
+        this.pergunta.getRespostas().remove(resposta);
+        
         return "editarPergunta?faces-redirect=true";
     }
 }

@@ -9,7 +9,6 @@ import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -27,6 +26,7 @@ public class ControladorExercicio implements Serializable {
     private List<Pergunta> questoesTeste;
     private List<String> grupos;
     private String codigoGrupo;
+    private Pergunta pergunta;
 
     @EJB
     Fachada fachada;
@@ -36,6 +36,7 @@ public class ControladorExercicio implements Serializable {
         questoesTeste = new ArrayList();
         teste = new Teste();
         grupos = new ArrayList();
+        pergunta = new Pergunta();
     }
 
     public Teste getExercicio() {
@@ -83,20 +84,20 @@ public class ControladorExercicio implements Serializable {
         this.codigoGrupo = codigoGrupo;
     }
 
+    public Pergunta getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(Pergunta pergunta) {
+        this.pergunta = pergunta;
+    }
+
     public String salvarTeste() {
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();
         this.questoesTeste = new ArrayList();
-
-        return "cadExercicio?faces-redirect=true";
-    }
-
-    public String removerPerguntaCadastrar(Pergunta pergunta) {
-
-        this.questoesTeste.remove(pergunta);
-        this.exercicio.setQtdPerguntas(this.questoesTeste.size());
 
         return "cadExercicio?faces-redirect=true";
     }
@@ -113,7 +114,7 @@ public class ControladorExercicio implements Serializable {
         return fachada.listarTestes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
-    public String removerTeste(Teste teste) {
+    public String removerTeste() {
         fachada.removerExercicio(teste);
         return "testesCadastrados?faces-redirect=true";
     }
@@ -133,7 +134,7 @@ public class ControladorExercicio implements Serializable {
         return "editarTeste?faces-redirect=true";
     }
 
-    public String removerPergunta(Pergunta pergunta) {
+    public String removerPergunta() {
 
         this.questoesTeste.remove(pergunta);
         this.teste.setQtdPerguntas(this.questoesTeste.size());
@@ -141,9 +142,13 @@ public class ControladorExercicio implements Serializable {
         return "editarTeste?faces-redirect=true";
     }
 
-    public String paginaEnviar(Teste teste) {
-        this.teste = teste;
-
+    public String paginaVisualizarPergunta(Pergunta pergunta){
+        this.pergunta = pergunta;
+        
+        return "pagina-visualizar-pergunta?faces-redirect=true";
+    }
+    
+    public String paginaEnviar() {
         return "pagina-enviar-teste?faces-redirect=true";
     }
 
