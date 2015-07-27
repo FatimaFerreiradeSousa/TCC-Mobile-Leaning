@@ -20,6 +20,7 @@
         <link href="../assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/skins/skin-purple.min.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../fonts/font-awesome/font-awesome.css" rel="stylesheet" type="text/css"/>
 
         <script src="../assets/jQuery/jQuery-2.1.3.min.js"></script>
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
@@ -201,26 +202,23 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <a action="#" class="bt-link-grupo btn btn-primary btn-xs"
-                               href="#signup" data-toggle="modal" data-target="#modalPostagem">
-                                Publicar
+                            <button action="#" class="btn btn-default"
+                                    data-toggle="modal" data-target="#modalPostagem">
+                                <i class="fa fa-comment"></i>
+                            </button>
+
+                            <button class="btn btn-primary"
+                                    data-toggle="modal" data-target="#modalArquivo">
+                                <i class="fa fa-archive"></i>
+                            </button>
+
+                            <a class="btn btn-default" href="pagInicialGrupo.jsf">
+                                <i class="fa fa-home"></i>
                             </a>
 
-                            <a action="#" class="bt-link-grupo btn btn-danger btn-xs"
-                               href="#signup" data-toggle="modal" data-target="#modalArquivo">
-                                Arquivo
-                            </a>
-
-                            <div class="btn-group pull-right">
-                                <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a action="#" class=""
-                                           href="#signup" data-toggle="modal" data-target="#modalConfiguracoes">
-                                            Configurações
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <button class="btn btn-primary" data-toggle="modal"  data-target="#modalConfiguracoes">
+                                <i class="fa fa-wrench"></i>
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -272,7 +270,6 @@
                                                     </h:form>
 
                                                 </p>
-
                                                 <div class="attachment">
                                                     <h:dataTable class="table" value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario">
                                                         <h:column>
@@ -321,7 +318,6 @@
                                                         </div>
                                                     </h:form>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -332,7 +328,7 @@
                         <div class="col-md-4">
                             <div class="box box-danger">
                                 <div style="margin-left: 1em; text-align: center">
-                                    <h4 class="box-title">Membros</h4>
+                                    <h4 class="box-title">Membros (#{controladorGrupo.membrosGrupo().size()})</h4>
                                 </div><!-- /.box-header -->
 
                                 <div class="box-body no-padding">
@@ -587,14 +583,11 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
                                 <h:commandLink value="" class="btn btn-primary" 
                                                action="#{controladorGrupo.atualizarGrupo()}">
                                     <i class="fa fa-refresh"></i>
                                 </h:commandLink>
-                                
+
                                 <h:commandLink value="" class="btn btn-warning"
                                                action="#{controladorGrupo.removerGrupo()}">
                                     <i class="fa fa-remove"></i>

@@ -260,6 +260,10 @@ public class GerenciadorGrupo implements Serializable {
     public List<Comentario> comentariosTopico(Topico topico) {
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
+    
+    public int sizeComentarioTopico(Topico topico){
+        return fachada.listarComentariosTopico(topico.getCodigo()).size();
+    }
 
     /*Membros do grupo*/
     public String buscarAluno() {
