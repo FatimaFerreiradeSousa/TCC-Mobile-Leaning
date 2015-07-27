@@ -85,7 +85,7 @@
                                     <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -181,7 +181,7 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
-            
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <section class="content">
@@ -202,41 +202,17 @@
                             <h:form>
 
                                 <c:if test="#{controladorGrupo.gruposCriados().size() > 0}">
-                                    <h:dataTable class="table table-responsive" 
+                                    <h:dataTable class="table table-hover" 
                                                  value="#{controladorGrupo.gruposCriados()}" var="grupo">
 
                                         <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <label>
-                                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
-                                                        </label>
-                                                        <div class="tools">
-                                                            
-                                                            <h:commandLink value="" class="fa fa-edit" 
-                                                                           action="#{controladorGrupo.paginaAtualizarGrupo(grupo)}"/>
-
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorGrupo.removerGrupo(grupo)}"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
                                         </h:column>
                                     </h:dataTable>
-
-                                    <div class="box-footer clearfix no-border">
-                                        <h:form>
-                                            <ul class="pagination pagination-sm no-margin pull-right">
-                                                <li><a href="#">&laquo;</a></li>
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">&raquo;</a></li>
-                                            </ul>
-                                        </h:form>
-                                    </div>
+                                </c:if>
+                                
+                                <c:if test="#{controladorGrupo.gruposCriados().size() == 0}">
+                                    Você não possui nenhum grupo
                                 </c:if>
                             </h:form>
 

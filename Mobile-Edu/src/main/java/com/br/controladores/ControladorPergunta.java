@@ -57,6 +57,14 @@ public class ControladorPergunta implements Serializable {
         this.mensagem = mensagem;
     }
 
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+
     public String adicionarRespostas() {
 
         if (fachada.consultarQuestao(pergunta.getCodigo()) == null) {

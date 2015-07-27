@@ -107,7 +107,7 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
-    public String removerGrupo(Grupo grupo) {
+    public String removerGrupo() {
         fachada.removerGrupo(grupo);
         
         return "cadGrupo?faces-redirect=true";
@@ -316,14 +316,9 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.listarNotificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
-    public String paginaAtualizarGrupo(Grupo grupo) {
-        this.grupo = grupo;
-        return "pag-editar-grupo?faces-redirect=true";
-    }
-
     public String atualizarGrupo() {
         fachada.atualizarGrupo(grupo);
-        return "cadGrupo?faces-redirect=true";
+        return "pagInicialGrupo?faces-redirect=true";
     }
 
     public String rejeitarSolicitacao(ParticipaGrupo participaGrupo) {

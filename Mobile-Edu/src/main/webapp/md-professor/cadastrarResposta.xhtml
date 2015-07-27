@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Professor | Cadastrar Resposta</title>
-        
+
         <meta charset="UTF-8" />
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -86,7 +86,7 @@
                                     <li class="footer"><a href="pagina-notificacoes.jsf">Ver todas</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -179,7 +179,7 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
-            
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper ">
                 <!-- Main content -->
@@ -188,10 +188,10 @@
                         <div class="box box-primary">
                             <h4 class="h-info afastamento">Adicionar Respostas</h4>
                         </div>
-                        
+
                         <h:form>
                             <h5><h:outputLabel>Pergunta: #{ControladorPergunta.pergunta.enunciado}</h:outputLabel></h5>
-                            
+
                             <div class="row">
                                 <div class="col-xs-7">
                                     <label class="control-label" for="Resposta">Resposta </label>
@@ -205,15 +205,8 @@
                                         <h:selectBooleanCheckbox id="resp" value="#{ControladorPergunta.resposta.respostaCerta}"/>
                                     </div>
                                 </div>
-                                
-                                <div class="col-xs-2">
-                                    <label class="control-label" for="Resposta">Respostas</label><br />
-                                    <label class="text-blue"  style="margin-left: 2em;">
-                                        #{ControladorPergunta.pergunta.qtdRespostas}</label>
-                                </div>
-
                             </div><br />
-                            
+
                             <div class="row">
                                 <div class="col-xs-12 form-inline">
                                     <h:commandButton value="Adicionar Resposta" class="btn btn-success btn-cad-questao" 
@@ -222,13 +215,21 @@
                                     <h:commandButton value="Cadastrar Pergunta" class="btn btn-primary btn-cad-questao" 
                                                      action="#{ControladorPergunta.salvarPergunta()}"/>
                                 </div>
-                            </div>
+                            </div><br />
 
+                            <c:if test="#{ControladorPergunta.respostas.size() > 0}">
+                                <h:dataTable class="table table-striped" value="#{ControladorPergunta.respostas}" var="resposta">
+                                        <h:column>
+                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="text-danger"/>
+                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
+                                        </h:column>
+                                </h:dataTable>
+                            </c:if>
                         </h:form>
                     </div>
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-            
+
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>Versão</b> 1.0
