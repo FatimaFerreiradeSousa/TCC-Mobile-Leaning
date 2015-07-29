@@ -109,10 +109,10 @@ public class GerenciadorGrupo implements Serializable {
 
     public String removerGrupo() {
         fachada.removerGrupo(grupo);
-        
+
         return "cadGrupo?faces-redirect=true";
     }
-    
+
     public String pagInicialGrupo(Grupo grupo) {
         this.grupo = grupo;
         return "pagInicialGrupo?faces-redirect=true";
@@ -137,7 +137,7 @@ public class GerenciadorGrupo implements Serializable {
     public List<Topico> topicos() {
         return fachada.topicosGrupo(grupo.getCodigo());
     }
-    
+
     public Topico buscarTopico() {
         return fachada.topicosGrupo(grupo.getCodigo()).get(0);
     }
@@ -215,12 +215,12 @@ public class GerenciadorGrupo implements Serializable {
         InputStream stream = new FileInputStream(caminho);
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 nome);
-        
+
         topico = fachada.buscarTopico(codigo);
         topico.setQtdDownloads(topico.getQtdDownloads() + 1);
-        
+
         fachada.atualizarTopico(topico);
-        
+
         return fileDownload;
     }
 
@@ -260,8 +260,8 @@ public class GerenciadorGrupo implements Serializable {
     public List<Comentario> comentariosTopico(Topico topico) {
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
-    
-    public int sizeComentarioTopico(Topico topico){
+
+    public int sizeComentarioTopico(Topico topico) {
         return fachada.listarComentariosTopico(topico.getCodigo()).size();
     }
 
@@ -344,14 +344,21 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     /*Membros Grupo*/
-    public List<Aluno> membrosGrupo() {
+    public List<Aluno> listarAlunosGrupo() {
+        return fachada.listarMembrosGrupo(grupo.getCodigo());
+    }
+
+    public Aluno membrosGrupo(int posicao) {
         List<Aluno> alunos = fachada.listarMembrosGrupo(grupo.getCodigo());
+        Aluno aluno = null;
 
         if (alunos.isEmpty()) {
-            return null;
-        } else {
-            return alunos;
+            if(alunos.size() == 1){
+                aluno = alunos.get(0);
+            }
         }
+        
+        return aluno;
     }
 
     /*Fotos usuarios*/
@@ -394,15 +401,15 @@ public class GerenciadorGrupo implements Serializable {
     public String paginaListarTeste() {
         return "pagina-listar-testes?faces-redirect=true";
     }
-    
-    public int quantidadeDownload(){
+
+    public int quantidadeDownload() {
         List<Topico> topicos = fachada.topicosGrupo(grupo.getCodigo());
         int qtdDownload = 0;
-        
-        for(Topico t: topicos){
+
+        for (Topico t : topicos) {
             qtdDownload += t.getQtdDownloads();
         }
-        
+
         return qtdDownload;
     }
 }

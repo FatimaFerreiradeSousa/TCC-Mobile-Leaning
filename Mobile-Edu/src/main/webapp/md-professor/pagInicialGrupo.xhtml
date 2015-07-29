@@ -271,7 +271,8 @@
 
                                                 </p>
                                                 <div class="attachment">
-                                                    <h:dataTable class="table" value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario">
+                                                    <h:dataTable class="table" value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario" 
+                                                                 rendered="#{controladorGrupo.sizeComentarioTopico(topico) > 0}">
                                                         <h:column>
                                                             <div class="box-tools pull-right">
                                                                 <h:form>
@@ -328,48 +329,40 @@
                         <div class="col-md-4">
                             <div class="box box-danger">
                                 <div style="margin-left: 1em; text-align: center">
-                                    <h4 class="box-title">Membros (#{controladorGrupo.membrosGrupo().size()})</h4>
+                                    <h4 class="box-title">Membros (#{controladorGrupo.listarAlunosGrupo().size()})</h4>
                                 </div><!-- /.box-header -->
 
                                 <div class="box-body no-padding">
-
                                     <ul class="users-list clearfix">
-                                        <c:if test="#{controladorGrupo.membrosGrupo() != null}">
-
+                                        <c:if test="#{controladorGrupo.listarAlunosGrupo() != null}">
                                             <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Okay</a>
-                                                <span class="users-list-date">14 Jan</span>
+                                                <p:graphicImage id="foto0" 
+                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
+                                                                rendered="#{controladorGrupo.membrosGrupo(0).login != null}">
+                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(0).login}"/>
+                                                </p:graphicImage>
+                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(0).login}"
+                                                            rendered="#{controladorGrupo.membrosGrupo(0).login != null}"/>
                                             </li>
 
                                             <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
+                                                <p:graphicImage id="foto1" 
+                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
+                                                                rendered="#{controladorGrupo.membrosGrupo(1).login != null}">
+                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(1).login}"/>
+                                                </p:graphicImage>
+                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(1).login}"
+                                                            rendered="#{controladorGrupo.membrosGrupo(1).login != null}"/>
                                             </li>
 
                                             <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Sarah</a>
-                                                <span class="users-list-date">14 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
+                                                <p:graphicImage id="foto2" 
+                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
+                                                                rendered="#{controladorGrupo.membrosGrupo(2).login != null}">
+                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(2).login}"/>
+                                                </p:graphicImage>
+                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(2).login}"
+                                                            rendered="#{controladorGrupo.membrosGrupo(2).login != null}"/>
                                             </li>
 
                                             <li>
@@ -384,9 +377,26 @@
                                                 <span class="users-list-date">15 Jan</span>
                                             </li>
 
+                                            <li>
+                                                <img src="../img/icPerfil.png" alt="User Image"/>
+                                                <a class="users-list-name" href="#">Nora</a>
+                                                <span class="users-list-date">15 Jan</span>
+                                            </li>
+
+                                            <li>
+                                                <img src="../img/icPerfil.png" alt="User Image"/>
+                                                <a class="users-list-name" href="#">Nora</a>
+                                                <span class="users-list-date">15 Jan</span>
+                                            </li>
+
+                                            <li>
+                                                <img src="../img/icPerfil.png" alt="User Image"/>
+                                                <a class="users-list-name" href="#">Nora</a>
+                                                <span class="users-list-date">15 Jan</span>
+                                            </li>
                                         </c:if>
 
-                                        <c:if test="#{controladorGrupo.membrosGrupo() == null}">
+                                        <c:if test="#{controladorGrupo.listarAlunosGrupo() == null}">
                                             <div class="box-footer text-center">
                                                 <label class="uppercase">Nenhum membro</label>
                                             </div><!-- /.box-footer -->
