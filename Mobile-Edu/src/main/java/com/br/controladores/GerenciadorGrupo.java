@@ -273,6 +273,7 @@ public class GerenciadorGrupo implements Serializable {
             return "pag-buscar-usuario?faces-redirect=true";
         } else {
             aluno = new Aluno();
+            mensagem = "Nenhum usuário encontrado";
             return "pag-buscar-usuario?faces-redirect=true";
         }
     }
