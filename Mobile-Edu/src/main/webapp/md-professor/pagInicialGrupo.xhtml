@@ -216,9 +216,17 @@
                                 <i class="fa fa-home"></i>
                             </a>
 
-                            <button class="btn btn-primary" data-toggle="modal"  data-target="#modalConfiguracoes">
-                                <i class="fa fa-wrench"></i>
-                            </button>
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle btn btn-primary" data-toggle="dropdown">
+                                    <i class="fa fa-wrench"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" >Informações</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#" data-toggle="modal"  data-target="#modalConfiguracoes">
+                                            Configurações</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -328,81 +336,7 @@
 
                         <div class="col-md-4">
                             <div class="box box-danger">
-                                <div style="margin-left: 1em; text-align: center">
-                                    <h4 class="box-title">Membros (#{controladorGrupo.listarAlunosGrupo().size()})</h4>
-                                </div><!-- /.box-header -->
-
-                                <div class="box-body no-padding">
-                                    <ul class="users-list clearfix">
-                                        <c:if test="#{controladorGrupo.listarAlunosGrupo() != null}">
-                                            <li>
-                                                <p:graphicImage id="foto0" 
-                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
-                                                                rendered="#{controladorGrupo.membrosGrupo(0).login != null}">
-                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(0).login}"/>
-                                                </p:graphicImage>
-                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(0).login}"
-                                                            rendered="#{controladorGrupo.membrosGrupo(0).login != null}"/>
-                                            </li>
-
-                                            <li>
-                                                <p:graphicImage id="foto1" 
-                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
-                                                                rendered="#{controladorGrupo.membrosGrupo(1).login != null}">
-                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(1).login}"/>
-                                                </p:graphicImage>
-                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(1).login}"
-                                                            rendered="#{controladorGrupo.membrosGrupo(1).login != null}"/>
-                                            </li>
-
-                                            <li>
-                                                <p:graphicImage id="foto2" 
-                                                                value="#{controladorFotos.mostrarFotoMembro()}" 
-                                                                rendered="#{controladorGrupo.membrosGrupo(2).login != null}">
-                                                    <f:param name="loginAluno" value="#{controladorGrupo.membrosGrupo(2).login}"/>
-                                                </p:graphicImage>
-                                                <h:outputLabel class="users-list-name" value="#{controladorGrupo.membrosGrupo(2).login}"
-                                                            rendered="#{controladorGrupo.membrosGrupo(2).login != null}"/>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-
-                                            <li>
-                                                <img src="../img/icPerfil.png" alt="User Image"/>
-                                                <a class="users-list-name" href="#">Nora</a>
-                                                <span class="users-list-date">15 Jan</span>
-                                            </li>
-                                        </c:if>
-
-                                        <c:if test="#{controladorGrupo.listarAlunosGrupo() == null}">
-                                            <div class="box-footer text-center">
-                                                <label class="uppercase">Nenhum membro</label>
-                                            </div><!-- /.box-footer -->
-                                        </c:if>
-                                    </ul><!-- /.users-list -->
-
+                               <div class="box-body no-padding">
                                     <div class="box-footer">
                                         <h:form>
                                             <div class="input-group">
