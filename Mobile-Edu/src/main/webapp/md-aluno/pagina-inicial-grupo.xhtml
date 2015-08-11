@@ -137,32 +137,50 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h:form>
-                        <div class="callout callout-warning">
-                            <h4>
-                                #{controladorGrupoAluno.grupo.nome}<br />
-                            </h4>
+                    <div class="alert alert-warning">
+                        <h4>
+                            #{controladorGrupoAluno.grupo.nome}<br />
+                        </h4>
 
-                            <small>#{controladorGrupoAluno.grupo.descricao}</small><br />
-                        </div>
+                        <small>#{controladorGrupoAluno.grupo.descricao}</small><br />
+                    </div>
 
-                        <a action="#" class="bt-link-grupo btn btn-primary btn-xs"
-                           href="#signup" data-toggle="modal" data-target="#modalPostagem">
-                            Publicar
-                        </a>
+                    <button action="#" class="btn btn-success"
+                            data-toggle="modal" data-target="#modalPostagem">
+                        <i class="fa fa-comment"></i>
+                    </button>
 
-                        <a action="#" class="bt-link-grupo btn btn-success btn-xs"
-                           href="#signup" data-toggle="modal" data-target="#modalArquivo">
-                            Arquivo
-                        </a>
+                    <button class="btn btn-primary"
+                            data-toggle="modal" data-target="#modalArquivo">
+                        <i class="fa fa-archive"></i>
+                    </button>
 
-                        <h:commandLink value="Sair do grupo" action="#{controladorGrupoAluno.sairGrupo()}" 
-                                       class="bt-link-grupo btn btn-danger btn-xs" style="margin-left: 5px"/>
-                    </h:form>
+                    <a class="btn btn-success" href="pagina-inicial-grupo.jsf">
+                        <i class="fa fa-home"></i>
+                    </a>
+
+                    <div class="btn-group">
+                        <button class="btn dropdown-toggle btn btn-primary" data-toggle="dropdown">
+                            <i class="fa fa-wrench"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" data-toggle="modal" data-target="#modalInfo">Informações</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <h:form>
+                                    <h:commandLink value="Sair do grupo" action="#{controladorGrupoAluno.sairGrupo()}" style="margin-left: 1em"/>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a class="btn btn-success" href="#" data-toggle="modal" data-target="#modalMembros">
+                        <i class="fa fa-users"></i>
+                    </a>
+
                 </section>
 
                 <section class="content">
-
                     <div class="row">
                         <div class="col-md-8">
                             <h:dataTable class="table table-responsive" value="#{controladorGrupoAluno.topicos()}" var="topico">
@@ -181,7 +199,9 @@
 
                                         <div class="box-body chat" id="chat-box">
                                             <div class="item">
-                                                <p:graphicImage id="coisa" value="#{controladorFotos.mostrarFotoUsuario(topico.loginUsuario)}"/>
+                                                <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
+                                                    <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                </p:graphicImage>
 
                                                 <p class="message">
                                                     <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
@@ -192,11 +212,12 @@
                                                     <a href="#" class="name">
                                                         #{topico.loginUsuario}
                                                     </a>
-                                                    #{topico.conteudo}
+                                                    <label>#{topico.conteudo}</label>
                                                 </p>
 
                                                 <div class="attachment">
-                                                    <h:dataTable class="table" value="#{controladorGrupoAluno.comentariosTopico(topico)}" var="comentario">
+                                                    <h:dataTable class="table" value="#{controladorGrupoAluno.comentariosTopico(topico)}" var="comentario"
+                                                                 rendered="#{controladorGrupo.sizeComentarioTopico(topico) > 0}">
                                                         <h:column>
                                                             <div class="box-tools pull-right">
                                                                 <h:form>
@@ -208,19 +229,19 @@
                                                             </div>
 
                                                             <div class="item">
-                                                                <p:graphicImage id="coisa" 
-                                                                                value="#{controladorFotos.mostrarFotoComentario(comentario.loginUsuario)}"/>
+                                                                <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
+                                                                    <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
+                                                                </p:graphicImage>
 
                                                                 <p class="message">
                                                                     <a href="#" class="name">
                                                                         #{comentario.loginUsuario}
                                                                     </a>
-                                                                    <h:outputLabel class="justify-text" style="font-size: 15px;" value="#{comentario.conteudo}"/> 
+                                                                    #{comentario.conteudo} 
 
-                                                                    <h:outputLabel value="#{comentario.dataComentario}" style="font-size: 10px; margin-left: 10px">
+                                                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px; margin-left: 10px">
                                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                                    </h:outputLabel>
-
+                                                                    </h:outputText>
                                                                 </p>
                                                             </div>
                                                         </h:column>
@@ -228,12 +249,14 @@
 
                                                     <h:form>
                                                         <div class="input-group">
-                                                            <h:inputText value="#{controladorGrupo.comentarioTopico.conteudo}" class="form-control" 
+                                                            <h:inputText value="#{controladorGrupoAluno.comentario.conteudo}" class="form-control" 
                                                                          pt:placeholder="Comentar..."/>
                                                             <div class="input-group-btn">
                                                                 <span class="input-group-btn">
-                                                                    <h:commandButton value="Comentar" class="btn btn-warning btn-flat"
-                                                                                     action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
+                                                                    <h:commandLink value="" class="btn btn-warning"
+                                                                                   action="#{controladorGrupoAluno.salvarComentario(topico)}">
+                                                                        <i class="fa fa-comments"></i>
+                                                                    </h:commandLink>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -248,81 +271,6 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="box box-danger">
-                                <div style="margin-left: 1em; text-align: center">
-                                    <h4 class="box-title">Membros</h4>
-                                </div><!-- /.box-header -->
-
-                                <div class="box-body no-padding">
-
-                                    <ul class="users-list clearfix">
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Alexander Pierce</a>
-                                            <span class="users-list-date">Today</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Norman</a>
-                                            <span class="users-list-date">Yesterday</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Jane</a>
-                                            <span class="users-list-date">12 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">John</a>
-                                            <span class="users-list-date">12 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Alexander</a>
-                                            <span class="users-list-date">13 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Sarah</a>
-                                            <span class="users-list-date">14 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/icPerfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Nora</a>
-                                            <span class="users-list-date">15 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="../img/perfil.png" alt="User Image"/>
-                                            <a class="users-list-name" href="#">Nadia</a>
-                                            <span class="users-list-date">15 Jan</span>
-                                        </li>
-                                    </ul><!-- /.users-list -->
-
-                                    <div class="box-footer">
-                                        <h:form>
-                                            <div class="input-group">
-                                                <h:outputText value="#{controladorGrupo.mensagem}" 
-                                                              id="erroPesquisarUsuario" class="text-danger"/>
-
-                                                <h:inputText pt:placeholder="Pesquisar Usuario..." value="#{controladorGrupo.aluno.login}" 
-                                                             class="form-control" id="pesquisarUsuario"/>
-
-                                                <span class="input-group-btn">
-                                                    <h:commandButton value="Pesquisar" class="btn btn-warning btn-flat"
-                                                                     action="#{controladorGrupo.buscarAluno()}">
-                                                        <f:ajax execute="pesquisarUsuario" render="erroPesquisarUsuario"/>
-                                                    </h:commandButton>
-                                                </span>
-                                            </div>
-                                        </h:form>
-                                    </div><!-- /.box-footer-->
-
-                                    <div class="box-footer text-center">
-                                        <a href="pag-listar-membros.jsf" class="uppercase">Ver todos os membros...</a>
-                                    </div><!-- /.box-footer -->
-                                </div>
-                            </div>
-
 
                             <h:form>
                                 <div class="info-box bg-red">
@@ -454,7 +402,6 @@
 
         <div class="modal fade" id="modalPostagem">
             <div class="modal-dialog">
-
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -472,16 +419,77 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 <h:commandLink value="Cadastrar" class="btn btn-primary" 
                                                action="#{controladorGrupoAluno.salvarTopicoAluno()}"/>
                             </div>
-
                         </div>
                     </h:form>
+                </div>
+            </div>
+        </div>
 
+        <div class="modal fade" id="modalInfo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Informações do grupo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <h:outputText class="control-label" value="Grupo: #{controladorGrupoAluno.grupo.nome} - 
+                                                  #{controladorGrupoAluno.grupo.descricao}"/><br />
+                                    <h:outputText class="control-label" value="Criado por #{controladorGrupoAluno.grupo.professorGrupos.login}"/>
+                                    em <h:outputText value="#{controladorGrupoAluno.grupo.dataCriacao}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalMembros">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Todos os membros</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h:dataTable value="#{controladorGrupoAluno.listarMembros()}" var="aluno" class="">
+                                    <h:column>
+                                        <ul class="users-list clearfix">
+                                            <li>
+                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}">
+                                                    <f:param name="loginUsuario" value="#{aluno.login}"/>
+                                                </p:graphicImage>
+                                                
+                                                <span class="users-list-date">Today</span>
+                                                
+                                           </li>
+                                        </ul>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

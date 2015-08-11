@@ -227,6 +227,10 @@
                                             Configurações</a></li>
                                 </ul>
                             </div>
+                            
+                            <a class="btn btn-success" href="pag-listar-membros.jsf">
+                                <i class="fa fa-users"></i>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -335,30 +339,6 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="box box-danger">
-                               <div class="box-body no-padding">
-                                    <div class="box-footer">
-                                        <h:form>
-                                            <div class="input-group">
-                                                <h:inputText pt:placeholder="Pesquisar Usuario..." value="#{controladorGrupo.aluno.login}" 
-                                                             class="form-control" id="pesquisarUsuario"/>
-
-                                                <span class="input-group-btn">
-                                                    <h:commandLink value="" class="btn btn-warning"
-                                                                   action="#{controladorGrupo.buscarAluno()}">
-                                                        <i class="fa fa-search"></i>
-                                                    </h:commandLink>
-                                                </span>
-                                            </div>
-                                        </h:form>
-                                    </div><!-- /.box-footer-->
-
-                                    <div class="box-footer text-center">
-                                        <a href="pag-listar-membros.jsf" class="uppercase">Ver todos os membros...</a>
-                                    </div><!-- /.box-footer -->
-                                </div>
-                            </div>
-
                             <h:form>
                                 <div class="info-box bg-red">
                                     <span class="info-box-icon">#{controladorGrupo.listarTestesGrupo().size()}

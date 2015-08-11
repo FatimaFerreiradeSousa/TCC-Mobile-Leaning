@@ -153,24 +153,12 @@
                                 <h5 class="text-blue" id="myModalLabel">Meus Grupos</h5>
 
                                 <h:form>
-                                    <h:dataTable value="#{controladorGrupoAluno.meusGrupos()}" var="participaGrupo" class="table">
+                                    <h:dataTable value="#{controladorGrupoAluno.meusGrupos()}" var="participaGrupo" class="table table-hover table-condensed">
                                         <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <label>
-                                                            <h:commandLink value="#{participaGrupo.grupo.nome}" 
-                                                                           action="#{controladorGrupoAluno.paginaInicialGrupo(participaGrupo.grupo)}"
-                                                                           class="text-success"/>
-                                                        </label>
-                                                        <div class="tools">
 
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorGrupo.removerGrupo(grupo)}"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <h:commandLink value="#{participaGrupo.grupo.nome}" 
+                                                           action="#{controladorGrupoAluno.paginaInicialGrupo(participaGrupo.grupo)}"
+                                                           class="text-success"/>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

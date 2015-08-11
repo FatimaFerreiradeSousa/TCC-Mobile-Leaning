@@ -152,8 +152,9 @@
                                 <div class="input-group margin">
                                     <h:inputText value="#{controladorGrupoAluno.nomeGrupo}" class="form-control"/>
                                     <span class="input-group-btn">
-                                        <h:commandButton class="btn btn-info btn-flat" value="Buscar" action="#{controladorGrupoAluno.listarGruposPorNome()}"
-                                                         pt:placeholde="Pesquisar Grupo"/>
+                                        <h:commandLink class="btn btn-info" value="" action="#{controladorGrupoAluno.listarGruposPorNome()}">
+                                            <i class="fa fa-search"></i>
+                                        </h:commandLink>
                                     </span>
                                 </div><!-- /input-group -->
                             </h:form>
@@ -165,23 +166,10 @@
                                 <h5 class="text-blue" id="myModalLabel">Resultados encontrados</h5>
 
                                 <h:form>
-                                    <h:dataTable value="#{controladorGrupoAluno.listarGruposPorNome()}" var="grupo" class="table">
+                                    <h:dataTable value="#{controladorGrupoAluno.listarGruposPorNome()}" var="grupo" class="table table-hover">
                                         <h:column>
-                                            <div class="box-body">
-                                                <ul class="todo-list">
-                                                    <li>
-                                                        <label>
-                                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(grupo)}"
-                                                                           class="text-success"/>
-                                                        </label>
-                                                        <div class="tools">
-
-                                                            <h:commandLink value="" class="fa fa-trash-o" 
-                                                                           action="#{controladorGrupo.removerGrupo(grupo)}"/>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <h:commandLink value="#{grupo.nome}" action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(grupo)}"
+                                                           class="text-success text-bold"/>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

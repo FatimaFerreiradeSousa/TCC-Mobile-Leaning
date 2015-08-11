@@ -2453,7 +2453,7 @@ table.text-center th {
 .users-list > li {
     width: 25%;
     float: left;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
 }
 
@@ -2472,6 +2472,16 @@ table.text-center th {
 .users-list-name,.users-list-date {
     display: block;
 }
+
+.list-users-name{
+    font-weight: 600;
+    color: #444;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 2em;
+}
+
 .users-list-name {
     font-weight: 600;
     color: #444;

@@ -226,4 +226,23 @@ public class ControladorGrupoAluno implements Serializable {
     public String paginaListarTeste(){
         return "md-listar-teste?faces-redirect=true";
     }
+    
+    public String salvarComentario(Topico topico){
+        comentario.setDataComentario(new Date());
+        comentario.setTopico(topico);
+        comentario.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        
+        boolean resposta = fachada.salvarComentario(comentario);
+        
+        if(resposta == true){
+            comentario = new Comentario();
+            return "pagina-inicial-grupo?faces-redirect=true";
+        }
+        
+        return "pagina-inicial-grupo?faces-redirect=true";
+    }
+    
+    public List<Aluno> listarMembros(){
+        return fachada.listarMembrosGrupo(grupo.getCodigo());
+    }
 }

@@ -42,7 +42,7 @@ public class ControladorFotos implements Serializable {
     public StreamedContent mostrarFoto() {
 
         String loginUsuario = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginUsuario");
-        
+
         if (loginUsuario != null) {
             Pessoa pessoa = new Pessoa();
 
@@ -68,11 +68,11 @@ public class ControladorFotos implements Serializable {
         }
         return new DefaultStreamedContent();
     }
-    
+
     public StreamedContent mostrarFotoComentario() {
 
         String loginComentario = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginComentario");
-        
+
         if (loginComentario != null) {
             Pessoa pessoa = new Pessoa();
 
@@ -98,11 +98,39 @@ public class ControladorFotos implements Serializable {
         }
         return new DefaultStreamedContent();
     }
-    
+
     public StreamedContent mostrarFotoMembro() {
 
         String loginAluno = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginAluno");
-        
+
+        if (loginAluno != null) {
+            Aluno aluno = new Aluno();
+
+            if (fachada.buscarAluno(loginAluno) != null) {
+                aluno = fachada.buscarAluno(loginAluno);
+            }
+
+            File fotoUsuario = new File(aluno.getFoto());
+
+            try {
+                BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                in.close();
+                this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
+
+                return content;
+            } catch (Exception e) {
+                e.printStackTrace();
+            };
+        }
+        return new DefaultStreamedContent();
+    }
+
+    public StreamedContent mostrarFotosUsuarios() {
+
+        String loginAluno = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginUsuario");
+
         if (loginAluno != null) {
             Aluno aluno = new Aluno();
 
