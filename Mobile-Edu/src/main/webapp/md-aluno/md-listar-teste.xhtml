@@ -139,46 +139,30 @@
 
                 <section class="content-header">
                     <h:form>
-                        <div class="callout callout-warning">
+                        <div class="alert alert-warning">
                             <h4>
                                 #{controladorGrupoAluno.grupo.nome}<br />
                             </h4>
-
-                            <small>#{controladorGrupoAluno.grupo.descricao}</small><br />
                         </div>
                     </h:form>
                 </section>
 
 
                 <section class="content">
-                    Atividades
+                    <label>Atividades</label>
                     <h:form>
                         <c:if test="#{controladorGrupoAluno.listarTestesGrupo().size() > 0}">
-                            <h:dataTable class="table table-responsive" 
+                            <h:dataTable class="table table-hover" 
                                          value="#{controladorGrupoAluno.listarTestesGrupo()}" var="topico">
 
                                 <h:column>
-                                    <div class="box-body">
-                                        <ul class="todo-list">
-                                            <li>
-                                                <div class="tools">
-
-                                                    <h:commandLink value="" class="fa fa-file" 
-                                                                   action="#{controladorTeste.paginaVisualizarTeste(topico)}"/>
-
-                                                </div>
-
-                                                <span class="text text-success">Assunto: </span>
-                                                <span class="text-blue text">#{topico.conteudo}</span><br/>
-                                                <span class="text-success text">Entrega: </span>
-                                                <h:outputLabel class="text text-blue" value="#{topico.dataCriacao}">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                </h:outputLabel>
-
-                                                <br/>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <span class="text text-success">Assunto: </span>
+                                    <h:commandLink action="#{controladorTeste.paginaVisualizarTeste(topico)}" 
+                                                   value="#{topico.conteudo}" class="text text-bold"/><br />
+                                    <span class="text-success text">Entrega: </span>
+                                    <h:outputLabel class="text text-red" value="#{topico.dataCriacao}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputLabel>
                                 </h:column>
                             </h:dataTable>
 

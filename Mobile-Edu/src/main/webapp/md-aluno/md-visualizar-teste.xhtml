@@ -136,37 +136,40 @@
             </aside>
 
             <div class="content-wrapper">
-
                 <section class="content">
-                    <c:if test="#{controladorTeste.comecar == false}">
-                        #{controladorTeste.teste.assunto}
-                        <br />
+                    <div class="invoice">
 
-                        <h:form>
-                            <h:commandButton value="Começar Teste" action="#{controladorTeste.comecarAResponder()}"
-                                             class="btn btn-primary"/>
-                        </h:form>
-                    </c:if>
+                        <c:if test="#{controladorTeste.comecar == false}">
+                            <label class="text text-responde-att">#{controladorTeste.teste.assunto}</label>
+                            <br />
+                            <h:form>
+                                <h:commandLink value="Começar" action="#{controladorTeste.comecarAResponder()}"
+                                               class="btn btn-default orange-circle-button">
+                                    <span class="orange-circle-greater-than"></span>
+                                </h:commandLink>
+                            </h:form>
+                        </c:if>
 
-                    <c:if test="#{controladorTeste.comecar == true}">
+                        <c:if test="#{controladorTeste.comecar == true}">
 
-                        <label>#{controladorTeste.contador} - #{controladorTeste.pergunta.enunciado}</label>
+                            <label>#{controladorTeste.contador} - #{controladorTeste.pergunta.enunciado}</label>
 
-                        <br />
-                        <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" class="table">
+                            <br />
+                            <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" class="table table-hover">
 
-                            <h:column>
+                                <h:column>
 
-                                <h:form>
-                                    <div class="alert alert-success">
+                                    <h:form>
+
                                         <h:commandLink value="#{resposta.conteudo}" 
                                                        action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.pontuacao)}" />
-                                    </div>
-                                </h:form>
-                            </h:column>
 
-                        </h:dataTable>
-                    </c:if>
+                                    </h:form>
+                                </h:column>
+
+                            </h:dataTable>
+                        </c:if>
+                    </div>
                 </section><!-- /.content -->
 
             </div>
