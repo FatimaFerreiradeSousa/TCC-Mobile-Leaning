@@ -172,15 +172,11 @@ public class ControladorTeste implements Serializable {
 
     public void atualizarPontuacao() {
         String codGrupo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codGrupo");
-        System.out.println("Codigo Grupo: " + codGrupo);
         ParticipaGrupo pg = fachada.buscarParticipaGrupo(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), Integer.parseInt(codGrupo));
 
         if (pg != null) {
-            System.out.println("Okay");
             pg.setPontuacao(pg.getPontuacao() + resultado);
             fachada.atualizarSolicitacao(pg);
-        } else {
-            System.out.println("Erro!");
         }
     }
 }

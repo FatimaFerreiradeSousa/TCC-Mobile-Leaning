@@ -143,10 +143,10 @@
                             <label class="text text-responde-att">#{controladorTeste.teste.assunto}</label>
                             <br />
                             <h:form>
-                                <h:commandButton value="Começar" action="#{controladorTeste.comecarAResponder()}"
-                                               class="orange-circle-button">
-                                    <span class="orange-circle-greater-than"></span>
-                                </h:commandButton>
+                                <h:commandLink value="Começar teste" action="#{controladorTeste.comecarAResponder()}"
+                                                 class="btn btn-app">
+                                    <i class="fa fa-play"></i>
+                                </h:commandLink>
                             </h:form>
                         </c:if>
 
