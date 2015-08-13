@@ -30,4 +30,6 @@ public interface InterfaceDaoPGrupo {
     public List<ParticipaGrupo> solicitacoesRecebidas(String loginProfessor);
     
     public boolean removerMembros(int codigoGrupo);
+    
+    public ParticipaGrupo buscarParticipaGrupo(String loginAluno, int codGrupo);
 }

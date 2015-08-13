@@ -224,6 +224,10 @@ public class Fachada implements Serializable {
         return daoPaGrupo.removerMembros(codigoGrupo);
     }
     
+    public ParticipaGrupo buscarParticipaGrupo(String loginAluno, int codGrupo){
+        return daoPaGrupo.buscarParticipaGrupo(loginAluno, codGrupo);
+    }
+    
     /*CRUD Topicos*/
     public boolean salvarTopico(Topico topico){
         return daoTopico.salvar(topico);

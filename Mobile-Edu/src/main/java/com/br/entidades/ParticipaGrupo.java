@@ -28,15 +28,17 @@ public class ParticipaGrupo implements Serializable{
     private Grupo grupo;
     @OneToOne
     private Aluno aluno;
+    private float pontuacao;
     
     public ParticipaGrupo(){
     }
 
-    public ParticipaGrupo(boolean aceito, Grupo grupo, Aluno aluno, Date dataParticipacao) {
+    public ParticipaGrupo(boolean aceito, Grupo grupo, Aluno aluno, Date dataParticipacao, float pontuacao) {
         this.aceito = aceito;
         this.grupo = grupo;
         this.aluno = aluno;
         this.dataParticipacao = dataParticipacao;
+        this.pontuacao = pontuacao;
     }
 
     public int getId() {
@@ -77,5 +79,13 @@ public class ParticipaGrupo implements Serializable{
 
     public void setDataParticipacao(Date dataParticipacao) {
         this.dataParticipacao = dataParticipacao;
+    }
+
+    public float getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(float pontuacao) {
+        this.pontuacao = pontuacao;
     }
 }

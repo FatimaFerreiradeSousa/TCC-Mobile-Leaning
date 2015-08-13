@@ -1,14 +1,12 @@
 package com.br.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,20 +26,19 @@ public class RespondeExercicio implements Serializable{
     private Date dataResposta;
     private int codTeste;
     private boolean respondido;
-    
-    @ManyToMany(mappedBy = "respondeExercicio")
-    private List<Aluno> alunos;
+    @ManyToOne
+    private Aluno aluno;
     
     public RespondeExercicio(){
     
     }
 
-    public RespondeExercicio(float nota, Date dataResposta, int codTeste, boolean respondido) {
+    public RespondeExercicio(float nota, Date dataResposta, int codTeste, boolean respondido, Aluno aluno) {
         this.nota = nota;
         this.dataResposta = dataResposta;
         this.codTeste = codTeste;
         this.respondido = respondido;
-        this.alunos = new ArrayList();
+        this.aluno = aluno;
     }
 
     public int getId() {
@@ -84,11 +81,11 @@ public class RespondeExercicio implements Serializable{
         this.respondido = respondido;
     }
 
-    public List<Aluno> getAlunos() {
-        return alunos;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }

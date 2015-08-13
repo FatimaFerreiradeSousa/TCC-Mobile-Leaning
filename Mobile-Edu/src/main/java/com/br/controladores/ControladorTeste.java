@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -20,7 +21,7 @@ import javax.ejb.EJB;
 public class ControladorTeste implements Serializable {
 
     @EJB
-    private Fachada fachada; 
+    private Fachada fachada;
     private Teste teste;
     private int tamanho;
     private List<Pergunta> perguntas;
@@ -30,7 +31,7 @@ public class ControladorTeste implements Serializable {
     private float resultado;
     private boolean salvarTeste;
     private RespondeExercicio respondeExercicio;
-    
+
     public ControladorTeste() {
         teste = new Teste();
         tamanho = 0;
@@ -114,56 +115,72 @@ public class ControladorTeste implements Serializable {
         this.respondeExercicio = respondeExercicio;
     }
 
-    public String comecarAResponder(){
+    public String comecarAResponder() {
         comecar = true;
         tamanho = 0;
         pergunta = teste.getQuestoesExercicios().get(tamanho);
-        tamanho ++;
+        tamanho++;
         return "md-visualizar-teste?faces-redirect=true";
     }
 
-    public String paginaVisualizarTeste(Topico topico){
+    public String paginaVisualizarTeste(Topico topico) {
         teste = fachada.buscarExercicio(topico.getCodigoTeste());
         perguntas = teste.getQuestoesExercicios();
         return "md-visualizar-teste?faces-redirect=true";
     }
-    
-    public String enviarRespostas(Resposta resposta, float pontuacao){
-        
-        if(resposta.getRespostaCerta() == true){
+
+    public String enviarRespostas(Resposta resposta, float pontuacao) {
+
+        if (resposta.getRespostaCerta() == true) {
             resultado += pontuacao;
         }
-        
+
         int aux = teste.getQtdPerguntas();
-        
-        if(tamanho < aux){
+
+        if (tamanho < aux) {
             pergunta = teste.getQuestoesExercicios().get(tamanho);
         }
-        
-        if(tamanho == aux){
+
+        if (tamanho == aux) {
             tamanho = 0;
             return "pagina-visualizar-resultado?faces-redirect=true";
         }
-        
+
         tamanho++;
         contador++;
-        
+
         return "md-visualizar-teste?faces-redirect=true";
     }
-    
-    public String salvarTeste(){    
+
+    public String salvarTeste() {
         respondeExercicio.setCodTeste(teste.getCodigo());
         respondeExercicio.setDataResposta(new Date());
         respondeExercicio.setNota(resultado);
         respondeExercicio.setRespondido(true);
-        fachada.salvarRespondeTeste(respondeExercicio);
-        
         Aluno aluno = PegarUsuarioSessao.pegarAlunoSessao();
-        aluno.getRespondeExercicio().add(respondeExercicio);
-        fachada.atualizarAluno(aluno);
-        salvarTeste = true;
+        respondeExercicio.setAluno(aluno);
+
+        fachada.salvarRespondeTeste(respondeExercicio);
+        atualizarPontuacao();
+
         contador = 0;
         tamanho = 0;
+        salvarTeste = true;
+        comecar = false;
         return "pagina-visualizar-resultado?faces-redirect=true";
+    }
+
+    public void atualizarPontuacao() {
+        String codGrupo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codGrupo");
+        System.out.println("Codigo Grupo: " + codGrupo);
+        ParticipaGrupo pg = fachada.buscarParticipaGrupo(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), Integer.parseInt(codGrupo));
+
+        if (pg != null) {
+            System.out.println("Okay");
+            pg.setPontuacao(pg.getPontuacao() + resultado);
+            fachada.atualizarSolicitacao(pg);
+        } else {
+            System.out.println("Erro!");
+        }
     }
 }

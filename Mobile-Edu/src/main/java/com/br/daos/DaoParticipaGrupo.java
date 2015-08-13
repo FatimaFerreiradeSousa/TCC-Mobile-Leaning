@@ -134,4 +134,19 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
             return false;
         }
     }
+    
+    @Override
+    public ParticipaGrupo buscarParticipaGrupo(String loginAluno, int codGrupo){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :loginAluno and p.grupo.codigo = :codGrupo");
+        query.setParameter("loginAluno", loginAluno);
+        query.setParameter("codGrupo", codGrupo);
+        
+        List<ParticipaGrupo> participaGrupo = query.getResultList();
+        
+        if(!participaGrupo.isEmpty()){
+            return participaGrupo.get(0);
+        }else{
+            return null;
+        }
+    }
 }
