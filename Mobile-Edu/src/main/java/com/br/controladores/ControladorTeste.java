@@ -31,6 +31,7 @@ public class ControladorTeste implements Serializable {
     private float resultado;
     private boolean salvarTeste;
     private RespondeExercicio respondeExercicio;
+    private boolean disponivel;
 
     public ControladorTeste() {
         teste = new Teste();
@@ -115,6 +116,14 @@ public class ControladorTeste implements Serializable {
         this.respondeExercicio = respondeExercicio;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
     public String comecarAResponder() {
         comecar = true;
         tamanho = 0;
@@ -125,6 +134,7 @@ public class ControladorTeste implements Serializable {
 
     public String paginaVisualizarTeste(Topico topico) {
         teste = fachada.buscarExercicio(topico.getCodigoTeste());
+        disponivel = topico.isDisponivel();
         perguntas = teste.getQuestoesExercicios();
         return "md-visualizar-teste?faces-redirect=true";
     }

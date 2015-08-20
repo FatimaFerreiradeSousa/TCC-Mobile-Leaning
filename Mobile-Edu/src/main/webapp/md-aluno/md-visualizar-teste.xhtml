@@ -2,10 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Aluno | Teste | Visualizar</title>
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -144,9 +143,18 @@
                             <br />
                             <h:form>
                                 <h:commandLink value="Começar teste" action="#{controladorTeste.comecarAResponder()}"
-                                                 class="btn btn-app">
+                                               class="btn btn-app" rendered="#{controladorTeste.disponivel == true}">
                                     <i class="fa fa-play"></i>
                                 </h:commandLink>
+                                
+                                <h:outputLabel value="Esse estava disponivel ate o dia" 
+                                        rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label">
+                                </h:outputLabel><br />
+                                
+                                <h:outputLabel value="#{controladorTeste.teste.dataEntrega}" 
+                                        rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label-data">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
                             </h:form>
                         </c:if>
 
