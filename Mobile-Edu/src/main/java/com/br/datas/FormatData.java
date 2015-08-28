@@ -2,6 +2,7 @@ package com.br.datas;
 
 import com.br.entidades.Anotacao;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -115,5 +116,16 @@ public class FormatData {
         }
         
         return anotacoesAtuais;
+    }
+    
+    public static String parseDateString(Date data){
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(data);
+    }
+    
+    public static boolean verificarData(Date data){
+        Date dateSystem = new Date();
+        
+        return data.before(dateSystem);
     }
 }

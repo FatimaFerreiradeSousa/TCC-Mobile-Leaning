@@ -1,5 +1,6 @@
 package com.br.controladores;
 
+import com.br.datas.FormatData;
 import com.br.entidades.*;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
@@ -32,7 +33,7 @@ public class ControladorTeste implements Serializable {
     private boolean salvarTeste;
     private RespondeExercicio respondeExercicio;
     private boolean disponivel;
-    private boolean mensagem;
+    private String mensagem;
 
     public ControladorTeste() {
         teste = new Teste();
@@ -42,8 +43,9 @@ public class ControladorTeste implements Serializable {
         contador = 1;
         resultado = 0;
         salvarTeste = false;
+        disponivel = true;
         respondeExercicio = new RespondeExercicio();
-        mensagem = true;
+        mensagem = null;
     }
 
     public Teste getTeste() {
@@ -106,11 +108,11 @@ public class ControladorTeste implements Serializable {
         return salvarTeste;
     }
 
-    public boolean getMensagem() {
+    public String getMensagem() {
         return mensagem;
     }
 
-    public void setMensagem(boolean mensagem) {
+    public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
 
@@ -147,8 +149,12 @@ public class ControladorTeste implements Serializable {
         disponivel = topico.isDisponivel();
         perguntas = teste.getQuestoesExercicios();
 
-        mensagem = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
-        disponivel = false;
+        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        boolean date = FormatData.verificarData(teste.getDataEntrega());
+        
+        if(opcao == false || date == true){
+            disponivel = false;
+        }
         
         return "md-visualizar-teste?faces-redirect=true";
     }
@@ -201,6 +207,17 @@ public class ControladorTeste implements Serializable {
         if (pg != null) {
             pg.setPontuacao(pg.getPontuacao() + resultado);
             fachada.atualizarSolicitacao(pg);
+        }
+    }
+    
+    public void verificaTeste(){
+        
+        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        
+        if(opcao == false){
+            mensagem = "Você já respondeu esse teste";
+        }else{
+            mensagem = "Este teste estava disponivel até o dia " +FormatData.parseDateString(teste.getDataEntrega());
         }
     }
 }

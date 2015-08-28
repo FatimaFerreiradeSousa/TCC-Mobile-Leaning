@@ -146,19 +146,19 @@
                                                class="btn btn-app" rendered="#{controladorTeste.disponivel == true}">
                                     <i class="fa fa-play"></i>
                                 </h:commandLink>
-                                
-                                <h:outputLabel value="Esse estava disponivel ate o dia" 
-                                        rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label">
+
+                                <h:outputLabel value="Esse teste não está mais disponivel" 
+                                               rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label">
                                 </h:outputLabel><br />
-                                
-                                <h:outputLabel value="#{controladorTeste.teste.dataEntrega}" 
-                                        rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label-data">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputLabel>
-                                
-                                <h:outputLabel value="Você já respondeu esse teste" 
-                                               rendered="#{controladorTeste.mensagem == false}" class="text text-danger text-label">
-                                </h:outputLabel><br />
+
+                                <h:commandLink value="Informações" class="btn btn-default btn-button-modal" 
+                                               action="#{controladorTeste.verificaTeste()}"
+                                               rendered="#{controladorTeste.disponivel == false}">
+                                    <f:ajax render="testeDisponivel"/>
+                                </h:commandLink>
+
+                                <p><h:outputText value="#{controladorTeste.mensagem}" 
+                                                 id="testeDisponivel" class="text-danger text-label"/></p>
                             </h:form>
                         </c:if>
 
