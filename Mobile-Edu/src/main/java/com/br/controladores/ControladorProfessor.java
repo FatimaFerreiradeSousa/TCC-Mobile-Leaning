@@ -97,7 +97,7 @@ public class ControladorProfessor implements Serializable {
 
     public void salvarProfessor() throws IOException {
         String caminho
-                = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
+                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
 
         if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
                 && professor.getSenha().length() > 0) {
@@ -180,7 +180,7 @@ public class ControladorProfessor implements Serializable {
 
     public void upload() {
         professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
-        String caminho = "C:\\Users\\Fatinha\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
                 + professorLogado.getLogin() + "\\";
 
         File dir = new File(caminho);

@@ -155,6 +155,10 @@
                                         rendered="#{controladorTeste.disponivel == false}" class="text text-danger text-label-data">
                                     <f:convertDateTime pattern="dd/MM/yyyy" />
                                 </h:outputLabel>
+                                
+                                <h:outputLabel value="Você já respondeu esse teste" 
+                                               rendered="#{controladorTeste.mensagem == false}" class="text text-danger text-label">
+                                </h:outputLabel><br />
                             </h:form>
                         </c:if>
 

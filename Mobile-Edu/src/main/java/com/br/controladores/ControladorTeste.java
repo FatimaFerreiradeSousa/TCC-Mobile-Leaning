@@ -32,6 +32,7 @@ public class ControladorTeste implements Serializable {
     private boolean salvarTeste;
     private RespondeExercicio respondeExercicio;
     private boolean disponivel;
+    private boolean mensagem;
 
     public ControladorTeste() {
         teste = new Teste();
@@ -42,6 +43,7 @@ public class ControladorTeste implements Serializable {
         resultado = 0;
         salvarTeste = false;
         respondeExercicio = new RespondeExercicio();
+        mensagem = true;
     }
 
     public Teste getTeste() {
@@ -104,6 +106,14 @@ public class ControladorTeste implements Serializable {
         return salvarTeste;
     }
 
+    public boolean getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(boolean mensagem) {
+        this.mensagem = mensagem;
+    }
+
     public void setSalvarTeste(boolean salvarTeste) {
         this.salvarTeste = salvarTeste;
     }
@@ -136,6 +146,10 @@ public class ControladorTeste implements Serializable {
         teste = fachada.buscarExercicio(topico.getCodigoTeste());
         disponivel = topico.isDisponivel();
         perguntas = teste.getQuestoesExercicios();
+
+        mensagem = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        disponivel = false;
+        
         return "md-visualizar-teste?faces-redirect=true";
     }
 

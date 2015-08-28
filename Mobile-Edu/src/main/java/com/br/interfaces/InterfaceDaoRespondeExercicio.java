@@ -15,4 +15,6 @@ public interface InterfaceDaoRespondeExercicio {
     public RespondeExercicio consulta(String codigo);
     
     public boolean remover(RespondeExercicio responde);
+    
+    public boolean respondeTeste(int codTeste, String loginAluno);
 }

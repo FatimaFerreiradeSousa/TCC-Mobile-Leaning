@@ -283,4 +283,8 @@ public class Fachada implements Serializable {
     public boolean salvarRespondeTeste(RespondeExercicio respondeExercicio){
         return daoRespondeExercicio.salvar(respondeExercicio);
     }    
+    
+    public boolean testeRespondido(int codTeste, String loginAluno){
+        return daoRespondeExercicio.respondeTeste(codTeste, loginAluno);
+    }
 }

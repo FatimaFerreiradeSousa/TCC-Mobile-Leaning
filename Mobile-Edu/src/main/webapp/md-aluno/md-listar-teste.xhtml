@@ -155,17 +155,17 @@
                                          value="#{controladorGrupoAluno.listarTestesGrupo()}" var="topico">
 
                                 <h:column>
-                                    
                                     <span class="text text-success">Assunto: </span>
-                                    
+
                                     <h:commandLink action="#{controladorTeste.paginaVisualizarTeste(topico)}" 
-                                                   value="#{topico.conteudo}" class="text text-bold"/>
-                                    
+                                                   value="#{topico.conteudo}" class="text text-bold">
+                                    </h:commandLink>
+
                                     <span class="text-success text">Entrega: </span>
                                     <h:outputLabel class="text text-red" value="#{topico.dataCriacao}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:outputLabel>
-                                    
+
                                 </h:column>
                             </h:dataTable>
 
