@@ -33,7 +33,7 @@ public class DaoTopico implements InterfaceDaoTopico {
 
     @Override
     public boolean atualizar(Topico topico) {
-
+        
         try {
             em.merge(topico);
             return true;
@@ -41,6 +41,7 @@ public class DaoTopico implements InterfaceDaoTopico {
             e.printStackTrace();
             return false;
         }
+    
     }
 
     @Override
@@ -65,12 +66,12 @@ public class DaoTopico implements InterfaceDaoTopico {
             return false;
         }
     }
-    
+
     @Override
-    public List<Comentario> comentariosTopico(int codigoTopico){
+    public List<Comentario> comentariosTopico(int codigoTopico) {
         Query query = em.createQuery("select c from Comentario c where c.topico.codigo = :codigo");
         query.setParameter("codigo", codigoTopico);
-        
+
         return (List<Comentario>) query.getResultList();
     }
 
@@ -78,7 +79,7 @@ public class DaoTopico implements InterfaceDaoTopico {
     public List<Topico> listarTestesGrupo(int codigoGrupo) {
         Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Atividade' ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);
-        
+
         return (List<Topico>) query.getResultList();
     }
 }

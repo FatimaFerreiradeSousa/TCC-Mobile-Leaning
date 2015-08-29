@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -33,6 +34,8 @@ public class ControladorGrupoAluno implements Serializable {
     private Topico topico;
     private Comentario comentario;
     private UploadedFile fileUpload;
+    private boolean editTopico;
+    private boolean editComentario;
 
     public ControladorGrupoAluno() {
         nomeGrupo = new String();
@@ -41,6 +44,8 @@ public class ControladorGrupoAluno implements Serializable {
         aceito = false;
         topico = new Topico();
         comentario = new Comentario();
+        editTopico = false;
+        editComentario = true;
     }
 
     public String getNomeGrupo() {
@@ -98,6 +103,25 @@ public class ControladorGrupoAluno implements Serializable {
     public void setFileUpload(UploadedFile fileUpload) {
         this.fileUpload = fileUpload;
     }
+
+    /*Edit Topico e comentario*/
+    public boolean isEditTopico() {
+        return editTopico;
+    }
+
+    public void setEditTopico(boolean editTopico) {
+        this.editTopico = editTopico;
+    }
+
+    public boolean isEditComentario() {
+        return editComentario;
+    }
+
+    public void setEditComentario(boolean editComentario) {
+        this.editComentario = editComentario;
+    }
+    
+    /*----------------------------------------------------*/
 
     public List<Grupo> listarGruposPorNome() {
         return fachada.buscarGruposPorNome(nomeGrupo);
@@ -218,31 +242,74 @@ public class ControladorGrupoAluno implements Serializable {
             }
         }
     }
-    
+
     public List<Topico> listarTestesGrupo() {
         return fachada.listarTestesGrupo(grupo.getCodigo());
     }
-    
-    public String paginaListarTeste(){
+
+    public String paginaListarTeste() {
         return "md-listar-teste?faces-redirect=true";
     }
-    
-    public String salvarComentario(Topico topico){
+
+    public String salvarComentario(Topico topico) {
         comentario.setDataComentario(new Date());
         comentario.setTopico(topico);
         comentario.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
-        
+
         boolean resposta = fachada.salvarComentario(comentario);
-        
-        if(resposta == true){
+
+        if (resposta == true) {
             comentario = new Comentario();
             return "pagina-inicial-grupo?faces-redirect=true";
         }
+
+        return "pagina-inicial-grupo?faces-redirect=true";
+    }
+
+    public List<Aluno> listarMembros() {
+        return fachada.listarMembrosGrupo(grupo.getCodigo());
+    }
+
+    public int quantidadeDownload() {
+        List<Topico> topicos = fachada.topicosGrupo(grupo.getCodigo());
+        int qtdDownload = 0;
+
+        for (Topico t : topicos) {
+            qtdDownload += t.getQtdDownloads();
+        }
+
+        return qtdDownload;
+    }
+
+    public List<ParticipaGrupo> listaRanckingGrupo() {
+        return fachada.buscarMembros(grupo.getCodigo());
+    }
+    
+    public void editarTopico(){
+        this.editTopico = true;
+    }
+    
+    public String editarComentario(){
+        this.editComentario = true;
         
         return "pagina-inicial-grupo?faces-redirect=true";
     }
     
-    public List<Aluno> listarMembros(){
-        return fachada.listarMembrosGrupo(grupo.getCodigo());
+    public String atualizarTopico(Topico topico){
+        String codigoTopico = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codigoTopico");
+        
+        Topico tp = fachada.buscarTopico(Integer.parseInt(codigoTopico));
+        fachada.atualizarTopico(tp);
+        
+        this.editTopico = false;
+        topicos();
+        
+        return "pagina-inicial-grupo.jsf?faces-rediret=true";
+    }
+    
+    public String atualizarComentario(Comentario comentario){
+        fachada.alterarComentario(comentario);
+        
+        return "pagina-inicial-grupo.jsf?faces-redirect=true";
     }
 }

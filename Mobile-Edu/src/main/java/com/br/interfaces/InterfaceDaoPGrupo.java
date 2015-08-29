@@ -32,4 +32,6 @@ public interface InterfaceDaoPGrupo {
     public boolean removerMembros(int codigoGrupo);
     
     public ParticipaGrupo buscarParticipaGrupo(String loginAluno, int codGrupo);
+    
+    public List<ParticipaGrupo> listarRancking(int codGrupo);
 }

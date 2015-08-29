@@ -413,4 +413,8 @@ public class GerenciadorGrupo implements Serializable {
 
         return qtdDownload;
     }
+    
+    public List<ParticipaGrupo> listaRanckingGrupo(){
+        return fachada.buscarMembros(grupo.getCodigo());
+    }
 }

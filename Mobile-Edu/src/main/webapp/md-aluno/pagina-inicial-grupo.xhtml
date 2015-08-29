@@ -183,91 +183,111 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-md-8">
-                            <h:dataTable class="table table-responsive" value="#{controladorGrupoAluno.topicos()}" var="topico">
+                            <h:form>
+                                <h:dataTable class="table table-responsive" value="#{controladorGrupoAluno.topicos()}" var="topico">
+                                    <h:column>
+                                        <div class="box box-success">
+                                            <div class="box-tools pull-right">
+                                                <h:commandLink class="btn btn-box-tool" 
+                                                               action="#{controladorGrupoAluno.editarTopico()}">
+                                                    <i class="fa fa-edit"></i>
+                                                </h:commandLink>
 
-                                <h:column>
-                                    <div class="box box-success">
-                                        <div class="box-tools pull-right">
-                                            <h:form>
                                                 <h:commandLink class="btn btn-box-tool" 
                                                                action="#{controladorGrupo.removerTopico(topico)}">
                                                     <i class="fa fa-times"></i>
                                                 </h:commandLink>
-                                            </h:form>
-                                        </div>
-                                        <br />
+                                            </div>
+                                            <br />
 
-                                        <div class="box-body chat" id="chat-box">
-                                            <div class="item">
-                                                <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
-                                                    <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
-                                                </p:graphicImage>
+                                            <div class="box-body chat" id="chat-box">
+                                                <div class="item">
+                                                    <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
+                                                        <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                    </p:graphicImage>
 
-                                                <p class="message">
-                                                    <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
-                                                        <i class="fa fa-clock-o"></i> 
-                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                    </h:outputLabel>
+                                                    <p class="message">
+                                                        <h:outputLabel class="text-muted pull-right" value="#{topico.dataCriacao}">
+                                                            <i class="fa fa-clock-o"></i> 
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                        </h:outputLabel>
 
-                                                    <a href="#" class="name">
-                                                        #{topico.loginUsuario}
-                                                    </a>
-                                                    <label>#{topico.conteudo}</label>
-                                                </p>
+                                                        <a href="#" class="name">
+                                                            #{topico.loginUsuario}
+                                                        </a>
 
-                                                <div class="attachment">
-                                                    <h:dataTable class="table" value="#{controladorGrupoAluno.comentariosTopico(topico)}" var="comentario"
-                                                                 rendered="#{controladorGrupo.sizeComentarioTopico(topico) > 0}">
-                                                        <h:column>
-                                                            <div class="box-tools pull-right">
-                                                                <h:form>
-                                                                    <h:commandLink class="btn btn-box-tool" 
-                                                                                   action="#{controladorGrupo.removerComentario(comentario)}">
-                                                                        <i class="fa fa-times"></i>
-                                                                    </h:commandLink>
-                                                                </h:form>
-                                                            </div>
+                                                        <h:outputLabel value="#{topico.conteudo}" rendered="#{controladorGrupoAluno.editTopico == false}" />
+                                                    </p>
 
-                                                            <div class="item">
-                                                                <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
-                                                                    <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
-                                                                </p:graphicImage>
-
-                                                                <p class="message">
-                                                                    <a href="#" class="name">
-                                                                        #{comentario.loginUsuario}
-                                                                    </a>
-                                                                    #{comentario.conteudo} 
-
-                                                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px; margin-left: 10px">
-                                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                                    </h:outputText>
-                                                                </p>
-                                                            </div>
-                                                        </h:column>
-                                                    </h:dataTable>
-
-                                                    <h:form>
-                                                        <div class="input-group">
-                                                            <h:inputText value="#{controladorGrupoAluno.comentario.conteudo}" class="form-control" 
-                                                                         pt:placeholder="Comentar..."/>
-                                                            <div class="input-group-btn">
-                                                                <span class="input-group-btn">
-                                                                    <h:commandLink value="" class="btn btn-warning"
-                                                                                   action="#{controladorGrupoAluno.salvarComentario(topico)}">
-                                                                        <i class="fa fa-comments"></i>
-                                                                    </h:commandLink>
-                                                                </span>
-                                                            </div>
+                                                    <div class="input-group col-lg-8 pull-right">
+                                                        <h:inputText value="#{topico.conteudo}" class="form-control" 
+                                                                    rendered="#{controladorGrupoAluno.editTopico == true}"/>
+                                                        <div class="input-group-btn">
+                                                            <span class="input-group-btn">
+                                                                <h:commandLink value="" class="btn btn-warning" 
+                                                                               rendered="#{controladorGrupoAluno.editTopico == true}"
+                                                                               action="#{controladorGrupoAluno.atualizarTopico(topico)}">
+                                                                    <i class="fa fa-comments"></i>
+                                                                    <f:param name="codigoTopico" value="#{topico.codigo}"/>
+                                                                </h:commandLink>
+                                                            </span>
                                                         </div>
-                                                    </h:form>
-                                                </div>
+                                                    </div>
 
+                                                    <div class="attachment">
+                                                        <h:dataTable class="table" value="#{controladorGrupoAluno.comentariosTopico(topico)}" var="comentario"
+                                                                     rendered="#{controladorGrupo.sizeComentarioTopico(topico) > 0}">
+                                                            <h:column>
+                                                                <div class="box-tools pull-right">
+                                                                    <h:form>
+                                                                        <h:commandLink class="btn btn-box-tool" 
+                                                                                       action="#{controladorGrupo.removerComentario(comentario)}">
+                                                                            <i class="fa fa-times"></i>
+                                                                        </h:commandLink>
+                                                                    </h:form>
+                                                                </div><br />
+
+                                                                <div class="item">
+                                                                    <p:graphicImage id="perfil" value="#{controladorFotos.mostrarFoto()}">
+                                                                        <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
+                                                                    </p:graphicImage>
+
+                                                                    <p class="message">
+                                                                        <a href="#" class="name">
+                                                                            #{comentario.loginUsuario}
+                                                                        </a>
+                                                                        <h:outputText value="#{comentario.conteudo}"/> 
+
+                                                                        <h:outputText value="#{comentario.dataComentario}" 
+                                                                                      style="font-size: 10px; margin-left: 10px">
+                                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                        </h:outputText>
+                                                                    </p>
+                                                                </div>
+                                                            </h:column>
+                                                        </h:dataTable>
+
+                                                        <h:form>
+                                                            <div class="input-group">
+                                                                <h:inputText value="#{controladorGrupoAluno.comentario.conteudo}" class="form-control" 
+                                                                             pt:placeholder="Comentar..."/>
+                                                                <div class="input-group-btn">
+                                                                    <span class="input-group-btn">
+                                                                        <h:commandLink value="" class="btn btn-warning"
+                                                                                       action="#{controladorGrupoAluno.salvarComentario(topico)}">
+                                                                            <i class="fa fa-comments"></i>
+                                                                        </h:commandLink>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </h:column>
-                            </h:dataTable>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
                         </div>
 
                         <div class="col-md-4">
@@ -281,12 +301,6 @@
                                         <h:commandLink value="Atividades" class="info-box-text btn-link-teste" 
                                                        action="#{controladorGrupoAluno.paginaListarTeste()}"/>
                                         <span class="info-box-number">#{controladorGrupoAluno.listarTestesGrupo().size()}</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 50%"></div>
-                                        </div>
-                                        <span class="progress-description">
-                                            50% Increase in 30 Days
-                                        </span>
                                     </div><!-- /.info-box-content -->
                                 </div><!-- /.info-box -->
 
@@ -294,20 +308,17 @@
                                     <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Postagens</span>
-                                        <span class="info-box-number">92,050</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 20%"></div>
-                                        </div>
-                                        <span class="progress-description">
-                                            20% Increase in 30 Days
-                                        </span>
+                                        <span class="info-box-number">#{controladorGrupoAluno.topicos().size()}</span>
                                     </div><!-- /.info-box-content -->
                                 </div><!-- /.info-box -->
 
                                 <div class="info-box bg-yellow">
                                     <span class="info-box-icon">55<i class="ion ion-ios-cloud-download-outline"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Rancking</span>
+                                        <a href="#" class="info-box-text" style="color: white" 
+                                           data-toggle="modal" data-target="#modalRancking">
+                                            Rancking
+                                        </a>
                                         <span class="info-box-number">114,381</span>
                                         <div class="progress">
                                             <div class="progress-bar" style="width: 70%"></div>
@@ -322,13 +333,7 @@
                                     <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Download</span>
-                                        <span class="info-box-number">163,921</span>
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 40%"></div>
-                                        </div>
-                                        <span class="progress-description">
-                                            40% Increase in 30 Days
-                                        </span>
+                                        <span class="info-box-number">#{controladorGrupoAluno.quantidadeDownload()}</span>
                                     </div><!-- /.info-box-content -->
                                 </div><!-- /.info-box -->
                             </h:form>
@@ -470,18 +475,69 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h:dataTable value="#{controladorGrupoAluno.listarMembros()}" var="aluno" class="">
+                                <h:dataTable value="#{controladorGrupoAluno.listarMembros()}" var="aluno" class="table table-hover">
                                     <h:column>
                                         <ul class="users-list clearfix">
                                             <li>
                                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}">
                                                     <f:param name="loginUsuario" value="#{aluno.login}"/>
                                                 </p:graphicImage>
-                                                
-                                                <span class="users-list-date">#{aluno.login}</span>
-                                                
-                                           </li>
+                                            </li>
+
+                                            <li>
+                                                #{aluno.login}
+                                            </li>
                                         </ul>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalRancking">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Desempenho</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h:dataTable value="#{controladorGrupoAluno.listaRanckingGrupo()}" var="pGrupo" class="table table-hover">
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            Aluno
+                                        </f:facet>
+
+                                        <ul class="users-list clearfix">
+                                            <li>
+                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}">
+                                                    <f:param name="loginUsuario" value="#{pGrupo.aluno.login}"/>
+                                                </p:graphicImage>
+                                            </li>
+
+                                            <li>
+                                                #{pGrupo.aluno.login}
+                                            </li>
+                                        </ul>
+
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            Pontuação
+                                        </f:facet>
+
+                                        #{pGrupo.pontuacao}
                                     </h:column>
                                 </h:dataTable>
                             </div>
