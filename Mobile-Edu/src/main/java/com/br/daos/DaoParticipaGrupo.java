@@ -152,7 +152,7 @@ public class DaoParticipaGrupo implements InterfaceDaoPGrupo {
 
     @Override
     public List<ParticipaGrupo> listarRancking(int codGrupo) {
-        Query query = em.createQuery("select p from ParticipaGrupo p where p.grupo.codigo = :codGrupo");
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.grupo.codigo = :codGrupo ORDER BY p.pontuacao DESC");
         query.setParameter("codGrupo", codGrupo);
         
         return query.getResultList();

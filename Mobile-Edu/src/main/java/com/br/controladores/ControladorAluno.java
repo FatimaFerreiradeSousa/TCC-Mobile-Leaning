@@ -120,6 +120,7 @@ public class ControladorAluno implements Serializable {
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 context.redirect(request.getContextPath());
+                mensagem = null;
             } else {
                 mensagem = "Login Inválido! Por Favor Tente Outro.";
             }

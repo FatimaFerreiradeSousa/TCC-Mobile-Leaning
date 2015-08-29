@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Professor | Testes | Resultados</title>
         <meta charset="UTF-8"></meta>
@@ -186,25 +187,34 @@
             <div class="content-wrapper">
                 <section class="content">
                     <div class="invoice">
-                        <h4 class="box-title">Grupos</h4>
+                        <c:if test="#{controladorGrupo.listaRanckingGrupo().size() > 0}">
+                            <label class="text-success">Resultados dos testes realizados no grupo 
+                                #{controladorGrupo.grupo.nome}
+                            </label>
 
-                        <h:form>
+                            <h:dataTable value="#{controladorGrupo.listaRanckingGrupo()}" var="racking" class="table table-hover">
 
-                            <c:if test="#{controladorGrupo.gruposCriados().size() > 0}">
-                                <h:dataTable class="table table-hover" 
-                                             value="#{controladorGrupo.gruposCriados()}" var="grupo">
+                                <h:column>
+                                    <f:facet name="header">
+                                        Aluno
+                                    </f:facet>
+                                    #{racking.aluno.nome}
+                                </h:column>
 
-                                    <h:column>
-                                        <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.paginaResultadoTestes(grupo)}"/>
-                                    </h:column>
-                                </h:dataTable>
-                            </c:if>
+                                <h:column>
+                                    <f:facet name="header">
+                                        Pontuação
+                                    </f:facet>
 
-                            <c:if test="#{controladorGrupo.gruposCriados().size() == 0}">
-                                Você não possui nenhum grupo
-                            </c:if>
-                        </h:form>
+                                    #{racking.pontuacao}
+                                </h:column>
+                            </h:dataTable>
+                        </c:if>
 
+                        <c:if test="#{controladorGrupo.listaRanckingGrupo().size() == 0}">
+                            <label class="text-primary">Nenhum Resultado para exibir
+                            </label>
+                        </c:if>
                     </div>
                 </section>
 

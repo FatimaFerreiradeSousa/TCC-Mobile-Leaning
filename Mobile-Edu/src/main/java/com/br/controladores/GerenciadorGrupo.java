@@ -417,4 +417,21 @@ public class GerenciadorGrupo implements Serializable {
     public List<ParticipaGrupo> listaRanckingGrupo(){
         return fachada.buscarMembros(grupo.getCodigo());
     }
+    
+    public String paginaResultadoTestes(Grupo grupo){
+        this.grupo = grupo;
+        
+        return "md-listar-resultados?faces-redirect=true";
+    }
+    
+    public ParticipaGrupo buscarPrimeiroLugar(){
+        List<ParticipaGrupo> list = fachada.buscarMembros(grupo.getCodigo());
+        
+        if(list.isEmpty()){
+            return null;
+        }else{
+            return list.get(0);
+        }
+        
+    }
 }

@@ -227,7 +227,7 @@
                                             Configurações</a></li>
                                 </ul>
                             </div>
-                            
+
                             <a class="btn btn-success" href="pag-listar-membros.jsf">
                                 <i class="fa fa-users"></i>
                             </a>
@@ -360,10 +360,15 @@
                                 </div><!-- /.info-box -->
 
                                 <div class="info-box bg-yellow">
-                                    <span class="info-box-icon">55<i class="ion ion-ios-cloud-download-outline"></i></span>
+                                    <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Rancking</span>
-                                        <span class="info-box-number">114,381</span>
+                                        <a href="#" class="info-box-text" style="color: white" 
+                                           data-toggle="modal" data-target="#modalRancking">
+                                            Rancking
+                                        </a>
+                                        <h:outputText class="text text-danger" value="#{controladorGrupo.buscarPrimeiroLugar().aluno.login} está em primeiro lugar"
+                                                      rendered="#{controladorGrupo.buscarPrimeiroLugar().aluno != null}"/>
+                                        
                                     </div><!-- /.info-box-content -->
                                 </div><!-- /.info-box -->
 
@@ -520,6 +525,56 @@
 
                         </div>
                     </h:form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalRancking">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-success">Desempenho</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h:dataTable value="#{controladorGrupo.listaRanckingGrupo()}" var="pGrupo" class="table table-hover">
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            Aluno
+                                        </f:facet>
+
+                                        <ul class="users-list clearfix">
+                                            <li>
+                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}">
+                                                    <f:param name="loginUsuario" value="#{pGrupo.aluno.login}"/>
+                                                </p:graphicImage>
+                                            </li>
+
+                                            <li>
+                                                #{pGrupo.aluno.login}
+                                            </li>
+                                        </ul>
+
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            Pontuação
+                                        </f:facet>
+
+                                        #{pGrupo.pontuacao}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
