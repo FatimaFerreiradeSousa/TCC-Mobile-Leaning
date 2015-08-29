@@ -2,9 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <h:head>
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Testes | Resultados</title>
         <meta charset="UTF-8"></meta>
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
@@ -116,7 +118,8 @@
                             <li class="treeview">
                                 <a href="#"><span>Testes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="md-visualizar-resultados.jsf">Resultados Testes</a></li>
+                                    <li><a href="testes.jsf">Testes</a></li>
+                                    <li><a href="resultadosTestes.jsf">Resultados</a></li>
                                 </ul>
                             </li>
 
@@ -138,94 +141,35 @@
             <div class="content-wrapper">
                 <!-- Main content -->
                 <section class="content">
-                    <div class="row">
 
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>10</h3>
-                                    <p>Testes Resolvidos</p>
-                                </div>
+                    <div class="invoice">
 
-                                <a href="#" class="small-box-footer">
-                                    Mais info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
+                        <c:if test="#{controladorGrupoAluno.meusGrupos().size() > 0}">
 
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>10</h3>
-                                    <p>Pontuação Geral</p>
-                                </div>
+                            <h5 class="text-blue" id="myModalLabel">
+                                Escolha o grupo para acompanhar seu desempenho
+                            </h5>
+                            <h:form>
+                                <h:dataTable value="#{controladorGrupoAluno.meusGrupos()}" var="participaGrupo" 
+                                             class="table table-hover">
+                                    <h:column>
 
-                                <a href="#" class="small-box-footer">
-                                    Mais info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
+                                        <h:commandLink value="#{participaGrupo.grupo.nome}" 
+                                                       action="#{controladorGrupoAluno.paginaVisualizarResultdos(participaGrupo.grupo)}"
+                                                       class="text-success"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </c:if>
 
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>44</h3>
-                                    <p>Posição no rancking</p>
-                                </div>
+                        <c:if test="#{controladorGrupoAluno.meusGrupos().size() == 0}">
+                            <br />
+                            <h5 class="text-blue" id="myModalLabel">Nenhum resultado para exibir</h5>
+                            <br />
+                        </c:if>
 
-                                <a href="#" class="small-box-footer">
-                                    Mais info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>#{controladorGrupoAluno.meusGrupos().size()}</h3>
-                                    <p>Grupos</p>
-                                </div>
-
-                                <a href="meus-grupos.jsf" class="small-box-footer">
-                                    Mais info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
                     </div>
 
-                    <h2 class="page-header">Eventos Importantes</h2>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box box-success">
-                                <div class="box-body">
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <h4> Importante!</h4>
-                                        Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-                                    </div>
-                                    <div class="alert alert-info alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <h4>Importante!</h4>
-                                        Info alert preview. This alert is dismissable.
-                                    </div>
-                                    <div class="alert alert-warning alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <h4>Importante!</h4>
-                                        Warning alert preview. This alert is dismissable.
-                                    </div>
-                                    <div class="alert alert-success alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <h4>Importante!</h4>
-                                        Success alert preview. This alert is dismissable.
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div>
-                        </div>
-                    </div>
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 

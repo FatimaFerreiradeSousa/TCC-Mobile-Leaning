@@ -92,10 +92,6 @@ public class ControladorGrupoAluno implements Serializable {
         return comentario;
     }
 
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
-    }
-
     public UploadedFile getFileUpload() {
         return fileUpload;
     }
@@ -120,9 +116,8 @@ public class ControladorGrupoAluno implements Serializable {
     public void setEditComentario(boolean editComentario) {
         this.editComentario = editComentario;
     }
-    
-    /*----------------------------------------------------*/
 
+    /*----------------------------------------------------*/
     public List<Grupo> listarGruposPorNome() {
         return fachada.buscarGruposPorNome(nomeGrupo);
     }
@@ -284,32 +279,43 @@ public class ControladorGrupoAluno implements Serializable {
     public List<ParticipaGrupo> listaRanckingGrupo() {
         return fachada.buscarMembros(grupo.getCodigo());
     }
-    
-    public void editarTopico(){
+
+    public void editarTopico() {
         this.editTopico = true;
     }
-    
-    public String editarComentario(){
+
+    public String editarComentario() {
         this.editComentario = true;
-        
+
         return "pagina-inicial-grupo?faces-redirect=true";
     }
-    
-    public String atualizarTopico(Topico topico){
+
+    public String atualizarTopico(Topico topico) {
         String codigoTopico = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codigoTopico");
-        
+
         Topico tp = fachada.buscarTopico(Integer.parseInt(codigoTopico));
         fachada.atualizarTopico(tp);
-        
+
         this.editTopico = false;
         topicos();
-        
+
         return "pagina-inicial-grupo.jsf?faces-rediret=true";
     }
-    
-    public String atualizarComentario(Comentario comentario){
+
+    public String atualizarComentario(Comentario comentario) {
         fachada.alterarComentario(comentario);
-        
+
         return "pagina-inicial-grupo.jsf?faces-redirect=true";
+    }
+
+    public String paginaVisualizarResultdos(Grupo grupo) {
+        System.out.println("Grupo: " + grupo.getNome());
+        this.grupo = grupo;
+        return "md-resultado-individual.jsf?faces-redirect=true";
+    }
+
+    public boolean usuarioSessao(String login) {
+        
+        return PegarUsuarioSessao.pegarAlunoSessao().getLogin().equalsIgnoreCase(login);
     }
 }
