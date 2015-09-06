@@ -11,7 +11,7 @@
 
         <link href="../assets/dist/estilo/estiloPagInicial.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/dist/estilo/estiloPaginas.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/dist/css/skins/skin-purple.css" rel="stylesheet" type="text/css" /> 
         <link href="../fonts/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -170,124 +170,6 @@
                     <h1>
                         Lembretes...
                     </h1><br />
-
-                    <div class="row">
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <p>#{controladorListAnt.ant1.titulo} <br />
-                                        #{controladorListAnt.ant1.conteudo}
-                                    </p>
-                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant1.dataConclusao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-                                </div>
-
-                                <a href="#" class="small-box-footer">
-                                    Lembrete 1 <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <p>#{controladorListAnt.ant2.titulo} <br />
-                                        #{controladorListAnt.ant2.conteudo}</p>
-                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant2.dataConclusao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-
-                                </div>
-
-                                <a href="#" class="small-box-footer">
-                                    Lembrete 2 <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <p>#{controladorListAnt.ant3.titulo} <br />
-                                        #{controladorListAnt.ant3.conteudo}</p>
-                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant3.dataConclusao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-                                </div>
-
-                                <a href="#" class="small-box-footer">
-                                    Lembrete 3 <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <p>#{controladorListAnt.ant4.titulo} <br /> #{controladorListAnt.ant4.conteudo}</p>
-                                    <h:outputLabel class="small-box-footer" value="#{controladorListAnt.ant4.dataConclusao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-
-                                </div>
-
-                                <a href="#" class="small-box-footer">
-                                    Lembrete 4 <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div><!-- /.row -->
-
-                    <h4>Todas as anotações</h4>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box box-default">
-                                <div class="box-body">
-
-                                    <c:if test="#{controladorAnotacao.listarTodas().size() > 0}">
-                                        <h:form>
-                                            <h:dataTable class="table table-responsive"
-                                                         value="#{controladorAnotacao.listarTodas()}" var="anotacao">
-                                                <h:column>
-                                                    <div class="alert alert-success alert-dismissable">
-                                                            <h:commandLink value="" class="close btn-link-remover" 
-                                                                           action="#{controladorAnotacao.removerAnotacao(anotacao)}">&times;
-                                                            </h:commandLink>
-                                                        
-                                                        #{anotacao.titulo} - #{anotacao.conteudo}
-                                                    </div>
-                                                </h:column>
-                                            </h:dataTable>
-                                        </h:form>
-                                    </c:if>
-
-                                    <c:if test="#{controladorAnotacao.listarTodas().size() == 0}">
-                                        <div class="alert" role="alert">
-                                            <span class="sr-only">Error:</span>
-                                            Você não possui nenhuma anotação
-                                        </div>
-                                    </c:if>
-
-                                    <div class="box-footer clearfix no-border">
-                                        <h:form>
-                                            <ul class="pagination pagination-sm no-margin pull-right">
-                                                <li><a action="#" class="btn btn-success pull-right"
-                                                       href="#signup" data-toggle="modal" data-target="#modalAnotacao">
-                                                        Nova Anotação
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-                                        </h:form>
-                                    </div>
-
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
-                    </div>
                 </section>
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
@@ -298,58 +180,6 @@
                 </strong> All rights reserved.
             </footer>
         </div><!-- ./wrapper -->
-
-        <div class="modal fade" id="modalAnotacao">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title text-success">Nova Anotações</h4>
-                    </div>
-                    <h:form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="titulo">Titulo </label>
-                                        <h:inputText value="#{controladorAnotacao.anotacao.titulo}" 
-                                                     class="form-control" pt:placeholde="Titulo"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="conteudo">Conteúdo </label>
-                                        <h:inputTextarea rows="5" value="#{controladorAnotacao.anotacao.conteudo}" 
-                                                         class="form-control" pt:placeholde="Conteudo"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label" for="conteudo">Data: </label>
-                                        <h:inputText value="#{controladorAnotacao.anotacao.dataConclusao}" class="form-control">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:inputText>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br/>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <h:commandLink value="Cadastrar" class="btn btn-primary" 
-                                           action="#{controladorAnotacao.salvarAnotacao()}"/>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </div>
     </h:body>
 </html>
 

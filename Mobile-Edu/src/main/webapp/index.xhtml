@@ -1,47 +1,93 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Home | ML</title>
         <meta charset="utf-8"/>
         <meta name="format-detection" content="telephone=no" />
 
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="fonts/font-awesome/font-awesome.min.css"/>
-        <link rel="stylesheet" type="text/css" href="assets/dist/estilo/styleHome.css"/>	
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="assets/fonts/font-awesome/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/css-index.css"/>
+        <script src="bootstrap/js/jquery-2.1.4.min.js"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.forgot-pass').click(function (event) {
+                    $(".pr-wrap").toggleClass("show-pass-reset");
+                });
+
+                $('.pass-reset-submit').click(function (event) {
+                    $(".pr-wrap").removeClass("show-pass-reset");
+                });
+            });
+        </script>
 
     </h:head>
 
-    <h:body class="page1" id="top">
+    <h:body>
 
-        <h:form>
+        <div class="container">
 
-            <div class="slide story" id="slide-1" data-slide="1">
-                <div class="container">
-                    <div id="home-row-2" class="row clearfix">
-                        <div class="col-12 col-sm-4">
-                            <div class="home-hover navigation-slide" data-slide="4">
-                                <h:commandLink action="#{controladorProfessor.paginaInicialProfessor()}">
-                                    <img src="img/s02.png"/>
-                                </h:commandLink>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <h:form>
+                        <div class="pr-wrap">
+                            <div class="pass-reset">
+
+                                <label>
+                                    Cadastre-se
+                                </label>
+
+                                <h:inputText value="#{controladorLogin.pessoa.login}" pt:placeholder="Login" class="pass-reset-email"/>
+                                <h:inputText value="#{controladorLogin.pessoa.senha}" pt:placeholder="**********" class="pass-reset-email"/>
+
+                                <h:selectOneMenu value="#{controladorLogin.usuario}" class="select-item btn-sm">
+                                    <f:selectItem itemValue="Tipo" />
+                                    <f:selectItem itemValue="Aluno" />
+                                    <f:selectItem itemValue="Professor" />
+                                </h:selectOneMenu>
+
+                                <h:commandButton type="submit" value="Cadastrar" action="#{controladorLogin.salvarUsuario()}"
+                                                 class="pass-reset-submit btn btn-success btn-sm" />
+
                             </div>
-                            <span>PROFESSOR</span>
                         </div>
+                    </h:form>
 
-                        <div class="col-12 col-sm-4">
-                            <div class="home-hover navigation-slide" data-slide="3">
-                                <h:commandLink action="#{controladorAluno.paginaInicialAluno()}">
-                                    <img src="img/s01.png"/>
-                                </h:commandLink>
+                    <div class="wrap">
+                        <p class="form-title">
+                            Login</p>
+                        <h:form class="login login-form">
+
+                            <h:inputText pt:placeholder="Login" value=""/>
+                            <h:inputSecret pt:placeholder="********" value=""/>
+
+                            <h:selectOneListbox size="1" value="#{controladorLogin.usuario}" class="select-item btn-sm">
+                                <f:selectItem itemValue="Tipo" />
+                                <f:selectItem itemValue="Aluno" />
+                                <f:selectItem itemValue="Professor" />
+                            </h:selectOneListbox>
+
+                            <h:commandButton type="submit" value="Login" class="btn btn-success btn-sm btn-login" />
+
+                            <div class="remember-forgot">
+                                <div class="row">
+                                    <div class="col-md-6 forgot-pass-content">
+                                        <a href="javascription:void(0)" class="forgot-pass">Cadastre-se</a>
+                                    </div>
+                                </div>
                             </div>
-                            <span>ALUNO</span>
-                        </div>
-                    </div><!-- /row -->
-                </div><!-- /container -->
-            </div><!-- /slide1 -->
-            
-        </h:form>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </h:body>
 </html>
 

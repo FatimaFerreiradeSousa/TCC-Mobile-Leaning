@@ -1,8 +1,6 @@
 package com.br.datas;
 
-import com.br.entidades.Anotacao;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -100,22 +98,6 @@ public class FormatData {
         cal.set(ano, mes - 1, dia); 
 
         return cal.get(Calendar.DAY_OF_WEEK);
-    }
-    
-    public static List<Anotacao> comparaData(Date dataAtual, List<Anotacao> anotacoes){
-        List<Anotacao> anotacoesAtuais = new ArrayList();
-        
-        int diaSemana = FormatData.pegarDiaDaSemana(dataAtual);
-        
-        if (diaSemana == 2) {
-            for (Anotacao anotacao : anotacoes) {
-                if (anotacao.getDataConclusao().compareTo(dataAtual) > 0 && anotacoesAtuais.size() < 4) {
-                    anotacoesAtuais.add(anotacao);
-                }
-            }
-        }
-        
-        return anotacoesAtuais;
     }
     
     public static String parseDateString(Date data){

@@ -42,6 +42,7 @@ public class ControladorProfessor implements Serializable {
     private String mes;
     private String ano;
     private String mensagem;
+    private String usuario;
 
     @EJB
     Fachada fachada;
@@ -49,6 +50,7 @@ public class ControladorProfessor implements Serializable {
     public ControladorProfessor() {
         professor = new Professor();
         professorLogado = new Professor();
+        usuario = new String();
     }
 
     public Professor getProfessor() {
@@ -93,6 +95,14 @@ public class ControladorProfessor implements Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public void salvarProfessor() throws IOException {

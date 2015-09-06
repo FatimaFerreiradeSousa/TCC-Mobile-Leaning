@@ -25,9 +25,6 @@ public class Professor extends Pessoa implements Serializable {
     private List<Teste> testes;
     @OneToMany(mappedBy = "professorGrupos")
     private List<Grupo> gruposCriados;
-    @OneToMany(mappedBy = "professor")
-    private List<Anotacao> anotacoes;
-
     
     public Professor() {
     }
@@ -39,7 +36,6 @@ public class Professor extends Pessoa implements Serializable {
         this.questoes = new ArrayList();
         this.testes = new ArrayList();
         this.gruposCriados = new ArrayList();
-        this.anotacoes = new ArrayList();
     }
 
     public Date getDataNascimento() {
@@ -73,12 +69,4 @@ public class Professor extends Pessoa implements Serializable {
     public void setGruposCriados(List<Grupo> gruposCriados) {
         this.gruposCriados = gruposCriados;
     }   
-
-    public List<Anotacao> getAnotacoes() {
-        return anotacoes;
-    }
-
-    public void setAnotacoes(List<Anotacao> anotacoes) {
-        this.anotacoes = anotacoes;
-    }
 }
