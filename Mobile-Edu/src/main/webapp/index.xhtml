@@ -43,8 +43,9 @@
                                     Cadastre-se
                                 </label>
 
-                                <h:inputText value="#{controladorLogin.pessoa.login}" pt:placeholder="Login" class="pass-reset-email"/>
-                                <h:inputText value="#{controladorLogin.pessoa.senha}" pt:placeholder="**********" class="pass-reset-email"/>
+                                <h:inputText value="#{controladorLogin.login}" pt:placeholder="Login" class="pass-reset-email"/>
+                                <h:inputSecret value="#{controladorLogin.senha}" 
+                                               pt:placeholder="**********" class="pass-reset-email"/>
 
                                 <h:selectOneMenu value="#{controladorLogin.usuario}" class="select-item btn-sm">
                                     <f:selectItem itemValue="Tipo" />
@@ -64,8 +65,8 @@
                             Login</p>
                         <h:form class="login login-form">
 
-                            <h:inputText pt:placeholder="Login" value=""/>
-                            <h:inputSecret pt:placeholder="********" value=""/>
+                            <h:inputText pt:placeholder="Login" value="#{controladorLogin.login}"/>
+                            <h:inputSecret pt:placeholder="********" value="#{controladorLogin.senha}"/>
 
                             <h:selectOneListbox size="1" value="#{controladorLogin.usuario}" class="select-item btn-sm">
                                 <f:selectItem itemValue="Tipo" />
@@ -73,7 +74,8 @@
                                 <f:selectItem itemValue="Professor" />
                             </h:selectOneListbox>
 
-                            <h:commandButton type="submit" value="Login" class="btn btn-success btn-sm btn-login" />
+                            <h:commandButton type="submit" value="Login" class="btn btn-success btn-sm btn-login"
+                                             action="#{controladorLogin.loginUsuario()}"/>
 
                             <div class="remember-forgot">
                                 <div class="row">
@@ -86,7 +88,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </h:body>
 </html>
