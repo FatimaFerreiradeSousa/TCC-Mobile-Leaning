@@ -105,67 +105,6 @@ public class ControladorProfessor implements Serializable {
         this.usuario = usuario;
     }
 
-    public void salvarProfessor() throws IOException {
-        String caminho
-                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
-
-        if (professor.getLogin().length() > 0 && professor.getNome().length() > 0 && professor.getEmail().length() > 0
-                && professor.getSenha().length() > 0) {
-            if (fachada.buscarProfessor(professor.getLogin()) == null && fachada.buscarAluno(professor.getLogin()) == null
-                    && fachada.buscarAlunoEmail(professor.getEmail()) == null && fachada.buscarProfessorEmail(professor.getEmail()) == null) {
-                professor.setFoto(caminho);
-                professor.setDataParticipacao(new Date());
-                fachada.salvarProfessor(professor);
-                professor = new Professor();
-                ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-                HttpServletRequest request = (HttpServletRequest) context.getRequest();
-                context.redirect(request.getContextPath());
-            } else {
-                mensagem = "Login Inválido! Por Favor Tente Outro.";
-            }
-        } else {
-            mensagem = "Preencha todos os campos corretamente!";
-        }
-    }
-
-    public void loginProfessor() throws IOException {
-
-        if (professor.getLogin().length() > 0 && professor.getSenha().length() > 0) {
-
-            Professor p = fachada.loginProfessor(professor.getLogin(), professor.getSenha());
-
-            if (p != null) {
-                professor = p;
-                String loginPage = "/md-professor/paginaInicialProfessor.jsf";
-                ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-                HttpServletRequest request = (HttpServletRequest) context.getRequest();
-                session = (HttpSession) context.getSession(false);
-                context.getSessionMap().put("professor", professor);
-                professorLogado = (Professor) session.getAttribute("professor");
-                context.redirect(request.getContextPath() + loginPage);
-            } else {
-                mensagem = "Login ou senha inválidos!";
-                professor = new Professor();
-            }
-        } else {
-            mensagem = "Preencha todos os campos";
-        }
-    }
-
-    public String logout() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) context.getRequest();
-        this.session = (HttpSession) context.getSession(false);
-        session.invalidate();
-        try {
-            context.redirect(request.getContextPath());
-        } catch (IOException e) {
-
-        }
-
-        return null;
-    }
-
     public String atualizarProfessor() {
         professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
         fachada.atualizarProfessor(professorLogado);

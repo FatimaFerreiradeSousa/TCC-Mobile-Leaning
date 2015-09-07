@@ -3,130 +3,149 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
         <title>Professor | Pagina Inicial</title>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8"/>
+        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <script src="../bootstrap/js/jquery-2.1.4.min.js"/>
-        <script src="../bootstrap/js/bootstrap.min.js"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../bootstrap/js/custom.js"></script>
 
     </h:head>
 
     <h:body>
+        <div id="wrapper">
 
-        <nav class="navbar navbar-default navbar-collapse" role="navigation">
-            <div class="navbar-header">
-                <h:form>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-slide-dropdown">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                </h:form>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-slide-dropdown">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Testes <span class="caret"></span></a>				
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>                
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meus Grupos <span class="caret"></span></a>				
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Grupo</a></li>
-                        </ul>                
-                    </li>
-                </ul>
-
-                <h:form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <h:inputText value="" class="form-control" pt:placeholder="Pesquisar usuário"/>
-                    </div>
-
-                    <h:commandLink value="" class="btn btn-default">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </h:commandLink>
-                </h:form>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">#{professor.login} <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="container">
-
-            <div class="row profile">
-                <div class="col-lg-3">
-                    <div class="profile-sidebar">
-
-                        <div class="profile-userpic">
-                            <p:graphicImage id="imgPerfil155" value="#{professor.content}"/>
-                        </div>
-
-                        <div class="profile-usertitle">
-                            <div class="profile-usertitle-name">
-                                #{professor.nome}
-                            </div>
-                            <div class="profile-usertitle-job">
-                                Professor
-                            </div>
-                        </div>
-
-                        <div class="profile-usermenu">
-                            <ul class="nav">
-                                <li class="active">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-home"></i>
-                                        Visão Geral</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-user"></i>
-                                        Configurações de Conta </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="glyphicon glyphicon-ok"></i>
-                                        Tarefas </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-flag"></i>
-                                        Ajuda </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
                 </div>
 
-                <div class="col-md-9">
-                    <div class="profile-content">
-                        Some user related content goes here...
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-prof.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorLogin.logout()}"/>
+                                        
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li>
+                            <div class="user-img-div">
+                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                styleClass="img-circle"/>
+                            </div> 
+                        </li>
+
+                        <li>
+
+                            <a href="#"><strong>#{professor.nome}</strong></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#" class="active-menu">
+                                Testes
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Grupos 
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">
+                                        Meus Testes
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="page-head-line">Bem Vindo</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                Ei, Okay :)
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <center>
-            <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
-        </center>
     </h:body>
 </html>
 

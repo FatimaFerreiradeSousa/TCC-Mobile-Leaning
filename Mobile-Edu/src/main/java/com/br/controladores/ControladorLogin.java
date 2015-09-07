@@ -26,7 +26,7 @@ public class ControladorLogin implements Serializable {
     private String usuario;
     private String login;
     private String senha;
-    
+
     HttpSession session;
 
     public ControladorLogin() {
@@ -68,33 +68,40 @@ public class ControladorLogin implements Serializable {
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
 
         if (usuario.equalsIgnoreCase("Aluno")) {
-            Aluno aluno = new Aluno();
-            aluno.setLogin(login);
-            aluno.setSenha(senha);
-            aluno.setFoto(caminho);
-            aluno.setDataParticipacao(new Date());
-            fachada.salvarAluno(aluno);
-            login = null;
-            senha = null;
-            context.redirect(request.getContextPath());
+            if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
+                    && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
+                Aluno aluno = new Aluno();
+                aluno.setLogin(login);
+                aluno.setSenha(senha);
+                aluno.setFoto(caminho);
+                aluno.setDataParticipacao(new Date());
+                fachada.salvarAluno(aluno);
+                login = null;
+                senha = null;
+                context.redirect(request.getContextPath());
+            }
         } else {
-            Professor professor = new Professor();
-            professor.setLogin(login);
-            professor.setSenha(senha);
-            professor.setFoto(caminho);
-            professor.setDataParticipacao(new Date());
+            if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
+                    && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
+            
+                Professor professor = new Professor();
+                professor.setLogin(login);
+                professor.setSenha(senha);
+                professor.setFoto(caminho);
+                professor.setDataParticipacao(new Date());
 
-            fachada.salvarProfessor(professor);
-            context.redirect(request.getContextPath());
+                fachada.salvarProfessor(professor);
+                context.redirect(request.getContextPath());
+            }
         }
 
         return null;
     }
 
     public void loginUsuario() throws IOException {
-        
-        System.out.println("Usuario: " +usuario);
-        
+
+        System.out.println("Usuario: " + usuario);
+
         if (usuario.equalsIgnoreCase("Aluno")) {
 
             Aluno aluno = fachada.loginAluno(login, senha);
@@ -106,9 +113,11 @@ public class ControladorLogin implements Serializable {
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("aluno", aluno);
                 context.redirect(request.getContextPath() + loginPage);
+            } else {
+                /*Java Script*/
             }
         } else {
-            
+
             Professor professor = fachada.loginProfessor(login, senha);
 
             if (professor != null) {
@@ -118,7 +127,23 @@ public class ControladorLogin implements Serializable {
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("professor", professor);
                 context.redirect(request.getContextPath() + loginPage);
+            } else {
+                /*Java Script*/
             }
         }
+    }
+
+    public String logout() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        this.session = (HttpSession) context.getSession(false);
+        session.invalidate();
+        try {
+            context.redirect(request.getContextPath());
+        } catch (IOException e) {
+
+        }
+
+        return null;
     }
 }
