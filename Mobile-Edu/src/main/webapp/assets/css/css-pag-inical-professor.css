@@ -31,10 +31,10 @@ body{
 }
 
 .page-head-line{
-    font-size: 30px;
+    font-size: 20px;
     text-transform: uppercase;
     color: #000;
-    font-weight: 800;
+    font-weight: 400;
     padding-bottom: 20px;
     border-bottom: 2px solid #d2d6de;
     margin-bottom: 30px;
@@ -290,4 +290,19 @@ footer a {
 footer a:hover, footer a:focus {
     color:#fff;
     text-decoration:none;
+}
+
+.glyphicon{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+small{
+    display: block;
+    line-height: 1.4285;
+    color: #999;
+}
+
+.picture-perfil{
+    height: 200px;
 }

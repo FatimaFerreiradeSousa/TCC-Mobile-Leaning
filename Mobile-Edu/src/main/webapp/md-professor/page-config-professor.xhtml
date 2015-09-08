@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Configurações</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -51,7 +51,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorLogin.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -132,14 +132,55 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo</h1>
+                            <h1 class="page-head-line">Configurações</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                            <div class="well well-sm panel-img">
+                                <div class="row">
+                                    <div class="col-sm-1 col-md-2">
+                                        <img src="../img/perfil.png" alt="" class="img-responsive img-thumbnail"/>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-8">
+                                        <h4>#{professor.nome}</h4>
+                                        <smal>
+                                            <cite title="Cajazeiras, PB">
+                                                Universidade Federal da Paraiba
+                                                <i class="glyphicon glyphicon-map-marker"></i>
+                                            </cite>
+                                        </smal>
+
+                                        <p>
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            Fatinha
+                                            <br />
+                                            <i class="glyphicon glyphicon-envelope"></i>
+                                            fatinha.sg@hotmail.com
+                                            <br />
+                                            <i class="glyphicon glyphicon-gift"></i>
+                                            junho 14, 1994
+                                        </p>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary">
+                                                Configurações
+                                            </button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Alterar informações</a></li>
+                                                <li><a href="#">Alterar foto</a></li>
+                                                <li><a href="#">Remover conta</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
