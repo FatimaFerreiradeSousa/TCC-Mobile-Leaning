@@ -3,7 +3,11 @@ package com.br.controladores;
 import com.br.entidades.*;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -13,7 +17,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -30,6 +35,8 @@ public class ControladorUsuarios implements Serializable {
     private String senha;
     private Professor professor;
     private Aluno aluno;
+    private StreamedContent content;
+    private UploadedFile file;
 
     HttpSession session;
 
@@ -79,6 +86,22 @@ public class ControladorUsuarios implements Serializable {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     public String salvarUsuario() throws IOException {
@@ -174,5 +197,41 @@ public class ControladorUsuarios implements Serializable {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
         fachada.atualizarProfessor(professor);
         return "page-config-professor?faces-redirect=true";
+    }
+    
+    /*Upload de fotos*/
+    public void uploadProfessor() {
+        professor = PegarUsuarioSessao.pegarProfessorSessao();
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
+                + professor.getLogin() + "\\";
+
+        File dir = new File(caminho);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        if (file != null) {
+            try {
+                File targetFolder = new File(caminho);
+                InputStream inputStream = file.getInputstream();
+
+                String tipoArquivo = file.getFileName();
+                OutputStream out = new FileOutputStream(new File(targetFolder,
+                        professor.getLogin() + tipoArquivo));
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputStream.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+                inputStream.close();
+                out.flush();
+                out.close();
+                professor.setFoto(caminho + professor.getLogin() + tipoArquivo);
+                atualizarProfessor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

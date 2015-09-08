@@ -179,7 +179,7 @@
 
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a action="#" href="#signup" 
+                                                    <a action="#" href="#signup"
                                                        data-toggle="modal" data-target="#modal-atualizar">
                                                         Alterar informações
                                                     </a>
@@ -213,7 +213,7 @@
 
                             <label class="text-black">Escolha uma nova foto de perfil</label>
                             <p:fileUpload 
-                                value="#{controladorProfessor.file}"
+                                value="#{controladorUsuario.file}"
                                 allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
                                 mode="simple" 
                                 />
@@ -221,7 +221,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <p:commandLink value="Atualizar" ajax="false" actionListener="#{controladorProfessor.upload()}" 
+                            <p:commandLink value="Atualizar" ajax="false" actionListener="#{controladorUsuario.uploadProfessor()}" 
                                            disabled="false" update="@all" id="linkFoto" styleClass="btn btn-primary"/>
                         </div>
                     </h:form>
