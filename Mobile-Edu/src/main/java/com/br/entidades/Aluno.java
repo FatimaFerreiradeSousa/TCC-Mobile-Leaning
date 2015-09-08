@@ -19,8 +19,8 @@ public class Aluno extends Pessoa implements Serializable{
     }
 
     public Aluno(String curso, String email, String login, String senha, 
-            String nome, String instituicao, String foto, String descricao, Date dataParticipacao) {
-        super(email, login, senha, nome, instituicao, foto, descricao, dataParticipacao);
+            String nome, String instituicao, String foto, Date dataParticipacao) {
+        super(email, login, senha, nome, instituicao, foto, dataParticipacao);
         this.curso = curso;
     }
 

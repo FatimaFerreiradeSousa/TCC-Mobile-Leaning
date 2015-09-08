@@ -30,8 +30,8 @@ public class Professor extends Pessoa implements Serializable {
     }
 
     public Professor(Date dataNascimento, String email, String login, String senha, 
-            String nome, String instituicao, String foto, String descricao, Date dataParticipacao) {
-        super(email, login, senha, nome, instituicao, foto, descricao, dataParticipacao);
+            String nome, String instituicao, String foto, Date dataParticipacao) {
+        super(email, login, senha, nome, instituicao, foto, dataParticipacao);
         this.dataNascimento = dataNascimento;
         this.questoes = new ArrayList();
         this.testes = new ArrayList();

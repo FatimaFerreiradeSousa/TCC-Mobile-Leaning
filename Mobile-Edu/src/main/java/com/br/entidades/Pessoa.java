@@ -33,7 +33,6 @@ public class Pessoa implements Serializable {
     private String foto;
     @Column(unique = true)
     private String email;
-    private String descricao;
     @Temporal(TemporalType.DATE)
     private Date dataParticipacao;
 
@@ -45,14 +44,13 @@ public class Pessoa implements Serializable {
     }
 
     public Pessoa(String login, String senha, String nome, String instituicao,
-            String foto, String email, String descricao, Date dataParticipacao) {
+            String foto, String email, Date dataParticipacao) {
         this.login = login;
         this.senha = senha;
         this.nome = nome;
         this.instituicao = instituicao;
         this.foto = foto;
         this.email = email;
-        this.descricao = descricao;
         this.dataParticipacao = dataParticipacao;
     }
 
@@ -102,14 +100,6 @@ public class Pessoa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Date getDataParticipacao() {

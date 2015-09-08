@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -106,18 +105,11 @@ public class ControladorProfessor implements Serializable {
     }
 
     public String atualizarProfessor() {
-        professorLogado = PegarUsuarioSessao.pegarProfessorSessao();
-        fachada.atualizarProfessor(professorLogado);
-        return "paginaConfig?faces-redirect=true";
+        professor = PegarUsuarioSessao.pegarProfessorSessao();
+        fachada.atualizarProfessor(professor);
+        return "page-config-professor?faces-redirect=true";
     }
-
-    public String urlCadProfessor() throws IOException {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) context.getRequest();
-        context.redirect(request.getContextPath());
-        return null;
-    }
-
+    
     /*Manipulação de foto*/
     public UploadedFile getFile() {
         return file;
@@ -160,10 +152,6 @@ public class ControladorProfessor implements Serializable {
                 e.printStackTrace();
             }
         }
-    }
-
-    public String paginaInicialProfessor() {
-        return "indexProfessor?faces-redirect=true";
     }
 
     public StreamedContent mostrarFoto() {

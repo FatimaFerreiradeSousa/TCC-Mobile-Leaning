@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="name">Nome</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.nome}" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="email">Email</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.email}" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="login">Login</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.login}" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="login">Senha</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.senha}" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="login">Data de Nascimento</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.dataNascimento}" class="form-control">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="login">Instituição</label>
+                <div class="col-md-9">
+                    <h:inputText value="#{controladorUsuario.professor.instituicao}" class="form-control"/>
+                </div>
+            </div>
+
+
+            <h:commandButton value="Salvar" action="#{controladorUsuario.atualizarProfessor()}"/>
+        </h:form>
+
+    </h:body>
+</html>
+

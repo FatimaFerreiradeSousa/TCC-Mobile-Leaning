@@ -2,6 +2,7 @@ package com.br.controladores;
 
 import com.br.entidades.*;
 import com.br.fachada.Fachada;
+import com.br.sessao.PegarUsuarioSessao;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,27 +13,32 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 /**
  *
  * @author Fatinha de Sousa
  */
-@Named(value = "controladorLogin")
+@Named(value = "controladorUsuario")
 @SessionScoped
-public class ControladorLogin implements Serializable {
+public class ControladorUsuarios implements Serializable {
 
     @EJB
     Fachada fachada;
     private String usuario;
     private String login;
     private String senha;
+    private Professor professor;
+    private Aluno aluno;
 
     HttpSession session;
 
-    public ControladorLogin() {
+    public ControladorUsuarios() {
         login = null;
         senha = null;
         usuario = null;
+        aluno = new Aluno();
+        professor = new Professor();
     }
 
     public String getUsuario() {
@@ -59,6 +65,22 @@ public class ControladorLogin implements Serializable {
         this.senha = senha;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
     public String salvarUsuario() throws IOException {
         System.out.println("Usuario: " + usuario);
         String caminho
@@ -83,7 +105,7 @@ public class ControladorLogin implements Serializable {
         } else {
             if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
                     && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
-            
+
                 Professor professor = new Professor();
                 professor.setLogin(login);
                 professor.setSenha(senha);
@@ -100,33 +122,33 @@ public class ControladorLogin implements Serializable {
 
     public void loginUsuario() throws IOException {
 
-        System.out.println("Usuario: " + usuario);
-
         if (usuario.equalsIgnoreCase("Aluno")) {
 
-            Aluno aluno = fachada.loginAluno(login, senha);
+            Aluno a = fachada.loginAluno(login, senha);
 
-            if (aluno != null) {
+            if (a != null) {
                 String loginPage = "/md-aluno/pageInicialAluno.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
-                context.getSessionMap().put("aluno", aluno);
+                context.getSessionMap().put("aluno", a);
                 context.redirect(request.getContextPath() + loginPage);
+                aluno = PegarUsuarioSessao.pegarAlunoSessao();
             } else {
                 /*Java Script*/
             }
         } else {
 
-            Professor professor = fachada.loginProfessor(login, senha);
+            Professor p = fachada.loginProfessor(login, senha);
 
-            if (professor != null) {
+            if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
-                context.getSessionMap().put("professor", professor);
+                context.getSessionMap().put("professor", p);
                 context.redirect(request.getContextPath() + loginPage);
+                professor = PegarUsuarioSessao.pegarProfessorSessao();
             } else {
                 /*Java Script*/
             }
@@ -145,5 +167,12 @@ public class ControladorLogin implements Serializable {
         }
 
         return null;
+    }
+
+    /*Atualizar Usuarios*/
+    public String atualizarProfessor() {
+        professor = PegarUsuarioSessao.pegarProfessorSessao();
+        fachada.atualizarProfessor(professor);
+        return "page-config-professor?faces-redirect=true";
     }
 }
