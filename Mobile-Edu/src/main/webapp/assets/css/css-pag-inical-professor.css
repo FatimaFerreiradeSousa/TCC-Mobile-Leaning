@@ -306,3 +306,9 @@ small{
 .picture-perfil{
     height: 200px;
 }
+
+.btn-cons {
+    margin-right: 5px;
+    min-width: 120px;
+    margin-bottom: 8px;
+}

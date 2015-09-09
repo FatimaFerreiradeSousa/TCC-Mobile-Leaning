@@ -15,22 +15,21 @@ import javax.inject.Named;
  *
  * @author Fatinha de Sousa
  */
-@Named(value = "ControladorPergunta")
+@Named(value = "controladorPergunta")
 @SessionScoped
 public class ControladorPergunta implements Serializable {
 
     private Pergunta pergunta;
     private Resposta resposta;
     private String mensagem;
-    private List<Resposta> respostas;
-
+    
     @EJB
     Fachada fachada;
 
     public ControladorPergunta() {
         this.pergunta = new Pergunta();
         this.resposta = new Resposta();
-        this.respostas = new ArrayList();
+        this.pergunta.setRespostas(new ArrayList());
     }
 
     public Resposta getResposta() {
@@ -57,34 +56,24 @@ public class ControladorPergunta implements Serializable {
         this.mensagem = mensagem;
     }
 
-    public List<Resposta> getRespostas() {
-        return respostas;
-    }
-
-    public void setRespostas(List<Resposta> respostas) {
-        this.respostas = respostas;
-    }
-
     public String adicionarRespostas() {
 
         if (fachada.consultarQuestao(pergunta.getCodigo()) == null) {
             pergunta.setQtdRespostas(0);
-            return "cadastrarResposta?faces-redirect=true";
+            return "page-cad-resposta?faces-redirect=true";
         } else {
-            mensagem = "Codigo inválido!";
-            return "cadastrarPergunta?faces-redirect=true";
+            return "page-cad-pergunta?faces-redirect=true";
         }
     }
 
     public String salvarResposta() {
         this.fachada.salvarResposta(resposta);
-        this.respostas.add(resposta);
-        pergunta.setRespostas(respostas);
+        pergunta.getRespostas().add(resposta);
         pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
-        pergunta.setQtdRespostas(respostas.size());
+        pergunta.setQtdRespostas(pergunta.getRespostas().size());
         
         this.resposta = new Resposta();
-        return "cadastrarResposta?faces-redirect=true";
+        return "page-cad-resposta?faces-redirect=true";
     }
 
     public List<Pergunta> listarPerguntas() {        
@@ -97,20 +86,18 @@ public class ControladorPergunta implements Serializable {
         boolean status1 = fachada.removerResposta(respostas1);
 
         if (status == true && status1 == true) {
-            this.mensagem = "Nenhuma Pergunta Cadastrada";
-            return "perguntasCadastradas?faces-redirect=true";
+            return "page-cad-pergunta?faces-redirect=true";
         } else {
-            return "perguntasCadastradas?faces-redirect=true";
+            return "page-cad-pergunta?faces-redirect=true";
         }
     }
 
     public String salvarPergunta() {
         fachada.salvarQuestao(pergunta);
         this.pergunta = new Pergunta();
-        this.respostas = new ArrayList();
         
         this.pergunta = new Pergunta();
-        return "cadastrarPergunta?faces-redirect=true";
+        return "page-cad-pergunta?faces-redirect=true";
     }
     
     public String paginaAtualizar(Pergunta pergunta) {

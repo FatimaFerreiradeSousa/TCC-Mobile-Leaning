@@ -29,7 +29,7 @@ public class Pergunta implements Serializable{
     
     @OneToMany
     private List<Resposta> respostas;
-    private float pontuacao;
+    private float peso;
     @ManyToMany(mappedBy = "questoesExercicios")
     private List<Teste> exerciciosQuestoes;
     @ManyToOne
@@ -39,13 +39,13 @@ public class Pergunta implements Serializable{
     
     }
 
-    public Pergunta(int codigo, String enunciado, int qtdRespostas, String categoria, float pontuacao, Professor professor) {
+    public Pergunta(int codigo, String enunciado, int qtdRespostas, String categoria, float peso, Professor professor) {
         this.codigo = codigo;
         this.enunciado = enunciado;
         this.qtdRespostas = qtdRespostas;
         this.categoria = categoria;
         this.respostas = new ArrayList();
-        this.pontuacao = pontuacao;
+        this.peso = peso;
         this.exerciciosQuestoes = new ArrayList();
         this.professor = professor;
         this.respostas = new ArrayList();
@@ -67,12 +67,12 @@ public class Pergunta implements Serializable{
         this.enunciado = enunciado;
     }
 
-    public float getPontuacao() {
-        return pontuacao;
+    public float getPeso() {
+        return peso;
     }
 
-    public void setPontuacao(float pontuacao) {
-        this.pontuacao = pontuacao;
+    public void setPeso(float peso) {
+        this.peso = peso;
     }
 
     public int getQtdRespostas() {
@@ -117,15 +117,13 @@ public class Pergunta implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.codigo);
-        hash = 79 * hash + Objects.hashCode(this.enunciado);
-        hash = 79 * hash + this.qtdRespostas;
-        hash = 79 * hash + Objects.hashCode(this.categoria);
-        hash = 79 * hash + Objects.hashCode(this.respostas);
-        hash = 79 * hash + Float.floatToIntBits(this.pontuacao);
-        hash = 79 * hash + Objects.hashCode(this.exerciciosQuestoes);
-        hash = 79 * hash + Objects.hashCode(this.professor);
+        int hash = 5;
+        hash = 61 * hash + this.codigo;
+        hash = 61 * hash + Objects.hashCode(this.enunciado);
+        hash = 61 * hash + this.qtdRespostas;
+        hash = 61 * hash + Objects.hashCode(this.categoria);
+        hash = 61 * hash + Float.floatToIntBits(this.peso);
+        hash = 61 * hash + Objects.hashCode(this.professor);
         return hash;
     }
 
@@ -138,7 +136,7 @@ public class Pergunta implements Serializable{
             return false;
         }
         final Pergunta other = (Pergunta) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        if (this.codigo != other.codigo) {
             return false;
         }
         if (!Objects.equals(this.enunciado, other.enunciado)) {
@@ -150,13 +148,7 @@ public class Pergunta implements Serializable{
         if (!Objects.equals(this.categoria, other.categoria)) {
             return false;
         }
-        if (!Objects.equals(this.respostas, other.respostas)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.pontuacao) != Float.floatToIntBits(other.pontuacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.exerciciosQuestoes, other.exerciciosQuestoes)) {
+        if (Float.floatToIntBits(this.peso) != Float.floatToIntBits(other.peso)) {
             return false;
         }
         if (!Objects.equals(this.professor, other.professor)) {

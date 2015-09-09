@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <title>Professor | Cadastrar Resposta</title>
 
-        <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -17,6 +19,7 @@
         <script src="../bootstrap/js/custom.js"></script>
 
     </h:head>
+
 
     <h:body>
         <div id="wrapper">
@@ -49,7 +52,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -130,17 +133,79 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo</h1>
+                            <h1 class="page-head-line">Cadastrar resposta</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-info">
+                                            #{controladorPergunta.pergunta.enunciado}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="resposta" class="col-sm-2 control-label">Resposta</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorPergunta.resposta.conteudo}" class="form-control" id="enunciado" pt:placeholder="Conteúdo"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="respostaCerta" class="col-sm-2 control-label">Resposta Certa</label>
+                                    <div class="col-sm-10">
+                                        <h:selectBooleanCheckbox id="resp" value="#{controladorPergunta.resposta.respostaCerta}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group form-inline">
+                                    <div class="col-md-4">
+                                        <h:commandButton action="#{controladorPergunta.salvarResposta()}" class="btn btn-warning btn-cons" value="Salvar resposta"/>
+                                        <h:commandButton action="#{controladorPergunta.salvarPergunta()}" class="btn btn-success btn-cons" value="Salvar pergunta"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">
+                                                    Respostas
+                                                </h3>
+                                            </div>                
+                                        </div>
+
+                                        <h:dataTable value="#{controladorPergunta.pergunta.respostas}" class="table table-responsive" var="resposta">
+                                            <h:column>
+                                                <div class="panel panel-danger">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">
+                                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="text text-info"/>
+                                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
+                                                        </h3>
+                                                    </div>                
+                                                </div>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
