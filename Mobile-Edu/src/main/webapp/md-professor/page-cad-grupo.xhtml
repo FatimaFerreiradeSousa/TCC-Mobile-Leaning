@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
+        <title>Professor | Cadastrar Grupo</title>
 
-        <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -17,6 +18,7 @@
         <script src="../bootstrap/js/custom.js"></script>
 
     </h:head>
+
 
     <h:body>
         <div id="wrapper">
@@ -49,7 +51,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -87,18 +89,18 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
@@ -116,14 +118,8 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="page-listar-grupos.jsf">
-                                        Meus Grupos
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                             </ul>
@@ -136,17 +132,39 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo</h1>
+                            <h1 class="page-head-line">Criar novo grupo</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="nome" class="col-sm-2 control-label">Nome</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorGrupo.grupo.nome}" class="form-control" id="enunciado" pt:placeholder="Nome"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="descricao" class="col-sm-2 control-label">Descrição</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorGrupo.grupo.descricao}" class="form-control" id="categoria" pt:placeholder="Descrição"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <h:commandButton action="#{controladorGrupo.salvarGrupo()}" class="btn btn-success" value="Criar grupo"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
