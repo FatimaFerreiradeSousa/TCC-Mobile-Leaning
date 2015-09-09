@@ -102,7 +102,7 @@ public class ControladorPergunta implements Serializable {
     
     public String paginaAtualizar(Pergunta pergunta) {
         this.pergunta = pergunta;
-        return "editarPergunta?faces-redirect=true";
+        return "page-alterar-pergunta?faces-redirect=true";
     }
     
     public String atualizarPergunta(){

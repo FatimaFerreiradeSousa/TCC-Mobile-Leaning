@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Atualizar Pergunta</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -49,7 +50,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -130,17 +131,78 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo</h1>
+                            <h1 class="page-head-line">Atualizar pergunta</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="enunciado" class="col-sm-2 control-label">Enunciado</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="form-control" id="enunciado" pt:placeholder="Enunciado"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="categoria" class="col-sm-2 control-label">Categoria</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="form-control" id="categoria" pt:placeholder="Categoria"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="peso" class="col-sm-2 control-label">Peso</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorPergunta.pergunta.peso}" class="form-control" id="peso" pt:placeholder="Peso"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group form-inline">
+                                    <div class="col-md-4">
+                                        <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" class="btn btn-success btn-cons" value="Atualizar"/>
+                                        <h:commandButton action="#{controladorPergunta.removerPergunta()}" class="btn btn-danger btn-cons" value="Remover"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">
+                                                    Respostas
+                                                </h3>
+                                            </div>                
+                                        </div>
+
+                                        <h:dataTable value="#{controladorPergunta.pergunta.respostas}" class="table table-responsive" var="resposta">
+                                            <h:column>
+                                                <div class="panel panel-danger">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">
+                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" style="text-decoration: none;" 
+                                                                           class="text text-info" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"/>
+                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
+                                                                          action="#{controladorPergunta.paginaAtualizarResposta(resposta)}" style="text-decoration: none;"/>
+                                                        </h3>
+                                                    </div>                
+                                                </div>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
