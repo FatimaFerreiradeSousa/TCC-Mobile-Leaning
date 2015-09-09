@@ -75,7 +75,7 @@ public class ControladorPergunta implements Serializable {
         this.resposta = new Resposta();
         return "page-cad-resposta?faces-redirect=true";
     }
-
+   
     public List<Pergunta> listarPerguntas() {        
         return fachada.listarQuestoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
@@ -86,9 +86,9 @@ public class ControladorPergunta implements Serializable {
         boolean status1 = fachada.removerResposta(respostas1);
 
         if (status == true && status1 == true) {
-            return "page-cad-pergunta?faces-redirect=true";
+            return "page-listar-perguntas?faces-redirect=true";
         } else {
-            return "page-cad-pergunta?faces-redirect=true";
+            return "page-listar-perguntas?faces-redirect=true";
         }
     }
 
@@ -108,22 +108,46 @@ public class ControladorPergunta implements Serializable {
     public String atualizarPergunta(){
         fachada.atualizarQuestao(pergunta);
         
-        return "editarPergunta?faces-redirect=true";
+        return "page-alterar-pergunta?faces-redirect=true";
     }
     
     public String paginaAtualizarResposta(Resposta resposta){
         this.resposta = resposta;
-        return "editarResposta?faces-redirect=true";
+        return "page-alterar-resposta?faces-redirect=true";
     }
     
     public String atualizarResposta(){
         fachada.atualizarResposta(resposta);
-        return "editarPergunta?faces-redirect=true";
+        return "page-alterar-pergunta?faces-redirect=true";
     }
     
     public String removerResposta(){
         this.pergunta.getRespostas().remove(resposta);
         
-        return "editarPergunta?faces-redirect=true";
+        return "page-alterar-pergunta?faces-redirect=true";
+    }
+    
+    /*inserir uma nova resposta em uma pergunta ja cadastrada*/
+     public String paginaCadResposta(){
+        return "page-add-resposta-alt-perg?faces-redirect=true";
+    }
+    
+    public String addRespostaAlterarPergunta() {
+        pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        pergunta.setQtdRespostas(pergunta.getRespostas().size());
+        fachada.atualizarQuestao(pergunta);
+        
+        this.resposta = new Resposta();
+        return "page-alterar-pergunta?faces-redirect=true";
+    }
+    
+    public String novaResposta() {
+        this.fachada.salvarResposta(resposta);
+        pergunta.getRespostas().add(resposta);
+        pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        pergunta.setQtdRespostas(pergunta.getRespostas().size());
+        
+        this.resposta = new Resposta();
+        return "page-add-resposta-alt-perg?faces-redirect=true";
     }
 }

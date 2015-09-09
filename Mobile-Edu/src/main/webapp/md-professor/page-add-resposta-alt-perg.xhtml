@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <title>Professor | Alterar Perguntas</title>
 
-        <title>Professor | Atualizar Pergunta</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -18,6 +19,7 @@
         <script src="../bootstrap/js/custom.js"></script>
 
     </h:head>
+
 
     <h:body>
         <div id="wrapper">
@@ -88,8 +90,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
@@ -131,7 +133,7 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Atualizar pergunta</h1>
+                            <h1 class="page-head-line">Nova resposta</h1>
                         </div>
                     </div>
 
@@ -139,27 +141,28 @@
                         <div class="row">
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="enunciado" class="col-sm-2 control-label">Enunciado</label>
-                                    <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="form-control" id="enunciado" pt:placeholder="Enunciado"/>
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-info">
+                                            #{controladorPergunta.pergunta.enunciado}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="categoria" class="col-sm-2 control-label">Categoria</label>
+                                    <label for="resposta" class="col-sm-2 control-label">Resposta</label>
                                     <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="form-control" id="categoria" pt:placeholder="Categoria"/>
+                                        <h:inputText value="#{controladorPergunta.resposta.conteudo}" class="form-control" id="enunciado" pt:placeholder="Conteúdo"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="peso" class="col-sm-2 control-label">Peso</label>
+                                    <label for="respostaCerta" class="col-sm-2 control-label">Resposta Certa</label>
                                     <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.peso}" class="form-control" id="peso" pt:placeholder="Peso"/>
+                                        <h:selectBooleanCheckbox id="resp" value="#{controladorPergunta.resposta.respostaCerta}"/>
                                     </div>
                                 </div>
                             </div>
@@ -167,11 +170,12 @@
                             <div class="col-lg-10">
                                 <div class="form-group form-inline">
                                     <div class="col-md-4">
-                                        <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" class="btn btn-success btn-cons" value="Atualizar"/>
-                                        <h:commandButton action="#{controladorPergunta.removerPergunta()}" class="btn btn-danger btn-cons" value="Remover"/>
+                                        <h:commandButton action="#{controladorPergunta.novaResposta()}" class="btn btn-warning btn-cons" value="Salvar resposta"/>
+                                        <h:commandButton action="#{controladorPergunta.addRespostaAlterarPergunta()}" class="btn btn-success btn-cons" value="Alterar pergunta"/>
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="col-lg-10">
                                 <div class="form-group">
@@ -189,26 +193,17 @@
                                                 <div class="panel panel-danger">
                                                     <div class="panel-heading">
                                                         <h3 class="panel-title">
-                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" style="text-decoration: none;" 
-                                                                           class="text text-info" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"/>
-                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
-                                                                           action="#{controladorPergunta.paginaAtualizarResposta(resposta)}" style="text-decoration: none;"/>
+                                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="text text-info"/>
+                                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
                                                         </h3>
                                                     </div>                
                                                 </div>
                                             </h:column>
                                         </h:dataTable>
-
-                                        <div class="col-lg-10">
-                                            <div class="form-group">
-                                                <div class="col-md-4">
-                                                    <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" class="btn btn-warning btn-cons" value="Nova resposta"/>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </h:form>
                 </div>

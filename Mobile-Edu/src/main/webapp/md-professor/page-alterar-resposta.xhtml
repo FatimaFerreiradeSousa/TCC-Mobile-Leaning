@@ -6,7 +6,7 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
-        <title>Professor | Atualizar Pergunta</title>
+        <title>Professor | Alterar Resposta</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -131,7 +131,7 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Atualizar pergunta</h1>
+                            <h1 class="page-head-line">Atualizar resposta</h1>
                         </div>
                     </div>
 
@@ -139,27 +139,28 @@
                         <div class="row">
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="enunciado" class="col-sm-2 control-label">Enunciado</label>
-                                    <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="form-control" id="enunciado" pt:placeholder="Enunciado"/>
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-info">
+                                            #{controladorPergunta.pergunta.enunciado}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="categoria" class="col-sm-2 control-label">Categoria</label>
+                                    <label for="resposta" class="col-sm-2 control-label">Resposta</label>
                                     <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="form-control" id="categoria" pt:placeholder="Categoria"/>
+                                        <h:inputText value="#{controladorPergunta.resposta.conteudo}" class="form-control" id="enunciado" pt:placeholder="Conteúdo"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-10">
                                 <div class="form-group">
-                                    <label for="peso" class="col-sm-2 control-label">Peso</label>
+                                    <label for="respostaCerta" class="col-sm-2 control-label">Resposta Certa</label>
                                     <div class="col-sm-10">
-                                        <h:inputText value="#{controladorPergunta.pergunta.peso}" class="form-control" id="peso" pt:placeholder="Peso"/>
+                                        <h:selectBooleanCheckbox id="resp" value="#{controladorPergunta.resposta.respostaCerta}"/>
                                     </div>
                                 </div>
                             </div>
@@ -167,48 +168,12 @@
                             <div class="col-lg-10">
                                 <div class="form-group form-inline">
                                     <div class="col-md-4">
-                                        <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" class="btn btn-success btn-cons" value="Atualizar"/>
-                                        <h:commandButton action="#{controladorPergunta.removerPergunta()}" class="btn btn-danger btn-cons" value="Remover"/>
+                                        <h:commandButton action="#{controladorPergunta.atualizarResposta()}" class="btn btn-success btn-cons" value="Atualizar"/>
+                                        <h:commandButton action="#{controladorPergunta.removerResposta()}" class="btn btn-danger btn-cons" value="Remover"/>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-10">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">
-                                                    Respostas
-                                                </h3>
-                                            </div>                
-                                        </div>
-
-                                        <h:dataTable value="#{controladorPergunta.pergunta.respostas}" class="table table-responsive" var="resposta">
-                                            <h:column>
-                                                <div class="panel panel-danger">
-                                                    <div class="panel-heading">
-                                                        <h3 class="panel-title">
-                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" style="text-decoration: none;" 
-                                                                           class="text text-info" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"/>
-                                                            <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
-                                                                           action="#{controladorPergunta.paginaAtualizarResposta(resposta)}" style="text-decoration: none;"/>
-                                                        </h3>
-                                                    </div>                
-                                                </div>
-                                            </h:column>
-                                        </h:dataTable>
-
-                                        <div class="col-lg-10">
-                                            <div class="form-group">
-                                                <div class="col-md-4">
-                                                    <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" class="btn btn-warning btn-cons" value="Nova resposta"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </h:form>
                 </div>
