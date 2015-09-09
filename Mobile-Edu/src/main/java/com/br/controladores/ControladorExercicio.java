@@ -103,9 +103,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String buscarPerguntas() {
-
-        questoesTeste = fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas());
-        exercicio.setQuestoesExercicios(questoesTeste);
+        exercicio.setQuestoesExercicios(fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas()));
         return "page-cad-teste?faces-redirect=true";
     }
 
@@ -114,39 +112,26 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String removerTeste() {
-        fachada.removerExercicio(teste);
-        return "testesCadastrados?faces-redirect=true";
+        fachada.removerExercicio(exercicio);
+        return "page-listar-testes?faces-redirect=true";
     }
 
     public String visualizarTeste(Teste teste) {
-        this.teste = teste;
-        this.questoesTeste = teste.getQuestoesExercicios();
+        this.exercicio = teste;
+        this.questoesTeste = exercicio.getQuestoesExercicios();
 
-        return "editarTeste?faces-redirect=true";
+        return "page-alterar-teste?faces-redirect=true";
     }
 
     public String atualizarTeste() {
-        teste.setQtdPerguntas(this.questoesTeste.size());
-        teste.setQuestoesExercicios(questoesTeste);
-        fachada.atualizarExercicio(teste);
-
-        return "editarTeste?faces-redirect=true";
+        fachada.atualizarExercicio(exercicio);
+        return "page-alterar-teste?faces-redirect=true";
     }
 
-    public String removerPergunta() {
-
-        this.questoesTeste.remove(pergunta);
-        this.teste.setQtdPerguntas(this.questoesTeste.size());
-
-        return "editarTeste?faces-redirect=true";
+    public String visualizarPerguntas(){
+        return "page-perguntas-teste?faces-redirect=true";
     }
 
-    public String paginaVisualizarPergunta(Pergunta pergunta){
-        this.pergunta = pergunta;
-        
-        return "pagina-visualizar-pergunta?faces-redirect=true";
-    }
-    
     public String paginaEnviar() {
         return "pagina-enviar-teste?faces-redirect=true";
     }
@@ -171,7 +156,7 @@ public class ControladorExercicio implements Serializable {
         
         fachada.salvarTopico(topico);
         
-        return "testesCadastrados?faces-redirect=true";
+        return "page-listar-testes?faces-redirect=true";
     }
 
 }

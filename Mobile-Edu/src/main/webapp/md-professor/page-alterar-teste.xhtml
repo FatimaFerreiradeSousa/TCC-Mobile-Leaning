@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Alterar Teste</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -49,7 +51,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -97,8 +99,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
@@ -130,17 +132,73 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo</h1>
+                            <h1 class="page-head-line">Atualizar teste</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form class="form-horizontal">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Assunto</label>
+                                <div class="col-sm-9">
+                                    <h:inputText value="#{controladorExercicio.exercicio.assunto}" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Disciplina</label>
+
+                                <div class="col-sm-4">
+                                    <h:inputText value="#{controladorExercicio.exercicio.disciplina}" class="form-control input-form"/>
+                                </div>
+
+                                <label class="col-sm-2 control-label">Data de Entrega</label>
+
+                                <div class="col-sm-3">
+                                    <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" class="form-control">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText> 
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Categoria</label>
+
+                                <div class="col-sm-4">
+                                    <h:inputText value="#{controladorExercicio.exercicio.categoria}" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Perguntas</label>
+
+                                <div class="col-sm-4">
+                                    <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
+                                                        size="1" class="form-control">
+                                        <f:selectItem itemValue="1"/>
+                                        <f:selectItem itemValue="2"/>
+                                        <f:selectItem itemValue="3"/>
+                                        <f:selectItem itemValue="4"/>
+                                        <f:selectItem itemValue="5"/>
+                                        <f:selectItem itemValue="6"/>
+                                        <f:selectItem itemValue="7"/>
+                                        <f:selectItem itemValue="8"/>
+                                        <f:selectItem itemValue="9"/>
+                                        <f:selectItem itemValue="10"/>
+                                    </h:selectOneListbox>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <h:commandButton action="#{controladorExercicio.atualizarTeste()}" class="btn btn-primary btn-cons" value="Atualizar"/>
+                                        <h:commandButton action="#{controladorExercicio.visualizarPerguntas()}" class="btn btn-success btn-cons" value="Perguntas"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
