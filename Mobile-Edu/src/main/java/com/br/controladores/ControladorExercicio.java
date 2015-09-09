@@ -22,8 +22,6 @@ import javax.inject.Named;
 public class ControladorExercicio implements Serializable {
 
     private Teste exercicio;
-    private Teste teste;
-    private List<Pergunta> questoesTeste;
     private List<String> grupos;
     private String codigoGrupo;
     private Pergunta pergunta;
@@ -33,8 +31,6 @@ public class ControladorExercicio implements Serializable {
 
     public ControladorExercicio() {
         exercicio = new Teste();
-        questoesTeste = new ArrayList();
-        teste = new Teste();
         grupos = new ArrayList();
         pergunta = new Pergunta();
     }
@@ -45,18 +41,6 @@ public class ControladorExercicio implements Serializable {
 
     public void setExercicio(Teste exercicio) {
         this.exercicio = exercicio;
-    }
-
-    public List<Pergunta> getQuestoesTeste() {
-        return questoesTeste;
-    }
-
-    public Teste getTeste() {
-        return teste;
-    }
-
-    public void setTeste(Teste teste) {
-        this.teste = teste;
     }
 
     public List<String> getGrupos() {
@@ -97,7 +81,6 @@ public class ControladorExercicio implements Serializable {
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();
-        this.questoesTeste = new ArrayList();
 
         return "page-cad-teste?faces-redirect=true";
     }
@@ -118,7 +101,6 @@ public class ControladorExercicio implements Serializable {
 
     public String visualizarTeste(Teste teste) {
         this.exercicio = teste;
-        this.questoesTeste = exercicio.getQuestoesExercicios();
 
         return "page-alterar-teste?faces-redirect=true";
     }
@@ -136,19 +118,12 @@ public class ControladorExercicio implements Serializable {
         return "pagina-enviar-teste?faces-redirect=true";
     }
 
-    public List<Pergunta> perguntasTeste() {
-        return this.teste.getQuestoesExercicios();
-    }
-
     public String enviarTeste() {
         String codigo [] = codigoGrupo.split(" ");
         
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
         Topico topico = new Topico();
         
-        topico.setCodigoTeste(teste.getCodigo());
-        topico.setConteudo(teste.getAssunto());
-        topico.setDataCriacao(teste.getDataEntrega());
         topico.setTipo("Atividade");
         topico.setGrupo(grupo);
         topico.setDisponivel(true);
