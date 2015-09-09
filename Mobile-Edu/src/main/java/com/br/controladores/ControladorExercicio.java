@@ -99,15 +99,14 @@ public class ControladorExercicio implements Serializable {
         exercicio = new Teste();
         this.questoesTeste = new ArrayList();
 
-        return "cadExercicio?faces-redirect=true";
+        return "page-cad-teste?faces-redirect=true";
     }
 
     public String buscarPerguntas() {
 
         questoesTeste = fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas());
         exercicio.setQuestoesExercicios(questoesTeste);
-
-        return "cadExercicio?faces-redirect=true";
+        return "page-cad-teste?faces-redirect=true";
     }
 
     public List<Teste> testesCadastrados() {

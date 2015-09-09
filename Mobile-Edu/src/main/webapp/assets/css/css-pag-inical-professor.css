@@ -312,3 +312,8 @@ small{
     min-width: 120px;
     margin-bottom: 8px;
 }
+
+.input-form{
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
