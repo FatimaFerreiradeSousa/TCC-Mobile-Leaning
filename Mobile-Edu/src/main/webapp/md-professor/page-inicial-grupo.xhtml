@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Pagina Inicial</title>
@@ -11,10 +12,12 @@
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
         <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <link href="../assets/css/css-page-grupo.css" rel="stylesheet"/>
         <script src="../bootstrap/js/jquery-1.11.1.js"></script>
         <script src="../bootstrap/js/bootstrap.js"></script>
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
+        <script src="../assets/js/script-page-grupo.js"></script>
 
     </h:head>
 
@@ -49,7 +52,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -120,7 +123,7 @@
                                         Criar Grupo
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
@@ -140,13 +143,143 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            
-                            
+                    <h:form>
+                        <!--Panel criar topicos-->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <div class="panel panel-default panel-google-plus">
+                                    <div class="panel-footer">
+                                        <div class="btn input-topico btn-success pull-right">Publicar</div>
+                                        <div class="btn input-arquivo btn-default pull-right">Arquivo</div>
+                                    </div>
+
+                                    <div class="panel-google-plus-comment">
+                                        <p:graphicImage value="#{professor.content}" id="picture1" styleClass="img-circle img-size"/>
+
+                                        <div class="panel-google-plus-textarea">
+
+                                            <h:inputTextarea rows="4" style="resize: none;"
+                                                             value="#{controladorGrupo.topico.conteudo}">
+                                            </h:inputTextarea>
+
+                                            <h:commandButton value="Publicar" class="btn btn-success" 
+                                                             action="#{controladorGrupo.salvarTopicoProfessor()}"/>                                        
+                                            <button type="cancel" class="btn btn-default">Cancelar</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <!--Panel Topicos-->
+                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table">
+                            <h:column>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                        <div class="panel panel-default panel-google-plus">
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                                </span>
+
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="presentation">
+                                                        <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                    </li>
+                                                    <li role="presentation">
+                                                        <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
+                                                                       action="#{controladorGrupo.removerTopico(topico)}"/>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="panel-google-plus-tags">
+                                                <ul>
+                                                    <li>Topico</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="panel-heading">
+                                                <p:graphicImage id="picture2" value="#{controladorFotos.mostrarFoto()}"
+                                                                styleClass="img-circle pull-left">
+                                                    <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                </p:graphicImage>
+
+                                                <h3>#{topico.loginUsuario}</h3>
+                                                <h5><h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:outputLabel>
+                                                </h5>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <p>#{topico.conteudo}</p>
+                                            </div>
+
+                                            <div class="panel-footer">
+                                                <button type="button" class="btn btn-default">+1</button>
+                                                <div class="input-placeholder">Add comentário</div>
+                                            </div>
+
+                                            <div class="panel-google-plus-comment">
+                                                <p:graphicImage value="#{professor.content}" id="picture3" 
+                                                                styleClass="img-circle img-size"/>
+
+                                                <div class="panel-google-plus-textarea">
+                                                    <h:inputTextarea rows="4" style="resize: none;"
+                                                                     value="#{controladorGrupo.comentarioTopico.conteudo}">
+                                                    </h:inputTextarea>
+
+                                                    <h:commandButton  value="Comentar" class="btn btn-success" 
+                                                                      action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
+                                                    <button type="reset" class="btn btn-default">Cancelar</button>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div class="panel-comentarios">
+                                                <div class="panel-footer">
+                                                    <div class="input-comentarios">Comentarios</div>
+                                                </div>
+
+                                                <div class="panel-google-plus-comments">
+                                                    <h:dataTable value="#{topico.comentarios}" var="comentario">
+                                                        <h:column>
+                                                            <div class="dropdown pull-right">
+                                                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                                                </span>
+
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li role="presentation">
+                                                                        <h:commandLink role="menuitem" tabindex="-1" value="Editar"/>
+                                                                    </li>
+                                                                    <li role="presentation">
+                                                                        <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
+                                                                                       action="#{controladorGrupo.removerComentario(comentario)}"/>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <img class="img-circle pull-left" src="img/publicfolder.png" alt="usuario"/>
+
+                                                            <h3>Fatinha</h3>
+                                                            <span>Shared publicy</span> - <span>jun 27, 2014</span>
+                                                            <div class="clearfix"></div>
+
+                                                            <p>Comentario comentario comentario comentario Comentario comentario comentario comentario</p>
+
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                 </div>
             </div>
         </div>

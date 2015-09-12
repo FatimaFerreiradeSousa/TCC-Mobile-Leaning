@@ -94,6 +94,8 @@ public class GerenciadorGrupo implements Serializable {
     public void setParticipaGrupo(ParticipaGrupo participaGrupo) {
         this.participaGrupo = participaGrupo;
     }
+    
+    /*operações da entidade grupo*/
 
     public String salvarGrupo() {
         grupo.setDataCriacao(new Date());
@@ -126,12 +128,12 @@ public class GerenciadorGrupo implements Serializable {
             topico.setGrupo(grupo);
             topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
             topico.setTipo("Publicacao");
-
+            
             fachada.salvarTopico(topico);
             topico = new Topico();
         }
 
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     public List<Topico> topicos() {
@@ -234,6 +236,7 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String salvarComentarioProfessor(Topico topico) {
+        System.out.println("Comentario: " +comentarioTopico.getConteudo());
         comentarioTopico.setDataComentario(new Date());
         comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
         comentarioTopico.setTopico(topico);
@@ -242,7 +245,7 @@ public class GerenciadorGrupo implements Serializable {
             comentarioTopico = new Comentario();
         }
 
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     public String alterarComentario(Comentario comentario) {
@@ -252,9 +255,10 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String removerComentario(Comentario comentario) {
+        System.out.println("Comentario: " +comentario.getConteudo());
         fachada.removerComentario(comentario);
 
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     public List<Comentario> comentariosTopico(Topico topico) {
