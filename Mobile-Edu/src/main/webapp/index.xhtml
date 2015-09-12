@@ -43,16 +43,16 @@
                                     <h:form id="login-form" role="form" style="display: block">
                                         <div class="form-group">
                                             <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login"
-                                                         value="#{controladorUsuario.login}"/>
+                                                         value="#{controladorUsuario.login}" required="true"/>
                                         </div>
 
                                         <div class="form-group">
                                             <h:inputSecret id="password" tabindex="1" class="form-control" pt:placeholder="**********" 
-                                                           value="#{controladorUsuario.senha}"/>
+                                                           value="#{controladorUsuario.senha}" required="true"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" required="true">
                                                 <f:selectItem itemValue="Tipo" />
                                                 <f:selectItem itemValue="Aluno" />
                                                 <f:selectItem itemValue="Professor" />
