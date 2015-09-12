@@ -110,12 +110,12 @@ public class GerenciadorGrupo implements Serializable {
     public String removerGrupo() {
         fachada.removerGrupo(grupo);
 
-        return "cadGrupo?faces-redirect=true";
+        return "page-listar-grupos?faces-redirect=true";
     }
 
     public String pagInicialGrupo(Grupo grupo) {
         this.grupo = grupo;
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     /*Topicos*/

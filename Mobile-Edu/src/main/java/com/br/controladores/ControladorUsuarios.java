@@ -33,6 +33,7 @@ public class ControladorUsuarios implements Serializable {
     private String usuario;
     private String login;
     private String senha;
+    private String email;
     private Professor professor;
     private Aluno aluno;
     private StreamedContent content;
@@ -43,6 +44,7 @@ public class ControladorUsuarios implements Serializable {
     public ControladorUsuarios() {
         login = null;
         senha = null;
+        email = null;
         usuario = null;
         aluno = new Aluno();
         professor = new Professor();
@@ -70,6 +72,14 @@ public class ControladorUsuarios implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Professor getProfessor() {
@@ -118,6 +128,7 @@ public class ControladorUsuarios implements Serializable {
                 Aluno aluno = new Aluno();
                 aluno.setLogin(login);
                 aluno.setSenha(senha);
+                aluno.setEmail(email);
                 aluno.setFoto(caminho);
                 aluno.setDataParticipacao(new Date());
                 fachada.salvarAluno(aluno);
@@ -132,6 +143,7 @@ public class ControladorUsuarios implements Serializable {
                 Professor professor = new Professor();
                 professor.setLogin(login);
                 professor.setSenha(senha);
+                professor.setEmail(email);
                 professor.setFoto(caminho);
                 professor.setDataParticipacao(new Date());
 

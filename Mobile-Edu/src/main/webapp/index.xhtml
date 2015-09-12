@@ -5,7 +5,7 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Home | ML</title>
+        <title>Login | ML</title>
         <meta charset="utf-8"/>
         <meta name="format-detection" content="telephone=no" />
 
@@ -13,19 +13,7 @@
         <link rel="stylesheet" href="assets/fonts/font-awesome/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="assets/css/css-index.css"/>
         <script src="bootstrap/js/jquery-2.1.4.min.js"/>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.forgot-pass').click(function (event) {
-                    $(".pr-wrap").toggleClass("show-pass-reset");
-                });
-
-                $('.pass-reset-submit').click(function (event) {
-                    $(".pr-wrap").removeClass("show-pass-reset");
-                });
-            });
-        </script>
-
+        <script src="assets/js/js-page-login.js"/>
     </h:head>
 
     <h:body>
@@ -33,58 +21,107 @@
         <div class="container">
 
             <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-                <div class="col-lg-12">
-                    <h:form>
-                        <div class="pr-wrap">
-                            <div class="pass-reset">
+                    <div class="panel panel-login">
 
-                                <label>
-                                    Cadastre-se
-                                </label>
-
-                                <h:inputText value="#{controladorUsuario.login}" pt:placeholder="Login" class="pass-reset-email"/>
-                                <h:inputSecret value="#{controladorUsuario.senha}" 
-                                               pt:placeholder="**********" class="pass-reset-email"/>
-
-                                <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm">
-                                    <f:selectItem itemValue="Tipo" />
-                                    <f:selectItem itemValue="Aluno" />
-                                    <f:selectItem itemValue="Professor" />
-                                </h:selectOneMenu>
-
-                                <h:commandButton type="submit" value="Cadastrar" action="#{controladorUsuario.salvarUsuario()}"
-                                                 class="pass-reset-submit btn btn-success btn-sm" />
-
-                            </div>
-                        </div>
-                    </h:form>
-
-                    <div class="wrap">
-                        <p class="form-title">
-                            Login</p>
-                        <h:form class="login login-form">
-
-                            <h:inputText pt:placeholder="Login" value="#{controladorUsuario.login}"/>
-                            <h:inputSecret pt:placeholder="********" value="#{controladorUsuario.senha}"/>
-
-                            <h:selectOneListbox size="1" value="#{controladorUsuario.usuario}" class="select-item btn-sm">
-                                <f:selectItem itemValue="Tipo" />
-                                <f:selectItem itemValue="Aluno" />
-                                <f:selectItem itemValue="Professor" />
-                            </h:selectOneListbox>
-
-                            <h:commandButton type="submit" value="Login" class="btn btn-success btn-sm btn-login"
-                                             action="#{controladorUsuario.loginUsuario()}"/>
-
-                            <div class="remember-forgot">
-                                <div class="row">
-                                    <div class="col-md-6 forgot-pass-content">
-                                        <a href="javascription:void(0)" class="forgot-pass">Cadastre-se</a>
-                                    </div>
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a href="#" class="active" id="login-form-link">Login</a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a href="#" class="active" id="register-form-link">Cadastre-se</a>
                                 </div>
                             </div>
-                        </h:form>
+                            <hr/>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h:form id="login-form" role="form" style="display: block">
+                                        <div class="form-group">
+                                            <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login"
+                                                         value="#{controladorUsuario.login}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputSecret id="password" tabindex="1" class="form-control" pt:placeholder="**********" 
+                                                           value="#{controladorUsuario.senha}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control">
+                                                <f:selectItem itemValue="Tipo" />
+                                                <f:selectItem itemValue="Aluno" />
+                                                <f:selectItem itemValue="Professor" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        
+                                        <div class="form-group text-center">
+                                            <input type="checkbox" tabindex="3" class="" name="remember" id="remember"/>
+                                            <label for="remember"> Lembrar senha</label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <h:commandButton type="submit" action="#{controladorUsuario.loginUsuario()}" 
+                                                                     id="login-submit" tabindex="4" 
+                                                                     class="form-control btn btn-primary" value="Entrar"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="text-center">
+                                                        <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Esqueçeu sua senha?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:form>
+
+                                    <h:form id="register-form" role="form" style="display: none;">
+                                        <div class="form-group">
+                                            <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login" 
+                                                         value="#{controladorUsuario.login}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputText id="email" tabindex="1" class="form-control" pt:placeholder="Endereço de email" 
+                                                         value="#{controladorUsuario.email}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputSecret id="password" tabindex="1" class="form-control" pt:placeholder="Senha" 
+                                                           value="#{controladorUsuario.senha}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control">
+                                                <f:selectItem itemValue="Tipo" />
+                                                <f:selectItem itemValue="Aluno" />
+                                                <f:selectItem itemValue="Professor" />
+                                            </h:selectOneMenu>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <h:commandButton type="submit" id="register-submit" tabindex="4" 
+                                                                     class="form-control btn btn-success" value="Cadastrar"
+                                                                     action="#{controladorUsuario.salvarUsuario()}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
