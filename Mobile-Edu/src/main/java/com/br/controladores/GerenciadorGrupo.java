@@ -118,6 +118,12 @@ public class GerenciadorGrupo implements Serializable {
         this.grupo = grupo;
         return "page-inicial-grupo?faces-redirect=true";
     }
+    
+    public String atualizarGrupo(){
+        fachada.atualizarGrupo(grupo);
+        
+        return "page-alterar-grupo?faces-redirect=true";
+    }
 
     /*Topicos*/
     public String salvarTopicoProfessor() {
@@ -140,7 +146,7 @@ public class GerenciadorGrupo implements Serializable {
     public String removerTopico(Topico topico) {
 
         fachada.removerTopico(topico);
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     /*Upload e download de Arquivos*/
@@ -268,11 +274,11 @@ public class GerenciadorGrupo implements Serializable {
         this.aluno = fachada.buscarAluno(aluno.getLogin());
 
         if (this.aluno != null) {
-            return "pag-buscar-usuario?faces-redirect=true";
+            return "page-buscar-usuario?faces-redirect=true";
         } else {
             aluno = new Aluno();
             mensagem = "Nenhum usuário encontrado";
-            return "pag-buscar-usuario?faces-redirect=true";
+            return "page-buscar-usuario?faces-redirect=true";
         }
     }
 
@@ -290,7 +296,7 @@ public class GerenciadorGrupo implements Serializable {
             this.aluno = new Aluno();
         }
 
-        return "pag-listar-membros?faces-redirect=true";
+        return "page-listar-membros?faces-redirect=true";
     }
 
     public List<Aluno> listarMembros() {
@@ -317,11 +323,6 @@ public class GerenciadorGrupo implements Serializable {
     public List<ParticipaGrupo> notificacoes() {
 
         return fachada.listarNotificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-    }
-
-    public String atualizarGrupo() {
-        fachada.atualizarGrupo(grupo);
-        return "pagInicialGrupo?faces-redirect=true";
     }
 
     public String rejeitarSolicitacao(ParticipaGrupo participaGrupo) {
@@ -360,36 +361,8 @@ public class GerenciadorGrupo implements Serializable {
         return aluno;
     }
 
-    /*Fotos usuarios*/
-    public StreamedContent mostrarFotosUsuarios() {
-
-        String loginAluno = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("loginAluno");
-
-        if (loginAluno != null) {
-            for (Aluno al : fachada.listarMembrosGrupo(this.grupo.getCodigo())) {
-
-                if (loginAluno.equalsIgnoreCase(al.getLogin())) {
-                    File fotoUsuario = new File(al.getFoto());
-
-                    try {
-                        BufferedInputStream in = new BufferedInputStream(new FileInputStream(fotoUsuario));
-                        byte[] bytes = new byte[in.available()];
-                        in.read(bytes);
-                        in.close();
-                        this.content = new DefaultStreamedContent(new ByteArrayInputStream(bytes), "image/jpeg");
-                        return content;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    };
-                }
-            }
-        }
-
-        return new DefaultStreamedContent();
-    }
-
     public String paginaInicialGrupo() {
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     /*Exercicios*/

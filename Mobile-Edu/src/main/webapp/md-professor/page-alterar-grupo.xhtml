@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
+        <title>Professor | Alterar Grupo</title>
 
-        <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -15,9 +16,9 @@
         <script src="../bootstrap/js/bootstrap.js"></script>
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
-        <link href="../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
 
     </h:head>
+
 
     <h:body>
         <div id="wrapper">
@@ -88,18 +89,18 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                                 <li>
@@ -117,14 +118,8 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="page-listar-grupos.jsf">
-                                        Meus Grupos
+                                    <a href="#">
+                                        Meus Testes
                                     </a>
                                 </li>
                             </ul>
@@ -137,35 +132,40 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="page-inicial-grupo.jsf" style="text-decoration: none;">
-                                <h1 class="page-head-line">Grupo: #{controladorGrupo.grupo.nome}</h1>
-                            </a>
+                            <h1 class="page-head-line">Alterar informações</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-offset-3">
-                            <div class="panel ">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Configurações</h3>
+                    <h:form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="nome" class="col-sm-2 control-label">Nome</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorGrupo.grupo.nome}" class="form-control" id="enunciado" pt:placeholder="Nome"/>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-6">
-                                            <a href="page-alterar-grupo.jsf" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-edit"></span> <br/>Editar</a>
-                                            <a href="#" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Arquivos</a>
-                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-record"></span> <br/>Testes</a>
-                                        </div>
-                                        <div class="col-xs-6 col-md-6">
-                                            <a href="page-listar-membros.jsf" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Membros</a>
-                                            <a href="#" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Postagens</a>
-                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Resultados</a>
-                                        </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="descricao" class="col-sm-2 control-label">Descrição</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{controladorGrupo.grupo.descricao}" class="form-control" id="categoria" pt:placeholder="Descrição"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <h:commandButton action="#{controladorGrupo.atualizarGrupo()}" class="btn btn-success btn-cons" value="Atualizar"/>
+                                        <h:commandButton action="#{controladorGrupo.removerGrupo()}" class="btn btn-danger btn-cons" value="Remover"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
