@@ -94,9 +94,8 @@ public class GerenciadorGrupo implements Serializable {
     public void setParticipaGrupo(ParticipaGrupo participaGrupo) {
         this.participaGrupo = participaGrupo;
     }
-    
-    /*operações da entidade grupo*/
 
+    /*operações da entidade grupo*/
     public String salvarGrupo() {
         grupo.setDataCriacao(new Date());
         grupo.setProfessorGrupos(PegarUsuarioSessao.pegarProfessorSessao());
@@ -122,16 +121,14 @@ public class GerenciadorGrupo implements Serializable {
 
     /*Topicos*/
     public String salvarTopicoProfessor() {
-        if (topico.getConteudo().length() > 0) {
 
-            topico.setDataCriacao(new Date());
-            topico.setGrupo(grupo);
-            topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-            topico.setTipo("Publicacao");
-            
-            fachada.salvarTopico(topico);
-            topico = new Topico();
-        }
+        topico.setDataCriacao(new Date());
+        topico.setGrupo(grupo);
+        topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        topico.setTipo("Publicacao");
+
+        fachada.salvarTopico(topico);
+        topico = new Topico();
 
         return "page-inicial-grupo?faces-redirect=true";
     }
@@ -139,7 +136,7 @@ public class GerenciadorGrupo implements Serializable {
     public List<Topico> topicos() {
         return fachada.topicosGrupo(grupo.getCodigo());
     }
-    
+
     public String removerTopico(Topico topico) {
 
         fachada.removerTopico(topico);
@@ -164,7 +161,7 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public void upload() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\doc\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\"
                 + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
 
         File dir = new File(caminho);
@@ -210,7 +207,7 @@ public class GerenciadorGrupo implements Serializable {
 
     //Faz Download
     public StreamedContent donwload(String caminho, String nome, int codigo) throws FileNotFoundException {
-        InputStream stream = new FileInputStream(caminho);
+        InputStream stream = new FileInputStream("C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\1 - Historia\\NIS.txt");
         fileDownload = new DefaultStreamedContent(stream, "application/pdf",
                 nome);
 
@@ -250,7 +247,7 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String removerComentario(Comentario comentario) {
-        System.out.println("Comentario: " +comentario.getConteudo());
+        System.out.println("Comentario: " + comentario.getConteudo());
         fachada.removerComentario(comentario);
 
         return "page-inicial-grupo?faces-redirect=true";
@@ -260,8 +257,10 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.listarComentariosTopico(topico.getCodigo());
     }
 
-    public int sizeComentarioTopico(Topico topico) {
-        return fachada.listarComentariosTopico(topico.getCodigo()).size();
+    public String atualizarMaisUm(Topico topico) {
+        topico.setMaisUm(topico.getMaisUm() + 1);
+        fachada.atualizarTopico(topico);
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     /*Membros do grupo*/
@@ -353,11 +352,11 @@ public class GerenciadorGrupo implements Serializable {
         Aluno aluno = null;
 
         if (alunos.isEmpty()) {
-            if(alunos.size() == 1){
+            if (alunos.size() == 1) {
                 aluno = alunos.get(0);
             }
         }
-        
+
         return aluno;
     }
 
@@ -412,25 +411,25 @@ public class GerenciadorGrupo implements Serializable {
 
         return qtdDownload;
     }
-    
-    public List<ParticipaGrupo> listaRanckingGrupo(){
+
+    public List<ParticipaGrupo> listaRanckingGrupo() {
         return fachada.buscarMembros(grupo.getCodigo());
     }
-    
-    public String paginaResultadoTestes(Grupo grupo){
+
+    public String paginaResultadoTestes(Grupo grupo) {
         this.grupo = grupo;
-        
+
         return "md-listar-resultados?faces-redirect=true";
     }
-    
-    public ParticipaGrupo buscarPrimeiroLugar(){
+
+    public ParticipaGrupo buscarPrimeiroLugar() {
         List<ParticipaGrupo> list = fachada.buscarMembros(grupo.getCodigo());
-        
-        if(list.isEmpty()){
+
+        if (list.isEmpty()) {
             return null;
-        }else{
+        } else {
             return list.get(0);
         }
-        
+
     }
 }

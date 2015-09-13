@@ -127,7 +127,7 @@
 
 .panel-google-plus > .panel-footer > .input-placeholder {
     display: block;
-    margin-left: 60px;
+    margin-left: 70px;
     color: rgb(153, 153, 153);
     font-size: 12px;
     font-weight: 400;
@@ -240,38 +240,43 @@ textarea {
     display: block;
 }
 
-.panel-comentarios > .panel-google-plus-comments > h3 {
+.text-comentario {
     margin: 0px;
     font-size: 12px;
     font-weight: 700;
 }
-.panel-comentarios > .panel-google-plus-comments > span {
+.span-comentario {
     color: rgb(153, 153, 153);
     font-size: 10px;
     font-weight: 400;
 }
 
-.panel-comentarios > .panel-google-plus-comments > img {
+.img-comentario {
     margin-right: 10px;
     width: 40px;
     height: 40px;
 }
 
-.panel-comentarios > .panel-google-plus-comments > p {
+.texto-comentario {
     color: rgb(153, 153, 153);
     font-size: 11px;
     font-weight: 400;
-    padding-left: 50px;   
+    padding-left: 10px; 
+    padding-top: 5px;
 }
 
-.panel-comentarios > .panel-google-plus-comments > .dropdown > span > span {
+.dropdown > span > span {
     font-size: 10px;   
 }
 
-.panel-comentarios > .panel-google-plus-comments > .dropdown > .dropdown-menu {
+.dropdown > .dropdown-menu {
     left: initial;
     right: 0px;
     border-radius: 2px;
+}
+
+.sem-borda{
+    border-top: none;
 }
 
 /*Arquivos*/
@@ -331,4 +336,8 @@ textarea {
     .panel-google-plus-textarea-arquivo > .btn {
         width: auto;
     }    
+}
+
+.texto-link{
+    text-decoration: none;
 }

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
         <title>Professor | Pagina Inicial</title>
@@ -79,8 +80,8 @@
 
                         </li>
 
-                        <li>
-                            <a href="#" class="active-menu">
+                        <li >
+                            <a href="#">
                                 Testes
                             </a>
 
@@ -114,7 +115,7 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="#" class="active-menu">
                                 Grupos 
                             </a>
 
@@ -140,11 +141,14 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo ao grupo #{controladorGrupo.grupo.nome}</h1>
+                            <a href="page-config-grupo.jsf" class="texto-link" style="text-decoration: none;">
+                                <h1 class="page-head-line">Bem Vindo ao grupo #{controladorGrupo.grupo.nome}</h1>
+                            </a>
                         </div>
                     </div>
 
                     <h:form enctype="multipart/form-data">
+
                         <!--Panel criar topicos-->
                         <div class="row">
                             <div class="col-xs-12 col-sm-offset-3 col-sm-6">
@@ -188,15 +192,15 @@
                                                              action="#{controladorGrupo.upload()}"/>
                                             <button type="cancel" class="btn btn-default">Cancelar</button>
                                         </div>
-
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                    </h:form>
+                    <h:form>
                         <!--Panel Topicos-->
-                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table">
+                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
                             <h:column>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-offset-3 col-sm-6">
@@ -238,10 +242,13 @@
 
                                             <div class="panel-body">
                                                 <p>#{topico.conteudo}</p>
+                                                <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}">
+                                                    <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
+                                                </p:commandLink>
                                             </div>
 
                                             <div class="panel-footer">
-                                                <button type="button" class="btn btn-default">+1</button>
+                                                <h:commandButton value="+ #{topico.maisUm}" class="btn btn-default" action="#{controladorGrupo.atualizarMaisUm(topico)}"/>
                                                 <div class="input-placeholder">Add comentário</div>
                                             </div>
 
@@ -267,7 +274,7 @@
                                                 </div>
 
                                                 <div class="panel-google-plus-comments">
-                                                    <h:dataTable value="#{topico.comentarios}" var="comentario">
+                                                    <h:dataTable value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario" class="table-responsive table sem-borda" rendered="#{topico.comentarios.size() > 0}">
                                                         <h:column>
                                                             <div class="dropdown pull-right">
                                                                 <span class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -285,17 +292,22 @@
                                                                 </ul>
                                                             </div>
 
-                                                            <img class="img-circle pull-left" src="img/publicfolder.png" alt="usuario"/>
+                                                            <p:graphicImage id="coisa" styleClass="img-comentario img-circle pull-left"
+                                                                            value="#{controladorFotos.mostrarFotoComentario()}">
+                                                                <f:param name="loginComentario" value="#{comentario.loginUsuario}"/>
+                                                            </p:graphicImage>
 
-                                                            <h3>Fatinha</h3>
-                                                            <span>Shared publicy</span> - <span>jun 27, 2014</span>
+                                                            <h3 class="text-comentario">#{comentario.loginUsuario}</h3>
+                                                            <span class="span-comentario">jun 27, 2014</span>
                                                             <div class="clearfix"></div>
 
-                                                            <p>Comentario comentario comentario comentario Comentario comentario comentario comentario</p>
-
+                                                            <p class="texto-comentario">
+                                                                #{comentario.conteudo}
+                                                            </p>
                                                         </h:column>
                                                     </h:dataTable>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
