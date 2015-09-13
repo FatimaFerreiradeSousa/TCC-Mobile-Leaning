@@ -139,11 +139,7 @@ public class GerenciadorGrupo implements Serializable {
     public List<Topico> topicos() {
         return fachada.topicosGrupo(grupo.getCodigo());
     }
-
-    public Topico buscarTopico() {
-        return fachada.topicosGrupo(grupo.getCodigo()).get(0);
-    }
-
+    
     public String removerTopico(Topico topico) {
 
         fachada.removerTopico(topico);
@@ -236,7 +232,6 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String salvarComentarioProfessor(Topico topico) {
-        System.out.println("Comentario: " +comentarioTopico.getConteudo());
         comentarioTopico.setDataComentario(new Date());
         comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
         comentarioTopico.setTopico(topico);
