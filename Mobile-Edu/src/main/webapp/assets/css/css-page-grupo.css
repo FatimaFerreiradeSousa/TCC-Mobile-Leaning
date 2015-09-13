@@ -1,12 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 
-/*
-body {
-    background-color: rgb(229, 229, 229);
-    padding-top: 60px;
-    padding-bottom: 30px;
-}*/
-
 .panel-google-plus {
     position: relative;
     border-radius: 0px;
@@ -279,4 +272,63 @@ textarea {
     left: initial;
     right: 0px;
     border-radius: 2px;
+}
+
+/*Arquivos*/
+.panel-google-plus > .panel-footer > .input-arquivo {
+    display: block;
+    font-weight: 400;
+}
+
+.panel-google-plus > .panel-google-plus-arquivo {
+    display: none;
+    padding: 10px 20px 15px;
+    border-top: 1px solid rgb(229, 229, 229);
+    background-color: rgb(245, 245, 245);
+}
+
+.panel-google-plus.panel-google-plus-show-arquivo > .panel-google-plus-arquivo {
+    display: block;
+}
+
+.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo {
+    float: right;
+    width: calc(100% - 56px);
+}
+
+.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
+.textarea-arquivo {
+    display: block;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 217, 217);
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
+    resize: vertical;
+}
+
+.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
+.input-file {
+    padding-top: 5px;
+    padding-right: 2px;
+}
+
+.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
+.input-file > input{
+    position: absolute;
+    right: 0;
+    z-index: 2;
+}
+
+.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo >
+.btn {
+    margin-top: 10px;
+    margin-right: 8px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .panel-google-plus > .panel-google-plus-arquivo > 
+    .panel-google-plus-textarea-arquivo > .btn {
+        width: auto;
+    }    
 }

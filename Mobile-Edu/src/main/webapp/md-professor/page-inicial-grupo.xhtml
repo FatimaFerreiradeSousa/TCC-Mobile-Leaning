@@ -143,7 +143,7 @@
                         </div>
                     </div>
 
-                    <h:form>
+                    <h:form enctype="multipart/form-data">
                         <!--Panel criar topicos-->
                         <div class="row">
                             <div class="col-xs-12 col-sm-offset-3 col-sm-6">
@@ -166,6 +166,28 @@
                                                              action="#{controladorGrupo.salvarTopicoProfessor()}"/>                                        
                                             <button type="cancel" class="btn btn-default">Cancelar</button>
                                         </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="panel-google-plus-arquivo">
+                                        <p:graphicImage value="#{professor.content}" id="picture4" styleClass="img-circle img-size"/>
+
+                                        <div class="panel-google-plus-textarea-arquivo">
+                                            <h:inputTextarea rows="4" style="resize: none;" class="textarea-arquivo"
+                                                             value="#{controladorGrupo.topico.conteudo}">
+                                            </h:inputTextarea>
+
+                                            <p:fileUpload styleClass="input-file"
+                                                          value="#{controladorGrupo.fileUpload}"
+                                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                                          mode="simple" 
+                                                          />
+
+                                            <h:commandButton value="Publicar" class="btn btn-success" 
+                                                             action="#{controladorGrupo.upload()}"/>
+                                            <button type="cancel" class="btn btn-default">Cancelar</button>
+                                        </div>
+
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
