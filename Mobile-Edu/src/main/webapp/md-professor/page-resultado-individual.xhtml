@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Professor | Perguntas Cadastradas</title>
+        <title>Professor | Resultado</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -49,7 +49,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-
+                                        
                                     </li>
                                 </ul>
 
@@ -92,13 +92,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-teste.jsf">
+                                        Cadastrar Teste
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                                 <li>
@@ -116,8 +116,14 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -130,32 +136,20 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-listas">Perguntas Cadastradas</h1>
+                            <h1 class="page-head-listas">Resultado do teste #{controladorTeste.teste.assunto}</h1>
                         </div>
                     </div>
 
-                    <h:form>
-                        <div class="row">
-                            <div class="col-md-12">
-
-                                <h:dataTable value="#{controladorPergunta.listarPerguntas()}" var="pergunta" class="table">
-
-                                    <h:column>
-                                        <div class="panel panel-success">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">
-                                                    <h:commandLink value="#{pergunta.enunciado}" style="text-decoration: none;"
-                                                                   action="#{controladorPergunta.paginaAtualizar(pergunta)}"/>
-                                                </h3>
-                                            </div>                
-                                        </div>
-                                    </h:column>
-
-                                </h:dataTable>
-
-                            </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            
                         </div>
-                    </h:form>
+                        
+                        <div class="col-md-12">
+                            <h:outputLabel value="Nenhum resultado encontrado" 
+                                    class="page-text-span" rendered="#{controladorTeste.teste.assunto != null}"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -177,6 +177,14 @@ public class Fachada implements Serializable {
         return daoTopico.listarTestesGrupo(codigoGrupo);
     }
     
+    public List<Topico> arquivosGrupo(int codigoGrupo){
+        return daoTopico.listarArquivos(codigoGrupo);
+    }
+    
+    public List<Topico> postagensGrupo(int codigo){
+        return daoTopico.listarTopicos(codigo);
+    }
+    
     /*CRUD participar Grupo*/
     public boolean adicionarMembro(ParticipaGrupo participaGrupo){
         return daoPaGrupo.addMembro(participaGrupo);

@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Perguntas Cadastradas</title>
+        <title>Professor | Topicos</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -92,13 +93,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-teste.jsf">
+                                        Cadastrar Teste
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                                 <li>
@@ -116,8 +117,14 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -130,29 +137,23 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-listas">Perguntas Cadastradas</h1>
+                            <h1 class="page-head-listas">Topicos publicados</h1>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
                             <div class="col-md-12">
-
-                                <h:dataTable value="#{controladorPergunta.listarPerguntas()}" var="pergunta" class="table">
-
+                                <h:dataTable value="#{controladorGrupo.listarPublicacoes()}" var="arquivo" class="table table-condensed">
                                     <h:column>
-                                        <div class="panel panel-success">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">
-                                                    <h:commandLink value="#{pergunta.enunciado}" style="text-decoration: none;"
-                                                                   action="#{controladorPergunta.paginaAtualizar(pergunta)}"/>
-                                                </h3>
-                                            </div>                
-                                        </div>
+                                        <h:commandLink value="#{arquivo.conteudo}" action="#" style="text-decoration: none;"/> -
+                                        <label>#{arquivo.loginUsuario}</label><br />
+
+                                        (<h:outputLabel value="#{arquivo.dataCriacao}" style="font-size: 10px">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputLabel>)
                                     </h:column>
-
                                 </h:dataTable>
-
                             </div>
                         </div>
                     </h:form>

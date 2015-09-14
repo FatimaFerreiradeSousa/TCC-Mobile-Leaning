@@ -220,4 +220,10 @@ public class ControladorTeste implements Serializable {
             mensagem = "Este teste estava disponivel até o dia " +FormatData.parseDateString(teste.getDataEntrega());
         }
     }
+    
+    /*Resultado de cada teste*/
+    public String resultadoIndividual(Topico topico){
+        this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
+        return "page-resultado-individual?faces-redirect=true";
+    }
 }

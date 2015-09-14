@@ -40,6 +40,14 @@ body{
     margin-bottom: 30px;
 }
 
+.page-head-listas{
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
 .page-text-line{
     text-align: center;
     font-size: 16px;

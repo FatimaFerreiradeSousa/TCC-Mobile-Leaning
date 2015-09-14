@@ -7,8 +7,6 @@ import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +19,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -118,10 +115,10 @@ public class GerenciadorGrupo implements Serializable {
         this.grupo = grupo;
         return "page-inicial-grupo?faces-redirect=true";
     }
-    
-    public String atualizarGrupo(){
+
+    public String atualizarGrupo() {
         fachada.atualizarGrupo(grupo);
-        
+
         return "page-alterar-grupo?faces-redirect=true";
     }
 
@@ -370,19 +367,12 @@ public class GerenciadorGrupo implements Serializable {
         return fachada.listarTestesGrupo(grupo.getCodigo());
     }
 
-    public String paginaListarTeste() {
-        return "pagina-listar-testes?faces-redirect=true";
+    public List<Topico> listarArquivos() {
+        return fachada.arquivosGrupo(grupo.getCodigo());
     }
-
-    public int quantidadeDownload() {
-        List<Topico> topicos = fachada.topicosGrupo(grupo.getCodigo());
-        int qtdDownload = 0;
-
-        for (Topico t : topicos) {
-            qtdDownload += t.getQtdDownloads();
-        }
-
-        return qtdDownload;
+    
+    public List<Topico> listarPublicacoes() {
+        return fachada.postagensGrupo(grupo.getCodigo());
     }
 
     public List<ParticipaGrupo> listaRanckingGrupo() {
