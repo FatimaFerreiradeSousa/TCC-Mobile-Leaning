@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
         <title>Professor | Grupo | Membro</title>
@@ -150,7 +151,7 @@
                                     <div class="input-group stylish-input-group">
                                         <h:inputText value="#{controladorGrupo.aluno.login}" class="form-control input-lg"  pt:placeholder="Pesquisar usuário" />
                                         <span class="input-group-addon">
-                                            <h:commandLink>
+                                            <h:commandLink action="#{controladorGrupo.buscarAluno()}">
                                                 <span class="glyphicon glyphicon-search"></span>
                                             </h:commandLink>  
                                         </span>
@@ -158,42 +159,49 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-sm-offset-3">
-                                <div class="well well-sm panel-img">
-                                    <div class="row">
-                                        <div class="col-sm-1 col-md-2">
-                                            <p:graphicImage value="#{controladorFotos.mostrarFoto()}" styleClass="img-rounded img-responsive">
-                                                <f:param name="loginUsuario" value="#{controladorGrupo.aluno.login}"/>
-                                            </p:graphicImage>
-                                        </div>
+                            <c:if test="#{controladorGrupo.aluno.login != null}">
+                                <div class="row profile">
+                                    <div class="col-md-4 col-sm-offset-4">
+                                        <div class="profile-sidebar">
+                                            <div class="profile-userpic">
+                                                <p:graphicImage id="picture5" 
+                                                                value="#{controladorFotos.mostrarFotoMembro()}" styleClass="img-responsive">
+                                                    <f:param value="#{controladorGrupo.aluno.login}" name="loginAluno"/>
+                                                </p:graphicImage>
+                                            </div>
 
-                                        <div class="col-sm-6 col-md-8">
-                                            <h4>#{controladorGrupo.aluno.nome}</h4>
-                                            <smal>
-                                                <cite title="#{controladorGrupo.aluno.instituicao}">
-                                                    #{controladorGrupo.aluno.instituicao}
-                                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                                </cite>
-                                            </smal>
+                                            <div class="profile-usertitle">
+                                                <div class="profile-usertitle-name">
+                                                    #{controladorGrupo.aluno.login}
+                                                </div>
+                                                <div class="profile-usertitle-job">
+                                                    #{controladorGrupo.aluno.curso}
+                                                </div>
+                                            </div>
 
-                                            <p>
-                                                <i class="glyphicon glyphicon-user"></i>
-                                                #{controladorGrupo.aluno.login}
-                                                <br />
-                                                <i class="glyphicon glyphicon-envelope"></i>
-                                                #{controladorGrupo.aluno.email}
-                                                <br />
-                                                <i class="glyphicon glyphicon-asterisk"></i>
-                                                #{controladorGrupo.aluno.curso}
-                                            </p>
-
-                                            <h:commandButton value="Adicionar" class="btn btn-warning" 
-                                                            action="#{controladorGrupo.adicionarMembro()}"/>
-
+                                            <div class="profile-userbuttons">
+                                                <h:commandButton value="Adicionar" class="btn btn-success btn-sm" rendered="#{controladorGrupo.verificarMembro() == true}" 
+                                                                 action="#{controladorGrupo.adicionarMembro()}">
+                                                </h:commandButton>
+                                                
+                                                <h:outputLabel value="Este usuário já é membro" rendered="#{controladorGrupo.verificarMembro() == false}" class="page-text-span"/><br />
+                                                <h:commandButton value="Remover" class="btn btn-danger btn-sm" rendered="#{controladorGrupo.verificarMembro() == false}" 
+                                                                 action="#{controladorGrupo.removerMembro()}">
+                                                </h:commandButton>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </c:if>
+
+                            <c:if test="#{controladorGrupo.aluno.login == null}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1 class="page-text-line">Nenhum usuário encontrado</h1>
+                                    </div>
+                                </div>
+                            </c:if>
 
                         </div>
                     </h:form>

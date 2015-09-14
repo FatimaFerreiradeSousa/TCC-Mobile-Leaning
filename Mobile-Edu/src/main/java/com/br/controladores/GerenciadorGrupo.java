@@ -317,7 +317,7 @@ public class GerenciadorGrupo implements Serializable {
     public String removerMembro() {
         fachada.removerMembro(aluno.getLogin(), grupo.getCodigo());
 
-        return "pag-listar-membros?faces-redirect=true";
+        return "page-buscar-usuario?faces-redirect=true";
     }
 
     public List<ParticipaGrupo> notificacoes() {
