@@ -242,6 +242,7 @@
 
                                             <div class="panel-body">
                                                 <p>#{topico.conteudo}</p>
+                                                <h:commandLink value="Responder teste" action="#" rendered="#{topico.codigoTeste != 0}" style="text-decoration: none"/>
                                                 <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}">
                                                     <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
                                                 </p:commandLink>

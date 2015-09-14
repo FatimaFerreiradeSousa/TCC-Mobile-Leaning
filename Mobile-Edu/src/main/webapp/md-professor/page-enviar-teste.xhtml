@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Alterar Teste</title>
+        <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -99,8 +98,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                                 <li>
@@ -118,8 +117,14 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -132,59 +137,36 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Atualizar teste</h1>
+                            <h1 class="page-head-line">Enviar teste</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                Teste: #{controladorExercicio.exercicio.assunto}<br/>
+                                Disciplina: #{controladorExercicio.exercicio.disciplina}<br/>
+                                Entrega: <h:outputText value="#{controladorExercicio.exercicio.dataEntrega}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Escolha o grupo para enviar o teste</p>
                         </div>
                     </div>
 
                     <h:form class="form-horizontal">
                         <div class="row">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Assunto</label>
-                                <div class="col-sm-9">
-                                    <h:inputText value="#{controladorExercicio.exercicio.assunto}" class="form-control"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Disciplina</label>
+                                <label class="col-sm-2 control-label">Grupo</label>
 
                                 <div class="col-sm-4">
-                                    <h:inputText value="#{controladorExercicio.exercicio.disciplina}" class="form-control input-form"/>
-                                </div>
-
-                                <label class="col-sm-2 control-label">Data de Entrega</label>
-
-                                <div class="col-sm-3">
-                                    <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" class="form-control">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:inputText> 
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Categoria</label>
-
-                                <div class="col-sm-4">
-                                    <h:inputText value="#{controladorExercicio.exercicio.categoria}" class="form-control"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Perguntas</label>
-
-                                <div class="col-sm-4">
-                                    <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
-                                                        size="1" class="form-control">
-                                        <f:selectItem itemValue="1"/>
-                                        <f:selectItem itemValue="2"/>
-                                        <f:selectItem itemValue="3"/>
-                                        <f:selectItem itemValue="4"/>
-                                        <f:selectItem itemValue="5"/>
-                                        <f:selectItem itemValue="6"/>
-                                        <f:selectItem itemValue="7"/>
-                                        <f:selectItem itemValue="8"/>
-                                        <f:selectItem itemValue="9"/>
-                                        <f:selectItem itemValue="10"/>
+                                    <h:selectOneListbox value="#{controladorExercicio.codigoGrupo}" size="1" class="form-control" id="grupos">
+                                        <f:selectItems value="#{controladorExercicio.grupos}"/>
                                     </h:selectOneListbox>
                                 </div>
                             </div>
@@ -192,14 +174,14 @@
                             <div class="col-lg-10">
                                 <div class="form-group">
                                     <div class="col-sm-6">
-                                        <h:commandButton action="#{controladorExercicio.atualizarTeste()}" class="btn btn-primary btn-cons" value="Atualizar"/>
-                                        <h:commandButton action="#{controladorExercicio.visualizarPerguntas()}" class="btn btn-success btn-cons" value="Perguntas"/>
-                                        <h:commandButton action="#{controladorExercicio.paginaEnviar()}" class="btn btn-warning btn-cons" value="Enviar teste"/>
+                                        <h:commandButton action="#{controladorExercicio.enviarTeste()}" class="btn btn-primary btn-cons" 
+                                                         value="Enviar teste"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </h:form>
+
                 </div>
             </div>
         </div>

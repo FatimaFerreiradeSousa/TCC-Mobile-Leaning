@@ -115,7 +115,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String paginaEnviar() {
-        return "pagina-enviar-teste?faces-redirect=true";
+        return "page-enviar-teste?faces-redirect=true";
     }
 
     public String enviarTeste() {
@@ -124,6 +124,9 @@ public class ControladorExercicio implements Serializable {
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
         Topico topico = new Topico();
         
+        topico.setCodigoTeste(exercicio.getCodigo());
+        topico.setConteudo(exercicio.getAssunto());
+        topico.setDataCriacao(exercicio.getDataEntrega());
         topico.setTipo("Atividade");
         topico.setGrupo(grupo);
         topico.setDisponivel(true);
