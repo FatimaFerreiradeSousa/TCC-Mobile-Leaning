@@ -267,7 +267,7 @@ public class GerenciadorGrupo implements Serializable {
         System.out.println("Comentario: " + comentario.getConteudo());
         fachada.removerComentario(comentario);
 
-        return "page-inicial-grupo?faces-redirect=true";
+        return "page-comentario-topico?faces-redirect=true";
     }
 
     public List<Comentario> comentariosTopico(Topico topico) {
