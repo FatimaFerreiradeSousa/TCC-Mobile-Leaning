@@ -162,7 +162,7 @@ public class ControladorUsuarios implements Serializable {
             Aluno a = fachada.loginAluno(login, senha);
 
             if (a != null) {
-                String loginPage = "/md-aluno/pageInicialAluno.jsf";
+                String loginPage = "/md-aluno/page-inicial-aluno.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
