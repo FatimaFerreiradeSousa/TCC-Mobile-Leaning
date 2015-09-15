@@ -161,7 +161,7 @@
                                             </div>
 
                                             <div class="col-md-10 col-sm-10">
-                                                <div class="panel panel-default arrow left">
+                                                <div class="panel panel-default  left">
                                                     <div class="panel-body panel-comentario">
                                                         <header class="text-left">
                                                             <div class="comment-user"><i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}</div>
@@ -177,7 +177,6 @@
                                                         </div>
 
                                                         <h:form>
-                                                            <button class="text-left btn btn-default btn-sm">Editar</button>
                                                             <h:commandButton class="text-left btn btn-danger btn-sm" value="Remover" 
                                                                             action="#{controladorGrupo.removerComentario(comentario)}"/>
                                                         </h:form>
@@ -186,7 +185,6 @@
                                             </div>
                                         </article>
                                     </section>
-
                                 </h:column>
                             </h:dataTable>
                         </div>
