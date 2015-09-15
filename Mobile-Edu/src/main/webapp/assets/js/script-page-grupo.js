@@ -4,57 +4,22 @@
  * and open the template in the editor.
  */
 
-/*publicar comentario*/
+/*Postagens*/
 $(function () {
-    $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="reset"]').on('click', function (event) {
-        var $panel = $(this).closest('.panel-google-plus');
-        $comment = $panel.find('.panel-google-plus-comment');
 
-        $panel.toggleClass('panel-google-plus-show-comment');
-
-        if ($panel.hasClass('panel-google-plus-show-comment')) {
-            $comment.find('textarea').focus();
-        }
+    $('#login-form-topico').click(function (e) {
+        $("#topico-form").delay(100).fadeIn(100);
+        $("#arquivo-form").fadeOut(100);
+        $('#register-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
     });
-});
-
-/*publicar topico*/
-$(function () {
-    $('.panel-google-plus > .panel-footer > .input-topico, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="cancel"]').on('click', function (event) {
-        var $panel = $(this).closest('.panel-google-plus');
-        $comment = $panel.find('.panel-google-plus-comment');
-
-        $panel.toggleClass('panel-google-plus-show-comment');
-
-        if ($panel.hasClass('panel-google-plus-show-comment')) {
-            $comment.find('textarea').focus();
-        }
+    $('#register-form-arquivo').click(function (e) {
+        $("#arquivo-form").delay(100).fadeIn(100);
+        $("#topico-form").fadeOut(100);
+        $('#login-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
     });
-});
 
-/*Comentarios*/
-$(function () {
-    $('.panel-comentarios > .panel-footer > .input-comentarios, .panel-comentarios > .panel-google-plus-comments > button[type="cancel"]').on('click', function (event) {
-        var $panel = $(this).closest('.panel-comentarios');
-        $comment = $panel.find('.panel-google-plus-comments');
-        
-        $panel.toggleClass('panel-google-plus-show-comments');
-    });
-});
-
-/*Arquivo*/
-$(function () {
-    $('.panel-google-plus > .panel-footer > .input-arquivo, .panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > button[type="cancel"]').on('click', function (event) {
-        var $panel = $(this).closest('.panel-google-plus');
-        $comment = $panel.find('.panel-google-plus-arquivo');
-
-        $comment.find('.btn:first-child').addClass('disabled');
-        $comment.find('.textarea-arquivo').val('');
-
-        $panel.toggleClass('panel-google-plus-show-arquivo');
-
-        if ($panel.hasClass('panel-google-plus-show-arquivo')) {
-            $comment.find('.textarea-arquivo').focus();
-        }
-    });
 });

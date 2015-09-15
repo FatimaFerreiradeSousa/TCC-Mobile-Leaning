@@ -147,59 +147,52 @@
                         </div>
                     </div>
 
-                    <h:form enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                            <div class="panel panel-default panel-google-plus">
+                                <div class="panel-footer">
+                                    <div class="btn input-topico btn-success pull-left active" id="login-form-topico">Publicar</div>
+                                    <div class="btn input-arquivo btn-warning pull-left" id="register-form-arquivo">Arquivo</div>
+                                </div>
 
-                        <!--Panel criar topicos-->
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-                                <div class="panel panel-default panel-google-plus">
-                                    <div class="panel-footer">
-                                        <div class="btn input-topico btn-success pull-right">Publicar</div>
-                                        <div class="btn input-arquivo btn-default pull-right">Arquivo</div>
-                                    </div>
-
+                                <h:form id="topico-form" role="form" style="display: block;" class="form-topico">
                                     <div class="panel-google-plus-comment">
-                                        <p:graphicImage value="#{professor.content}" id="picture1" styleClass="img-circle img-size"/>
+                                        <p:graphicImage value="#{professor.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
 
                                         <div class="panel-google-plus-textarea">
+                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
 
-                                            <h:inputTextarea rows="4" style="resize: none;"
-                                                             value="#{controladorGrupo.topico.conteudo}">
-                                            </h:inputTextarea>
-
-                                            <h:commandButton value="Publicar" class="btn btn-success" 
-                                                             action="#{controladorGrupo.salvarTopicoProfessor()}"/>                                        
+                                            <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.salvarTopicoProfessor()}"/>
                                             <button type="cancel" class="btn btn-default">Cancelar</button>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
+                                </h:form>
 
-                                    <div class="panel-google-plus-arquivo">
-                                        <p:graphicImage value="#{professor.content}" id="picture4" styleClass="img-circle img-size"/>
+                                <h:form id="arquivo-form" role="form" style="display: none;" class="form-topico" enctype="multipart/form-data">
+                                    <div class="panel-google-plus-comment">
+                                        <p:graphicImage value="#{professor.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
 
-                                        <div class="panel-google-plus-textarea-arquivo">
-                                            <h:inputTextarea rows="4" style="resize: none;" class="textarea-arquivo"
-                                                             value="#{controladorGrupo.topico.conteudo}">
-                                            </h:inputTextarea>
+                                        <div class="panel-google-plus-textarea">
+                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
 
-                                            <p:fileUpload styleClass="input-file"
-                                                          value="#{controladorGrupo.fileUpload}"
-                                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                                          mode="simple" 
-                                                          />
+                                            <p:fileUpload 
+                                                value="#{controladorGrupo.fileUpload}"
+                                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                                mode="simple" styleClass="input-file"
+                                                />
 
-                                            <h:commandButton value="Publicar" class="btn btn-success" 
-                                                             action="#{controladorGrupo.upload()}"/>
+                                            <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.upload()}"/>
                                             <button type="cancel" class="btn btn-default">Cancelar</button>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                </div>
+                                </h:form>
                             </div>
                         </div>
-                    </h:form>
+                    </div>
+
                     <h:form>
-                        <!--Panel Topicos-->
                         <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
                             <h:column>
                                 <div class="row">
@@ -210,6 +203,7 @@
                                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                                 </span>
 
+
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li role="presentation">
                                                         <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
@@ -219,6 +213,7 @@
                                                                        action="#{controladorGrupo.removerTopico(topico)}"/>
                                                     </li>
                                                 </ul>
+
                                             </div>
 
                                             <div class="panel-google-plus-tags">
@@ -232,9 +227,9 @@
                                                                 styleClass="img-circle pull-left">
                                                     <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
                                                 </p:graphicImage>
-
                                                 <h3>#{topico.loginUsuario}</h3>
-                                                <h5><h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px">
+                                                <h5>
+                                                    <h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px">
                                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                     </h:outputLabel>
                                                 </h5>
@@ -250,65 +245,9 @@
 
                                             <div class="panel-footer">
                                                 <h:commandButton value="+ #{topico.maisUm}" class="btn btn-default" action="#{controladorGrupo.atualizarMaisUm(topico)}"/>
-                                                <div class="input-placeholder">Add comentário</div>
-                                            </div>
-
-                                            <div class="panel-google-plus-comment">
-                                                <p:graphicImage value="#{professor.content}" id="picture3" 
-                                                                styleClass="img-circle img-size"/>
-
-                                                <div class="panel-google-plus-textarea">
-                                                    <h:inputTextarea rows="4" style="resize: none;"
-                                                                     value="#{controladorGrupo.comentarioTopico.conteudo}" pt:placeholder="Comentar...">
-                                                    </h:inputTextarea>
-
-                                                    <h:commandButton  value="Comentar" class="btn btn-success" 
-                                                                      action="#{controladorGrupo.salvarComentarioProfessor(topico)}"/>
-                                                    <button type="reset" class="btn btn-default">Cancelar</button>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-
-                                            <div class="panel-comentarios">
-                                                <div class="panel-footer">
-                                                    <div class="input-comentarios">Comentarios</div>
-                                                </div>
-
-                                                <div class="panel-google-plus-comments">
-                                                    <h:dataTable value="#{controladorGrupo.comentariosTopico(topico)}" var="comentario" class="table-responsive table sem-borda" rendered="#{topico.comentarios.size() > 0}">
-                                                        <h:column>
-                                                            <div class="dropdown pull-right">
-                                                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                                                </span>
-
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li role="presentation">
-                                                                        <h:commandLink role="menuitem" tabindex="-1" value="Editar"/>
-                                                                    </li>
-                                                                    <li role="presentation">
-                                                                        <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
-                                                                                       action="#{controladorGrupo.removerComentario(comentario)}"/>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <p:graphicImage id="coisa" styleClass="img-comentario img-circle pull-left"
-                                                                            value="#{controladorFotos.mostrarFotoComentario()}">
-                                                                <f:param name="loginComentario" value="#{comentario.loginUsuario}"/>
-                                                            </p:graphicImage>
-
-                                                            <h3 class="text-comentario">#{comentario.loginUsuario}</h3>
-                                                            <span class="span-comentario">jun 27, 2014</span>
-                                                            <div class="clearfix"></div>
-
-                                                            <p class="texto-comentario">
-                                                                #{comentario.conteudo}
-                                                            </p>
-                                                        </h:column>
-                                                    </h:dataTable>
-                                                </div>
-
+                                                <h:commandLink value="Add comentário" action="#{controladorGrupo.pageComentarioTopico(topico)}"
+                                                               class="input-placeholder" style="text-decoration: none;"/>
+                                                
                                             </div>
                                         </div>
                                     </div>

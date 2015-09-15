@@ -144,7 +144,7 @@
                     <h:form>
                         <div class="row">
                             <div class="col-md-12">
-                                <h:dataTable value="#{controladorGrupo.listarPublicacoes()}" var="arquivo" class="table table-condensed">
+                                <h:dataTable value="#{controladorGrupo.listarPublicacoes()}" var="arquivo" class="table table-condensed" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
                                     <h:column>
                                         <h:commandLink value="#{arquivo.conteudo}" action="#" style="text-decoration: none;"/> -
                                         <label>#{arquivo.loginUsuario}</label><br />
@@ -154,6 +154,8 @@
                                         </h:outputLabel>)
                                     </h:column>
                                 </h:dataTable>
+                                
+                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarPublicacoes().size() == 0}"/>
                             </div>
                         </div>
                     </h:form>

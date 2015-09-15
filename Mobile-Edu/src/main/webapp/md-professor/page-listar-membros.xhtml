@@ -160,7 +160,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h:dataTable value="#{controladorGrupo.listarMembros()}" var="membro" class="table-responsive" style="float: left;">
+                            <h:dataTable value="#{controladorGrupo.listarMembros()}" var="membro" class="table-responsive" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
                                 <h:column>
                                     <div class="col-lg-5">
                                         <div class="media">
@@ -176,10 +176,11 @@
                                                 <hr style="margin:8px auto"/>
                                             </div>
                                         </div>
-
                                     </div>
                                 </h:column>
                             </h:dataTable>
+                            
+                            <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarMembros().size() == 0}"/>
                         </div>
                     </div>
                 </div>

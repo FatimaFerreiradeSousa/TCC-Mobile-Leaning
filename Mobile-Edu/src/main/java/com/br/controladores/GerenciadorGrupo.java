@@ -36,17 +36,18 @@ public class GerenciadorGrupo implements Serializable {
     private Fachada fachada;
     private Grupo grupo;
     private Topico topico;
+    private Topico topicoComentario;
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
     private Comentario comentarioTopico;
     private String mensagem;
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
-    private StreamedContent content;
 
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
+        topicoComentario = new Topico();
         comentarioTopico = new Comentario();
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
@@ -66,6 +67,14 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setTopico(Topico topico) {
         this.topico = topico;
+    }
+
+    public Topico getTopicoComentario() {
+        return topicoComentario;
+    }
+
+    public void setTopicoComentario(Topico topicoComentario) {
+        this.topicoComentario = topicoComentario;
     }
 
     public Aluno getAluno() {
@@ -223,6 +232,11 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     /*Comentario*/
+    public String pageComentarioTopico(Topico topico){
+        this.topicoComentario = topico;
+        return "page-comentario-topico?faces-redirect=true";
+    }
+    
     public Comentario getComentarioTopico() {
         return comentarioTopico;
     }
@@ -231,16 +245,16 @@ public class GerenciadorGrupo implements Serializable {
         this.comentarioTopico = comentarioTopico;
     }
 
-    public String salvarComentarioProfessor(Topico topico) {
+    public String salvarComentarioProfessor() {
         comentarioTopico.setDataComentario(new Date());
         comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-        comentarioTopico.setTopico(topico);
+        comentarioTopico.setTopico(topicoComentario);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
             comentarioTopico = new Comentario();
         }
 
-        return "page-inicial-grupo?faces-redirect=true";
+        return "page-comentario-topico?faces-redirect=true";
     }
 
     public String alterarComentario(Comentario comentario) {

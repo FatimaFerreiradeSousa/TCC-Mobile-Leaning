@@ -137,28 +137,28 @@
     box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
 }
 
-.panel-google-plus.panel-google-plus-show-comment > .panel-footer > 
+.panel-google-plus > .panel-google-plus-show-comment > .panel-footer > 
 .input-placeholder {
     display: none;   
 }
 
-.panel-google-plus > .panel-google-plus-comment {
-    display: none;
+.panel-google-plus > .form-topico > .panel-google-plus-comment {
+    //display: none;
     padding: 10px 20px 15px;
     border-top: 1px solid rgb(229, 229, 229);
     background-color: rgb(245, 245, 245);
 }
 
-.panel-google-plus.panel-google-plus-show-comment > .panel-google-plus-comment {
+.panel-google-plus > .form-topico > .panel-google-plus-show-comment > .panel-google-plus-comment {
     display: block;
 }
 
-.panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea {
+.panel-google-plus > .form-topico > .panel-google-plus-comment > .panel-google-plus-textarea {
     float: right;
     width: calc(100% - 56px);
 }
 
-.panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > 
+.panel-google-plus > .form-topico > .panel-google-plus-comment > .panel-google-plus-textarea > 
 textarea {
     display: block;
     width: 100%;
@@ -168,20 +168,20 @@ textarea {
     resize: vertical;
 }
 
-.panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > 
+.panel-google-plus > .form-topico > .panel-google-plus-comment > .panel-google-plus-textarea > 
 .input-file {
     padding-top: 5px;
     padding-right: 2px;
 }
 
-.panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > 
+.panel-google-plus > .form-topico > .panel-google-plus-comment > .panel-google-plus-textarea > 
 .input-file > input{
     position: absolute;
     right: 0;
     z-index: 2;
 }
 
-.panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea >
+.panel-google-plus > .form-topico > .panel-google-plus-comment > .panel-google-plus-textarea >
 .btn {
     margin-top: 10px;
     margin-right: 8px;
@@ -189,7 +189,7 @@ textarea {
 }
 
 @media (min-width: 992px) {
-    .panel-google-plus > .panel-google-plus-comment > 
+    .panel-google-plus > .form-topico > .panel-google-plus-comment > 
     .panel-google-plus-textarea > .btn {
         width: auto;
     }    
@@ -211,133 +211,45 @@ textarea {
     border-color: rgb(0, 0, 0);    
 }
 
-/*criar topico*/
-.panel-google-plus > .panel-footer > .input-topico {
-    display: block;
-    font-weight: 400;
+/*Pagina comentarios*/
+.status-upload > .form-coments {
+    float: left;
+    width: 100%;
 }
 
-/*Comentarios*/
-.panel-comentarios {
-    position: relative;
-    font-family: 'Roboto', sans-serif;
+.status-upload > .form-coments > .textarea-coments {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    color: #777777;
+    float: left;
+    font-size: 14px;
+    height: 150px;
+    letter-spacing: 0.3px;
+    padding: 20px;
+    width: 100%;
+    resize:vertical;
+    outline:none;
+    border: 1px solid #F2F2F2;
+    resize: none;
 }
 
-.panel-comentarios > .panel-footer {
-    font-size: 12px;
-    font-weight: 700;
-    min-height: 14px;
-}
-
-.panel-comentarios .panel-google-plus-comments {
-    display: none;
-    padding: 10px 20px 15px;
-    border-top: 1px solid rgb(229, 229, 229);
-    background-color: rgb(245, 245, 245);
-}
-
-.panel-comentarios.panel-google-plus-show-comments > .panel-google-plus-comments {
-    display: block;
-}
-
-.text-comentario {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: 700;
-}
-.span-comentario {
-    color: rgb(153, 153, 153);
-    font-size: 10px;
-    font-weight: 400;
-}
-
-.img-comentario {
-    margin-right: 10px;
-    width: 40px;
-    height: 40px;
-}
-
-.texto-comentario {
-    color: rgb(153, 153, 153);
-    font-size: 11px;
-    font-weight: 400;
-    padding-left: 10px; 
-    padding-top: 5px;
-}
-
-.dropdown > span > span {
-    font-size: 10px;   
-}
-
-.dropdown > .dropdown-menu {
-    left: initial;
-    right: 0px;
-    border-radius: 2px;
-}
-
-.sem-borda{
-    border-top: none;
-}
-
-/*Arquivos*/
-.panel-google-plus > .panel-footer > .input-arquivo {
-    display: block;
-    font-weight: 400;
-}
-
-.panel-google-plus > .panel-google-plus-arquivo {
-    display: none;
-    padding: 10px 20px 15px;
-    border-top: 1px solid rgb(229, 229, 229);
-    background-color: rgb(245, 245, 245);
-}
-
-.panel-google-plus.panel-google-plus-show-arquivo > .panel-google-plus-arquivo {
-    display: block;
-}
-
-.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo {
+.status-upload > .form-coments > .btn-coments {
+    border: medium none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
     float: right;
-    width: calc(100% - 56px);
-}
-
-.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
-.textarea-arquivo {
-    display: block;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(217, 217, 217);
-    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
-    resize: vertical;
-}
-
-.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
-.input-file {
-    padding-top: 5px;
-    padding-right: 2px;
-}
-
-.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo > 
-.input-file > input{
-    position: absolute;
-    right: 0;
-    z-index: 2;
-}
-
-.panel-google-plus > .panel-google-plus-arquivo > .panel-google-plus-textarea-arquivo >
-.btn {
-    margin-top: 10px;
-    margin-right: 8px;
-    width: 100%;
-}
-
-@media (min-width: 992px) {
-    .panel-google-plus > .panel-google-plus-arquivo > 
-    .panel-google-plus-textarea-arquivo > .btn {
-        width: auto;
-    }    
-}
-
-.texto-link{
-    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-top: 9px;
+    padding: 6px 15px;
+    margin-left: 55px;
 }
