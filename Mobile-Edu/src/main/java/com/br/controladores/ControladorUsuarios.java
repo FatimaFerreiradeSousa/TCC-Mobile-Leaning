@@ -204,14 +204,13 @@ public class ControladorUsuarios implements Serializable {
         return null;
     }
 
-    /*Atualizar Usuarios*/
+    /*Professor*/
     public String atualizarProfessor() {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
         fachada.atualizarProfessor(professor);
         return "page-config-professor?faces-redirect=true";
     }
     
-    /*Upload de fotos*/
     public void uploadProfessor() {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
@@ -245,5 +244,47 @@ public class ControladorUsuarios implements Serializable {
                 e.printStackTrace();
             }
         }
+    }
+    
+    /*Aluno*/
+    public void uploadAluno() {
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
+                + aluno.getLogin() + "\\";
+
+        File dir = new File(caminho);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        if (file != null) {
+            try {
+                File targetFolder = new File(caminho);
+                InputStream inputStream = file.getInputstream();
+
+                String tipoArquivo = file.getFileName();
+                OutputStream out = new FileOutputStream(new File(targetFolder,
+                        aluno.getLogin() + tipoArquivo));
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputStream.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+                inputStream.close();
+                out.flush();
+                out.close();
+                aluno.setFoto(caminho + aluno.getLogin() + tipoArquivo);
+                fachada.atualizarAluno(aluno);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public String atualizarAluno(){
+        aluno = PegarUsuarioSessao.pegarAlunoSessao();
+        fachada.atualizarAluno(aluno);
+        
+        return "page-config-aluno?faces-redirect=true";
     }
 }
