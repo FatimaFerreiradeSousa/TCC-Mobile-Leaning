@@ -2,10 +2,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Aluno | Buscar Grupo</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -15,6 +18,7 @@
         <script src="../bootstrap/js/bootstrap.js"></script>
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
+        <link href="../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
 
     </h:head>
 
@@ -48,7 +52,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -72,20 +76,20 @@
                             <a href="#"><strong>#{aluno.login}</strong></a>
 
                         </li>
-              
+
                         <li>
                             <a href="#">
                                 Grupos 
                             </a>
 
                             <ul class="nav nav-second-level">
-                                
+
                                 <li>
                                     <a href="page-buscar-grupo.jsf">
                                         Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
@@ -101,17 +105,45 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.aluno.login}</h1>
+                            <h1 class="page-head-line">Buscar Grupos</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form>
+                        <div class="row">
+                            <div class="panel-search">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="input-group stylish-input-group">
+                                        <h:inputText value="#{controladorGrupo.nomeGrupo}" class="form-control input-lg"  pt:placeholder="Buscar grupo" />
+                                        <span class="input-group-addon">
+                                            <h:commandLink action="#{controladorGrupo.listarGruposPorNome()}">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </h:commandLink>  
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <h1 class="page-text-span">
+                                    <h:outputLabel value="Resultados encontrados" rendered="#{controladorGrupo.listarGruposPorNome().size() > 0}"/>
+                                    <h:outputLabel value="Nenhum Resultado encontrado" rendered="#{controladorGrupo.listarGruposPorNome().size() == 0}"/>
+                                </h1>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <h:dataTable value="#{controladorGrupo.listarGruposPorNome()}" var="grupo" columnClasses="column1"
+                                             class="table table-hover" rendered="#{controladorGrupo.listarGruposPorNome().size() > 0}">
+                                    <h:column>
+                                        <h:commandLink value="#{grupo.nome}" action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(grupo)}"
+                                                       class="text-success" style="text-decoration: none;" />
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </h:form>
                 </div>
             </div>
         </div>

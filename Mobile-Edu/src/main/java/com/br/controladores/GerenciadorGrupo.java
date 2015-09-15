@@ -43,6 +43,7 @@ public class GerenciadorGrupo implements Serializable {
     private String mensagem;
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
+    private String nomeGrupo;
 
     public GerenciadorGrupo() {
         grupo = new Grupo();
@@ -51,6 +52,7 @@ public class GerenciadorGrupo implements Serializable {
         comentarioTopico = new Comentario();
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
+        nomeGrupo = null;
     }
 
     public Grupo getGrupo() {
@@ -99,6 +101,14 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setParticipaGrupo(ParticipaGrupo participaGrupo) {
         this.participaGrupo = participaGrupo;
+    }
+
+    public String getNomeGrupo() {
+        return nomeGrupo;
+    }
+
+    public void setNomeGrupo(String nomeGrupo) {
+        this.nomeGrupo = nomeGrupo;
     }
 
     /*operações da entidade grupo*/
@@ -407,6 +417,10 @@ public class GerenciadorGrupo implements Serializable {
         } else {
             return list.get(0);
         }
-
+    }
+    
+    /*Operações realizadas pelo aluno*/
+    public List<Grupo> listarGruposPorNome() {
+        return fachada.buscarGruposPorNome(nomeGrupo);
     }
 }
