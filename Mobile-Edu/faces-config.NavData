@@ -2,40 +2,38 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="md-aluno/pagina-grupo-solicitacao.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="md-professor/testesCadastrados.xhtml" x="-2" y="366" zoom="true"/>
-        <Node id="md-aluno/md-resultado-individual.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="md-aluno/pageInicialAluno.xhtml" x="36" y="710" zoom="true"/>
-        <Node id="md-aluno/meus-grupos.xhtml" x="150" y="450" zoom="true"/>
-        <Node id="md-aluno/md-visualizar-resultados.xhtml" x="1150" y="150" zoom="true"/>
-        <Node id="md-aluno/md-visualizar-teste.xhtml" x="150" y="750" zoom="true"/>
-        <Node id="md-professor/cadastrarResposta.xhtml" x="-16" y="202" zoom="true"/>
-        <Node id="md-professor/cadGrupo.xhtml" x="310" y="445" zoom="true"/>
-        <Node id="md-professor/pag-buscar-usuario.xhtml" x="42" y="82" zoom="true"/>
-        <Node id="md-aluno/gruposAluno.xhtml" x="794" y="503" zoom="true"/>
-        <Node id="md-professor/cadExercicio.xhtml" x="513" y="16" zoom="true"/>
-        <Node id="md-aluno/solicitacoes-grupos.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="md-aluno/md-listar-teste.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="md-aluno/configAluno.xhtml" x="900" y="450" zoom="true"/>
-        <Node id="md-professor/editarPergunta.xhtml" x="366" y="197" zoom="true"/>
-        <Node id="md-professor/remover-membro-grupo.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="md-professor/pagina-visualizar-pergunta.xhtml" x="650" y="450" zoom="true"/>
-        <Node id="md-professor/perguntasCadastradas.xhtml" x="365" y="340" zoom="true"/>
-        <Node id="index.xhtml" x="650" y="600" zoom="true"/>
-        <Node id="md-professor/page-inical-professor.xhtml" x="650" y="300" zoom="true"/>
-        <Node id="md-professor/editarResposta.xhtml" x="143" y="34" zoom="false"/>
-        <Node id="md-professor/resultadosTestes.xhtml" x="753" y="313" zoom="true"/>
-        <Node id="md-professor/editarTeste.xhtml" x="6" y="475" zoom="true"/>
-        <Node id="md-professor/paginaConfig.xhtml" x="773" y="237" zoom="true"/>
-        <Node id="md-professor/pagina-listar-testes.xhtml" x="36" y="122" zoom="true"/>
-        <Node id="md-professor/cadastrarPergunta.xhtml" x="-6" y="300" zoom="true"/>
-        <Node id="md-professor/pagInicialGrupo.xhtml" x="301" y="572" zoom="true"/>
-        <Node id="md-aluno/pagina-visualizar-resultado.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="md-professor/md-listar-resultados.xhtml" x="383" y="77" zoom="true"/>
-        <Node id="md-professor/pagina-enviar-teste.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="md-professor/pag-listar-membros.xhtml" x="603" y="147" zoom="true"/>
-        <Node id="md-professor/pagina-notificacoes.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="md-aluno/pagina-inicial-grupo.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="md-professor/page-add-resposta-alt-perg.xhtml" x="71" y="243" zoom="true"/>
+        <Node id="md-professor/page-alterar-teste.xhtml" x="531" y="544" zoom="true"/>
+        <Node id="md-professor/page-buscar-usuario.xhtml" x="43" y="205" zoom="true"/>
+        <Node id="md-professor/page-cad-resposta.xhtml" x="808" y="74" zoom="true"/>
+        <Node id="md-aluno/page-buscar-grupo.xhtml" x="86" y="446" zoom="true"/>
+        <Node id="md-professor/page-alterar-pergunta.xhtml" x="507" y="440" zoom="true"/>
+        <Node id="md-professor/page-listar-arquivos.xhtml" x="60" y="79" zoom="true"/>
+        <Node id="md-professor/page-listar-testes.xhtml" x="457" y="190" zoom="true"/>
+        <Node id="atualizar.xhtml" x="480" y="24" zoom="true"/>
+        <Node id="md-professor/page-enviar-teste.xhtml" x="79" y="291" zoom="true"/>
+        <Node id="md-professor/page-listar-perguntas.xhtml" x="503" y="492" zoom="true"/>
+        <Node id="md-professor/page-alterar-grupo.xhtml" x="810" y="209" zoom="true"/>
+        <Node id="md-professor/page-listar-membros.xhtml" x="788" y="690" zoom="true"/>
+        <Node id="md-professor/page-resultado-individual.xhtml" x="89" y="331" zoom="true"/>
+        <Node id="md-professor/page-resultados-teste.xhtml" x="468" y="291" zoom="true"/>
+        <Node id="md-professor/page-listar-grupos.xhtml" x="856" y="261" zoom="true"/>
+        <Node id="md-professor/page-comentario-topico.xhtml" x="135" y="598" zoom="true"/>
+        <Node id="md-aluno/page-solicitacao-grupo.xhtml" x="419" y="686" zoom="true"/>
+        <Node id="md-professor/page-cad-teste.xhtml" x="457" y="76" zoom="true"/>
+        <Node id="md-professor/page-inicial-grupo.xhtml" x="78" y="398" zoom="true"/>
+        <Node id="index.xhtml" x="917" y="441" zoom="true"/>
+        <Node id="md-aluno/page-inicial-aluno.xhtml" x="472" y="247" zoom="true"/>
+        <Node id="md-professor/page-listar-topicos.xhtml" x="800" y="16" zoom="true"/>
+        <Node id="md-professor/page-config-professor.xhtml" x="174" y="539" zoom="true"/>
+        <Node id="md-professor/page-perguntas-teste.xhtml" x="438" y="141" zoom="true"/>
+        <Node id="md-professor/page-alterar-resposta.xhtml" x="806" y="116" zoom="true"/>
+        <Node id="md-professor/page-config-grupo.xhtml" x="65" y="20" zoom="true"/>
+        <Node id="md-professor/page-cad-grupo.xhtml" x="893" y="508" zoom="true"/>
+        <Node id="md-professor/page-listar-testes-grupo.xhtml" x="806" y="162" zoom="true"/>
+        <Node id="md-professor/page-cad-pergunta.xhtml" x="826" y="371" zoom="true"/>
+        <Node id="md-professor/page-inicial-professor.xhtml" x="547" y="610" zoom="true"/>
+        <Node id="md-aluno/page-config-aluno.xhtml" x="80" y="143" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

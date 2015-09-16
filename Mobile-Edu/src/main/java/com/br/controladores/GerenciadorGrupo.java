@@ -464,4 +464,63 @@ public class GerenciadorGrupo implements Serializable {
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
     }
+    
+    /*Topicos do grupo - aluno*/
+    public String salvarTopicoAluno() {
+
+        topico.setDataCriacao(new Date());
+        topico.setGrupo(grupo);
+        topico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        topico.setTipo("Publicacao");
+
+        fachada.salvarTopico(topico);
+        topico = new Topico();
+
+        return "page-inicial-grupo?faces-redirect=true";
+    }
+    
+    public void uploadAluno() {
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\"
+                + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
+
+        File dir = new File(caminho);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        if (fileUpload != null) {
+            try {
+                File targetFolder = new File(caminho);
+                InputStream inputStream = fileUpload.getInputstream();
+
+                OutputStream out = new FileOutputStream(new File(targetFolder,
+                        fileUpload.getFileName()));
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputStream.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+
+                topico.setQtdDownloads(0);
+                topico.setCaminho(caminho + fileUpload.getFileName());
+                topico.setNome(fileUpload.getFileName());
+                topico.setGrupo(grupo);
+                topico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+                topico.setDataCriacao(new Date());
+                topico.setTipo("Arquivo");
+
+                fachada.salvarTopico(topico);
+                topico = new Topico();
+                inputStream.close();
+                out.flush();
+                out.close();
+
+                topico = new Topico();
+                fileUpload = null;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

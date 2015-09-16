@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Aluno | Grupo</title>
+        <meta charset="UTF-8"/>
+        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../assets/css/css-page-grupo.css" rel="stylesheet"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../bootstrap/js/custom.js"></script>
+         <script src="../assets/js/script-page-grupo.js"></script>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-aluno.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li>
+                            <div class="user-img-div">
+                                <p:graphicImage value="#{aluno.content}" id="figure-01"
+                                                styleClass="img-circle"/>
+                            </div> 
+                        </li>
+
+                        <li>
+                            <a href="#"><strong>#{aluno.login}</strong></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Grupos 
+                            </a>
+
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="page-buscar-grupo.jsf">
+                                        Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="page-config-grupo.jsf" class="texto-link" style="text-decoration: none;">
+                                <h1 class="page-head-line">Bem Vindo ao grupo #{controladorGrupo.grupo.nome}</h1>
+                            </a>                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                            <div class="panel panel-default panel-google-plus">
+                                <div class="panel-footer">
+                                    <div class="btn input-topico btn-success pull-left active" id="login-form-topico">Publicar</div>
+                                    <div class="btn input-arquivo btn-warning pull-left" id="register-form-arquivo">Arquivo</div>
+                                </div>
+
+                                <h:form id="topico-form" role="form" style="display: block;" class="form-topico">
+                                    <div class="panel-google-plus-comment">
+                                        <p:graphicImage value="#{aluno.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
+
+                                        <div class="panel-google-plus-textarea">
+                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
+
+                                            <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.salvarTopicoAluno()}"/>
+                                            <button type="cancel" class="btn btn-default">Cancelar</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </h:form>
+
+                                <h:form id="arquivo-form" role="form" style="display: none;" class="form-topico" enctype="multipart/form-data">
+                                    <div class="panel-google-plus-comment">
+                                        <p:graphicImage value="#{aluno.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
+
+                                        <div class="panel-google-plus-textarea">
+                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
+
+                                            <p:fileUpload 
+                                                value="#{controladorGrupo.fileUpload}"
+                                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                                mode="simple" styleClass="input-file"
+                                                />
+
+                                            <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.uploadAluno()}"/>
+                                            <button type="cancel" class="btn btn-default">Cancelar</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h:form>
+                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
+                            <h:column>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                        <div class="panel panel-default panel-google-plus">
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                                </span>
+
+
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="presentation">
+                                                        <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                    </li>
+                                                    <li role="presentation">
+                                                        <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
+                                                                       action="#{controladorGrupo.removerTopico(topico)}"/>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                            <div class="panel-google-plus-tags">
+                                                <ul>
+                                                    <li>#{topico.tipo}</li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="panel-heading">
+                                                <p:graphicImage id="picture2" value="#{controladorFotos.mostrarFoto()}"
+                                                                styleClass="img-circle pull-left">
+                                                    <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                </p:graphicImage>
+                                                <h3>#{topico.loginUsuario}</h3>
+                                                <h5>
+                                                    <h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:outputLabel>
+                                                </h5>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <p>#{topico.conteudo}</p>
+                                                <h:commandLink value="Responder teste" action="#" rendered="#{topico.codigoTeste != 0}" style="text-decoration: none"/>
+                                                <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}">
+                                                    <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
+                                                </p:commandLink>
+                                            </div>
+
+                                            <div class="panel-footer">
+                                                <h:commandButton value="+ #{topico.maisUm}" class="btn btn-default" action="#{controladorGrupo.atualizarMaisUm(topico)}"/>
+                                                <h:commandLink value="Add comentário" action="#{controladorGrupo.pageComentarioTopico(topico)}"
+                                                               class="input-placeholder" style="text-decoration: none;"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
