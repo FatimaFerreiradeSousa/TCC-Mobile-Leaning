@@ -44,6 +44,7 @@ public class GerenciadorGrupo implements Serializable {
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
     private String nomeGrupo;
+    private boolean aceito;
 
     public GerenciadorGrupo() {
         grupo = new Grupo();
@@ -53,6 +54,7 @@ public class GerenciadorGrupo implements Serializable {
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
         nomeGrupo = null;
+        aceito = false;
     }
 
     public Grupo getGrupo() {
@@ -109,6 +111,14 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setNomeGrupo(String nomeGrupo) {
         this.nomeGrupo = nomeGrupo;
+    }
+
+    public boolean isAceito() {
+        return aceito;
+    }
+
+    public void setAceito(boolean aceito) {
+        this.aceito = aceito;
     }
 
     /*operações da entidade grupo*/
@@ -422,5 +432,36 @@ public class GerenciadorGrupo implements Serializable {
     /*Operações realizadas pelo aluno*/
     public List<Grupo> listarGruposPorNome() {
         return fachada.buscarGruposPorNome(nomeGrupo);
+    }
+    
+    public String paginaSolicitacaoGrupo(Grupo grupo) {
+        this.grupo = grupo;
+        
+        if (fachada.verificaMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo()) == false) {
+            return "page-inicial-grupo?faces-redirect=true";
+        } else {
+            this.aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+            return "page-solicitacao-grupo?faces-redirect=true";
+        }
+    }
+    
+    public String participarGrupo() {
+
+        participaGrupo = new ParticipaGrupo();
+        participaGrupo.setAceito(false);
+        participaGrupo.setAluno(PegarUsuarioSessao.pegarAlunoSessao());
+        participaGrupo.setDataParticipacao(new Date());
+        participaGrupo.setGrupo(grupo);
+
+        fachada.adicionarMembro(participaGrupo);
+        participaGrupo = new ParticipaGrupo();
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        return "page-solicitacao-grupo-solicitacao?faces-redirect=true";
+    }
+    
+    public String cancelarSolicitacao() {
+        fachada.removerMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        return "page-solicitacao-grupo?faces-redirect=true";
     }
 }

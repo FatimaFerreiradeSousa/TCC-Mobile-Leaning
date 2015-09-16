@@ -137,7 +137,7 @@
                                 <h:dataTable value="#{controladorGrupo.listarGruposPorNome()}" var="grupo" columnClasses="column1"
                                              class="table table-hover" rendered="#{controladorGrupo.listarGruposPorNome().size() > 0}">
                                     <h:column class="column1">
-                                        <h:commandLink value="#{grupo.nome}" action="#{controladorGrupoAluno.paginaSolicitacaoGrupo(grupo)}"
+                                        <h:commandLink value="#{grupo.nome}" action="#{controladorGrupo.paginaSolicitacaoGrupo(grupo)}"
                                                        class="text-success" style="text-decoration: none;" />
                                     </h:column>
                                 </h:dataTable>
