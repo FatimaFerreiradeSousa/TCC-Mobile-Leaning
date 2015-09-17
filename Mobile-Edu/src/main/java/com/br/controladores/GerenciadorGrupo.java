@@ -536,4 +536,22 @@ public class GerenciadorGrupo implements Serializable {
         this.grupo = grupo;
         return "page-inicial-grupo?faces-redirect=true";
     }
+    
+    /*Comentarios topico aluno*/
+    public String pageComentarioTopicoAluno(Topico topico){
+        this.topicoComentario = topico;
+        return "page-comentario-topico?faces-redirect=true";
+    }
+    
+    public String salvarComentarioAluno() {
+        comentarioTopico.setDataComentario(new Date());
+        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        comentarioTopico.setTopico(topicoComentario);
+
+        if (fachada.salvarComentario(comentarioTopico) == true) {
+            comentarioTopico = new Comentario();
+        }
+
+        return "page-comentario-topico?faces-redirect=true";
+    }
 }
