@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Aluno | Meus Grupos</title>
+        <title>Aluno | Responder Teste</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -91,6 +92,12 @@
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-listar-solicitacoes.jsf">
+                                        Solicitações Grupos
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -100,27 +107,41 @@
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line-h1">Meus Grupos</h1>
+                        <div class="col-md-12 text-center">
+                            <h1 class="page-head-line">#{controladorTeste.teste.assunto}</h1>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.gruposAluno()}" var="participaGrupo" class="table table-hover" columnClasses="column1"
-                                             rendered="#{controladorGrupo.gruposAluno().size() > 0}">
-                                    <h:column class="column1">
-                                        <h:commandLink value="#{participaGrupo.grupo.nome}" action="#{controladorGrupo.paginaGrupoAluno(participaGrupo.grupo)}" 
-                                                       style="text-decoration: none"
-                                                       class="text-success"/>
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <div class="alert alert-success">
+                                    Disciplina: #{controladorTeste.teste.disciplina}<br />
+                                    Entrega: <h:outputText value="#{controladorTeste.teste.dataEntrega}" class="text-danger">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <h:commandButton value="Começar" action="#{controladorTeste.comecarAResponder()}" 
+                                                 class="btn btn-success" rendered="#{controladorTeste.disponivel == true}"/>
+                            </div>
+
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center" style="text-transform: uppercase;">
+                                <h:outputText value="#{controladorTeste.contador} - #{controladorTeste.pergunta.enunciado}"
+                                              rendered="#{controladorTeste.disponivel == false}"/>
+                            </div><br />
+
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" class="table table-hover"
+                                             rendered="#{controladorTeste.disponivel == false}">
+                                    <h:column>
+                                        <h:commandLink value="#{resposta.conteudo}" 
+                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.peso)}" 
+                                                       style="text-decoration: none"/>
                                     </h:column>
                                 </h:dataTable>
-                            </div>
-                            
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:outputLabel value="Nenhum grupo encontrado" rendered="#{controladorGrupo.gruposAluno().size() == 0}"
-                                               class="text-danger page-text-span"/>
                             </div>
                         </div>
                     </h:form>

@@ -136,14 +136,6 @@ public class ControladorTeste implements Serializable {
         this.disponivel = disponivel;
     }
 
-    public String comecarAResponder() {
-        comecar = true;
-        tamanho = 0;
-        pergunta = teste.getQuestoesExercicios().get(tamanho);
-        tamanho++;
-        return "md-visualizar-teste?faces-redirect=true";
-    }
-
     public String paginaVisualizarTeste(Topico topico) {
         teste = fachada.buscarExercicio(topico.getCodigoTeste());
         disponivel = topico.isDisponivel();
@@ -156,7 +148,16 @@ public class ControladorTeste implements Serializable {
             disponivel = false;
         }
         
-        return "md-visualizar-teste?faces-redirect=true";
+        return "page-responder-teste?faces-redirect=true";
+    }
+
+    public String comecarAResponder() {
+        disponivel = false;
+        comecar = true;
+        tamanho = 0;
+        pergunta = teste.getQuestoesExercicios().get(tamanho);
+        tamanho++;
+        return "page-responder-teste?faces-redirect=true";
     }
 
     public String enviarRespostas(Resposta resposta, float pontuacao) {
@@ -173,13 +174,13 @@ public class ControladorTeste implements Serializable {
 
         if (tamanho == aux) {
             tamanho = 0;
-            return "pagina-visualizar-resultado?faces-redirect=true";
+            return "page-visualizar-resultado?faces-redirect=true";
         }
 
         tamanho++;
         contador++;
 
-        return "md-visualizar-teste?faces-redirect=true";
+        return "page-responder-teste?faces-redirect=true";
     }
 
     public String salvarTeste() {
@@ -197,7 +198,7 @@ public class ControladorTeste implements Serializable {
         tamanho = 0;
         salvarTeste = true;
         comecar = false;
-        return "pagina-visualizar-resultado?faces-redirect=true";
+        return "page-visualizar-resultado?faces-redirect=true";
     }
 
     public void atualizarPontuacao() {
