@@ -137,13 +137,13 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-listas">Testes publicados</h1>
+                            <h1 class="page-head-line-h1">Testes publicados</h1>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
                                 <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table table-condensed" rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
                                     <h:column>
                                         <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
@@ -154,8 +154,11 @@
                                         </h:outputLabel>)
                                     </h:column>
                                 </h:dataTable>
-                                
-                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"/>
+                            </div>
+
+                            <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
+                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"
+                                               class="text-danger"/>
                             </div>
                         </div>
                     </h:form>

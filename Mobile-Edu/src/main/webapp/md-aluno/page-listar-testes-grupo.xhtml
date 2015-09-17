@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Arquivos</title>
+        <title>Aluno | Testes</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
                 </div>
 
                 <h:form>
@@ -42,15 +42,14 @@
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </a>
 
-
                                 <ul class="dropdown-menu dropdown-user">
                                     <li>
-                                        <a href="page-config-professor.jsf">
+                                        <a href="page-config-aluno.jsf">
                                             Configurações
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-
+                                        
                                     </li>
                                 </ul>
 
@@ -65,66 +64,38 @@
                     <ul class="nav" id="main-menu">
                         <li>
                             <div class="user-img-div">
-                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                <p:graphicImage value="#{aluno.content}" id="figure-01"
                                                 styleClass="img-circle"/>
                             </div> 
                         </li>
 
                         <li>
-
-                            <a href="#"><strong>#{professor.login}</strong></a>
+                            <a href="#"><strong>#{aluno.login}</strong></a>
 
                         </li>
-
-                        <li>
-                            <a href="#" class="active-menu">
-                                Testes
-                            </a>
-
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="page-cad-pergunta.jsf">
-                                        Cadastrar Pergunta
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
+              
                         <li>
                             <a href="#">
                                 Grupos 
                             </a>
 
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
+                                    <a href="page-buscar-grupo.jsf">
+                                        Grupos
                                     </a>
                                 </li>
-
+                                
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="page-listar-solicitacoes.jsf">
+                                        Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -137,29 +108,27 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line-h1">Arquivos publicados</h1>
+                            <h1 class="page-head-line-h1">Testes publicados</h1>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="arquivo" class="table table-condensed" rendered="#{controladorGrupo.listarAlunosGrupo().size() > 0}">
+                                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table table-condensed" rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
                                     <h:column>
-                                        <p:commandLink value="#{arquivo.nome}" ajax="false" rendered="#{arquivo.nome != null}" style="text-decoration: none;">
-                                            <p:fileDownload value="#{controladorGrupo.donwload(arquivo.caminho, arquivo.nome, arquivo.codigo)}" />
-                                        </p:commandLink> - 
-                                        <label>#{arquivo.loginUsuario}</label><br />
+                                        <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
+                                        <label>#{teste.loginUsuario}</label><br />
 
-                                        (<h:outputLabel value="#{arquivo.dataCriacao}" style="font-size: 10px">
+                                        <h:outputLabel value="#{teste.dataCriacao}" style="font-size: 10px">
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                        </h:outputLabel>)
+                                        </h:outputLabel>
                                     </h:column>
                                 </h:dataTable>
                             </div>
-
+                            
                             <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                                    <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarArquivos().size() == 0}"
+                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"
                                                    class="text-danger"/>
                             </div>
                         </div>

@@ -75,6 +75,14 @@ body{
     font-weight: 400;
 }
 
+.page-text-span-js{
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #DD1533;
+    font-weight: 200;
+}
+
 .navbar-cls-top .navbar-brand{
     color: #fff;
     background: #dd1533;

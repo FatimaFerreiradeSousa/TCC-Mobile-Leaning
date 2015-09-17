@@ -6,7 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Arquivos</title>
+        <title>Aluno | Arquivos</title>
+
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -30,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
                 </div>
 
                 <h:form>
@@ -42,10 +43,9 @@
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </a>
 
-
                                 <ul class="dropdown-menu dropdown-user">
                                     <li>
-                                        <a href="page-config-professor.jsf">
+                                        <a href="page-config-aluno.jsf">
                                             Configurações
                                         </a>
 
@@ -65,49 +65,14 @@
                     <ul class="nav" id="main-menu">
                         <li>
                             <div class="user-img-div">
-                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                <p:graphicImage value="#{aluno.content}" id="figure-01"
                                                 styleClass="img-circle"/>
                             </div> 
                         </li>
 
                         <li>
+                            <a href="#"><strong>#{aluno.login}</strong></a>
 
-                            <a href="#"><strong>#{professor.login}</strong></a>
-
-                        </li>
-
-                        <li>
-                            <a href="#" class="active-menu">
-                                Testes
-                            </a>
-
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="page-cad-pergunta.jsf">
-                                        Cadastrar Pergunta
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li>
@@ -116,15 +81,22 @@
                             </a>
 
                             <ul class="nav nav-second-level">
+
                                 <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
+                                    <a href="page-buscar-grupo.jsf">
+                                        Grupos
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-solicitacoes.jsf">
+                                        Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>

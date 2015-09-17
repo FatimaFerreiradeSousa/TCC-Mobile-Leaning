@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Professor | Arquivos</title>
+        <title>Aluno | Configurações</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -16,6 +15,7 @@
         <script src="../bootstrap/js/bootstrap.js"></script>
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
+        <link href="../assets/css/css-page-config-grupo.css" rel="stylesheet"/>        
 
     </h:head>
 
@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
                 </div>
 
                 <h:form>
@@ -42,10 +42,9 @@
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </a>
 
-
                                 <ul class="dropdown-menu dropdown-user">
                                     <li>
-                                        <a href="page-config-professor.jsf">
+                                        <a href="page-config-aluno.jsf">
                                             Configurações
                                         </a>
 
@@ -65,49 +64,14 @@
                     <ul class="nav" id="main-menu">
                         <li>
                             <div class="user-img-div">
-                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                <p:graphicImage value="#{aluno.content}" id="figure-01"
                                                 styleClass="img-circle"/>
                             </div> 
                         </li>
 
                         <li>
+                            <a href="#"><strong>#{aluno.login}</strong></a>
 
-                            <a href="#"><strong>#{professor.login}</strong></a>
-
-                        </li>
-
-                        <li>
-                            <a href="#" class="active-menu">
-                                Testes
-                            </a>
-
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="page-cad-pergunta.jsf">
-                                        Cadastrar Pergunta
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li>
@@ -116,15 +80,22 @@
                             </a>
 
                             <ul class="nav nav-second-level">
+
                                 <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
+                                    <a href="page-buscar-grupo.jsf">
+                                        Grupos
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-solicitacoes.jsf">
+                                        Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -137,33 +108,41 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line-h1">Arquivos publicados</h1>
+                            <a href="page-inicial-grupo.jsf" style="text-decoration: none;">
+                                <h1 class="page-head-line">Grupo: #{controladorGrupo.grupo.nome}</h1>
+                            </a>
                         </div>
                     </div>
 
-                    <h:form>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="arquivo" class="table table-condensed" rendered="#{controladorGrupo.listarAlunosGrupo().size() > 0}">
-                                    <h:column>
-                                        <p:commandLink value="#{arquivo.nome}" ajax="false" rendered="#{arquivo.nome != null}" style="text-decoration: none;">
-                                            <p:fileDownload value="#{controladorGrupo.donwload(arquivo.caminho, arquivo.nome, arquivo.codigo)}" />
-                                        </p:commandLink> - 
-                                        <label>#{arquivo.loginUsuario}</label><br />
-
-                                        (<h:outputLabel value="#{arquivo.dataCriacao}" style="font-size: 10px">
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                        </h:outputLabel>)
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
-
-                            <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                                    <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarArquivos().size() == 0}"
-                                                   class="text-danger"/>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-offset-3">
+                            <div class="panel ">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Configurações</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-6">
+                                            <a href="page-listar-arquivos.jsf" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Arquivos</a>
+                                            <a href="page-listar-testes-grupo.jsf" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-record"></span> <br/>Testes</a>
+                                            <a href="page-resultados-teste.jsf" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Resultados</a>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6">
+                                            <a href="page-listar-membros.jsf" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Membros</a>
+                                            <a href="page-listar-topicos.jsf" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Postagens</a>
+                                            
+                                            <h:form>
+                                                <h:commandLink value="" class="btn btn-danger btn-lg" 
+                                                               action="#{controladorGrupo.sairGrupo()}">
+                                                    <span class="glyphicon glyphicon-file"></span> <br/>Sair
+                                                </h:commandLink>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </h:form>
+                    </div>
                 </div>
             </div>
         </div>

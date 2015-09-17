@@ -554,4 +554,10 @@ public class GerenciadorGrupo implements Serializable {
 
         return "page-comentario-topico?faces-redirect=true";
     }
+    
+    public String sairGrupo() {
+        fachada.removerMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        return "page-solicitacao-grupo?faces-redirect=true";
+    }
 }
