@@ -465,6 +465,10 @@ public class GerenciadorGrupo implements Serializable {
         return "page-solicitacao-grupo?faces-redirect=true";
     }
     
+    public List<ParticipaGrupo> solicitacoesPendentes() {
+        return fachada.listarGruposPendentes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    }
+    
     /*Topicos do grupo - aluno*/
     public String salvarTopicoAluno() {
 
@@ -522,5 +526,14 @@ public class GerenciadorGrupo implements Serializable {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public List<ParticipaGrupo> gruposAluno() {
+        return fachada.listarGruposAlunos(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    }
+    
+    public String paginaGrupoAluno(Grupo grupo) {
+        this.grupo = grupo;
+        return "page-inicial-grupo?faces-redirect=true";
     }
 }

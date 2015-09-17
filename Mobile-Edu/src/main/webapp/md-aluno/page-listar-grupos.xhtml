@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Meus Grupos</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -48,7 +48,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -72,29 +72,23 @@
                             <a href="#"><strong>#{aluno.login}</strong></a>
 
                         </li>
-              
+
                         <li>
                             <a href="#">
                                 Grupos 
                             </a>
 
                             <ul class="nav nav-second-level">
-                                
+
                                 <li>
                                     <a href="page-buscar-grupo.jsf">
                                         Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="page-listar-solicitacoes.jsf">
-                                        Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>
@@ -107,17 +101,23 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.aluno.login}</h1>
+                            <h1 class="page-head-line-h1">Meus Grupos</h1>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                    <h:form>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <h:dataTable value="#{controladorGrupo.gruposAluno()}" var="participaGrupo" class="table table-hover" columnClasses="column1">
+                                    <h:column class="column1">
+                                        <h:commandLink value="#{participaGrupo.grupo.nome}" action="#{controladorGrupo.paginaGrupoAluno(participaGrupo.grupo)}" 
+                                                       style="text-decoration: none"
+                                                       class="text-success"/>
+                                    </h:column>
+                                </h:dataTable>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>
