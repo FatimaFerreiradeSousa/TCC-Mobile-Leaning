@@ -227,4 +227,21 @@ public class ControladorTeste implements Serializable {
         this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
         return "page-resultado-individual?faces-redirect=true";
     }
+    
+    public List<RespondeExercicio> resultadoTestes(){
+        return fachada.resultadosTeste(teste.getCodigo());
+    }
+    
+    public String pageTestesResolvidos(){
+        return "page-testes-resolvidos?faces-redirect=true";
+    }
+    
+    public String pageRackingTestes(){
+        return "page-racking-grupo?faces-redirect=true";
+    }
+    
+    public String pageResultado(Topico topico){
+        this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
+        return "page-resultado?faces-redirect=true";
+    }
 }

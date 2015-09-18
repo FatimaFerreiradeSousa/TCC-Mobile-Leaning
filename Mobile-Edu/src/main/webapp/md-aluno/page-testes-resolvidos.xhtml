@@ -118,7 +118,7 @@
                                 <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table-responsive table" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
                                     <h:column>
                                         <div class="text-center">
-                                            <h:commandLink value="#{teste.conteudo}" action="#{controladorGrupo.pageResultado(teste)}" 
+                                            <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.pageResultado(teste)}" 
                                                            style="text-decoration: none;"/>
                                         </div>
                                     </h:column>

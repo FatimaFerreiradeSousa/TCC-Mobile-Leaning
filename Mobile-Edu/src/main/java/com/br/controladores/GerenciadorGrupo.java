@@ -571,22 +571,4 @@ public class GerenciadorGrupo implements Serializable {
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
     }
-    
-    /*Resultados teste*/
-    public String pageTestesResolvidos(){
-        return "page-testes-resolvidos?faces-redirect=true";
-    }
-    
-    public String pageRackingTestes(){
-        return "page-";
-    }
-    
-    public String pageResultado(Topico topico){
-        this.topicoTeste = topico;
-        return "page-resultado?faces-redirect=true";
-    }
-    
-    public List<RespondeExercicio> resultadoTestes(){
-        return fachada.resultadosTeste(topicoTeste.getCodigoTeste());
-    }
 }
