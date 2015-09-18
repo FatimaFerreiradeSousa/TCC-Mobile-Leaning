@@ -128,14 +128,25 @@
                                                  class="btn btn-success" rendered="#{controladorTeste.disponivel == true}"/>
                             </div>
 
-                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center" style="text-transform: uppercase;">
-                                <h:outputText value="#{controladorTeste.contador} - #{controladorTeste.pergunta.enunciado}"
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <h:outputText value="Este teste não está mais disponivel" class="text-muted"
                                               rendered="#{controladorTeste.disponivel == false}"/>
+                            </div>
+
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <h:commandLink value="Detalhes" class="btn btn-danger" 
+                                               action="#{controladorTeste.verificaTeste()}"
+                                               rendered="#{controladorTeste.disponivel == false}">
+                                    <f:ajax render="testeDisponivel"/>
+                                </h:commandLink><br />
+
+                                <p><h:outputText value="#{controladorTeste.mensagem}" 
+                                                 id="testeDisponivel" class="text-info text-label"/></p>
                             </div><br />
 
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
                                 <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" class="table table-hover"
-                                             rendered="#{controladorTeste.disponivel == false}">
+                                             rendered="#{controladorTeste.comecar == true}">
                                     <h:column>
                                         <h:commandLink value="#{resposta.conteudo}" 
                                                        action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.peso)}" 
