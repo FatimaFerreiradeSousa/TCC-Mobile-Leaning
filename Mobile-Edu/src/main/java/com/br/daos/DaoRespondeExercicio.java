@@ -75,4 +75,12 @@ public class DaoRespondeExercicio implements InterfaceDaoRespondeExercicio {
 
         return list.isEmpty();
     }
+
+    @Override
+    public List<RespondeExercicio> resultados(int codTeste) {
+        Query query = em.createQuery("select r from RespondeExercicio r where r.codTeste = :codTeste");
+        query.setParameter("codTeste", codTeste);
+        
+        return query.getResultList();
+    }
 }

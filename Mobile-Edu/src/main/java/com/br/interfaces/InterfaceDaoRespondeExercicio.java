@@ -1,6 +1,7 @@
 package com.br.interfaces;
 
 import com.br.entidades.RespondeExercicio;
+import java.util.List;
 
 /**
  *
@@ -17,4 +18,6 @@ public interface InterfaceDaoRespondeExercicio {
     public boolean remover(RespondeExercicio responde);
     
     public boolean respondeTeste(int codTeste, String loginAluno);
+    
+    public List<RespondeExercicio> resultados(int codTeste);
 }

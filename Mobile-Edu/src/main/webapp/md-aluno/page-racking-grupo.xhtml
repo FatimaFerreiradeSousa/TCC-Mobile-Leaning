@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <title>Aluno | Racking</title>
+        <meta charset="UTF-8"/>
+        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <link href="../assets/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
+        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../bootstrap/js/custom.js"></script>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-aluno.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li>
+                            <div class="user-img-div">
+                                <p:graphicImage value="#{aluno.content}" id="figure-01"
+                                                styleClass="img-circle"/>
+                            </div> 
+                        </li>
+
+                        <li>
+                            <a href="#"><strong>#{aluno.login}</strong></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Grupos 
+                            </a>
+
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="page-buscar-grupo.jsf">
+                                        Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-solicitacoes.jsf">
+                                        Solicitações Grupos
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1 class="page-head-line">Resultado Geral</h1>
+                        </div>
+                    </div>
+
+                    <h:form>
+
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" role="tabpanel">
+                                    <div class="col-xs-4 col-sm-12">
+                                        <ul class=" nav nav-justified" id="nav-tabs" role="tablist">
+                                            <li role="presentation" class="active">
+                                                <a href="#primeiro" aria-controls="dustin" role="tab" data-toggle="tab">
+                                                    <img class="img-circle img-teste" src="https://s3.amazonaws.com/uifaces/faces/twitter/dustinlamont/128.jpg" 
+                                                        />
+                                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#segundo" aria-controls="daksh" role="tab" data-toggle="tab">
+                                                    <img class="img-circle img-teste" src="https://s3.amazonaws.com/uifaces/faces/twitter/dakshbhagya/128.jpg" />
+                                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#terceiro" aria-controls="anna" role="tab" data-toggle="tab">
+                                                    <img class="img-circle img-teste" src="https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg" />
+                                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#quarto" aria-controls="wafer" role="tab" data-toggle="tab">
+                                                    <img class="img-circle img-teste" src="https://s3.amazonaws.com/uifaces/faces/twitter/waferbaby/128.jpg" />
+                                                    <span class="quote"><i class="fa fa-quote-left"></i></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-xs-8 col-sm-12">
+                                        <div class="tab-content" id="tabs-collapse">
+
+                                            <div role="tabpanel" class="tab-pane fade in active" id="primeiro">
+                                                <div class="tab-inner">                    
+                                                    <p class="lead">150 pontos - 1º Lugar</p>
+                                                    <hr />
+                                                    <p><strong class="text-uppercase">Fatinha de Sousa</strong></p>
+                                                    <p><em class="text-capitalize"> Analise e desenvolvimento de sistemas</em></p>                 
+                                                </div>
+                                            </div>
+
+                                            <div role="tabpanel" class="tab-pane fade" id="segundo">
+                                                <div class="tab-inner">
+                                                    <p class="lead">140 pontos - 2º Lugar</p>
+                                                    <hr />
+                                                    <p><strong class="text-uppercase">Juan de Sousa</strong></p>
+                                                    <p><em class="text-capitalize"> Analise e desenvolvimento de sistemas</em></p>
+                                                </div>
+                                            </div>
+
+                                            <div role="tabpanel" class="tab-pane fade" id="terceiro">
+                                                <div class="tab-inner">
+                                                    <p class="lead">130 pontos - 3º Lugar</p>
+                                                    <hr />
+                                                    <p><strong class="text-uppercase">Eliane de Sousa</strong></p>
+                                                    <p><em class="text-capitalize"> Analise e desenvolvimento de sistemas</em></p>
+                                                </div> 
+                                            </div>
+
+                                            <div role="tabpanel" class="tab-pane fade" id="quarto">
+                                                <div class="tab-inner">
+                                                    <p class="lead">120 pontos - 4º Lugar</p>
+                                                    <hr />
+                                                    <p><strong class="text-uppercase">Elizani de Sousa</strong></p>
+                                                    <p><em class="text-capitalize"> Analise e desenvolvimento de sistemas</em></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -4,6 +4,7 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
+import com.br.entidades.RespondeExercicio;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
@@ -37,6 +38,7 @@ public class GerenciadorGrupo implements Serializable {
     private Grupo grupo;
     private Topico topico;
     private Topico topicoComentario;
+    private Topico topicoTeste;
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
     private Comentario comentarioTopico;
@@ -50,6 +52,7 @@ public class GerenciadorGrupo implements Serializable {
         grupo = new Grupo();
         topico = new Topico();
         topicoComentario = new Topico();
+        topicoTeste = new Topico();
         comentarioTopico = new Comentario();
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
@@ -119,6 +122,14 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setAceito(boolean aceito) {
         this.aceito = aceito;
+    }
+
+    public Topico getTopicoTeste() {
+        return topicoTeste;
+    }
+
+    public void setTopicoTeste(Topico topicoTeste) {
+        this.topicoTeste = topicoTeste;
     }
 
     /*operações da entidade grupo*/
@@ -559,5 +570,23 @@ public class GerenciadorGrupo implements Serializable {
         fachada.removerMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo());
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
+    }
+    
+    /*Resultados teste*/
+    public String pageTestesResolvidos(){
+        return "page-testes-resolvidos?faces-redirect=true";
+    }
+    
+    public String pageRackingTestes(){
+        return "page-";
+    }
+    
+    public String pageResultado(Topico topico){
+        this.topicoTeste = topico;
+        return "page-resultado?faces-redirect=true";
+    }
+    
+    public List<RespondeExercicio> resultadoTestes(){
+        return fachada.resultadosTeste(topicoTeste.getCodigoTeste());
     }
 }
