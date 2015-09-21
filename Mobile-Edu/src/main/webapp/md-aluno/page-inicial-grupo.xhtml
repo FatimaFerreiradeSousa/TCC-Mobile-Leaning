@@ -17,7 +17,7 @@
         <script src="../bootstrap/js/bootstrap.js"></script>
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
-         <script src="../assets/js/script-page-grupo.js"></script>
+        <script src="../assets/js/script-page-grupo.js"></script>
 
     </h:head>
 
@@ -169,7 +169,10 @@
 
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li role="presentation">
-                                                        <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                        <a action="#" href="#signup"
+                                                           data-toggle="modal" data-target="#modal-atualizar">
+                                                            Editar
+                                                        </a>
                                                     </li>
                                                     <li role="presentation">
                                                         <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
@@ -213,6 +216,41 @@
                                                                class="input-placeholder" style="text-decoration: none;"/>
 
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="modal-atualizar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title text text-black">Alterar</h4>
+                                            </div>
+
+                                            <h:form>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-horizontal">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-2 control-label" for="name">Nome</label>
+                                                                        <div class="col-md-9">
+                                                                            <h:inputText value="#{topico.conteudo}" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <h:commandButton value="Atualizar" class="btn btn-default" action="#{controladorUsuario.atualizarAluno()}"/>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </h:form>
                                         </div>
                                     </div>
                                 </div>

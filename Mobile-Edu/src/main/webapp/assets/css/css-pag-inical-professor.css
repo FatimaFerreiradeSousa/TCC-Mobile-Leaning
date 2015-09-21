@@ -49,6 +49,12 @@ body{
     text-align: center;
 }
 
+.text-error{
+    font-family: "Raleway", sans-serif;
+    line-height: 25px;
+    font-size: 12px;
+}
+
 .page-head-listas{
     font-size: 20px;
     text-transform: uppercase;

@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,7 @@ public class ControladorUsuarios implements Serializable {
     private Aluno aluno;
     private StreamedContent content;
     private UploadedFile file;
+    private String mensagem;
 
     HttpSession session;
 
@@ -46,6 +48,7 @@ public class ControladorUsuarios implements Serializable {
         senha = null;
         email = null;
         usuario = null;
+        mensagem = null;
         aluno = new Aluno();
         professor = new Professor();
     }
@@ -114,14 +117,21 @@ public class ControladorUsuarios implements Serializable {
         this.file = file;
     }
 
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
     public String salvarUsuario() throws IOException {
-        System.out.println("Usuario: " + usuario);
         String caminho
                 = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
-
+        
         if (usuario.equalsIgnoreCase("Aluno")) {
             if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
                     && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
@@ -134,7 +144,10 @@ public class ControladorUsuarios implements Serializable {
                 fachada.salvarAluno(aluno);
                 login = null;
                 senha = null;
+                mensagem = null;
                 context.redirect(request.getContextPath());
+            } else {
+                mensagem = "Email/login não disponível!";
             }
         } else {
             if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
@@ -148,7 +161,10 @@ public class ControladorUsuarios implements Serializable {
                 professor.setDataParticipacao(new Date());
 
                 fachada.salvarProfessor(professor);
+                mensagem = null;
                 context.redirect(request.getContextPath());
+            }else{
+                mensagem = "Email/Login não disponível!";
             }
         }
 
@@ -169,13 +185,14 @@ public class ControladorUsuarios implements Serializable {
                 context.getSessionMap().put("aluno", a);
                 context.redirect(request.getContextPath() + loginPage);
                 aluno = PegarUsuarioSessao.pegarAlunoSessao();
+                mensagem = null;
             } else {
-                /*Java Script*/
+                mensagem = "Login/Senha inválidos!";
             }
         } else {
 
             Professor p = fachada.loginProfessor(login, senha);
-
+            
             if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -184,8 +201,9 @@ public class ControladorUsuarios implements Serializable {
                 context.getSessionMap().put("professor", p);
                 context.redirect(request.getContextPath() + loginPage);
                 professor = PegarUsuarioSessao.pegarProfessorSessao();
+                mensagem = null;
             } else {
-                /*Java Script*/
+                mensagem = "Login/Senha inválidos!";
             }
         }
     }
@@ -210,7 +228,7 @@ public class ControladorUsuarios implements Serializable {
         fachada.atualizarProfessor(professor);
         return "page-config-professor?faces-redirect=true";
     }
-    
+
     public void uploadProfessor() {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
@@ -245,7 +263,7 @@ public class ControladorUsuarios implements Serializable {
             }
         }
     }
-    
+
     /*Aluno*/
     public void uploadAluno() {
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
@@ -280,11 +298,11 @@ public class ControladorUsuarios implements Serializable {
             }
         }
     }
-    
-    public String atualizarAluno(){
+
+    public String atualizarAluno() {
         aluno = PegarUsuarioSessao.pegarAlunoSessao();
         fachada.atualizarAluno(aluno);
-        
+
         return "page-config-aluno?faces-redirect=true";
     }
 }

@@ -19,6 +19,7 @@
     <h:body>
 
         <div class="container">
+            <h:messages/>
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -39,8 +40,14 @@
 
                         <div class="panel-body">
                             <div class="row">
+
                                 <div class="col-lg-12">
                                     <h:form id="login-form" role="form" style="display: block">
+                                        <div class="form-group">
+                                            <h:outputText value="#{controladorUsuario.mensagem}" 
+                                                          id="erroLogin" class="text-danger text-error"/>
+                                        </div>
+                                        
                                         <div class="form-group">
                                             <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login"
                                                          value="#{controladorUsuario.login}" required="true"/>
@@ -52,16 +59,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" required="true">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" 
+                                                             id="tipo" required="true">
                                                 <f:selectItem itemValue="Tipo" />
                                                 <f:selectItem itemValue="Aluno" />
                                                 <f:selectItem itemValue="Professor" />
                                             </h:selectOneMenu>
-                                        </div>
-                                        
-                                        <div class="form-group text-center">
-                                            <input type="checkbox" tabindex="3" class="" name="remember" id="remember"/>
-                                            <label for="remember"> Lembrar senha</label>
                                         </div>
 
                                         <div class="form-group">
@@ -69,7 +72,9 @@
                                                 <div class="col-sm-6 col-sm-offset-3">
                                                     <h:commandButton type="submit" action="#{controladorUsuario.loginUsuario()}" 
                                                                      id="login-submit" tabindex="4" 
-                                                                     class="form-control btn btn-primary" value="Entrar"/>
+                                                                     class="form-control btn btn-primary" value="Entrar">
+                                                        <f:ajax execute="username password tipo" render="erroLogin"/>
+                                                    </h:commandButton>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +92,12 @@
 
                                     <h:form id="register-form" role="form" style="display: none;">
                                         <div class="form-group">
-                                            <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login" 
+                                            <h:outputText value="#{controladorUsuario.mensagem}" 
+                                                          id="erroCadastro" class="text-danger text-error"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h:inputText id="login" tabindex="1" class="form-control" pt:placeholder="Login" 
                                                          value="#{controladorUsuario.login}"/>
                                         </div>
 
@@ -97,12 +107,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <h:inputSecret id="password" tabindex="1" class="form-control" pt:placeholder="Senha" 
+                                            <h:inputSecret id="senha" tabindex="1" class="form-control" pt:placeholder="Senha" 
                                                            value="#{controladorUsuario.senha}"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" id="tipoUsuario">
                                                 <f:selectItem itemValue="Tipo" />
                                                 <f:selectItem itemValue="Aluno" />
                                                 <f:selectItem itemValue="Professor" />
@@ -114,7 +124,9 @@
                                                 <div class="col-sm-6 col-sm-offset-3">
                                                     <h:commandButton type="submit" id="register-submit" tabindex="4" 
                                                                      class="form-control btn btn-success" value="Cadastrar"
-                                                                     action="#{controladorUsuario.salvarUsuario()}"/>
+                                                                     action="#{controladorUsuario.salvarUsuario()}">
+                                                        <f:ajax execute="login email senha tipoUsuario" render="erroCadastro"/>
+                                                    </h:commandButton>
                                                 </div>
                                             </div>
                                         </div>
