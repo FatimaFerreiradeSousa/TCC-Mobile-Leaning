@@ -301,3 +301,19 @@ textarea {
     }
 }
 
+.menu-comentario{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+
+.menu > span > span {
+    font-size: 10px;   
+}
+
+.menu > .dropdown-menu {
+    left: initial;
+    right: 0px;
+    border-radius: 2px;
+}
+

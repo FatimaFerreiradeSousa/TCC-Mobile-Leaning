@@ -166,6 +166,28 @@
                                                 <div class="col-md-10 col-sm-10">
                                                     <div class="panel panel-default  left">
                                                         <div class="panel-body panel-comentario">
+
+                                                            <div class="pull-right">
+                                                                <div class="dropdown menu-comentario">
+                                                                    <div class="menu">
+                                                                        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                                                            <span class="glyphicon glyphicon-chevron-down"></span>
+                                                                        </span>
+
+
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li role="presentation">
+                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                                            </li>
+                                                                            <li role="presentation">
+                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
+                                                                                               action="#{controladorGrupo.removerComentario(comentario)}"/>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             <header class="text-left">
                                                                 <div class="comment-user"><i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}</div>
                                                                 <h:outputLabel style="font-size: 10px" value="#{comentario.dataComentario}">
@@ -178,9 +200,6 @@
                                                                     #{comentario.conteudo}
                                                                 </p>
                                                             </div>
-
-                                                            <h:commandButton class="text-left btn btn-danger btn-sm" value="Remover" 
-                                                                             action="#{controladorGrupo.removerComentario(comentario)}"/>
                                                         </div>
                                                     </div>
                                                 </div>
