@@ -191,10 +191,10 @@
                     </div>
 
                     <h:form>
-                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
-                            <h:column>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table">
+                                    <h:column>
                                         <div class="panel panel-default panel-google-plus">
                                             <div class="dropdown">
                                                 <span class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -245,13 +245,13 @@
                                                 <h:commandButton value="+ #{topico.maisUm}" class="btn btn-default" action="#{controladorGrupo.atualizarMaisUm(topico)}"/>
                                                 <h:commandLink value="Add comentário" action="#{controladorGrupo.pageComentarioTopico(topico)}"
                                                                class="input-placeholder" style="text-decoration: none;"/>
-                                                
+
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </h:column>
-                        </h:dataTable>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
                     </h:form>
                 </div>
             </div>

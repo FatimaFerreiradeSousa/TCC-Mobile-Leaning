@@ -268,6 +268,10 @@ public class GerenciadorGrupo implements Serializable {
         return "page-comentario-topico?faces-redirect=true";
     }
     
+    public List<Comentario> comentariosTopico(){
+        return fachada.listarComentariosTopico(topicoComentario.getCodigo());
+    }
+    
     public Comentario getComentarioTopico() {
         return comentarioTopico;
     }
@@ -291,11 +295,10 @@ public class GerenciadorGrupo implements Serializable {
     public String alterarComentario(Comentario comentario) {
         fachada.alterarComentario(comentario);
 
-        return "pagInicialGrupo?faces-redirect=true";
+        return "page-comentario-topico?faces-redirect=true";
     }
 
     public String removerComentario(Comentario comentario) {
-        System.out.println("Comentario: " + comentario.getConteudo());
         fachada.removerComentario(comentario);
 
         return "page-comentario-topico?faces-redirect=true";

@@ -110,70 +110,74 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-listas">Comentarios</h1>
+                            <a href="page-inicial-grupo.jsf" style="text-decoration: none;">
+                                <h1 class="page-head-listas">Comentarios</h1>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-offset-3">
-                            <h:outputLabel value="Nenhum comentário" class="page-text-span" rendered="#{controladorGrupo.topicoComentario.comentarios.size() == 0}"/>
-                            <h:dataTable value="#{controladorGrupo.topicoComentario.comentarios}" var="comentario" class="table table-hover">
-                                <h:column>
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-offset-3">
+                                <h:outputLabel value="Nenhum comentário" class="page-text-span" rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
+                                <h:dataTable value="#{controladorGrupo.comentariosTopico()}" var="comentario" class="table">
+                                    <h:column>
 
-                                    <section class="comment-list">
-                                        <article class="row">
-                                            <div class="col-md-2 col-sm-2 hidden-xs">
-                                                <figure class="thumbnail">
-                                                    <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" styleClass="img-responsive">
-                                                        <f:param value="#{comentario.loginUsuario}" name="loginComentario"/>
-                                                    </p:graphicImage>
-                                                </figure>
-                                            </div>
+                                        <section class="comment-list">
+                                            <article class="row">
+                                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                                    <figure class="thumbnail">
+                                                        <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" styleClass="img-responsive">
+                                                            <f:param value="#{comentario.loginUsuario}" name="loginComentario"/>
+                                                        </p:graphicImage>
+                                                    </figure>
+                                                </div>
 
-                                            <div class="col-md-10 col-sm-10">
-                                                <div class="panel panel-default  left">
-                                                    <div class="panel-body panel-comentario">
-                                                        <header class="text-left">
-                                                            <div class="comment-user"><i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}</div>
-                                                            <h:outputLabel style="font-size: 10px" value="#{comentario.dataComentario}">
-                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                            </h:outputLabel>
-                                                        </header>
+                                                <div class="col-md-10 col-sm-10">
+                                                    <div class="panel panel-default  left">
+                                                        <div class="panel-body panel-comentario">
+                                                            <header class="text-left">
+                                                                <div class="comment-user"><i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}</div>
+                                                                <h:outputLabel style="font-size: 10px" value="#{comentario.dataComentario}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputLabel>
+                                                            </header>
 
-                                                        <div class="comment-post">
-                                                            <p>
-                                                                #{comentario.conteudo}
-                                                            </p>
-                                                        </div>
+                                                            <div class="comment-post">
+                                                                <p>
+                                                                    #{comentario.conteudo}
+                                                                </p>
+                                                            </div>
 
-                                                        <h:form>
+
                                                             <h:commandButton class="text-left btn btn-danger btn-sm" value="Remover" 
                                                                              action="#{controladorGrupo.removerComentario(comentario)}"/>
-                                                        </h:form>
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </section>
-                                </h:column>
-                            </h:dataTable>
+                                            </article>
+                                        </section>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-                            <div class="widget-area blank">
-                                <div class="status-upload">
-                                    <h:form class="form-coments">
-                                        <h:inputTextarea pt:placeholder="Comentar" class="textarea-coments" 
-                                                         value="#{controladorGrupo.comentarioTopico.conteudo}"/>
-                                        <h:commandButton class="btn btn-success green btn-coments pull-right" value="Comentar" 
-                                                         action="#{controladorGrupo.salvarComentarioAluno()}"/>
-                                    </h:form>
-                                </div><!-- Status Upload  -->
-                            </div><!-- Widget Area -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                                <div class="widget-area blank">
+                                    <div class="status-upload">
+                                        <div class="form-coments">
+                                            <h:inputTextarea pt:placeholder="Comentar" class="textarea-coments" 
+                                                             value="#{controladorGrupo.comentarioTopico.conteudo}"/>
+                                            <h:commandButton class="btn btn-success green btn-coments pull-right" value="Comentar" 
+                                                             action="#{controladorGrupo.salvarComentarioAluno()}"/>
+                                        </div>
+                                    </div><!-- Status Upload  -->
+                                </div><!-- Widget Area -->
+                            </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>

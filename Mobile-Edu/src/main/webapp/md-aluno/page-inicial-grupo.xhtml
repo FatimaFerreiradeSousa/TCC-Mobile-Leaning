@@ -156,10 +156,13 @@
                     </div>
 
                     <h:form>
-                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
-                            <h:column>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+
+
+                                <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table sem-borda">
+                                    <h:column>
+
                                         <div class="panel panel-default panel-google-plus">
                                             <div class="dropdown">
                                                 <span class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -217,45 +220,46 @@
 
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="modal fade" id="modal-atualizar">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title text text-black">Alterar</h4>
-                                            </div>
 
-                                            <h:form>
-                                                <div class="modal-body">
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-horizontal">
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-2 control-label" for="name">Nome</label>
-                                                                        <div class="col-md-9">
-                                                                            <h:inputText value="#{topico.conteudo}" class="form-control"/>
+                                        <div class="modal fade" id="modal-atualizar">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title text text-black">Alterar</h4>
+                                                    </div>
+
+                                                    <h:form>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-horizontal">
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-2 control-label" for="name">Nome</label>
+                                                                                <div class="col-md-9">
+                                                                                    <h:inputText value="#{topico.conteudo}" class="form-control"/>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+
                                                                 </div>
                                                             </div>
-
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="modal-footer">
-                                                    <h:commandButton value="Atualizar" class="btn btn-default" action="#{controladorUsuario.atualizarAluno()}"/>
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        <div class="modal-footer">
+                                                            <h:commandButton value="Atualizar" class="btn btn-default" action="#{controladorUsuario.atualizarAluno()}"/>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        </div>
+                                                    </h:form>
                                                 </div>
-                                            </h:form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </h:column>
-                        </h:dataTable>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
                     </h:form>
                 </div>
             </div>
