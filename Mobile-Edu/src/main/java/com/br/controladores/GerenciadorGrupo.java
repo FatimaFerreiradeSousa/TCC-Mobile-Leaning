@@ -43,6 +43,7 @@ public class GerenciadorGrupo implements Serializable {
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
     private Comentario comentarioTopico;
+    private Comentario comentarioAlterar;
     private String mensagem;
     private Aluno aluno;
     private ParticipaGrupo participaGrupo;
@@ -55,6 +56,7 @@ public class GerenciadorGrupo implements Serializable {
         topicoComentario = new Topico();
         topicoTeste = new Topico();
         comentarioTopico = new Comentario();
+        comentarioAlterar = new Comentario();
         aluno = new Aluno();
         participaGrupo = new ParticipaGrupo();
         nomeGrupo = null;
@@ -131,6 +133,14 @@ public class GerenciadorGrupo implements Serializable {
 
     public void setTopicoTeste(Topico topicoTeste) {
         this.topicoTeste = topicoTeste;
+    }
+
+    public Comentario getComentarioAlterar() {
+        return comentarioAlterar;
+    }
+
+    public void setComentarioAlterar(Comentario comentarioAlterar) {
+        this.comentarioAlterar = comentarioAlterar;
     }
 
     /*operações da entidade grupo*/
@@ -293,15 +303,13 @@ public class GerenciadorGrupo implements Serializable {
         return "page-comentario-topico?faces-redirect=true";
     }
 
-    public String pegarComentarioRequisicao(){
-       String comentarioReq = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("comentario");
-       System.out.println("Comentario da requisição: " +comentarioReq);
-       comentarioTopico = fachada.buscarComentario(Integer.parseInt(comentarioReq));
-       return null;
+    public String pageAlterarComentario(Comentario comentario){
+        comentarioAlterar = comentario;
+        return "page-alterar-comentario?faces-redirect=true";
     }
     
-    public String alterarComentario(Comentario comentario) {
-        fachada.alterarComentario(comentario);
+    public String alterarComentario() {
+        fachada.alterarComentario(comentarioAlterar);
         return "page-comentario-topico?faces-redirect=true";
     }
 
@@ -318,6 +326,14 @@ public class GerenciadorGrupo implements Serializable {
     public String atualizarMaisUm(Topico topico) {
         topico.setMaisUm(topico.getMaisUm() + 1);
         fachada.atualizarTopico(topico);
+        return "page-inicial-grupo?faces-redirect=true";
+    }
+    
+    public String voltarPaginaComentario(){
+        return "page-comentario-topico?faces-redirect=true";
+    }
+    
+    public String voltarPaginaGrupo(){
         return "page-inicial-grupo?faces-redirect=true";
     }
 

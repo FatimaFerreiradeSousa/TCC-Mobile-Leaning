@@ -49,6 +49,16 @@ body{
     text-align: center;
 }
 
+.page-head-line-h5{
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #d2d6de;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .text-error{
     font-family: "Raleway", sans-serif;
     line-height: 25px;

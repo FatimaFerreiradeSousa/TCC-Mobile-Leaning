@@ -147,7 +147,8 @@
 
                                                                         <ul class="dropdown-menu" role="menu">
                                                                             <li role="presentation">
-                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" 
+                                                                                               action="#{controladorGrupo.pageAlterarComentario(comentario)}"/>
                                                                             </li>
                                                                             <li role="presentation">
                                                                                 <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
@@ -187,8 +188,10 @@
                                         <div class="form-coments">
                                             <h:inputTextarea pt:placeholder="Comentar" class="textarea-coments" 
                                                              value="#{controladorGrupo.comentarioTopico.conteudo}"/>
-                                            <h:commandButton class="btn btn-success green btn-coments pull-right" value="Comentar" 
+                                            <h:commandButton class="btn btn-success green btn-editar pull-right" value="Comentar" 
                                                              action="#{controladorGrupo.salvarComentarioAluno()}"/>
+                                            <h:commandButton class="btn btn-danger danger btn-editar pull-right" value="Cancelar" 
+                                                             action="#{controladorGrupo.voltarPaginaGrupo()}"/>
                                         </div>
                                     </div><!-- Status Upload  -->
                                 </div><!-- Widget Area -->

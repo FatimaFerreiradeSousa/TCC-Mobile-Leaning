@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Alterar Comentário</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -43,7 +42,6 @@
                                     <i class="glyphicon glyphicon-user"></i>
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </a>
-
 
                                 <ul class="dropdown-menu dropdown-user">
                                     <li>
@@ -135,97 +133,26 @@
                 </div>
             </nav>
 
-
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="page-inicial-grupo.jsf" style="text-decoration: none;">
-                                <h1 class="page-head-listas">Comentarios</h1>
-                            </a>
+                            <h5 class="page-head-line-h5">Alterar</h5>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
-                            <div class="col-md-6 col-sm-offset-3">
-                                <h:outputLabel value="Nenhum comentário" class="page-text-span" rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
-                                <h:dataTable value="#{controladorGrupo.comentariosTopico()}" var="comentario" class="table">
-                                    <h:column>
-
-                                        <section class="comment-list">
-                                            <article class="row">
-                                                <div class="col-md-2 col-sm-2 hidden-xs">
-                                                    <figure class="thumbnail">
-                                                        <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" styleClass="img-responsive">
-                                                            <f:param value="#{comentario.loginUsuario}" name="loginComentario"/>
-                                                        </p:graphicImage>
-                                                    </figure>
-                                                </div>
-
-                                                <div class="col-md-10 col-sm-10">
-                                                    <div class="panel panel-default  left">
-                                                        <div class="panel-body panel-comentario">
-
-                                                            <div class="pull-right">
-                                                                <div class="dropdown menu-comentario">
-                                                                    <div class="menu">
-                                                                        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                                                        </span>
-
-
-                                                                        <ul class="dropdown-menu" role="menu">
-                                                                            <li role="presentation">
-                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" 
-                                                                                               action="#{controladorGrupo.pageAlterarComentario(comentario)}">
-                                                                                  </h:commandLink>
-                                                                            </li>
-
-                                                                            <li role="presentation">
-                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
-                                                                                               action="#{controladorGrupo.removerComentario(comentario)}"/>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <header class="text-left">
-                                                                <div class="comment-user">
-                                                                    <i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}
-                                                                </div>
-                                                                <h:outputLabel style="font-size: 10px" value="#{comentario.dataComentario}">
-                                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                                </h:outputLabel>
-                                                            </header>
-
-                                                            <div class="comment-post">
-                                                                <p>
-                                                                    #{comentario.conteudo}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </section>
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-xs-12 col-sm-offset-3 col-sm-6">
                                 <div class="widget-area blank">
                                     <div class="status-upload">
                                         <div class="form-coments">
-                                            <h:inputTextarea pt:placeholder="Comentar" class="textarea-coments" 
-                                                             value="#{controladorGrupo.comentarioTopico.conteudo}"/>
-                                            <h:commandButton class="btn btn-success green btn-editar pull-right" value="Comentar" 
-                                                             action="#{controladorGrupo.salvarComentarioProfessor()}"/>
+                                            <h:inputTextarea class="textarea-coments" 
+                                                             value="#{controladorGrupo.comentarioAlterar.conteudo}"/>
+                                            <h:commandButton class="btn btn-success green btn-editar pull-right" value="Atualizar" 
+                                                             action="#{controladorGrupo.alterarComentario()}"/>
                                             <h:commandButton class="btn btn-danger danger btn-editar pull-right" value="Cancelar" 
-                                                             action="#{controladorGrupo.voltarPaginaGrupo()}"/>
+                                                             action="#{controladorGrupo.voltarPaginaComentario()}"/>
                                         </div>
                                     </div><!-- Status Upload  -->
                                 </div><!-- Widget Area -->
