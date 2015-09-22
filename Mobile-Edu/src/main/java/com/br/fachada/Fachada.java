@@ -272,8 +272,8 @@ public class Fachada implements Serializable {
         return daoComentario.remover(comentario);
     }
     
-    public boolean atualizarComentario(Comentario comentario){
-        return daoComentario.atualizar(comentario);
+    public Comentario buscarComentario(int codigo){
+        return daoComentario.consultar(codigo);
     }
     
     /*CRUD Responde Teste*/

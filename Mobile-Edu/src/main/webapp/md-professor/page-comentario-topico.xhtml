@@ -177,8 +177,23 @@
 
                                                                         <ul class="dropdown-menu" role="menu">
                                                                             <li role="presentation">
-                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" action="#"/>
+                                                                                <h:commandLink role="menuitem" tabindex="-1" value="Editar" 
+                                                                                               action="#{controladorGrupo.pegarComentarioRequisicao()}">
+                                                                                    <f:param name="comentario" value="#{comentario.codigo}"/>
+
+                                                                                    <f:ajax render="@all" />
+                                                                                    <f:passThroughAttribute name="data-toggle" value="modal" />
+                                                                                    <f:passThroughAttribute name="data-target" value="#modal-atualizar" />
+                                                                                </h:commandLink>
                                                                             </li>
+
+                                                                            <li role="presentation">
+                                                                                <a action="#" href="#signup"
+                                                                                   data-toggle="modal" data-target="#modal-atualizar">
+                                                                                    Editar
+                                                                                </a>
+                                                                            </li>
+
                                                                             <li role="presentation">
                                                                                 <h:commandLink role="menuitem" tabindex="-1" value="Remover" 
                                                                                                action="#{controladorGrupo.removerComentario(comentario)}"/>
@@ -189,7 +204,9 @@
                                                             </div>
 
                                                             <header class="text-left">
-                                                                <div class="comment-user"><i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}</div>
+                                                                <div class="comment-user">
+                                                                    <i class="glyphicon glyphicon-user"></i> #{comentario.loginUsuario}
+                                                                </div>
                                                                 <h:outputLabel style="font-size: 10px" value="#{comentario.dataComentario}">
                                                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputLabel>
@@ -229,5 +246,50 @@
             </div>
         </div>
     </h:body>
+
+    <div class="modal fade" id="modal-atualizar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text text-black">Editar comentário</h4>
+                </div>
+
+                <h:form>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+
+                                                <div class="widget-area blank">
+                                                    <div class="status-upload">
+                                                        <div class="form-coments">
+                                                            <h:inputTextarea class="textarea-coments" 
+                                                                             value="#{controladorGrupo.comentarioTopico.conteudo}"/>
+                                                        </div>
+                                                    </div><!-- Status Upload  -->
+                                                </div><!-- Widget Area -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <h:commandButton class="btn btn-success green btn-coments " value="Atualizar" 
+                                         action="#{controladorGrupo.pegarComentarioRequisicao()}"/>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
 </html>
 

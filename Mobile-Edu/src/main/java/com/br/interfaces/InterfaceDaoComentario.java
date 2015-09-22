@@ -12,7 +12,7 @@ public interface InterfaceDaoComentario {
     
     public boolean atualizar(Comentario comentario);
     
-    public Comentario consultar(String codigo);
+    public Comentario consultar(int codigo);
     
     public boolean remover(Comentario comentario);
     

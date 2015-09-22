@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -292,9 +293,15 @@ public class GerenciadorGrupo implements Serializable {
         return "page-comentario-topico?faces-redirect=true";
     }
 
+    public String pegarComentarioRequisicao(){
+       String comentarioReq = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("comentario");
+       System.out.println("Comentario da requisição: " +comentarioReq);
+       comentarioTopico = fachada.buscarComentario(Integer.parseInt(comentarioReq));
+       return null;
+    }
+    
     public String alterarComentario(Comentario comentario) {
         fachada.alterarComentario(comentario);
-
         return "page-comentario-topico?faces-redirect=true";
     }
 

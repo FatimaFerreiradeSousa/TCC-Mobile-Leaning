@@ -42,7 +42,7 @@ public class DaoComentario implements InterfaceDaoComentario {
     }
 
     @Override
-    public Comentario consultar(String codigo) {
+    public Comentario consultar(int codigo) {
 
         try {
             return em.find(Comentario.class, codigo);
