@@ -196,6 +196,16 @@ public class GerenciadorGrupo implements Serializable {
         fachada.removerTopico(topico);
         return "page-inicial-grupo?faces-redirect=true";
     }
+    
+    public String pageAlterarTopico(Topico topico){
+        topicoComentario = topico;
+        return "page-alterar-topico?faces-redirect=true";
+    }
+    
+    public String alterarTopico(){
+        fachada.atualizarTopico(topicoComentario);
+        return "page-inicial-grupo?faces-redirect=true";
+    }
 
     /*Upload e download de Arquivos*/
     public StreamedContent getFileDownload() {
