@@ -10,6 +10,7 @@
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../assets/css/css-time-line.css" rel="stylesheet"/>
         <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
         <script src="../bootstrap/js/jquery-1.11.1.js"></script>
         <script src="../bootstrap/js/bootstrap.js"></script>
@@ -48,7 +49,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -141,8 +142,47 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-info">
-                                Ei, Okay :)
+                            <div class="alert alert-warning">
+                                Você possui 5 novas notificações
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="timeline">
+                                <div class="line text-muted"></div>
+                                
+                                <div class="separator text-muted">
+                                    <time>26. 3. 2015</time>
+                                </div>
+
+                                <article class="panel panel-success">
+                                    <div class="panel-heading icon">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </div>
+
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">New content added</h2>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        Some new content has been added.
+                                    </div>
+
+                                    <div class="panel-footer">
+                                        <small>Footer is also supported!</small>
+                                    </div>
+                                </article>
+
+                                <article class="panel panel-info panel-outline">
+
+                                    <div class="panel-heading icon">
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        That is all.
+                                    </div>
+                                </article>
                             </div>
                         </div>
                     </div>

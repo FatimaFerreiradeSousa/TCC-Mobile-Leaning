@@ -34,6 +34,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoComentario daoComentario;
     @EJB
     private InterfaceDaoRespondeExercicio daoRespondeExercicio;
+    @EJB
+    private InterfaceNotificacao daoNotificacao;
     
     public Fachada() {
     }
@@ -287,5 +289,18 @@ public class Fachada implements Serializable {
     
     public List<RespondeExercicio> resultadosTeste(int codTeste){
         return daoRespondeExercicio.resultados(codTeste);
+    }
+    
+    /*Notificações do sistema*/
+    public boolean salvarNotificacao(Notificacao notificacao){
+        return daoNotificacao.salvarNotificacao(notificacao);
+    }
+    
+    public List<Notificacao> listarNotificacoes(String login){
+        return daoNotificacao.listarNotificacoes(login);
+    }
+    
+    public List<Notificacao> notificacoesNaoLidas(String login){
+        return daoNotificacao.notificacoesNaoLidas(login);
     }
 }

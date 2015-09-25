@@ -1,7 +1,6 @@
 package com.br.interfaces;
 
 import com.br.entidades.Aluno;
-import java.util.List;
 
 /**
  *
