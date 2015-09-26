@@ -307,4 +307,12 @@ public class Fachada implements Serializable {
     public boolean marcarComLido(Notificacao notificacao){
         return daoNotificacao.atualizarNotificacao(notificacao);
     }
+    
+    public List<Notificacao> notificacoesNaoLidasProfessor(String login){
+        return daoNotificacao.notificacoesNaoLidasProfessor(login);
+    }
+    
+    public List<Notificacao> notificacoesProfessor(String login){
+        return daoNotificacao.listarNotificacoesProfessor(login);
+    }
 }

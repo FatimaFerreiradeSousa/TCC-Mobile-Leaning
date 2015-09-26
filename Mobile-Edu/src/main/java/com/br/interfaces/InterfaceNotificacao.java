@@ -18,4 +18,7 @@ public interface InterfaceNotificacao{
     
     public boolean atualizarNotificacao(Notificacao notificacao);
     
+    public List<Notificacao> listarNotificacoesProfessor(String login);
+    
+    public List<Notificacao> notificacoesNaoLidasProfessor(String login);
 }

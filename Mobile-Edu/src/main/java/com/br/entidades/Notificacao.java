@@ -1,8 +1,11 @@
 package com.br.entidades;
 
+import com.br.enumeracao.TipoNotificacao;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,16 +29,19 @@ public class Notificacao implements Serializable{
     private boolean lido;
     private String loginAluno;
     private String loginProfessor;
+    @Enumerated(EnumType.STRING)
+    private TipoNotificacao tipo;
     
     public Notificacao(){
     }
 
-    public Notificacao(String mensagem, Date dataNot, boolean lido, String loginAluno, String loginProfessor) {
+    public Notificacao(String mensagem, Date dataNot, boolean lido, String loginAluno, String loginProfessor, TipoNotificacao tipo) {
         this.mensagem = mensagem;
         this.dataNot = dataNot;
         this.lido = lido;
         this.loginAluno = loginAluno;
         this.loginProfessor = loginProfessor;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -84,5 +90,13 @@ public class Notificacao implements Serializable{
 
     public void setLoginProfessor(String loginProfessor) {
         this.loginProfessor = loginProfessor;
+    }
+
+    public TipoNotificacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoNotificacao tipo) {
+        this.tipo = tipo;
     }
 }

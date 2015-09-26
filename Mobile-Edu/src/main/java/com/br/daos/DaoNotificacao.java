@@ -1,6 +1,7 @@
 package com.br.daos;
 
 import com.br.entidades.Notificacao;
+import com.br.enumeracao.TipoNotificacao;
 import com.br.interfaces.InterfaceNotificacao;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -31,31 +32,51 @@ public class DaoNotificacao implements InterfaceNotificacao {
 
     @Override
     public List<Notificacao> listarNotificacoesAluno(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.tipo = :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
+         q.setParameter("tipo", TipoNotificacao.RECEBIDA);
 
         return q.getResultList();
     }
 
     @Override
     public List<Notificacao> notificacoesNaoLidasAluno(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.lido = FALSE ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.lido = FALSE and n.tipo = :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
+        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
 
         return q.getResultList();
 
     }
-    
+
     @Override
-    public boolean atualizarNotificacao(Notificacao notificacao){
-        
-        try{
+    public boolean atualizarNotificacao(Notificacao notificacao) {
+
+        try {
             notificacao.setLido(true);
             em.merge(notificacao);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Notificacao> listarNotificacoesProfessor(String login) {
+        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.tipo = :tipo ORDER BY n.id DESC");
+        q.setParameter("login", login);
+        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Notificacao> notificacoesNaoLidasProfessor(String login) {
+        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.lido = FALSE and n.tipo = :tipo ORDER BY n.id DESC");
+        q.setParameter("login", login);
+        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+
+        return q.getResultList();
     }
 }

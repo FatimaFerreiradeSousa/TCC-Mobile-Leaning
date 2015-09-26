@@ -502,6 +502,10 @@ public class GerenciadorGrupo implements Serializable {
         participaGrupo.setGrupo(grupo);
 
         fachada.adicionarMembro(participaGrupo);
+        fachada.salvarNotificacao(ServicosNotificacao.solicitarParticiparGrupo(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), 
+                grupo.getProfessorGrupos().getLogin(), 
+                grupo.getNome()));
+        
         participaGrupo = new ParticipaGrupo();
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo-solicitacao?faces-redirect=true";
@@ -526,6 +530,9 @@ public class GerenciadorGrupo implements Serializable {
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
+        fachada.salvarNotificacao(ServicosNotificacao.alunoPublicaGrupo(topico.getLoginUsuario(), grupo.getProfessorGrupos().getLogin(), 
+                grupo.getNome()));
+        
         topico = new Topico();
 
         return "page-inicial-grupo?faces-redirect=true";
@@ -597,6 +604,8 @@ public class GerenciadorGrupo implements Serializable {
         comentarioTopico.setTopico(topicoComentario);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
+            fachada.salvarNotificacao(ServicosNotificacao.alunoComentaTopico(comentarioTopico.getLoginUsuario(), 
+                    topicoComentario.getLoginUsuario()));
             comentarioTopico = new Comentario();
         }
 

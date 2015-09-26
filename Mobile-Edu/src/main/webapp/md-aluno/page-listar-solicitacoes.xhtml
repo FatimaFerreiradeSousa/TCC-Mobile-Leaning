@@ -113,7 +113,7 @@
 
                     <h:form>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
                                 <h:dataTable value="#{controladorGrupo.solicitacoesPendentes()}" var="participaGrupo" class="table table-hover" 
                                              columnClasses="column1" rendered="#{controladorGrupo.solicitacoesPendentes().size() > 0}">
                                     <h:column class="column1">
@@ -124,7 +124,7 @@
                                 </h:dataTable>
                             </div>
                             
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
                                 <h:outputText value="Nenhuma solicitação pendente" class="page-text-span"
                                               rendered="#{controladorGrupo.solicitacoesPendentes().size() == 0}"/>
                             </div>
