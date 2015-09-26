@@ -24,18 +24,18 @@ public class Notificacao implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataNot;
     private boolean lido;
-    private String loginDestinatario;
-    private String loginUsuario;
+    private String loginAluno;
+    private String loginProfessor;
     
     public Notificacao(){
     }
 
-    public Notificacao(String mensagem, Date dataNot, boolean lido, String loginDestinatario, String loginUsuario) {
+    public Notificacao(String mensagem, Date dataNot, boolean lido, String loginAluno, String loginProfessor) {
         this.mensagem = mensagem;
         this.dataNot = dataNot;
         this.lido = lido;
-        this.loginDestinatario = loginDestinatario;
-        this.loginUsuario = loginUsuario;
+        this.loginAluno = loginAluno;
+        this.loginProfessor = loginProfessor;
     }
 
     public int getId() {
@@ -70,19 +70,19 @@ public class Notificacao implements Serializable{
         this.lido = lido;
     }
 
-    public String getLoginDestinatario() {
-        return loginDestinatario;
+    public String getLoginAluno() {
+        return loginAluno;
     }
 
-    public void setLoginDestinatario(String loginDestinatario) {
-        this.loginDestinatario = loginDestinatario;
+    public void setLoginAluno(String loginAluno) {
+        this.loginAluno = loginAluno;
     }
 
-    public String getLoginUsuario() {
-        return loginUsuario;
+    public String getLoginProfessor() {
+        return loginProfessor;
     }
 
-    public void setLoginUsuario(String loginUsuario) {
-        this.loginUsuario = loginUsuario;
+    public void setLoginProfessor(String loginProfessor) {
+        this.loginProfessor = loginProfessor;
     }
 }

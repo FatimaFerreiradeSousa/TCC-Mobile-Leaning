@@ -4,9 +4,9 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
-import com.br.entidades.RespondeExercicio;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
+import com.br.notificacao.ServicosNotificacao;
 import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -368,8 +367,10 @@ public class GerenciadorGrupo implements Serializable {
             this.participaGrupo.setAluno(aluno);
             this.participaGrupo.setGrupo(grupo);
             this.participaGrupo.setDataParticipacao(new Date());
-
+            
             fachada.adicionarMembro(participaGrupo);
+            fachada.salvarNotificacao(ServicosNotificacao.participarGrupo(aluno.getLogin(), grupo.getProfessorGrupos().getLogin(), 
+                    grupo.getNome()));
             this.participaGrupo = new ParticipaGrupo();
             this.aluno = new Aluno();
         }

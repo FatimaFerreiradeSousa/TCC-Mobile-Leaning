@@ -107,41 +107,23 @@
 
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.aluno.login}</h1>
-                        </div>
-                    </div>
-
+                    
                     <h:form>
+
                         <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasAluno().size() == 0}">
-                                    <div class="alert alert-warning">
-                                        <text class="text-danger">
-                                            Você não possui nenhuma notificação
-                                        </text>
-                                    </div>
-                                </h:panelGroup>
+                            <div class="col-md-12">
+                                <div class="alert alert-warning">
+                                    <text class="text-danger">
+                                        Todas as notificações
+                                    </text>
+                                </div>
                             </div>
-
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasAluno().size() > 0}">
-                                    <div class="alert alert-warning">
-                                        <text class="text-danger">
-                                            Você não possui #{controladorNotificacao.notificacoesNaoLidasAluno().size()} notificação
-                                        </text>
-                                    </div>
-                                </h:panelGroup>
-                            </div>
-
 
                             <div class="col-md-12">
 
                                 <div class="timeline">
 
-                                    <h:dataTable value="#{controladorNotificacao.notificacoesNaoLidasAluno()}" var="notificacao" class="table"
-                                                 rendered="#{controladorNotificacao.notificacoesNaoLidasAluno().size() > 0}">
+                                    <h:dataTable value="#{controladorNotificacao.listarNotificacoesAluno()}" var="notificacao" class="table">
                                         <h:column>
                                             <div class="line text-muted"></div>
 
@@ -168,27 +150,24 @@
 
                                                 <div class="panel-footer">
                                                     <small>
-                                                        <h:commandLink value="Marcar com visto" 
-                                                                       action="#{controladorNotificacao.marcarComVisto(notificacao)}" 
-                                                                       style="text-decoration: none;"/>
+                                                        Marcado como lido
                                                     </small>
                                                 </div>
                                             </article>
                                         </h:column>
                                     </h:dataTable>
 
-                                    <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasAluno().size() > 0}">
-                                        <article class="panel panel-info panel-outline">
 
-                                            <div class="panel-heading icon">
-                                                <i class="glyphicon glyphicon-info-sign"></i>
-                                            </div>
+                                    <article class="panel panel-info panel-outline">
 
-                                            <div class="panel-body">
-                                                <a href="page-notificacao.jsf" style="text-decoration: none;">Ver todas</a> 
-                                            </div>
-                                        </article>
-                                    </h:panelGroup>
+                                        <div class="panel-heading icon">
+                                            <i class="glyphicon glyphicon-info-sign"></i>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <h:commandLink value="Ver mais" action="#" style="text-decoration: none"/>
+                                        </div>
+                                    </article>
                                 </div>
                             </div>
                         </div>

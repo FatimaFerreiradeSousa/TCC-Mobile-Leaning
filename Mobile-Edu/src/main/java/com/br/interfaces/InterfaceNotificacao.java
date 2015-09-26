@@ -12,8 +12,10 @@ public interface InterfaceNotificacao{
     
     public boolean salvarNotificacao(Notificacao notificacao);
     
-    public List<Notificacao> listarNotificacoes(String login);
+    public List<Notificacao> listarNotificacoesAluno(String login);
     
-    public List<Notificacao> notificacoesNaoLidas(String login);
+    public List<Notificacao> notificacoesNaoLidasAluno(String login);
+    
+    public boolean atualizarNotificacao(Notificacao notificacao);
     
 }

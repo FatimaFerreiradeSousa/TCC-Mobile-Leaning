@@ -30,19 +30,32 @@ public class DaoNotificacao implements InterfaceNotificacao {
     }
 
     @Override
-    public List<Notificacao> listarNotificacoes(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginDestinatario = :login ORDER BY n.id DESC");
+    public List<Notificacao> listarNotificacoesAluno(String login) {
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login ORDER BY n.id DESC");
         q.setParameter("login", login);
 
         return q.getResultList();
     }
 
     @Override
-    public List<Notificacao> notificacoesNaoLidas(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginDestinatario = :login and n.lido = FALSE ORDER BY n.id DESC");
+    public List<Notificacao> notificacoesNaoLidasAluno(String login) {
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.lido = FALSE ORDER BY n.id DESC");
         q.setParameter("login", login);
 
         return q.getResultList();
 
+    }
+    
+    @Override
+    public boolean atualizarNotificacao(Notificacao notificacao){
+        
+        try{
+            notificacao.setLido(true);
+            em.merge(notificacao);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
