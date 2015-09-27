@@ -6,5 +6,5 @@ package com.br.enumeracao;
  */
 public enum TipoNotificacao {
 
-    ENVIADA, RECEBIDA
+    ENVIADA_PROFESSOR, ENVIADA_ALUNO
 }

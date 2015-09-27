@@ -38,4 +38,13 @@ public class ControladorNotificacao implements Serializable {
         return fachada.listarNotificacoes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
     }
     
+    /*Notificações professor*/
+    public List<Notificacao> notificacoesNaoLidasProfessor(){
+        return fachada.notificacoesNaoLidasProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    }
+    
+    public List<Notificacao> listarNotificacoesProfessor(){
+        return fachada.notificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    }
+    
 }

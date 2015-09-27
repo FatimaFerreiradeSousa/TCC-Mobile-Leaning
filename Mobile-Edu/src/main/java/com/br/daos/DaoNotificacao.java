@@ -32,18 +32,18 @@ public class DaoNotificacao implements InterfaceNotificacao {
 
     @Override
     public List<Notificacao> listarNotificacoesAluno(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.tipo = :tipo ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.tipo <> :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
-         q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+         q.setParameter("tipo", TipoNotificacao.ENVIADA_ALUNO);
 
         return q.getResultList();
     }
 
     @Override
     public List<Notificacao> notificacoesNaoLidasAluno(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.lido = FALSE and n.tipo = :tipo ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginAluno = :login and n.lido = FALSE and n.tipo <> :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
-        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+        q.setParameter("tipo", TipoNotificacao.ENVIADA_ALUNO);
 
         return q.getResultList();
 
@@ -64,18 +64,18 @@ public class DaoNotificacao implements InterfaceNotificacao {
 
     @Override
     public List<Notificacao> listarNotificacoesProfessor(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.tipo = :tipo ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.tipo <> :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
-        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+        q.setParameter("tipo", TipoNotificacao.ENVIADA_PROFESSOR);
 
         return q.getResultList();
     }
 
     @Override
     public List<Notificacao> notificacoesNaoLidasProfessor(String login) {
-        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.lido = FALSE and n.tipo = :tipo ORDER BY n.id DESC");
+        Query q = em.createQuery("select n from Notificacao n where n.loginProfessor = :login and n.lido = FALSE and n.tipo <> :tipo ORDER BY n.id DESC");
         q.setParameter("login", login);
-        q.setParameter("tipo", TipoNotificacao.RECEBIDA);
+        q.setParameter("tipo", TipoNotificacao.ENVIADA_PROFESSOR);
 
         return q.getResultList();
     }

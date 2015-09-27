@@ -224,10 +224,6 @@ public class Fachada implements Serializable {
         return daoPaGrupo.verificaSolicitacao(login, codigoGrupo);
     }
     
-    public List<ParticipaGrupo> listarNotificacoesProfessor(String loginProfessor){
-        return daoPaGrupo.solicitacoesRecebidas(loginProfessor);
-    }
-    
     public boolean removerMembroGrupo(int codigoGrupo){
         return daoPaGrupo.removerMembros(codigoGrupo);
     }
@@ -238,6 +234,10 @@ public class Fachada implements Serializable {
     
     public List<ParticipaGrupo> buscarMembros(int codGrupo){
         return daoPaGrupo.listarRancking(codGrupo);
+    }
+    
+    public List<ParticipaGrupo> listarSolicitacoesRecebidas(String loginProfessor){
+        return daoPaGrupo.solicitacoesRecebidas(loginProfessor);
     }
     
     /*CRUD Topicos*/

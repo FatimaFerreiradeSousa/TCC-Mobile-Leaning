@@ -398,28 +398,25 @@ public class GerenciadorGrupo implements Serializable {
 
         return "page-buscar-usuario?faces-redirect=true";
     }
-
-    public List<ParticipaGrupo> notificacoes() {
-
-        return fachada.listarNotificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    
+    public List<ParticipaGrupo> solicitacoesGrupoProfessor(){
+        return fachada.listarSolicitacoesRecebidas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
     public String rejeitarSolicitacao(ParticipaGrupo participaGrupo) {
         fachada.removerMembro(participaGrupo.getAluno().getLogin(), participaGrupo.getGrupo().getCodigo());
-
-        return "pagina-notificacoes?faces-redirect=true";
+        return "page-inicial-professor?faces-redirect=true";
     }
 
     public String aceitarSolicitacao(ParticipaGrupo participaGrupo) {
         participaGrupo.setAceito(true);
 
         if (fachada.atualizarSolicitacao(participaGrupo) == true) {
-            System.out.println("Okay");
-        } else {
-            System.out.println("Erro!");
-        }
-
-        return "pagina-notificacoes?faces-redirect=true";
+            fachada.salvarNotificacao(ServicosNotificacao.aceitarSolicitacao(participaGrupo.getAluno().getLogin(), 
+                    PegarUsuarioSessao.pegarProfessorSessao().getLogin(), participaGrupo.getGrupo().getNome()));
+        } 
+        
+        return "page-solicitacoes-grupos?faces-redirect=true";
     }
 
     /*Membros Grupo*/

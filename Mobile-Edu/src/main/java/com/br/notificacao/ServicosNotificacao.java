@@ -13,7 +13,7 @@ public class ServicosNotificacao {
     private static Notificacao notificacao;
 
     /*Notificações aluno*/
-    /*Okay*/
+    /*Okay :)*/
     public static Notificacao solicitarParticiparGrupo(String loginAluno, String loginProfessor, String nomeGrupo) {
         notificacao = new Notificacao();
         notificacao.setLido(false);
@@ -21,7 +21,7 @@ public class ServicosNotificacao {
         notificacao.setLoginAluno(loginAluno);
         notificacao.setLoginProfessor(loginProfessor);
         notificacao.setDataNot(new Date());
-        notificacao.setTipo(TipoNotificacao.ENVIADA);
+        notificacao.setTipo(TipoNotificacao.ENVIADA_ALUNO);
 
         return notificacao;
 
@@ -89,6 +89,7 @@ public class ServicosNotificacao {
 
     }
     
+    /*Aceitar Solicitacao - okay*/
     public static Notificacao aceitarSolicitacao(String loginAluno, String loginProfessor, String nomeGrupo) {
         notificacao = new Notificacao();
         notificacao.setLido(false);
@@ -96,6 +97,7 @@ public class ServicosNotificacao {
         notificacao.setLoginAluno(loginAluno);
         notificacao.setLoginProfessor(loginProfessor);
         notificacao.setDataNot(new Date());
+        notificacao.setTipo(TipoNotificacao.ENVIADA_PROFESSOR);
 
         return notificacao;
 
