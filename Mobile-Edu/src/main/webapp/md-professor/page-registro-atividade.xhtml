@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Notificações</title>
         <meta charset="UTF-8"/>
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -75,7 +75,7 @@
                             <a href="#"><strong>#{professor.login}</strong></a>
 
                         </li>
-                        
+
                         <li>
                             <a href="#" class="active-menu">
                                 Testes
@@ -127,21 +127,7 @@
                                         Meus Grupos
                                     </a>
                                 </li>
-                                
-                                <li>
-                                    <a href="page-solicitacoes-grupos.jsf">
-                                        Solicitações
-                                    </a>
-                                </li>
                             </ul>
-                        </li>
-                        
-                        <li>
-
-                            <a href="page-registro-atividade.jsf">
-                                Registro
-                            </a>
-
                         </li>
                     </ul>
                 </div>
@@ -157,20 +143,20 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                            <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() == 0}">
+                            <h:panelGroup rendered="#{controladorNotificacao.registroProfessor().size() == 0}">
                                 <div class="alert alert-warning">
                                     <text class="text-danger">
-                                        Você não possui nenhuma notificação
+                                        Nada a exibir
                                     </text>
                                 </div>
                             </h:panelGroup>
                         </div>
 
                         <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                            <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() > 0}">
+                            <h:panelGroup rendered="#{controladorNotificacao.registroProfessor().size() > 0}">
                                 <div class="alert alert-warning">
                                     <text class="text-danger">
-                                        Você possui #{controladorNotificacao.notificacoesNaoLidasProfessor().size()} notificação
+                                        Registro de atividades
                                     </text>
                                 </div>
                             </h:panelGroup>
@@ -180,8 +166,7 @@
 
                             <div class="timeline">
 
-                                <h:dataTable value="#{controladorNotificacao.notificacoesNaoLidasProfessor()}" var="notificacao" class="table"
-                                             rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() > 0}">
+                                <h:dataTable value="#{controladorNotificacao.registroProfessor()}" var="notificacao" class="table">
                                     <h:column>
                                         <div class="line text-muted"></div>
 
@@ -206,31 +191,27 @@
                                                 #{notificacao.mensagem}
                                             </div>
 
-                                            <h:form>
-                                                <div class="panel-footer">
-                                                    <small>
-                                                        <h:commandLink value="Marcar com visto" 
-                                                                       action="#{controladorNotificacao.marcarComVisto(notificacao)}" 
-                                                                       style="text-decoration: none;"/>
-                                                    </small>
-                                                </div>
-                                            </h:form>
+                                            <div class="panel-footer">
+                                                <small>
+                                                    Marcado como lido
+                                                </small>
+                                            </div>
                                         </article>
                                     </h:column>
                                 </h:dataTable>
 
-                                <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() > 0}">
+                                <h:form>
                                     <article class="panel panel-info panel-outline">
-
                                         <div class="panel-heading icon">
                                             <i class="glyphicon glyphicon-info-sign"></i>
                                         </div>
 
                                         <div class="panel-body">
-                                            <a href="page-notificacao.jsf" style="text-decoration: none;">Ver todas</a> 
+                                            <h:commandLink value="Ver mais" action="#" style="text-decoration: none"
+                                                           rendered="#{controladorNotificacao.registroProfessor().size() > 0}"/>
                                         </div>
                                     </article>
-                                </h:panelGroup>
+                                </h:form>
                             </div>
                         </div>
                     </div>

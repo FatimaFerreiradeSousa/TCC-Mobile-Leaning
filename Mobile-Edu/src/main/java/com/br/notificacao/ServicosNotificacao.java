@@ -27,33 +27,9 @@ public class ServicosNotificacao {
 
     }
     
-    /*Okay*/
-    public static Notificacao alunoPublicaGrupo(String loginAluno, String loginProfessor, String nomeGrupo) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginAluno + " publicou no grupo " + nomeGrupo);
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-
-        return notificacao;
-    }
-    
-    /*Okay*/
-    public static Notificacao alunoComentaTopico(String loginAluno, String loginProfessor) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginAluno + " comentou sua publicação");
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-
-        return notificacao;
-    }
-    
     /*Notificações professor*/
     
-    /*Okay*/
+    /*Notificacao Okay*/
     public static Notificacao participarGrupo(String loginAluno, String loginProfessor, String nomeGrupo) {
         notificacao = new Notificacao();
         notificacao.setLido(false);
@@ -61,32 +37,9 @@ public class ServicosNotificacao {
         notificacao.setLoginAluno(loginAluno);
         notificacao.setLoginProfessor(loginProfessor);
         notificacao.setDataNot(new Date());
+        notificacao.setTipo(TipoNotificacao.ENVIADA_PROFESSOR);
 
         return notificacao;
-    }
-    
-    public static Notificacao professorPublicaTopico(String loginAluno, String loginProfessor, String nomeGrupo) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginProfessor + " publicou no grupo " + nomeGrupo);
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-
-        return notificacao;
-
-    }
-    
-    public static Notificacao professorComentarTopico(String loginAluno, String loginProfessor, String nomeGrupo) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginProfessor + " comentou sua publicação");
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-
-        return notificacao;
-
     }
     
     /*Aceitar Solicitacao - okay*/

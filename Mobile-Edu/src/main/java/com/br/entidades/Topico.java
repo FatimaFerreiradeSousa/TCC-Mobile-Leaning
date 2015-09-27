@@ -31,7 +31,6 @@ public class Topico implements Serializable{
     private int codigoTeste;
     private String loginUsuario;
     private boolean disponivel;
-    private int qtdDownloads;
     private int maisUm;
     
     @Temporal(TemporalType.DATE)
@@ -48,7 +47,7 @@ public class Topico implements Serializable{
     }
 
     public Topico(String conteudo, String nome, String caminho, String tipo, int codigoTeste, int maisUm,
-            String loginUsuario, boolean disponivel, int qtdDownloads, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+            String loginUsuario, boolean disponivel, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
         this.conteudo = conteudo;
         this.nome = nome;
         this.caminho = caminho;
@@ -57,7 +56,6 @@ public class Topico implements Serializable{
         this.maisUm = maisUm;
         this.loginUsuario = loginUsuario;
         this.disponivel = disponivel;
-        this.qtdDownloads = qtdDownloads;
         this.dataCriacao = dataCriacao;
         this.comentarios = new ArrayList();
         this.grupo = grupo;
@@ -133,14 +131,6 @@ public class Topico implements Serializable{
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public int getQtdDownloads() {
-        return qtdDownloads;
-    }
-
-    public void setQtdDownloads(int qtdDownloads) {
-        this.qtdDownloads = qtdDownloads;
     }
 
     public Date getDataCriacao() {

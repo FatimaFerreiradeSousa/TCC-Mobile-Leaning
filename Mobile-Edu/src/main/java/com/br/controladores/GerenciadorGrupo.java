@@ -181,6 +181,7 @@ public class GerenciadorGrupo implements Serializable {
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
+        //fachada.salvarNotificacao(ServicosNotificacao.professorPublicaTopico(nomeGrupo, nomeGrupo, nomeGrupo))
         topico = new Topico();
 
         return "page-inicial-grupo?faces-redirect=true";
@@ -246,7 +247,6 @@ public class GerenciadorGrupo implements Serializable {
                     out.write(bytes, 0, read);
                 }
 
-                topico.setQtdDownloads(0);
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
@@ -275,8 +275,7 @@ public class GerenciadorGrupo implements Serializable {
                 nome);
 
         topico = fachada.buscarTopico(codigo);
-        topico.setQtdDownloads(topico.getQtdDownloads() + 1);
-
+        
         fachada.atualizarTopico(topico);
 
         return fileDownload;
@@ -527,9 +526,6 @@ public class GerenciadorGrupo implements Serializable {
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
-        fachada.salvarNotificacao(ServicosNotificacao.alunoPublicaGrupo(topico.getLoginUsuario(), grupo.getProfessorGrupos().getLogin(), 
-                grupo.getNome()));
-        
         topico = new Topico();
 
         return "page-inicial-grupo?faces-redirect=true";
@@ -557,8 +553,7 @@ public class GerenciadorGrupo implements Serializable {
                 while ((read = inputStream.read(bytes)) != -1) {
                     out.write(bytes, 0, read);
                 }
-
-                topico.setQtdDownloads(0);
+                
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
@@ -601,9 +596,7 @@ public class GerenciadorGrupo implements Serializable {
         comentarioTopico.setTopico(topicoComentario);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
-            fachada.salvarNotificacao(ServicosNotificacao.alunoComentaTopico(comentarioTopico.getLoginUsuario(), 
-                    topicoComentario.getLoginUsuario()));
-            comentarioTopico = new Comentario();
+           comentarioTopico = new Comentario();
         }
 
         return "page-comentario-topico?faces-redirect=true";

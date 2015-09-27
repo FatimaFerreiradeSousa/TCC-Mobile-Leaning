@@ -16,35 +16,42 @@ import javax.ejb.EJB;
 @Named(value = "controladorNotificacao")
 @SessionScoped
 public class ControladorNotificacao implements Serializable {
-    
+
     @EJB
     private Fachada fachada;
 
     public ControladorNotificacao() {
     }
-    
-    public String marcarComVisto(Notificacao notificacao){
+
+    public String marcarComVisto(Notificacao notificacao) {
         fachada.marcarComLido(notificacao);
-        
+
         return "page-inicial-aluno?faces-redirect=true";
     }
-    
+
     /*Notificacoes aluno*/
-    public List<Notificacao> notificacoesNaoLidasAluno(){
+    public List<Notificacao> notificacoesNaoLidasAluno() {
         return fachada.notificacoesNaoLidas(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
     }
-    
-    public List<Notificacao> listarNotificacoesAluno(){
+
+    public List<Notificacao> listarNotificacoesAluno() {
         return fachada.listarNotificacoes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
     }
-    
+
+    public List<Notificacao> registroAluno() {
+        return fachada.atividadesAluno(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    }
+
     /*Notificações professor*/
-    public List<Notificacao> notificacoesNaoLidasProfessor(){
+    public List<Notificacao> notificacoesNaoLidasProfessor() {
         return fachada.notificacoesNaoLidasProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
-    
-    public List<Notificacao> listarNotificacoesProfessor(){
+
+    public List<Notificacao> listarNotificacoesProfessor() {
         return fachada.notificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
-    
+
+    public List<Notificacao> registroProfessor() {
+        return fachada.atividadesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    }
 }
