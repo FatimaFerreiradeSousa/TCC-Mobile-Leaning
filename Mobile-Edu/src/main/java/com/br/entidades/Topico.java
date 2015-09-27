@@ -47,7 +47,7 @@ public class Topico implements Serializable{
     }
 
     public Topico(String conteudo, String nome, String caminho, String tipo, int codigoTeste, int maisUm,
-            String loginUsuario, boolean disponivel, Date dataCriacao, Grupo grupo, Pessoa pessoa) {
+            String loginUsuario, boolean disponivel, Date dataCriacao, Grupo grupo, Pessoa pessoa, int visualizado) {
         this.conteudo = conteudo;
         this.nome = nome;
         this.caminho = caminho;
