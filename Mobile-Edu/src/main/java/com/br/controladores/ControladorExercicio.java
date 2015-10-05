@@ -136,5 +136,9 @@ public class ControladorExercicio implements Serializable {
         
         return "page-listar-testes?faces-redirect=true";
     }
+    
+    public String cancelarEnvio(){
+        return "page-enviar-teste?faces-redirect=true";
+    }
 
 }

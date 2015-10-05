@@ -150,4 +150,11 @@ public class ControladorPergunta implements Serializable {
         this.resposta = new Resposta();
         return "page-add-resposta-alt-perg?faces-redirect=true";
     }
+    
+    public String cancelarPergunta(){
+        
+        pergunta = new Pergunta();
+        resposta = new Resposta();
+        return "page-cad-pergunta?faces-redirect=true";
+    }
 }

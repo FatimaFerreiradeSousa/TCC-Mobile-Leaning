@@ -3,11 +3,14 @@
     Author     : Fatinha de Sousa
 */
 
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
 body{
     background: url(../imagens/Internet_technology_business_circuit_computer_4368x2912.jpg) no-repeat center fixed;
     background-size: cover;
     padding-top: 100px;
     margin: 0;
+    font-family: "Raleway", sans-serif;
 }
 
 .panel-login{
@@ -115,4 +118,8 @@ body{
     color: #fff;
     background-color: #1CA347;
     border-color: #1CA347;
+}
+
+.erros {
+    color: red;
 }

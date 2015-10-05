@@ -102,11 +102,6 @@
                                         Testes Cadastrados
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -127,7 +122,21 @@
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -142,7 +151,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8 col-sm-offset-2 text-center">
                             <div class="alert alert-info">
                                 Teste: #{controladorExercicio.exercicio.assunto}<br/>
                                 Disciplina: #{controladorExercicio.exercicio.disciplina}<br/>
@@ -154,7 +163,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4 col-sm-offset-4">
                             <p>Escolha o grupo para enviar o teste</p>
                         </div>
                     </div>
@@ -162,23 +171,25 @@
                     <h:form class="form-horizontal">
                         <div class="row">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Grupo</label>
-
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 col-sm-offset-4">
                                     <h:selectOneListbox value="#{controladorExercicio.codigoGrupo}" size="1" class="form-control" id="grupos">
                                         <f:selectItems value="#{controladorExercicio.grupos}"/>
                                     </h:selectOneListbox>
                                 </div>
                             </div>
 
-                            <div class="col-lg-10">
-                                <div class="form-group">
-                                    <div class="col-sm-6">
-                                        <h:commandButton action="#{controladorExercicio.enviarTeste()}" class="btn btn-primary btn-cons" 
-                                                         value="Enviar teste"/>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-offset-4">
+                                    <h:commandButton action="#{controladorExercicio.enviarTeste()}" 
+                                                     class="btn btn-primary btn-cons" 
+                                                     value="Enviar teste"/>
+
+                                    <h:commandButton action="#{controladorExercicio.cancelarEnvio()}" 
+                                                     class="btn btn-danger btn-cons" 
+                                                     value="Cancelar envio"/>
                                 </div>
                             </div>
+
                         </div>
                     </h:form>
 

@@ -18,6 +18,12 @@
         <script src="../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../bootstrap/js/custom.js"></script>
 
+        <style>
+            .erros{
+                color: red;
+            }
+        </style>
+
     </h:head>
 
     <h:body>
@@ -99,13 +105,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                             </ul>
@@ -118,11 +119,31 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -136,12 +157,17 @@
                         </div>
                     </div>
 
-                    <h:form class="form-horizontal">
+                    <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
                         <div class="row">
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Assunto</label>
                                 <div class="col-sm-9">
-                                    <h:inputText value="#{controladorExercicio.exercicio.assunto}" class="form-control"/>
+                                    <h:message for="assunto" styleClass="erros"/>
+                                    <h:inputText value="#{controladorExercicio.exercicio.assunto}" class="form-control"
+                                                 id="assunto"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório."/>
                                 </div>
                             </div>
 
@@ -149,13 +175,21 @@
                                 <label class="col-sm-2 control-label">Disciplina</label>
 
                                 <div class="col-sm-4">
-                                    <h:inputText value="#{controladorExercicio.exercicio.disciplina}" class="form-control input-form"/>
+                                    <h:message for="disciplina" styleClass="erros"/>
+                                    <h:inputText value="#{controladorExercicio.exercicio.disciplina}" class="form-control input-form"
+                                                 id="disciplina"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório."/>
                                 </div>
 
                                 <label class="col-sm-2 control-label">Data de Entrega</label>
 
                                 <div class="col-sm-3">
-                                    <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" class="form-control">
+                                    <h:message for="dataEntrega" styleClass="erros"/>
+                                    <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" class="form-control"
+                                                 id="dataEntrega"
+                                                 required="true"
+                                                 requiredMessage="Campo Obrigatório">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:inputText> 
                                 </div>
@@ -165,7 +199,11 @@
                                 <label class="col-sm-2 control-label">Categoria</label>
 
                                 <div class="col-sm-4">
-                                    <h:inputText value="#{controladorExercicio.exercicio.categoria}" class="form-control"/>
+                                    <h:message for="categoria" styleClass="erros"/>
+                                    <h:inputText value="#{controladorExercicio.exercicio.categoria}" class="form-control"
+                                                 id="categoria"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório"/>
                                 </div>
                             </div>
 
@@ -189,7 +227,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 col-sm-offset-1">
                                 <div class="form-group">
                                     <div class="col-sm-6">
                                         <h:commandButton action="#{controladorExercicio.buscarPerguntas()}" class="btn btn-warning btn-cons" value="Buscar perguntas"/>
@@ -197,7 +235,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 col-sm-offset-1">
                                 <c:if test="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}">
                                     <div class="form-group">
 

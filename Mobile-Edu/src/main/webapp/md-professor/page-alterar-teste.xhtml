@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Alterar Teste</title>
@@ -99,13 +98,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                             </ul>
@@ -118,11 +112,31 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -136,7 +150,7 @@
                         </div>
                     </div>
 
-                    <h:form class="form-horizontal">
+                    <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
                         <div class="row">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Assunto</label>
@@ -189,7 +203,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10 col-sm-offset-1">
                                 <div class="form-group">
                                     <div class="col-sm-6">
                                         <h:commandButton action="#{controladorExercicio.atualizarTeste()}" class="btn btn-primary btn-cons" value="Atualizar"/>

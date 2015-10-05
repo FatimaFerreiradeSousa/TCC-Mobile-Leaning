@@ -14,12 +14,12 @@
         <link rel="stylesheet" type="text/css" href="assets/css/css-index.css"/>
         <script src="bootstrap/js/jquery-2.1.4.min.js"/>
         <script src="assets/js/js-page-login.js"/>
+        <script src="assets/js/js-validation.js"/>
     </h:head>
 
     <h:body>
 
         <div class="container">
-            <h:messages/>
 
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -47,10 +47,16 @@
                                             <h:outputText value="#{controladorUsuario.mensagem}" 
                                                           id="erroLogin" class="text-danger text-error"/>
                                         </div>
-                                        
+
+                                        <div class="form-group">
+                                            <h:message for="username" errorClass="erros"/>
+                                        </div>
+
                                         <div class="form-group">
                                             <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login"
-                                                         value="#{controladorUsuario.login}" required="true"/>
+                                                         value="#{controladorUsuario.login}" 
+                                                         required="true"
+                                                         requiredMessage="Por favor informe o login."/>
                                         </div>
 
                                         <div class="form-group">
@@ -91,28 +97,56 @@
                                     </h:form>
 
                                     <h:form id="register-form" role="form" style="display: none;">
+
                                         <div class="form-group">
                                             <h:outputText value="#{controladorUsuario.mensagem}" 
                                                           id="erroCadastro" class="text-danger text-error"/>
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            <h:inputText id="login" tabindex="1" class="form-control" pt:placeholder="Login" 
+                                            <h:message for="login" errorClass="erros"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputText id="login" tabindex="1" class="form-control" 
+                                                         pt:placeholder="Login"
+                                                         required="true" 
+                                                         requiredMessage="Campo obrigatório"
                                                          value="#{controladorUsuario.login}"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:inputText id="email" tabindex="1" class="form-control" pt:placeholder="Endereço de email" 
+                                            <h:message for="email" errorClass="erros"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputText id="email" tabindex="1" class="form-control" 
+                                                         pt:placeholder="Endereço de email"
+                                                         required="true" 
+                                                         requiredMessage="Campo obrigatório" 
                                                          value="#{controladorUsuario.email}"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:inputSecret id="senha" tabindex="1" class="form-control" pt:placeholder="Senha" 
+                                            <h:message for="senha" errorClass="erros"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:inputSecret id="senha" tabindex="1" class="form-control" pt:placeholder="Senha"
+                                                           required="true" 
+                                                           requiredMessage="Campo obrigatório." 
                                                            value="#{controladorUsuario.senha}"/>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" id="tipoUsuario">
+                                            <h:message for="tipoUsuario" errorClass="erros"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" 
+                                                             id="tipoUsuario"
+                                                             required="true" 
+                                                             requiredMessage="Campo obrigatório" >
                                                 <f:selectItem itemValue="Tipo" />
                                                 <f:selectItem itemValue="Aluno" />
                                                 <f:selectItem itemValue="Professor" />

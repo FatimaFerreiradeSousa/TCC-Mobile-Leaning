@@ -376,3 +376,7 @@ small{
     margin-right: 5px;
     margin-bottom: 8px;
 }
+
+.erros{
+    color: red;
+}
