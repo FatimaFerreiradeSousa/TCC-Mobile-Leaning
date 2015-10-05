@@ -3,7 +3,6 @@ package com.br.daos;
 import com.br.entidades.Grupo;
 import com.br.entidades.Topico;
 import com.br.interfaces.InterfaceDaoGrupo;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

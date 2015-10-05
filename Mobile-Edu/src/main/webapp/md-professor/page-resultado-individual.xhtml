@@ -51,7 +51,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -103,11 +103,6 @@
                                         Testes Cadastrados
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -122,13 +117,27 @@
                                         Criar Grupo
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -163,10 +172,10 @@
                                 </h:column>
                             </h:dataTable>
                         </div>
-                        
+
                         <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
-                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorTeste.resultadoTestes().size() == 0}"
-                                               class="text-danger"/>
+                            <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorTeste.resultadoTestes().size() == 0}"
+                                           class="text-danger"/>
                         </div>
                     </div>
                 </div>

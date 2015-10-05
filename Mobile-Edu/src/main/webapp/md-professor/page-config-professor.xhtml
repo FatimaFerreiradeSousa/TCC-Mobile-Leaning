@@ -65,14 +65,14 @@
                     <ul class="nav" id="main-menu">
                         <li>
                             <div class="user-img-div">
-                                <p:graphicImage value="#{controladorUsuario.professor.content}" id="figure-01"
+                                <p:graphicImage value="#{professor.content}" id="figure-01"
                                                 styleClass="img-circle"/>
                             </div> 
                         </li>
 
                         <li>
 
-                            <a href="#"><strong>#{controladorUsuario.professor.login}</strong></a>
+                            <a href="#"><strong>#{professor.login}</strong></a>
 
                         </li>
 
@@ -83,28 +83,23 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-pergunta.jsf">
+                                        Cadastrar Pergunta
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-perguntas.jsf">
+                                        Perguntas Cadastradas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-teste.jsf">
+                                        Cadastrar Teste
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
                                     </a>
                                 </li>
                             </ul>
@@ -117,11 +112,31 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">
-                                        Meus Testes
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>

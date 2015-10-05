@@ -78,8 +78,8 @@
 
                         </li>
 
-                        <li >
-                            <a href="#">
+                        <li>
+                            <a href="#" class="active-menu">
                                 Testes
                             </a>
 
@@ -104,16 +104,11 @@
                                         Testes Cadastrados
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="active-menu">
+                            <a href="#">
                                 Grupos 
                             </a>
 
@@ -129,7 +124,21 @@
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -153,12 +162,17 @@
                                     <div class="btn input-arquivo btn-warning pull-left" id="register-form-arquivo">Arquivo</div>
                                 </div>
 
-                                <h:form id="topico-form" role="form" style="display: block;" class="form-topico">
+                                <h:form id="topico-form" role="form" style="display: block;" class="form-topico"
+                                        acceptcharset="ISO-8859-1">
                                     <div class="panel-google-plus-comment">
                                         <p:graphicImage value="#{professor.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
 
                                         <div class="panel-google-plus-textarea">
-                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
+                                            <h:message for="conteudo" styleClass="erros"/>
+                                            <h:inputTextarea rows="4" style="resize: none;" id="conteudo" 
+                                                             value="#{controladorGrupo.topico.conteudo}"
+                                                             required="true"
+                                                             requiredMessage="Escreva algo."/>
 
                                             <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.salvarTopicoProfessor()}"/>
                                             <button type="cancel" class="btn btn-default">Cancelar</button>
@@ -167,12 +181,17 @@
                                     </div>
                                 </h:form>
 
-                                <h:form id="arquivo-form" role="form" style="display: none;" class="form-topico" enctype="multipart/form-data">
+                                <h:form id="arquivo-form" role="form" style="display: none;" class="form-topico" 
+                                        enctype="multipart/form-data" acceptcharset="ISO-8859-1">
                                     <div class="panel-google-plus-comment">
                                         <p:graphicImage value="#{professor.content}" styleClass="img-circle img-size" alt="usuario" id="figure-02"/>
 
                                         <div class="panel-google-plus-textarea">
-                                            <h:inputTextarea rows="4" style="resize: none;" value="#{controladorGrupo.topico.conteudo}"/>
+                                            <h:message for="descricao" styleClass="erros"/>
+                                            <h:inputTextarea rows="4" style="resize: none;" id="descricao"
+                                                             value="#{controladorGrupo.topico.conteudo}"
+                                                             required="true"
+                                                             requiredMessage="Escreva algo."/>
 
                                             <p:fileUpload 
                                                 value="#{controladorGrupo.fileUpload}"

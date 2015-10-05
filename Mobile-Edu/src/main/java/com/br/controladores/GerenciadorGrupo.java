@@ -148,7 +148,7 @@ public class GerenciadorGrupo implements Serializable {
         grupo.setProfessorGrupos(PegarUsuarioSessao.pegarProfessorSessao());
         fachada.salvarGrupo(grupo);
         grupo = new Grupo();
-        return null;
+        return "page-cad-grupo?faces-redirect=true";
     }
 
     public List<Grupo> gruposCriados() {

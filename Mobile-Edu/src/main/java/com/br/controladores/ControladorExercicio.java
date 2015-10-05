@@ -120,6 +120,7 @@ public class ControladorExercicio implements Serializable {
 
     public String enviarTeste() {
         String codigo [] = codigoGrupo.split(" ");
+        System.out.println("Envio: " +codigo);
         
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
         Topico topico = new Topico();
@@ -138,7 +139,7 @@ public class ControladorExercicio implements Serializable {
     }
     
     public String cancelarEnvio(){
-        return "page-enviar-teste?faces-redirect=true";
+        return "page-alterar-teste?faces-redirect=true";
     }
 
 }

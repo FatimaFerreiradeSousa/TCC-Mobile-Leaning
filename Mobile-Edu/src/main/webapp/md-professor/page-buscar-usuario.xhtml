@@ -105,11 +105,6 @@
                                         Testes Cadastrados
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -130,7 +125,21 @@
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -183,12 +192,12 @@
                                                 <h:commandButton value="Adicionar" class="btn btn-success btn-sm" rendered="#{controladorGrupo.verificarMembro() == true}" 
                                                                  action="#{controladorGrupo.adicionarMembro()}">
                                                 </h:commandButton>
-                                                
+
                                                 <h:outputLabel value="Este usuário já é membro" rendered="#{controladorGrupo.verificarMembro() == false}" class="page-text-span"/><br />
                                                 <h:commandButton value="Remover" class="btn btn-danger btn-sm" rendered="#{controladorGrupo.verificarMembro() == false}" 
                                                                  action="#{controladorGrupo.removerMembro()}">
                                                 </h:commandButton>
-                                                
+
                                             </div>
                                         </div>
                                     </div>

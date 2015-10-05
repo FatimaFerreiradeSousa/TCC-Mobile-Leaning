@@ -104,11 +104,6 @@
                                         Testes Cadastrados
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -129,12 +124,25 @@
                                         Meus Grupos
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
                         </li>
                     </ul>
                 </div>
             </nav>
-
 
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
@@ -146,7 +154,7 @@
                         </div>
                     </div>
 
-                    <h:form>
+                    <h:form acceptcharset="ISO-8859-1">
                         <div class="row">
                             <div class="col-md-6 col-sm-offset-3">
                                 <h:outputLabel value="Nenhum comentário" class="page-text-span" rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
@@ -179,7 +187,7 @@
                                                                             <li role="presentation">
                                                                                 <h:commandLink role="menuitem" tabindex="-1" value="Editar" 
                                                                                                action="#{controladorGrupo.pageAlterarComentario(comentario)}">
-                                                                                  </h:commandLink>
+                                                                                </h:commandLink>
                                                                             </li>
 
                                                                             <li role="presentation">
