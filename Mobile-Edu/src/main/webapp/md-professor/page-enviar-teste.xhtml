@@ -172,17 +172,21 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-4">
-                                    <h:selectOneListbox value="#{controladorExercicio.codigoGrupo}" size="1" 
-                                                        class="form-control" id="grupos">
-                                        <f:selectItems value="#{controladorExercicio.grupos}"/>
-                                    </h:selectOneListbox>
+                                    <h:selectOneMenu value="#{controladorExercicio.codigoGrupo}"
+                                                     id="grupoCodigo" class="form-control">
+                                        <f:selectItem itemValue="Selecione" />
+                                        <f:selectItems value="#{controladorExercicio.meusGrupos()}"/>
+                                        <f:ajax event="change" render="@form" 
+                                                listener="#{controladorExercicio.enviarTeste()}" />  
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-offset-4">
-                                    <h:commandButton action="#{controladorExercicio.enviarTeste()}"                                             class="btn btn-primary btn-cons" 
-                                                     value="Enviar teste"/>
+                                    <h:commandButton action="#{controladorExercicio.concluirEnvio()}" 
+                                                     class="btn btn-success btn-cons" 
+                                                     value="Concluir envio"/>
 
                                     <h:commandButton action="#{controladorExercicio.cancelarEnvio()}" 
                                                      class="btn btn-danger btn-cons" 

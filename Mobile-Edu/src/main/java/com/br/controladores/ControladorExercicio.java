@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
@@ -25,6 +26,7 @@ public class ControladorExercicio implements Serializable {
     private List<String> grupos;
     private String codigoGrupo;
     private Pergunta pergunta;
+    private String grupoCodigo;
 
     @EJB
     Fachada fachada;
@@ -33,6 +35,8 @@ public class ControladorExercicio implements Serializable {
         exercicio = new Teste();
         grupos = new ArrayList();
         pergunta = new Pergunta();
+        codigoGrupo = new String();
+        grupoCodigo = new String();
     }
 
     public Teste getExercicio() {
@@ -41,23 +45,6 @@ public class ControladorExercicio implements Serializable {
 
     public void setExercicio(Teste exercicio) {
         this.exercicio = exercicio;
-    }
-
-    public List<String> getGrupos() {
-        List<Grupo> gruposProfessor = fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-
-        if (grupos.isEmpty()) {
-
-            for (Grupo g : gruposProfessor) {
-                grupos.add(String.valueOf(g.getCodigo()) + " - " + g.getNome());
-            }
-        }
-
-        return grupos;
-    }
-
-    public void setGrupos(List<String> grupos) {
-        this.grupos = grupos;
     }
 
     public String getCodigoGrupo() {
@@ -110,7 +97,7 @@ public class ControladorExercicio implements Serializable {
         return "page-alterar-teste?faces-redirect=true";
     }
 
-    public String visualizarPerguntas(){
+    public String visualizarPerguntas() {
         return "page-perguntas-teste?faces-redirect=true";
     }
 
@@ -118,13 +105,45 @@ public class ControladorExercicio implements Serializable {
         return "page-enviar-teste?faces-redirect=true";
     }
 
-    public String enviarTeste() {
-        String codigo [] = codigoGrupo.split(" ");
-        System.out.println("Envio: " +codigo);
-        
+    public List<String> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<String> grupos) {
+        this.grupos = grupos;
+    }
+
+    public List<String> meusGrupos() {
+        List<Grupo> gruposProfessor = fachada.meusGrupos("Fatinha");
+
+        if (grupos.isEmpty()) {
+
+            for (Grupo g : gruposProfessor) {
+                grupos.add(String.valueOf(g.getCodigo()) + " - " + g.getNome());
+            }
+        }
+
+        return grupos;
+    }
+
+    public String getGrupoCodigo() {
+        return grupoCodigo;
+    }
+
+    public void setGrupoCodigo(String grupoCodigo) {
+        this.grupoCodigo = grupoCodigo;
+    }
+
+    public void pegarCodigoGrupo() {
+        System.out.println("Codigo do grupo com Ajax: " + codigoGrupo);
+    }
+
+    public void enviarTeste() {
+        String codigo[] = codigoGrupo.split(" ");
+
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
         Topico topico = new Topico();
-        
+
         topico.setCodigoTeste(exercicio.getCodigo());
         topico.setConteudo(exercicio.getAssunto());
         topico.setDataCriacao(exercicio.getDataEntrega());
@@ -132,14 +151,15 @@ public class ControladorExercicio implements Serializable {
         topico.setGrupo(grupo);
         topico.setDisponivel(true);
         topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-        
+
         fachada.salvarTopico(topico);
-        
-        return "page-listar-testes?faces-redirect=true";
-    }
-    
-    public String cancelarEnvio(){
-        return "page-alterar-teste?faces-redirect=true";
     }
 
+    public String cancelarEnvio() {
+        return "page-alterar-teste?faces-redirect=true";
+    }
+    
+    public String concluirEnvio(){
+        return "page-listar-testes?faces-redirect=true";
+    }
 }
