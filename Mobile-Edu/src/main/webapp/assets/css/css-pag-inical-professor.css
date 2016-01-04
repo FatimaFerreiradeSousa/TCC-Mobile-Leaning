@@ -320,7 +320,7 @@ footer {
     line-height:30px;
 }
 
-@media (min-width:768px) {
+@media (max-width:720px) {
 
     .page-wrapper-cls {
         margin: 0 0 0 180px;
@@ -337,7 +337,7 @@ footer {
     }
 }
 
-@media (min-width:280px) and (max-width:767px ){
+@media (max-width:720px) and (max-width:767px ){
     #menuClose {
         visibility:hidden;
     }

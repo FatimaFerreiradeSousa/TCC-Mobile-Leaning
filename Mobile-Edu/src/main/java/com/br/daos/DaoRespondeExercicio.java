@@ -15,7 +15,7 @@ import javax.persistence.Query;
 @Stateless
 public class DaoRespondeExercicio implements InterfaceDaoRespondeExercicio {
 
-    @PersistenceContext(unitName = "Mobile-Edu-UP")
+    @PersistenceContext(unitName = "Mobile-Edu-BD")
     private EntityManager em;
 
     @Override

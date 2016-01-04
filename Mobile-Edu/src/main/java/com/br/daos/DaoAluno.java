@@ -15,7 +15,7 @@ import javax.persistence.Query;
 @Stateless
 public class DaoAluno implements InterfaceDaoAluno {
 
-    @PersistenceContext(unitName = "Mobile-Edu-UP")
+    @PersistenceContext(unitName = "Mobile-Edu-BD")
     private EntityManager em;
 
     @Override

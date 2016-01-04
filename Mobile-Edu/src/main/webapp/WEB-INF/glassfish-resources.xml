@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:postgresql://localhost:5432/Mobile-Edu-BD"/>
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="jdbc/Mobile-Edu-UP" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/Mobile-Edu-BD" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
 </resources>

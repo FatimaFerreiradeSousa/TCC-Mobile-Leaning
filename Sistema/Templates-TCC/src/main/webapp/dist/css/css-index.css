@@ -1,0 +1,41 @@
+/* 
+    Created on : 04/01/2016, 13:12:55
+    Author     : Fatinha de Sousa
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+body{
+    font-family: "Raleway", sans-serif;
+}
+
+h4{
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 2%;
+    font-family: "Raleway", sans-serif;
+}
+
+.button-login{
+    width: 330px;
+}
+
+.button-group{
+    width: 160px
+}
+
+.button-group-form{
+    margin-right: 1%;
+}
+
+@media(max-width: 720px){
+    .button-group-form{
+        margin-right: 2%;
+    }
+    
+    h4{
+        margin-bottom: 6%;
+    }
+}
+
+
