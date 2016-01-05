@@ -20,11 +20,14 @@
             <h4>Recuperação de Senha</h4>
 
             <div class="w3-container container">
+                
                 <div class="w3-row">
-
+                    
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <h:inputText value="" pt:placeholder="E-mail" required="true" class="w3-input"/>
+                            <p>Informe seu login de acesso</p>
+                            <h:inputText pt:placeholder="Login" required="true" class="w3-input"
+                                         value="#{controladorSenha.email}"/>
                         </div>
                     </div>
                     
@@ -32,7 +35,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-6 col-sm-offset-4">
-                        <h:commandButton class="w3-btn w3-teal button-login" value="Enviar"/>
+                        <h:commandButton class="w3-btn w3-teal button-login" value="Enviar"
+                                         action="#{controladorSenha.enviarEmail()}"/>
                     </div>
                 </div>
 
