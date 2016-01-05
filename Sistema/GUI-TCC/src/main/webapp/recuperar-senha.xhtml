@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Recuperar Senha | Mobile Edu</title>
@@ -20,26 +21,43 @@
             <h4>Recuperação de Senha</h4>
 
             <div class="w3-container container">
-                
+
                 <div class="w3-row">
-                    
+
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
                             <p>Informe seu login de acesso</p>
+                            <h6>
+                                <h:outputText value="#{controladorSenha.mensagem}" 
+                                              id="erroCadastro" class="text-danger text-error"/>
+                            </h6>
                             <h:inputText pt:placeholder="Login" required="true" class="w3-input"
-                                         value="#{controladorSenha.email}"/>
+                                         value="#{controladorSenha.login}"/>
                         </div>
                     </div>
                     
-                </div>  
-
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-4">
-                        <h:commandButton class="w3-btn w3-teal button-login" value="Enviar"
-                                         action="#{controladorSenha.enviarEmail()}"/>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <p>Tipo de usuario</p>
+                            <h:selectOneMenu value="#{controladorSenha.usuario}" class="w3-select" 
+                                             id="tipoUsuario"
+                                             required="true" 
+                                             requiredMessage="Campo obrigatório" >
+                                <f:selectItem itemValue="Tipo" />
+                                <f:selectItem itemValue="Aluno" />
+                                <f:selectItem itemValue="Professor" />
+                            </h:selectOneMenu>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <h:commandButton class="w3-btn w3-teal button-login" value="Enviar"
+                                             action="#{controladorSenha.enviarEmail()}"/>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </h:form>

@@ -1,5 +1,7 @@
 package com.br.senha;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
@@ -10,18 +12,25 @@ import org.apache.commons.mail.SimpleEmail;
  */
 public class RecuperarEmail {
 
-    public boolean enviarEmail() throws EmailException {
+    public boolean enviarEmail(String emailUsuario, String senha) {
 
         SimpleEmail email = new SimpleEmail();
-        email.setHostName("smtp.live.com");
-        email.setSmtpPort(587);
-        email.setSSLOnConnect(true);
-        email.addTo("fferreira913@gmail.com", "Fatinha de Sousa");
-        email.setAuthenticator(new DefaultAuthenticator("fatinha.sg@hotmail.com", "fatinha1994"));
-        email.setFrom("fatinha.sg@hotmail.com", "Fatinha de Sousa");
-        email.setSubject("Recuperação de Senha");
-        email.setMsg("Sua senha e: 12345");
-        email.send();
-        return true;
+        try {
+            
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(587);
+            email.addTo(emailUsuario);
+            email.setFrom("sousaeliane657@gmail.com", "Eliane de Sousa");
+            email.setSubject("Recuperação de Senha");
+            email.setMsg("Sua senha é: " +senha);
+            email.setTLS(true);
+            email.setAuthenticator(new DefaultAuthenticator("sousaeliane657@gmail.com", "heloisa01082015"));
+            email.send();
+            
+            return true;
+        } catch (EmailException ex) {
+            Logger.getLogger(RecuperarEmail.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 }
