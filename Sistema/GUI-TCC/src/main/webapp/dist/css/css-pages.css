@@ -36,4 +36,12 @@ body{
     .p-titulos{
         padding-top: 5%;
     }
+    
+    .titulos{
+        padding-top: 3%;
+    }
+}
+
+.erros {
+    color: red;
 }

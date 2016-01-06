@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Cadastrar Pergunta</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../../dist/w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../dist/css/css-pages.css"/>
+        <link rel="stylesheet" href="../../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
+
+        <script>
+
+            function w3_open() {
+                //document.getElementsByClassName("w3-sidenav")[0].style.width = "100%";
+                document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+            }
+
+            function w3_close() {
+                document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+            }
+        </script>
+    </h:head>
+
+    <h:body>
+        <nav class="w3-sidenav w3-black w3-card-2 w3-xlarge" style="display:none">
+            <a href="javascript:void(0)" onclick="w3_close()" 
+               class="w3-closenav w3-right w3-padding-right">&times;</a><br/>
+
+            <div class="w3-dropdown-hover">
+                <a href="#" class="">Testes</a>
+                <span class="w3-dropdown-content w3-black">
+                    <a href="md-testes/page-cad-pergunta.jsf">
+                        Cadastrar Pergunta
+                    </a>
+                    <a href="page-listar-perguntas.jsf">
+                        Perguntas Cadastradas
+                    </a>
+                    <a href="page-cad-teste.jsf">
+                        Cadastrar Teste
+                    </a>
+                    <a href="page-listar-testes.jsf">
+                        Testes Cadastrados
+                    </a>
+                </span>
+            </div>		
+            <a href="#">Link 2</a>		
+            <a href="#">Link 3</a>		
+            <a href="#">Link 4</a>		
+            <a href="#">Link 5</a>
+
+            <div class="w3-dropdown-hover">
+                <a href="#" class="">Link 6</a>
+                <span class="w3-dropdown-content w3-black">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </span>
+            </div>
+        </nav>
+
+        <h:form>
+            <header class="w3-container w3-large w3-teal">
+                <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+
+            </header>
+        </h:form>
+
+        <br />
+
+
+        <div class="w3-container w3-half w3-margin-top">
+
+            <h:form class="w3-container w3-card-4" acceptcharset="ISO-8859-1">
+
+                <p class="titulos">Cadastrar Pergunta</p>
+                
+                <div class="w3-group">
+                    <h:message for="enunciado" errorClass="erros"/>
+                    <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="w3-input" 
+                                 id="enunciado" pt:placeholder="Enunciado"
+                                 required="true"
+                                 requiredMessage="Campo obrigatório."/>
+                </div>
+
+                <div class="w3-group">    
+                    <h:message for="categoria" errorClass="erros"/>
+                    <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="w3-input" 
+                                 id="categoria" pt:placeholder="Categoria"
+                                 required="true"
+                                 requiredMessage="Campo obrigatório."/>
+                </div>
+                
+                <div class="w3-group">    
+                    <h:message for="peso" errorClass="erros"/>
+                    <h:inputText value="#{controladorPergunta.pergunta.peso}" class="w3-input" 
+                                 id="peso" pt:placeholder="Peso"
+                                 required="true"
+                                 requiredMessage="Campo obrigatório."/>
+                </div>
+                
+                <h:commandButton action="#{controladorPergunta.adicionarRespostas()}" 
+                                 class="w3-btn w3-theme" value="Respostas"/>
+                <br/><br/>
+
+            </h:form>
+
+        </div>
+
+    </h:body>
+
+</html>
+
