@@ -9,9 +9,9 @@ body{
     font-family: "Raleway", sans-serif;
 }
 
-h4{
+.text-header{
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 2%;
     font-family: "Raleway", sans-serif;
 }
@@ -26,6 +26,10 @@ h4{
 
 .button-group-form{
     margin-right: 1%;
+}
+
+.erros {
+    color: red;
 }
 
 @media(max-width: 720px){

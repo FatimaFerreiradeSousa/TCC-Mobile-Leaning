@@ -9,16 +9,19 @@
         <title>Cadastro | Mobile Edu</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="dist/css/w3.css" rel="stylesheet"/>
+        <link href="dist/w3-css/w3.css" rel="stylesheet"/>
         <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="dist/w3-css/css-index.css" rel="stylesheet"/>
         <link href="dist/css/css-index.css" rel="stylesheet"/>
     </h:head>
 
     <h:body>
 
-        <h:form class="form-horizontal">
+        <div class="w3-topnav w3-large w3-teal w3-center">
+            <h:outputText value="Mobile Edu - Criar Conta"/>
+        </div>
 
-            <h4>Cadastre-se</h4>
+        <h:form class="form-horizontal">
 
             <div class="w3-container container">
                 <div class="w3-row">
@@ -63,7 +66,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-6 col-sm-offset-3">
+                        <div class="col-sm-6">
                             <h:message for="senha" errorClass="erros"/>
                         </div>
                     </div>
@@ -99,7 +102,7 @@
                 </div>  
 
                 <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-4">
+                    <div class="col-sm-6 col-sm-offset-3">
                         <h:commandButton type="submit" id="register-submit" 
                                          class="w3-btn w3-teal button-login" value="Criar Conta"
                                          action="#{controladorUsuario.salvarUsuario()}">
@@ -111,6 +114,7 @@
             </div>
 
         </h:form>
+
     </h:body>
 
 </html>

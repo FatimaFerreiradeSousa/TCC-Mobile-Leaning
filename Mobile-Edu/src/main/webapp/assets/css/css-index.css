@@ -123,3 +123,9 @@ body{
 .erros {
     color: red;
 }
+
+.text-error{
+    font-family: "Raleway", sans-serif;
+    line-height: 25px;
+    font-size: 12px;
+}

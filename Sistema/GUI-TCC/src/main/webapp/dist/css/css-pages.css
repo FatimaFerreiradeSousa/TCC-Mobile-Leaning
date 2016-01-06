@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05/01/2016, 18:19:24
+    Author     : Fatinha de Sousa
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+body{
+    font-family: "Raleway", sans-serif;
+}
+
+.foto-perfil{
+    height: 75px;
+    width: 75px;
+}
+
+.container-foto{
+    margin-top: 5%;
+}
+
+.painel{
+    margin-bottom: 5%;
+}
+
+.foto-comentarios{
+    width: 96px;
+    height: 96px;
+}
+
+@media(max-width: 720px){
+    .p-titulos{
+        padding-top: 5%;
+    }
+}
