@@ -45,3 +45,13 @@ body{
 .erros {
     color: red;
 }
+
+.buttons-formulario{
+    width: 300px;
+    margin-bottom: 2%;
+}
+
+.buttons-resposta{
+    width: 330px;
+    margin-bottom: 2%;
+}

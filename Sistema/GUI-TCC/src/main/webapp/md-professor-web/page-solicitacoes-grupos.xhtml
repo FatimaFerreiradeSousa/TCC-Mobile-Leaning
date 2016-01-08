@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Professor | Solicitacoes</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../assets/css/css-time-line.css" rel="stylesheet"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../bootstrap/js/custom.js"></script>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-professor.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li>
+                            <div class="user-img-div">
+                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                styleClass="img-circle"/>
+                            </div> 
+                        </li>
+
+                        <li>
+
+                            <a href="#"><strong>#{professor.login}</strong></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#" class="active-menu">
+                                Testes
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="page-cad-pergunta.jsf">
+                                        Cadastrar Pergunta
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-listar-perguntas.jsf">
+                                        Perguntas Cadastradas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-cad-teste.jsf">
+                                        Cadastrar Teste
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Grupos 
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-notificacao.jsf">
+                                Registro
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.professor.login}</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+                            <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() == 0}">
+                                <div class="alert alert-warning">
+                                    <text class="text-danger">
+                                        Nenhuma Solicitação
+                                    </text>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+                            <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() > 0}">
+                                <div class="alert alert-info">
+                                    <text>
+                                        Você possui #{controladorGrupo.solicitacoesGrupoProfessor().size()} solicitações.
+                                    </text>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="timeline">
+
+                                <h:dataTable value="#{controladorGrupo.solicitacoesGrupoProfessor()}" var="notificacao" class="table"
+                                             rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() > 0}">
+                                    <h:column>
+                                        <div class="line text-muted"></div>
+
+                                        <div class="separator text-muted">
+                                            <time>
+                                                <h:outputText value="#{notificacao.dataParticipacao}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputText>
+                                            </time>
+                                        </div>
+
+                                        <article class="panel panel-success">
+                                            <div class="panel-heading icon">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </div>
+
+                                            <div class="panel-heading">
+                                                <h2 class="panel-title">Notificação</h2>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                #{notificacao.aluno.login} solicitou participar do grupo #{notificacao.grupo.nome}
+                                            </div>
+
+                                            <h:form>
+                                                <div class="panel-footer">
+                                                    <small>
+                                                        <h:commandLink value="Aceitar" 
+                                                                       action="#{controladorGrupo.aceitarSolicitacao(notificacao)}" 
+                                                                       style="text-decoration: none; margin-right: 1em;"/>
+
+                                                        <h:commandLink value="Rejeitar" 
+                                                                       action="#{controladorGrupo.rejeitarSolicitacao(notificacao)}" 
+                                                                       style="text-decoration: none;"/>
+                                                    </small>
+                                                </div>
+                                            </h:form>
+                                        </article>
+                                    </h:column>
+                                </h:dataTable>
+
+                                <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() > 0}">
+                                    <article class="panel panel-info panel-outline">
+
+                                        <div class="panel-heading icon">
+                                            <i class="glyphicon glyphicon-info-sign"></i>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <a href="page-notificacao.jsf" style="text-decoration: none;">Ver todas</a> 
+                                        </div>
+                                    </article>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

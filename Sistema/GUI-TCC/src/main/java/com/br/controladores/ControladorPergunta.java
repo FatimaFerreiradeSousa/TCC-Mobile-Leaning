@@ -94,9 +94,10 @@ public class ControladorPergunta implements Serializable {
 
     public String salvarPergunta() {
         fachada.salvarQuestao(pergunta);
+        this.resposta = new Resposta();
         this.pergunta = new Pergunta();
+        this.pergunta.setRespostas(new ArrayList());
         
-        this.pergunta = new Pergunta();
         return "page-cad-pergunta?faces-redirect=true";
     }
     
@@ -156,5 +157,9 @@ public class ControladorPergunta implements Serializable {
         pergunta = new Pergunta();
         resposta = new Resposta();
         return "page-cad-pergunta?faces-redirect=true";
+    }
+    
+    public String paginaRespostas(){
+        return "page-respostas-pergunta?faces-redirect=true";
     }
 }

@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Professor | Configurações</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../bootstrap/js/custom.js"></script>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-professor.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li>
+                            <div class="user-img-div">
+                                <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                styleClass="img-circle"/>
+                            </div> 
+                        </li>
+
+                        <li>
+
+                            <a href="#"><strong>#{professor.login}</strong></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#" class="active-menu">
+                                Testes
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="page-cad-pergunta.jsf">
+                                        Cadastrar Pergunta
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-listar-perguntas.jsf">
+                                        Perguntas Cadastradas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-cad-teste.jsf">
+                                        Cadastrar Teste
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="page-listar-testes.jsf">
+                                        Testes Cadastrados
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Grupos 
+                            </a>
+
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="page-cad-grupo.jsf">
+                                        Criar Grupo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-listar-grupos.jsf">
+                                        Meus Grupos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="page-solicitacoes-grupos.jsf">
+                                        Solicitações
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="page-registro-atividade.jsf">
+                                Registro
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="page-head-line">Configurações</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well well-sm panel-img">
+                                <div class="row">
+                                    <div class="col-sm-1 col-md-2">
+                                        <p:graphicImage value="#{controladorUsuario.professor.content}" styleClass="img-responsive img-thumbnail"
+                                                        />
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-8">
+                                        <h4>#{controladorUsuario.professor.login}</h4>
+                                        <smal>
+                                            <cite title="#{controladorUsuario.professor.instituicao}">
+                                                #{controladorUsuario.professor.instituicao}
+                                                <i class="glyphicon glyphicon-map-marker"></i>
+                                            </cite>
+                                        </smal>
+
+                                        <p>
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            #{controladorUsuario.professor.nome}
+                                            <br />
+                                            <i class="glyphicon glyphicon-envelope"></i>
+                                            #{controladorUsuario.professor.email}
+                                            <br />
+                                            <i class="glyphicon glyphicon-gift"></i>
+                                            <h:outputLabel value="#{controladorUsuario.professor.dataNascimento}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputLabel>
+                                            <br />
+                                            <i class="glyphicon glyphicon-asterisk"></i>
+                                            #{controladorUsuario.professor.senha}
+                                        </p>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary">
+                                                Configurações
+                                            </button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a action="#" href="#signup"
+                                                       data-toggle="modal" data-target="#modal-atualizar">
+                                                        Alterar informações
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a action="#" href="#signup" 
+                                                       data-toggle="modal" data-target="#modalFoto">
+                                                        Alterar foto
+                                                    </a>
+                                                </li>
+                                                <li><a href="#">Remover conta</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalFoto">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text text-black">Atualizar Foto</h4>
+                    </div>
+                    <h:form enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <label class="text-black">Escolha uma nova foto de perfil</label>
+                            <p:fileUpload 
+                                value="#{controladorUsuario.file}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                />
+                            <br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <p:commandLink value="Atualizar" ajax="false" actionListener="#{controladorUsuario.uploadProfessor()}" 
+                                           disabled="false" update="@all" id="linkFoto" styleClass="btn btn-primary"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-atualizar">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text text-black">Informações de conta</h4>
+                    </div>
+
+                    <h:form>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="name">Nome</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.nome}" class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="email">Email</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.email}" class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="login">Login</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.login}" class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="login">Senha</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.senha}" class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="login">Data de Nascimento</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.dataNascimento}" class="form-control">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="login">Instituição</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorUsuario.professor.instituicao}" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <h:commandButton value="Atualizar" class="btn btn-default" action="#{controladorUsuario.atualizarProfessor()}"/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

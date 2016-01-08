@@ -34,7 +34,7 @@
                 <i class="fa fa-bars"></i>
             </span>
 
-            <h:outputText value="Testes"/>
+            <h:outputText value=""/>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -89,37 +89,25 @@
 
         <div class="w3-container w3-half w3-margin-top">
 
-            <h:form class="w3-container w3-card-4" acceptcharset="ISO-8859-1">
+            <h:form acceptcharset="ISO-8859-1">
 
-                <p class="titulos">Cadastrar Pergunta</p>
+                <p>Respostas</p>
+                <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
+                             class="w3-table w3-striped w3-bordered w3-card-4e" var="resposta">
+                    <h:column>
+                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" 
+                                       class="w3-text-red" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"
+                                       style="text-decoration: none"/>
 
-                <div class="w3-group">
-                    <h:message for="enunciado" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="w3-input" 
-                                 id="enunciado" pt:placeholder="Enunciado"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
-                </div>
+                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
+                                       action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"
+                                       style="text-decoration: none"/>
+                    </h:column>
+                </h:dataTable>
 
-                <div class="w3-group">    
-                    <h:message for="categoria" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="w3-input" 
-                                 id="categoria" pt:placeholder="Categoria"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
-                </div>
-
-                <div class="w3-group">    
-                    <h:message for="peso" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.peso}" class="w3-input" 
-                                 id="peso" pt:placeholder="Peso"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
-                </div>
-
-                <h:commandButton action="#{controladorPergunta.adicionarRespostas()}" 
-                                 class="w3-btn w3-black" value="Respostas"/>
-                <br/><br/>
+                <br />
+                <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
+                                 class="w3-btn w3-green buttons-resposta" value="Nova Resposta"/>
 
             </h:form>
 

@@ -34,7 +34,7 @@
                 <i class="fa fa-bars"></i>
             </span>
 
-            <h:outputText value="Testes"/>
+            <h:outputText value="Atualizar pergunta"/>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -67,18 +67,6 @@
                 </span>
             </div>
 
-            <a href="page-cad-pergunta.jsf" class="w3-dropdown-hover">
-                Testes 
-            </a>
-
-            <a href="page-registro-aluno.jsf">
-                Registro
-            </a>
-
-            <a href="page-config-aluno.jsf">
-                Configurações
-            </a>
-
             <h:form>
                 <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
             </h:form>
@@ -89,37 +77,36 @@
 
         <div class="w3-container w3-half w3-margin-top">
 
-            <h:form class="w3-container w3-card-4" acceptcharset="ISO-8859-1">
+            <h:form acceptcharset="ISO-8859-1">
+                <div class="w3-container w3-card-4">
+                    <p class="titulos">Atualizar Pergunta</p>
 
-                <p class="titulos">Cadastrar Pergunta</p>
+                    <div class="w3-group">
+                        <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="w3-input" 
+                                     id="enunciado" pt:placeholder="Enunciado"/>
+                    </div>
 
-                <div class="w3-group">
-                    <h:message for="enunciado" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="w3-input" 
-                                 id="enunciado" pt:placeholder="Enunciado"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
+                    <div class="w3-group">    
+                        <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="w3-input" 
+                                     id="categoria" pt:placeholder="Categoria"/>
+                    </div>
+
+                    <div class="w3-group">    
+                        <h:inputText value="#{controladorPergunta.pergunta.peso}" class="w3-input" 
+                                     id="peso" pt:placeholder="Peso"/>
+                    </div>
+
+                    <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" 
+                                     class="w3-btn w3-black buttons-formulario" value="Atualizar"/>
+
+                    <h:commandButton action="#{controladorPergunta.paginaRespostas()}" 
+                                     class="w3-btn w3-green buttons-formulario" value="Respostas"/>
+
+                    <h:commandButton action="#{controladorPergunta.removerPergunta()}" 
+                                     class="w3-btn w3-red buttons-formulario" value="Remover"/>
+
+                    <br/><br/>
                 </div>
-
-                <div class="w3-group">    
-                    <h:message for="categoria" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="w3-input" 
-                                 id="categoria" pt:placeholder="Categoria"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
-                </div>
-
-                <div class="w3-group">    
-                    <h:message for="peso" errorClass="erros"/>
-                    <h:inputText value="#{controladorPergunta.pergunta.peso}" class="w3-input" 
-                                 id="peso" pt:placeholder="Peso"
-                                 required="true"
-                                 requiredMessage="Campo obrigatório."/>
-                </div>
-
-                <h:commandButton action="#{controladorPergunta.adicionarRespostas()}" 
-                                 class="w3-btn w3-black" value="Respostas"/>
-                <br/><br/>
 
             </h:form>
 
