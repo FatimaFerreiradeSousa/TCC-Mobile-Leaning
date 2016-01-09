@@ -34,7 +34,7 @@
                 <i class="fa fa-bars"></i>
             </span>
 
-            <h:outputText value=""/>
+            <h:outputText value="Meus Grupos"/>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -52,32 +52,32 @@
             <div class="w3-dropdown-hover">
                 <a href="#" class="">Testes</a>
                 <span class="w3-dropdown-content">
-                    <a href="md-testes/page-cad-pergunta.jsf">
+                    <a href="../md-perguntas/page-cad-pergunta.jsf">
                         Cadastrar Pergunta
                     </a>
-                    <a href="page-listar-perguntas.jsf">
+                    <a href="../md-perguntas/page-listar-perguntas.jsf">
                         Perguntas Cadastradas
                     </a>
-                    <a href="page-cad-teste.jsf">
+                    <a href="../md-testes/page-cad-teste.jsf">
                         Cadastrar Teste
                     </a>
-                    <a href="page-listar-testes.jsf">
+                    <a href="../md-testes/page-listar-testes.jsf">
                         Testes Cadastrados
                     </a>
                 </span>
+            </div><br />
+
+            <div class="w3-dropdown-hover">
+                <a href="#" class="">Grupo</a>
+                <span class="w3-dropdown-content">
+                    <a href="page-cad-grupo.jsf">
+                        Criar Grupo
+                    </a>
+                    <a href="page-listar-grupos.jsf">
+                        Meus Grupos
+                    </a>
+                </span>
             </div>
-
-            <a href="page-cad-pergunta.jsf" class="w3-dropdown-hover">
-                Testes 
-            </a>
-
-            <a href="page-registro-aluno.jsf">
-                Registro
-            </a>
-
-            <a href="page-config-aluno.jsf">
-                Configurações
-            </a>
 
             <h:form>
                 <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
@@ -91,23 +91,14 @@
 
             <h:form acceptcharset="ISO-8859-1">
 
-                <p>Respostas</p>
-                <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
-                             class="w3-table w3-striped w3-bordered w3-card-4e" var="resposta">
+                <h:dataTable value="#{controladorGrupo.gruposCriados()}" var="grupo" 
+                             class="w3-table w3-striped w3-bordered"
+                             rendered="#{controladorGrupo.gruposCriados().size() > 0}">
                     <h:column>
-                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" 
-                                       class="w3-text-red" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"
-                                       style="text-decoration: none"/>
-
-                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
-                                       action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"
-                                       style="text-decoration: none"/>
+                        <h:commandLink value="#{grupo.nome}" style="text-decoration: none;"
+                                       action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
                     </h:column>
                 </h:dataTable>
-
-                <br />
-                <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
-                                 class="w3-btn w3-green buttons-resposta" value="Nova Resposta"/>
 
             </h:form>
 

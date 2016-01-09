@@ -34,7 +34,7 @@
                 <i class="fa fa-bars"></i>
             </span>
 
-            <h:outputText value="Atualizar pergunta"/>
+            <h:outputText value="Testes Cadastrados"/>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -52,10 +52,10 @@
             <div class="w3-dropdown-hover">
                 <a href="#" class="">Testes</a>
                 <span class="w3-dropdown-content">
-                    <a href="md-testes/page-cad-pergunta.jsf">
+                    <a href="../md-perguntas/page-cad-pergunta.jsf">
                         Cadastrar Pergunta
                     </a>
-                    <a href="page-listar-perguntas.jsf">
+                    <a href="../md-perguntas/page-listar-perguntas.jsf">
                         Perguntas Cadastradas
                     </a>
                     <a href="page-cad-teste.jsf">
@@ -63,6 +63,18 @@
                     </a>
                     <a href="page-listar-testes.jsf">
                         Testes Cadastrados
+                    </a>
+                </span>
+            </div><br />
+
+            <div class="w3-dropdown-hover">
+                <a href="#" class="">Grupo</a>
+                <span class="w3-dropdown-content">
+                    <a href="../md-grupos/page-cad-grupo.jsf">
+                        Criar Grupo
+                    </a>
+                    <a href="../md-grupos/page-listar-grupos.jsf">
+                        Meus Grupos
                     </a>
                 </span>
             </div>
@@ -78,35 +90,14 @@
         <div class="w3-container w3-half w3-margin-top">
 
             <h:form acceptcharset="ISO-8859-1">
-                <div class="w3-container w3-card-4">
-                    <p class="titulos">Atualizar Pergunta</p>
 
-                    <div class="w3-group">
-                        <h:inputText value="#{controladorPergunta.pergunta.enunciado}" class="w3-input" 
-                                     id="enunciado" pt:placeholder="Enunciado"/>
-                    </div>
-
-                    <div class="w3-group">    
-                        <h:inputText value="#{controladorPergunta.pergunta.categoria}" class="w3-input" 
-                                     id="categoria" pt:placeholder="Categoria"/>
-                    </div>
-
-                    <div class="w3-group">    
-                        <h:inputText value="#{controladorPergunta.pergunta.peso}" class="w3-input" 
-                                     id="peso" pt:placeholder="Peso"/>
-                    </div>
-
-                    <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" 
-                                     class="w3-btn w3-black buttons-formulario" value="Atualizar"/>
-
-                    <h:commandButton action="#{controladorPergunta.paginaRespostas()}" 
-                                     class="w3-btn w3-green buttons-formulario" value="Respostas"/>
-
-                    <h:commandButton action="#{controladorPergunta.removerPergunta()}" 
-                                     class="w3-btn w3-red buttons-formulario" value="Remover"/>
-
-                    <br/><br/>
-                </div>
+                <h:dataTable value="#{controladorExercicio.testesCadastrados()}" var="teste" 
+                             class="w3-table w3-striped w3-bordered">
+                    <h:column>
+                        <h:commandLink value="#{teste.assunto}" style="text-decoration: none;"
+                                       action="#{controladorExercicio.visualizarTeste(teste)}"/>
+                    </h:column>
+                </h:dataTable>
 
             </h:form>
 

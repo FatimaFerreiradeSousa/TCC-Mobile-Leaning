@@ -119,7 +119,7 @@ public class ControladorPergunta implements Serializable {
     
     public String atualizarResposta(){
         fachada.atualizarResposta(resposta);
-        return "page-alterar-pergunta?faces-redirect=true";
+        return "page-respostas-pergunta?faces-redirect=true";
     }
     
     public String removerResposta(){
@@ -130,7 +130,7 @@ public class ControladorPergunta implements Serializable {
     
     /*inserir uma nova resposta em uma pergunta ja cadastrada*/
      public String paginaCadResposta(){
-        return "page-add-resposta-alt-perg?faces-redirect=true";
+        return "page-nova-resposta?faces-redirect=true";
     }
     
     public String addRespostaAlterarPergunta() {

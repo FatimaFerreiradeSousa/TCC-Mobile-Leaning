@@ -178,15 +178,14 @@
                                                      id="grupoCodigo" class="form-control">
                                         <f:selectItem itemValue="Selecione" />
                                         <f:selectItems value="#{controladorExercicio.meusGrupos()}"/>
-                                        <f:ajax event="change" render="@form" 
-                                                listener="#{controladorExercicio.enviarTeste()}" />  
+                                         
                                     </h:selectOneMenu>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-offset-4">
-                                    <h:commandButton action="#{controladorExercicio.concluirEnvio()}" 
+                                    <h:commandButton action="#{controladorExercicio.enviarTeste()}" 
                                                      class="btn btn-success btn-cons" 
                                                      value="Concluir envio"/>
 

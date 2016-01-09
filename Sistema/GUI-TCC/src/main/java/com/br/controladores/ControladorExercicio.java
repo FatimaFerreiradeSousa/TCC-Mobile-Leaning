@@ -78,6 +78,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<Teste> testesCadastrados() {
+        
         return fachada.listarTestes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
@@ -138,7 +139,7 @@ public class ControladorExercicio implements Serializable {
         System.out.println("Codigo do grupo com Ajax: " + codigoGrupo);
     }
 
-    public void enviarTeste() {
+    public String enviarTeste() {
         String codigo[] = codigoGrupo.split(" ");
 
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
@@ -153,6 +154,8 @@ public class ControladorExercicio implements Serializable {
         topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
 
         fachada.salvarTopico(topico);
+        
+        return "page-listar-testes?faces-redirect=true";
     }
 
     public String cancelarEnvio() {
