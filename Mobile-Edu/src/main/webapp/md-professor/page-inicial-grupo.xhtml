@@ -9,7 +9,7 @@
         <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
@@ -195,11 +195,15 @@
                                                              required="true"
                                                              requiredMessage="Escreva algo."/>
 
-                                            <p:fileUpload 
-                                                value="#{controladorGrupo.fileUpload}"
-                                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                                mode="simple" styleClass="input-file"
-                                                />
+                                           <div class="fileUpload btn btn-danger">
+                                                <span>Arquivo</span>
+
+                                                <p:fileUpload 
+                                                    value="#{controladorGrupo.fileUpload}"
+                                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                                    mode="simple" styleClass="upload"
+                                                    />
+                                            </div><br />
 
                                             <h:commandButton class="btn btn-success" value="Publicar" action="#{controladorGrupo.upload()}"/>
                                             <button type="cancel" class="btn btn-default">Cancelar</button>

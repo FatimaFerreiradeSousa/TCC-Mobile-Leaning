@@ -98,7 +98,7 @@
 
                     <h:column>
                         <div class="w3-card w3-card-4">
-                            <div class="w3-container w3-green">
+                            <div class="w3-container ">
 
                                 <div class="dropdown" style="float:right;">
                                     <a href="" class="dropbtn">
@@ -118,12 +118,15 @@
                                 </p:graphicImage>
 
                                 <div style="padding-top: 3%;">
-                                    <b>#{topico.loginUsuario}</b>
+                                    <b>#{topico.loginUsuario}</b><br />
+                                    <h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px;">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputLabel>
                                 </div>
                             </div>
 
                             <div class="w3-container w3-xlarge w3-white">
-                                <p>
+                                <p style="font-size: 0.6em;">
                                     #{topico.conteudo}
                                     <br />
                                     <h:commandLink value="Responder teste - " action="#" rendered="#{topico.codigoTeste != 0}" 
@@ -131,10 +134,8 @@
                                     <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}">
                                         <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
                                     </p:commandLink>
-                                    
-                                    <h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputLabel>
+
+
                                 </p>
                             </div>
 
@@ -143,7 +144,7 @@
                                                  action="#{controladorGrupo.atualizarMaisUm(topico)}"/>
 
                                 <h:commandLink value="Add comentário" class="input-placeholder w3-white" 
-                                                 action="#{controladorGrupo.pageComentarioTopico(topico)}"/>
+                                               action="#{controladorGrupo.pageComentarioTopico(topico)}"/>
                             </div>
 
                         </div>
