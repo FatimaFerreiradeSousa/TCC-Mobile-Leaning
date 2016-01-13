@@ -76,3 +76,19 @@ body{
     margin-left: -15%;
     margin-right: 2%;
 }
+
+.img-buscar-usuario{
+    width: 96px; 
+    height: 96px; 
+    margin-top: 5%;
+}
+
+.page-text-line{
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #DD1533;
+    font-weight: 400;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}

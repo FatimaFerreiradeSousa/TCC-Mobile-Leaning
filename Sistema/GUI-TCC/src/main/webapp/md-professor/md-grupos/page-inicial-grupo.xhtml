@@ -39,6 +39,20 @@
                 </span>
 
                 <h:outputText value="#{controladorGrupo.grupo.nome}"/>
+                
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="" class="">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-content" style="font-size: 14px">
+                            <a href="page-alterar-grupo.jsf">Configurações</a>
+                            <a href="page-listar-membros.jsf">Membros</a>
+                            <a href="page-listar-testes.jsf">Testes</a>
+                            <a href="page-resultados-teste.jsf">Resultados</a>
+                        </div>
+                    </div>
+                </span>
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -126,17 +140,15 @@
                             </div>
 
                             <div class="w3-container w3-xlarge w3-white">
-                                <p style="font-size: 0.6em;">
+                                <h:outputLabel style="font-size: 12px">
                                     #{topico.conteudo}
                                     <br />
-                                    <h:commandLink value="Responder teste - " action="#" rendered="#{topico.codigoTeste != 0}" 
-                                                   style="text-decoration: none; font-size: 0.5em;"/>
-                                    <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}">
+                                    <h:commandLink value="Responder teste" action="#" rendered="#{topico.codigoTeste != 0}" 
+                                                   style="text-decoration: none;"/>
+                                    <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}" style="font-size: 12px">
                                         <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
                                     </p:commandLink>
-
-
-                                </p>
+                                </h:outputLabel>
                             </div>
 
                             <div class="w3-container w3-green">

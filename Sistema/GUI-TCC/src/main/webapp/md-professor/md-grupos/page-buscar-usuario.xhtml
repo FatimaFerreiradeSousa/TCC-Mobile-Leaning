@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+        <title>Professor | Grupo | Membro</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../../dist/w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../dist/w3-css/w3-theme-red.css"/>
+        <link rel="stylesheet" href="../../dist/css/css-pages.css"/>
+        <link rel="stylesheet" href="../../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
+
+        <script>
+
+            function w3_open() {
+                var x = document.getElementsByClassName("w3-sidenav")[0];
+                x.style.display = "block";
+            }
+            function w3_close() {
+                var x = document.getElementsByClassName("w3-sidenav")[0];
+                x.style.display = "none";
+            }
+
+        </script>
+    </h:head>
+
+    <h:body style="max-width:600px" >
+
+        <header class="w3-container w3-card-4 w3-theme w3-top">
+            <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </span>
+
+            <h:outputText value="Usuários Encontrados"/>
+        </header>
+
+        <h:form>
+            <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
+                <div class="w3-container w3-theme-d2">
+                    <span onclick="w3_close()" class="w3-closenav w3-right w3-xlarge">x</span>
+                    <br/>
+                    <div class="w3-padding w3-center">
+                        <p:graphicImage value="#{professor.content}" id="figure-01"
+                                        styleClass="w3-circle" style="width:95%"/>
+                        <h:outputText value="#{professor.login}"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="w3-dropdown-hover">
+                    <a href="#" class="">Testes</a>
+                    <span class="w3-dropdown-content">
+                        <a href="md-perguntas/page-cad-pergunta.jsf">
+                            Cadastrar Pergunta
+                        </a>
+                        <a href="md-perguntas/page-listar-perguntas.jsf">
+                            Perguntas Cadastradas
+                        </a>
+                        <a href="md-testes/page-cad-teste.jsf">
+                            Cadastrar Teste
+                        </a>
+                        <a href="md-testes/page-listar-testes.jsf">
+                            Testes Cadastrados
+                        </a>
+                    </span>
+                </div><br />
+
+                <div class="w3-dropdown-hover">
+                    <a href="#" class="">Grupo</a>
+                    <span class="w3-dropdown-content">
+                        <a href="md-grupos/page-cad-grupo.jsf">
+                            Criar Grupo
+                        </a>
+                        <a href="md-grupos/page-listar-grupos.jsf">
+                            Meus Grupos
+                        </a>
+                    </span>
+                </div>
+
+                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+            </nav>
+        </h:form>
+
+        <div class="w3-container" style="margin-top:75px">
+
+            <h:form>
+
+                <div class="w3-row w3-center">
+
+                    <h:inputText value="#{controladorGrupo.aluno.login}" class="w3-input"  pt:placeholder="Pesquisar usuário" />
+                    <br />
+                    <span class="input-group-addon">
+                        <h:commandLink action="#{controladorGrupo.buscarAluno()}" class="w3-btn w3-round" value="Pesquisar">
+                            <span class="fa fa-search"></span>
+                        </h:commandLink>  
+                    </span>
+                </div>
+
+            </h:form><br />
+
+            <h:form>
+
+                <c:if test="#{controladorGrupo.aluno.login != null}">
+                    <div class="w3-row w3-center">
+                        <div class="w3-col m3">
+
+                            <div class="w3-card-2 w3-round w3-white">
+                                <div class="w3-container">
+                                    <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                    styleClass="w3-circle w3-image img-buscar-usuario">
+                                        <f:param value="#{controladorGrupo.aluno.login}" name="loginUsuario"/>
+                                    </p:graphicImage>
+
+                                    <p class="w3-center">#{controladorGrupo.aluno.login}
+                                        <small>  #{controladorGrupo.aluno.curso}</small>
+                                    </p>
+                                </div>
+                            </div><br />
+
+                            <h:commandButton value="Adicionar" class="w3-btn w3-green" rendered="#{controladorGrupo.verificarMembro() == true}" 
+                                             action="#{controladorGrupo.adicionarMembro()}">
+                            </h:commandButton>
+
+                            <h:outputLabel value="Este usuário já é membro" rendered="#{controladorGrupo.verificarMembro() == false}" class="page-text-line"/><br />
+                            <h:commandButton value="Remover" class="w3-btn w3-indigo" rendered="#{controladorGrupo.verificarMembro() == false}" 
+                                             action="#{controladorGrupo.removerMembro()}">
+                            </h:commandButton>
+
+                            <br/>
+                        </div>  
+                    </div>
+                </c:if>
+
+                <c:if test="#{controladorGrupo.aluno.login == null}">
+                    <div class="w3-row">
+                        <div class="w3-col m12 w3-center">
+                            <label class="page-text-line">Nenhum usuário encontrado</label>
+                        </div>
+                    </div>
+                </c:if>
+            </h:form>
+        </div>
+
+    </h:body>
+
+</html>
+
