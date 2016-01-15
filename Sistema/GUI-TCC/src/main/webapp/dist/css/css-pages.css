@@ -92,3 +92,13 @@ body{
     padding-bottom: 20px;
     margin-bottom: 30px;
 }
+
+.btn-alterar{
+    width: 153px;
+    margin-bottom: 2%;
+}
+
+.btn-alterar-foto{
+    width: 145px;
+    margin-bottom: 2%;
+}
