@@ -4,8 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Alterar Teste</title>
@@ -40,6 +39,14 @@
                 </span>
 
                 <h:outputText value="Alterar Teste"/>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="../page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -83,8 +90,9 @@
                         </a>
                     </span>
                 </div>
-                
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}"/>
             </nav>
             <br /><br /><br />
         </h:form>
@@ -151,10 +159,10 @@
 
                     <h:commandButton action="#{controladorExercicio.atualizarTeste()}" 
                                      class="w3-btn w3-blue buttons-formulario" value="Atualizar"/>
-                    
+
                     <h:commandButton action="#{controladorExercicio.visualizarPerguntas()}" 
                                      class="w3-btn w3-indigo buttons-formulario" value="Perguntas"/>
-                    
+
                     <h:commandButton action="#{controladorExercicio.paginaEnviar()}" 
                                      class="w3-btn w3-green buttons-formulario" value="Enviar Teste"/>
                 </div>

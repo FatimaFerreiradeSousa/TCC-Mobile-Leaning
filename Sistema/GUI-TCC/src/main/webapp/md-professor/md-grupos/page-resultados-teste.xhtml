@@ -29,14 +29,24 @@
 
     <h:body style="max-width:600px">
 
-        <header class="w3-container w3-card-4 w3-theme w3-top">
-            <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
-                <i class="fa fa-bars"></i>
-            </span>
+        <h:form>
+            <header class="w3-container w3-card-4 w3-theme w3-top">
+                <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
+                    <i class="fa fa-bars"></i>
+                </span>
 
-            <h:outputText value="Racking Geral"/>
-        </header>
+                <h:outputText value="Racking Geral"/>
 
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="../page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
+            </header>
+
+        </h:form>
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
             <div class="w3-container w3-theme-d2">
                 <span onclick="w3_close()" class="w3-closenav w3-right w3-xlarge">x</span>
@@ -80,7 +90,8 @@
             </div>
 
             <h:form>
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}"/>
             </h:form>
         </nav>
 

@@ -37,6 +37,14 @@
             </span>
 
             <h:outputText value="Arquivo"/>
+
+            <span class="w3-right w3-xxlarge">
+                <div class="dropdown" style="float:right;">
+                    <a href="../page-inicial-professor.jsf">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </div>
+            </span>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -81,7 +89,8 @@
                 </span>
             </div>
 
-            <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+            <h:commandLink value="Sair" style="text-decoration: none"
+                           action="#{controladorUsuario.logout()}" />
         </nav>
 
         <div class="w3-container" style="margin-top:75px">
@@ -98,7 +107,7 @@
 
                                 <div class="fileUpload w3-btn w3-black">
                                     <span>Arquivo</span>
-                                    
+
                                     <p:fileUpload 
                                         value="#{controladorGrupo.fileUpload}"
                                         allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
@@ -108,7 +117,7 @@
 
                                 <h:commandButton class="w3-btn w3-green buttons-formulario" value="Publicar" 
                                                  action="#{controladorGrupo.upload()}"/>
-                                
+
                                 <h:commandButton class="w3-btn w3-indigo buttons-formulario" value="Cancelar" 
                                                  action="#{controladorGrupo.voltarPaginaGrupo()}"/>
                             </div>

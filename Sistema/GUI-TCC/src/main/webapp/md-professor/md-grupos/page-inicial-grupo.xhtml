@@ -39,7 +39,7 @@
                 </span>
 
                 <h:outputText value="#{controladorGrupo.grupo.nome}"/>
-                
+
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
                         <a href="" class="">
@@ -51,6 +51,14 @@
                             <a href="page-listar-testes.jsf">Testes</a>
                             <a href="page-resultados-teste.jsf">Resultados</a>
                         </div>
+                    </div>
+                </span>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="../page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
                     </div>
                 </span>
             </header>
@@ -97,7 +105,8 @@
                     </span>
                 </div>
 
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}" />
             </nav>
 
             <div class="w3-container" style="margin-top:75px">

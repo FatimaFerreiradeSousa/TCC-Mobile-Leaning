@@ -38,6 +38,14 @@
                 </span>
 
                 <h:outputText value="Grupos"/>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="../page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -82,7 +90,8 @@
                     </span>
                 </div>
 
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}" />
             </nav>
         </h:form>
 
@@ -113,10 +122,10 @@
 
                 <h:commandButton action="#{controladorGrupo.atualizarGrupo()}" 
                                  class="w3-btn w3-green buttons-formulario" value="Alterar"/>
-                
+
                 <h:commandButton action="#{controladorGrupo.removerGrupo()}" 
                                  class="w3-btn w3-red buttons-formulario" value="Remover"/>
-                
+
                 <br/><br/>
 
             </h:form>

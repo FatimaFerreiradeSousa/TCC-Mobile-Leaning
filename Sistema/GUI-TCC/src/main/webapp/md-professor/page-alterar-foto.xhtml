@@ -39,6 +39,14 @@
                 </span>
 
                 <h:outputText value="Alterar Foto"/>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -86,7 +94,8 @@
                 <h:commandLink action="page-config-professor.jsf" value="Configurações" 
                                style="text-decoration: none"/>
 
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}" />
             </nav>
 
         </h:form>
@@ -116,7 +125,7 @@
 
                         <p:commandLink value="Alterar" ajax="false" actionListener="#{controladorUsuario.uploadProfessor()}" 
                                        disabled="false" update="@all" id="linkFoto" styleClass="w3-btn w3-green btn-alterar-foto"/>
-                        
+
                         <h:commandButton class="w3-btn w3-indigo btn-alterar-foto" 
                                          action="#{controladorUsuario.pageConfigProfessor()}"
                                          style="margin-left: 2%;"

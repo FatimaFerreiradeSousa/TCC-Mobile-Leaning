@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="../../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
 
         <script>
-
+            
             function w3_open() {
                 var x = document.getElementsByClassName("w3-sidenav")[0];
                 x.style.display = "block";
@@ -23,7 +23,7 @@
                 var x = document.getElementsByClassName("w3-sidenav")[0];
                 x.style.display = "none";
             }
-
+            
         </script>
     </h:head>
 
@@ -35,6 +35,14 @@
             </span>
 
             <h:outputText value="Respostas"/>
+
+            <span class="w3-right w3-xxlarge">
+                <div class="dropdown" style="float:right;">
+                    <a href="../page-inicial-professor.jsf">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </div>
+            </span>
         </header>
 
         <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -80,7 +88,8 @@
             </div>
 
             <h:form>
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+                <h:commandLink value="Sair" style="text-decoration: none" 
+                               action="#{controladorUsuario.logout()}"/>
             </h:form>
         </nav>
 

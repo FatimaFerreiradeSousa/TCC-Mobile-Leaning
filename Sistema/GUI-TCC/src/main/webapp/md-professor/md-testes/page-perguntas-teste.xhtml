@@ -40,6 +40,14 @@
                 </span>
 
                 <h:outputText value="Perguntas do Teste"/>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="../page-inicial-professor.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -71,7 +79,7 @@
                         </a>
                     </span>
                 </div><br />
-                
+
                 <div class="w3-dropdown-hover">
                     <a href="#" class="">Grupo</a>
                     <span class="w3-dropdown-content">
@@ -83,8 +91,9 @@
                         </a>
                     </span>
                 </div>
-                
-                <h:commandLink value="" style="text-decoration: none">Sair</h:commandLink>
+
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}" />
             </nav>
             <br /><br /><br />
         </h:form>
