@@ -4,11 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Alterar Foto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="../dist/w3-css/w3.css"/>
         <link rel="stylesheet" href="../dist/w3-css/w3-theme-red.css"/>
         <link rel="stylesheet" href="../dist/css/css-pages.css"/>
+        <link rel="stylesheet" href="../dist/css/css-menu-drop.css"/>
         <link rel="stylesheet" href="../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
 
         <script>
@@ -25,7 +26,7 @@
 
     <h:body style="max-width:600px" >
 
-        <h:form>
+        <h:form acceptcharset="ISO-8859-1">
 
             <header class="w3-container w3-card-4 w3-theme w3-top">
                 <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
@@ -33,7 +34,7 @@
                 </span>
 
                 <h:outputText value="Notificações"/>
-                
+
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
                         <a href="page-inicial-aluno.jsf">
@@ -71,34 +72,39 @@
                                action="#{controladorUsuario.logout()}"/>
             </nav>
 
+        </h:form>
+
+        <h:form enctype="multipart/form-data">
             <div class="w3-container" style="margin-top:75px">
-                <hr/>
-                <div class="w3-row">
-                    <div class="w3-col s3">
-                        <p:graphicImage value="#{aluno.content}" id="figure-0q1"
-                                        styleClass="w3-circle" style="width:95%"/>
-                    </div>
-                    <div class="w3-col s9 w3-container">
-                        <h3 class="w3-text-red">#{aluno.login}</h3>
-                        <p>The response to the animations was ridiculous.</p>
-                    </div>
-                </div>  
-                <hr/>
 
                 <div class="w3-col m2 w3-center">
                     <div class="w3-card-2 w3-round w3-white">
                         <div class="w3-container">
-                            <p class="p-titulos">Proximos Eventos</p>
-                            <img src="../img/img_5terre.jpg" alt="Cinque Terre" style="width:100%;"/>
-                            <p><strong>Italy</strong></p>
-                            <p>Friday 15:00</p>
-                            <p><button class="w3-btn">Info</button></p>
-                        </div>
-                    </div><br />
 
-                    <div class="w3-card-2 w3-round w3-white w3-padding-16">
-                        <p>ADS</p>
-                    </div><br />
+                            <p:graphicImage value="#{aluno.content}" id="figure-0q1"
+                                            styleClass="" style="width:95%; margin-top: 2%;"/><br /><br />
+
+                            <div class="fileUpload w3-btn w3-blue buttons-formulario">
+                                <label class="text-black">Nova Foto</label>
+                                <p:fileUpload 
+                                    value="#{controladorUsuario.file}"
+                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                    mode="simple" 
+                                    styleClass="upload"
+                                    />
+                            </div>
+
+                            <br/>
+                        </div>
+
+                        <p:commandLink value="Alterar" ajax="false" actionListener="#{controladorUsuario.uploadAluno()}" 
+                                       disabled="false" update="@all" id="linkFoto" styleClass="w3-btn w3-green btn-alterar-foto"/>
+
+                        <h:commandButton class="w3-btn w3-indigo btn-alterar-foto" 
+                                         action="#{controladorUsuario.pageConfigAluno()}"
+                                         style="margin-left: 2%;"
+                                         value="Cancelar"/>
+                    </div><br /><br />
                 </div>
             </div>
 

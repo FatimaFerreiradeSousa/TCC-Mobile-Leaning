@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Aluno | Configurações</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../dist/w3-css/w3.css"/>
+        <link rel="stylesheet" href="../dist/w3-css/w3-theme-red.css"/>
+        <link rel="stylesheet" href="../dist/css/css-pages.css"/>
+        <link rel="stylesheet" href="../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
+
+        <script>
+
+            function w3_open() {
+                var x = document.getElementsByClassName("w3-sidenav")[0];
+                x.style.display = "block";
+            }
+            function w3_close() {
+                var x = document.getElementsByClassName("w3-sidenav")[0];
+                x.style.display = "none";
+            }
+
+        </script>
+    </h:head>
+
+    <h:body style="max-width:600px" >
+
+        <h:form>
+
+            <header class="w3-container w3-card-4 w3-theme w3-top">
+                <span class="w3-opennav w3-xxlarge" onclick="w3_open()">
+                    <i class="fa fa-bars"></i>
+                </span>
+
+                <h:outputText value="Configurações"/>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right;">
+                        <a href="page-inicial-aluno.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
+                </span>
+            </header>
+
+            <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
+                <div class="w3-container w3-theme-d2">
+                    <span onclick="w3_close()" class="w3-closenav w3-right w3-xlarge">x</span>
+                    <br/>
+                    <div class="w3-padding w3-center">
+                        <p:graphicImage value="#{aluno.content}" id="figure-01"
+                                        styleClass="w3-circle" style="width:95%"/>
+                        <h:outputText value="#{aluno.login}"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="w3-dropdown-hover">
+                    <a href="#" class="">Testes</a>
+                    <span class="w3-dropdown-content">
+                        <a href="md-perguntas/page-cad-pergunta.jsf">
+                            Cadastrar Pergunta
+                        </a>
+                        <a href="md-perguntas/page-listar-perguntas.jsf">
+                            Perguntas Cadastradas
+                        </a>
+                        <a href="md-testes/page-cad-teste.jsf">
+                            Cadastrar Teste
+                        </a>
+                        <a href="md-testes/page-listar-testes.jsf">
+                            Testes Cadastrados
+                        </a>
+                    </span>
+                </div><br />
+
+                <a href="#" class="w3-dropdown-hover">
+                    Grupos 
+                </a>
+
+                <a href="page-registro-aluno.jsf">
+                    Registro
+                </a>
+
+                <a href="page-config-aluno.jsf">
+                    Configurações
+                </a>
+
+                <h:commandLink value="Sair" style="text-decoration: none"
+                               action="#{controladorUsuario.logout()}"/>
+            </nav>
+
+            <div class="w3-container" style="margin-top:75px">
+                <div class="w3-col m2 w3-center">
+                    <div class="w3-card-2 w3-round w3-white">
+                        <div class="w3-container">
+                            <p:graphicImage value="#{aluno.content}" id="figure-0q1"
+                                            styleClass="" style="width:95%; margin-top: 2%;"/>
+
+                            <p><strong>#{controladorUsuario.aluno.login}</strong></p>
+                            <smal>
+                                <cite title="#{controladorUsuario.aluno.instituicao}">
+                                    #{controladorUsuario.aluno.instituicao}
+                                    <i class="fa fa-map-marker"></i>
+                                </cite>
+                            </smal>
+
+                            <p>
+                                <i class="fa fa-user"></i>
+                                #{controladorUsuario.aluno.nome}
+                                <br />
+                                <i class="fa fa-book"></i>
+                                <h:outputLabel value="#{controladorUsuario.aluno.curso}"/>
+                                <br />
+                                <i class="fa fa-envelope"></i>
+                                #{controladorUsuario.aluno.email}
+                                <br />
+                                <i class="fa fa-asterisk"></i>
+                                #{controladorUsuario.aluno.senha}
+                            </p>
+
+                            <p>
+                                <h:commandLink class="w3-btn w3-green buttons-formulario" 
+                                               action="#{controladorUsuario.pageInfoAluno()}"
+                                               value="Alterar Informações">
+                                </h:commandLink>
+
+                                <h:commandButton class="w3-btn w3-blue buttons-formulario"
+                                                 value="Alterar Foto" 
+                                                 action="#{controladorUsuario.pageFotoAluno()}">
+                                </h:commandButton>
+                            </p>
+                        </div>
+                    </div><br />
+                    <br />
+                </div>
+            </div>
+
+
+        </h:form>
+    </h:body>
+
+</html>
+

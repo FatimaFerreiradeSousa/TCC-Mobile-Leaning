@@ -126,7 +126,7 @@ public class ControladorUsuarios implements Serializable {
 
     public String salvarUsuario() throws IOException {
         String caminho
-                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
+                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
@@ -265,7 +265,7 @@ public class ControladorUsuarios implements Serializable {
 
     /*Aluno*/
     public void uploadAluno() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
                 + aluno.getLogin() + "\\";
 
         File dir = new File(caminho);
@@ -320,5 +320,17 @@ public class ControladorUsuarios implements Serializable {
     
     public String pageInicialProfessor(){
         return "page-inicial-professor?face-redirect=true";
+    }
+    
+    public String pageInfoAluno(){
+        return "page-info-aluno?faces-redirect=true";
+    }
+    
+    public String pageFotoAluno(){
+        return "page-foto-aluno?faces-redirect=true";
+    }
+    
+    public String pageConfigAluno(){
+        return "page-config-aluno?faces-redirect=true";
     }
 }
