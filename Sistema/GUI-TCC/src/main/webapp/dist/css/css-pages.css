@@ -102,3 +102,15 @@ body{
     width: 145px;
     margin-bottom: 2%;
 }
+
+.page-text-span{
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #DD1533;
+    font-weight: 400;
+}
+
+.column1{
+    text-align: center;
+}

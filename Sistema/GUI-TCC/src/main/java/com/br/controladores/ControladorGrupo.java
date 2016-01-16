@@ -531,8 +531,9 @@ public class ControladorGrupo implements Serializable {
         return "page-inicial-grupo?faces-redirect=true";
     }
 
-    public void uploadAluno() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\"
+    public String uploadAluno() {
+        String retorno = null;
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\"
                 + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
 
         File dir = new File(caminho);
@@ -569,10 +570,15 @@ public class ControladorGrupo implements Serializable {
 
                 topico = new Topico();
                 fileUpload = null;
+                retorno = "page-inicial-grupo?faces-redirect=true";
             } catch (IOException e) {
                 e.printStackTrace();
+                retorno = "page-grupo-arquivo?faces-redirect=true";
             }
         }
+        
+        return retorno;
+        
     }
 
     public List<ParticipaGrupo> gruposAluno() {

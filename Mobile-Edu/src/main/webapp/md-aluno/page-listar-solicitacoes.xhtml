@@ -48,7 +48,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -72,32 +72,38 @@
                             <a href="#"><strong>#{aluno.login}</strong></a>
 
                         </li>
-              
+
                         <li>
-                            <a href="#">
+                            <a href="#" class="active-menu">
                                 Grupos 
                             </a>
 
                             <ul class="nav nav-second-level">
-                                
+
                                 <li>
                                     <a href="page-buscar-grupo.jsf">
                                         Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-solicitacoes.jsf">
                                         Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="page-registro-aluno.jsf">
+                                Registro
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -123,7 +129,7 @@
                                     </h:column>
                                 </h:dataTable>
                             </div>
-                            
+
                             <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
                                 <h:outputText value="Nenhuma solicitação pendente" class="page-text-span"
                                               rendered="#{controladorGrupo.solicitacoesPendentes().size() == 0}"/>

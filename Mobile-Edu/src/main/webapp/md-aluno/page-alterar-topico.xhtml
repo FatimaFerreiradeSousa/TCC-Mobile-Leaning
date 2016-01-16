@@ -48,7 +48,7 @@
                                         </a>
 
                                         <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -72,32 +72,38 @@
                             <a href="#"><strong>#{aluno.login}</strong></a>
 
                         </li>
-              
+
                         <li>
-                            <a href="#">
+                            <a href="#" class="active-menu">
                                 Grupos 
                             </a>
 
                             <ul class="nav nav-second-level">
-                                
+
                                 <li>
                                     <a href="page-buscar-grupo.jsf">
                                         Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-grupos.jsf">
                                         Meus Grupos
                                     </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="page-listar-solicitacoes.jsf">
                                         Solicitações Grupos
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="page-registro-aluno.jsf">
+                                Registro
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -107,7 +113,7 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.aluno.login}</h1>
+                            <h5 class="page-head-line-h5">Alterar</h5>
                         </div>
                     </div>
 

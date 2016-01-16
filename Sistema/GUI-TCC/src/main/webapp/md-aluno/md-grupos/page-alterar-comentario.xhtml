@@ -2,14 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Alterar Comentário</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="../dist/w3-css/w3.css"/>
-        <link rel="stylesheet" href="../dist/w3-css/w3-theme-red.css"/>
-        <link rel="stylesheet" href="../dist/css/css-pages.css"/>
-        <link rel="stylesheet" href="../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="../../dist/w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../dist/w3-css/w3-theme-red.css"/>
+        <link rel="stylesheet" href="../../dist/css/css-pages.css"/>
+        <link rel="stylesheet" href="../../dist/font-awesome-4.4.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="../../dist/css/css-menu-drop.css"></link>
 
         <script>
             function w3_open() {
@@ -32,11 +34,11 @@
                     <i class="fa fa-bars"></i>
                 </span>
 
-                <h:outputText value="Notificações"/>
-                
+                <h:outputText value="#{controladorGrupo.grupo.nome}"/>
+
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
-                        <a href="page-inicial-aluno.jsf">
+                        <a href="../page-inicial-aluno.jsf">
                             <i class="fa fa-home"></i>
                         </a>
                     </div>
@@ -54,17 +56,17 @@
                     </div>
                 </div>
                 <br/>
-                
+
                 <div class="w3-dropdown-hover">
                     <a href="#" class="">Grupos</a>
                     <span class="w3-dropdown-content">
-                        <a href="md-grupos/page-buscar-grupo.jsf">
+                        <a href="page-buscar-grupo.jsf">
                             Grupos
                         </a>
-                        <a href="md-grupos/page-listar-grupos.jsf">
+                        <a href="page-listar-grupos.jsf">
                             Meus Grupos
                         </a>
-                        <a href="md-grupos/page-listar-solicitacoes.jsf">
+                        <a href="page-listar-solicitacoes.jsf">
                             Solicitações Grupos
                         </a>
                     </span>
@@ -83,34 +85,25 @@
             </nav>
 
             <div class="w3-container" style="margin-top:75px">
-                <hr/>
-                <div class="w3-row">
-                    <div class="w3-col s3">
-                        <p:graphicImage value="#{aluno.content}" id="figure-0q1"
-                                        styleClass="w3-circle" style="width:95%"/>
-                    </div>
-                    <div class="w3-col s9 w3-container">
-                        <h3 class="w3-text-red">#{aluno.login}</h3>
-                        <p>The response to the animations was ridiculous.</p>
-                    </div>
-                </div>  
-                <hr/>
 
-                <div class="w3-col m2 w3-center">
-                    <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <p class="p-titulos">Proximos Eventos</p>
-                            <img src="../img/img_5terre.jpg" alt="Cinque Terre" style="width:100%;"/>
-                            <p><strong>Italy</strong></p>
-                            <p>Friday 15:00</p>
-                            <p><button class="w3-btn">Info</button></p>
-                        </div>
-                    </div><br />
+                <div class="w3-container w3-card-4">
+                    <div class="widget-area blank">
+                        <div class="status-upload">
+                            <div class="form-coments">
+                                <h:inputTextarea  class="textarea-coments" 
+                                                 value="#{controladorGrupo.comentarioAlterar.conteudo}"/>
 
-                    <div class="w3-card-2 w3-round w3-white w3-padding-16">
-                        <p>ADS</p>
-                    </div><br />
+                                <h:commandButton class="w3-btn w3-green buttons-formulario" value="Alterar" 
+                                                 action="#{controladorGrupo.alterarComentario()}"/>
+
+                                <h:commandButton class="w3-btn w3-indigo buttons-formulario" value="Cancelar" 
+                                                 action="#{controladorGrupo.voltarPaginaGrupo()}"/>
+                            </div>
+                        </div><!-- Status Upload  -->
+                    </div><!-- Widget Area -->
+
                 </div>
+
             </div>
 
         </h:form>
