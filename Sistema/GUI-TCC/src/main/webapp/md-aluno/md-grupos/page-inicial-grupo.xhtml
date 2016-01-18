@@ -38,11 +38,29 @@
 
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
+                        <a href="" class="">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-content" style="font-size: 14px">
+                            <a href="page-listar-membros.jsf">Membros</a>
+                            <a href="page-listar-testes.jsf">Testes</a>
+                            <a href="page-resultados-teste.jsf">Resultados</a>
+                            <h:commandLink value="Sair" 
+                                           action="#{controladorGrupo.sairGrupo()}">
+                            </h:commandLink>
+
+                        </div>
+                    </div>
+                </span>
+
+                <span class="w3-right w3-xxlarge">
+                    <div class="dropdown" style="float:right; margin-right: 30%;">
                         <a href="../page-inicial-aluno.jsf">
                             <i class="fa fa-home"></i>
                         </a>
                     </div>
                 </span>
+
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -110,7 +128,7 @@
                                 </div>
 
                                 <p:graphicImage id="picture2" value="#{controladorFotos.mostrarFoto()}"
-                                                styleClass="w3-image w3-circle img-topicos w3-left">
+                                                styleClass="w3-image  img-topicos w3-left">
                                     <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
                                 </p:graphicImage>
 
