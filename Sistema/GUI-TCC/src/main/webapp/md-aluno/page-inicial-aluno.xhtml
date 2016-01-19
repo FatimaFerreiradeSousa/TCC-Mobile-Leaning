@@ -33,7 +33,7 @@
                 </span>
 
                 <h:outputText value="Notificações"/>
-                
+
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
                         <a href="page-inicial-aluno.jsf">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <br/>
-                
+
                 <div class="w3-dropdown-hover">
                     <a href="#" class="">Grupos</a>
                     <span class="w3-dropdown-content">
@@ -87,12 +87,17 @@
                 <div class="w3-row">
                     <div class="w3-col s3">
                         <p:graphicImage value="#{aluno.content}" id="figure-0q1"
-                                        styleClass="w3-circle" style="width:95%"/>
+                                        styleClass="" style="width:70%"/>
                     </div>
-                    <div class="w3-col s9 w3-container">
-                        <h3 class="w3-text-red">#{aluno.login}</h3>
-                        <p>The response to the animations was ridiculous.</p>
-                    </div>
+
+                    <label class="w3-text-red w3-left-align text-fotos">#{aluno.login}</label><br />
+                    
+                    <small class="text-fotos w3-margin-top" style="font-size: 10px;">15/21/2015
+                        <i class="fa fa-clock-o"></i>
+                    </small>
+                    
+                    <p>The response to the animations was ridiculous.</p>
+
                 </div>  
                 <hr/>
 

@@ -55,7 +55,7 @@
                 </span>
 
                 <span class="w3-right w3-xxlarge">
-                    <div class="dropdown" style="float:right;">
+                    <div class="dropdown" style="float:right; margin-right: 30%;">
                         <a href="../page-inicial-professor.jsf">
                             <i class="fa fa-home"></i>
                         </a>
@@ -136,12 +136,12 @@
                                 </div>
 
                                 <p:graphicImage id="picture2" value="#{controladorFotos.mostrarFoto()}"
-                                                styleClass="w3-image w3-circle img-topicos w3-left">
+                                                styleClass="w3-image img-topicos w3-left">
                                     <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
                                 </p:graphicImage>
 
-                                <div style="padding-top: 3%;">
-                                    <b>#{topico.loginUsuario}</b><br />
+                                <div >
+                                    <label>#{topico.loginUsuario}</label><br />
                                     <h:outputLabel value="#{topico.dataCriacao}" style="font-size: 10px;">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputLabel>

@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Resultado Teste</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="../../dist/w3-css/w3.css"/>
         <link rel="stylesheet" href="../../dist/w3-css/w3-theme-red.css"/>
@@ -35,7 +35,6 @@
                 </span>
 
                 <h:outputText value="#{controladorGrupo.grupo.nome} - Resultado"/>
-
 
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right; margin-right: 30%;">
@@ -86,30 +85,20 @@
                                action="#{controladorUsuario.logout()}"/>
             </nav>
 
-            <div class="w3-container" style="margin-top:75px">
+            <div class="w3-container w3-center" style="margin-top:75px">
+
+                <h1 class="page-head-line">Resultado</h1>
+
+                <h:commandButton class="w3-btn w3-green buttons-resposta" value="Ver resultado" 
+                                 action="#{controladorTeste.salvarTeste()}">
+                    <f:param name="codGrupo" value="#{controladorGrupo.grupo.codigo}"/>
+                </h:commandButton>
+
                 <hr/>
-                <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro" 
-                             class="table-responsive table" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
-                    <h:column>
-                        <div class="w3-center">
-                            <a class="pull-left" href="#">
-                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                styleClass="w3-image img-grupo-aluno">
-                                    <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
-                                </p:graphicImage>
-                            </a>
 
-                            <h4 class="media-heading">#{membro.aluno.login} - 
-                                <small style="font-size: 12px;">Pontuação: #{membro.nota}</small>
-                            </h4>
+                <h:outputText value="Resultado:  #{controladorTeste.respondeExercicio.nota}" 
+                              rendered="#{controladorTeste.salvarTeste == true}"/>
 
-                        </div>
-                    </h:column>
-                </h:dataTable>
-
-                <h:outputLabel value="Nenhum resultado encontrado" 
-                               rendered="#{controladorTeste.resultadoTestes().size() == 0}"
-                               class="w3-text-red"/>
             </div>
 
         </h:form>

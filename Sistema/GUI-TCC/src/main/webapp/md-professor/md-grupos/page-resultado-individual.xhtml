@@ -112,12 +112,12 @@
                         <div class="w3-row">
                             <div class="w3-col s3">
                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" id="figure-0q1"
-                                                styleClass="w3-circle" style="width:95%">
+                                                styleClass="w3-image" style="width:95%">
                                     <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage>
                             </div>
                             <div class="w3-col s9 w3-container">
-                                <h3 class="w3-text-red">#{membro.aluno.login}</h3>
+                                <p class="w3-text-red">#{membro.aluno.login}</p>
                                 <p>Pontuação: #{membro.nota}</p>
                             </div>
                         </div>  

@@ -151,6 +151,8 @@
                             </div><br />
 
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <h:outputLabel value="#{controladorTeste.pergunta.enunciado}"
+                                               rendered="#{controladorTeste.comecar == true}"/>
                                 <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" class="table table-hover"
                                              rendered="#{controladorTeste.comecar == true}">
                                     <h:column>

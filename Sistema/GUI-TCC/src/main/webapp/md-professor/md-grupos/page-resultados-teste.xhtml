@@ -103,19 +103,19 @@
             <h:form acceptcharset="ISO-8859-1">
 
                 <h:dataTable value="#{controladorGrupo.listaRanckingGrupo()}" var="membro"  
-                             class="w3-table w3-striped w3-bordered"
+                             class="w3-table"
                              rendered="#{controladorGrupo.listaRanckingGrupo().size() > 0}">
                     <h:column>
                         <div class="w3-row">
                             <div class="w3-col s3">
                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" id="figure-0q1"
-                                                styleClass="w3-circle" style="width:95%">
+                                                styleClass="w3-image" style="width:80%">
                                     <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage>
                             </div>
-                            <div class="w3-col s9 w3-container">
-                                <h3 class="w3-text-red">#{membro.aluno.login}</h3>
-                                <p>Pontuação: #{membro.pontuacao}</p>
+                            <div class="">
+                                <p class="w3-text-red" style="margin-left: -5%;">#{membro.aluno.login}</p>
+                                <label>Pontuação: #{membro.pontuacao}</label>
                             </div>
                         </div>  
                         <hr/>

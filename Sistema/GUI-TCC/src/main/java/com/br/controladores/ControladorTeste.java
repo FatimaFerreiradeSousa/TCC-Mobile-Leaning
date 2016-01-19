@@ -152,11 +152,12 @@ public class ControladorTeste implements Serializable {
     }
 
     public String comecarAResponder() {
-        disponivel = false;
+        //disponivel = false;
         comecar = true;
         tamanho = 0;
         pergunta = teste.getQuestoesExercicios().get(tamanho);
         tamanho++;
+        respondeExercicio = new RespondeExercicio();
         return "page-responder-teste?faces-redirect=true";
     }
 
@@ -198,6 +199,8 @@ public class ControladorTeste implements Serializable {
         tamanho = 0;
         salvarTeste = true;
         comecar = false;
+        //respondeExercicio = new RespondeExercicio();
+        resultado = 0;
         return "page-visualizar-resultado?faces-redirect=true";
     }
 

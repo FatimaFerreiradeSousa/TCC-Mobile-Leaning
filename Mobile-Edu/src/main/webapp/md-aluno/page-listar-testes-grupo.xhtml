@@ -121,7 +121,9 @@
                     <h:form>
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table table-condensed" rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
+                                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" 
+                                             class="table table-condensed" 
+                                             rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
                                     <h:column>
                                         <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.paginaVisualizarTeste(teste)}" style="text-decoration: none;"/> -
                                         <label>#{teste.loginUsuario}</label><br />

@@ -99,9 +99,10 @@
 
                 <div class="w3-center">
                     <h:commandButton value="Começar" action="#{controladorTeste.comecarAResponder()}" 
-                                     class="w3-btn w3-green buttons-formulario" rendered="#{controladorTeste.disponivel == true}"/>
+                                     class="w3-btn w3-green buttons-formulario" 
+                                     rendered="#{controladorTeste.disponivel == true}"/>
 
-                    <h:outputText value="Este teste não está mais disponivel" class="w3-text-blue"
+                    <h:outputText value="Este teste não está mais disponivel" class="w3-text-green"
                                   rendered="#{controladorTeste.disponivel == false}"/>
 
                     <br /><br />
@@ -111,9 +112,15 @@
                         <f:ajax render="testeDisponivel"/>
                     </h:commandLink><br />
 
-                    <p><h:outputText value="#{controladorTeste.mensagem}" 
-                                     id="testeDisponivel" class="w3-text-green"/></p>
+                    <p>
+                        <h:outputText value="#{controladorTeste.mensagem}" 
+                                     id="testeDisponivel" class="w3-text-green"
+                                     rendered="#{controladorTeste.disponivel == false}"/>
+                    </p>
 
+                    <h:outputLabel value="#{controladorTeste.pergunta.enunciado}"
+                                               rendered="#{controladorTeste.comecar == true}"/>
+                    
                     <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" 
                                  class="w3-table w3-bordered w3-striped"
                                  rendered="#{controladorTeste.comecar == true}">

@@ -106,6 +106,7 @@ public class FormatData {
     }
     
     public static boolean verificarData(Date data){
+        
         Date dateSystem = new Date();
         
         return data.before(dateSystem);
