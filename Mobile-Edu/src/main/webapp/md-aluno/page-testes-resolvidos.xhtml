@@ -121,10 +121,12 @@
                     <h:form>
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6">
-                                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table-responsive table" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
+                                <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
+                                             class="table-responsive table" style="float: left;" 
+                                             rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                                     <h:column>
                                         <div class="text-center">
-                                            <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.pageResultado(teste)}" 
+                                            <h:commandLink value="#{teste.assunto}" action="#{controladorTeste.pageResultado(teste)}" 
                                                            style="text-decoration: none;"/>
                                         </div>
                                     </h:column>

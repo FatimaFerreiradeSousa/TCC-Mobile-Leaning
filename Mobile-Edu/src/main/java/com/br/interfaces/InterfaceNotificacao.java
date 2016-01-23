@@ -12,4 +12,8 @@ public interface InterfaceNotificacao {
     public boolean salvarNotificacao(Notificacao notificacao);
 
     public List<Notificacao> listarNotificacoes(String login);
+    
+    public int listarQTDNotificacoes(String login);
+    
+    public boolean atualizarNotificacao(Notificacao notificacao);
 }

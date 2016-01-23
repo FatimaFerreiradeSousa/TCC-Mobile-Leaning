@@ -136,10 +136,9 @@ public class ControladorTeste implements Serializable {
         this.disponivel = disponivel;
     }
 
-    /*
-    public String paginaVisualizarTeste(Topico topico) {
-        teste = fachada.buscarExercicio(topico.getCodigoTeste());
-        disponivel = topico.isDisponivel();
+    public String paginaVisualizarTeste(Teste teste) {
+        this.teste = teste;
+        disponivel = teste.isDisponivel();
         perguntas = teste.getQuestoesExercicios();
 
         boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
@@ -150,7 +149,7 @@ public class ControladorTeste implements Serializable {
         }
         
         return "page-responder-teste?faces-redirect=true";
-    }*/
+    }
 
     public String comecarAResponder() {
         //disponivel = false;
@@ -242,8 +241,8 @@ public class ControladorTeste implements Serializable {
         return "page-racking-grupo?faces-redirect=true";
     }
     
-    /*public String pageResultado(Topico topico){
-        this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
+    public String pageResultado(Teste teste){
+        this.teste = fachada.buscarExercicio(teste.getCodigo());
         return "page-resultado?faces-redirect=true";
-    }*/
+    }
 }

@@ -28,6 +28,19 @@ public class DaoNotificacao implements InterfaceNotificacao {
             return false;
         }
     }
+    
+    @Override
+    public boolean atualizarNotificacao(Notificacao notificacao) {
+
+        try {
+            notificacao.setLido(true);
+            em.merge(notificacao);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     @Override
     public List<Notificacao> listarNotificacoes(String login) {
@@ -35,5 +48,13 @@ public class DaoNotificacao implements InterfaceNotificacao {
         query.setParameter("login", login);
         
         return (List<Notificacao>) query.getResultList();
+    }
+    
+    @Override
+    public int listarQTDNotificacoes(String login) {
+        Query query = em.createQuery("select n from Notificacao n where n.destinatario = :login and n.lido = false ORDER BY n.id DESC");
+        query.setParameter("login", login);
+        
+        return query.getResultList().size();
     }
 }

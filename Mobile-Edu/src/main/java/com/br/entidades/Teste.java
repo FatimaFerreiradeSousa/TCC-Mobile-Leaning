@@ -30,6 +30,7 @@ public class Teste implements Serializable{
     private Date dataEntrega;
     private String categoria;
     private int qtdPerguntas;
+    private boolean disponivel;
     
     @ManyToMany
     private List<Pergunta> questoesExercicios;
@@ -44,12 +45,13 @@ public class Teste implements Serializable{
     }
 
     public Teste(String disciplina, String assunto, Date dataEntrega, String categoria,
-            int qtdPerguntas, Professor professor) {
+            int qtdPerguntas, boolean disponivel, Professor professor) {
         this.disciplina = disciplina;
         this.assunto = assunto;
         this.dataEntrega = dataEntrega;
         this.categoria = categoria;
         this.qtdPerguntas = qtdPerguntas;
+        this.disponivel = disponivel;
         this.questoesExercicios = new ArrayList();
         this.professor = professor;
     }
@@ -100,6 +102,14 @@ public class Teste implements Serializable{
 
     public void setQtdPerguntas(int qtdPerguntas) {
         this.qtdPerguntas = qtdPerguntas;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public List<Pergunta> getQuestoesExercicios() {

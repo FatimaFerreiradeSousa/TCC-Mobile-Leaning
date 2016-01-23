@@ -76,6 +76,7 @@ public class ControladorExercicio implements Serializable {
 
     public String salvarTeste() {
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        exercicio.setDisponivel(true);
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();

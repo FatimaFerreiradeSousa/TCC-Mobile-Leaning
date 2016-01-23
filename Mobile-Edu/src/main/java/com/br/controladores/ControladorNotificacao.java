@@ -25,17 +25,24 @@ public class ControladorNotificacao implements Serializable {
     }
 
     public String marcarComVisto(Notificacao notificacao) {
-        //fachada.marcarComLido(notificacao);
-
-        return "page-inicial-aluno?faces-redirect=true";
+        
+        fachada.marcarComoLido(notificacao);
+        return "page-registro-aluno?faces-redirect=true";
     }
-
-    /*Notificacoes Professor*/
-    public List<Notificacao> listarNotificacoesProfessr() {
+    
+    public int listarNotificacoesNaoLidasAluno(){
+        return fachada.listarQTDNotificacoes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    }
+    
+    public List<Notificacao> listarNotificacoesAluno(){
+        return fachada.listarNotificacoes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    }
+    
+    public List<Notificacao> listarNotificacoesProfessor(){
         return fachada.listarNotificacoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
     
-    public List<Notificacao> notificacoesNaoLidasProfessor(){
-        return new ArrayList();
+    public int listarNotificacoesNaoLidasProfessor(){
+        return fachada.listarQTDNotificacoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 }

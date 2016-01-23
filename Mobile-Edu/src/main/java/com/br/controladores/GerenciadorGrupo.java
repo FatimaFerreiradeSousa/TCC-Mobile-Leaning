@@ -542,7 +542,7 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public void uploadAluno() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Arquivos\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\"
                 + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
 
         File dir = new File(caminho);

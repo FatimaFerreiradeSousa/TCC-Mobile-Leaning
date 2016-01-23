@@ -9,7 +9,7 @@
         <title>Professor | Notificações</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
@@ -136,7 +136,9 @@
                         <li>
 
                             <a href="page-registro-atividade.jsf">
-                                Registro
+                                Notificações
+                                <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
+                                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
                             </a>
 
                         </li>
@@ -144,90 +146,100 @@
                 </div>
             </nav>
 
-            <div id="page-wrapper" class="page-wrapper-cls">
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.professor.login}</h1>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                            <h:panelGroup rendered="#{controladorNotificacao.registroProfessor().size() == 0}">
-                                <div class="alert alert-warning">
-                                    <text class="text-danger">
-                                        Nada a exibir
-                                    </text>
-                                </div>
-                            </h:panelGroup>
+            <h:form>
+                <div id="page-wrapper" class="page-wrapper-cls">
+                    <div id="page-wrapper">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.professor.login}</h1>
+                            </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                            <h:panelGroup rendered="#{controladorNotificacao.registroProfessor().size() > 0}">
-                                <div class="alert alert-warning">
-                                    <text class="text-danger">
-                                        Registro de atividades
-                                    </text>
-                                </div>
-                            </h:panelGroup>
-                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+                                <h:panelGroup rendered="#{controladorNotificacao.listarNotificacoesProfessor().size() == 0}">
+                                    <div class="alert alert-warning">
+                                        <text class="text-danger">
+                                            Nada a exibir
+                                        </text>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
 
-                        <div class="col-md-12">
+                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+                                <h:panelGroup rendered="#{controladorNotificacao.listarNotificacoesProfessor().size() > 0}">
+                                    <div class="alert alert-warning">
+                                        <text class="text-danger">
+                                            Registro de atividades
+                                        </text>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
 
-                            <div class="timeline">
+                            <div class="col-md-12">
 
-                                <h:dataTable value="#{controladorNotificacao.registroProfessor()}" var="notificacao" class="table">
-                                    <h:column>
-                                        <div class="line text-muted"></div>
+                                <div class="timeline">
 
-                                        <div class="separator text-muted">
-                                            <time>
-                                                <h:outputText value="#{notificacao.dataNot}">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                </h:outputText>
-                                            </time>
-                                        </div>
+                                    <h:dataTable value="#{controladorNotificacao.listarNotificacoesProfessor()}" var="notificacao" class="table">
+                                        <h:column>
+                                            <div class="line text-muted"></div>
 
-                                        <article class="panel panel-success">
-                                            <div class="panel-heading icon">
-                                                <i class="glyphicon glyphicon-plus"></i>
+                                            <div class="separator text-muted">
+                                                <time>
+                                                    <h:outputText value="#{notificacao.dataNot}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:outputText>
+                                                </time>
                                             </div>
 
-                                            <div class="panel-heading">
-                                                <h2 class="panel-title">Notificação</h2>
+                                            <article class="panel panel-success">
+                                                <div class="panel-heading icon">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                </div>
+
+                                                <div class="panel-heading">
+                                                    <h2 class="panel-title">Notificação</h2>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <h:outputLabel value="#{notificacao.mensagem}"
+                                                                   rendered="#{notificacao.lido == false}"
+                                                                   class="text text-danger"/>
+
+                                                    <h:outputLabel value="#{notificacao.mensagem}"
+                                                                   rendered="#{notificacao.lido == true}"
+                                                                   class="text text-black"/>
+                                                </div>
+
+                                                <div class="panel-footer">
+                                                    <small>
+                                                        <h:commandLink value="Marcar com visto" 
+                                                                       action="#{controladorNotificacao.marcarComVisto(notificacao)}" 
+                                                                       style="text-decoration: none;"/>
+                                                    </small>
+                                                </div>
+                                            </article>
+                                        </h:column>
+                                    </h:dataTable>
+
+                                    <h:form>
+                                        <article class="panel panel-info panel-outline">
+                                            <div class="panel-heading icon">
+                                                <i class="glyphicon glyphicon-info-sign"></i>
                                             </div>
 
                                             <div class="panel-body">
-                                                #{notificacao.mensagem}
-                                            </div>
-
-                                            <div class="panel-footer">
-                                                <small>
-                                                    Marcado como lido
-                                                </small>
+                                                <h:commandLink value="Ver mais" action="#" style="text-decoration: none"
+                                                               rendered="#{controladorNotificacao.listarNotificacoesProfessor().size() > 0}"/>
                                             </div>
                                         </article>
-                                    </h:column>
-                                </h:dataTable>
-
-                                <h:form>
-                                    <article class="panel panel-info panel-outline">
-                                        <div class="panel-heading icon">
-                                            <i class="glyphicon glyphicon-info-sign"></i>
-                                        </div>
-
-                                        <div class="panel-body">
-                                            <h:commandLink value="Ver mais" action="#" style="text-decoration: none"
-                                                           rendered="#{controladorNotificacao.registroProfessor().size() > 0}"/>
-                                        </div>
-                                    </article>
-                                </h:form>
+                                    </h:form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </h:form>
         </div>
     </h:body>
 </html>
