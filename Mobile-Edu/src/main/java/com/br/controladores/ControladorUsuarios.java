@@ -13,7 +13,6 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -186,13 +185,14 @@ public class ControladorUsuarios implements Serializable {
                 context.redirect(request.getContextPath() + loginPage);
                 aluno = PegarUsuarioSessao.pegarAlunoSessao();
                 mensagem = null;
+                
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
         } else {
 
             Professor p = fachada.loginProfessor(login, senha);
-            
+             
             if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -202,6 +202,7 @@ public class ControladorUsuarios implements Serializable {
                 context.redirect(request.getContextPath() + loginPage);
                 professor = PegarUsuarioSessao.pegarProfessorSessao();
                 mensagem = null;
+                
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
@@ -216,7 +217,7 @@ public class ControladorUsuarios implements Serializable {
         try {
             context.redirect(request.getContextPath());
         } catch (IOException e) {
-
+            
         }
 
         return null;

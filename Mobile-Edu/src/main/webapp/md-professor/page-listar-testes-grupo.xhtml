@@ -155,12 +155,13 @@
                     <h:form>
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" class="table table-condensed" rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
+                                <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
+                                             class="table table-condensed" rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                                     <h:column>
-                                        <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
-                                        <label>#{teste.loginUsuario}</label><br />
+                                        <h:commandLink value="#{teste.assunto}" action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
+                                        <label>#{teste.professor.login}</label><br />
 
-                                        (<h:outputLabel value="#{teste.dataCriacao}" style="font-size: 10px">
+                                        (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                                         </h:outputLabel>)
                                     </h:column>
@@ -168,7 +169,8 @@
                             </div>
 
                             <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"
+                                <h:outputLabel value="Nenhum resultado encontrado" 
+                                               rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
                                                class="text-danger"/>
                             </div>
                         </div>

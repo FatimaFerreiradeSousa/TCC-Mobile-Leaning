@@ -36,6 +36,9 @@ public class Teste implements Serializable{
     @ManyToOne
     private Professor professor;
     
+    @ManyToMany(mappedBy = "testesGrupo")
+    private List<Grupo> grupos;
+    
     public Teste(){
     
     }
@@ -113,5 +116,30 @@ public class Teste implements Serializable{
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Teste other = (Teste) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
     }
 }

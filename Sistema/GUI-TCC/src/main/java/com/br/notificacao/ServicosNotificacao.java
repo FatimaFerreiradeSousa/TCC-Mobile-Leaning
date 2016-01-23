@@ -27,32 +27,4 @@ public class ServicosNotificacao {
 
     }
     
-    /*Notificações professor*/
-    
-    /*Notificacao Okay*/
-    public static Notificacao participarGrupo(String loginAluno, String loginProfessor, String nomeGrupo) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginProfessor + " adicionou voce no grupo de " + nomeGrupo);
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-        notificacao.setTipo(TipoNotificacao.ENVIADA_PROFESSOR);
-
-        return notificacao;
-    }
-    
-    /*Aceitar Solicitacao - okay*/
-    public static Notificacao aceitarSolicitacao(String loginAluno, String loginProfessor, String nomeGrupo) {
-        notificacao = new Notificacao();
-        notificacao.setLido(false);
-        notificacao.setMensagem(loginProfessor + " aceitou sua solicitação para participar do grupo " + nomeGrupo);
-        notificacao.setLoginAluno(loginAluno);
-        notificacao.setLoginProfessor(loginProfessor);
-        notificacao.setDataNot(new Date());
-        notificacao.setTipo(TipoNotificacao.ENVIADA_PROFESSOR);
-
-        return notificacao;
-
-    }
 }

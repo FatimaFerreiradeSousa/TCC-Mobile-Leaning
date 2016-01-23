@@ -136,6 +136,7 @@ public class ControladorTeste implements Serializable {
         this.disponivel = disponivel;
     }
 
+    /*
     public String paginaVisualizarTeste(Topico topico) {
         teste = fachada.buscarExercicio(topico.getCodigoTeste());
         disponivel = topico.isDisponivel();
@@ -149,7 +150,7 @@ public class ControladorTeste implements Serializable {
         }
         
         return "page-responder-teste?faces-redirect=true";
-    }
+    }*/
 
     public String comecarAResponder() {
         //disponivel = false;
@@ -224,8 +225,8 @@ public class ControladorTeste implements Serializable {
     }
     
     /*Resultado de cada teste*/
-    public String resultadoIndividual(Topico topico){
-        this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
+    public String resultadoIndividual(Teste teste){
+        this.teste = fachada.buscarExercicio(teste.getCodigo());
         return "page-resultado-individual?faces-redirect=true";
     }
     
@@ -241,8 +242,8 @@ public class ControladorTeste implements Serializable {
         return "page-racking-grupo?faces-redirect=true";
     }
     
-    public String pageResultado(Topico topico){
+    /*public String pageResultado(Topico topico){
         this.teste = fachada.buscarExercicio(topico.getCodigoTeste());
         return "page-resultado?faces-redirect=true";
-    }
+    }*/
 }

@@ -297,30 +297,6 @@ public class Fachada implements Serializable {
     }
     
     public List<Notificacao> listarNotificacoes(String login){
-        return daoNotificacao.listarNotificacoesAluno(login);
-    }
-    
-    public List<Notificacao> notificacoesNaoLidas(String login){
-        return daoNotificacao.notificacoesNaoLidasAluno(login);
-    }
-    
-    public List<Notificacao> atividadesAluno(String login){
-        return daoNotificacao.registroAttAluno(login);
-    }
-    
-    public boolean marcarComLido(Notificacao notificacao){
-        return daoNotificacao.atualizarNotificacao(notificacao);
-    }
-    
-    public List<Notificacao> notificacoesNaoLidasProfessor(String login){
-        return daoNotificacao.notificacoesNaoLidasProfessor(login);
-    }
-    
-    public List<Notificacao> notificacoesProfessor(String login){
-        return daoNotificacao.listarNotificacoesProfessor(login);
-    }
-    
-    public List<Notificacao> atividadesProfessor(String login){
-        return daoNotificacao.registroAttProfessor(login);
+        return daoNotificacao.listarNotificacoes(login);
     }
 }

@@ -171,7 +171,8 @@
 
                     <div class="row">
                         <div class="col-md-12 col-sm-offset-3 col-md-6">
-                            <h:dataTable value="#{controladorGrupo.listarMembros()}" var="membro" class="table-responsive table" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
+                            <h:dataTable value="#{controladorGrupo.listarMembrosGrupo()}" var="membro" class="table-responsive table" 
+                                         style="float: left;" rendered="#{controladorGrupo.listarMembrosGrupo().size() > 0}">
                                 <h:column>
                                     <div class="media">
                                         <a class="pull-left" href="#">
@@ -189,7 +190,7 @@
                         </div>
 
                         <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                            <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarMembros().size() == 0}"
+                            <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarMembrosGrupo().size() == 0}"
                                            class="text-danger"/>
                         </div>
                     </div>

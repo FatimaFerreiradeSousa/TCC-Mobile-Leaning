@@ -9,7 +9,7 @@
         <title>Professor | Pagina Inicial</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+
         <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
@@ -62,92 +62,96 @@
                 </h:form>
             </nav>
 
-            <nav class="navbar-default navbar-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="main-menu">
-                        <li>
-                            <div class="user-img-div">
-                                <p:graphicImage value="#{professor.content}" id="figure-01"
-                                                styleClass="img-circle"/>
-                            </div> 
-                        </li>
+            <h:form>
+                <nav class="navbar-default navbar-side" role="navigation">
+                    <div class="sidebar-collapse">
+                        <ul class="nav" id="main-menu">
+                            <li>
+                                <div class="user-img-div">
+                                    <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                    styleClass="img-circle"/>
+                                </div> 
+                            </li>
 
-                        <li>
+                            <li>
 
-                            <a href="#"><strong>#{professor.login}</strong></a>
+                                <a href="#"><strong>#{professor.login}</strong></a>
 
-                        </li>
-                        
-                        <li>
-                            <a href="#" class="active-menu">
-                                Testes
-                            </a>
+                            </li>
 
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="page-cad-pergunta.jsf">
-                                        Cadastrar Pergunta
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-perguntas.jsf">
-                                        Perguntas Cadastradas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-cad-teste.jsf">
-                                        Cadastrar Teste
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page-listar-testes.jsf">
-                                        Testes Cadastrados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Meus Testes
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li>
+                                <a href="#" class="active-menu">
+                                    Testes
+                                </a>
 
-                        <li>
-                            <a href="#">
-                                Grupos 
-                            </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="page-cad-pergunta.jsf">
+                                            Cadastrar Pergunta
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="page-listar-perguntas.jsf">
+                                            Perguntas Cadastradas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="page-cad-teste.jsf">
+                                            Cadastrar Teste
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="page-listar-testes.jsf">
+                                            Testes Cadastrados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Meus Testes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="page-cad-grupo.jsf">
-                                        Criar Grupo
-                                    </a>
-                                </li>
+                            <li>
+                                <a href="#">
+                                    Grupos 
+                                </a>
 
-                                <li>
-                                    <a href="page-listar-grupos.jsf">
-                                        Meus Grupos
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="page-solicitacoes-grupos.jsf">
-                                        Solicitações
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="page-cad-grupo.jsf">
+                                            Criar Grupo
+                                        </a>
+                                    </li>
 
-                            <a href="page-registro-atividade.jsf">
-                                Registro
-                            </a>
+                                    <li>
+                                        <a href="page-listar-grupos.jsf">
+                                            Meus Grupos
+                                        </a>
+                                    </li>
 
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                                    <li>
+                                        <a href="page-solicitacoes-grupos.jsf">
+                                            Solicitações
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+
+                                <a href="page-registro-atividade.jsf">
+                                    Notificações 
+                                    <h:outputLabel value="#{controladorNotificacao.listarNotificacoesProfessr()}"
+                                                   rendered="#{controladorNotificacao.listarNotificacoesProfessr().size() > 0}"/>
+                                </a> 
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </h:form>
 
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
@@ -159,7 +163,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                            <h:panelGroup rendered="#{controladorNotificacao.notificacoesNaoLidasProfessor().size() == 0}">
+                            <h:panelGroup rendered="#{controladorNotificacao.listarNotificacoesProfessr().size() == 0}">
                                 <div class="alert alert-warning">
                                     <text class="text-danger">
                                         Você não possui nenhuma notificação

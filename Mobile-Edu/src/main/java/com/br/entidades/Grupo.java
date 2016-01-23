@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -34,6 +35,9 @@ public class Grupo implements Serializable{
     @ManyToOne
     private Professor professorGrupos;
     
+    @ManyToMany
+    private List<Teste> testesGrupo;
+    
     public Grupo(){
     
     }
@@ -44,6 +48,7 @@ public class Grupo implements Serializable{
         this.descricao = descricao;
         this.topicos = new ArrayList();
         this.professorGrupos = professor;
+        this.testesGrupo = new ArrayList();
     }
 
     public int getCodigo() {
@@ -92,6 +97,14 @@ public class Grupo implements Serializable{
 
     public void setProfessorGrupos(Professor professorGrupos) {
         this.professorGrupos = professorGrupos;
+    }
+
+    public List<Teste> getTestesGrupo() {
+        return testesGrupo;
+    }
+
+    public void setTestesGrupo(List<Teste> testesGrupo) {
+        this.testesGrupo = testesGrupo;
     }
 
     @Override

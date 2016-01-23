@@ -6,6 +6,7 @@ import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -24,34 +25,17 @@ public class ControladorNotificacao implements Serializable {
     }
 
     public String marcarComVisto(Notificacao notificacao) {
-        fachada.marcarComLido(notificacao);
+        //fachada.marcarComLido(notificacao);
 
         return "page-inicial-aluno?faces-redirect=true";
     }
 
-    /*Notificacoes aluno*/
-    public List<Notificacao> notificacoesNaoLidasAluno() {
-        return fachada.notificacoesNaoLidas(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+    /*Notificacoes Professor*/
+    public List<Notificacao> listarNotificacoesProfessr() {
+        return fachada.listarNotificacoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
-
-    public List<Notificacao> listarNotificacoesAluno() {
-        return fachada.listarNotificacoes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
-    }
-
-    public List<Notificacao> registroAluno() {
-        return fachada.atividadesAluno(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
-    }
-
-    /*Notificações professor*/
-    public List<Notificacao> notificacoesNaoLidasProfessor() {
-        return fachada.notificacoesNaoLidasProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-    }
-
-    public List<Notificacao> listarNotificacoesProfessor() {
-        return fachada.notificacoesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-    }
-
-    public List<Notificacao> registroProfessor() {
-        return fachada.atividadesProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    
+    public List<Notificacao> notificacoesNaoLidasProfessor(){
+        return new ArrayList();
     }
 }

@@ -25,13 +25,11 @@ public class Topico implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String conteudo;
-    private String nome;
     private String caminho;
-    private String tipo;
-    private int codigoTeste;
     private String loginUsuario;
-    private boolean disponivel;
     private int maisUm;
+    private String tipo;
+    private String nome;
     
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
@@ -46,19 +44,18 @@ public class Topico implements Serializable{
     
     }
 
-    public Topico(String conteudo, String nome, String caminho, String tipo, int codigoTeste, int maisUm,
-            String loginUsuario, boolean disponivel, Date dataCriacao, Grupo grupo, Pessoa pessoa, int visualizado) {
+    public Topico(int codigo, String conteudo, String caminho, String loginUsuario, 
+            int maisUm, String tipo, String nome, Date dataCriacao, Grupo grupo) {
+        this.codigo = codigo;
         this.conteudo = conteudo;
-        this.nome = nome;
         this.caminho = caminho;
-        this.tipo = tipo;
-        this.codigoTeste = codigoTeste;
-        this.maisUm = maisUm;
         this.loginUsuario = loginUsuario;
-        this.disponivel = disponivel;
+        this.maisUm = maisUm;
+        this.tipo = tipo;
+        this.nome = nome;
         this.dataCriacao = dataCriacao;
-        this.comentarios = new ArrayList();
         this.grupo = grupo;
+        this.comentarios = new ArrayList();
     }
 
     public int getCodigo() {
@@ -77,44 +74,12 @@ public class Topico implements Serializable{
         this.conteudo = conteudo;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getCaminho() {
         return caminho;
     }
 
     public void setCaminho(String caminho) {
         this.caminho = caminho;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    public int getCodigoTeste() {
-        return codigoTeste;
-    }
-
-    public void setCodigoTeste(int codigoTeste) {
-        this.codigoTeste = codigoTeste;
-    }
-
-    public int getMaisUm() {
-        return maisUm;
-    }
-
-    public void setMaisUm(int maisUm) {
-        this.maisUm = maisUm;
     }
 
     public String getLoginUsuario() {
@@ -125,12 +90,28 @@ public class Topico implements Serializable{
         this.loginUsuario = loginUsuario;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
+    public int getMaisUm() {
+        return maisUm;
     }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setMaisUm(int maisUm) {
+        this.maisUm = maisUm;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Date getDataCriacao() {
