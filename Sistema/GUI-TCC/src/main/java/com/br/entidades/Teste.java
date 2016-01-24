@@ -30,23 +30,28 @@ public class Teste implements Serializable{
     private Date dataEntrega;
     private String categoria;
     private int qtdPerguntas;
+    private boolean disponivel;
     
     @ManyToMany
     private List<Pergunta> questoesExercicios;
     @ManyToOne
     private Professor professor;
     
+    @ManyToMany(mappedBy = "testesGrupo")
+    private List<Grupo> grupos;
+    
     public Teste(){
     
     }
 
     public Teste(String disciplina, String assunto, Date dataEntrega, String categoria,
-            int qtdPerguntas, Professor professor) {
+            int qtdPerguntas, boolean disponivel, Professor professor) {
         this.disciplina = disciplina;
         this.assunto = assunto;
         this.dataEntrega = dataEntrega;
         this.categoria = categoria;
         this.qtdPerguntas = qtdPerguntas;
+        this.disponivel = disponivel;
         this.questoesExercicios = new ArrayList();
         this.professor = professor;
     }
@@ -99,6 +104,14 @@ public class Teste implements Serializable{
         this.qtdPerguntas = qtdPerguntas;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
     public List<Pergunta> getQuestoesExercicios() {
         return questoesExercicios;
     }
@@ -113,5 +126,30 @@ public class Teste implements Serializable{
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Teste other = (Teste) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
     }
 }

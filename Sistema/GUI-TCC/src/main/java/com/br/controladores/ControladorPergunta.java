@@ -97,7 +97,6 @@ public class ControladorPergunta implements Serializable {
         this.resposta = new Resposta();
         this.pergunta = new Pergunta();
         this.pergunta.setRespostas(new ArrayList());
-        
         return "page-cad-pergunta?faces-redirect=true";
     }
     
@@ -119,7 +118,7 @@ public class ControladorPergunta implements Serializable {
     
     public String atualizarResposta(){
         fachada.atualizarResposta(resposta);
-        return "page-respostas-pergunta?faces-redirect=true";
+        return "page-alterar-pergunta?faces-redirect=true";
     }
     
     public String removerResposta(){
@@ -130,7 +129,7 @@ public class ControladorPergunta implements Serializable {
     
     /*inserir uma nova resposta em uma pergunta ja cadastrada*/
      public String paginaCadResposta(){
-        return "page-nova-resposta?faces-redirect=true";
+        return "page-add-resposta-alt-perg?faces-redirect=true";
     }
     
     public String addRespostaAlterarPergunta() {
@@ -157,9 +156,5 @@ public class ControladorPergunta implements Serializable {
         pergunta = new Pergunta();
         resposta = new Resposta();
         return "page-cad-pergunta?faces-redirect=true";
-    }
-    
-    public String paginaRespostas(){
-        return "page-respostas-pergunta?faces-redirect=true";
     }
 }

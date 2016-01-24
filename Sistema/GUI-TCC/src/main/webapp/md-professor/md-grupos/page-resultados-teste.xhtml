@@ -35,7 +35,7 @@
                     <i class="fa fa-bars"></i>
                 </span>
 
-                <h:outputText value="Racking Geral"/>
+                <h:outputText value="#{controladorGrupo.grupo.nome} - Racking Geral"/>
 
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
@@ -101,7 +101,9 @@
         <div class="w3-container w3-half w3-margin-top">
 
             <h:form acceptcharset="ISO-8859-1">
-
+                <label>Racking Geral</label>
+                <hr />
+                
                 <h:dataTable value="#{controladorGrupo.listaRanckingGrupo()}" var="membro"  
                              class="w3-table"
                              rendered="#{controladorGrupo.listaRanckingGrupo().size() > 0}">
@@ -114,8 +116,10 @@
                                 </p:graphicImage>
                             </div>
                             <div class="">
-                                <p class="w3-text-red" style="margin-left: -5%;">#{membro.aluno.login}</p>
-                                <label>Pontuação: #{membro.pontuacao}</label>
+                                <p class="w3-text" style="margin-left: -5%;">#{membro.aluno.login}
+                                    <br />
+                                    Pontuação: #{membro.pontuacao}
+                                </p>
                             </div>
                         </div>  
                         <hr/>

@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Aluno | Pagina Inicial</title>
+        <title>Aluno | Notificações</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="../dist/w3-css/w3.css"/>
         <link rel="stylesheet" href="../dist/w3-css/w3-theme-red.css"/>
@@ -35,16 +36,11 @@
                 <h:outputText value="Notificações"/>
 
                 <span class="w3-right w3-xlarge icones-menu">
-                    <h:commandLink action="#{controladorNotificacao.pageNotificacaoAluno()}"
-                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasAluno() >= 1}"
-                                   >
-                        <i class="fa fa-globe"/>
-                    </h:commandLink>
-
-                    <h:commandLink action="#{controladorNotificacao.pageNotificacaoAluno()}"
-                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasAluno() == 0}">
-                        <i class="fa fa-globe"/>
-                    </h:commandLink>
+                    <div class="dropdown" style="float:right;">
+                        <a href="page-inicial-aluno.jsf">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
                 </span>
             </header>
 
@@ -88,41 +84,60 @@
             </nav>
 
             <div class="w3-container" style="margin-top:75px">
+
+                <h:outputLabel value="Nenhuma Notificação Nova" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasAluno() == 0}"
+                               />
+
+                <h:outputLabel value="Você possui #{controladorNotificacao.listarNotificacoesNaoLidasAluno()}
+                               notificação" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasAluno() == 1}"
+                               />
+
+                <h:outputLabel value="Você possui #{controladorNotificacao.listarNotificacoesNaoLidasAluno()}
+                               notificações" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasAluno() > 1}"
+                               />
+
                 <hr/>
-                <div class="w3-row">
-                    <div class="w3-col s3">
-                        <p:graphicImage value="#{aluno.content}" id="figure-0q1"
-                                        styleClass="" style="width:70%"/>
-                    </div>
 
-                    <label class="w3-text-red w3-left-align text-fotos">#{aluno.login}</label><br />
+                <h:dataTable value="#{controladorNotificacao.listarNotificacoesAluno()}" var="notificacao" class="table"
+                             rendered="#{controladorNotificacao.listarNotificacoesAluno().size() > 0}">
 
-                    <small class="text-fotos w3-margin-top" style="font-size: 10px;">15/21/2015
-                        <i class="fa fa-clock-o"></i>
-                    </small>
+                    <h:column>
+                        <div class="w3-row">
+                            <div class="w3-col s3">
+                                <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" 
+                                                styleClass="w3-image" style="width: 50%;">
+                                    <f:param value="#{notificacao.remetente}" name="loginComentario"/>
+                                </p:graphicImage>
+                            </div>
 
-                    <p>The response to the animations was ridiculous.</p>
+                            <div class="">
+                                <h:outputLabel value="#{notificacao.mensagem}"
+                                               style="margin-left: -11%; font-size: 11px"
+                                               rendered="#{notificacao.lido == false}"
+                                               class="w3-text-red"/>
 
-                </div>  
-                <hr/>
+                                <h:outputLabel value="#{notificacao.mensagem}"
+                                               style="margin-left: -11%; font-size: 11px;"
+                                               rendered="#{notificacao.lido == true}"
+                                               class="w3-text-black"/>
+                            </div>
 
-                <div class="w3-col m2 w3-center">
-                    <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <p class="p-titulos">Proximos Eventos</p>
-                            <img src="../img/03125905665537.jpg" alt="Cinque Terre" style="width:100%;"/>
-                            <p><strong>Italy</strong></p>
-                            <p>Friday 15:00</p>
-                            <p><button class="w3-btn">Info</button></p>
-                        </div>
-                    </div><br />
+                            <div class="">
+                                <h:commandLink value="Marcar como visto" class="links-page-aluno w3-text-blue" 
+                                               action="#{controladorNotificacao.marcarComVisto(notificacao)}">
+                                </h:commandLink>
+                            </div>
 
-                    <div class="w3-card-2 w3-round w3-white w3-padding-16">
-                        <p>ADS</p>
-                    </div><br />
-                </div>
+                        </div>  
+                        <hr/>
+                    </h:column>
+
+                </h:dataTable>
+
             </div>
-
         </h:form>
     </h:body>
 

@@ -32,7 +32,7 @@
                     <i class="fa fa-bars"></i>
                 </span>
 
-                <h:outputText value="Notificações"/>
+                <h:outputText value="Meus Grupos"/>
 
                 <span class="w3-right w3-xxlarge">
                     <div class="dropdown" style="float:right;">
@@ -83,16 +83,16 @@
             </nav>
 
             <div class="w3-container" style="margin-top:75px">
-                <hr/>
-                <p class="w3-center">Meus Grupos</p>
-
                 <h:dataTable value="#{controladorGrupo.gruposAluno()}" var="participaGrupo" 
                              class="w3-table w3-bordered w3-striped" columnClasses="column1"
                              rendered="#{controladorGrupo.gruposAluno().size() > 0}">
+
                     <h:column class="column1">
-                        <h:commandLink value="#{participaGrupo.grupo.nome}" action="#{controladorGrupo.paginaGrupoAluno(participaGrupo.grupo)}" 
-                                       style="text-decoration: none"
-                                       class="text-success"/>
+                        <div class="w3-center">
+                            <h:commandLink value="#{participaGrupo.grupo.nome}" action="#{controladorGrupo.paginaGrupoAluno(participaGrupo.grupo)}" 
+                                           style="text-decoration: none"
+                                           class="w3-text-blue"/>
+                        </div>
                     </h:column>
                 </h:dataTable>
 

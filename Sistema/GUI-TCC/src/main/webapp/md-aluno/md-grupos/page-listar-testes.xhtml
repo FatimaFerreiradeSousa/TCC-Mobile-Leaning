@@ -88,23 +88,23 @@
             <div class="w3-container" style="margin-top:75px">
                 <hr />
 
-                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" 
+                <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
                              class="w3-table w3-bordered w3-striped" 
-                             rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
+                             rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                     <h:column>
-                        <h:commandLink value="#{teste.conteudo}" 
+                        <h:commandLink value="#{teste.assunto}" 
                                        action="#{controladorTeste.paginaVisualizarTeste(teste)}" 
                                        style="text-decoration: none;" class="w3-text-blue"/> -
-                        <label>#{teste.loginUsuario}</label><br />
+                        <label>#{teste.professor.login}</label><br />
 
-                        <h:outputLabel value="#{teste.dataCriacao}" style="font-size: 10px">
+                        <h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputLabel>
                     </h:column>
                 </h:dataTable>
 
                 <h:outputLabel value="Nenhum resultado encontrado" 
-                               rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"
+                               rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
                                class="w3-text-red"/>
             </div>
 

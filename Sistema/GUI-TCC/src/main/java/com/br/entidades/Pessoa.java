@@ -5,12 +5,15 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -35,7 +38,7 @@ public class Pessoa implements Serializable {
     private String email;
     @Temporal(TemporalType.DATE)
     private Date dataParticipacao;
-
+    
     @Transient
     private StreamedContent content;
 

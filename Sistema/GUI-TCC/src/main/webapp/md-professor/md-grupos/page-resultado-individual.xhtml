@@ -104,24 +104,30 @@
         <div class="w3-container w3-half w3-margin-top">
 
             <h:form acceptcharset="ISO-8859-1">
-
+                <label class="w3-center">Alunos que responderam o teste</label>
+                <hr />
                 <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro"  
                              class="w3-table w3-striped w3-bordered"
                              rendered="#{controladorTeste.resultadoTestes().size() > 0}">
                     <h:column>
+
                         <div class="w3-row">
                             <div class="w3-col s3">
                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" id="figure-0q1"
-                                                styleClass="w3-image" style="width:95%">
+                                                styleClass="w3-image w3-circle" style="width:85%">
                                     <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage>
                             </div>
-                            <div class="w3-col s9 w3-container">
-                                <p class="w3-text-red">#{membro.aluno.login}</p>
-                                <p>Pontuação: #{membro.nota}</p>
+
+                            <div class="">
+                                <p class="w3-text" style="margin-left: -10%">#{membro.aluno.login}
+                                    <br />
+                                    Pontuação: #{membro.nota}
+                                </p>
+
                             </div>
                         </div>  
-                        <hr/>
+
                     </h:column>
                 </h:dataTable>
 

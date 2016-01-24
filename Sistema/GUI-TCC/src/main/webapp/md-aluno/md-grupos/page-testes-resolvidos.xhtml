@@ -86,13 +86,15 @@
                                action="#{controladorUsuario.logout()}"/>
             </nav>
 
-            <div class="w3-container" style="margin-top:75px">
+            <div class="w3-container w3-center" style="margin-top:75px">
+                <label class="w3-center">Testes Resolvidos</label>
                 <hr/>
-                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" 
-                             class="w3-table w3-bordered w3-striped" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
+                <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
+                             class="w3-table w3-bordered w3-striped" style="float: left;" 
+                             rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                     <h:column>
                         <div class="w3-center">
-                            <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.pageResultado(teste)}" 
+                            <h:commandLink value="#{teste.assunto}" action="#{controladorTeste.pageResultado(teste)}" 
                                            style="text-decoration: none;"
                                            class="w3-text-blue"/>
                         </div>

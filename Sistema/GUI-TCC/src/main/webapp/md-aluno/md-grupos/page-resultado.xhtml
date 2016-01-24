@@ -89,21 +89,22 @@
             <div class="w3-container" style="margin-top:75px">
                 <hr/>
                 <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro" 
-                             class="table-responsive table" style="float: left;" rendered="#{controladorGrupo.listarMembros().size() > 0}">
+                             class="table-responsive table" style="float: left;" 
+                             rendered="#{controladorTeste.resultadoTestes().size() > 0}">
                     <h:column>
-                        <div class="w3-center">
-                            <a class="pull-left" href="#">
+                        <div class="w3-row">
+                            <div class="w3-col s3">
                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                styleClass="w3-image img-grupo-aluno">
+                                                styleClass="w3-image" style="width:80%">
                                     <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage>
-                            </a>
+                            </div>
 
-                            <h4 class="media-heading">#{membro.aluno.login} - 
-                                <small style="font-size: 12px;">Pontuação: #{membro.nota}</small>
-                            </h4>
+                            <p class="w3-text" style="margin-left: -5%;">#{membro.aluno.login}<br />
+                                Pontuação: #{membro.nota}
+                            </p>
+                        </div><hr/>
 
-                        </div>
                     </h:column>
                 </h:dataTable>
 

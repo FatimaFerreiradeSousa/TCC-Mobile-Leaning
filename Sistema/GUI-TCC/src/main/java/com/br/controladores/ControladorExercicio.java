@@ -1,16 +1,18 @@
 package com.br.controladores;
 
+import com.br.entidades.Aluno;
 import com.br.entidades.Grupo;
+import com.br.entidades.Notificacao;
+import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Pergunta;
 import com.br.entidades.Teste;
-import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
@@ -27,6 +29,7 @@ public class ControladorExercicio implements Serializable {
     private String codigoGrupo;
     private Pergunta pergunta;
     private String grupoCodigo;
+    private String mensagem;
 
     @EJB
     Fachada fachada;
@@ -63,8 +66,17 @@ public class ControladorExercicio implements Serializable {
         this.pergunta = pergunta;
     }
 
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
     public String salvarTeste() {
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        exercicio.setDisponivel(true);
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();
@@ -78,7 +90,6 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<Teste> testesCadastrados() {
-        
         return fachada.listarTestes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
@@ -143,26 +154,46 @@ public class ControladorExercicio implements Serializable {
         String codigo[] = codigoGrupo.split(" ");
 
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
-        Topico topico = new Topico();
-
-        topico.setCodigoTeste(exercicio.getCodigo());
-        topico.setConteudo(exercicio.getAssunto());
-        topico.setDataCriacao(exercicio.getDataEntrega());
-        topico.setTipo("Atividade");
-        topico.setGrupo(grupo);
-        topico.setDisponivel(true);
-        topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-
-        fachada.salvarTopico(topico);
         
-        return "page-listar-testes?faces-redirect=true";
+        if (grupo.getTestesGrupo().indexOf(exercicio) == -1) {
+            
+            grupo.getTestesGrupo().add(exercicio);
+            fachada.atualizarGrupo(grupo);
+            notificarUsuarios(grupo);
+            
+            return "page-alterar-teste?faces-redirect=true";
+        }else{
+            
+            this.mensagem = "Esse teste ja foi enviado ao grupo selecionado!";
+            return "page-enviar-teste?faces-redirect=true";
+        }
+        
     }
 
     public String cancelarEnvio() {
         return "page-alterar-teste?faces-redirect=true";
     }
-    
-    public String concluirEnvio(){
+
+    public String concluirEnvio() {
         return "page-listar-testes?faces-redirect=true";
+    }
+
+    public void notificarUsuarios(Grupo grupo) {
+
+        List<Aluno> membrosGrupo = fachada.listarMembrosGrupo(grupo.getCodigo());
+        Notificacao notificacao;
+
+        for (Aluno membro : membrosGrupo) {
+            notificacao = new Notificacao();
+            notificacao.setDestinatario(membro.getLogin());
+            notificacao.setRemetente(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+            notificacao.setLido(false);
+            notificacao.setDataNot(new Date());
+            notificacao.setMensagem(PegarUsuarioSessao.pegarProfessorSessao().getLogin()
+                    + " enviou um novo teste para o grupo " + grupo.getNome());
+
+            fachada.salvarNotificacao(notificacao);
+        }
+
     }
 }

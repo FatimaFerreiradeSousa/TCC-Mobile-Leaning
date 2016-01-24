@@ -2,6 +2,7 @@ package com.br.daos;
 
 import com.br.entidades.Professor;
 import com.br.interfaces.InterfaceDaoProfessor;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

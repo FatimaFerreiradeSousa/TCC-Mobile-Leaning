@@ -86,21 +86,25 @@
             </nav>
 
             <div class="w3-container" style="margin-top:75px">
-                <hr/>
+                <label>Racking Geral</label>
+                <hr />
+                
                 <h:dataTable value="#{controladorGrupo.listaRanckingGrupo()}" var="membro" 
-                             class="w3-table w3-bordered w3-striped" style="float: left;" 
-                             rendered="#{controladorGrupo.listarMembros().size() > 0}">
+                             class="w3-table" style="float: left;" 
+                             rendered="#{controladorGrupo.listaRanckingGrupo().size() > 0}">
                     <h:column>
-                        <a class="w3-left" href="#">
-                            <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                            styleClass="w3-image img-grupo-aluno">
-                                <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
-                            </p:graphicImage>
-                        </a>
-                        <h4 class="" style="margin-left: 18%;">#{membro.aluno.login}
-                            <small style="font-size: 12px;">Pontuação: #{membro.pontuacao}</small>
-                        </h4>
+                        <div class="w3-row">
+                            <div class="w3-col s3">
+                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                styleClass="w3-image" style="width:80%">
+                                    <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
+                                </p:graphicImage>
+                            </div>
 
+                            <p class="w3-text" style="margin-left: -5%;">#{membro.aluno.login}<br />
+                                Pontuação: #{membro.pontuacao}
+                            </p>
+                        </div><hr />
                     </h:column>
                 </h:dataTable>
 

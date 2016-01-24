@@ -134,3 +134,20 @@ body{
 .text-fotos{
     margin-left: -7%;
 }
+
+.icones-menu{
+    float:right; 
+    padding-top: 15px;
+}
+
+.links{
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: -11%;
+}
+
+.links-page-aluno{
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: -11%;
+}

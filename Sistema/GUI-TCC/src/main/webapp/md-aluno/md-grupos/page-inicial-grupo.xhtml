@@ -144,9 +144,6 @@
                                 <h:outputLabel style="font-size: 12px">
                                     #{topico.conteudo}
                                     <br />
-                                    <h:commandLink value="Responder teste" rendered="#{topico.codigoTeste != 0}" 
-                                                   style="text-decoration: none;"
-                                                   action="#{controladorTeste.paginaVisualizarTeste(topico)}"/>
                                     <p:commandLink value="#{topico.nome}" ajax="false" rendered="#{topico.nome != null}" style="font-size: 12px">
                                         <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, topico.nome, topico.codigo)}" />
                                     </p:commandLink>

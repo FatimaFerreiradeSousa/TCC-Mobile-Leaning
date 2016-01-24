@@ -126,7 +126,7 @@ public class ControladorUsuarios implements Serializable {
 
     public String salvarUsuario() throws IOException {
         String caminho
-                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
+                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\imgPadrao\\perfil.png";
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
@@ -185,13 +185,14 @@ public class ControladorUsuarios implements Serializable {
                 context.redirect(request.getContextPath() + loginPage);
                 aluno = PegarUsuarioSessao.pegarAlunoSessao();
                 mensagem = null;
+                
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
         } else {
 
             Professor p = fachada.loginProfessor(login, senha);
-            
+             
             if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -201,6 +202,7 @@ public class ControladorUsuarios implements Serializable {
                 context.redirect(request.getContextPath() + loginPage);
                 professor = PegarUsuarioSessao.pegarProfessorSessao();
                 mensagem = null;
+                
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
@@ -215,7 +217,7 @@ public class ControladorUsuarios implements Serializable {
         try {
             context.redirect(request.getContextPath());
         } catch (IOException e) {
-
+            
         }
 
         return null;
@@ -230,7 +232,7 @@ public class ControladorUsuarios implements Serializable {
 
     public void uploadProfessor() {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
                 + professor.getLogin() + "\\";
 
         File dir = new File(caminho);
@@ -265,7 +267,7 @@ public class ControladorUsuarios implements Serializable {
 
     /*Aluno*/
     public void uploadAluno() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
                 + aluno.getLogin() + "\\";
 
         File dir = new File(caminho);
@@ -298,7 +300,6 @@ public class ControladorUsuarios implements Serializable {
         }
     }
 
-    /*Redirect*/
     public String atualizarAluno() {
         aluno = PegarUsuarioSessao.pegarAlunoSessao();
         fachada.atualizarAluno(aluno);
@@ -306,31 +307,7 @@ public class ControladorUsuarios implements Serializable {
         return "page-config-aluno?faces-redirect=true";
     }
     
-    public String pageInfoProfessor(){
-        return "page-alterar-info?faces-redirect=true";
-    }
-    
-    public String pageFotoProfessor(){
-        return "page-alterar-foto?faces-redirect=true";
-    }
-    
-    public String pageConfigProfessor(){
-        return "page-config-professor?faces-redirect=true";
-    }
-    
     public String pageInicialProfessor(){
-        return "page-inicial-professor?face-redirect=true";
-    }
-    
-    public String pageInfoAluno(){
-        return "page-info-aluno?faces-redirect=true";
-    }
-    
-    public String pageFotoAluno(){
-        return "page-foto-aluno?faces-redirect=true";
-    }
-    
-    public String pageConfigAluno(){
-        return "page-config-aluno?faces-redirect=true";
+        return "page-inicial-professor?faces-redirect=true";
     }
 }

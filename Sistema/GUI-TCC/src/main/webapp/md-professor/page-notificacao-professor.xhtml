@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Pagina Inicial</title>
@@ -37,21 +38,14 @@
                 </span>
 
                 <span class="w3-right w3-xlarge">
-                    <div class="dropdown icones-menu">
-                        <h:commandLink action="#{controladorNotificacao.pageNotificacaoProfessor()}"
-                                       rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 1}"
-                                       class="w3-black">
-                           <i class="fa fa-globe"/>
-                        </h:commandLink>
-                        
-                        <h:commandLink action="#{controladorNotificacao.pageNotificacaoProfessor()}"
-                                       rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() == 0}">
-                           <i class="fa fa-globe"/>
+                    <div class="dropdown icones-menu" style="margin-right: 2px;">
+                        <h:commandLink action="#{controladorUsuario.pageInicialProfessor()}">
+                            <i class="fa fa-home"/>
                         </h:commandLink>
                     </div>
                 </span>
 
-                
+
             </header>
 
             <nav class="w3-sidenav w3-card-2 w3-white w3-top"  style="width:50%;display:none">
@@ -61,7 +55,7 @@
                     <div class="w3-padding w3-center">
                         <p:graphicImage value="#{professor.content}" id="figure-01"
                                         styleClass="w3-circle" style="width:95%"/>
-                                                
+
                         <h:outputText value="#{professor.login}"/>
                     </div>
                 </div>
@@ -107,30 +101,59 @@
         <h:form>
 
             <div class="w3-container" style="margin-top:75px">
-                <hr/>
-                <div class="w3-row">
-                    <div class="w3-col s3">
-                        <p:graphicImage value="#{professor.content}" id="figure-0q1"
-                                        styleClass="w3-circle" style="width:95%"/>
-                    </div>
-                    <div class="w3-col s9 w3-container">
-                        <h3 class="w3-text-red">#{professor.login}</h3>
-                        <p>The response to the animations was ridiculous.</p>
-                    </div>
-                </div>  
+
+                <h:outputLabel value="Nenhuma Notificação Nova" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() == 0}"
+                               />
+
+                <h:outputLabel value="Você possui #{controladorNotificacao.listarNotificacoesNaoLidasProfessor()}
+                               notificação" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() == 1}"
+                               />
+
+                <h:outputLabel value="Você possui #{controladorNotificacao.listarNotificacoesNaoLidasProfessor()}
+                               notificações" class="w3-center"
+                               rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 1}"
+                               />
+
                 <hr/>
 
-                <div class="w3-col m2 w3-center">
-                    <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <p class="p-titulos">Proximos Eventos</p>
-                            <img src="../img/03125905665537.jpg" alt="Cinque Terre" style="width:100%;"/>
-                            <p><strong>Italy</strong></p>
-                            <p>Friday 15:00</p>
-                            <p><button class="w3-btn">Info</button></p>
-                        </div>
-                    </div><br />
-                </div>
+                <h:dataTable value="#{controladorNotificacao.listarNotificacoesProfessor()}" var="notificacao" class="table"
+                             rendered="#{controladorNotificacao.listarNotificacoesProfessor().size() > 0}">
+
+                    <h:column>
+                        <div class="w3-row">
+                            <div class="w3-col s3">
+                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                styleClass="w3-image" style="width: 50%">
+                                    <f:param value="#{notificacao.remetente}" name="loginUsuario"/>
+                                </p:graphicImage>
+                            </div>
+
+                            <div>
+                                <h:outputLabel value="#{notificacao.mensagem}"
+                                               style="margin-left: -11%;"
+                                               rendered="#{notificacao.lido == false}"
+                                               class="w3-text-red"/>
+
+                                <h:outputLabel value="#{notificacao.mensagem}"
+                                               style="margin-left: -11%;"
+                                               rendered="#{notificacao.lido == true}"
+                                               class="w3-text-black"/>
+                            </div>
+
+                            <div class="">
+                                <h:commandLink value="Marcar como visto" class="links w3-text-blue" 
+                                               action="#{controladorNotificacao.marcarComVistoProfessor(notificacao)}">
+                                </h:commandLink>
+                            </div>
+
+                        </div>  
+                        <hr/>
+                    </h:column>
+
+                </h:dataTable>
+
             </div>
         </h:form>
     </h:body>

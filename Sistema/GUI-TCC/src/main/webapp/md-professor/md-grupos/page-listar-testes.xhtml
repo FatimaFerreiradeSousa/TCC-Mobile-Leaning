@@ -103,20 +103,23 @@
 
             <h:form acceptcharset="ISO-8859-1">
 
-                <h:dataTable value="#{controladorGrupo.listarTestesGrupo()}" var="teste" 
+                <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
                              class="w3-table w3-striped w3-bordered"
-                             rendered="#{controladorGrupo.listarTestesGrupo().size() > 0}">
+                             rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                     <h:column>
-                        <h:commandLink value="#{teste.conteudo}" action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
-                        <label>#{teste.loginUsuario}</label><br />
+                        <h:commandLink value="#{teste.assunto}" 
+                                       action="#{controladorTeste.resultadoIndividual(teste)}" 
+                                       style="text-decoration: none;"/> -
+                        <label>#{teste.professor.login}</label>
 
-                        (<h:outputLabel value="#{teste.dataCriacao}" style="font-size: 10px">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputLabel>)
+                            (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputLabel>)
                     </h:column>
                 </h:dataTable>
 
-                <h:outputLabel value="Nenhum resultado encontrado" rendered="#{controladorGrupo.listarTestesGrupo().size() == 0}"
+                <h:outputLabel value="Nenhum resultado encontrado" 
+                               rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
                                class="text-danger"/>
             </h:form>
 

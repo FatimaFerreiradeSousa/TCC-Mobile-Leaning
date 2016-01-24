@@ -1,11 +1,8 @@
 package com.br.entidades;
 
-import com.br.enumeracao.TipoNotificacao;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,21 +24,17 @@ public class Notificacao implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataNot;
     private boolean lido;
-    private String loginAluno;
-    private String loginProfessor;
-    @Enumerated(EnumType.STRING)
-    private TipoNotificacao tipo;
-    
+    private String remetente;
+    private String destinatario;
     public Notificacao(){
     }
 
-    public Notificacao(String mensagem, Date dataNot, boolean lido, String loginAluno, String loginProfessor, TipoNotificacao tipo) {
+    public Notificacao(String mensagem, Date dataNot, boolean lido, String remetente, String destinatario) {
         this.mensagem = mensagem;
         this.dataNot = dataNot;
         this.lido = lido;
-        this.loginAluno = loginAluno;
-        this.loginProfessor = loginProfessor;
-        this.tipo = tipo;
+        this.remetente = remetente;
+        this.destinatario = destinatario;
     }
 
     public int getId() {
@@ -76,27 +69,19 @@ public class Notificacao implements Serializable{
         this.lido = lido;
     }
 
-    public String getLoginAluno() {
-        return loginAluno;
+    public String getRemetente() {
+        return remetente;
     }
 
-    public void setLoginAluno(String loginAluno) {
-        this.loginAluno = loginAluno;
+    public void setRemetente(String remetente) {
+        this.remetente = remetente;
     }
 
-    public String getLoginProfessor() {
-        return loginProfessor;
+    public String getDestinatario() {
+        return destinatario;
     }
 
-    public void setLoginProfessor(String loginProfessor) {
-        this.loginProfessor = loginProfessor;
-    }
-
-    public TipoNotificacao getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoNotificacao tipo) {
-        this.tipo = tipo;
+    public void setDestinatario(String destinatario) {
+        this.destinatario = destinatario;
     }
 }
