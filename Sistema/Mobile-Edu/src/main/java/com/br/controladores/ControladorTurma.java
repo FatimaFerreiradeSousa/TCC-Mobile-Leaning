@@ -111,10 +111,18 @@ public class ControladorTurma implements Serializable {
     }
 
     public boolean verificarMembro() {
-        return turma.getAlunos().contains(aluno);
+        return turma.getAlunos().indexOf(aluno) == -1;
     }
 
     public String removerMembro() {
+
+        turma.getAlunos().remove(aluno);
+
+        if (fachada.alterarTurma(turma)) {
+            return "page-buscar-aluno?faces-redirect=true";
+        }
+        
         return "page-buscar-aluno?faces-redirect=true";
+
     }
 }
