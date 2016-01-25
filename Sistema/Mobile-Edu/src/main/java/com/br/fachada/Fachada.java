@@ -36,6 +36,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoRespondeExercicio daoRespondeExercicio;
     @EJB
     private InterfaceNotificacao daoNotificacao;
+    @EJB
+    private InterfaceDaoTurma daoTurma;
     
     public Fachada() {
     }
@@ -306,5 +308,22 @@ public class Fachada implements Serializable {
     
     public int listarQTDNotificacoes(String login){
         return daoNotificacao.listarQTDNotificacoes(login);
+    }
+    
+    /*CRUD TURMA*/
+    public boolean salvarTurma(Turma turma){
+        return daoTurma.salvarTurma(turma);
+    }
+    
+    public boolean alterarTurma(Turma turma){
+        return daoTurma.atualizarTurma(turma);
+    }
+    
+    public boolean removerTurma(Turma turma){
+        return daoTurma.removerTurma(turma);
+    }
+    
+    public List<Turma> listarTurmas(String login){
+        return daoTurma.listarTurmas(login);
     }
 }

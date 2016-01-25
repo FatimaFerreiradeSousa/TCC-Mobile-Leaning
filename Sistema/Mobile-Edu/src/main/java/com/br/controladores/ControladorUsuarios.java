@@ -178,11 +178,13 @@ public class ControladorUsuarios implements Serializable {
 
             if (a != null) {
                 String loginPage = "/md-aluno/page-inicial-aluno.jsf";
+                
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("aluno", a);
                 context.redirect(request.getContextPath() + loginPage);
+                
                 aluno = PegarUsuarioSessao.pegarAlunoSessao();
                 mensagem = null;
                 
@@ -195,12 +197,14 @@ public class ControladorUsuarios implements Serializable {
              
             if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
+                
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("professor", p);
                 context.redirect(request.getContextPath() + loginPage);
                 professor = PegarUsuarioSessao.pegarProfessorSessao();
+                
                 mensagem = null;
                 
             } else {

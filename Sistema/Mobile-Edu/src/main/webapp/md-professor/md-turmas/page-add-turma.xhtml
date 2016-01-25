@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Professor | Add Turma</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link href="../../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-time-line.css" rel="stylesheet"/>
+        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../../bootstrap/js/bootstrap.js"></script>
+        <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../../bootstrap/js/custom.js"></script>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="../page-inicial-professor.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-professor.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <h:form>
+                <nav class="navbar-default navbar-side" role="navigation">
+                    <div class="sidebar-collapse">
+                        <ul class="nav" id="main-menu">
+                            <li>
+                                <div class="user-img-div">
+                                    <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                    styleClass="img-circle"/>
+                                </div> 
+                            </li>
+
+                            <li>
+
+                                <a href="#"><strong>#{professor.login}</strong></a>
+
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Testes
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../page-cad-pergunta.jsf">
+                                            Cadastrar Pergunta
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-listar-perguntas.jsf">
+                                            Perguntas Cadastradas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-cad-teste.jsf">
+                                            Cadastrar Teste
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-listar-testes.jsf">
+                                            Testes Cadastrados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Meus Testes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Grupos 
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../page-cad-grupo.jsf">
+                                            Criar Grupo
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="../page-listar-grupos.jsf">
+                                            Meus Grupos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="../page-solicitacoes-grupos.jsf">
+                                            Solicitações
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="active-menu">
+                                    Classes 
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="page-add-turma.jsf">
+                                            Nova Turma
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="page-listar-turmas.jsf">
+                                            Turmas
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+
+                                <a href="../page-registro-atividade.jsf">
+                                    Notificações 
+                                    <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
+                                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
+                                </a> 
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </h:form>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="page-head-line"></h1>
+                        </div>
+                    </div>
+
+                    <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
+
+                        <div class="col-lg-10">
+                            <div class="form-group text-center">
+                                <label for="dataInicio" class="col-sm-2 control-label">Detalhes da Turma</label>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="nome" class="col-sm-2 control-label">Nome</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="nome" errorClass="erros"/>
+                                        <h:inputText value="#{controladorTurma.turma.nome}" class="form-control" 
+                                                     id="nome" pt:placeholder="Nome"
+                                                     required="true"
+                                                     requiredMessage="Campo obrigatório"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="codigo" class="col-sm-2 control-label">Codigo</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="codigo" errorClass="erros"/>
+                                        <h:inputText value="#{controladorTurma.turma.codigo}" class="form-control" 
+                                                     id="codigo" pt:placeholder="Codigo"
+                                                     required="true"
+                                                     requiredMessage="Campo obrigatório"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="categoria" class="col-sm-2 control-label">Categoria</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="categoria" errorClass="erros"/>
+                                        <h:inputText value="#{controladorTurma.turma.categoria}" class="form-control" 
+                                                     id="categoria" pt:placeholder="Categoria"
+                                                     required="true"
+                                                     requiredMessage="Campo obrigatório"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="descricao" class="col-sm-2 control-label">Descrição</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="descricao" errorClass="erros"/>
+                                        <h:inputTextarea value="#{controladorTurma.turma.descricao}" class="form-control" 
+                                                         id="descricao" pt:placeholder="Descrição"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group text-center">
+                                    <label for="dataInicio" class="col-sm-2 control-label">Detalhes do Curso</label>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="dataInicio" class="col-sm-2 control-label">Inicio</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="dataInicio" errorClass="erros"/>
+                                        <h:inputText value="#{controladorTurma.turma.dataInicio}" class="form-control" 
+                                                     id="dataInicio" pt:placeholder="dd/mm/yyyy"
+                                                     required="true"
+                                                     requiredMessage="Data de Inicio">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:inputText>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label for="dataFim" class="col-sm-2 control-label">Terminio</label>
+                                    <div class="col-sm-10">
+                                        <h:message for="dataFim" errorClass="erros"/>
+                                        <h:inputText value="#{controladorTurma.turma.dataTerminio}" class="form-control" 
+                                                     id="dataFim" pt:placeholder="dd/mm/yyyy"
+                                                     required="true"
+                                                     requiredMessage="Campo obrigatório">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:inputText>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <div class="col-sm-10 col-lg-offset-2">
+                                        <h:commandButton action="#{controladorTurma.salvarTurma()}" 
+                                                         class="btn btn-success" value="Salvar Turma"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

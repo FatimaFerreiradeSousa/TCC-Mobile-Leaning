@@ -3,22 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Adicionar Aluno</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <link href="../assets/css/css-time-line.css" rel="stylesheet"/>
-        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
-        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
-        <script src="../bootstrap/js/bootstrap.js"></script>
-        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
-        <script src="../bootstrap/js/custom.js"></script>
+        <link href="../../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../../bootstrap/js/bootstrap.js"></script>
+        <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../../bootstrap/js/custom.js"></script>
+        <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
 
     </h:head>
 
@@ -33,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a  class="navbar-brand" href="page-inicial-professor.jsf">Inicio</a>
+                    <a  class="navbar-brand" href="../page-inicial-professor.jsf">Inicio</a>
                 </div>
 
                 <h:form>
@@ -80,28 +81,28 @@
                             </li>
 
                             <li>
-                                <a href="#" class="active-menu">
+                                <a href="#">
                                     Testes
                                 </a>
 
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="page-cad-pergunta.jsf">
+                                        <a href="../page-cad-pergunta.jsf">
                                             Cadastrar Pergunta
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="page-listar-perguntas.jsf">
+                                        <a href="../page-listar-perguntas.jsf">
                                             Perguntas Cadastradas
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="page-cad-teste.jsf">
+                                        <a href="../page-cad-teste.jsf">
                                             Cadastrar Teste
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="page-listar-testes.jsf">
+                                        <a href="../page-listar-testes.jsf">
                                             Testes Cadastrados
                                         </a>
                                     </li>
@@ -120,39 +121,39 @@
 
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="page-cad-grupo.jsf">
+                                        <a href="../page-cad-grupo.jsf">
                                             Criar Grupo
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="page-listar-grupos.jsf">
+                                        <a href="../page-listar-grupos.jsf">
                                             Meus Grupos
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="page-solicitacoes-grupos.jsf">
+                                        <a href="../page-solicitacoes-grupos.jsf">
                                             Solicitações
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li>
-                                <a href="#">
+                                <a href="#"  class="active-menu">
                                     Classes 
                                 </a>
 
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="md-turmas/page-add-turma.jsf">
+                                        <a href="page-add-turma.jsf">
                                             Nova Turma
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="md-turmas/page-listar-turmas.jsf">
+                                        <a href="page-listar-turmas.jsf">
                                             Turmas
                                         </a>
                                     </li>
@@ -161,7 +162,7 @@
 
                             <li>
 
-                                <a href="page-registro-atividade.jsf">
+                                <a href="../page-registro-atividade.jsf">
                                     Notificações 
                                     <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
                                                    rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
@@ -175,11 +176,54 @@
 
             <div id="page-wrapper" class="page-wrapper-cls">
                 <div id="page-wrapper">
+
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
+                                <div class="input-group stylish-input-group">
+                                    <h:inputText value="#{controladorTurma.aluno.login}" class="form-control input-lg"  pt:placeholder="Pesquisar usuário" />
+                                    <span class="input-group-addon">
+                                        <h:commandLink action="#{controladorTurma.buscarAluno()}">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </h:commandLink>  
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form><br />
+
                     <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line">Bem Vindo, #{controladorUsuario.professor.login}</h1>
+                        <div class="col-md-12 col-sm-offset-3 col-md-6">
+                            <h:dataTable value="#{controladorTurma.turma.alunos}" var="aluno" 
+                                         class="table-responsive table" 
+                                         style="float: left;" 
+                                         rendered="#{controladorTurma.turma.alunos.size() > 0}">
+                                <h:column>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                            styleClass="img-circle img-membros-grupo">
+                                                <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                            </p:graphicImage>
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                #{aluno.login}
+                                                <small>  #{aluno.instituicao}</small>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+
+                        <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
+                            <h:outputLabel value="Nenhum resultado encontrado" 
+                                           rendered="#{controladorTurma.turma.alunos.size() == 0}"
+                                           class="text-danger"/>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
