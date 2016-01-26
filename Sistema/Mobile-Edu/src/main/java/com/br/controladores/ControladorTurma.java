@@ -1,6 +1,7 @@
 package com.br.controladores;
 
 import com.br.entidades.Aluno;
+import com.br.entidades.Presenca;
 import com.br.entidades.Turma;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
@@ -23,10 +24,12 @@ public class ControladorTurma implements Serializable {
     private Turma turma;
     private Aluno aluno;
     private String mensagem;
+    private Presenca presenca;
 
     public ControladorTurma() {
         turma = new Turma();
         aluno = new Aluno();
+        presenca = new Presenca();
     }
 
     public Turma getTurma() {
@@ -51,6 +54,14 @@ public class ControladorTurma implements Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public Presenca getPresenca() {
+        return presenca;
+    }
+
+    public void setPresenca(Presenca presenca) {
+        this.presenca = presenca;
     }
 
     public String salvarTurma() {
@@ -124,5 +135,26 @@ public class ControladorTurma implements Serializable {
         
         return "page-buscar-aluno?faces-redirect=true";
 
+    }
+    
+    /*Presença*/
+    public String salvarPresenca(Aluno aluno){
+        presenca.setAluno(aluno);
+        presenca.setTurma(turma);
+        presenca.setStatus(true);
+        presenca.setDescricao("Presente");
+        if(fachada.salvarPresenca(presenca)){
+            return "page-add-presenca?faces-redirect=true";
+        }
+        
+        return "page-add-presenca?faces-redirect=true";
+    }
+    
+    public String salvarFalta(Aluno aluno){
+        if(fachada.salvarPresenca(presenca)){
+            return "page-add-presenca?faces-redirect=true";
+        }
+        
+        return "page-add-presenca?faces-redirect=true";
     }
 }

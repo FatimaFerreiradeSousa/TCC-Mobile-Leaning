@@ -38,6 +38,8 @@ public class Fachada implements Serializable {
     private InterfaceNotificacao daoNotificacao;
     @EJB
     private InterfaceDaoTurma daoTurma;
+    @EJB
+    private InterfaceDaoPresenca daoPresenca;
     
     public Fachada() {
     }
@@ -325,5 +327,10 @@ public class Fachada implements Serializable {
     
     public List<Turma> listarTurmas(String login){
         return daoTurma.listarTurmas(login);
+    }
+    
+    /*CRUD PRESENCA*/
+    public boolean salvarPresenca(Presenca presenca){
+        return daoPresenca.salvarPresenca(presenca);
     }
 }
