@@ -3,6 +3,7 @@ package com.br.fachada;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -332,5 +333,17 @@ public class Fachada implements Serializable {
     /*CRUD PRESENCA*/
     public boolean salvarPresenca(Presenca presenca){
         return daoPresenca.salvarPresenca(presenca);
+    }
+    
+    public List<Presenca> listarPresencaData(Date data){
+        return daoPresenca.listarPresencasPorData(data);
+    }
+    
+    public List<Presenca> listarPresencaTurma(String turma){
+        return daoPresenca.listarPresencasTurma(turma);
+    }
+    
+    public int qtdFaltas(String login, String turma){
+        return daoPresenca.qtdFaltas(login, turma);
     }
 }

@@ -184,54 +184,56 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-offset-3">
-                            <div class="panel ">
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-offset-3">
+                                <div class="panel ">
 
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-6">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-6">
 
-                                            <a href="page-alterar-turma.jsf" class="btn btn-danger btn-lg" 
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-edit"></span> <br/>Editar
-                                            </a>
+                                                <a href="page-alterar-turma.jsf" class="btn btn-danger btn-lg" 
+                                                   style="font-size: 13px;">
+                                                    <span class="glyphicon glyphicon-edit"></span> <br/>Editar
+                                                </a>
 
-                                            <a href="page-add-presenca.jsf" class="btn btn-warning btn-lg" 
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-check"></span> <br/>Presença
-                                            </a>
-                                            
-                                            <a href="page-add-nota.jsf" class="btn btn-primary btn-lg" 
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-pencil"></span> <br/>Plano de aula
-                                            </a>
-                                            
+                                                <h:commandLink value="Chamada" class="btn btn-warning btn-lg" 
+                                                               style="font-size: 13px;"
+                                                               action="#{controladorTurma.presencaPagina()}"><br/>
+                                                    <span class="glyphicon glyphicon-check"></span> 
+                                                </h:commandLink>
+
+                                                <a href="page-listar-presenca.jsf" class="btn btn-success btn-lg" 
+                                                   style="font-size: 13px;">
+                                                    <span class="glyphicon glyphicon-pencil"></span> <br/>Presença
+                                                </a> 
+                                            </div>
+
+                                            <div class="col-xs-6 col-md-6">
+                                                <a href="page-listar-alunos.jsf" class="btn btn-success btn-lg" 
+                                                   style="font-size: 13px;">
+                                                    <span class="glyphicon glyphicon-user"></span> <br/>Add Alunos
+                                                </a>
+
+                                                 <a href="page-add-aula.jsf" class="btn btn-primary btn-lg" 
+                                                   style="font-size: 13px;">
+                                                    <span class="glyphicon glyphicon-pencil"></span> <br/>Plano de aula
+                                                </a>
+
+                                                <a href="page-listar-nota.jsf" class="btn btn-danger btn-lg" 
+                                                   style="font-size: 13px;">
+                                                    <span class="glyphicon glyphicon-time"></span> <br/>Notas
+                                                </a>
+                                            </div>
+
                                         </div>
-
-                                        <div class="col-xs-6 col-md-6">
-                                            <a href="page-listar-alunos.jsf" class="btn btn-success btn-lg" 
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-user"></span> <br/>Add Alunos
-                                            </a>
-
-                                            <a href="page-listar-topicos.jsf" class="btn btn-info btn-lg"
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-compressed"></span> <br/>Comportamento
-                                            </a>
-                                            
-                                            <a href="page-listar-nota.jsf" class="btn btn-danger btn-lg" 
-                                               style="font-size: 13px;">
-                                                <span class="glyphicon glyphicon-time"></span> <br/>Notas
-                                            </a>
-                                        </div>
-
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </h:form>
                 </div>
             </div>
         </div>

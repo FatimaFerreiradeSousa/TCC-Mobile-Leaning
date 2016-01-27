@@ -78,4 +78,15 @@ public class DaoPresenca implements InterfaceDaoPresenca {
         return (List<Presenca>) query.getResultList();
 
     }
+
+    @Override
+    public int qtdFaltas(String login, String turma) {
+        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login and p.status = false and p.turma.codigo = :turma");
+        query.setParameter("login", login);
+        query.setParameter("turma", turma);
+
+        List<Presenca> list = query.getResultList();
+        
+        return list.size();
+    }
 }

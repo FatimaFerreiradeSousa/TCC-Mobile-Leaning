@@ -21,4 +21,6 @@ public interface InterfaceDaoPresenca {
     public List<Presenca> listarPresencasAluno(String login);
     
     public List<Presenca> listarPresencasTurma(String turma);
+    
+    public int qtdFaltas(String login, String turma);
 }

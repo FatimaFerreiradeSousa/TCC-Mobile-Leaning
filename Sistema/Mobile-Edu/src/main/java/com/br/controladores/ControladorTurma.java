@@ -8,6 +8,7 @@ import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -137,6 +138,14 @@ public class ControladorTurma implements Serializable {
 
     }
     
+    public String presencaPagina(){
+        if(fachada.listarPresencaData(new Date()).isEmpty()){
+            return "page-add-presenca?faces-redirect=true";
+        }else{
+            return "page-presenca?faces-redirect=true";
+        }
+    }
+    
     /*Presença*/
     public String salvarPresenca(Aluno aluno){
         presenca.setAluno(aluno);
@@ -151,10 +160,31 @@ public class ControladorTurma implements Serializable {
     }
     
     public String salvarFalta(Aluno aluno){
+        presenca.setAluno(aluno);
+        presenca.setTurma(turma);
+        presenca.setStatus(false);
+        presenca.setDescricao("Faltou");
         if(fachada.salvarPresenca(presenca)){
             return "page-add-presenca?faces-redirect=true";
         }
         
         return "page-add-presenca?faces-redirect=true";
+    }
+    
+    public List<Presenca> listarPresencaData(){
+        return fachada.listarPresencaData(new Date());
+    }
+    
+    public String paginaPresenca(){
+        return "page-presenca?faces-redirect=true";
+    }
+    
+    public int qtdFalta(Presenca presenca){
+        
+        return fachada.qtdFaltas(presenca.getAluno().getLogin(), turma.getCodigo());
+    }
+    
+    public List<Presenca> listarPresencaTurma(){
+        return fachada.listarPresencaTurma(turma.getCodigo());
     }
 }

@@ -178,62 +178,51 @@
                     <div id="page-wrapper">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="page-head-line-h1 text-center">Presença
+                                <p class="text-center">Lista de presença do dia
                                     <h:outputText value="#{controladorTurma.presenca.dataPreseca}"
                                                   >
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
-                                </h1>
+                                </p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6">
-                                <h:dataTable value="#{controladorTurma.turma.alunos}" var="aluno" 
+                                <h:dataTable value="#{controladorTurma.listarPresencaData()}" var="presenca" 
                                              class="table-responsive table" 
                                              style="float: left;" 
-                                             rendered="#{controladorTurma.turma.alunos.size() > 0}">
+                                             rendered="#{controladorTurma.listarPresencaData().size() > 0}">
                                     <h:column>
                                         <div class="media">
                                             <a class="pull-left" href="#">
                                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
                                                                 styleClass="img-circle img-membros-grupo">
-                                                    <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                                    <f:param value="#{presenca.aluno.login}" name="loginUsuario"/>
                                                 </p:graphicImage>
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="media-heading">
-                                                    #{aluno.login}
+                                                    #{presenca.aluno.login}
                                                 </h4>
+
+                                                <h:outputText value="#{presenca.descricao}" class="text-primary"
+                                                              rendered="#{presenca.status == true}"/>
+
+                                                <h:outputText value="#{presenca.descricao}" class="text-danger"
+                                                              rendered="#{presenca.status == false}"/>
                                             </div>
 
-                                            <div class="text-right" style="margin-top: -5%;">
-                                                <h:commandButton value="Prensente"
-                                                                 action="#{controladorTurma.salvarPresenca(aluno)}"
-                                                                 class="btn btn-xs btn-success btn-presenca"/>
+                                            <div class="text-right text-danger" style="margin-top: -10%;">
+                                                Faltas
                                             </div>
 
                                             <div class="text-right" style="margin-top: 1%;">
-                                                <h:commandButton value="Ausente" 
-                                                                 action="#{controladorTurma.salvarFalta(aluno)}"
-                                                                 class="btn btn-xs btn-danger btn-presenca"/>
+                                                #{controladorTurma.qtdFalta(presenca)}
                                             </div>
-
                                         </div>
                                     </h:column>
                                 </h:dataTable>
-                            </div>
-
-                            <div class="col-md-12 col-sm-offset-3 col-md-6">
-                                <h:commandLink value="Concluir" action="#{controladorTurma.paginaPresenca()}"
-                                                 class="btn btn-primary btn-lg btn-block"
-                                                 rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
-                            </div>
-
-                            <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                                <h:outputLabel value="Esta turma não possui nenhum aluno!" 
-                                               rendered="#{controladorTurma.turma.alunos.size() == 0}"
-                                               class="text-danger"/>
                             </div>
                         </div>
                     </div>
