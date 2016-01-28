@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial Turma</title>
+        <title>Professor | Notas de Aula</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -18,6 +20,7 @@
         <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../../bootstrap/js/custom.js"></script>
         <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
+        
 
     </h:head>
 
@@ -176,72 +179,136 @@
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="page-head-line text-center">Turma #{controladorTurma.turma.nome}</h1>
+                            <h1 class="page-head-line">Notas</h1>
 
-                            <div class="alert alert-info text-center">
-                                <p>#{controladorTurma.turma.descricao}</p>
-                            </div>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modalHorario">
+                                Add Nota
+                            </button>
                         </div>
                     </div>
 
                     <h:form>
                         <div class="row">
-                            <div class="col-md-6 col-sm-offset-3">
-                                <div class="panel ">
+                            <h3 class="text-center">Notas Publicadas</h3>
 
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-6">
-
-                                                <a href="page-alterar-turma.jsf" class="btn btn-danger btn-lg" 
-                                                   style="font-size: 13px;">
-                                                    <span class="glyphicon glyphicon-edit"></span> <br/>Editar
-                                                </a>
-
-                                                <h:commandLink value="Chamada" class="btn btn-warning btn-lg" 
-                                                               style="font-size: 13px;"
-                                                               action="#{controladorTurma.presencaPagina()}"><br/>
-                                                    <span class="glyphicon glyphicon-check"></span> 
-                                                </h:commandLink>
-
-                                                <a href="page-listar-presenca.jsf" class="btn btn-success btn-lg" 
-                                                   style="font-size: 13px;">
-                                                    <span class="glyphicon glyphicon-pencil"></span> <br/>Presença
-                                                </a> 
-                                                
-                                                <h:commandLink value="Artigos" class="btn btn-primary btn-lg" 
-                                                               style="font-size: 13px;"
-                                                               action="#{controladorNotas.paginaNotas()}"><br/>
-                                                    <span class="glyphicon glyphicon-ice-lolly"></span> 
-                                                </h:commandLink>
-                                            </div>
-
-                                            <div class="col-xs-6 col-md-6">
-                                                <a href="page-listar-alunos.jsf" class="btn btn-success btn-lg" 
-                                                   style="font-size: 13px;">
-                                                    <span class="glyphicon glyphicon-user"></span> <br/>Alunos
-                                                </a>
-
-                                                <a href="page-add-aula.jsf" class="btn btn-primary btn-lg" 
-                                                   style="font-size: 13px;">
-                                                    <span class="glyphicon glyphicon-pencil"></span> <br/>Plano de aula
-                                                </a>
-                                                
-                                                <h:commandLink value="Horários" class="btn btn-danger btn-lg" 
-                                                               style="font-size: 13px;"
-                                                               action="#{controladorHorario.pageHorario(controladorTurma.turma)}"><br/>
-                                                    <span class="glyphicon glyphicon-time"></span> 
-                                                </h:commandLink>
-                                            </div>
-
+                            <div class="row">
+                                <div class="col-md-4 text-center">
+                                    <div class="box">
+                                        <div class="box-content">
+                                            <h1 class="tag-title">Heading</h1>
+                                            <hr />
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
+                                                Etiam efficitur felis vel imperdiet varius. 
+                                                Maecenas bibendum elementum molestie. 
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Mauris cursus finibus semper. 
+                                                Fusce molestie tincidunt leo vel varius. 
+                                                Nam scelerisque nulla feugiat leo consequat, 
+                                                id dignissim sem tincidunt. Proin elit mauris, 
+                                                hendrerit in varius sed, facilisis sit amet neque.</p>
+                                            <br />
+                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
                                         </div>
                                     </div>
-
                                 </div>
+                                
+                                <div class="col-md-4 text-center">
+                                    <div class="box">
+                                        <div class="box-content">
+                                            <h1 class="tag-title">Heading</h1>
+                                            <hr />
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
+                                                Etiam efficitur felis vel imperdiet varius. 
+                                                Maecenas bibendum elementum molestie. 
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Mauris cursus finibus semper. 
+                                                Fusce molestie tincidunt leo vel varius. 
+                                                Nam scelerisque nulla feugiat leo consequat, 
+                                                id dignissim sem tincidunt. Proin elit mauris, 
+                                                hendrerit in varius sed, facilisis sit amet neque.</p>
+                                            <br />
+                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 text-center">
+                                    <div class="box">
+                                        <div class="box-content">
+                                            <h1 class="tag-title">Heading</h1>
+                                            <hr />
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
+                                                Etiam efficitur felis vel imperdiet varius. 
+                                                Maecenas bibendum elementum molestie. 
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                                Mauris cursus finibus semper. 
+                                                Fusce molestie tincidunt leo vel varius. 
+                                                Nam scelerisque nulla feugiat leo consequat, 
+                                                id dignissim sem tincidunt. Proin elit mauris, 
+                                                hendrerit in varius sed, facilisis sit amet neque.</p>
+                                            <br />
+                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
+
                         </div>
                     </h:form>
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalHorario" role="dialog">
+            <div class="modal-dialog">
+                <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"></button>
+                            <h4 class="modal-title">Nova Nota</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="name">Introdução</label>
+                                                <div class="col-md-9">
+                                                    <h:inputTextarea value="#{controladorHorario.horario.horarioInicial}" 
+                                                                 class="form-control"
+                                                                 pt:placeholder="Introdução"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="name">Conteúdo</label>
+                                                <div class="col-md-9">
+                                                    <h:inputTextarea value="#{controladorHorario.horario.horarioInicial}" 
+                                                                 class="form-control"
+                                                                 pt:placeholder="Conteúdo"
+                                                                 rows="15"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <h:commandButton value="Cadastrar" action="#{controladorHorario.salvarHorario()}" 
+                                             class="btn btn-warning"/>
+                        </div>
+                    </div>
+                </h:form>
             </div>
         </div>
     </h:body>

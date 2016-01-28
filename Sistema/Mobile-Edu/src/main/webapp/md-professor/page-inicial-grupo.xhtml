@@ -195,7 +195,7 @@
                                                              required="true"
                                                              requiredMessage="Escreva algo."/>
 
-                                           <div class="fileUpload btn btn-danger">
+                                            <div class="fileUpload btn btn-danger">
                                                 <span>Arquivo</span>
 
                                                 <p:fileUpload 
@@ -217,9 +217,10 @@
 
                     <h:form>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                            <div class="col-xs-12 ">
                                 <h:dataTable value="#{controladorGrupo.topicos()}" var="topico" class="table">
                                     <h:column>
+
                                         <div class="panel panel-default panel-google-plus">
                                             <div class="dropdown">
                                                 <span class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -273,6 +274,7 @@
 
                                             </div>
                                         </div>
+
                                     </h:column>
                                 </h:dataTable>
                             </div>
