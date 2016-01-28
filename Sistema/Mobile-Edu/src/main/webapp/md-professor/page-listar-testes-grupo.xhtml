@@ -156,9 +156,11 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-offset-3 col-md-6 text-center">
                                 <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
-                                             class="table table-condensed" rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
+                                             class="table table-condensed" 
+                                             rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
                                     <h:column>
-                                        <h:commandLink value="#{teste.assunto}" action="#{controladorTeste.paginaVisualizarTeste(teste)}" style="text-decoration: none;"/> -
+                                        <h:commandLink value="#{teste.assunto}" 
+                                                       action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
                                         <label>#{teste.professor.login}</label><br />
 
                                         (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">

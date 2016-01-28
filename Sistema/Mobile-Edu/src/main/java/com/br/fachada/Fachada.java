@@ -1,5 +1,6 @@
 package com.br.fachada;
 
+import com.br.daos.DaoHorario;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
@@ -41,6 +42,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoTurma daoTurma;
     @EJB
     private InterfaceDaoPresenca daoPresenca;
+    @EJB
+    private InterfaceDaoHorario daoHorario;
     
     public Fachada() {
     }
@@ -345,5 +348,14 @@ public class Fachada implements Serializable {
     
     public int qtdFaltas(String login, String turma){
         return daoPresenca.qtdFaltas(login, turma);
+    }
+    
+    /*CRUD HORARIO*/
+    public boolean salvarHorario(Horario horario){
+        return daoHorario.salvarHorario(horario);
+    }
+    
+    public List<Horario> buscarHorario(String dia){
+        return daoHorario.consultarHorario(dia);
     }
 }

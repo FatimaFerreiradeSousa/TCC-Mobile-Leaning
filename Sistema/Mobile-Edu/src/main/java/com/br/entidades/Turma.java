@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,6 +34,8 @@ public class Turma implements Serializable{
     private List<Aluno> alunos;
     @ManyToOne
     private Professor professor;
+    @OneToMany(mappedBy = "turma")
+    private List<Horario> horarios;
     
     public Turma(){
         
@@ -48,6 +51,7 @@ public class Turma implements Serializable{
         this.dataTerminio = dataTerminio;
         this.alunos = new ArrayList();
         this.professor = professor;
+        this.horarios = new ArrayList();
     }
 
     public String getCodigo() {
@@ -112,5 +116,13 @@ public class Turma implements Serializable{
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
     }
 }

@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+
+        <title>Professor | Horários</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link href="../../assets/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
+        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
+        <script src="../../bootstrap/js/jquery-1.11.1.js"></script>
+        <script src="../../bootstrap/js/bootstrap.js"></script>
+        <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
+        <script src="../../bootstrap/js/custom.js"></script>
+        <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-page-turma.css" rel="stylesheet"/>
+
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a  class="navbar-brand" href="../page-inicial-professor.jsf">Inicio</a>
+                </div>
+
+                <h:form>
+                    <div class="notifications-wrapper">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="page-config-professor.jsf">
+                                            Configurações
+                                        </a>
+
+                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </nav>
+
+            <h:form>
+                <nav class="navbar-default navbar-side" role="navigation">
+                    <div class="sidebar-collapse">
+                        <ul class="nav" id="main-menu">
+                            <li>
+                                <div class="user-img-div">
+                                    <p:graphicImage value="#{professor.content}" id="figure-01"
+                                                    styleClass="img-circle"/>
+                                </div> 
+                            </li>
+
+                            <li>
+
+                                <a href="#"><strong>#{professor.login}</strong></a>
+
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Testes
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../page-cad-pergunta.jsf">
+                                            Cadastrar Pergunta
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-listar-perguntas.jsf">
+                                            Perguntas Cadastradas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-cad-teste.jsf">
+                                            Cadastrar Teste
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../page-listar-testes.jsf">
+                                            Testes Cadastrados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Meus Testes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Grupos 
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../page-cad-grupo.jsf">
+                                            Criar Grupo
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="../page-listar-grupos.jsf">
+                                            Meus Grupos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="../page-solicitacoes-grupos.jsf">
+                                            Solicitações
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"  class="active-menu">
+                                    Classes 
+                                </a>
+
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="page-add-turma.jsf">
+                                            Nova Turma
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="page-listar-turmas.jsf">
+                                            Turmas
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+
+                                <a href="../page-registro-atividade.jsf">
+                                    Notificações 
+                                    <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
+                                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
+                                </a> 
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </h:form>
+
+            <div id="page-wrapper" class="page-wrapper-cls">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="page-head-line">Horario da classe #{controladorHorario.turma.nome}</h1>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalHorario">
+                                Add Horário
+                            </button>
+                        </div>
+                    </div>
+
+                    <h:form>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="db-wrapper">
+                                    <div class="db-pricing-seven">
+                                        <ul>
+                                            <li class="price">
+                                                Segunda-Feira
+                                            </li>
+                                        </ul>
+
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Segunda-Feira')}" var="horario"
+                                                     class="table"
+                                                     rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
+
+                                            <h:column>
+                                                #{horario.horarioInicial} - #{horario.horarioFinal}
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="db-wrapper">
+                                    <div class="db-pricing-seven">
+                                        <ul>
+                                            <li class="price">
+                                                Terça-Feira
+                                            </li>
+                                        </ul>
+
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Terça-Feira')}" var="horario"
+                                                     class="table"
+                                                     rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
+
+                                            <h:column>
+                                                #{horario.horarioInicial} - #{horario.horarioFinal}
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="db-wrapper">
+                                    <div class="db-pricing-seven">
+                                        <ul>
+                                            <li class="price">
+                                                Quarta-Feira
+                                            </li>
+                                        </ul>
+
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Quarta-Feira')}" var="horario"
+                                                     class="table"
+                                                     rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
+
+                                            <h:column>
+                                                #{horario.horarioInicial} - #{horario.horarioFinal}
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="db-wrapper">
+                                    <div class="db-pricing-seven">
+                                        <ul>
+                                            <li class="price">
+                                                Quinta-Feira
+                                            </li>
+                                        </ul>
+
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Quinta-Feira')}" var="horario"
+                                                     class="table"
+                                                     rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
+
+                                            <h:column>
+                                                #{horario.horarioInicial} - #{horario.horarioFinal}
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <div class="db-wrapper">
+                                    <div class="db-pricing-seven">
+                                        <ul>
+                                            <li class="price">
+                                                Sexta-Feira
+                                            </li>
+                                        </ul>
+
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Sexta-Feira')}" var="horario"
+                                                     class="table"
+                                                     rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
+
+                                            <h:column>
+                                                #{horario.horarioInicial} - #{horario.horarioFinal}
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalHorario" role="dialog">
+            <div class="modal-dialog">
+                <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"></button>
+                            <h4 class="modal-title">Novo Horário</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="name">Inicio</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
+                                                                 class="form-control"
+                                                                 pt:placeholder="hh:mm"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="name">Fim</label>
+                                                <div class="col-md-9">
+                                                    <h:inputText value="#{controladorHorario.horario.horarioFinal}" 
+                                                                 class="form-control"
+                                                                 pt:placeholder="hh:mm"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2"/>
+                                                <div class="col-md-9">
+                                                    <h:selectOneListbox value="#{controladorHorario.horario.dia}" 
+                                                                        id="qtdPergunta"
+                                                                        size="1" class="form-control">
+                                                        <f:selectItem itemValue="Dia da Semana"/>
+                                                        <f:selectItem itemValue="Segunda-Feira"/>
+                                                        <f:selectItem itemValue="Terça-Feira"/>
+                                                        <f:selectItem itemValue="Quarta-Feira"/>
+                                                        <f:selectItem itemValue="Quinta-Feira"/>
+                                                        <f:selectItem itemValue="Sexta-Feira"/>
+                                                    </h:selectOneListbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <h:commandButton value="Cadastrar" action="#{controladorHorario.salvarHorario()}" 
+                                             class="btn btn-success"/>
+                        </div>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+    </h:body>
+</html>
+

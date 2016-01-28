@@ -220,11 +220,13 @@
                                                    style="font-size: 13px;">
                                                     <span class="glyphicon glyphicon-pencil"></span> <br/>Plano de aula
                                                 </a>
-
-                                                <a href="page-listar-nota.jsf" class="btn btn-danger btn-lg" 
-                                                   style="font-size: 13px;">
-                                                    <span class="glyphicon glyphicon-time"></span> <br/>Notas
-                                                </a>
+                                                
+                                                <h:commandLink value="Horários" class="btn btn-danger btn-lg" 
+                                                               style="font-size: 13px;"
+                                                               action="#{controladorHorario.pageHorario(controladorTurma.turma)}"><br/>
+                                                    <span class="glyphicon glyphicon-time"></span> 
+                                                </h:commandLink>
+                                                
                                             </div>
 
                                         </div>
