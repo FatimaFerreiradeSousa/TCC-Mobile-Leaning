@@ -19,6 +19,7 @@
         <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../../bootstrap/js/custom.js"></script>
         <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-listar-alunos.css" rel="stylesheet"/>
 
     </h:head>
 
@@ -188,53 +189,54 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 col-sm-offset-3 col-md-6">
-                                <h:dataTable value="#{controladorTurma.turma.alunos}" var="aluno" 
-                                             class="table-responsive table" 
-                                             style="float: left;" 
-                                             rendered="#{controladorTurma.turma.alunos.size() > 0}">
-                                    <h:column>
-                                        <div class="media">
-                                            <a class="pull-left" href="#">
-                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                                styleClass="img-circle img-membros-grupo">
-                                                    <f:param value="#{aluno.login}" name="loginUsuario"/>
-                                                </p:graphicImage>
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">
-                                                    #{aluno.login}
-                                                </h4>
+                            <div class="col-md-12 col-md-offset-0">
+                                <div class="col-lg-12">
+                                    <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
+                                                columns="6" rows="12" id="aluno" styleClass="teste"
+                                                layout="grid" style="border: none!important">
+
+                                        <h:panelGrid columns="1" style="width: 100%;">
+
+                                            <div class="row pt-md">
+                                                <div class="profile">
+                                                    <div class="img-box">
+                                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                                        styleClass="img-responsive" style="width: 50%;">
+                                                            <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                                        </p:graphicImage>
+                                                    </div>
+
+                                                    <p style="margin-left: 15%">#{aluno.login}</p>
+
+                                                    <h:commandButton value="Presente"
+                                                                     action="#{controladorTurma.salvarPresenca(aluno)}"
+                                                                     class="btn btn-success btn-xs btn-circle">
+                                                    </h:commandButton>
+
+                                                    <h:commandButton value="Faltou"
+                                                                     action="#{controladorTurma.salvarFalta(aluno)}"
+                                                                     class="btn btn-danger btn-xs btn-circle" 
+                                                                     style="margin-top: 2%">
+                                                    </h:commandButton>
+                                                </div>
                                             </div>
 
-                                            <div class="text-right" style="margin-top: -5%;">
-                                                <h:commandButton value="Prensente"
-                                                                 action="#{controladorTurma.salvarPresenca(aluno)}"
-                                                                 class="btn btn-xs btn-success btn-presenca"/>
-                                            </div>
-
-                                            <div class="text-right" style="margin-top: 1%;">
-                                                <h:commandButton value="Ausente" 
-                                                                 action="#{controladorTurma.salvarFalta(aluno)}"
-                                                                 class="btn btn-xs btn-danger btn-presenca"/>
-                                            </div>
-
-                                        </div>
-                                    </h:column>
-                                </h:dataTable>
+                                        </h:panelGrid>
+                                    </p:dataGrid>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-12 col-sm-offset-3 col-md-6">
-                                <h:commandLink value="Concluir" action="#{controladorTurma.paginaPresenca()}"
-                                                 class="btn btn-primary btn-lg btn-block"
-                                                 rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
-                            </div>
+                        <div class="col-md-12 col-sm-offset-3 col-md-6">
+                            <h:commandLink value="Concluir" action="#{controladorTurma.paginaPresenca()}"
+                                           class="btn btn-primary btn-lg btn-block"
+                                           rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
+                        </div>
 
-                            <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
-                                <h:outputLabel value="Esta turma não possui nenhum aluno!" 
-                                               rendered="#{controladorTurma.turma.alunos.size() == 0}"
-                                               class="text-danger"/>
-                            </div>
+                        <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
+                            <h:outputLabel value="Esta turma não possui nenhum aluno!" 
+                                           rendered="#{controladorTurma.turma.alunos.size() == 0}"
+                                           class="text-danger"/>
                         </div>
                     </div>
                 </div>
