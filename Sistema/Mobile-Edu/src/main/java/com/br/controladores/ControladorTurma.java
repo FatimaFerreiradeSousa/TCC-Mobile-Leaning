@@ -1,6 +1,8 @@
 package com.br.controladores;
 
+import com.br.datas.FormatData;
 import com.br.entidades.Aluno;
+import com.br.entidades.Horario;
 import com.br.entidades.Presenca;
 import com.br.entidades.Turma;
 import com.br.fachada.Fachada;
@@ -26,11 +28,13 @@ public class ControladorTurma implements Serializable {
     private Aluno aluno;
     private String mensagem;
     private Presenca presenca;
+    private int contador;
 
     public ControladorTurma() {
         turma = new Turma();
         aluno = new Aluno();
         presenca = new Presenca();
+        contador = 0;
     }
 
     public Turma getTurma() {
@@ -63,6 +67,19 @@ public class ControladorTurma implements Serializable {
 
     public void setPresenca(Presenca presenca) {
         this.presenca = presenca;
+    }
+
+    public int getContador() {
+
+        String diaSemana = FormatData.verificarDia(FormatData.pegarDia());
+
+        contador = fachada.buscarHorario(diaSemana).size();
+        
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
     }
 
     public String salvarTurma() {
@@ -133,58 +150,72 @@ public class ControladorTurma implements Serializable {
         if (fachada.alterarTurma(turma)) {
             return "page-buscar-aluno?faces-redirect=true";
         }
-        
+
         return "page-buscar-aluno?faces-redirect=true";
 
     }
-    
-    public String presencaPagina(){
-        if(fachada.listarPresencaData(new Date()).isEmpty()){
+
+    public String presencaPagina() {
+        if (fachada.listarPresencaData(new Date()).isEmpty()) {
             return "page-add-presenca?faces-redirect=true";
-        }else{
+        } else {
             return "page-presenca?faces-redirect=true";
         }
     }
-    
+
     /*Presença*/
-    public String salvarPresenca(Aluno aluno){
+    public String salvarPresenca(Aluno aluno) {
         presenca.setAluno(aluno);
         presenca.setTurma(turma);
         presenca.setStatus(true);
         presenca.setDescricao("Presente");
-        if(fachada.salvarPresenca(presenca)){
+        if (fachada.salvarPresenca(presenca)) {
+            presenca = new Presenca();
             return "page-add-presenca?faces-redirect=true";
         }
-        
+
         return "page-add-presenca?faces-redirect=true";
     }
-    
-    public String salvarFalta(Aluno aluno){
+
+    public String salvarFalta(Aluno aluno) {
         presenca.setAluno(aluno);
         presenca.setTurma(turma);
         presenca.setStatus(false);
         presenca.setDescricao("Faltou");
-        if(fachada.salvarPresenca(presenca)){
+        if (fachada.salvarPresenca(presenca)) {
+            presenca = new Presenca();
             return "page-add-presenca?faces-redirect=true";
         }
-        
+
+        return "page-add-presenca?faces-redirect=true";
+    }
+
+    public List<Presenca> listarPresencaData() {
+        return fachada.listarPresencaData(new Date());
+    }
+
+    public String paginaPresenca() {
+        return "page-presenca?faces-redirect=true";
+    }
+
+    public int qtdFalta(Presenca presenca) {
+
+        return fachada.qtdFaltas(presenca.getAluno().getLogin(), turma.getCodigo());
+    }
+
+    public List<Presenca> listarPresencaTurma() {
+        return fachada.listarPresencaTurma(turma.getCodigo());
+    }
+
+    public String listarHorarios() {
+        String diaSemana = FormatData.verificarDia(FormatData.pegarDia());
+
+        contador = fachada.buscarHorario(diaSemana).size();
         return "page-add-presenca?faces-redirect=true";
     }
     
-    public List<Presenca> listarPresencaData(){
-        return fachada.listarPresencaData(new Date());
-    }
-    
-    public String paginaPresenca(){
-        return "page-presenca?faces-redirect=true";
-    }
-    
-    public int qtdFalta(Presenca presenca){
-        
-        return fachada.qtdFaltas(presenca.getAluno().getLogin(), turma.getCodigo());
-    }
-    
-    public List<Presenca> listarPresencaTurma(){
-        return fachada.listarPresencaTurma(turma.getCodigo());
+    public String atualizarChamada(){
+        --contador;
+        return "page-add-presenca?faces-redirect=true";
     }
 }
