@@ -126,7 +126,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<String> meusGrupos() {
-        List<Grupo> gruposProfessor = fachada.meusGrupos("Fatinha");
+        List<Grupo> gruposProfessor = fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
 
         if (grupos.isEmpty()) {
 

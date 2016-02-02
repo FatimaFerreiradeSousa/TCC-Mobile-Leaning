@@ -20,7 +20,7 @@
         <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
         <script src="../../bootstrap/js/custom.js"></script>
         <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
-        <link href="../../assets/css/css-listar-alunos.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-img.css" rel="stylesheet"/>
     </h:head>
 
     <h:body>
@@ -196,30 +196,30 @@
                         <div class="row">
                             <div class="col-md-12 col-md-offset-0">
                                 <div class="col-lg-12">
-                                    <h6 class="description">Alunos</h6>
+                                    <h5>Alunos</h5>
 
                                     <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
                                                 columns="4" rows="12" id="aluno" styleClass="teste"
-                                                layout="grid" style="border: none!important">
+                                                layout="grid">
 
-                                        <h:panelGrid columns="1" style="width: 100%;">
-                                            
-                                            <div class="row pt-md">
-                                                <div class="profile">
-                                                    <div class="img-box">
-                                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                                        styleClass="img-responsive">
-                                                            <f:param value="#{aluno.login}" name="loginUsuario"/>
-                                                        </p:graphicImage>
-                                                    </div>
-                                                    
-                                                    <h3 class="text-center">#{aluno.login}</h3>
-                                                    <p class="text-center">#{aluno.instituicao}</p>
+                                        <div class="panel panel-default">
+                                            <div class="panel-body text-center">
+                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                                styleClass="img-responsive img-circle" 
+                                                                style="width: 40%; margin-left: 30%">
+                                                    <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                                </p:graphicImage>
+
+                                                <p>#{aluno.login}</p>
+                                                
+                                                <div class="card-action text-center">
+                                                    <h:commandLink value="Registro" action="#{controladorTurma.salvarPresenca(aluno)}"/>
                                                 </div>
-                                            </div>
 
-                                        </h:panelGrid>
+                                            </div>
+                                        </div>
                                     </p:dataGrid>
+
                                 </div>
                             </div>
                         </div>

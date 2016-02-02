@@ -20,6 +20,19 @@
         <script src="../../bootstrap/js/custom.js"></script>
         <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
         <link href="../../assets/css/css-listar-alunos.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-img.css" rel="stylesheet"/>
+
+        <script>
+            $(function () {
+                $('#show').on('click', function () {
+                    $('.card-reveal').slideToggle('slow');
+                });
+
+                $('.card-reveal .close').on('click', function () {
+                    $('.card-reveal').slideToggle('slow');
+                });
+            });
+        </script>
 
     </h:head>
 
@@ -189,54 +202,61 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 col-md-offset-0">
-                                <div class="col-lg-12">
-                                    <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
-                                                columns="6" rows="12" id="aluno" styleClass="teste"
-                                                layout="grid" style="border: none!important">
 
-                                        <h:panelGrid columns="1" style="width: 100%;">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">Aula:</label>
+                                <div class="col-md-4">
+                                    <h:selectOneMenu value="#{controladorTurma.hora}"
+                                                     id="grupoCodigo" class="form-control">
+                                        <f:selectItem itemValue="Selecione" />
+                                        <f:selectItems value="#{controladorTurma.listarHorarios()}"/>
 
-                                            <div class="row pt-md">
-                                                <div class="profile">
-                                                    <div class="img-box">
-                                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                                        styleClass="img-responsive img-circle" style="width: 50%;">
-                                                            <f:param value="#{aluno.login}" name="loginUsuario"/>
-                                                        </p:graphicImage>
-                                                    </div>
+                                    </h:selectOneMenu>
+                                </div>
 
-                                                    <p style="margin-left: 15%">#{aluno.login}</p>
+                                <div class="col-md-4">
 
-                                                    <h:commandButton value="Presente"
-                                                                     action="#{controladorTurma.salvarPresenca(aluno)}"
-                                                                     class="btn btn-success btn-xs btn-circle">
-                                                    </h:commandButton>
-
-                                                    <h:commandButton value="Faltou"
-                                                                     action="#{controladorTurma.salvarFalta(aluno)}"
-                                                                     class="btn btn-danger btn-xs btn-circle" 
-                                                                     style="margin-top: 2%">
-                                                    </h:commandButton>
-                                                </div>
-                                            </div>
-
-                                        </h:panelGrid>
-                                    </p:dataGrid>
+                                    <h:commandButton value="Selecionar" 
+                                                     action="#{controladorTurma.selecionarHorario()}" 
+                                                     class="btn btn-warning"/>
                                 </div>
                             </div>
-                        </div>
-                        
+                        </div><br/>
+
+                        <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
+                                    columns="4" rows="12" id="aluno" styleClass="teste"
+                                    layout="grid" rendered="#{controladorTurma.status == true}">
+
+                            <div class="panel panel-default">
+                                <div class="panel-body text-center">
+                                    <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                    styleClass="img-responsive img-circle" 
+                                                    style="width: 40%; margin-left: 30%">
+                                        <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                    </p:graphicImage>
+
+                                    <p>#{aluno.login}</p>
+
+                                    <div class="card-action text-center">
+                                        <h:commandLink value="Presente" action="#{controladorTurma.salvarPresenca(aluno)}"/>
+                                        <h:commandLink value="Faltou" action="#{controladorTurma.salvarFalta(aluno)}"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </p:dataGrid>
+
                         <div class="col-md-12">
                             <hr/>
-                            <p>Você possui #{controladorTurma.contador} aulas nesta turma, Fazer Chamada Novamente?</p>
-                            <h:commandLink value="Sim" action="#{controladorTurma.listarHorarios()}"
-                                           class="btn btn-success" style="margin-right: 1%;"
-                                           rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
+                            <h:outputText value="Você já fez a chamada nesse horário! " 
+                                          rendered="#{controladorTurma.qtdAulas() > 0}"/>
+
+                            <h:outputText value="Chamada Feita Com Sucesso" 
+                                          rendered="#{controladorTurma.code == true}"/>
 
                             <h:commandLink value="Concluir" action="#{controladorTurma.paginaPresenca()}"
                                            class="btn btn-primary"
-                                           rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
+                                           rendered="#{controladorTurma.status == true}"/>
                         </div>
 
                         <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
@@ -248,6 +268,6 @@
                 </div>
             </h:form>
         </div>
-    </h:body>/
+    </h:body>
 </html>
 

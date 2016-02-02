@@ -23,6 +23,7 @@ public class Presenca implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private boolean status;
+    private String horaAula;
     private String descricao;
     @Temporal(TemporalType.DATE)
     private Date dataPreseca;
@@ -35,8 +36,9 @@ public class Presenca implements Serializable{
         this.dataPreseca = new Date();
     }
 
-    public Presenca(boolean status, String descricao, Turma turma, Aluno aluno) {
+    public Presenca(boolean status, String horaAula, String descricao, Turma turma, Aluno aluno) {
         this.status = status;
+        this.horaAula = horaAula;
         this.descricao = descricao;
         this.dataPreseca = new Date();
         this.turma = turma;
@@ -57,6 +59,14 @@ public class Presenca implements Serializable{
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getHoraAula() {
+        return horaAula;
+    }
+
+    public void setHoraAula(String horaAula) {
+        this.horaAula = horaAula;
     }
 
     public String getDescricao() {

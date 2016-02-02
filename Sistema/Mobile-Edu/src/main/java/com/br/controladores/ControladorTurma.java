@@ -10,6 +10,7 @@ import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,13 +29,18 @@ public class ControladorTurma implements Serializable {
     private Aluno aluno;
     private String mensagem;
     private Presenca presenca;
-    private int contador;
+    private List<String> horarios;
+    private String hora;
+    private boolean status;
+    private boolean code;
 
     public ControladorTurma() {
-        turma = new Turma();
-        aluno = new Aluno();
-        presenca = new Presenca();
-        contador = 0;
+        this.turma = new Turma();
+        this.aluno = new Aluno();
+        this.presenca = new Presenca();
+        this.horarios = new ArrayList();
+        this.status = false;
+        this.status = false;
     }
 
     public Turma getTurma() {
@@ -69,17 +75,36 @@ public class ControladorTurma implements Serializable {
         this.presenca = presenca;
     }
 
-    public int getContador() {
-
-        String diaSemana = FormatData.verificarDia(FormatData.pegarDia());
-
-        contador = fachada.buscarHorario(diaSemana).size();
-        
-        return contador;
+    public List<String> getHorarios() {
+        return horarios;
     }
 
-    public void setContador(int contador) {
-        this.contador = contador;
+    public void setHorarios(List<String> horarios) {
+        this.horarios = horarios;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isCode() {
+        return code;
+    }
+
+    public void setCode(boolean code) {
+        this.code = code;
     }
 
     public String salvarTurma() {
@@ -155,22 +180,21 @@ public class ControladorTurma implements Serializable {
 
     }
 
+    /*Presença*/
     public String presencaPagina() {
-        if (fachada.listarPresencaData(new Date()).isEmpty()) {
-            return "page-add-presenca?faces-redirect=true";
-        } else {
-            return "page-presenca?faces-redirect=true";
-        }
+        return "page-add-presenca?faces-redirect=true";
     }
 
-    /*Presença*/
     public String salvarPresenca(Aluno aluno) {
         presenca.setAluno(aluno);
         presenca.setTurma(turma);
         presenca.setStatus(true);
+        presenca.setHoraAula(hora);
+
         presenca.setDescricao("Presente");
         if (fachada.salvarPresenca(presenca)) {
             presenca = new Presenca();
+
             return "page-add-presenca?faces-redirect=true";
         }
 
@@ -182,6 +206,8 @@ public class ControladorTurma implements Serializable {
         presenca.setTurma(turma);
         presenca.setStatus(false);
         presenca.setDescricao("Faltou");
+        presenca.setHoraAula(hora);
+
         if (fachada.salvarPresenca(presenca)) {
             presenca = new Presenca();
             return "page-add-presenca?faces-redirect=true";
@@ -195,7 +221,9 @@ public class ControladorTurma implements Serializable {
     }
 
     public String paginaPresenca() {
-        return "page-presenca?faces-redirect=true";
+        this.status = false;
+        this.code = true;
+        return "page-add-presenca?faces-redirect=true";
     }
 
     public int qtdFalta(Presenca presenca) {
@@ -207,15 +235,27 @@ public class ControladorTurma implements Serializable {
         return fachada.listarPresencaTurma(turma.getCodigo());
     }
 
-    public String listarHorarios() {
+    public List<String> listarHorarios() {
         String diaSemana = FormatData.verificarDia(FormatData.pegarDia());
+        List<Horario> horariosDia = fachada.buscarHorario(diaSemana);
 
-        contador = fachada.buscarHorario(diaSemana).size();
+        if (!horariosDia.isEmpty() && horarios.isEmpty()) {
+            for (Horario horario : horariosDia) {
+                horarios.add(horario.getHorarioInicial() + "-" + horario.getHorarioFinal());
+            }
+        }
+
+        return horarios;
+    }
+
+    public String selecionarHorario() {
+        
+        this.status = fachada.listarPresencaPorHorario(new Date(), hora).size() <= 0;
+        
         return "page-add-presenca?faces-redirect=true";
     }
     
-    public String atualizarChamada(){
-        --contador;
-        return "page-add-presenca?faces-redirect=true";
+    public int qtdAulas(){
+        return fachada.listarPresencaPorHorario(new Date(), hora).size();
     }
 }

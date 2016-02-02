@@ -350,6 +350,10 @@ public class Fachada implements Serializable {
         return daoPresenca.qtdFaltas(login, turma);
     }
     
+    public List<Presenca> listarPresencaPorHorario(Date data, String horaTurma){
+        return daoPresenca.listarPresencaPorHorario(data, horaTurma);
+    }
+    
     /*CRUD HORARIO*/
     public boolean salvarHorario(Horario horario){
         return daoHorario.salvarHorario(horario);

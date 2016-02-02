@@ -33,7 +33,7 @@ public class FormatData {
             case 2:
                     return "Segunda-Feira";
             case 3:
-                return "Terca-Feira";
+                return "Terça-Feira";
             case 4:
                 return "Quarta-Feira";
             case 5:

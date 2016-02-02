@@ -86,7 +86,16 @@ public class DaoPresenca implements InterfaceDaoPresenca {
         query.setParameter("turma", turma);
 
         List<Presenca> list = query.getResultList();
-        
+
         return list.size();
+    }
+
+    @Override
+    public List<Presenca> listarPresencaPorHorario(Date data, String horaInicio) {
+        Query query = em.createQuery("select p from Presenca p where p.dataPreseca = :dataPresenca and p.horaAula = :horaInicio");
+        query.setParameter("dataPresenca", data);
+        query.setParameter("horaInicio", horaInicio);
+
+        return (List<Presenca>) query.getResultList();
     }
 }
