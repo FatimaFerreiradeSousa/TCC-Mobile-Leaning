@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Professor | Add Resposta</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8"/>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
+
+    </h:head>
+
+    <h:body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+
+            </header>
+
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+
+                    <div class="demo-avatar-dropdown">
+                        <span>#{professor.login}</span>
+                    </div>
+                </header>
+
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
+                    <a class="mdl-navigation__link" href="page-cad-pergunta.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        Nova Pergunta
+                    </a>
+
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href="page-config-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>
+                </nav>
+            </div>
+
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
+
+                    <div class="mdl-grid demo-content">
+                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                            Adicionar Resposta
+                            <hr/>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <h:inputText value="#{controladorPergunta.resposta.conteudo}" 
+                                             class="mdl-textfield__input" 
+                                             id="conteudo"/>
+
+                                <label class="mdl-textfield__label" for="conteudo">Conteúdo</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <label class="" for="resp">Resposta Certa</label>
+                                <h:selectBooleanCheckbox id="resp" 
+                                                         value="#{controladorPergunta.resposta.respostaCerta}"/>
+                            </div>                            
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <h:commandButton action="#{controladorPergunta.salvarResposta()}" 
+                                                 class="w3-btn w3-black" value="Salvar resposta"/>
+                                <h:commandButton action="#{controladorPergunta.salvarPergunta()}" 
+                                                 class="w3-btn w3-green" value="Salvar pergunta"/>
+                                <h:commandButton action="#{controladorPergunta.cancelarPergunta()}" 
+                                                 class="w3-btn w3-indigo" value="Cancelar"/>
+                            </div>
+
+                        </div>
+
+                        <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
+                                     class="w3-table" var="resposta">
+                            <h:column>
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="w3-text w3-text-blue"/>
+                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
+                                        </h3>
+                                    </div>                
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>  
+            </main>
+        </div>
+    </h:body>
+</html>
+

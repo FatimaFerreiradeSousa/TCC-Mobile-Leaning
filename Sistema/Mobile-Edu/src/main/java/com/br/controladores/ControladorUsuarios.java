@@ -213,7 +213,13 @@ public class ControladorUsuarios implements Serializable {
         }
     }
 
+    public String sair(){
+        System.out.println("Hello");
+        return null;
+    }
+    
     public String logout() {
+        
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
         this.session = (HttpSession) context.getSession(false);

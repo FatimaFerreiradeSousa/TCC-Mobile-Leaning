@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05/01/2016, 18:19:24
+    Author     : Fatinha de Sousa
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+body{
+    font-family: "Raleway", sans-serif;
+}
+
+.foto-perfil{
+    height: 75px;
+    width: 75px;
+}
+
+.container-foto{
+    margin-top: 5%;
+}
+
+.painel{
+    margin-bottom: 5%;
+}
+
+.foto-comentarios{
+    width: 96px;
+    height: 96px;
+}
+
+@media(max-width: 720px){
+    .p-titulos{
+        padding-top: 5%;
+    }
+
+    .titulos{
+        padding-top: 3%;
+    }
+}
+
+.erros {
+    color: red;
+}
+
+.buttons-formulario{
+    width: 300px;
+    margin-bottom: 2%;
+}
+
+.buttons-resposta{
+    width: 330px;
+    margin-bottom: 2%;
+}
+
+.buttons-testes{
+    width: 300px;
+    margin-top: 5%;
+}
+
+.img-topicos{
+    width: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 2%;
+    margin-left: -2%;
+}
+
+.img-comentarios{
+    width: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: -15%;
+    margin-right: 2%;
+}
+
+.img-buscar-usuario{
+    width: 96px; 
+    height: 96px; 
+    margin-top: 5%;
+}
+
+.page-text-line{
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #DD1533;
+    font-weight: 400;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.btn-alterar{
+    width: 153px;
+    margin-bottom: 2%;
+}
+
+.btn-alterar-foto{
+    width: 145px;
+    margin-bottom: 2%;
+}
+
+.page-text-span{
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #DD1533;
+    font-weight: 400;
+}
+
+.column1{
+    text-align: center;
+}
+
+.img-grupo-aluno{
+    width: 50px;
+    height: 50px;
+    margin-right: 60%;
+}
+
+.page-head-line{
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #d2d6de;
+    margin-bottom: 30px;
+}
+
+.text-fotos{
+    margin-left: -7%;
+}
+
+.icones-menu{
+    float:right; 
+    padding-top: 15px;
+}
+
+.links{
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: -11%;
+}
+
+.links-page-aluno{
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: -11%;
+}

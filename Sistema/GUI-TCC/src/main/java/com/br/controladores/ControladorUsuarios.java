@@ -232,7 +232,7 @@ public class ControladorUsuarios implements Serializable {
 
     public void uploadProfessor() {
         professor = PegarUsuarioSessao.pegarProfessorSessao();
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Professor\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\GUI-TCC\\Imagens\\Professor\\"
                 + professor.getLogin() + "\\";
 
         File dir = new File(caminho);
@@ -267,7 +267,7 @@ public class ControladorUsuarios implements Serializable {
 
     /*Aluno*/
     public void uploadAluno() {
-        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Mobile-Edu\\Imagens\\Aluno\\"
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
                 + aluno.getLogin() + "\\";
 
         File dir = new File(caminho);
@@ -309,5 +309,13 @@ public class ControladorUsuarios implements Serializable {
     
     public String pageInicialProfessor(){
         return "page-inicial-professor?faces-redirect=true";
+    }
+    
+    public String pageInfoAluno(){
+        return "page-info-aluno?faces-redirect=true";
+    }
+    
+    public String pageFotoAluno(){
+        return "page-foto-aluno?faces-redirect=true";
     }
 }
