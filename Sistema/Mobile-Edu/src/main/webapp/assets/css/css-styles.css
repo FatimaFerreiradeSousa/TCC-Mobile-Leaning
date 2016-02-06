@@ -1,0 +1,92 @@
+/* 
+    Created on : 06/02/2016, 09:24:26
+    Author     : Fatinha de Sousa
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+label{
+    font-family: "Raleway", sans-serif;
+}
+
+.mdl-main {
+    padding: 8px;
+    padding-top: 48px;
+}
+
+.mdl-main > .mdl-card {
+    height: auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.mdl-card > * {
+    height: auto;
+}
+
+.mdl-card .mdl-card__supporting-text {
+    margin-top: 30px;
+    margin-left: 2%;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 0;
+    color: inherit;
+    width: calc(100% - 80px);
+    font-family: "Raleway", sans-serif;
+    text-align: justify;
+}
+
+.mdl-card__itens {
+    padding-bottom: 1px;
+    padding-left: 10px;
+    margin-top: -10px;
+    color: inherit;
+}
+
+.mdl-card__itens a {
+    color: #00BCD4;
+    margin: 0;
+}
+
+.mdl-card__itens a:hover,
+.mdl-card__itens a:active {
+    color: inherit;
+    background-color: transparent;
+}
+
+.avatar-picture{
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.avatar-img{
+    width: 120px;
+    height: 120px;
+}
+
+.label-text{
+    margin-top: -6%;
+    margin-left: 10%;
+}
+
+.teste{
+    border: none !important;
+    text-align: center;
+}
+
+.demo-avatar-al{
+    width: 75px;
+    height: 75px;
+    margin-top: 5%;
+}
+
+.ui-datagrid{border: none !important;}  
+.ui-datagrid-content {border: none !important;}  

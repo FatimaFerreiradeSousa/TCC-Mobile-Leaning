@@ -2,218 +2,86 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
         <title>Professor | Turmas</title>
-        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8"/>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
-        <link href="../../assets/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <link href="../../assets/css/css-time-line.css" rel="stylesheet"/>
-        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
-        <script src="../../bootstrap/js/jquery-1.11.1.js"></script>
-        <script src="../../bootstrap/js/bootstrap.js"></script>
-        <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
-        <script src="../../bootstrap/js/custom.js"></script>
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
 
     </h:head>
 
     <h:body>
-        <div id="wrapper">
 
-            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a  class="navbar-brand" href="../page-inicial-professor.jsf">Inicio</a>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
                 </div>
 
-                <h:form>
-                    <div class="notifications-wrapper">
-                        <ul class="nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </a>
+            </header>
 
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="page-config-professor.jsf">
-                                            Configurações
-                                        </a>
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
-                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-
-                                    </li>
-                                </ul>
-
-                            </li>
-                        </ul>
+                    <div class="demo-avatar-dropdown">
+                        <span>#{professor.login}</span>
                     </div>
-                </h:form>
-            </nav>
+                </header>
 
-            <h:form>
-                <nav class="navbar-default navbar-side" role="navigation">
-                    <div class="sidebar-collapse">
-                        <ul class="nav" id="main-menu">
-                            <li>
-                                <div class="user-img-div">
-                                    <p:graphicImage value="#{professor.content}" id="figure-01"
-                                                    styleClass="img-circle"/>
-                                </div> 
-                            </li>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
+                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        Nova Turma
+                    </a>
 
-                            <li>
+                    <a class="mdl-navigation__link" href="page-listar-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Turmas
+                    </a>
 
-                                <a href="#"><strong>#{professor.login}</strong></a>
-
-                            </li>
-
-                            <li>
-                                <a href="#" class="active-menu">
-                                    Testes
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="../page-cad-pergunta.jsf">
-                                            Cadastrar Pergunta
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-listar-perguntas.jsf">
-                                            Perguntas Cadastradas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-cad-teste.jsf">
-                                            Cadastrar Teste
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-listar-testes.jsf">
-                                            Testes Cadastrados
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Meus Testes
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    Grupos 
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="../page-cad-grupo.jsf">
-                                            Criar Grupo
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="../page-listar-grupos.jsf">
-                                            Meus Grupos
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="../page-solicitacoes-grupos.jsf">
-                                            Solicitações
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    Classes 
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="page-add-turma.jsf">
-                                            Nova Turma
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="page-listar-turmas.jsf">
-                                            Turmas
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-
-                                <a href="../page-registro-atividade.jsf">
-                                    Notificações 
-                                    <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
-                                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
-                                </a> 
-
-                            </li>
-                        </ul>
-                    </div>
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>
                 </nav>
-            </h:form>
+            </div>
 
-            <h:form>
-                <div id="page-wrapper" class="page-wrapper-cls">
-                    <div id="page-wrapper">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1 class="page-head-listas">Classes</h1>
-                            </div>
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <h:form>
+                    <h:panelGroup rendered="#{controladorTurma.listarTurmas().size() == 0}">
+                        Nenhuma turma cadastrada.
+                    </h:panelGroup>
 
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:panelGroup rendered="#{controladorTurma.listarTurmas().size() == 0}">
-                                    <div class="alert alert-warning">
-                                        <text class="text-danger">
-                                            Nenhuma turma cadastrada.
-                                        </text>
-                                    </div>
-                                </h:panelGroup>
-                            </div>
 
-                            <div class="col-md-12">
-                                <h:dataTable value="#{controladorTurma.listarTurmas()}" var="turma" 
-                                             class="table table-responsive"
-                                             rendered="#{controladorTurma.listarTurmas().size() > 0}">
+                    <h:dataTable value="#{controladorTurma.listarTurmas()}" var="turma" 
+                                 class="w3-table table-responsive"
+                                 rendered="#{controladorTurma.listarTurmas().size() > 0}">
 
-                                    <h:column>
-                                        <div class="panel panel-warning">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">
-                                                    <h:commandLink value="#{turma.nome}" style="text-decoration: none;"
-                                                                   action="#{controladorTurma.paginaInicialTurma(turma)}"/>
-                                                </h3>
-                                            </div>                
-                                        </div>
-                                    </h:column>
+                        <h:column>
+                            <h:commandLink value="#{turma.nome}" style="text-decoration: none;"
+                                           action="#{controladorTurma.paginaInicialTurma(turma)}"/>
 
-                                </h:dataTable>
+                        </h:column>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </h:form>
+                    </h:dataTable>
+                </h:form>
+            </main>
         </div>
     </h:body>
 </html>

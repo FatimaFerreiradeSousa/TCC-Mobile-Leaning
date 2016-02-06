@@ -269,6 +269,10 @@ public class Fachada implements Serializable {
         return daoTopico.consultarTopico(codigo);
     }
     
+    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo){
+        return daoTopico.listarTopicosUsuario(login, codigoGrupo);
+    }
+    
     /*CRUD Comentarios*/
     public boolean salvarComentario(Comentario comentario){
         return daoComentario.salvar(comentario);
@@ -297,6 +301,10 @@ public class Fachada implements Serializable {
     
     public List<RespondeExercicio> resultadosTeste(int codTeste){
         return daoRespondeExercicio.resultados(codTeste);
+    }
+    
+    public List<RespondeExercicio> listarRespondeExercicio(String login){
+        return daoRespondeExercicio.listarExcerciciosAluno(login);
     }
     
     /*Notificações do sistema*/

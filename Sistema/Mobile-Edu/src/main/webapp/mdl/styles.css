@@ -32,15 +32,7 @@ html{
 .demo-drawer .demo-navigation {
     z-index: -2;
 }
-/* END iOS Safari specific workaround */
-.demo-drawer .mdl-menu .mdl-menu__item {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
+
 .demo-drawer-header {
     box-sizing: border-box;
     display: -webkit-flex;
@@ -131,10 +123,7 @@ html{
     -ms-flex-align: stretch;
     align-items: stretch;
 }
-/* TODO: Find a proper solution to have the graphs
- * not float around outside their container in IE10/11.
- * Using a browserhacks.com solution for now.
- */
+
 _:-ms-input-placeholder, :root .demo-graphs {
     min-height: 664px;
 }
@@ -228,10 +217,20 @@ input{
     font-family: "Raleway", sans-serif;
 }
 
-.demo-card-square.mdl-card {
+.demo-card-square .mdl-card {
     width: 200px;
     height: 320px;
 }
 .demo-card-square > .mdl-card__title {
     color: #fff;
+}
+
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
 }

@@ -80,7 +80,15 @@ public class DaoRespondeExercicio implements InterfaceDaoRespondeExercicio {
     public List<RespondeExercicio> resultados(int codTeste) {
         Query query = em.createQuery("select r from RespondeExercicio r where r.codTeste = :codTeste");
         query.setParameter("codTeste", codTeste);
-        
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<RespondeExercicio> listarExcerciciosAluno(String login) {
+        Query query = em.createQuery("select r from RespondeExercicio r where r.aluno.login = :login");
+        query.setParameter("login", login);
+
         return query.getResultList();
     }
 }

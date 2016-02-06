@@ -3,10 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Grupo | Membro</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -18,10 +21,10 @@
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
+
     </h:head>
 
     <h:body>
-
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
@@ -49,7 +52,7 @@
                         Membros
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
+                    <a class="mdl-navigation__link" href="">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">book</i>
                         Testes
                     </a>
@@ -59,7 +62,7 @@
                         </i>
                         Ranking
                     </a>
-                    
+
                     <a class="mdl-navigation__link" href="page-alterar-grupo.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
@@ -74,22 +77,54 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <div class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell mdl-cell--6-col">
-                    <div class="mdl-card mdl-card-topic mdl-cell mdl-cell--12-col">
-                        <img src="../../img/ww.jpg" class="avatar-picture"/>
-                        <label class="label-text">Fatinha</label>
-                        <div class="mdl-card__supporting-text">
-                            Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse. Pariatur occaecat nisi laboris tempor laboris eiusmod qui id Lorem esse commodo in. Exercitation aute dolore deserunt culpa consequat elit labore incididunt elit anim.
-                        </div>
-                        <hr />
-                        <div class="mdl-card__itens">
-                            <a href="#" class="mdl-navigation__link">
-                                Comentar
-                            </a>
-                        </div>
+            <main class="mdl-layout__content mdl-main mdl-color--grey-100 w3-center">
+
+                <h:form>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+                        <h:inputText class="mdl-textfield__input" id="sample3" 
+                                     value="#{controladorGrupo.aluno.login}"/>
+                        <label class="mdl-textfield__label" for="sample3">Login...</label>
                     </div>
-                </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                        <h:commandLink action="#{controladorGrupo.buscarAluno()}"
+                                       class="w3-btn w3-red" value="Buscar"/>
+                    </div>
+
+                </h:form>
+
+                <h:form>
+
+                    <c:if test="#{controladorGrupo.aluno.login != null}">
+                        <p>
+                            <p:graphicImage id="picture5ss" 
+                                            value="#{controladorFotos.mostrarFotoMembro()}" 
+                                            styleClass="avatar-img w3-circle">
+                                <f:param value="#{controladorGrupo.aluno.login}" name="loginAluno"/>
+                            </p:graphicImage>
+                        </p>
+                        <p>#{controladorGrupo.aluno.login}</p>
+                        <p>#{controladorGrupo.aluno.instituicao}</p>
+
+                        <h:commandButton value="Adicionar" class="w3-btn" 
+                                         rendered="#{controladorGrupo.verificarMembro() == true}" 
+                                         action="#{controladorGrupo.adicionarMembro()}">
+                        </h:commandButton>
+
+                        <h:outputLabel value="Este usuário já é membro" 
+                                       rendered="#{controladorGrupo.verificarMembro() == false}" 
+                                       class="w3-text-red"/><br /><br />
+
+                        <h:commandButton value="Remover" class="w3-btn w3-indigo" 
+                                         rendered="#{controladorGrupo.verificarMembro() == false}" 
+                                         action="#{controladorGrupo.removerMembro()}">
+                        </h:commandButton>
+                    </c:if>
+
+                    <c:if test="#{controladorGrupo.aluno.login == null}">
+                        <h:outputLabel class="w3-text w3-text-blue" value="Nenhum usuário encontrado"/>
+                    </c:if>
+                </h:form>
             </main> 
         </div>
     </h:body>

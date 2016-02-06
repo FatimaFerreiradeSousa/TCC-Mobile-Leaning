@@ -5,6 +5,7 @@ import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
 import com.br.entidades.Notificacao;
 import com.br.entidades.ParticipaGrupo;
+import com.br.entidades.RespondeExercicio;
 import com.br.entidades.Topico;
 import com.br.fachada.Fachada;
 import com.br.sessao.PegarUsuarioSessao;
@@ -431,6 +432,14 @@ public class GerenciadorGrupo implements Serializable {
         return "page-solicitacoes-grupos?faces-redirect=true";
     }
 
+    public ParticipaGrupo buscarParticipaGrupo(){
+        return fachada.buscarParticipaGrupo(aluno.getLogin(), grupo.getCodigo());
+    }
+    
+    public List<RespondeExercicio> listarRespondeExercicios(){
+        return fachada.listarRespondeExercicio(aluno.getLogin());
+    }
+    
     /*Membros Grupo*/
     public List<Aluno> listarMembrosGrupo() {
         List<Aluno> alunos = fachada.listarMembrosGrupo(this.grupo.getCodigo());
@@ -470,11 +479,10 @@ public class GerenciadorGrupo implements Serializable {
     public List<ParticipaGrupo> listaRanckingGrupo() {
         return fachada.buscarMembros(grupo.getCodigo());
     }
-
-    public String paginaResultadoTestes(Grupo grupo) {
-        this.grupo = grupo;
-
-        return "md-listar-resultados?faces-redirect=true";
+    
+    public String pageInfoAluno(Aluno aluno){
+        this.aluno = aluno;
+        return "page-info-aluno?faces-redirect=true";
     }
 
     /*Operações realizadas pelo aluno*/
@@ -627,6 +635,9 @@ public class GerenciadorGrupo implements Serializable {
         return "page-solicitacao-grupo?faces-redirect=true";
     }
 
+    public int topicosPublicados(){
+        return fachada.listarTopicosUsuario(aluno.getLogin(), grupo.getCodigo()).size();
+    }
     /*Notificações*/
     public void notificacaoPublicaGrupoProfessor(Grupo grupo, String mensagem) {
 

@@ -26,4 +26,6 @@ public interface InterfaceDaoTopico {
     
     public List<Topico> listarTopicos(int codigoGrupo);
     
+    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo);
+    
 }

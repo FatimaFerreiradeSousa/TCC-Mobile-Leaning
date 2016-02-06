@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Testes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -59,7 +59,7 @@
                         </i>
                         Ranking
                     </a>
-                    
+
                     <a class="mdl-navigation__link" href="page-alterar-grupo.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
@@ -75,21 +75,27 @@
             </div>
 
             <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <div class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-cell mdl-cell--6-col">
-                    <div class="mdl-card mdl-card-topic mdl-cell mdl-cell--12-col">
-                        <img src="../../img/ww.jpg" class="avatar-picture"/>
-                        <label class="label-text">Fatinha</label>
-                        <div class="mdl-card__supporting-text">
-                            Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse. Pariatur occaecat nisi laboris tempor laboris eiusmod qui id Lorem esse commodo in. Exercitation aute dolore deserunt culpa consequat elit labore incididunt elit anim.
-                        </div>
-                        <hr />
-                        <div class="mdl-card__itens">
-                            <a href="#" class="mdl-navigation__link">
-                                Comentar
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <h:form>
+                    
+                    <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
+                                 class="table table-condensed" 
+                                 rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
+                        <h:column>
+                            <h:commandLink value="#{teste.assunto}" 
+                                           action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
+                            <label>#{teste.professor.login}</label><br />
+
+                            (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputLabel>)
+                        </h:column>
+                    </h:dataTable>
+                    
+                    <h:outputLabel value="Nenhum resultado encontrado" 
+                                   rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
+                                   class="text-danger"/>
+
+                </h:form>
             </main> 
         </div>
     </h:body>

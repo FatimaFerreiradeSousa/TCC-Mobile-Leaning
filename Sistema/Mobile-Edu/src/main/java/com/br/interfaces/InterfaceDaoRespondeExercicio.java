@@ -20,4 +20,6 @@ public interface InterfaceDaoRespondeExercicio {
     public boolean respondeTeste(int codTeste, String loginAluno);
     
     public List<RespondeExercicio> resultados(int codTeste);
+    
+    public List<RespondeExercicio> listarExcerciciosAluno(String login);
 }
