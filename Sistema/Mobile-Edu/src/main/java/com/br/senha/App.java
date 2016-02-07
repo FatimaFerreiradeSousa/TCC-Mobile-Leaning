@@ -1,4 +1,4 @@
-package app;
+package com.br.senha;
 
 import com.br.datas.FormatData;
 import java.text.SimpleDateFormat;

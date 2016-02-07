@@ -4,174 +4,93 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Login | ML</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="assets/fonts/font-awesome/font-awesome.min.css"/>
-        <link rel="stylesheet" type="text/css" href="assets/css/css-index.css"/>
-        <script src="bootstrap/js/jquery-2.1.4.min.js"/>
-        <script src="assets/js/js-page-login.js"/>
-        <script src="assets/js/js-validation.js"/>
+    <h:head>
+        <title>Login | Mobile Edu</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="w3-css/w3.css" rel="stylesheet"/>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="assets/css/css-index.css" rel="stylesheet"/>
     </h:head>
 
     <h:body>
 
-        <div class="container">
+        <div class="w3-topnav w3-large w3-teal w3-center">
+            <h:outputText value="Mobile Edu - Login"/>
+        </div>
 
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+        <br />
 
-                    <div class="panel panel-login">
+        <h:form class="form-horizontal">
 
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <a href="#" class="active" id="login-form-link">Login</a>
-                                </div>
-                                <div class="col-xs-6">
-                                    <a href="#" class="active" id="register-form-link">Cadastre-se</a>
-                                </div>
-                            </div>
-                            <hr/>
-                        </div>
+            <div class="w3-container container">
+                <div class="w3-row">
 
-                        <div class="panel-body">
-                            <div class="row">
-
-                                <div class="col-lg-12">
-                                    <h:form id="login-form" role="form" style="display: block">
-                                        <div class="form-group">
-                                            <h:outputText value="#{controladorUsuario.mensagem}" 
-                                                          id="erroLogin" class="text-danger text-error"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:message for="username" errorClass="erros"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:inputText id="username" tabindex="1" class="form-control" pt:placeholder="Login"
-                                                         value="#{controladorUsuario.login}" 
-                                                         required="true"
-                                                         requiredMessage="Por favor informe o login."/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:inputSecret id="password" tabindex="1" class="form-control" pt:placeholder="**********" 
-                                                           value="#{controladorUsuario.senha}" required="true"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" 
-                                                             id="tipo" required="true">
-                                                <f:selectItem itemValue="Tipo" />
-                                                <f:selectItem itemValue="Aluno" />
-                                                <f:selectItem itemValue="Professor" />
-                                            </h:selectOneMenu>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <h:commandButton type="submit" action="#{controladorUsuario.loginUsuario()}" 
-                                                                     id="login-submit" tabindex="4" 
-                                                                     class="form-control btn btn-warning" value="Entrar">
-                                                        <f:ajax execute="username password tipo" render="erroLogin"/>
-                                                    </h:commandButton>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="text-center">
-                                                        <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Esqueçeu sua senha?</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </h:form>
-
-                                    <h:form id="register-form" role="form" style="display: none;">
-
-                                        <div class="form-group">
-                                            <h:outputText value="#{controladorUsuario.mensagem}" 
-                                                          id="erroCadastro" class="text-danger text-error"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:message for="login" errorClass="erros"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:inputText id="login" tabindex="1" class="form-control" 
-                                                         pt:placeholder="Login"
-                                                         required="true" 
-                                                         requiredMessage="Campo obrigatório"
-                                                         value="#{controladorUsuario.login}"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:message for="email" errorClass="erros"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:inputText id="email" tabindex="1" class="form-control" 
-                                                         pt:placeholder="Endereço de email"
-                                                         required="true" 
-                                                         requiredMessage="Campo obrigatório" 
-                                                         value="#{controladorUsuario.email}"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:message for="senha" errorClass="erros"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:inputSecret id="senha" tabindex="1" class="form-control" pt:placeholder="Senha"
-                                                           required="true" 
-                                                           requiredMessage="Campo obrigatório." 
-                                                           value="#{controladorUsuario.senha}"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:message for="tipoUsuario" errorClass="erros"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="select-item btn-sm form-control" 
-                                                             id="tipoUsuario"
-                                                             required="true" 
-                                                             requiredMessage="Campo obrigatório" >
-                                                <f:selectItem itemValue="Tipo" />
-                                                <f:selectItem itemValue="Aluno" />
-                                                <f:selectItem itemValue="Professor" />
-                                            </h:selectOneMenu>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <h:commandButton type="submit" id="register-submit" tabindex="4" 
-                                                                     class="form-control btn btn-success" value="Cadastrar"
-                                                                     action="#{controladorUsuario.salvarUsuario()}">
-                                                        <f:ajax execute="login email senha tipoUsuario" render="erroCadastro"/>
-                                                    </h:commandButton>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <h:outputText value="#{controladorUsuario.mensagem}" 
+                                          id="erroLogin" class="text-danger text-error"/>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <h:message for="username" errorClass="erros"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <h:inputText id="username" tabindex="1" class="w3-input" pt:placeholder="Login"
+                                         value="#{controladorUsuario.login}" 
+                                         required="true"
+                                         requiredMessage="Por favor informe o login."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <h:inputSecret id="password" tabindex="1" class="w3-input" pt:placeholder="**********" 
+                                           value="#{controladorUsuario.senha}" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <h:selectOneMenu value="#{controladorUsuario.usuario}" class="w3-select" 
+                                             id="tipo"
+                                             required="true" 
+                                             requiredMessage="Campo obrigatório" >
+                                <f:selectItem itemValue="Tipo" />
+                                <f:selectItem itemValue="Aluno" />
+                                <f:selectItem itemValue="Professor" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-4">
+                        <h:commandButton action="#{controladorUsuario.loginUsuario()}" 
+                                         id="login-submit" 
+                                         class="w3-btn w3-teal button-login" value="Entrar">
+                            <f:ajax execute="username password tipo" render="erroLogin"/>
+                        </h:commandButton>
+                    </div>
                 </div>
+
+                <div class="form-group">
+
+                    <div class="col-sm-6 col-sm-offset-4">    
+                        <a class="w3-btn w3-red button-group button-group-form" href="page-cadastro.jsf"> Criar Conta</a>
+                        <a class="w3-btn w3-blue button-group" href="recuperar-senha.jsf"> Esqueceu a senha </a>
+                    </div>
+
+                </div>
+
             </div>
-        </div>
+
+        </h:form>
     </h:body>
+
 </html>
 
