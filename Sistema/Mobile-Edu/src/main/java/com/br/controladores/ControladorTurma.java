@@ -33,6 +33,7 @@ public class ControladorTurma implements Serializable {
     private String hora;
     private boolean status;
     private boolean code;
+    private boolean checkChamada;
 
     public ControladorTurma() {
         this.turma = new Turma();
@@ -40,7 +41,7 @@ public class ControladorTurma implements Serializable {
         this.presenca = new Presenca();
         this.horarios = new ArrayList();
         this.status = false;
-        this.status = false;
+        this.checkChamada = false;
     }
 
     public Turma getTurma() {
@@ -105,6 +106,14 @@ public class ControladorTurma implements Serializable {
 
     public void setCode(boolean code) {
         this.code = code;
+    }
+
+    public boolean isCheckChamada() {
+        return checkChamada;
+    }
+
+    public void setCheckChamada(boolean checkChamada) {
+        this.checkChamada = checkChamada;
     }
 
     public String salvarTurma() {
@@ -237,7 +246,7 @@ public class ControladorTurma implements Serializable {
 
     public List<String> listarHorarios() {
         String diaSemana = FormatData.verificarDia(FormatData.pegarDia());
-        List<Horario> horariosDia = fachada.buscarHorario(diaSemana);
+        List<Horario> horariosDia = fachada.buscarHorario(diaSemana, turma.getCodigo());
 
         if (!horariosDia.isEmpty() && horarios.isEmpty()) {
             for (Horario horario : horariosDia) {
@@ -249,13 +258,10 @@ public class ControladorTurma implements Serializable {
     }
 
     public String selecionarHorario() {
-        
+
         this.status = fachada.listarPresencaPorHorario(new Date(), hora).size() <= 0;
+        this.checkChamada = fachada.listarPresencaPorHorario(new Date(), hora).size() > 0;
         
         return "page-add-presenca?faces-redirect=true";
-    }
-    
-    public int qtdAulas(){
-        return fachada.listarPresencaPorHorario(new Date(), hora).size();
     }
 }

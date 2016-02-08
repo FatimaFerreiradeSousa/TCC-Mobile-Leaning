@@ -367,7 +367,7 @@ public class Fachada implements Serializable {
         return daoHorario.salvarHorario(horario);
     }
     
-    public List<Horario> buscarHorario(String dia){
-        return daoHorario.consultarHorario(dia);
+    public List<Horario> buscarHorario(String dia, String turma){
+        return daoHorario.consultarHorario(dia, turma);
     }
 }

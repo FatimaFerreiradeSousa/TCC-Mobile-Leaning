@@ -3,313 +3,162 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
         <title>Professor | Notas de Aula</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link href="../../assets/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
-        <script src="../../bootstrap/js/jquery-1.11.1.js"></script>
-        <script src="../../bootstrap/js/bootstrap.js"></script>
-        <script src="../../bootstrap/js/jquery.metisMenu.js"></script>
-        <script src="../../bootstrap/js/custom.js"></script>
-        <link href="../../assets/css/css-page-config-grupo.css" rel="stylesheet"/>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8"/>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../assets/css/font-awesome.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
 
     </h:head>
 
     <h:body>
-        <div id="wrapper">
 
-            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a  class="navbar-brand" href="../page-inicial-professor.jsf">Inicio</a>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
                 </div>
 
-                <h:form>
-                    <div class="notifications-wrapper">
-                        <ul class="nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </a>
+            </header>
 
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="page-config-professor.jsf">
-                                            Configurações
-                                        </a>
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
-                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-
-                                    </li>
-                                </ul>
-
-                            </li>
-                        </ul>
+                    <div class="demo-avatar-dropdown">
+                        <span>#{professor.login}</span>
                     </div>
-                </h:form>
-            </nav>
+                </header>
 
-            <h:form>
-                <nav class="navbar-default navbar-side" role="navigation">
-                    <div class="sidebar-collapse">
-                        <ul class="nav" id="main-menu">
-                            <li>
-                                <div class="user-img-div">
-                                    <p:graphicImage value="#{professor.content}" id="figure-01"
-                                                    styleClass="img-circle"/>
-                                </div> 
-                            </li>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
+                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        Nova Turma
+                    </a>
 
-                            <li>
-
-                                <a href="#"><strong>#{professor.login}</strong></a>
-
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    Testes
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="../page-cad-pergunta.jsf">
-                                            Cadastrar Pergunta
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-listar-perguntas.jsf">
-                                            Perguntas Cadastradas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-cad-teste.jsf">
-                                            Cadastrar Teste
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../page-listar-testes.jsf">
-                                            Testes Cadastrados
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Meus Testes
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    Grupos 
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="../page-cad-grupo.jsf">
-                                            Criar Grupo
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="../page-listar-grupos.jsf">
-                                            Meus Grupos
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="../page-solicitacoes-grupos.jsf">
-                                            Solicitações
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#"  class="active-menu">
-                                    Classes 
-                                </a>
-
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="page-add-turma.jsf">
-                                            Nova Turma
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="page-listar-turmas.jsf">
-                                            Turmas
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-
-                                <a href="../page-registro-atividade.jsf">
-                                    Notificações 
-                                    <h:outputLabel value="(#{controladorNotificacao.listarNotificacoesNaoLidasProfessor()})"
-                                                   rendered="#{controladorNotificacao.listarNotificacoesNaoLidasProfessor() > 0}"/>
-                                </a> 
-
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </h:form>
-
-            <div id="page-wrapper" class="page-wrapper-cls">
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line">Notas</h1>
-
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modalHorario">
-                                Add Nota
-                            </button>
-                        </div>
-                    </div>
+                    <a class="mdl-navigation__link" href="page-alterar-turma.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
 
                     <h:form>
-                        <div class="row">
-                            <h3 class="text-center">Notas Publicadas</h3>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>
+                </nav>
+            </div>
 
-                            <div class="row">
-                                <div class="col-md-4 text-center">
-                                    <div class="box">
-                                        <div class="box-content">
-                                            <h1 class="tag-title">Heading</h1>
-                                            <hr />
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
-                                                Etiam efficitur felis vel imperdiet varius. 
-                                                Maecenas bibendum elementum molestie. 
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Mauris cursus finibus semper. 
-                                                Fusce molestie tincidunt leo vel varius. 
-                                                Nam scelerisque nulla feugiat leo consequat, 
-                                                id dignissim sem tincidunt. Proin elit mauris, 
-                                                hendrerit in varius sed, facilisis sit amet neque.</p>
-                                            <br />
-                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
-                                        </div>
-                                    </div>
+            <main class="mdl-layout__content">
+
+                <div class="w3-container w3-margin-16">
+                    <button onclick="document.getElementById('id01').style.display = 'block'" 
+                            class="w3-btn w3-purple btn-presenca-pag">
+                        Add Nota
+                    </button>
+
+                    <hr />
+                    <h4>Notas da turma de  #{controladorHorario.turma.nome}</h4>
+
+                    <h:form>
+                        <div class="w3-third">
+                            <div class="w3-container w3-light-grey">
+                                <h2>Very New News!</h2>
+                                <p class="w3-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                    Ut enim ad minim veniam, quis nostrud exercitation 
+                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse 
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+
+                                <hr />
+                                <div class="w3-center">
+                                    <h4>
+                                        <h:commandLink value="Ver" style="text-decoration: none" 
+                                                       action="page-ver-nota.jsf"
+                                                       class="mdl-button mdl-js-button"/>
+                                    </h4>
                                 </div>
-                                
-                                <div class="col-md-4 text-center">
-                                    <div class="box">
-                                        <div class="box-content">
-                                            <h1 class="tag-title">Heading</h1>
-                                            <hr />
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
-                                                Etiam efficitur felis vel imperdiet varius. 
-                                                Maecenas bibendum elementum molestie. 
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Mauris cursus finibus semper. 
-                                                Fusce molestie tincidunt leo vel varius. 
-                                                Nam scelerisque nulla feugiat leo consequat, 
-                                                id dignissim sem tincidunt. Proin elit mauris, 
-                                                hendrerit in varius sed, facilisis sit amet neque.</p>
-                                            <br />
-                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-4 text-center">
-                                    <div class="box">
-                                        <div class="box-content">
-                                            <h1 class="tag-title">Heading</h1>
-                                            <hr />
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Morbi pharetra quam sollicitudin nibh aliquam finibus. 
-                                                Etiam efficitur felis vel imperdiet varius. 
-                                                Maecenas bibendum elementum molestie. 
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                Mauris cursus finibus semper. 
-                                                Fusce molestie tincidunt leo vel varius. 
-                                                Nam scelerisque nulla feugiat leo consequat, 
-                                                id dignissim sem tincidunt. Proin elit mauris, 
-                                                hendrerit in varius sed, facilisis sit amet neque.</p>
-                                            <br />
-                                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                             </div>
-
                         </div>
                     </h:form>
                 </div>
-            </div>
+
+            </main>
         </div>
 
-        <div class="modal fade" id="modalHorario" role="dialog">
-            <div class="modal-dialog">
-                <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title">Nova Nota</h4>
+        <div id="id01" class="w3-modal">
+            <h:form acceptcharset="ISO-8859-1">
+                <div class="w3-modal-content w3-animate-top">
+                    <header class="w3-container w3-teal"> 
+                        <span onclick="document.getElementById('id01').style.display = 'none'" 
+                              class="w3-closebtn">×</span>
+                        <br />
+
+                        <p class="w3-center">Nota</p>
+                    </header>
+                    <div class="w3-container">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="tema" errorClass="erros"/>
+                            <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
+                                         class="mdl-textfield__input" 
+                                         id="tema"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="tema">Tema</label>
                         </div>
 
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-horizontal">
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="name">Introdução</label>
-                                                <div class="col-md-9">
-                                                    <h:inputTextarea value="#{controladorHorario.horario.horarioInicial}" 
-                                                                 class="form-control"
-                                                                 pt:placeholder="Introdução"/>
-                                                </div>
-                                            </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="introducao" errorClass="erros"/>
+                            <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
+                                         class="mdl-textfield__input" 
+                                         id="introducao"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
 
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="name">Conteúdo</label>
-                                                <div class="col-md-9">
-                                                    <h:inputTextarea value="#{controladorHorario.horario.horarioInicial}" 
-                                                                 class="form-control"
-                                                                 pt:placeholder="Conteúdo"
-                                                                 rows="15"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <label class="mdl-textfield__label" for="introducao">Introdução</label>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <h:commandButton value="Cadastrar" action="#{controladorHorario.salvarHorario()}" 
-                                             class="btn btn-warning"/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="conteudo" errorClass="erros"/>
+                            <h:inputText value="#{controladorHorario.horario.horarioFinal}" 
+                                         class="mdl-textfield__input" 
+                                         id="conteudo"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="conteudo">Contéudo</label>
                         </div>
+
+                        <footer class="w3-container w3-center">
+                            <br />
+                            <h:commandButton value="Publicar" action="#{controladorHorario.salvarHorario()}" 
+                                             class="w3-btn w3-indigo btn-presenca"/>
+                            <br /><br /><br />
+                        </footer>
                     </div>
-                </h:form>
-            </div>
+                </div>
+            </h:form>
         </div>
     </h:body>
 </html>

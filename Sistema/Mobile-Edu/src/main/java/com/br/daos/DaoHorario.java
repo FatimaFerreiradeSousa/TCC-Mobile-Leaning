@@ -53,9 +53,10 @@ public class DaoHorario implements InterfaceDaoHorario{
     }
 
     @Override
-    public List<Horario> consultarHorario(String dia) {
-        Query query = em.createQuery("SELECT h FROM Horario h where h.dia = :dia");
+    public List<Horario> consultarHorario(String dia, String turma) {
+        Query query = em.createQuery("SELECT h FROM Horario h where h.dia = :dia and h.turma.codigo = :turma");
         query.setParameter("dia", dia);
+        query.setParameter("turma", turma);
         
         return (List<Horario>) query.getResultList();
     }

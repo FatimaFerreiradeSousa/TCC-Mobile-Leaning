@@ -64,39 +64,51 @@
             </div>
 
             <main class="mdl-layout__content">
-                <h:form>
-                    <br />
-                    
-                    <h:outputText class="w3-center" value="Alunos"
-                                  rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
-                    <br />
-                    
-                    <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
-                                columns="6" rows="12" id="aluno" styleClass=".ui-datagrid .ui-datagrid-content teste"
-                                layout="grid" rendered="#{controladorTurma.turma.alunos.size() > 0}">
-
-                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                        styleClass="w3-image w3-circle" 
-                                        style="width: 40%;">
-                            <f:param value="#{aluno.login}" name="loginUsuario"/>
-                        </p:graphicImage>
-                        
-                        <p style="margin-top: 2%;">
-                            <h:commandLink value="#{aluno.login}" style="text-decoration: none;" 
-                                           action="#{controladorTurma.salvarPresenca(aluno)}"/>
+                <div class="w3-container w3-center">
+                    <h:form>
+                        <br />
+                        <p>
+                            <h:outputText class="w3-margin-4" value="Alunos"
+                                          rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
                         </p>
-                    </p:dataGrid>
-                    
-                    <hr/> 
-                    
-                    <a href="page-buscar-aluno.jsf" class="w3-btn w3-pink">
-                        Add Aluno
-                    </a>
-                    
-                    <h:outputLabel value="Nenhum resultado encontrado" 
-                                   rendered="#{controladorTurma.turma.alunos.size() == 0}"
-                                   class="w3-center w3-text-red"/>
-                </h:form>
+
+                        <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
+                                    columns="4" rows="12" id="aluno" styleClass=".ui-datagrid .ui-datagrid-content teste"
+                                    layout="grid" rendered="#{controladorTurma.turma.alunos.size() > 0}">
+
+                            <div class="w3-col m10 w3-center w3-margin-top">
+                                <div class="w3-card-2 w3-round w3-white">
+                                    <div class="w3-container">
+                                        <br />
+                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                        styleClass="w3-image w3-circle" 
+                                                        style="width: 40%;">
+                                            <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                        </p:graphicImage>
+
+                                        <p style="margin-top: 2%;">
+                                            <h:commandLink value="#{aluno.login}" style="text-decoration: none;" 
+                                                           action="#{controladorTurma.salvarPresenca(aluno)}"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p:dataGrid>
+
+                        <hr/> 
+
+                        <h:outputLabel value="Nenhum resultado encontrado" 
+                                       rendered="#{controladorTurma.turma.alunos.size() == 0}"
+                                       class="w3-center w3-text-red"/>
+
+                        <br /><br />
+                        <a href="page-buscar-aluno.jsf" class="w3-btn w3-pink btn-presenca-pag">
+                            Add Aluno
+                        </a>
+
+                    </h:form>
+                </div>
             </main>
         </div>
     </h:body>

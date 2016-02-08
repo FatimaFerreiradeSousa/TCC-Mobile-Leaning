@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Horários</title>
@@ -14,8 +13,10 @@
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../assets/css/font-awesome.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -66,26 +67,118 @@
             </div>
 
             <main class="mdl-layout__content mdl-color--grey-100">
+
+                <div class="w3-container">
+                    <h2>Horario de classe</h2>
+                    <p class="w3-large"> #{controladorHorario.turma.nome}</p>
+
+                    <button onclick="document.getElementById('id01').style.display = 'block'" 
+                            class="w3-btn w3-purple btn-presenca-pag">
+                        Add Horário
+                    </button>
+                </div>
+
                 <br />
-                <p class="w3-center">Horario da classe #{controladorHorario.turma.nome}</p>
-                <hr />
 
-                <button onclick="document.getElementById('id01').style.display = 'block'" class="w3-btn w3-green">
-                    Add Horário
-                </button>
-                <br />
+                <div class="w3-row-padding">
+                    <div class="w3-quarter">
+                        <div class="w3-card">
+                            <div class="w3-container w3-red">
+                                <h4>Segunda-Feira</h4>
+                            </div>
+
+                            <div class="w3-container w3-xlarge">
+                                <h:dataTable value="#{controladorHorario.buscarHorario('Segunda-Feira')}" var="horario"
+                                             class="w3-table"
+                                             rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
+
+                                    <h:column class="w3-center">
+                                        #{horario.horarioInicial} - #{horario.horarioFinal}
+                                    </h:column>
+
+                                </h:dataTable>
+                            </div>
+                        </div><br />
+                    </div>
+                    
+                    <div class="w3-quarter">
+                        <div class="w3-card">
+                            <div class="w3-container w3-blue">
+                                <h4>Terça-Feira</h4>
+                            </div>
+
+                            <h:dataTable value="#{controladorHorario.buscarHorario('Terça-Feira')}" var="horario"
+                                         class="w3-table"
+                                         rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
+
+                                <h:column class="w3-center">
+                                    #{horario.horarioInicial} - #{horario.horarioFinal}
+                                </h:column>
+
+                            </h:dataTable>
+
+                        </div><br />
+                    </div>
+
+                    <div class="w3-quarter">
+                        <div class="w3-card">
+                            <div class="w3-container w3-yellow">
+                                <h4>Quarta-Feira</h4>
+                            </div>
+
+                            <h:dataTable value="#{controladorHorario.buscarHorario('Quarta-Feira')}" var="horario"
+                                         class="w3-table"
+                                         rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
+
+                                <h:column class="w3-center">
+                                    #{horario.horarioInicial} - #{horario.horarioFinal}
+                                </h:column>
+
+                            </h:dataTable>
+
+                        </div><br />
+                    </div>
+
+                    <div class="w3-quarter">
+                        <div class="w3-card">
+                            <div class="w3-container w3-indigo">
+                                <h4>Quinta-Feira</h4>
+                            </div>
+
+                            <h:dataTable value="#{controladorHorario.buscarHorario('Quinta-Feira')}" var="horario"
+                                         class="w3-table"
+                                         rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
+
+                                <h:column class="w3-center">
+                                    #{horario.horarioInicial} - #{horario.horarioFinal}
+                                </h:column>
+
+                            </h:dataTable>
+                        </div><br />
+                    </div>
+                </div>
                 
-                Segunda Feira
-                <h:dataTable value="#{controladorHorario.buscarHorario('Segunda-Feira')}" var="horario"
-                             class="table"
-                             rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
+                <div class="w3-row-padding">
+                    <div class="w3-quarter">
+                        <div class="w3-card">
+                            <div class="w3-container w3-green">
+                                <h4>Sexta-Feira</h4>
+                            </div>
 
-                    <h:column>
-                        #{horario.horarioInicial} - #{horario.horarioFinal}
-                    </h:column>
+                            <div class="w3-container w3-xlarge">
+                                <h:dataTable value="#{controladorHorario.buscarHorario('Sexta-Feira')}" var="horario"
+                                             class="w3-table"
+                                             rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
 
-                </h:dataTable>
-                
+                                    <h:column class="w3-center">
+                                        #{horario.horarioInicial} - #{horario.horarioFinal}
+                                    </h:column>
+
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
 
@@ -136,10 +229,10 @@
                             </h:selectOneListbox>
                         </div>
                     </div>
-                    <footer class="w3-container">
+                    <footer class="w3-container w3-center">
                         <br />
                         <h:commandButton value="Cadastrar" action="#{controladorHorario.salvarHorario()}" 
-                                         class="w3-btn w3-indigo"/>
+                                         class="w3-btn w3-indigo btn-presenca"/>
                         <br /><br /><br />
                     </footer>
                 </div>

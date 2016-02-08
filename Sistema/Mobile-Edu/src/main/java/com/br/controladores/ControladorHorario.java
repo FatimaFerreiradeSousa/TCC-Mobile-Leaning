@@ -60,7 +60,7 @@ public class ControladorHorario implements Serializable {
     }
     
     public List<Horario> buscarHorario(String dia){
-        return fachada.buscarHorario(dia);
+        return fachada.buscarHorario(dia, turma.getCodigo());
     }
     
 }

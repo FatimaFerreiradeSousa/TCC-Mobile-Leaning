@@ -15,5 +15,5 @@ public interface InterfaceDaoHorario {
     
     public boolean removerHorario(Horario horario);
     
-    public List<Horario> consultarHorario(String dia);
+    public List<Horario> consultarHorario(String dia, String turma);
 }

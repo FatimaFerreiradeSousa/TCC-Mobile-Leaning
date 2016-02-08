@@ -9,6 +9,10 @@ label{
     font-family: "Raleway", sans-serif;
 }
 
+p{
+    font-family: "Raleway", sans-serif;
+}
+
 .mdl-main {
     padding: 8px;
     padding-top: 48px;
@@ -88,5 +92,23 @@ label{
     margin-top: 5%;
 }
 
+.demo-avatar-turma{
+    width: 75px;
+    height: 75px;
+}
+
 .ui-datagrid{border: none !important;}  
 .ui-datagrid-content {border: none !important;}  
+
+.btn-presenca-pag{
+    width: 315px;
+}
+
+.btn-presenca{
+    width: 220px;
+}
+
+.btn-formularios{
+    width: 220px;
+    margin-right: 1%;
+}

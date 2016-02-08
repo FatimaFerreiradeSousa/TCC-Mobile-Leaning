@@ -15,6 +15,7 @@
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
@@ -76,7 +77,7 @@
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                         <h:commandLink action="#{controladorTurma.buscarAluno()}"
-                                       class="w3-btn w3-indigo" value="Buscar"/>
+                                       class="w3-btn w3-indigo btn-presenca" value="Buscar"/>
                     </div>
 
                     <c:if test="#{controladorTurma.aluno.login != null}">
@@ -92,7 +93,7 @@
                         <p>#{controladorTurma.aluno.login}</p>
                         <p>#{controladorTurma.aluno.curso}</p>
 
-                        <h:commandButton value="Adicionar" class="w3-btn w3-pink" 
+                        <h:commandButton value="Adicionar" class="w3-btn w3-pink btn-presenca" 
                                          rendered="#{controladorTurma.verificarMembro() == true}" 
                                          action="#{controladorTurma.adicionarMembro()}">
                         </h:commandButton>
@@ -101,7 +102,7 @@
                                        rendered="#{controladorTurma.verificarMembro() == false}" 
                                        class="w3-center w3-text-red"/><br />
 
-                        <h:commandButton value="Remover" class="w3-btn w3-red" 
+                        <h:commandButton value="Remover" class="w3-btn w3-red btn-presenca" 
                                          rendered="#{controladorTurma.verificarMembro() == false}" 
                                          action="#{controladorTurma.removerMembro()}">
                         </h:commandButton>
