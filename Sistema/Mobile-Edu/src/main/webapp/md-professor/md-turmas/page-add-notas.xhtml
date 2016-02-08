@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
         <title>Professor | Notas de Aula</title>
@@ -68,38 +67,50 @@
 
             <main class="mdl-layout__content">
 
-                <div class="w3-container w3-margin-16">
+                <div class="w3-container w3-margin-8">
                     <button onclick="document.getElementById('id01').style.display = 'block'" 
                             class="w3-btn w3-purple btn-presenca-pag">
                         Add Nota
                     </button>
 
                     <hr />
-                    <h4>Notas da turma de  #{controladorHorario.turma.nome}</h4>
+                    <h4>Notas da turma de  #{controladorTurma.turma.nome}</h4>
 
                     <h:form>
-                        <div class="w3-third">
-                            <div class="w3-container w3-light-grey">
-                                <h2>Very New News!</h2>
-                                <p class="w3-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation 
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse 
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-                                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
 
-                                <hr />
-                                <div class="w3-center">
-                                    <h4>
-                                        <h:commandLink value="Ver" style="text-decoration: none" 
-                                                       action="page-ver-nota.jsf"
-                                                       class="mdl-button mdl-js-button"/>
-                                    </h4>
-                                </div>
+                        <p:dataGrid var="nota" value="#{controladorNota.listarNotas()}" 
+                                    columns="3" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
+                                    layout="grid" rendered="#{controladorNota.listarNotas().size() > 0}">
+
+                            <div class="w3-col m10 ">
+                                <div class="w3-container w3-light-grey">
+                                    <h2>#{nota.titulo}</h2>
+                                    <h6>Por #{nota.professor}</h6>
+                                    
+                                    <p class="w3-justify">
+                                        #{nota.introducao}
+                                    </p>
+
+                                    <hr />
+                                    <div class="w3-center">
+                                        <h4>
+                                            <h:commandLink value="Ver" style="text-decoration: none" 
+                                                           action="#{controladorNota.paginaVerNota(nota)}"
+                                                           class="mdl-button mdl-js-button"/>
+                                            
+                                            <h:commandLink value="Alterar" style="text-decoration: none" 
+                                                           action="#{controladorNota.paginaAlterarNota(nota)}"
+                                                           class="mdl-button mdl-js-button"/>
+                                            
+                                            <h:commandLink value="Remover" style="text-decoration: none" 
+                                                           action="#{controladorNota.removerNota()}"
+                                                           class="mdl-button mdl-js-button"/>
+                                        </h4>
+                                    </div>
+                                </div><br />
                             </div>
-                        </div>
+                        </p:dataGrid>
+
                     </h:form>
                 </div>
 
@@ -118,19 +129,19 @@
                     </header>
                     <div class="w3-container">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="tema" errorClass="erros"/>
-                            <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
+                            <h:message for="titulo" errorClass="erros"/>
+                            <h:inputText value="#{controladorNota.nota.titulo}" 
                                          class="mdl-textfield__input" 
-                                         id="tema"
+                                         id="titulo"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
 
-                            <label class="mdl-textfield__label" for="tema">Tema</label>
+                            <label class="mdl-textfield__label" for="titulo">Titulo</label>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="introducao" errorClass="erros"/>
-                            <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
+                            <h:inputText value="#{controladorNota.nota.introducao}" 
                                          class="mdl-textfield__input" 
                                          id="introducao"
                                          required="true"
@@ -140,19 +151,19 @@
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="conteudo" errorClass="erros"/>
-                            <h:inputText value="#{controladorHorario.horario.horarioFinal}" 
-                                         class="mdl-textfield__input" 
-                                         id="conteudo"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
+                            <h:message for="desenvolvimento" errorClass="erros"/>
+                            <h:inputTextarea value="#{controladorNota.nota.desenvolvimento}" 
+                                             class="mdl-textfield__input" rows="5"
+                                             id="desenvolvimento"
+                                             required="true"
+                                             requiredMessage="Campo obrigatório"/>
 
-                            <label class="mdl-textfield__label" for="conteudo">Contéudo</label>
+                            <label class="mdl-textfield__label" for="desenvolvimento">Desenvolvimento</label>
                         </div>
 
                         <footer class="w3-container w3-center">
                             <br />
-                            <h:commandButton value="Publicar" action="#{controladorHorario.salvarHorario()}" 
+                            <h:commandButton value="Publicar" action="#{controladorNota.salvarNota()}" 
                                              class="w3-btn w3-indigo btn-presenca"/>
                             <br /><br /><br />
                         </footer>

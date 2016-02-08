@@ -36,9 +36,11 @@ public class Turma implements Serializable{
     private Professor professor;
     @OneToMany(mappedBy = "turma")
     private List<Horario> horarios;
+    @OneToMany(mappedBy = "turma")
+    private List<Nota> notas;
     
     public Turma(){
-        
+        this.notas = new ArrayList();
     }
 
     public Turma(String codigo, String nome, String categoria, String descricao, Date dataInicio, Date dataTerminio,
@@ -52,6 +54,7 @@ public class Turma implements Serializable{
         this.alunos = new ArrayList();
         this.professor = professor;
         this.horarios = new ArrayList();
+        this.notas = new ArrayList();
     }
 
     public String getCodigo() {
@@ -124,5 +127,13 @@ public class Turma implements Serializable{
 
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(List<Nota> notas) {
+        this.notas = notas;
     }
 }

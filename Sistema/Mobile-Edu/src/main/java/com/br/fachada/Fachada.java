@@ -44,6 +44,8 @@ public class Fachada implements Serializable {
     private InterfaceDaoPresenca daoPresenca;
     @EJB
     private InterfaceDaoHorario daoHorario;
+    @EJB
+    private InterfaceDaoNota daoNota;
     
     public Fachada() {
     }
@@ -369,5 +371,22 @@ public class Fachada implements Serializable {
     
     public List<Horario> buscarHorario(String dia, String turma){
         return daoHorario.consultarHorario(dia, turma);
+    }
+    
+    /*CRUD NOTA*/
+    public boolean salvarNota(Nota nota){
+        return daoNota.salvarNota(nota);
+    }
+    
+    public List<Nota> listarNotas(String turma){
+        return daoNota.listarNotas(turma);
+    }
+    
+    public boolean removerNota(Nota nota){
+        return daoNota.removerNota(nota);
+    }
+    
+    public boolean alterarNota(Nota nota){
+        return daoNota.alterarNota(nota);
     }
 }
