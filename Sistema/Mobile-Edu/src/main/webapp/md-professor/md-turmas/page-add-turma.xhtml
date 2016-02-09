@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
@@ -46,13 +45,18 @@
                         Inicio
                     </a>
                     <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
                         Nova Turma
                     </a>
 
                     <a class="mdl-navigation__link" href="page-turmas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
                     </a>
 
                     <h:form>
@@ -122,7 +126,7 @@
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:inputText>
 
-                                <label class="mdl-textfield__label" for="dataInicio">Início</label>
+                                <label class="mdl-textfield__label" for="dataInicio">Início 11/11/1111</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
@@ -134,7 +138,7 @@
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:inputText>
 
-                                <label class="mdl-textfield__label" for="dataTerminio">Termínio</label>
+                                <label class="mdl-textfield__label" for="dataTerminio">Termínio 11/11/1111</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">

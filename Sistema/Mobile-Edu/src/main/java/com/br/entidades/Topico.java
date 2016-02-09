@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,10 +25,10 @@ public class Topico implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(columnDefinition = "TEXT")
     private String conteudo;
     private String caminho;
     private String loginUsuario;
-    private int maisUm;
     private String tipo;
     private String nome;
     
@@ -41,20 +42,6 @@ public class Topico implements Serializable{
     private Grupo grupo;
     
     public Topico(){
-    
-    }
-
-    public Topico(int codigo, String conteudo, String caminho, String loginUsuario, 
-            int maisUm, String tipo, String nome, Date dataCriacao, Grupo grupo) {
-        this.codigo = codigo;
-        this.conteudo = conteudo;
-        this.caminho = caminho;
-        this.loginUsuario = loginUsuario;
-        this.maisUm = maisUm;
-        this.tipo = tipo;
-        this.nome = nome;
-        this.dataCriacao = dataCriacao;
-        this.grupo = grupo;
         this.comentarios = new ArrayList();
     }
 
@@ -88,14 +75,6 @@ public class Topico implements Serializable{
 
     public void setLoginUsuario(String loginUsuario) {
         this.loginUsuario = loginUsuario;
-    }
-
-    public int getMaisUm() {
-        return maisUm;
-    }
-
-    public void setMaisUm(int maisUm) {
-        this.maisUm = maisUm;
     }
 
     public String getTipo() {

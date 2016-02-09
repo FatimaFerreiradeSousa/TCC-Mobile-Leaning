@@ -122,7 +122,7 @@ public class ControladorTurma implements Serializable {
 
         if (fachada.salvarTurma(turma)) {
             turma = new Turma();
-            return "page-listar-turmas?faces-redirect=true";
+            return "page-turmas?faces-redirect=true";
         }
 
         return "page-add-turma?faces-redirect=true";

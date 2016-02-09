@@ -38,7 +38,7 @@ public class GerenciadorGrupo implements Serializable {
     private Fachada fachada;
     private Grupo grupo;
     private Topico topico;
-    private Topico topicoComentario;
+    private Topico topicoTemp;
     private Topico topicoTeste;
     private UploadedFile fileUpload;
     private StreamedContent fileDownload;
@@ -53,7 +53,7 @@ public class GerenciadorGrupo implements Serializable {
     public GerenciadorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
-        topicoComentario = new Topico();
+        topicoTemp = new Topico();
         topicoTeste = new Topico();
         comentarioTopico = new Comentario();
         comentarioAlterar = new Comentario();
@@ -79,12 +79,12 @@ public class GerenciadorGrupo implements Serializable {
         this.topico = topico;
     }
 
-    public Topico getTopicoComentario() {
-        return topicoComentario;
+    public Topico getTopicoTemp() {
+        return topicoTemp;
     }
 
-    public void setTopicoComentario(Topico topicoComentario) {
-        this.topicoComentario = topicoComentario;
+    public void setTopicoTemp(Topico topicoTemp) {
+        this.topicoTemp = topicoTemp;
     }
 
     public Aluno getAluno() {
@@ -144,12 +144,22 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     /*operações da entidade grupo*/
+    public String paginaAddGrupo() {
+        grupo = new Grupo();
+
+        return "page-cad-grupo?faces-redirect=true";
+    }
+
     public String salvarGrupo() {
         grupo.setDataCriacao(new Date());
         grupo.setProfessorGrupos(PegarUsuarioSessao.pegarProfessorSessao());
-        fachada.salvarGrupo(grupo);
-        grupo = new Grupo();
-        return "page-cad-grupo?faces-redirect=true";
+
+        if (fachada.salvarGrupo(grupo)) {
+            grupo = new Grupo();
+            return "page-grupo?faces-redirect=true";
+        } else {
+            return "page-cad-grupo?faces-redirect=true";
+        }
     }
 
     public List<Grupo> gruposCriados() {
@@ -159,7 +169,7 @@ public class GerenciadorGrupo implements Serializable {
     public String removerGrupo() {
         fachada.removerGrupo(grupo);
 
-        return "page-listar-grupos?faces-redirect=true";
+        return "page-grupo?faces-redirect=true";
     }
 
     public String pagInicialGrupo(Grupo grupo) {
@@ -173,6 +183,10 @@ public class GerenciadorGrupo implements Serializable {
         return "page-alterar-grupo?faces-redirect=true";
     }
 
+    public String pageCriarTopico() {
+        return "page-publicar?faces-redirect=true";
+    }
+
     /*Topicos Professor*/
     public String salvarTopicoProfessor() {
 
@@ -182,9 +196,6 @@ public class GerenciadorGrupo implements Serializable {
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
-
-        String notificacao = PegarUsuarioSessao.pegarProfessorSessao().getLogin() + " publicou no grupo " + grupo.getNome();
-        notificacaoPublicaGrupoProfessor(grupo, notificacao);
 
         topico = new Topico();
 
@@ -202,14 +213,108 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public String pageAlterarTopico(Topico topico) {
-        topicoComentario = topico;
+        topicoTemp = topico;
         return "page-alterar-topico?faces-redirect=true";
     }
 
     public String alterarTopico() {
-        fachada.atualizarTopico(topicoComentario);
+        fachada.atualizarTopico(topicoTemp);
         return "page-inicial-grupo?faces-redirect=true";
     }
+
+    public String cancelarAtualizacaoTopico() {
+        topicoTemp = new Topico();
+        return "page-inicial-grupo?faces-redirect=true";
+    }
+
+    /*COMENTARIOS TOPICO PROFESSOR*/
+    
+    public Comentario getComentarioTopico() {
+        return comentarioTopico;
+    }
+
+    public void setComentarioTopico(Comentario comentarioTopico) {
+        this.comentarioTopico = comentarioTopico;
+    }
+
+    public String pageComentarioTopico(Topico topico) {
+        this.topicoTemp = topico;
+        return "page-comentario-topico?faces-redirect=true";
+    }
+
+    public List<Comentario> comentariosTopico() {
+        return fachada.listarComentariosTopico(topicoTemp.getCodigo());
+    }
+    
+    public String comentarTopico(){
+        return "page-comentario?faces-redirect=true";
+    }
+
+    public String salvarComentarioProfessor() {
+        comentarioTopico.setDataComentario(new Date());
+        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        comentarioTopico.setTopico(topicoTemp);
+
+        if (fachada.salvarComentario(comentarioTopico) == true) {
+
+            comentarioTopico = new Comentario();
+        }
+
+        return "page-comentario-topico?faces-redirect=true";
+    }
+
+    public String pageAlterarComentario(Comentario comentario) {
+        comentarioAlterar = comentario;
+        return "page-alterar-comentario?faces-redirect=true";
+    }
+
+    public String alterarComentario() {
+        fachada.alterarComentario(comentarioAlterar);
+        return "page-comentario-topico?faces-redirect=true";
+    }
+
+    public String removerComentario(Comentario comentario) {
+        fachada.removerComentario(comentario);
+
+        return "page-comentario-topico?faces-redirect=true";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*Upload e download de Arquivos*/
     public StreamedContent getFileDownload() {
@@ -284,72 +389,6 @@ public class GerenciadorGrupo implements Serializable {
                 nome);
 
         return fileDownload;
-    }
-
-    /*Comentarios Topico Professor*/
-    public String pageComentarioTopico(Topico topico) {
-        this.topicoComentario = topico;
-        return "page-comentario-topico?faces-redirect=true";
-    }
-
-    public List<Comentario> comentariosTopico() {
-        return fachada.listarComentariosTopico(topicoComentario.getCodigo());
-    }
-
-    public Comentario getComentarioTopico() {
-        return comentarioTopico;
-    }
-
-    public void setComentarioTopico(Comentario comentarioTopico) {
-        this.comentarioTopico = comentarioTopico;
-    }
-
-    /*Comentários Professor*/
-    public String salvarComentarioProfessor() {
-        comentarioTopico.setDataComentario(new Date());
-        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-        comentarioTopico.setTopico(topicoComentario);
-
-        if (fachada.salvarComentario(comentarioTopico) == true) {
-
-            if (!topicoComentario.getLoginUsuario().equalsIgnoreCase(PegarUsuarioSessao.pegarProfessorSessao().getLogin())) {
-                notificacaoComentarios();
-            }
-
-            comentarioTopico = new Comentario();
-        }
-
-        return "page-comentario-topico?faces-redirect=true";
-    }
-
-    public String pageAlterarComentario(Comentario comentario) {
-        comentarioAlterar = comentario;
-        return "page-alterar-comentario?faces-redirect=true";
-    }
-
-    public String alterarComentario() {
-        fachada.alterarComentario(comentarioAlterar);
-        return "page-comentario-topico?faces-redirect=true";
-    }
-
-    public String removerComentario(Comentario comentario) {
-        fachada.removerComentario(comentario);
-
-        return "page-comentario-topico?faces-redirect=true";
-    }
-
-    public List<Comentario> comentariosTopico(Topico topico) {
-        return fachada.listarComentariosTopico(topico.getCodigo());
-    }
-
-    public String atualizarMaisUm(Topico topico) {
-        topico.setMaisUm(topico.getMaisUm() + 1);
-        fachada.atualizarTopico(topico);
-        return "page-inicial-grupo?faces-redirect=true";
-    }
-
-    public String voltarPaginaComentario() {
-        return "page-comentario-topico?faces-redirect=true";
     }
 
     public String voltarPaginaGrupo() {
@@ -432,14 +471,14 @@ public class GerenciadorGrupo implements Serializable {
         return "page-solicitacoes-grupos?faces-redirect=true";
     }
 
-    public ParticipaGrupo buscarParticipaGrupo(){
+    public ParticipaGrupo buscarParticipaGrupo() {
         return fachada.buscarParticipaGrupo(aluno.getLogin(), grupo.getCodigo());
     }
-    
-    public List<RespondeExercicio> listarRespondeExercicios(){
+
+    public List<RespondeExercicio> listarRespondeExercicios() {
         return fachada.listarRespondeExercicio(aluno.getLogin());
     }
-    
+
     /*Membros Grupo*/
     public List<Aluno> listarMembrosGrupo() {
         List<Aluno> alunos = fachada.listarMembrosGrupo(this.grupo.getCodigo());
@@ -464,10 +503,6 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     /*Exercicios*/
-    public List<Topico> listarTestesGrupo() {
-        return fachada.listarTestesGrupo(grupo.getCodigo());
-    }
-
     public List<Topico> listarArquivos() {
         return fachada.arquivosGrupo(grupo.getCodigo());
     }
@@ -479,8 +514,8 @@ public class GerenciadorGrupo implements Serializable {
     public List<ParticipaGrupo> listaRanckingGrupo() {
         return fachada.buscarMembros(grupo.getCodigo());
     }
-    
-    public String pageInfoAluno(Aluno aluno){
+
+    public String pageInfoAluno(Aluno aluno) {
         this.aluno = aluno;
         return "page-info-aluno?faces-redirect=true";
     }
@@ -607,22 +642,18 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     /*Comentarios topico aluno*/
-    public String pageComentarioTopicoAluno(Topico topico) {
-        this.topicoComentario = topico;
-        return "page-comentario-topico?faces-redirect=true";
-    }
 
     public String salvarComentarioAluno() {
         comentarioTopico.setDataComentario(new Date());
         comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
-        comentarioTopico.setTopico(topicoComentario);
+        comentarioTopico.setTopico(topicoTemp);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
-            if (!topicoComentario.getLoginUsuario().equalsIgnoreCase(
+            if (!topicoTemp.getLoginUsuario().equalsIgnoreCase(
                     PegarUsuarioSessao.pegarAlunoSessao().getLogin())) {
                 notificacaoComentarios();
             }
-            
+
             comentarioTopico = new Comentario();
         }
 
@@ -635,9 +666,10 @@ public class GerenciadorGrupo implements Serializable {
         return "page-solicitacao-grupo?faces-redirect=true";
     }
 
-    public int topicosPublicados(){
+    public int topicosPublicados() {
         return fachada.listarTopicosUsuario(aluno.getLogin(), grupo.getCodigo()).size();
     }
+
     /*Notificações*/
     public void notificacaoPublicaGrupoProfessor(Grupo grupo, String mensagem) {
 
@@ -658,7 +690,7 @@ public class GerenciadorGrupo implements Serializable {
     public void notificacaoComentarios() {
         Notificacao notificacao = new Notificacao();
         notificacao.setDataNot(new Date());
-        notificacao.setDestinatario(topicoComentario.getLoginUsuario());
+        notificacao.setDestinatario(topicoTemp.getLoginUsuario());
         notificacao.setLido(false);
         notificacao.setMensagem(comentarioTopico.getLoginUsuario() + " comentou sua publicação");
         notificacao.setRemetente(comentarioTopico.getLoginUsuario());

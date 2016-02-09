@@ -2,6 +2,7 @@ package com.br.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Comentario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(columnDefinition = "TEXT")
     private String conteudo;
     private String loginUsuario;
     @Temporal(TemporalType.DATE)

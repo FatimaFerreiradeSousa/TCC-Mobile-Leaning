@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Grupos</title>
@@ -11,6 +12,7 @@
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
@@ -39,23 +41,21 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="page-inicial-professor.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
-                        Novo Grupo
+                        Inicio
                     </a>
                     <a class="mdl-navigation__link" href="page-cad-grupo.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">question_answer</i>
                         Novo Grupo
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-grupos.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>
+                    <a class="mdl-navigation__link" href="page-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">reorder</i>
                         Grupos
                     </a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-                    <a class="mdl-navigation__link" href="page-config-professor.jsf">
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -69,7 +69,70 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
+
+                <div class="w3-container">
+
+                    <h:form>
+                        <div class="w3-center w3-margin-16">
+                            <h:panelGroup rendered="#{controladorGrupo.gruposCriados().size() == 0}">
+                                <text class="w3-text-red">
+                                    Nenhum grupo cadastrado.
+                                </text>
+                            </h:panelGroup>
+                        </div>
+
+                        <div class="w3-center w3-margin-16">
+                            <h:panelGroup rendered="#{controladorGrupo.gruposCriados().size() > 0}">
+                                <text class="w3-text-red">
+                                    Meus Grupos
+                                </text>
+                            </h:panelGroup>
+                        </div>
+
+                        <p:dataGrid var="grupo" value="#{controladorGrupo.gruposCriados()}" 
+                                    columns="4" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
+                                    layout="grid" rendered="#{controladorGrupo.gruposCriados().size() > 0}">
+
+                            <div class="w3-col m10 w3-center w3-margin-top">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-teal">
+                                        <h4>#{grupo.nome}</h4>
+                                    </div>
+                                    <div class="w3-container w3-xlarge">
+                                        <p>#{grupo.descricao}<br/>
+                                            <i>
+                                                <b>
+                                                    Criado em 
+                                                    <h:outputText value="#{grupo.dataCriacao}">
+                                                        <f:convertDateTime parent="dd/MM/yyyy"/>
+                                                    </h:outputText>
+                                                </b>
+                                            </i>
+                                            <br/>
+                                            Alunos
+
+                                            <span class="w3-xxlarge w3-text-red"><b>0</b></span></p>
+                                    </div>
+                                    <div class="w3-container w3-teal">
+                                        <p class="w3-opacity w3-margin-top">
+                                            <h:commandLink value="Ver Grupo" style="text-decoration: none;"
+                                                           class="w3-text-white-opacity"
+                                                           action="#{controladorGrupo.pagInicialGrupo(grupo)}"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p:dataGrid>
+
+                        <hr />
+
+                        <h:commandButton value="Add Grupo" action="#{controladorGrupo.paginaAddGrupo()}"
+                                         class="w3-btn w3-pink btn-formularios"/>
+                    </h:form>
+
+                </div>
 
             </main>
         </div>

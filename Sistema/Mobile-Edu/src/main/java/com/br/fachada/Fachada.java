@@ -185,10 +185,6 @@ public class Fachada implements Serializable {
         return daoGrupo.topicosGrupo(codigoGrupo);
     }
     
-    public List<Topico> listarTestesGrupo(int codigoGrupo){
-        return daoTopico.listarTestesGrupo(codigoGrupo);
-    }
-    
     public List<Topico> arquivosGrupo(int codigoGrupo){
         return daoTopico.listarArquivos(codigoGrupo);
     }
@@ -371,6 +367,14 @@ public class Fachada implements Serializable {
     
     public List<Horario> buscarHorario(String dia, String turma){
         return daoHorario.consultarHorario(dia, turma);
+    }
+    
+    public boolean alterarHorario(Horario horario){
+        return daoHorario.alterarHorario(horario);
+    }
+    
+    public boolean removerHorario(Horario horario){
+        return daoHorario.removerHorario(horario);
     }
     
     /*CRUD NOTA*/

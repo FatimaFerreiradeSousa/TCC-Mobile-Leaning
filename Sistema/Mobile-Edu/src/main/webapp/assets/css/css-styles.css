@@ -9,6 +9,17 @@ body{
     font-family: "Raleway", sans-serif;
 }
 
+.text-config{
+    font-family: "Raleway", sans-serif;
+}
+
+.panel-config{
+    background-image: url(../..//img/w3csstestbg.jpg);
+    width:100%;
+    min-height:550px;
+    max-height:700px;
+}
+
 label{
     font-family: "Raleway", sans-serif;
 }

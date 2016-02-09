@@ -44,23 +44,17 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-listar-membros.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_box</i>
-                        Membros
+                    <a class="mdl-navigation__link" href="page-cad-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">question_answer</i>
+                        Novo Grupo
                     </a>
 
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">book</i>
-                        Testes
-                    </a>
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            supervisor_account
-                        </i>
-                        Ranking
+                    <a class="mdl-navigation__link" href="page-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">reorder</i>
+                        Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-alterar-grupo.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -80,7 +74,8 @@
                 <h:form>
                     <p:dataGrid var="membro" value="#{controladorGrupo.listarMembrosGrupo()}" 
                                 columns="6" rows="" id="membro" styleClass=".ui-datagrid .ui-datagrid-content teste"
-                                layout="grid" style="border: none !important">
+                                layout="grid" style="border: none !important"
+                                rendered="#{controladorGrupo.listarMembrosGrupo().size() > 0}">
 
                         <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
                                         styleClass="w3-image w3-circle" 

@@ -44,23 +44,17 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-listar-membros.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_box</i>
-                        Membros
+                    <a class="mdl-navigation__link" href="page-cad-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">question_answer</i>
+                        Novo Grupo
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">book</i>
-                        Testes
-                    </a>
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            supervisor_account
-                        </i>
-                        Ranking
+                    <a class="mdl-navigation__link" href="page-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">reorder</i>
+                        Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-alterar-grupo.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -75,27 +69,32 @@
             </div>
 
             <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <h:form>
-                    
-                    <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
-                                 class="table table-condensed" 
-                                 rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
-                        <h:column>
-                            <h:commandLink value="#{teste.assunto}" 
-                                           action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
-                            <label>#{teste.professor.login}</label><br />
+                <div class="w3-container w3-center">
+                    <h:form>
 
-                            (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputLabel>)
-                        </h:column>
-                    </h:dataTable>
-                    
-                    <h:outputLabel value="Nenhum resultado encontrado" 
-                                   rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
-                                   class="text-danger"/>
+                        <h:outputText value="Testes"
+                                      rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}"/>
 
-                </h:form>
+                        <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
+                                     class="w3-table w3-hoverable" 
+                                     rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
+                            <h:column>
+                                <h:commandLink value="#{teste.assunto}" 
+                                               action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
+                                <label>#{teste.professor.login}</label><br />
+
+                                (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputLabel>)
+                            </h:column>
+                        </h:dataTable>
+
+                        <h:outputLabel value="Nenhum resultado encontrado" 
+                                       rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
+                                       class="w3-text-red w3-center"/>
+
+                    </h:form>
+                </div>
             </main> 
         </div>
     </h:body>

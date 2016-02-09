@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
         <title>Professor | Alterar Resposta</title>
@@ -17,7 +16,7 @@
         <script src="../../mdl/material.js"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"></link>
         <link rel="stylesheet" href="../../w3-css/w3.css"></link>
-
+        <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
     </h:head>
 
     <h:body>
@@ -48,15 +47,24 @@
                         Nova Pergunta
                     </a>
 
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                            account_balance_wallet
+                        </i>
+                        Perguntas
+                    </a>
+                    <a class="mdl-navigation__link" href="page-cad-teste.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                        Novo Teste
+                    </a>
+                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
+                        Testes
+                    </a>
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
-
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
@@ -82,16 +90,16 @@
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <label class="" for="resp">Resposta Certa</label>
-                                <h:selectBooleanCheckbox id="resp" 
+                                <label class="w3-margin-right" for="resp">Resposta Certa</label>
+                                <h:selectBooleanCheckbox id="resp" class="w3-check"
                                                          value="#{controladorPergunta.resposta.respostaCerta}"/>
                             </div>                            
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorPergunta.atualizarResposta()}" 
-                                                 class="w3-btn w3-green" value="Atualizar"/>
+                                                 class="w3-btn w3-green btn-formularios" value="Atualizar"/>
                                 <h:commandButton action="#{controladorPergunta.removerResposta()}" 
-                                                 class="w3-btn w3-black" value="Remover"/>
+                                                 class="w3-btn w3-black btn-formularios" value="Remover"/>
                             </div>
                         </div>
                     </div>

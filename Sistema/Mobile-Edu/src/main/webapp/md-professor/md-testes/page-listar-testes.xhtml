@@ -49,23 +49,23 @@
                     </a>
 
                     <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                            account_balance_wallet
+                        </i>
                         Perguntas
                     </a>
                     <a class="mdl-navigation__link" href="page-cad-teste.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
                         Novo Teste
                     </a>
                     <a class="mdl-navigation__link" href="page-listar-testes.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
                         Testes
                     </a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
-
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
@@ -76,21 +76,18 @@
             </div>
 
             <main class="mdl-layout__content mdl-color--grey-100">
-                <h:form>
-                    <h:dataTable value="#{controladorExercicio.testesCadastrados()}" var="teste" 
-                                 class="w3-table"> 
-                        <h:column> 
-                            <div class="panel panel-success"> 
-                                <div class="panel-heading"> 
-                                    <h3 class="panel-title"> 
-                                        <h:commandLink value="#{teste.assunto}" style="text-decoration: none;" 
-                                                       action="#{controladorExercicio.visualizarTeste(teste)}"/>
-                                    </h3> 
-                                </div> 
-                            </div>
-                        </h:column> 
-                    </h:dataTable>
-                </h:form>
+                <div class="w3-container w3-center w3-margin-8">
+                    <h4>Testes Cadastrados</h4>
+                    <h:form>
+                        <h:dataTable value="#{controladorExercicio.testesCadastrados()}" var="teste" 
+                                     class="w3-table w3-hoverable"> 
+                            <h:column> 
+                                <h:commandLink value="#{teste.assunto}" style="text-decoration: none;" 
+                                               action="#{controladorExercicio.visualizarTeste(teste)}"/>
+                            </h:column> 
+                        </h:dataTable>
+                    </h:form>
+                </div>
             </main>
         </div>
     </h:body>

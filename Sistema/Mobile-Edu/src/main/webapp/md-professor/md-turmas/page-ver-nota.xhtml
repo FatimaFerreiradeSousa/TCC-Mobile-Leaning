@@ -50,10 +50,16 @@
                         Nova Turma
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-alterar-turma.jsf">
+                    <a class="mdl-navigation__link" href="page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
 
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
@@ -71,7 +77,7 @@
                         <div class="w3-light-grey w3-padding-jumbo w3-center">
                             <h3>#{controladorNota.nota.titulo}</h3>
                         </div>
-                        
+
                         <div class="w3-row-padding">
                             <div class="w3-justify">
                                 <h4>#{controladorNota.nota.titulo}</h4>

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Comentários</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -73,22 +73,19 @@
                 <h:form>
                     <div class="w3-container">
 
-                        <p>#{controladorGrupo.grupo.nome}</p>
-
                         <h6 class="w3-opacity">
-                            <h:commandLink value="Publicar" class="mdl-button mdl-js-button"
-                                           action="#{controladorGrupo.pageCriarTopico()}"/>
-                            
-                            <a href="page-listar-membros.jsf">Alunos</a>
-                            <a href="page-alterar-grupo.jsf">Configurações</a>
-                            <a href="page-listar-testes.jsf">Testes</a>
+                            <h:commandLink value="Comentar" class="mdl-button mdl-js-button"
+                                           action="#{controladorGrupo.comentarTopico()}"/>
                         </h6>
 
                         <hr/>
 
-                        <p:dataGrid var="topico" value="#{controladorGrupo.listarPublicacoes()}" 
+                        <h:outputText value="Nenhum Comentário"
+                                      rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
+
+                        <p:dataGrid var="comentario" value="#{controladorGrupo.comentariosTopico()}" 
                                     columns="1" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
-                                    layout="grid" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
+                                    layout="grid" rendered="#{controladorGrupo.comentariosTopico().size() > 0}">
 
 
                             <div class="w3-pale-blue w3-leftbar w3-border-blue">
@@ -97,42 +94,33 @@
                                 </div>
 
                                 <h5>
-                                    <i class="fa fa-clock-o"></i> Post by #{topico.loginUsuario}, 
-                                    <h:outputText value="#{topico.dataCriacao}">
+                                    <i class="fa fa-clock-o"></i> Comentado por #{comentario.loginUsuario}, 
+                                    <h:outputText value="#{comentario.dataComentario}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h5>
 
                                 <p class="w3-justify">
-                                    #{topico.conteudo}
+                                    #{comentario.conteudo}
                                 </p>
 
                                 <hr/>
 
                                 <p style="font-size: 12px">
 
+                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
+                                                   style="text-decoration: none;"
+                                                   class="w3-margin-right w3-margin-left"/>|
 
-                                    <h:commandLink value="Comentar" 
-                                                   action="#{controladorGrupo.pageComentarioTopico(topico)}" 
+                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
                                                    style="text-decoration: none;"
                                                    class="w3-margin-right w3-margin-left"/>
-                                    <span class="">1</span> 
-
-                                    |
-
-                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"
-                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"/>|
-                                    
-                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
-
                                 </p>
                             </div>
                         </p:dataGrid>
+
                     </div>
+
                 </h:form>
 
             </main> 

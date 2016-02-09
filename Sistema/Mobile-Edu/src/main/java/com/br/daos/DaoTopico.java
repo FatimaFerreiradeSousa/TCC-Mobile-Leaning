@@ -76,14 +76,6 @@ public class DaoTopico implements InterfaceDaoTopico {
     }
 
     @Override
-    public List<Topico> listarTestesGrupo(int codigoGrupo) {
-        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Atividade' ORDER BY t.codigo DESC");
-        query.setParameter("codigoGrupo", codigoGrupo);
-
-        return (List<Topico>) query.getResultList();
-    }
-
-    @Override
     public List<Topico> listarArquivos(int codigoGrupo) {
         Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Arquivo' ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);

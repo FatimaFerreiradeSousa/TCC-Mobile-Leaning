@@ -129,6 +129,7 @@ public class ControladorPergunta implements Serializable {
     
     /*inserir uma nova resposta em uma pergunta ja cadastrada*/
      public String paginaCadResposta(){
+         this.resposta = new Resposta();
         return "page-add-resposta-alt-perg?faces-redirect=true";
     }
     

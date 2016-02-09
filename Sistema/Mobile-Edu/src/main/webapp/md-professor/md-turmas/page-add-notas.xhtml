@@ -47,14 +47,20 @@
                         Inicio
                     </a>
                     <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
                         Nova Turma
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-alterar-turma.jsf">
+                    <a class="mdl-navigation__link" href="page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
 
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
@@ -86,7 +92,7 @@
                                 <div class="w3-container w3-light-grey">
                                     <h2>#{nota.titulo}</h2>
                                     <h6>Por #{nota.professor}</h6>
-                                    
+
                                     <p class="w3-justify">
                                         #{nota.introducao}
                                     </p>
@@ -97,11 +103,11 @@
                                             <h:commandLink value="Ver" style="text-decoration: none" 
                                                            action="#{controladorNota.paginaVerNota(nota)}"
                                                            class="mdl-button mdl-js-button"/>
-                                            
+
                                             <h:commandLink value="Alterar" style="text-decoration: none" 
                                                            action="#{controladorNota.paginaAlterarNota(nota)}"
                                                            class="mdl-button mdl-js-button"/>
-                                            
+
                                             <h:commandLink value="Remover" style="text-decoration: none" 
                                                            action="#{controladorNota.removerNota()}"
                                                            class="mdl-button mdl-js-button"/>

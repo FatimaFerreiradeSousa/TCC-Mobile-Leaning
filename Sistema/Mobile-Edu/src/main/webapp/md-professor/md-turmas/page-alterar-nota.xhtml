@@ -51,7 +51,12 @@
                         Nova Turma
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-alterar-turma.jsf">
+                    <a class="mdl-navigation__link" href="page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -87,10 +92,10 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="introducao" errorClass="erros"/>
                                 <h:inputTextarea value="#{controladorNota.nota.introducao}" 
-                                             class="mdl-textfield__input" 
-                                             id="introducao" rows="5"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                                                 class="mdl-textfield__input" 
+                                                 id="introducao" rows="5"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório"/>
 
                                 <label class="mdl-textfield__label" for="introducao">Introdução</label>
                             </div>

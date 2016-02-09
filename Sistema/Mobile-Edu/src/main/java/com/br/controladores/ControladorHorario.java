@@ -21,10 +21,12 @@ public class ControladorHorario implements Serializable {
     private Fachada fachada;
     private Turma turma;
     private Horario horario;
-    
+    private Horario temp;
+
     public ControladorHorario() {
         turma = new Turma();
         horario = new Horario();
+        temp = new Horario();
     }
 
     public Turma getTurma() {
@@ -42,25 +44,53 @@ public class ControladorHorario implements Serializable {
     public void setHorario(Horario horario) {
         this.horario = horario;
     }
-    
-    public String pageHorario(Turma turma){
+
+    public Horario getTemp() {
+        return temp;
+    }
+
+    public void setTemp(Horario temp) {
+        this.temp = temp;
+    }
+
+    public String pageHorario(Turma turma) {
         this.turma = turma;
-        
+
         return "page-add-horario?faces-redirect=true";
     }
-    
-    public String salvarHorario(){
+
+    public String salvarHorario() {
         horario.setTurma(turma);
-        if(fachada.salvarHorario(horario)){
+        if (fachada.salvarHorario(horario)) {
             horario = new Horario();
             return "page-add-horario?faces-redirect=true";
         }
-        
+
         return "page-add-horario?faces-redirect=true";
     }
-    
-    public List<Horario> buscarHorario(String dia){
+
+    public List<Horario> buscarHorario(String dia) {
         return fachada.buscarHorario(dia, turma.getCodigo());
     }
-    
+
+    public String paginaAlterarHorario(Horario horario) {
+        this.temp = horario;
+        return "page-alterar-horario?faces-redirect=true";
+    }
+
+    public String atualizarHorario() {
+        if (fachada.alterarHorario(temp)) {
+            return "page-add-horario?faces-redirect=true";
+        }
+
+        return "page-alterar-horario?faces-redirect=true";
+    }
+
+    public String remover() {
+        if (fachada.removerHorario(temp)) {
+            return "page-add-horario?faces-redirect=true";
+        }
+
+        return "page-alterar-horario?faces-redirect=true";
+    }
 }

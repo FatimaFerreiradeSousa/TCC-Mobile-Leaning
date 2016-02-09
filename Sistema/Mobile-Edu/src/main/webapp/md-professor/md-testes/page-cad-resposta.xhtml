@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Professor | Add Resposta</title>
 
@@ -14,6 +13,7 @@
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -48,21 +48,31 @@
                         Nova Pergunta
                     </a>
 
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                            account_balance_wallet
+                        </i>
+                        Perguntas
+                    </a>
+                    <a class="mdl-navigation__link" href="page-cad-teste.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                        Novo Teste
+                    </a>
+                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
+                        Testes
+                    </a>
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
-
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
                             Sair
                         </h:commandLink>
                     </h:form>
+
                 </nav>
             </div>
 
@@ -82,33 +92,27 @@
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <label class="" for="resp">Resposta Certa</label>
-                                <h:selectBooleanCheckbox id="resp" 
+                                <label class="w3-margin-right" for="resp">Resposta Certa</label>
+                                <h:selectBooleanCheckbox id="resp" class="w3-check"
                                                          value="#{controladorPergunta.resposta.respostaCerta}"/>
                             </div>                            
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorPergunta.salvarResposta()}" 
-                                                 class="w3-btn w3-black" value="Salvar resposta"/>
+                                                 class="w3-btn w3-black btn-formularios" value="Salvar resposta"/>
                                 <h:commandButton action="#{controladorPergunta.salvarPergunta()}" 
-                                                 class="w3-btn w3-green" value="Salvar pergunta"/>
+                                                 class="w3-btn w3-green btn-formularios" value="Salvar pergunta"/>
                                 <h:commandButton action="#{controladorPergunta.cancelarPergunta()}" 
-                                                 class="w3-btn w3-indigo" value="Cancelar"/>
+                                                 class="w3-btn w3-indigo btn-formularios" value="Cancelar"/>
                             </div>
 
                         </div>
 
                         <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
-                                     class="w3-table" var="resposta">
+                                     class="w3-table w3-bordered w3-striped w3-border w3-hoverable" var="resposta">
                             <h:column>
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="w3-text w3-text-blue"/>
-                                            <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
-                                        </h3>
-                                    </div>                
-                                </div>
+                                <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="w3-text w3-text-blue"/>
+                                <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
                             </h:column>
                         </h:dataTable>
                     </div>

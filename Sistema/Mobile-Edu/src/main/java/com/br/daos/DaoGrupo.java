@@ -71,13 +71,8 @@ public class DaoGrupo implements InterfaceDaoGrupo {
         Query query = em.createQuery("select g from Grupo g where g.professorGrupos.login = :login");
         query.setParameter("login", login);
 
-        List<Grupo> grupos = (List<Grupo>) query.getResultList();
+        return (List<Grupo>) query.getResultList();
 
-        if (!grupos.isEmpty()) {
-            return grupos;
-        } else {
-            return null;
-        }
     }
 
     @Override

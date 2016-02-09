@@ -2,18 +2,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Professor | Pagina Inicial</title>
+        <title>Professor | Topico | Comentário</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
-        <link href="../../assets/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="../../assets/css/font-awesome.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
@@ -70,68 +69,42 @@
             </div>
 
             <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <h:form>
+                <h:form acceptcharset="ISO-8859-1">
                     <div class="w3-container">
 
-                        <p>#{controladorGrupo.grupo.nome}</p>
+                        <p>Comentar</p>
 
-                        <h6 class="w3-opacity">
-                            <h:commandLink value="Publicar" class="mdl-button mdl-js-button"
-                                           action="#{controladorGrupo.pageCriarTopico()}"/>
-                            
-                            <a href="page-listar-membros.jsf">Alunos</a>
-                            <a href="page-alterar-grupo.jsf">Configurações</a>
-                            <a href="page-listar-testes.jsf">Testes</a>
-                        </h6>
-
-                        <hr/>
-
-                        <p:dataGrid var="topico" value="#{controladorGrupo.listarPublicacoes()}" 
-                                    columns="1" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
-                                    layout="grid" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
-
-
-                            <div class="w3-pale-blue w3-leftbar w3-border-blue">
-                                <div class="w3-col s1 text-center">
-                                    <img class="w3-circle demo-avatar" src="../../img/ww.jpg"/>
-                                </div>
-
-                                <h5>
-                                    <i class="fa fa-clock-o"></i> Post by #{topico.loginUsuario}, 
-                                    <h:outputText value="#{topico.dataCriacao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputText>
-                                </h5>
-
-                                <p class="w3-justify">
-                                    #{topico.conteudo}
-                                </p>
-
-                                <hr/>
-
-                                <p style="font-size: 12px">
-
-
-                                    <h:commandLink value="Comentar" 
-                                                   action="#{controladorGrupo.pageComentarioTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
-                                    <span class="">1</span> 
-
-                                    |
-
-                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"
-                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"/>|
-                                    
-                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
-
-                                </p>
+                        <div class="w3-row">
+                            <div class="w3-col s2 text-center">
+                                <p:graphicImage value="#{professor.content}" styleClass="avatar-img w3-circle w3-image"/>
                             </div>
-                        </p:dataGrid>
+                            
+                            <div class="w3-col s10 w3-container">
+                                
+                                <p>#{professor.login} 
+                                    <span class="w3-opacity w3-medium">Sep 29, 2015, 9:12 PM</span>
+                                </p>
+                                
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                    <h:message for="conteudo" errorClass="erros"/>
+                                    <h:inputTextarea value="#{controladorGrupo.comentarioTopico.conteudo}" 
+                                                     class="mdl-textfield__input" 
+                                                     id="conteudo" rows="5"
+                                                     required="true"
+                                                     requiredMessage="Campo obrigatório"/>
+
+                                    <label class="mdl-textfield__label" for="conteudo">Conteúdo</label>
+                                </div>
+                                <br/>
+
+                                <h:commandButton value="Publicar" class="w3-btn w3-green btn-formularios"
+                                                 action="#{controladorGrupo.salvarComentarioProfessor()}"/>
+                                
+                                <a href="page-comentario-topico.jsf" class="w3-btn w3-indigo btn-formularios">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </h:form>
 
