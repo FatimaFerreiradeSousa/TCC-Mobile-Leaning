@@ -333,9 +333,6 @@ public class GerenciadorGrupo implements Serializable {
 
                 fachada.salvarTopico(topico);
 
-                String notificacao = topico.getLoginUsuario() + " carregou um arquivo no grupo " + grupo.getNome();
-                notificacaoPublicaGrupoProfessor(grupo, notificacao);
-
                 topico = new Topico();
                 inputStream.close();
                 out.flush();
@@ -552,11 +549,6 @@ public class GerenciadorGrupo implements Serializable {
         participaGrupo.setGrupo(grupo);
 
         fachada.adicionarMembro(participaGrupo);
-
-        String notify = PegarUsuarioSessao.pegarAlunoSessao().getLogin()
-                + " solicitou participar do grupo " + grupo.getNome();
-
-        notificacaoAluno(notify);
         participaGrupo = new ParticipaGrupo();
 
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
@@ -568,12 +560,22 @@ public class GerenciadorGrupo implements Serializable {
         aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
     }
-
+    
     public List<ParticipaGrupo> solicitacoesPendentes() {
         return fachada.listarGruposPendentes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
     }
 
     /*Topicos do grupo - aluno*/
+    public String paginaTopicoAluno(){
+        topico = new Topico();
+        return "page-publicar-topico?faces-redirect=true";
+    }
+    
+    public String paginaArquivoAluno(){
+        topico = new Topico();
+        return "page-publicar-arquivo?faces-redirect=true";
+    }
+    
     public String salvarTopicoAluno() {
 
         topico.setDataCriacao(new Date());
@@ -583,15 +585,12 @@ public class GerenciadorGrupo implements Serializable {
 
         fachada.salvarTopico(topico);
 
-        String notify = topico.getLoginUsuario() + " publicou no grupo " + grupo.getNome();
-        notificacaoPublicaGrupoAluno(grupo, notify);
-
         topico = new Topico();
 
         return "page-inicial-grupo?faces-redirect=true";
     }
 
-    public void uploadAluno() {
+    public String uploadAluno() {
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\"
                 + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
 
@@ -623,9 +622,6 @@ public class GerenciadorGrupo implements Serializable {
 
                 fachada.salvarTopico(topico);
 
-                String notify = topico.getLoginUsuario() + " carregou um arquivo no grupo " + grupo.getNome();
-                notificacaoPublicaGrupoAluno(grupo, notify);
-
                 topico = new Topico();
                 inputStream.close();
                 out.flush();
@@ -637,6 +633,8 @@ public class GerenciadorGrupo implements Serializable {
                 e.printStackTrace();
             }
         }
+        
+        return "page-inicial-grupo?faces-redirect=true";
     }
 
     public List<ParticipaGrupo> gruposAluno() {

@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Aluno | Buscar Grupo</title>
+        <title>Aluno | Grupo | Topico</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -74,47 +74,22 @@
                 <h:form acceptcharset="ISO-8859-1">
                     <div class="w3-container w3-margin-top w3-center">
 
-                        <h4 class="text-config">Buscar Grupo</h4>
+                        <h5 class="text-config">Publicar</h5>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="grupo" errorClass="erros"/>
-                            <h:inputText value="#{controladorGrupo.nomeGrupo}" 
-                                         class="mdl-textfield__input" 
-                                         id="grupo"
+                            <h:message for="topico" errorClass="erros"/>
+                            <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
+                                         class="mdl-textfield__input text-config" 
+                                         id="topico" rows="5"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
 
-                            <label class="mdl-textfield__label" for="grupo">Grupo</label>
+                            <label class="mdl-textfield__label" for="topico">Topico</label>
                         </div>
 
-                        <h:commandButton value="Buscar" action="#{controladorGrupo.listarGruposPorNome()}"
+                        <h:commandButton value="Publicar" action="#{controladorGrupo.salvarTopicoAluno()}"
                                          class="w3-btn w3-indigo btn-aluno"/>
 
-                        <hr />
-
-                        <div class="w3-row">
-                            <p class="text-config w3-text-red">
-                                <h:outputLabel value="Resultados encontrados" rendered="#{controladorGrupo.listarGruposPorNome().size() > 0}"/>
-                                <h:outputLabel value="Nenhum Resultado encontrado" rendered="#{controladorGrupo.listarGruposPorNome().size() == 0}"/>
-                            </p>
-
-                            <h:dataTable value="#{controladorGrupo.listarGruposPorNome()}" var="grupo" 
-                                         columnClasses="column1"
-                                         class="w3-table w3-hoverable" 
-                                         rendered="#{controladorGrupo.listarGruposPorNome().size() > 0}">
-                                <h:column class="column1">
-
-                                    <h6 class="w3-center">
-                                        <h:commandLink value="#{grupo.nome}" 
-                                                       action="#{controladorGrupo.paginaSolicitacaoGrupo(grupo)}"
-                                                       class="w3-text-green" 
-                                                       style="text-decoration: none;" />
-                                    </h6>
-                                    
-                                </h:column>
-                            </h:dataTable>
-
-                        </div>
                     </div>
                 </h:form>
             </main>

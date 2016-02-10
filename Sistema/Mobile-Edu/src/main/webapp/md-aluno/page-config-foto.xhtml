@@ -5,19 +5,18 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Aluno | Configurações</title>
+        <title>Aluno | Configurações | Foto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../mdl/material.css" rel="stylesheet"/>
         <link href="../mdl/material.min.css" rel="stylesheet"/>
         <link href="../mdl/styles.css" rel="stylesheet"/>
+        <link href="../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../w3-css/w3.css"/>
-        <link rel="stylesheet" href="../assets/css/css-pages.css"/>
-        <link rel="stylesheet" href="../assets/css/font-awesome.css"/>
+
         <script src="../mdl/material.min.js"/>
         <script src="../mdl/material.js"/>
-
 
     </h:head>
 
@@ -69,44 +68,33 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content mdl-color--grey-100 ">
+                <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+                    <div class="mdl-grid">
+                        <div class="w3-container w3-center w3-margin-top w3-margin-left">
 
-                <div class="mdl-grid">
-                    <div class="w3-container">
-                        <div class="w3-col m2 w3-center">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="w3-container">
+                            <p:graphicImage value="#{aluno.content}" id="figure-0q1"
+                                            styleClass="w3-circle avatar-picture-config"/><br /><br />
 
-                                    <div class="w3-center w3-responsive" >
-
-                                        <div class="">
-                                            <p:graphicImage value="#{aluno.content}" styleClass="avatar-picture-config w3-circle"
-                                                            style="margin-top: 8%;"/>
-
-                                            <h3 class="text-config">#{aluno.login}</h3>
-                                            <p class="text-config">#{controladorUsuario.aluno.nome}</p>
-                                            <p class="text-config">#{controladorUsuario.aluno.email}</p>
-                                            <p class="text-config w3-center">#{aluno.instituicao}</p>
-                                            <p class="text-config">#{controladorUsuario.aluno.curso}</p>
-                                            <p class="text-config">#{controladorUsuario.aluno.senha}</p>
-                                            
-                                        </div>
-
-                                        <div class="w3-margin-32">
-                                            <a class="mdl-button mdl-js-button" href="page-config-info.jsf">
-                                                Perfil
-                                            </a>
-
-                                            <a class="mdl-button mdl-js-button" href="page-config-foto.jsf">
-                                                Foto
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="fileUpload buttons-formulario">
+                                <label class="text-black">Nova Foto</label>
+                                <p:fileUpload 
+                                    value="#{controladorUsuario.file}"
+                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                    mode="simple" 
+                                    styleClass="upload"
+                                    />
                             </div>
+
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <h:commandButton value="Atualizar" action="#{controladorUsuario.uploadAluno()}"
+                                                 class="w3-btn w3-green btn-formularios"/>
+                            </div>
+                            
                         </div>
                     </div>
-                </div>
+                </h:form>
             </main>
         </div>
     </h:body>

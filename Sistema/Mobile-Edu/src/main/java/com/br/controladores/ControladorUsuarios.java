@@ -212,11 +212,6 @@ public class ControladorUsuarios implements Serializable {
             }
         }
     }
-
-    public String sair(){
-        System.out.println("Hello");
-        return null;
-    }
     
     public String logout() {
         
@@ -276,7 +271,7 @@ public class ControladorUsuarios implements Serializable {
     }
 
     /*Aluno*/
-    public void uploadAluno() {
+    public String uploadAluno() {
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
                 + aluno.getLogin() + "\\";
 
@@ -308,6 +303,8 @@ public class ControladorUsuarios implements Serializable {
                 e.printStackTrace();
             }
         }
+        
+        return "page-config-aluno?faces-redirect=true";
     }
 
     public String atualizarAluno() {

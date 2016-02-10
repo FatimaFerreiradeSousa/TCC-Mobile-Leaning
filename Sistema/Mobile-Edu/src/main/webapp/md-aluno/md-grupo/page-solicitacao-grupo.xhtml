@@ -7,146 +7,115 @@
     <h:head>
 
         <title>Aluno | Pagina Inicial</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
-        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
-        <script src="../bootstrap/js/bootstrap.js"></script>
-        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
-        <script src="../bootstrap/js/custom.js"></script>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
 
     </h:head>
 
     <h:body>
-        <div id="wrapper">
 
-            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+
                 </div>
 
-                <h:form>
-                    <div class="notifications-wrapper">
-                        <ul class="nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </a>
+            </header>
 
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="page-config-aluno.jsf">
-                                            Configurações
-                                        </a>
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
-                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
+                    <div class="demo-avatar-dropdown">
+                        <span>#{aluno.login}</span>
+                    </div>
+                </header>
 
-                                    </li>
-                                </ul>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
 
-                            </li>
-                        </ul>
+                    <a class="mdl-navigation__link" href="">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
+                    </a>
+
+                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>
+                </nav>
+            </div>
+
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <h:form acceptcharset="ISO-8859-1">
+                    <div class="w3-container w3-margin-top w3-center">
+
+                        <h4 class="text-config">Grupo #{controladorGrupo.grupo.nome}</h4>
+
+                        <div class="">
+                            <div class="">
+                                <div class="">
+                                    <p class="w3-center text-config">#{controladorGrupo.grupo.descricao}</p>
+                                    <p class="w3-center text-config">Criado por 
+                                        #{controladorGrupo.grupo.professorGrupos.login} em</p>
+                                    <p class="w3-center text-config">
+                                        <h:outputText value="#{controladorGrupo.grupo.dataCriacao}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <h:outputText value="Para ver as publicações envie uma solicitação" 
+                                          rendered="#{controladorGrupo.aceito == false}"
+                                          class="w3-text-blue text-config w3-margin-bottom"/>
+
+                            <h:outputText value="Solicitação enviada, aguardando confirmação" 
+                                          rendered="#{controladorGrupo.aceito == true}"
+                                          class="w3-text-orange text-config w3-margin-bottom"/>
+                            
+                            <br/> <br/> 
+
+                            <h:commandButton value="Enviar solicitação" class="w3-btn w3-pink btn-aluno" 
+                                             rendered="#{controladorGrupo.aceito == false}"
+                                             action="#{controladorGrupo.participarGrupo()}"/>
+                            
+                            <h:commandButton value="Cancelar solicitação" class="w3-btn w3-red btn-aluno" 
+                                             rendered="#{controladorGrupo.aceito == true}"
+                                             action="#{controladorGrupo.cancelarSolicitacao()}"/>
+
+                        </div>
+
                     </div>
                 </h:form>
-            </nav>
-
-            <nav class="navbar-default navbar-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="main-menu">
-                        <li>
-                            <div class="user-img-div">
-                                <p:graphicImage value="#{aluno.content}" id="figure-01"
-                                                styleClass="img-circle"/>
-                            </div> 
-                        </li>
-
-                        <li>
-                            <a href="#"><strong>#{aluno.login}</strong></a>
-
-                        </li>
-
-                        <li>
-                            <a href="#" class="active-menu">
-                                Grupos 
-                            </a>
-
-                            <ul class="nav nav-second-level">
-
-                                <li>
-                                    <a href="page-buscar-grupo.jsf">
-                                        Grupos
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="page-listar-grupos.jsf">
-                                        Meus Grupos
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="page-listar-solicitacoes.jsf">
-                                        Solicitações Grupos
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="page-registro-aluno.jsf">
-                                Registro
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <div id="page-wrapper" class="page-wrapper-cls">
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line-h1">#{controladorGrupo.grupo.nome}</h1>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-info">
-                                <h5 class="text-center">#{controladorGrupo.grupo.descricao}</h5>
-                                <h6 class="text-center">Criado por #{controladorGrupo.grupo.professorGrupos.login} em</h6>
-                                <h6 class="text-center">
-                                    <h:outputText value="#{controladorGrupo.grupo.dataCriacao}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputText>
-                                </h6>
-                            </div>
-                        </div>
-
-                        <h:form>
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6" style="text-align: center;">
-                                <h:outputText value="Para ver as publicações envie uma solicitação" rendered="#{controladorGrupo.aceito == false}"/>
-                                <h:outputText value="Solicitação enviada, aguardando confirmação" rendered="#{controladorGrupo.aceito == true}"/>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6" style="text-align: center;">
-                                <h:commandButton value="Enviar solicitação" class="btn btn-success" rendered="#{controladorGrupo.aceito == false}"
-                                                 action="#{controladorGrupo.participarGrupo()}"/>
-                                <h:commandButton value="Cancelar solicitação" class="btn btn-danger" rendered="#{controladorGrupo.aceito == true}"
-                                                 action="#{controladorGrupo.cancelarSolicitacao()}"/>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
     </h:body>
 </html>
