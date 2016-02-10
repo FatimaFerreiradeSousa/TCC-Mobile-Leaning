@@ -186,6 +186,10 @@ public class GerenciadorGrupo implements Serializable {
     public String pageCriarTopico() {
         return "page-publicar?faces-redirect=true";
     }
+    
+    public String paginaEnviarArquivo(){
+        return "page-arquivo?faces-redirect=true";
+    }
 
     /*Topicos Professor*/
     public String salvarTopicoProfessor() {
@@ -278,45 +282,9 @@ public class GerenciadorGrupo implements Serializable {
 
         return "page-comentario-topico?faces-redirect=true";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*Upload e download de Arquivos*/
+    
+    /*UPLOAD ARQUIVOS PROFESSOR*/
+        /*Upload e download de Arquivos*/
     public StreamedContent getFileDownload() {
         return fileDownload;
     }
@@ -380,6 +348,45 @@ public class GerenciadorGrupo implements Serializable {
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Faz Download
     public StreamedContent donwload(String caminho, String nome, int codigo) throws FileNotFoundException {

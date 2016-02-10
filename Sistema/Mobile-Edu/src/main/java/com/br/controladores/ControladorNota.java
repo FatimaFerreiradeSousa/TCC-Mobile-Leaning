@@ -71,7 +71,7 @@ public class ControladorNota implements Serializable {
         return "page-add-notas?faces-redirect=true";
     }
 
-    public String removerNota() {
+    public String removerNota(Nota nota) {
         if (fachada.removerNota(nota)) {
             return "page-add-notas?faces-redirect=true";
         }

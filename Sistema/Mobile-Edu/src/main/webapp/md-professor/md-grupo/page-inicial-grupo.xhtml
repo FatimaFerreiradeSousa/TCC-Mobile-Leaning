@@ -69,30 +69,34 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
+            <main class="mdl-layout__content mdl-main">
                 <h:form>
                     <div class="w3-container">
 
-                        <p>#{controladorGrupo.grupo.nome}</p>
+                        <h4>Grupo #{controladorGrupo.grupo.nome}</h4>
 
-                        <h6 class="w3-opacity">
+                        <a href="page-listar-membros.jsf" style="text-decoration: none">Alunos</a>
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none">Configurações</a>
+                        <a href="page-listar-testes.jsf" style="text-decoration: none">Testes</a>
+                        
+                        <div class="w3-btn-group">
                             <h:commandLink value="Publicar" class="mdl-button mdl-js-button"
                                            action="#{controladorGrupo.pageCriarTopico()}"/>
-                            
-                            <a href="page-listar-membros.jsf">Alunos</a>
-                            <a href="page-alterar-grupo.jsf">Configurações</a>
-                            <a href="page-listar-testes.jsf">Testes</a>
-                        </h6>
+
+
+                            <h:commandLink value="Arquivo" class="mdl-button mdl-js-button"
+                                           action="#{controladorGrupo.paginaEnviarArquivo()}"/>
+                        </div>
 
                         <hr/>
 
                         <p:dataGrid var="topico" value="#{controladorGrupo.listarPublicacoes()}" 
-                                    columns="1" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
+                                    columns="3" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                     layout="grid" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
 
 
-                            <div class="w3-pale-blue w3-leftbar w3-border-blue">
-                                <div class="w3-col s1 text-center">
+                            <div class="w3-pale-blue w3-leftbar w3-sand">
+                                <div class="w3-col s2 text-center">
                                     <img class="w3-circle demo-avatar" src="../../img/ww.jpg"/>
                                 </div>
 
@@ -115,7 +119,7 @@
                                     <h:commandLink value="Comentar" 
                                                    action="#{controladorGrupo.pageComentarioTopico(topico)}" 
                                                    style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
+                                                   class="w3-margin-right w3-margin-left w3-hoverable"/>
                                     <span class="">1</span> 
 
                                     |
@@ -124,7 +128,7 @@
                                                    style="text-decoration: none;"
                                                    class="w3-margin-right w3-margin-left"
                                                    rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"/>|
-                                    
+
                                     <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
                                                    style="text-decoration: none;"
                                                    class="w3-margin-right w3-margin-left"/>
