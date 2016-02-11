@@ -26,7 +26,9 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">
+                        <p>#{controladorGrupo.grupo.nome}</p>
+                    </div>
                 </div>
 
             </header>
@@ -73,27 +75,14 @@
                 <h:form acceptcharset="ISO-8859-1">
                     <div class="w3-container">
 
-                        <p>#{controladorGrupo.grupo.nome}</p>
-
-                        <div class="w3-row">
-                            <div class="w3-col s2 text-center">
-                                <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
-                                                styleClass="avatar-img w3-circle w3-image">
-                                    <f:param value="#{controladorGrupo.topicoTemp.loginUsuario}" 
-                                             name="loginUsuario"/>
-                                </p:graphicImage>
+                        <div class="w3-row text-config">
+                            <div class="w3-col text-center">
+                                <p> Alterar </p>
                             </div>
 
-                            <div class="w3-col s10 w3-container">
+                            <div class="w3-col w3-container text-config">
 
-                                <p>#{controladorGrupo.topicoTemp.loginUsuario} 
-                                    <span class="w3-opacity w3-medium">
-                                        <h:outputText value="#{controladorGrupo.topicoTemp.dataCriacao}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                        </h:outputText>
-                                    </span>
-                                </p>
-
+                                
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.topicoTemp.conteudo}" 

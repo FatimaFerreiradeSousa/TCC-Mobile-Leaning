@@ -90,12 +90,15 @@
 
                             <div class="w3-pale-blue w3-leftbar w3-border-blue">
                                 <div class="w3-col s1 text-center">
-                                    <img class="w3-circle demo-avatar" src="../../img/ww.jpg"/>
+                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                    styleClass="w3-circle demo-avatar">
+                                        <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
+                                    </p:graphicImage>
                                 </div>
 
-                                <h5>
-                                    <i class="fa fa-clock-o"></i> Comentado por #{comentario.loginUsuario}, 
-                                    <h:outputText value="#{comentario.dataComentario}">
+                                <h5 style="font-size: 14px;" class="text-config">
+                                    Comentado por #{comentario.loginUsuario}, 
+                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h5>

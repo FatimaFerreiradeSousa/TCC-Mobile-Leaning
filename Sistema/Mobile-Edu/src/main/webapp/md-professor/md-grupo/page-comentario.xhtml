@@ -25,7 +25,9 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">
+                        <h5>#{controladorGrupo.grupo.nome}</h5>
+                    </div>
                 </div>
 
             </header>
@@ -75,15 +77,8 @@
                         <p>Comentar</p>
 
                         <div class="w3-row">
-                            <div class="w3-col s2 text-center">
-                                <p:graphicImage value="#{professor.content}" styleClass="avatar-img w3-circle w3-image"/>
-                            </div>
                             
-                            <div class="w3-col s10 w3-container">
-                                
-                                <p>#{professor.login} 
-                                    <span class="w3-opacity w3-medium">Sep 29, 2015, 9:12 PM</span>
-                                </p>
+                            <div class="w3-col w3-container">
                                 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>

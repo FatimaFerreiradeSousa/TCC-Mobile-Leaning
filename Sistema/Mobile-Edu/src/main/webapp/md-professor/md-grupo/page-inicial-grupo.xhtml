@@ -26,9 +26,27 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
-                </div>
+                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
 
+                    <button id="demo-menu-lower-right"
+                            class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-right">
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-membros.jsf" style="text-decoration: none">Alunos</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-testes.jsf" style="text-decoration: none">Testes</a>
+                        </li>
+
+                        <li class="mdl-menu__item">
+                            <a href="page-alterar-grupo.jsf" style="text-decoration: none">Configurações</a>
+                        </li>
+                    </ul>
+                </div>
             </header>
 
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -73,12 +91,6 @@
                 <h:form>
                     <div class="w3-container">
 
-                        <h4>Grupo #{controladorGrupo.grupo.nome}</h4>
-
-                        <a href="page-listar-membros.jsf" style="text-decoration: none">Alunos</a>
-                        <a href="page-alterar-grupo.jsf" style="text-decoration: none">Configurações</a>
-                        <a href="page-listar-testes.jsf" style="text-decoration: none">Testes</a>
-                        
                         <div class="w3-btn-group">
                             <h:commandLink value="Publicar" class="mdl-button mdl-js-button"
                                            action="#{controladorGrupo.pageCriarTopico()}"/>
@@ -97,12 +109,15 @@
 
                             <div class="w3-pale-blue w3-leftbar w3-sand">
                                 <div class="w3-col s2 text-center">
-                                    <img class="w3-circle demo-avatar" src="../../img/ww.jpg"/>
+                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                    styleClass="w3-circle demo-avatar">
+                                        <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                    </p:graphicImage>
                                 </div>
 
-                                <h5>
-                                    <i class="fa fa-clock-o"></i> Post by #{topico.loginUsuario}, 
-                                    <h:outputText value="#{topico.dataCriacao}">
+                                <h5 style="font-size: 16px;" class="text-config">
+                                    Postado por #{topico.loginUsuario}, 
+                                    <h:outputText value="#{topico.dataCriacao}" style="font-size: 10px">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h5>
