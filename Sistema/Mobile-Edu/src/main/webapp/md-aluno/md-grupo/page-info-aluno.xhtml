@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Professor | Info</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8"/>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
+
+    </h:head>
+
+    <h:body>
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+
+            </header>
+
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+
+                    <div class="demo-avatar-dropdown">
+                        <span>#{professor.login}</span>
+                    </div>
+                </header>
+
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
+                    <a class="mdl-navigation__link" href="page-cad-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">question_answer</i>
+                        Novo Grupo
+                    </a>
+
+                    <a class="mdl-navigation__link" href="page-grupo.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">reorder</i>
+                        Grupos
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>                </nav>
+            </div>
+
+            <main class="mdl-layout__content mdl-color--grey-100 mdl-main">
+
+                <div class="w3-container w3-center">    
+                    <div class="w3-row">
+                        <div class="w3-col m3">
+                            <div class="w3-card-2 w3-round w3-white">
+                                <div class="w3-container">
+                                    <p>
+                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                        styleClass="demo-avatar-al w3-circle">
+                                            <f:param value="#{controladorGrupo.aluno.login}" name="loginUsuario"/>
+                                        </p:graphicImage>
+                                    </p>
+                                    <p>#{controladorGrupo.aluno.login}</p>
+                                    <p>#{controladorGrupo.aluno.curso}</p>
+                                    <p>#{controladorGrupo.aluno.instituicao}</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w3-col m7">
+
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="">
+                                        <div class="w3-container w3-padding w3-left-align">
+                                            <p contenteditable="true">Testes Respondidos: #{controladorGrupo.listarRespondeExercicios().size()}</p>
+                                            <p contenteditable="true">Pontuação Total: #{controladorGrupo.buscarParticipaGrupo().pontuacao}</p>
+
+                                            Resumo Total:
+                                            <input class="mdl-slider mdl-js-slider" type="range"
+                                                   min="0" max="100" 
+                                                   value="#{controladorGrupo.listarRespondeExercicios().size()}" 
+                                                   tabindex="0"/>
+
+                                            <hr />
+
+                                            <p contenteditable="true">
+                                                Publicações Feitas: #{controladorGrupo.topicosPublicados()}
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </h:body>
+</html>
+

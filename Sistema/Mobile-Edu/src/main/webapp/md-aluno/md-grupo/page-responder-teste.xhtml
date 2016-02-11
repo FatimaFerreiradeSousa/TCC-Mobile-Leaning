@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>Aluno | Responder Teste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8"/>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
+
+    </h:head>
+
+    <h:body>
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+
+                </div>
+
+            </header>
+
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
+
+                    <div class="demo-avatar-dropdown">
+                        <span>#{aluno.login}</span>
+                    </div>
+                </header>
+
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
+
+                    <a class="mdl-navigation__link" href="">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
+
+                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
+                    </a>
+
+                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
+                    </h:form>
+                </nav>
+            </div>
+
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <h:form>
+                    <div class="w3-container w3-center w3-margin-top text-config">
+
+                        <h6 class="text-config w3-text-pink">Teste #{controladorTeste.teste.assunto}</h6>
+
+                        Disciplina: #{controladorTeste.teste.disciplina}<br />
+                        Entrega: <h:outputText value="#{controladorTeste.teste.dataEntrega}" 
+                                               class="w3-text-blue text-config">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText><hr />
+
+                        <div class="w3-center w3-margin-top">
+                            <h:commandButton value="Começar" action="#{controladorTeste.comecarAResponder()}" 
+                                             class="w3-btn w3-green btn-aluno" 
+                                             rendered="#{controladorTeste.disponivel == true}"/>
+
+                            <h:outputText value="Este teste não está mais disponivel" class="w3-text-green"
+                                          rendered="#{controladorTeste.disponivel == false}"/><br /> <br />
+
+                            <h:commandLink value="Detalhes" class="w3-btn w3-red btn-aluno" 
+                                           action="#{controladorTeste.verificaTeste()}"
+                                           rendered="#{controladorTeste.disponivel == false}">
+                                <f:ajax render="testeDisponivel"/>
+                            </h:commandLink><br /><br />
+
+                            <p><h:outputText value="#{controladorTeste.mensagem}" 
+                                             id="testeDisponivel" class="w3-text-indigo"/></p>
+
+                        </div>
+
+                        <div class="w3-center">
+                            <h3>
+                                 
+                                <h:outputLabel value="Pergunta: #{controladorTeste.pergunta.enunciado}" class="w3-text-deep-orange"
+                                               rendered="#{controladorTeste.comecar == true}"/>
+                            </h3>
+
+                            <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" 
+                                         class="w3-table w3-hoverable"
+                                         rendered="#{controladorTeste.comecar == true}">
+                                <h:column>
+                                    <h4 class="w3-center">
+                                        <h:commandLink value="#{resposta.conteudo}" 
+                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.peso)}" 
+                                                       style="text-decoration: none"/>
+                                    </h4>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </h:form>
+            </main>
+            
+        </div>
+    </h:body>
+</html>
+

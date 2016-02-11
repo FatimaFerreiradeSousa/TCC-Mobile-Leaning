@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Aluno | Grupo</title>
+        <title>Aluno | Topico | Comentario</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -35,15 +35,10 @@
 
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                         for="demo-menu-lower-right">
-                        <li class="mdl-menu__item">
-                            <a href="page-listar-membros.jsf" style="text-decoration: none">Membros</a>
-                        </li>
-                        <li class="mdl-menu__item">
-                            <a href="page-listar-testes-grupo.jsf" style="text-decoration: none">Testes</a>
-                        </li>
-                        <li class="mdl-menu__item">
-                            <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
-                        </li>
+                        <li class="mdl-menu__item">Some Action</li>
+                        <li class="mdl-menu__item">Another Action</li>
+                        <li class="mdl-menu__item">Disabled Action</li>
+                        <li class="mdl-menu__item">Yet Another Action</li>
                     </ul>
                 </div>
 
@@ -92,54 +87,44 @@
                     <div class="w3-container w3-margin-top">
 
                         <div class="w3-center">
-                            <h:commandLink value="Publicar" class="mdl-button mdl-js-button text-config"
-                                           action="#{controladorGrupo.paginaTopicoAluno()}"/>
-
-                            <h:commandLink value="Arquivo" class="mdl-button mdl-js-button text-config"
-                                           action="#{controladorGrupo.paginaArquivoAluno()}"/>
+                            <h:commandLink value="Comentar" class="mdl-button mdl-js-button text-config"
+                                           action="#{controladorGrupo.paginaComentarioAluno()}"/>
                         </div>
 
                         <hr/>
 
-                        <h:dataTable value="#{controladorGrupo.topicos()}" var="topico">
+                        <h:dataTable value="#{controladorGrupo.comentariosTopico()}" var="comentario">
                             <h:column>
                                 <div class="w3-pale-blue w3-leftbar w3-white">
                                     <div class="w3-col s3 text-center">
-                                        <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" 
+                                        <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}"
                                                         styleClass="w3-circle demo-avatar">
-                                            <f:param value="#{topico.loginUsuario}" name="loginComentario"/>
+                                            
+                                            <f:param name="loginComentario" value="#{comentario.loginUsuario}"/>
+                                            
                                         </p:graphicImage>
                                     </div>
 
                                     <p style="font-size: 12px">
-                                        <i class="fa fa-clock-o"></i> Post by #{topico.loginUsuario}, 
-                                        <h:outputText value="#{topico.dataCriacao}" style="font-size: 9px">
+                                        <i class="fa fa-clock-o"></i> Post by #{comentario.loginUsuario}, 
+                                        <h:outputText value="#{comentario.dataComentario}" style="font-size: 9px">
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                                         </h:outputText>
                                     </p>
 
                                     <p class="w3-justify">
-                                        #{topico.conteudo}
+                                        #{comentario.conteudo}
                                     </p>
 
                                     <hr/>
 
-                                    <p style="font-size: 12px">
+                                    <p style="font-size: 12px" class="w3-center">
 
-
-                                        <h:commandLink value="Comentar" 
-                                                       action="#{controladorGrupo.pageComentarioTopico(topico)}" 
-                                                       style="text-decoration: none;"
-                                                       class="w3-margin-right w3-margin-left w3-hoverable"/>
-                                        <span class="">#{controladorGrupo.comentariosTopico().size()}</span> 
-
-                                        |
-
-                                        <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
+                                        <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
                                                        style="text-decoration: none;"
                                                        class="w3-margin-right w3-margin-left"/>|
 
-                                        <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
+                                        <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
                                                        style="text-decoration: none;"
                                                        class="w3-margin-right w3-margin-left"/>
 

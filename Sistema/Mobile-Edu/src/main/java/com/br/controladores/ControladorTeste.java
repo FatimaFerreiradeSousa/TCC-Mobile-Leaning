@@ -184,7 +184,7 @@ public class ControladorTeste implements Serializable {
         return "page-responder-teste?faces-redirect=true";
     }
 
-    public String salvarTeste() {
+    public String salvarTesteResolvido() {
         respondeExercicio.setCodTeste(teste.getCodigo());
         respondeExercicio.setDataResposta(new Date());
         respondeExercicio.setNota(resultado);
