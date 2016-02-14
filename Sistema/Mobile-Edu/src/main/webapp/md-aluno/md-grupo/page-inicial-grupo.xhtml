@@ -59,7 +59,7 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
@@ -104,14 +104,14 @@
                         <h:dataTable value="#{controladorGrupo.topicos()}" var="topico">
                             <h:column>
                                 <div class="w3-pale-blue w3-leftbar w3-white">
-                                    <div class="w3-col s3 text-center">
+                                    <div class="w3-col s3 text-center" style="margin-left: 2%; margin-top: 2%">
                                         <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}" 
                                                         styleClass="w3-circle demo-avatar">
                                             <f:param value="#{topico.loginUsuario}" name="loginComentario"/>
                                         </p:graphicImage>
                                     </div>
 
-                                    <p style="font-size: 12px">
+                                    <p style="font-size: 12px" class="w3-text-theme">
                                         <i class="fa fa-clock-o"></i> Post by #{topico.loginUsuario}, 
                                         <h:outputText value="#{topico.dataCriacao}" style="font-size: 9px">
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>
@@ -124,27 +124,28 @@
 
                                     <hr/>
 
-                                    <p style="font-size: 12px">
-
+                                    <div style="font-size: 12px">
 
                                         <h:commandLink value="Comentar" 
                                                        action="#{controladorGrupo.pageComentarioTopico(topico)}" 
                                                        style="text-decoration: none;"
                                                        class="w3-margin-right w3-margin-left w3-hoverable"/>
-                                        <span class="">#{controladorGrupo.comentariosTopico().size()}</span> 
-
-                                        |
-
+                                        <span class="">#{topico.comentarios.size()}</span>|
+                                        
                                         <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
                                                        style="text-decoration: none;"
-                                                       class="w3-margin-right w3-margin-left"/>|
+                                                       class="w3-margin-right w3-margin-left"
+                                                       rendered="#{topico.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
+                                        
+                                        <h:outputText value="|" rendered="#{topico.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
 
                                         <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
                                                        style="text-decoration: none;"
-                                                       class="w3-margin-right w3-margin-left"/>
+                                                       class="w3-margin-right w3-margin-left"
+                                                       rendered="#{topico.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
 
-                                    </p>
-                                </div>
+                                    </div>
+                                </div><br/>
                             </h:column>
                         </h:dataTable>
 

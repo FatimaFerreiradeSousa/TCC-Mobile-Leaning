@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Aluno | Meus Grupos</title>
+        <title>Aluno | Pagina Inicial</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -19,6 +19,7 @@
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
 
+
     </h:head>
 
     <h:body>
@@ -27,12 +28,6 @@
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
-
-                    <a class="material-icons mdl-badge mdl-badge--overlap" 
-                       data-badge="#{controladorGrupo.solicitacoesPendentes().size()}" 
-                       href="page-listar-solicitacoes.jsf" style="text-decoration: none">
-                        account_box
-                    </a>
 
                 </div>
 
@@ -48,22 +43,21 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                    <a class="mdl-navigation__link" href="../md-grupo/page-listar-grupos.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -79,61 +73,55 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
                 <h:form>
-                    <div class="w3-container w3-center w3-margin-top">
+                    <div class="w3-container w3-center text-config">
 
-                        <h6 class="text-config w3-text-pink">Meus Grupos</h6>
+                        <h5 class="text-config">Suas Turmas</h5>
 
-                        <h:dataTable value="#{controladorGrupo.gruposAluno()}" var="participaGrupo" 
-                                     class="w3-table" columnClasses="column1"
-                                     rendered="#{controladorGrupo.gruposAluno().size() > 0}">
-                            <h:column class="column1">
+                        <h:dataTable value="#{aluno.turmas}" var="turma" class="w3-table">
 
+                            <h:column>
                                 <div class="w3-col m10 w3-center w3-margin-top">
                                     <div class="w3-card">
-                                        <div class="w3-container w3-teal">
-                                            <h4>#{participaGrupo.grupo.nome}</h4>
+                                        <div class="w3-container w3-red">
+                                            <h4>#{turma.nome}</h4>
                                         </div>
                                         <div class="w3-container w3-xlarge">
-                                            <p>#{participaGrupo.grupo.descricao}<br/>
+                                            <p>#{turma.descricao}<br/>
                                                 <i>
                                                     <b>
-                                                        Criado em 
-                                                        <h:outputText value="#{participaGrupo.grupo.dataCriacao}">
+                                                        Inicio:
+                                                        <h:outputText value="#{turma.dataInicio}">
+                                                            <f:convertDateTime parent="dd/MM/yyyy"/>
+                                                        </h:outputText>
+                                                        <br />
+                                                        Termínio:
+                                                        <h:outputText value="#{turma.dataTerminio}">
                                                             <f:convertDateTime parent="dd/MM/yyyy"/>
                                                         </h:outputText>
                                                     </b>
                                                 </i>
                                                 <br/>
-
                                                 Alunos
 
-                                                <span class="w3-xxlarge w3-text-red">
-                                                    <b>0</b>
-                                                </span>
-                                            </p>
+                                                <span class="w3-xxlarge w3-text-red"><b>#{turma.alunos.size()}</b></span></p>
                                         </div>
-                                        <div class="w3-container w3-teal">
+                                        <div class="w3-container w3-red">
                                             <p class="w3-opacity w3-margin-top">
-                                                <h:commandLink value="Ver Grupo" style="text-decoration: none;"
+                                                <h:commandLink value="Ver Turma" style="text-decoration: none;"
                                                                class="w3-text-white-opacity"
-                                                               action="#{controladorGrupo.paginaGrupoAluno(participaGrupo.grupo)}"/>
+                                                               action="#{controladorTurma.paginaInicialTurma(turma)}"/>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </h:column>
-                        </h:dataTable>
+                        </h:dataTable> 
 
-
-                        <div class="w3-center w3-margin-top">
-                            <h:outputLabel value="Nenhum grupo encontrado" class="w3-text-red text-config"
-                                           rendered="#{controladorGrupo.gruposAluno().size() == 0}"/>
+                        <div class="w3-center">
+                            <h:outputText value="Você não possui nenhuma turma" class="w3-text-indigo"
+                                          rendered="#{aluno.turmas.size() == 0}"/>
                         </div>
 
-                        <hr />
-                        <a value="Novo Grupo" class="w3-btn w3-blue btn-aluno" href="page-buscar-grupo.jsf">
-                            Buscar Grupo
-                        </a>
                     </div>
                 </h:form>
             </main>

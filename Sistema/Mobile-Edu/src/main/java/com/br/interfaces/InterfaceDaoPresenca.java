@@ -24,5 +24,7 @@ public interface InterfaceDaoPresenca {
     
     public int qtdFaltas(String login, String turma);
     
+    public int qtdPresencas(String login, String turma);
+    
     public List<Presenca> listarPresencaPorHorario(Date data, String horaInicio);
 }

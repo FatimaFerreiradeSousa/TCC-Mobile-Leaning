@@ -159,7 +159,6 @@ public class ControladorExercicio implements Serializable {
             
             grupo.getTestesGrupo().add(exercicio);
             fachada.atualizarGrupo(grupo);
-            notificarUsuarios(grupo);
             
             return "page-alterar-teste?faces-redirect=true";
         }else{
@@ -176,24 +175,5 @@ public class ControladorExercicio implements Serializable {
 
     public String concluirEnvio() {
         return "page-listar-testes?faces-redirect=true";
-    }
-
-    public void notificarUsuarios(Grupo grupo) {
-
-        List<Aluno> membrosGrupo = fachada.listarMembrosGrupo(grupo.getCodigo());
-        Notificacao notificacao;
-
-        for (Aluno membro : membrosGrupo) {
-            notificacao = new Notificacao();
-            notificacao.setDestinatario(membro.getLogin());
-            notificacao.setRemetente(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-            notificacao.setLido(false);
-            notificacao.setDataNot(new Date());
-            notificacao.setMensagem(PegarUsuarioSessao.pegarProfessorSessao().getLogin()
-                    + " enviou um novo teste para o grupo " + grupo.getNome());
-
-            fachada.salvarNotificacao(notificacao);
-        }
-
     }
 }

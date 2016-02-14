@@ -305,23 +305,6 @@ public class Fachada implements Serializable {
         return daoRespondeExercicio.listarExcerciciosAluno(login);
     }
     
-    /*Notificações do sistema*/
-    public boolean salvarNotificacao(Notificacao notificacao){
-        return daoNotificacao.salvarNotificacao(notificacao);
-    }
-    
-    public List<Notificacao> listarNotificacoes(String login){
-        return daoNotificacao.listarNotificacoes(login);
-    }
-    
-    public boolean marcarComoLido(Notificacao notificacao){
-        return daoNotificacao.atualizarNotificacao(notificacao);
-    }
-    
-    public int listarQTDNotificacoes(String login){
-        return daoNotificacao.listarQTDNotificacoes(login);
-    }
-    
     /*CRUD TURMA*/
     public boolean salvarTurma(Turma turma){
         return daoTurma.salvarTurma(turma);
@@ -354,6 +337,10 @@ public class Fachada implements Serializable {
     
     public int qtdFaltas(String login, String turma){
         return daoPresenca.qtdFaltas(login, turma);
+    }
+    
+    public int qtdPresencas(String login, String turma){
+        return daoPresenca.qtdPresencas(login, turma);
     }
     
     public List<Presenca> listarPresencaPorHorario(Date data, String horaTurma){

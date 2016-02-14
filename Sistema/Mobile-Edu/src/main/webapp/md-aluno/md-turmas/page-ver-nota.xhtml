@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <title>Professor | Nota</title>
 
-        <title>Aluno | Grupo | Comentario</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -14,6 +15,7 @@
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
+        <link rel="stylesheet" href="../../assets/css/font-awesome.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -21,45 +23,43 @@
     </h:head>
 
     <h:body>
-
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
-
+                    <div class="mdl-layout-spacer">#{controladorTurma.turma.nome}</div>
                 </div>
 
             </header>
 
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
-                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
+                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span>#{professor.login}</span>
                     </div>
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
+                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                        Nova Turma
+                    </a>
 
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
-                        Grupos
-                    </a>
-
-                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
 
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
@@ -70,30 +70,39 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <h:form acceptcharset="ISO-8859-1">
-                    <div class="w3-container w3-margin-top w3-center">
+            <main class="mdl-layout__content">
+                <h:form>
+                    <div class="w3-container w3-margin-16">
 
-                        <h5 class="text-config">Comentar</h5>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="comentario" errorClass="erros"/>
-                            <h:inputTextarea value="#{controladorGrupo.comentarioTopico.conteudo}" 
-                                         class="mdl-textfield__input text-config" 
-                                         id="comentario" rows="5"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="comentario">Comentario</label>
+                        <div class="w3-light-grey w3-padding-jumbo w3-center">
+                            <h3>#{controladorNota.nota.titulo}</h3>
                         </div>
 
-                        <h:commandButton value="Comentar" action="#{controladorGrupo.salvarComentarioAluno()}"
-                                         class="w3-btn w3-green btn-aluno"/>
+                        <div class="w3-row-padding">
+                            <div class="w3-justify">
+                                <h4>#{controladorNota.nota.titulo}</h4>
+                                <h6>Por #{controladorNota.nota.professor} - 
+                                    <h:outputText value="#{controladorNota.nota.dataNota}" style="font-size: 10px">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h6>
 
+                                <p>#{controladorNota.nota.introducao}</p>
+                                <p>#{controladorNota.nota.desenvolvimento}</p>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <a href="page-listar-notas.jsf" class="w3-btn w3-pink btn-presenca-pag"
+                           style="text-decoration: none;">
+                            Voltar
+                        </a>
                     </div>
                 </h:form>
             </main>
         </div>
     </h:body>
+
 </html>
 

@@ -21,7 +21,7 @@ public class Aluno extends Pessoa implements Serializable{
     private List<Turma> turmas;
     
     public Aluno(){
-    
+        this.turmas = new ArrayList();
     }
 
     public Aluno(String curso, String email, String login, String senha, 

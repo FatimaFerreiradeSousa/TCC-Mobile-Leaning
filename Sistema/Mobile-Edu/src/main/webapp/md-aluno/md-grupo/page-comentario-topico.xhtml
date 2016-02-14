@@ -54,7 +54,7 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
@@ -96,7 +96,7 @@
                         <h:dataTable value="#{controladorGrupo.comentariosTopico()}" var="comentario">
                             <h:column>
                                 <div class="w3-pale-blue w3-leftbar w3-white">
-                                    <div class="w3-col s3 text-center">
+                                    <div class="w3-col s3 text-center" style="margin-left: 2%; margin-top: 2%">
                                         <p:graphicImage value="#{controladorFotos.mostrarFotoComentario()}"
                                                         styleClass="w3-circle demo-avatar">
                                             
@@ -122,11 +122,15 @@
 
                                         <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
                                                        style="text-decoration: none;"
-                                                       class="w3-margin-right w3-margin-left"/>|
+                                                       class="w3-margin-right w3-margin-left"
+                                                       rendered="#{comentario.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
+                                        
+                                        <h:outputText value="|" rendered="#{comentario.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
 
                                         <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
                                                        style="text-decoration: none;"
-                                                       class="w3-margin-right w3-margin-left"/>
+                                                       class="w3-margin-right w3-margin-left"
+                                                       rendered="#{comentario.loginUsuario.equalsIgnoreCase(aluno.login)}"/>
 
                                     </p>
                                 </div>

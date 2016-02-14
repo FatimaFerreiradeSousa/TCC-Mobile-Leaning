@@ -79,13 +79,13 @@ public class ControladorNota implements Serializable {
         return "page-add-notas?faces-redirect=true";
     }
 
-    public String paginaAlterarNota(Nota nota){
-        
+    public String paginaAlterarNota(Nota nota) {
+
         this.nota = nota;
-        
+
         return "page-alterar-nota?faces-redirect=true";
     }
-    
+
     public String alterarNota() {
         if (fachada.alterarNota(nota)) {
             return "page-add-notas?faces-redirect=true";
@@ -93,10 +93,18 @@ public class ControladorNota implements Serializable {
 
         return "page-add-notas?faces-redirect=true";
     }
-    
-    public String cancelarEdicao(){
+
+    public String cancelarEdicao() {
         this.nota = new Nota();
-        
+
         return "page-add-notas?faces-redirect=true";
     }
+
+    /*ALUNO*/
+    public String pageNotaAluno(Turma turma) {
+        this.turma = turma;
+
+        return "page-listar-notas?faces-redirect=true";
+    }
+
 }

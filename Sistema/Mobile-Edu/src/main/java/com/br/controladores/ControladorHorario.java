@@ -93,4 +93,10 @@ public class ControladorHorario implements Serializable {
 
         return "page-alterar-horario?faces-redirect=true";
     }
+
+    public String pageHorarioAluno(Turma turma) {
+        this.turma = turma;
+
+        return "page-listar-horarios?faces-redirect=true";
+    }
 }

@@ -261,7 +261,23 @@ public class ControladorTurma implements Serializable {
 
         this.status = fachada.listarPresencaPorHorario(new Date(), hora).size() <= 0;
         this.checkChamada = fachada.listarPresencaPorHorario(new Date(), hora).size() > 0;
-        
+
         return "page-add-presenca?faces-redirect=true";
+    }
+
+    /*ALUNO*/
+    public String paginaDesempenhoAluno(Aluno aluno) {
+        this.aluno = aluno;
+        return "page-aluno-detalhes?faces-redirect=true";
+    }
+
+    public int qtdFaltasAluno() {
+
+        return fachada.qtdFaltas(aluno.getLogin(), turma.getCodigo());
+    }
+    
+    public int qtdPresencasAluno() {
+
+        return fachada.qtdPresencas(aluno.getLogin(), turma.getCodigo());
     }
 }

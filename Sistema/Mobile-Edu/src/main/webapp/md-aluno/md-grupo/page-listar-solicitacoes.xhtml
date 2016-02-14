@@ -6,138 +6,104 @@
     <h:head>
 
         <title>Aluno | Solicitações</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../assets/css/css-pag-inical-professor.css" rel="stylesheet"/>
-        <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
-        <script src="../bootstrap/js/jquery-1.11.1.js"></script>
-        <script src="../bootstrap/js/bootstrap.js"></script>
-        <script src="../bootstrap/js/jquery.metisMenu.js"></script>
-        <script src="../bootstrap/js/custom.js"></script>
+        <link href="../../mdl/material.css" rel="stylesheet"/>
+        <link href="../../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../mdl/material-icons.css"/>
+        <link rel="stylesheet" href="../../w3-css/w3.css"/>
+
+        <script src="../../mdl/material.min.js"/>
+        <script src="../../mdl/material.js"/>
 
     </h:head>
 
     <h:body>
-        <div id="wrapper">
 
-            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a  class="navbar-brand" href="page-inicial-aluno.jsf">Inicio</a>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header demo-header">
+                <div class="mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+
+                    <a class="material-icons mdl-badge mdl-badge--overlap" 
+                       data-badge="#{controladorGrupo.solicitacoesPendentes().size()}" 
+                       href="page-listar-solicitacoes.jsf" style="text-decoration: none">
+                        account_box
+                    </a>
+
                 </div>
 
-                <h:form>
-                    <div class="notifications-wrapper">
-                        <ul class="nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                </a>
+            </header>
 
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="page-config-aluno.jsf">
-                                            Configurações
-                                        </a>
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                <header class="demo-drawer-header">
+                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
-                                        <h:commandLink value="Sair" action="#{controladorUsuario.logout()}"/>
-
-                                    </li>
-                                </ul>
-
-                            </li>
-                        </ul>
+                    <div class="demo-avatar-dropdown">
+                        <span>#{aluno.login}</span>
                     </div>
-                </h:form>
-            </nav>
+                </header>
 
-            <nav class="navbar-default navbar-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="main-menu">
-                        <li>
-                            <div class="user-img-div">
-                                <p:graphicImage value="#{aluno.content}" id="figure-01"
-                                                styleClass="img-circle"/>
-                            </div> 
-                        </li>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                        Inicio
+                    </a>
 
-                        <li>
-                            <a href="#"><strong>#{aluno.login}</strong></a>
+                    <a class="mdl-navigation__link" href="">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
+                    </a>
 
-                        </li>
+                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
+                    </a>
 
-                        <li>
-                            <a href="#" class="active-menu">
-                                Grupos 
-                            </a>
-
-                            <ul class="nav nav-second-level">
-
-                                <li>
-                                    <a href="page-buscar-grupo.jsf">
-                                        Grupos
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="page-listar-grupos.jsf">
-                                        Meus Grupos
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="page-listar-solicitacoes.jsf">
-                                        Solicitações Grupos
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="page-registro-aluno.jsf">
-                                Registro
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <div id="page-wrapper" class="page-wrapper-cls">
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="page-head-line-h1">Solicitações</h1>
-                        </div>
-                    </div>
+                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                        Configurações
+                    </a>
 
                     <h:form>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:dataTable value="#{controladorGrupo.solicitacoesPendentes()}" var="participaGrupo" class="table table-hover" 
-                                             columnClasses="column1" rendered="#{controladorGrupo.solicitacoesPendentes().size() > 0}">
-                                    <h:column class="column1">
-                                        <h:commandLink value="#{participaGrupo.grupo.nome}" action="#{controladorGrupo.paginaSolicitacaoGrupo(participaGrupo.grupo)}" 
-                                                       style="text-decoration: none"
-                                                       class="text-success"/>
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                                <h:outputText value="Nenhuma solicitação pendente" class="page-text-span"
-                                              rendered="#{controladorGrupo.solicitacoesPendentes().size() == 0}"/>
-                            </div>
-                        </div>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
+                            Sair
+                        </h:commandLink>
                     </h:form>
-                </div>
+                </nav>
             </div>
+
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <h:form>
+                    <div class="w3-container w3-center w3-margin-top text-config">
+
+                        <h6 class="text-config w3-text-pink">Solicitações Pendentes</h6>
+
+                        <h:dataTable value="#{controladorGrupo.solicitacoesPendentes()}" 
+                                     var="participaGrupo" 
+                                     class="w3-table w3-hoverable" 
+                                     rendered="#{controladorGrupo.solicitacoesPendentes().size() > 0}">
+                            <h:column>
+                                <div class="w3-center">
+                                    <h:commandLink value="#{participaGrupo.grupo.nome}" 
+                                                   action="#{controladorGrupo.paginaSolicitacaoGrupo(participaGrupo.grupo)}" 
+                                                   style="text-decoration: none"
+                                                   class="w3-text-blue"/>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+
+                        <div class="w3-center">
+                            <h:outputText value="Nenhuma solicitação pendente"
+                                          rendered="#{controladorGrupo.solicitacoesPendentes().size() == 0}"/>
+                        </div>
+
+                    </div>
+                </h:form>
+            </main>
         </div>
     </h:body>
 </html>

@@ -54,20 +54,20 @@ public class DaoTurma implements InterfaceDaoTurma {
     @Override
     public Turma buscarTurma(String codigo) {
         try {
-            
+
             return em.find(Turma.class, codigo);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-    
+
     @Override
-    public List<Turma> listarTurmas(String login){
+    public List<Turma> listarTurmas(String login) {
         Query query = em.createQuery("select t from Turma t where t.professor.login = :login");
         query.setParameter("login", login);
-        
+
         return (List<Turma>) query.getResultList();
     }
 }
