@@ -21,7 +21,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -128,8 +128,15 @@
 
                         <hr />
 
-                        <h:commandButton value="Add Grupo" action="#{controladorGrupo.paginaAddGrupo()}"
-                                         class="w3-btn w3-pink btn-formularios"/>
+                        <div class="w3-center text-config">
+
+                            <h:commandButton value="Add Grupo" action="#{controladorGrupo.paginaAddGrupo()}"
+                                             class="w3-btn w3-pink btn-formularios"/>
+
+                            <a class="mdl-button mdl-js-button" href="page-solicitacoes-grupos.jsf">
+                                Solicitações
+                            </a>
+                        </div>
                     </h:form>
 
                 </div>
