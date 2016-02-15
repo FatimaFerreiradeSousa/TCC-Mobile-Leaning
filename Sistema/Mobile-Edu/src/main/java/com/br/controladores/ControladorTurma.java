@@ -265,6 +265,16 @@ public class ControladorTurma implements Serializable {
         return "page-add-presenca?faces-redirect=true";
     }
 
+    public List<Horario> buscarHorarioDoDia() {
+        String dia = FormatData.verificarDia(FormatData.pegarDia());
+        System.out.println("Horario: " +turma.getDescricao());
+        return fachada.buscarHorario(dia, turma.getCodigo());
+    }
+
+    public String diaDaSemana() {
+        return FormatData.verificarDia(FormatData.pegarDia());
+    }
+
     /*ALUNO*/
     public String paginaDesempenhoAluno(Aluno aluno) {
         this.aluno = aluno;
@@ -275,7 +285,7 @@ public class ControladorTurma implements Serializable {
 
         return fachada.qtdFaltas(aluno.getLogin(), turma.getCodigo());
     }
-    
+
     public int qtdPresencasAluno() {
 
         return fachada.qtdPresencas(aluno.getLogin(), turma.getCodigo());

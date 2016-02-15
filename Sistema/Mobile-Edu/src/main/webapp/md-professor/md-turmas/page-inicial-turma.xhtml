@@ -14,98 +14,102 @@
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
     </h:head>
 
     <h:body>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <header class="mdl-layout__header demo-header">
-                <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
-                </div>
-
-            </header>
-
-            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-                <header class="demo-drawer-header">
-                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
-                    <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+        <h:form>
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="mdl-layout__header demo-header">
+                    <div class="mdl-layout__header-row">
+                        <div class="mdl-layout-spacer"></div>
                     </div>
+
+                    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <a href="page-inicial-turma.jsf" class="mdl-layout__tab is-active">Inicio</a>
+                        <a href="page-listar-alunos.jsf" class="mdl-layout__tab">Alunos</a>
+                        <h:commandLink value="Artigos" class="mdl-layout__tab"
+                                       action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
+                        <h:commandLink value="Frequencia" class="mdl-layout__tab"
+                                       action="#{controladorTurma.presencaPagina()}"/>
+                        <h:commandLink value="Horários" class="mdl-layout__tab"
+                                       action="#{controladorHorario.pageHorario(controladorTurma.turma)}"/>
+                        <a href="page-alterar-turma.jsf" class="mdl-layout__tab">Configurações</a>
+                    </div>
+
                 </header>
 
-                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                    <header class="demo-drawer-header">
+                        <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
-                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
-                        Inicio
-                    </a>
+                        <div class="demo-avatar-dropdown">
+                            <span>#{professor.login}</span>
+                        </div>
+                    </header>
 
-                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
-                        Nova Turma
-                    </a>
+                    <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
-                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
-                        Configurações
-                    </a>
+                        <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
+                            Inicio
+                        </a>
 
-                    <h:form>
+                        <a class="mdl-navigation__link" href="page-add-turma.jsf">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
+                            Nova Turma
+                        </a>
+
+                        <a class="mdl-navigation__link" href="../page-config-professor.jsf">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+                            Configurações
+                        </a>
+
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
                             Sair
                         </h:commandLink>
-                    </h:form>
-                </nav>
-            </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="w3-container w3-center">
-                    <h4>Turma #{controladorTurma.turma.nome}</h4>
-
-                    <p>#{controladorTurma.turma.descricao}</p>
-                    <h:form>
-
-                        <h:commandLink value="Chamada" class="w3-btn w3-red" 
-                                       style="font-size: 13px;"
-                                       action="#{controladorTurma.presencaPagina()}"><br/>
-                            <span class="glyphicon glyphicon-check"></span> 
-                        </h:commandLink>
-
-                        <h:commandLink value="Artigos" class="w3-btn w3-green" 
-                                       style="font-size: 13px;"
-                                       action="#{controladorNota.pageNota(controladorTurma.turma)}"><br/>
-                            <span class="glyphicon glyphicon-ice-lolly"></span> 
-                        </h:commandLink>
-
-                        <a href="page-listar-alunos.jsf" class="w3-btn w3-blue" 
-                           style="font-size: 13px;">
-                            <span class="glyphicon glyphicon-user"></span> <br/>Alunos
-                        </a>
-                        
-                        <a href="page-alterar-turma.jsf" class="w3-btn w3-blue" 
-                           style="font-size: 13px;">
-                            <span class="glyphicon glyphicon-user"></span> <br/>Alterar
-                        </a>
-
-                        <a href="page-add-aula.jsf" class="w3-btn w3-indigo" 
-                           style="font-size: 13px;">
-                            <span class="glyphicon glyphicon-pencil"></span> <br/>Plano de aula
-                        </a><br />
-
-                        <h:commandLink value="Horários" class="w3-btn w3-striped" 
-                                       style="font-size: 13px;"
-                                       action="#{controladorHorario.pageHorario(controladorTurma.turma)}"><br/>
-                            <span class="glyphicon glyphicon-time"></span> 
-                        </h:commandLink>
-                    </h:form>
+                    </nav>
                 </div>
-            </main>
-        </div>
+
+                <main class="mdl-layout__content mdl-color--grey-100 text-config">
+                    <div class="w3-container w3-center">
+                        <p class="w3-margin">
+                            Turma #{controladorTurma.turma.nome} 
+                            - #{controladorTurma.turma.descricao}</p>
+
+                        <h:panelGroup rendered="#{controladorTurma.buscarHorarioDoDia().size() > 0}">
+                            <div class="w3-quarter w3-center text-config">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-red">
+                                        <h4>#{controladorTurma.diaDaSemana()}</h4>
+                                    </div>
+
+                                    <div class="w3-container w3-xlarge w3-center">
+                                        <h:dataTable value="#{controladorTurma.buscarHorarioDoDia()}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorTurma.buscarHorarioDoDia().size() > 0}">
+
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div><br />
+                            </div>
+                        </h:panelGroup>
+
+                    </div>
+                </main>
+            </div>
+        </h:form>
     </h:body>
 </html>
 

@@ -23,7 +23,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -73,12 +73,11 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
 
-                <div class="w3-container">
-                    <h4>Horario de classe</h4>
-                    <p class="w3-large"> #{controladorHorario.turma.nome}</p>
-
+                <div class="w3-container text-config">
+                    <h4>Horario da Turma de #{controladorHorario.turma.nome}</h4>
+                    
                     <button onclick="document.getElementById('id01').style.display = 'block'" 
-                            class="w3-btn w3-purple btn-presenca-pag">
+                            class="w3-btn w3-purple" style="width: 325px">
                         Add Horário
                     </button>
                 </div>
@@ -87,105 +86,136 @@
 
                 <h:form>
                     <div class="w3-row-padding">
-                        <div class="w3-quarter">
-                            <div class="w3-card">
-                                <div class="w3-container w3-red">
-                                    <h4>Segunda-Feira</h4>
-                                </div>
 
-                                <div class="w3-container w3-xlarge">
-                                    <h:dataTable value="#{controladorHorario.buscarHorario('Segunda-Feira')}" var="horario"
-                                                 class="w3-table"
-                                                 rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-red">
+                                        <h4>Segunda-Feira</h4>
+                                    </div>
 
-                                        <h:column class="w3-center">
-                                            #{horario.horarioInicial} - #{horario.horarioFinal}
-                                        </h:column>
+                                    <div class="w3-container w3-xlarge w3-center">
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Segunda-Feira')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
 
-                                    </h:dataTable>
-                                </div>
-                            </div><br />
-                        </div>
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
 
-                        <div class="w3-quarter">
-                            <div class="w3-card">
-                                <div class="w3-container w3-blue">
-                                    <h4>Terça-Feira</h4>
-                                </div>
+                                        </h:dataTable>
+                                    </div>
+                                </div><br />
+                            </div>
+                        </h:panelGroup>
 
-                                <h:dataTable value="#{controladorHorario.buscarHorario('Terça-Feira')}" var="horario"
-                                             class="w3-table"
-                                             rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
 
-                                    <h:column class="w3-center">
-                                        <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                       style="text-decoration: none;"
-                                                       action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
-                                    </h:column>
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-blue">
+                                        <h4>Terça-Feira</h4>
+                                    </div>
 
-                                </h:dataTable>
+                                    <div class="w3-container w3-xlarge">
 
-                            </div><br />
-                        </div>
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Terça-Feira')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
 
-                        <div class="w3-quarter">
-                            <div class="w3-card">
-                                <div class="w3-container w3-yellow">
-                                    <h4>Quarta-Feira</h4>
-                                </div>
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
 
-                                <h:dataTable value="#{controladorHorario.buscarHorario('Quarta-Feira')}" var="horario"
-                                             class="w3-table"
-                                             rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
+                                        </h:dataTable>
+                                    </div>
+                                </div><br />
+                            </div>
 
-                                    <h:column class="w3-center">
-                                        #{horario.horarioInicial} - #{horario.horarioFinal}
-                                    </h:column>
+                        </h:panelGroup>
 
-                                </h:dataTable>
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
 
-                            </div><br />
-                        </div>
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-yellow">
+                                        <h4>Quarta-Feira</h4>
+                                    </div>
 
-                        <div class="w3-quarter">
-                            <div class="w3-card">
-                                <div class="w3-container w3-indigo">
-                                    <h4>Quinta-Feira</h4>
-                                </div>
+                                    <div class="w3-container w3-xlarge">
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Quarta-Feira')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
 
-                                <h:dataTable value="#{controladorHorario.buscarHorario('Quinta-Feira')}" var="horario"
-                                             class="w3-table"
-                                             rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
 
-                                    <h:column class="w3-center">
-                                        #{horario.horarioInicial} - #{horario.horarioFinal}
-                                    </h:column>
+                                        </h:dataTable>
+                                    </div>
 
-                                </h:dataTable>
-                            </div><br />
-                        </div>
+                                </div><br />
+                            </div>
+
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-indigo">
+                                        <h4>Quinta-Feira</h4>
+                                    </div>
+
+                                    <div class="w3-container w3-xlarge">
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Quinta-Feira')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
+
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+
+                                </div><br />
+                            </div>
+                        </h:panelGroup>
                     </div>
 
                     <div class="w3-row-padding">
-                        <div class="w3-quarter">
-                            <div class="w3-card">
-                                <div class="w3-container w3-green">
-                                    <h4>Sexta-Feira</h4>
-                                </div>
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
 
-                                <div class="w3-container w3-xlarge">
-                                    <h:dataTable value="#{controladorHorario.buscarHorario('Sexta-Feira')}" var="horario"
-                                                 class="w3-table"
-                                                 rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card">
+                                    <div class="w3-container w3-green">
+                                        <h4>Sexta-Feira</h4>
+                                    </div>
 
-                                        <h:column class="w3-center">
-                                            #{horario.horarioInicial} - #{horario.horarioFinal}
-                                        </h:column>
+                                    <div class="w3-container w3-xlarge">
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Sexta-Feira')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
 
-                                    </h:dataTable>
+                                            <h:column class="w3-center">
+                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                               style="text-decoration: none;"
+                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </h:panelGroup>
                     </div>
                 </h:form>
             </main>
