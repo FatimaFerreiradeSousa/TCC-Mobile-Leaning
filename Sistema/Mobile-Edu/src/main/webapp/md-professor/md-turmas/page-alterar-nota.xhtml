@@ -27,12 +27,36 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <h:form>
+                            <h:commandLink value="Inicio" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaInicial()}"/>
+
+                            <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
+                                           class="mdl-layout__tab" value="Alunos"/>
+
+                            <h:commandLink value="Artigos" class="mdl-layout__tab is-active"
+                                           action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Frequencia" class="mdl-layout__tab"
+                                           action="#{controladorTurma.presencaPagina()}"/>
+
+                            <h:commandLink value="Horários" class="mdl-layout__tab"
+                                           action="#{controladorHorario.pageHorario(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Configurações" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
+                        </h:form>
+                    </nav>
+                    
                 </div>
 
             </header>
 
-            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50 text-config">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
@@ -76,12 +100,12 @@
 
                     <h:form acceptcharset="ISO-8859-1">
 
-                        <h3 class="w3-center">Alterar Nota</h3>
+                        <h3 class="w3-center text-config">Alterar Nota</h3>
                         <div class="w3-container">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="titulo" errorClass="erros"/>
                                 <h:inputText value="#{controladorNota.nota.titulo}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="titulo"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -92,7 +116,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="introducao" errorClass="erros"/>
                                 <h:inputTextarea value="#{controladorNota.nota.introducao}" 
-                                                 class="mdl-textfield__input" 
+                                                 class="mdl-textfield__input text-config" 
                                                  id="introducao" rows="5"
                                                  required="true"
                                                  requiredMessage="Campo obrigatório"/>
@@ -103,7 +127,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="desenvolvimento" errorClass="erros"/>
                                 <h:inputTextarea value="#{controladorNota.nota.desenvolvimento}" 
-                                                 class="mdl-textfield__input" rows="5"
+                                                 class="mdl-textfield__input text-config" rows="5"
                                                  id="desenvolvimento"
                                                  required="true"
                                                  requiredMessage="Campo obrigatório"/>
@@ -113,10 +137,10 @@
 
                             <hr />
                             <h:commandButton value="Alterar" action="#{controladorNota.alterarNota()}" 
-                                             class="w3-btn w3-blue btn-presenca" style="margin-right: 1%"/>
+                                             class="w3-btn w3-blue btn-presenca text-config" style="margin-right: 1%"/>
 
                             <h:commandButton value="Cancelar" action="#{controladorNota.cancelarEdicao()}" 
-                                             class="w3-btn w3-red btn-presenca"/>
+                                             class="w3-btn w3-red btn-presenca text-config"/>
 
                         </div>
                     </h:form>

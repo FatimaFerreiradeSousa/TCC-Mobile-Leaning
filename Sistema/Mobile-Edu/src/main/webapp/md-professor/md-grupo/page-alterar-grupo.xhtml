@@ -23,7 +23,29 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>

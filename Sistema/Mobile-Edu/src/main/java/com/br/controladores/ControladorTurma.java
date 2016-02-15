@@ -170,6 +170,7 @@ public class ControladorTurma implements Serializable {
     public String adicionarMembro() {
         turma.getAlunos().add(aluno);
         fachada.alterarTurma(turma);
+        aluno = new Aluno();
         return "page-listar-alunos?faces-redirect=true";
     }
 
@@ -267,7 +268,6 @@ public class ControladorTurma implements Serializable {
 
     public List<Horario> buscarHorarioDoDia() {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
-        System.out.println("Horario: " +turma.getDescricao());
         return fachada.buscarHorario(dia, turma.getCodigo());
     }
 
@@ -289,5 +289,17 @@ public class ControladorTurma implements Serializable {
     public int qtdPresencasAluno() {
 
         return fachada.qtdPresencas(aluno.getLogin(), turma.getCodigo());
+    }
+    
+    public String paginaListarAlunos(){
+        return "page-listar-alunos?faces-redirect=true";
+    }
+    
+    public String paginaConfiguracoesTurma(){
+        return "page-alterar-turma?faces-redirect=true";
+    }
+    
+    public String paginaInicial(){
+        return "page-inicial-turma?faces-redirect=true";
     }
 }

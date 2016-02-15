@@ -29,6 +29,28 @@
                     <div class="mdl-layout-spacer">
                         <p>#{controladorGrupo.grupo.nome}</p>
                     </div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -82,7 +104,7 @@
 
                             <div class="w3-col w3-container text-config">
 
-                                
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.topicoTemp.conteudo}" 

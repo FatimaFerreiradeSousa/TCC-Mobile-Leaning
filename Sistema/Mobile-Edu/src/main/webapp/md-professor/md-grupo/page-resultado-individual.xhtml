@@ -25,7 +25,29 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -68,22 +90,40 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <p class="w3-center">Resultado do teste #{controladorTeste.teste.assunto}</p>
+            <main class="mdl-layout__content mdl-main">
+
+                <h4 class="w3-center text-config">Resultado do teste #{controladorTeste.teste.assunto}</h4>
                 <hr />
 
-                <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro" 
-                             class="w3-table" 
-                             rendered="#{controladorTeste.resultadoTestes().size() > 0}">
-                    <h:column>
-                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                        styleClass="demo-avatar">
-                            <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
-                        </p:graphicImage>
+                <p:dataGrid var="membro" value="#{controladorTeste.resultadoTestes()}" 
+                            columns="4" rows="" id="membro" styleClass=".ui-datagrid .ui-datagrid-content teste"
+                            layout="grid" style="border: none !important"
+                            rendered="#{controladorTeste.resultadoTestes().size() > 0}">
 
-                        <small style="font-size: 12px;">Pontuação: #{membro.nota}</small>
-                    </h:column>
-                </h:dataTable>
+                    <div class="w3-col m10 w3-center w3-margin-top">
+                        <div class="w3-card-2 w3-round w3-white">
+                            <div class="w3-container">
+                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                styleClass="w3-image w3-circle" 
+                                                style="width: 40%; margin-top: 5%; margin-bottom: 2%">
+                                    <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
+                                </p:graphicImage><br />
+
+                                <p class="text-config">
+                                    #{membro.aluno.login}<br />
+                                    <small class="text-config" 
+                                           style="font-size: 12px;">
+                                        Pontuação:
+                                        <span class="w3-xxlarge w3-text-green">
+                                            <b>#{membro.nota}</b>
+                                        </span>
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </p:dataGrid>
 
                 <h:outputLabel value="Nenhum resultado encontrado" 
                                rendered="#{controladorTeste.resultadoTestes().size() == 0}"

@@ -22,10 +22,34 @@
     </h:head>
 
     <h:body>
+
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
+
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <h:form>
+                            <h:commandLink value="Inicio" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaInicial()}"/>
+
+                            <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
+                                           class="mdl-layout__tab is-active" value="Alunos"/>
+
+                            <h:commandLink value="Artigos" class="mdl-layout__tab"
+                                           action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Frequencia" class="mdl-layout__tab"
+                                           action="#{controladorTurma.presencaPagina()}"/>
+
+                            <h:commandLink value="Horários" class="mdl-layout__tab"
+                                           action="#{controladorHorario.pageHorario(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Configurações" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
+                        </h:form>
+                    </nav>
                 </div>
 
             </header>
@@ -60,17 +84,19 @@
                     </a>
 
                     <h:form>
+
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
                             Sair
                         </h:commandLink>
+
                     </h:form>
                 </nav>
             </div>
 
             <main class="mdl-layout__content">
-                <div class="w3-container w3-center">
-                    <h:form>
+                <h:form>
+                    <div class="w3-container w3-center">
                         <br />
                         <p>
                             <h:outputText class="w3-margin-4" value="Alunos"
@@ -93,7 +119,7 @@
 
                                         <p style="margin-top: 2%;">
                                             <h:commandLink value="#{aluno.login}" style="text-decoration: none;" 
-                                                           action="#{controladorTurma.salvarPresenca(aluno)}"/>
+                                                           action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"/>
                                         </p>
                                     </div>
                                 </div>
@@ -112,8 +138,8 @@
                             Add Aluno
                         </a>
 
-                    </h:form>
-                </div>
+                    </div>
+                </h:form>
             </main>
         </div>
     </h:body>

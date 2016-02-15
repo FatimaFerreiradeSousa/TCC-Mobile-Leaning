@@ -23,11 +23,33 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -74,14 +96,14 @@
 
                 <h:form>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
-                        <h:inputText class="mdl-textfield__input" id="sample3" 
+                        <h:inputText class="mdl-textfield__input text-config" id="sample3" 
                                      value="#{controladorGrupo.aluno.login}"/>
                         <label class="mdl-textfield__label" for="sample3">Login...</label>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                         <h:commandLink action="#{controladorGrupo.buscarAluno()}"
-                                       class="w3-btn w3-red" value="Buscar"/>
+                                       class="w3-btn w3-red btn-formularios" value="Buscar"/>
                     </div>
 
                 </h:form>
@@ -99,7 +121,7 @@
                         <p>#{controladorGrupo.aluno.login}</p>
                         <p>#{controladorGrupo.aluno.instituicao}</p>
 
-                        <h:commandButton value="Adicionar" class="w3-btn" 
+                        <h:commandButton value="Adicionar" class="w3-btn btn-formularios" 
                                          rendered="#{controladorGrupo.verificarMembro() == true}" 
                                          action="#{controladorGrupo.adicionarMembro()}">
                         </h:commandButton>
@@ -108,7 +130,7 @@
                                        rendered="#{controladorGrupo.verificarMembro() == false}" 
                                        class="w3-text-red"/><br /><br />
 
-                        <h:commandButton value="Remover" class="w3-btn w3-indigo" 
+                        <h:commandButton value="Remover" class="w3-btn w3-indigo btn-formularios" 
                                          rendered="#{controladorGrupo.verificarMembro() == false}" 
                                          action="#{controladorGrupo.removerMembro()}">
                         </h:commandButton>

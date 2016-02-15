@@ -71,14 +71,14 @@
             <main class="mdl-layout__content mdl-color--grey-100">
                 <h:form class="" acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content">
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid text-config">
                             Novo Grupo
                             <hr />
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="nome" errorClass="erros"/>
                                 <h:inputText value="#{controladorGrupo.grupo.nome}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="nome"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -88,7 +88,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="descricao" errorClass="erros"/>
                                 <h:inputText value="#{controladorGrupo.grupo.descricao}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="descricao"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -97,7 +97,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorGrupo.salvarGrupo()}" 
-                                                 class="w3-btn w3-red btn-formularios" value="Criar grupo"/>
+                                                 class="w3-btn w3-red" value="Criar grupo"
+                                                 style="width: 300px"/>
                             </div>
                         </div>
 

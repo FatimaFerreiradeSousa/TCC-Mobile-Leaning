@@ -2,39 +2,38 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Turma</title>
+        <title>Professor | Turma | Aluno | Detalhes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
         <link rel="stylesheet" href="../../assets/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
     </h:head>
 
     <h:body class="text-config">
-
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
-
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
 
                     <nav class="mdl-navigation">
                         <h:form>
-                            <h:commandLink value="Inicio" class="mdl-layout__tab is-active"
+                            <h:commandLink value="Inicio" class="mdl-layout__tab"
                                            action="#{controladorTurma.paginaInicial()}"/>
 
                             <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
-                                           class="mdl-layout__tab" value="Alunos"/>
+                                           class="mdl-layout__tab is-active" value="Alunos"/>
 
                             <h:commandLink value="Artigos" class="mdl-layout__tab"
                                            action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
@@ -88,39 +87,71 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100 text-config">
-                <h:form>
-                    <div class="w3-container">
-                        <h4 class="w3-margin text-config">Seu Horário de Hoje</h4>
-                        <hr />
+            <main class="mdl-layout__content mdl-color--grey-100 mdl-main">
 
-                        <h:panelGroup rendered="#{controladorTurma.buscarHorarioDoDia().size() > 0}">
-                            <div class="w3-quarter w3-center text-config">
-                                <div class="w3-card">
-                                    <div class="w3-container w3-red">
-                                        <h4>#{controladorTurma.diaDaSemana()}</h4>
-                                    </div>
+                <div class="w3-container w3-center">
 
-                                    <div class="w3-container w3-xlarge w3-center">
-                                        <h:dataTable value="#{controladorTurma.buscarHorarioDoDia()}" var="horario"
-                                                     class="w3-table"
-                                                     rendered="#{controladorTurma.buscarHorarioDoDia().size() > 0}">
+                    <div class="w3-row">
+                        <div class="w3-col m3">
+                            <div class="w3-card-2 w3-round w3-white">
+                                <div class="w3-container">
 
-                                            <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
-                                            </h:column>
+                                    <p>
+                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                        styleClass="demo-avatar-al w3-circle">
+                                            <f:param value="#{controladorTurma.aluno.login}" name="loginUsuario"/>
+                                        </p:graphicImage>
+                                    </p>
 
-                                        </h:dataTable>
-                                    </div>
-                                </div><br />
+                                    <p>#{controladorTurma.aluno.nome}</p>
+                                    <p>#{controladorTurma.aluno.curso}</p>
+                                    <p>#{controladorTurma.aluno.instituicao}</p>
+
+                                </div>
                             </div>
-                        </h:panelGroup>
+                        </div>
 
-                    </div>
-                </h:form>
+                        <div class="w3-col m7">
+
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="">
+                                        <div class="w3-container w3-padding w3-left-align">
+
+                                            <p class="w3-text-red">Faltas: 
+                                                <span class="w3-xxlarge w3-text-red">
+                                                    <b>#{controladorTurma.qtdFaltasAluno()}</b>
+                                                </span>
+                                            </p>
+
+                                            Resumo Total:
+                                            <input class="mdl-slider mdl-js-slider" type="range"
+                                                   min="0" max="100" 
+                                                   value="#{controladorTurma.qtdFaltasAluno()}" 
+                                                   tabindex="0"/>
+
+                                            <p class="w3-text-green">Presenças: 
+                                                <span class="w3-xxlarge w3-text-green">
+                                                    <b>#{controladorTurma.qtdPresencasAluno()}</b>
+                                                </span>
+                                            </p>
+
+                                            Resumo Total:
+                                            <input class="mdl-slider mdl-js-slider" type="range"
+                                                   min="0" max="100" 
+                                                   value="#{controladorTurma.qtdPresencasAluno()}" 
+                                                   tabindex="0"/>
+
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
             </main>
         </div>
     </h:body>
 </html>
+

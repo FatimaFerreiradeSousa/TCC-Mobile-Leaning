@@ -26,6 +26,28 @@
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -71,14 +93,14 @@
             <main class="mdl-layout__content mdl-main mdl-color--grey-100">
                 <h:form acceptcharset="ISO-8859-1">
                     <div class="w3-container">
-                        
+
                         <div class="w3-row">
                             <div class="w3-col text-center text-config">
                                 Publicar
                             </div><br />
-                            
+
                             <div class="w3-col w3-container text-config">
-                                
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
@@ -93,7 +115,7 @@
 
                                 <h:commandButton value="Publicar" class="w3-btn w3-green btn-formularios"
                                                  action="#{controladorGrupo.salvarTopicoProfessor()}"/>
-                                
+
                                 <a href="page-inicial-grupo.jsf" class="w3-btn w3-indigo btn-formularios">
                                     Cancelar
                                 </a>

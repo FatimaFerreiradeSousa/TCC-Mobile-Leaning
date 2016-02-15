@@ -121,6 +121,7 @@ p{
 
 .btn-presenca{
     width: 220px;
+    font-family: "Raleway", sans-serif;
 }
 
 .btn-formularios{
@@ -148,4 +149,8 @@ p{
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.primeiro{
+    text-align: center;
 }

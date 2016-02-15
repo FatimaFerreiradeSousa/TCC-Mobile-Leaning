@@ -28,25 +28,27 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
 
-                    <button id="demo-menu-lower-right"
-                            class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-
-                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                        for="demo-menu-lower-right">
-                        <li class="mdl-menu__item">
-                            <a href="page-listar-membros.jsf" style="text-decoration: none">Alunos</a>
-                        </li>
-
-                        <li class="mdl-menu__item">
-                            <a href="page-listar-testes.jsf" style="text-decoration: none">Testes</a>
-                        </li>
-
-                        <li class="mdl-menu__item">
-                            <a href="page-alterar-grupo.jsf" style="text-decoration: none">Configurações</a>
-                        </li>
-                    </ul>
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Inicio
+                        </a>
+                        
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+                        
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+                        
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
             </header>
 

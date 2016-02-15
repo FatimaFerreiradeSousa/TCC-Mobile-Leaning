@@ -28,6 +28,28 @@
                     <div class="mdl-layout-spacer">
                         <h5>#{controladorGrupo.grupo.nome}</h5>
                     </div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -78,7 +100,7 @@
 
                         <div class="w3-row">
                             <div class="w3-col w3-container">
-                                
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.comentarioAlterar.conteudo}" 
@@ -93,7 +115,7 @@
 
                                 <h:commandButton value="Alterar" class="w3-btn w3-green btn-formularios"
                                                  action="#{controladorGrupo.alterarComentario()}"/>
-                                
+
                                 <a href="page-comentario-topico.jsf" class="w3-btn w3-indigo btn-formularios">
                                     Cancelar
                                 </a>

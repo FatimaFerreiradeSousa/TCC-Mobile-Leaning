@@ -28,7 +28,31 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <h:form>
+                            <h:commandLink value="Inicio" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaInicial()}"/>
+
+                            <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
+                                           class="mdl-layout__tab" value="Alunos"/>
+
+                            <h:commandLink value="Artigos" class="mdl-layout__tab"
+                                           action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Frequencia" class="mdl-layout__tab"
+                                           action="#{controladorTurma.presencaPagina()}"/>
+
+                            <h:commandLink value="Horários" class="mdl-layout__tab is-active"
+                                           action="#{controladorHorario.pageHorario(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Configurações" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
+                        </h:form>
+                    </nav>
+
                 </div>
 
             </header>
@@ -75,7 +99,7 @@
 
                 <div class="w3-container text-config">
                     <h4>Horario da Turma de #{controladorHorario.turma.nome}</h4>
-                    
+
                     <button onclick="document.getElementById('id01').style.display = 'block'" 
                             class="w3-btn w3-purple" style="width: 325px">
                         Add Horário

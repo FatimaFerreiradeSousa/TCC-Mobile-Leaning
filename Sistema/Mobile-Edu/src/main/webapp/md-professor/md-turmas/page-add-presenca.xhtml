@@ -27,7 +27,31 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <h:form>
+                            <h:commandLink value="Inicio" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaInicial()}"/>
+
+                            <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
+                                           class="mdl-layout__tab" value="Alunos"/>
+
+                            <h:commandLink value="Artigos" class="mdl-layout__tab"
+                                           action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Frequência" class="mdl-layout__tab is-active"
+                                           action="#{controladorTurma.presencaPagina()}"/>
+
+                            <h:commandLink value="Horários" class="mdl-layout__tab"
+                                           action="#{controladorHorario.pageHorario(controladorTurma.turma)}"/>
+
+                            <h:commandLink value="Configurações" class="mdl-layout__tab"
+                                           action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
+                        </h:form>
+                    </nav>
+
                 </div>
 
             </header>
@@ -108,7 +132,7 @@
                                     columns="4" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                     layout="grid" rendered="#{controladorTurma.status == true}">
 
-                            <div class="w3-col m10 w3-center w3-margin-top">
+                            <div class="w3-col m10 w3-center w3-margin-top text-config">
                                 <div class="w3-card-2 w3-round w3-white">
                                     <div class="w3-container">
                                         <p>#{aluno.login}</p>
@@ -117,18 +141,16 @@
                                             <f:param value="#{aluno.login}" name="loginUsuario"/>
                                         </p:graphicImage>
 
-                                        <div>
+                                        <div class="text-config">
                                             <br />
                                             <p>
-                                                <h:commandButton class="w3-btn w3-red btn-presenca" value="Presente" 
+                                                <h:commandButton class="mdl-button mdl-js-button text-config w3-text-red" 
+                                                                 value="Presente" 
                                                                  action="#{controladorTurma.salvarPresenca(aluno)}"/>
 
-                                            </p>
-
-                                            <p>
-                                                <h:commandButton class="w3-btn btn-presenca" value="Faltou" 
+                                                <h:commandButton class="mdl-button mdl-js-button text-config w3-text-blue" 
+                                                                 value="Faltou" 
                                                                  action="#{controladorTurma.salvarFalta(aluno)}"/>
-
                                             </p>
                                         </div>
                                     </div>
@@ -137,20 +159,20 @@
 
                         </p:dataGrid>
 
-                        <div class="w3-margin-bottom">
+                        <div class="w3-margin-bottom text-config">
                             <hr/>
                             <h:outputText value="Você já fez a chamada nesse horário! " 
-                                          rendered="#{controladorTurma.checkChamada == true}"/>
+                                          rendered="#{controladorTurma.checkChamada == true}"/><br />
 
                             <h:outputText value="Chamada Feita Com Sucesso" 
-                                          rendered="#{controladorTurma.code == true}"/>
+                                          rendered="#{controladorTurma.code == true}"/><br />
 
                             <h:commandLink value="Concluir" action="#{controladorTurma.paginaPresenca()}"
                                            class="w3-btn w3-blue btn-presenca-pag"
                                            rendered="#{controladorTurma.status == true}"/>
                         </div>
 
-                        <div class="col-md-12 col-sm-offset-3 col-md-6" style="text-align: center;">
+                        <div class="col-md-12 col-sm-offset-3 col-md-6 text-config" style="text-align: center;">
                             <h:outputLabel value="Esta turma não possui nenhum aluno!" 
                                            rendered="#{controladorTurma.turma.alunos.size() == 0}"
                                            class="text-danger"/>

@@ -20,12 +20,34 @@
         <script src="../../mdl/material.js"/>
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -72,21 +94,34 @@
                 <div class="w3-container w3-center">
                     <h:form>
 
-                        <h:outputText value="Testes"
-                                      rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}"/>
+                        <h3 class="text-config">Testes</h3>
 
                         <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
-                                     class="w3-table w3-hoverable" 
+                                     class="w3-table w3-hoverable"
                                      rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
-                            <h:column>
-                                <h:commandLink value="#{teste.assunto}" 
-                                               action="#{controladorTeste.resultadoIndividual(teste)}" style="text-decoration: none;"/> -
-                                <label>#{teste.professor.login}</label><br />
 
-                                (<h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputLabel>)
+                            <h:column>
+
+                                <div class="w3-center">
+                                    <span class="w3-xxlarge w3-text-red">
+                                        <b>
+                                            <h:commandLink value="#{teste.assunto}" 
+                                                           action="#{controladorTeste.resultadoIndividual(teste)}" 
+                                                           style="text-decoration: none;"/>
+                                        </b>
+                                    </span>
+
+                                    <p>
+                                        Por #{teste.professor.login},
+
+                                        <h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputLabel>
+                                    </p>
+                                </div>
+
                             </h:column>
+
                         </h:dataTable>
 
                         <h:outputLabel value="Nenhum resultado encontrado" 
