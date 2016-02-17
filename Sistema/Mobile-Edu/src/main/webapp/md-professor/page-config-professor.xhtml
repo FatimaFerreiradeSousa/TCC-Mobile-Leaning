@@ -34,9 +34,9 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="font">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -72,32 +72,53 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="w3-center w3-responsive" >
+            <main class="mdl-layout__content mdl-color--grey-100 w3-center">
+                <div class="w3-container w3-margin-top w3-center" >
+                    <div class="w3-row">
+                        <div class="m7">
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12 w3-center">
 
-                    <div class="">
-                        <p:graphicImage value="#{professor.content}" styleClass="avatar-picture-config w3-circle"
-                                        style="margin-top: 8%;"/>
+                                    <div class="w3-white w3-center">
+                                        <div class="w3-container">
+                                            <p>
+                                                <p:graphicImage value="#{professor.content}" styleClass="avatar-picture-config w3-circle"
+                                                                style="margin-top: 2%;"/>
+                                            </p>
+                                        </div>
+                                    </div>
 
-                        <h3 class="text-config">#{professor.login}</h3>
-                        <p class="text-config w3-center">#{professor.instituicao}</p>
-                    </div>
+                                    <div class="w3-center">
+                                        <h3 class="text-config">#{professor.sobrenome}, #{professor.nome}</h3>
+                                        <p class="text-config w3-center">Membro desde
+                                            <h:outputText value="#{professor.dataParticipacao}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+                                        </p>
+                                        <p class="text-config w3-center">#{professor.instituicao}</p>
+                                        <p class="text-config w3-center">#{professor.login}</p>
+                                        <p class="text-config w3-center">#{professor.email}</p>
+                                        <p class="text-config w3-center">#{professor.descricao}</p>
 
-                    <div class="w3-margin-32">
-                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-config').style.display = 'block'">
-                            Perfil
-                        </button>
+                                        <button class="mdl-button mdl-js-button font" onclick="document.getElementById('md-config').style.display = 'block'">
+                                            Alterar
+                                        </button>
 
-                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-foto').style.display = 'block'">
-                            Foto
-                        </button>
+                                        <button class="mdl-button mdl-js-button font" onclick="document.getElementById('md-foto').style.display = 'block'">
+                                            Foto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </main>
         </div>
 
         <div id="md-config" class="w3-modal">
-            <h:form acceptcharset="ISO-8859-1">
+            <h:form acceptcharset="ISO-8859-1" class="font">
                 <div class="w3-modal-content w3-animate-top w3-card-8">
                     <header class="w3-container w3-teal"> 
                         <span onclick="document.getElementById('md-config').style.display = 'none'" 
@@ -109,7 +130,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="nome" errorClass="erros"/>
                             <h:inputText value="#{professor.nome}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="nome"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -118,9 +139,20 @@
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="sobrenome" errorClass="erros"/>
+                            <h:inputText value="#{professor.sobrenome}" 
+                                         class="mdl-textfield__input font" 
+                                         id="sobrenome"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="sobrenome">Sobrenome</label>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="email" errorClass="erros"/>
                             <h:inputText value="#{professor.email}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="email"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -131,7 +163,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="instituicao" errorClass="erros"/>
                             <h:inputText value="#{professor.instituicao}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="instituicao"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -142,7 +174,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="login" errorClass="erros"/>
                             <h:inputText value="#{professor.login}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="login"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -153,7 +185,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="dataNascimento" errorClass="erros"/>
                             <h:inputText value="#{professor.dataNascimento}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="dataNascimento"
                                          required="true"
                                          requiredMessage="Campo obrigatório">
@@ -166,13 +198,24 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="senha" errorClass="erros"/>
                             <h:inputText value="#{professor.senha}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input font" 
                                          id="senha"
                                          required="true"
                                          requiredMessage="Campo obrigatório">
                             </h:inputText>
 
                             <label class="mdl-textfield__label" for="senha">Senha</label>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="descricao" errorClass="erros"/>
+                            <h:inputTextarea value="#{professor.descricao}" 
+                                             class="mdl-textfield__input font" rows="5"
+                                             id="descricao"
+                                             required="true"
+                                             requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="descricao">Descrição</label>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">

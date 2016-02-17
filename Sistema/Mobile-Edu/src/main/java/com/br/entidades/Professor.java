@@ -18,24 +18,18 @@ public class Professor extends Pessoa implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    
+
     @OneToMany(mappedBy = "professor")
     private List<Pergunta> questoes;
     @OneToMany(mappedBy = "professor")
     private List<Teste> testes;
     @OneToMany(mappedBy = "professorGrupos")
     private List<Grupo> gruposCriados;
-    
+
     @OneToMany(mappedBy = "professor")
     private List<Turma> turmas;
-    
-    public Professor() {
-    }
 
-    public Professor(Date dataNascimento, String email, String login, String senha, 
-            String nome, String instituicao, String foto, Date dataParticipacao) {
-        super(email, login, senha, nome, instituicao, foto, dataParticipacao);
-        this.dataNascimento = dataNascimento;
+    public Professor() {
         this.questoes = new ArrayList();
         this.testes = new ArrayList();
         this.gruposCriados = new ArrayList();
@@ -72,7 +66,7 @@ public class Professor extends Pessoa implements Serializable {
 
     public void setGruposCriados(List<Grupo> gruposCriados) {
         this.gruposCriados = gruposCriados;
-    }   
+    }
 
     public List<Turma> getTurmas() {
         return turmas;

@@ -1,7 +1,6 @@
 package com.br.interfaces;
 
 import com.br.entidades.Professor;
-import java.util.List;
 
 /**
  *

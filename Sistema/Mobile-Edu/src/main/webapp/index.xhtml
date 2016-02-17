@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h:inputText id="username" tabindex="1" class="w3-input" pt:placeholder="Login"
-                                         value="#{controladorUsuario.login}" 
+                                         value="#{controladorUsuario.pessoa.login}" 
                                          required="true"
                                          requiredMessage="Por favor informe o login."/>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h:inputSecret id="password" tabindex="1" class="w3-input" pt:placeholder="**********" 
-                                           value="#{controladorUsuario.senha}" required="true"/>
+                                           value="#{controladorUsuario.pessoa.senha}" required="true"/>
                         </div>
                     </div>
 

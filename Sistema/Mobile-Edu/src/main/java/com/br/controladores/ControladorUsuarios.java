@@ -31,25 +31,21 @@ public class ControladorUsuarios implements Serializable {
     @EJB
     Fachada fachada;
     private String usuario;
-    private String login;
-    private String senha;
-    private String email;
     private Professor professor;
     private Aluno aluno;
     private StreamedContent content;
     private UploadedFile file;
     private String mensagem;
+    private Pessoa pessoa;
 
     HttpSession session;
 
     public ControladorUsuarios() {
-        login = null;
-        senha = null;
-        email = null;
         usuario = null;
         mensagem = null;
         aluno = new Aluno();
         professor = new Professor();
+        pessoa = new Pessoa();
     }
 
     public String getUsuario() {
@@ -58,30 +54,6 @@ public class ControladorUsuarios implements Serializable {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Professor getProfessor() {
@@ -98,6 +70,14 @@ public class ControladorUsuarios implements Serializable {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public StreamedContent getContent() {
@@ -130,41 +110,44 @@ public class ControladorUsuarios implements Serializable {
 
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
-        
+
         if (usuario.equalsIgnoreCase("Aluno")) {
-            if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
-                    && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
-                Aluno aluno = new Aluno();
-                aluno.setLogin(login);
-                aluno.setSenha(senha);
-                aluno.setEmail(email);
-                aluno.setFoto(caminho);
-                aluno.setDataParticipacao(new Date());
-                fachada.salvarAluno(aluno);
-                login = null;
-                senha = null;
+            if (fachada.buscarProfessor(pessoa.getLogin()) == null && fachada.buscarAluno(pessoa.getLogin()) == null
+                    && fachada.buscarAlunoEmail(pessoa.getLogin()) == null && fachada.buscarProfessorEmail(pessoa.getLogin()) == null) {
+                Aluno a = new Aluno();
+                a.setLogin(pessoa.getLogin());
+                a.setSenha(pessoa.getSenha());
+                a.setEmail(pessoa.getEmail());
+                a.setNome(pessoa.getNome());
+                a.setSobrenome(pessoa.getSobrenome());
+                a.setInstituicao(pessoa.getInstituicao());
+                a.setFoto(caminho);
+                a.setDataParticipacao(new Date());
+                fachada.salvarAluno(a);
                 mensagem = null;
+                pessoa = new Pessoa();
                 context.redirect(request.getContextPath());
             } else {
                 mensagem = "Email/login não disponível!";
             }
+        } else if (fachada.buscarProfessor(pessoa.getLogin()) == null && fachada.buscarAluno(pessoa.getLogin()) == null
+                && fachada.buscarAlunoEmail(pessoa.getLogin()) == null && fachada.buscarProfessorEmail(pessoa.getLogin()) == null) {
+
+            Professor p = new Professor();
+            p.setLogin(pessoa.getLogin());
+            p.setSenha(pessoa.getSenha());
+            p.setEmail(pessoa.getEmail());
+            p.setNome(pessoa.getNome());
+            p.setSobrenome(pessoa.getSobrenome());
+            p.setFoto(caminho);
+            p.setDataParticipacao(new Date());
+
+            fachada.salvarProfessor(p);
+            mensagem = null;
+            pessoa = new Pessoa();
+            context.redirect(request.getContextPath());
         } else {
-            if (fachada.buscarProfessor(login) == null && fachada.buscarAluno(login) == null
-                    && fachada.buscarAlunoEmail(login) == null && fachada.buscarProfessorEmail(login) == null) {
-
-                Professor professor = new Professor();
-                professor.setLogin(login);
-                professor.setSenha(senha);
-                professor.setEmail(email);
-                professor.setFoto(caminho);
-                professor.setDataParticipacao(new Date());
-
-                fachada.salvarProfessor(professor);
-                mensagem = null;
-                context.redirect(request.getContextPath());
-            }else{
-                mensagem = "Email/Login não disponível!";
-            }
+            mensagem = "Email/Login não disponível!";
         }
 
         return null;
@@ -174,47 +157,47 @@ public class ControladorUsuarios implements Serializable {
 
         if (usuario.equalsIgnoreCase("Aluno")) {
 
-            Aluno a = fachada.loginAluno(login, senha);
+            Aluno a = fachada.loginAluno(pessoa.getLogin(), pessoa.getSenha());
 
             if (a != null) {
                 String loginPage = "/md-aluno/page-inicial-aluno.jsf";
-                
+
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("aluno", a);
                 context.redirect(request.getContextPath() + loginPage);
-                
+
                 aluno = PegarUsuarioSessao.pegarAlunoSessao();
                 mensagem = null;
-                
+
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
         } else {
 
-            Professor p = fachada.loginProfessor(login, senha);
-             
+            Professor p = fachada.loginProfessor(pessoa.getLogin(), pessoa.getSenha());
+
             if (p != null) {
                 String loginPage = "/md-professor/page-inicial-professor.jsf";
-                
+
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) context.getRequest();
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("professor", p);
                 context.redirect(request.getContextPath() + loginPage);
                 professor = PegarUsuarioSessao.pegarProfessorSessao();
-                
+
                 mensagem = null;
-                
+
             } else {
                 mensagem = "Login/Senha inválidos!";
             }
         }
     }
-    
+
     public String logout() {
-        
+
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
         this.session = (HttpSession) context.getSession(false);
@@ -222,7 +205,7 @@ public class ControladorUsuarios implements Serializable {
         try {
             context.redirect(request.getContextPath());
         } catch (IOException e) {
-            
+
         }
 
         return null;
@@ -303,7 +286,7 @@ public class ControladorUsuarios implements Serializable {
                 e.printStackTrace();
             }
         }
-        
+
         return "page-config-aluno?faces-redirect=true";
     }
 

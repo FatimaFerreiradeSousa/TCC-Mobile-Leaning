@@ -5,16 +5,13 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -33,10 +30,14 @@ public class Pessoa implements Serializable {
     private String login;
     private String senha;
     private String nome;
+    private String sobrenome;
     private String instituicao;
     private String foto;
+    private String descricao;
+    
     @Column(unique = true)
     private String email;
+    
     @Temporal(TemporalType.DATE)
     private Date dataParticipacao;
     
@@ -45,17 +46,6 @@ public class Pessoa implements Serializable {
 
     public Pessoa() {
 
-    }
-
-    public Pessoa(String login, String senha, String nome, String instituicao,
-            String foto, String email, Date dataParticipacao) {
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-        this.instituicao = instituicao;
-        this.foto = foto;
-        this.email = email;
-        this.dataParticipacao = dataParticipacao;
     }
 
     public String getLogin() {
@@ -82,6 +72,14 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
     public String getInstituicao() {
         return instituicao;
     }
@@ -96,6 +94,14 @@ public class Pessoa implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getEmail() {

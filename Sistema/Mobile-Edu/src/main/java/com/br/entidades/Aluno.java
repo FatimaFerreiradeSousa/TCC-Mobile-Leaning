@@ -2,7 +2,6 @@ package com.br.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -21,13 +20,6 @@ public class Aluno extends Pessoa implements Serializable{
     private List<Turma> turmas;
     
     public Aluno(){
-        this.turmas = new ArrayList();
-    }
-
-    public Aluno(String curso, String email, String login, String senha, 
-            String nome, String instituicao, String foto, Date dataParticipacao) {
-        super(email, login, senha, nome, instituicao, foto, dataParticipacao);
-        this.curso = curso;
         this.turmas = new ArrayList();
     }
 
