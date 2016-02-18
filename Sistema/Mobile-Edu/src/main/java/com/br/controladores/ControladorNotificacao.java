@@ -1,7 +1,7 @@
 package com.br.controladores;
 
 import com.br.entidades.Notificacao;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;

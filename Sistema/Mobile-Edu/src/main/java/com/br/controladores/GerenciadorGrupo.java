@@ -7,7 +7,7 @@ import com.br.entidades.Notificacao;
 import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.RespondeExercicio;
 import com.br.entidades.Topico;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +35,7 @@ import org.primefaces.model.UploadedFile;
 public class GerenciadorGrupo implements Serializable {
 
     @EJB
-    private Fachada fachada;
+    private Service fachada;
     private Grupo grupo;
     private Topico topico;
     private Topico topicoTemp;

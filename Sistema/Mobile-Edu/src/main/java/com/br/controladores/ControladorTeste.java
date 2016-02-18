@@ -2,7 +2,7 @@ package com.br.controladores;
 
 import com.br.datas.FormatData;
 import com.br.entidades.*;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -22,7 +22,7 @@ import javax.faces.context.FacesContext;
 public class ControladorTeste implements Serializable {
 
     @EJB
-    private Fachada fachada;
+    private Service fachada;
     private Teste teste;
     private int tamanho;
     private List<Pergunta> perguntas;

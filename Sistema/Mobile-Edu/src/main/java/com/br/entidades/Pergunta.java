@@ -16,38 +16,26 @@ import javax.persistence.OneToMany;
  *
  * @author Fatinha de Sousa
  */
-
 @Entity
-public class Pergunta implements Serializable{
-    
+public class Pergunta implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String enunciado;
     private int qtdRespostas;
     private String categoria;
-    
-    @OneToMany
+
+    @OneToMany()
     private List<Resposta> respostas;
     private float peso;
     @ManyToMany(mappedBy = "questoesExercicios")
     private List<Teste> exerciciosQuestoes;
     @ManyToOne
     private Professor professor;
-    
-    public Pergunta(){
-    
-    }
 
-    public Pergunta(int codigo, String enunciado, int qtdRespostas, String categoria, float peso, Professor professor) {
-        this.codigo = codigo;
-        this.enunciado = enunciado;
-        this.qtdRespostas = qtdRespostas;
-        this.categoria = categoria;
-        this.respostas = new ArrayList();
-        this.peso = peso;
+    public Pergunta() {
         this.exerciciosQuestoes = new ArrayList();
-        this.professor = professor;
         this.respostas = new ArrayList();
     }
 

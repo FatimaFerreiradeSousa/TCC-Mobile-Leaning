@@ -20,11 +20,11 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-layout-spacer">Perguntas</div>
                 </div>
 
             </header>
@@ -32,7 +32,7 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
+                    <br/>
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -81,11 +81,18 @@
 
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Adicionar Resposta
-                            <hr/>
+
+                            <h3 class="w3-text-teal font w3-justify">#{controladorPergunta.pergunta.enunciado}</h3>
+
+                            <div class="mdl-cell--12-col">
+
+                                <i><b>Adicionar Resposta</b></i><br/>
+
+                            </div>
+
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:inputText value="#{controladorPergunta.resposta.conteudo}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input font" 
                                              id="conteudo"/>
 
                                 <label class="mdl-textfield__label" for="conteudo">Conteúdo</label>

@@ -18,7 +18,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -31,7 +31,7 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
+                    <br/>
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -79,13 +79,17 @@
                     <div class="mdl-grid demo-content">
 
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Alterar
+                            <div class="mdl-cell--12-col">
+
+                                <i><b>Alterar Pergunta</b></i><br/>
+
+                            </div>
                             <hr />
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="enunciado" errorClass="erros"/>
                                 <h:inputText value="#{controladorPergunta.pergunta.enunciado}"
-                                             class="mdl-textfield__input" id="enunciado"
+                                             class="mdl-textfield__input font" id="enunciado"
                                              required="true"
                                              requiredMessage="Campo obrigatório."/>
                                 <label class="mdl-textfield__label" for="enunciado">Enunciado</label>
@@ -94,7 +98,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="categoria" errorClass="erros"/>
                                 <h:inputText value="#{controladorPergunta.pergunta.categoria}"
-                                             class="mdl-textfield__input" id="categoria"
+                                             class="mdl-textfield__input font" id="categoria"
                                              required="true"
                                              requiredMessage="Campo obrigatório."/>
                                 <label class="mdl-textfield__label" for="categoria">Categoria</label>
@@ -102,8 +106,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="peso" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.categoria}"
-                                             class="mdl-textfield__input" id="peso"
+                                <h:inputText value="#{controladorPergunta.pergunta.peso}"
+                                             class="mdl-textfield__input font" id="peso"
                                              required="true"
                                              requiredMessage="Campo obrigatório."/>
                                 <label class="mdl-textfield__label" for="peso">Peso</label>
@@ -117,7 +121,7 @@
                             </div>
                         </div>
 
-                        <h3>Respostas</h3>
+                        <h3 class="font">Respostas</h3>
 
                         <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
                                      class="w3-table w3-hoverable" var="resposta">
@@ -131,8 +135,11 @@
                             </h:column>
                         </h:dataTable>
 
-                        <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
-                                         class="w3-btn btn-formularios" value="Nova resposta"/>
+                        <div class="w3-margin-top">
+
+                            <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
+                                             class="w3-btn btn-formularios" value="Nova resposta"/>
+                        </div>
                     </div>
                 </h:form>
             </main>

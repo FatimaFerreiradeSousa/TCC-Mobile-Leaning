@@ -3,7 +3,7 @@ package com.br.controladores;
 import com.br.datas.FormatData;
 import com.br.entidades.Horario;
 import com.br.entidades.Turma;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import javax.ejb.EJB;
 public class ControladorHorario implements Serializable {
 
     @EJB
-    private Fachada fachada;
+    private Service fachada;
     private Turma turma;
     private Horario horario;
     private Horario temp;

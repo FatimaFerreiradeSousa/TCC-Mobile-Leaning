@@ -1,17 +1,13 @@
 package com.br.controladores;
 
-import com.br.entidades.Aluno;
 import com.br.entidades.Grupo;
-import com.br.entidades.Notificacao;
-import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Pergunta;
 import com.br.entidades.Teste;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -32,7 +28,7 @@ public class ControladorExercicio implements Serializable {
     private String mensagem;
 
     @EJB
-    Fachada fachada;
+    Service fachada;
 
     public ControladorExercicio() {
         exercicio = new Teste();

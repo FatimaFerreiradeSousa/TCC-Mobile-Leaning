@@ -25,12 +25,6 @@ public class Resposta implements Serializable{
     
     }
     
-    public Resposta(int numero, String conteudo, boolean respostaCerta){
-        this.numero = numero;
-        this.conteudo = conteudo;
-        this.respostaCerta = respostaCerta;
-    }
-    
     public int getNumero(){
         return numero;
     }

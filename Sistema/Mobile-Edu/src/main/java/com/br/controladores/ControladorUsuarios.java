@@ -1,7 +1,7 @@
 package com.br.controladores;
 
 import com.br.entidades.*;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +29,7 @@ import org.primefaces.model.UploadedFile;
 public class ControladorUsuarios implements Serializable {
 
     @EJB
-    Fachada fachada;
+    Service fachada;
     private String usuario;
     private Professor professor;
     private Aluno aluno;

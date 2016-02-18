@@ -2,7 +2,7 @@ package com.br.controladores;
 
 import com.br.entidades.Pergunta;
 import com.br.entidades.Resposta;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -24,7 +24,7 @@ public class ControladorPergunta implements Serializable {
     private String mensagem;
     
     @EJB
-    Fachada fachada;
+    Service fachada;
 
     public ControladorPergunta() {
         this.pergunta = new Pergunta();
@@ -123,6 +123,8 @@ public class ControladorPergunta implements Serializable {
     
     public String removerResposta(){
         this.pergunta.getRespostas().remove(resposta);
+        fachada.atualizarQuestao(pergunta);
+        fachada.removerResp(resposta);
         
         return "page-alterar-pergunta?faces-redirect=true";
     }

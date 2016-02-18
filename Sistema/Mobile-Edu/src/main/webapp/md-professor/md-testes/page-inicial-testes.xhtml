@@ -32,9 +32,9 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="font">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -76,7 +76,44 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
+
+                <div class="w3-container w3-margin-top w3-center">
+
+                    <div class="w3-row-padding">
+
+                        <div class="w3-center">
+
+                            <div class="w3-card-2 w3-light-grey w3-padding">
+                                <h4 class="font">Banco de perguntas</h4>
+
+                                <a href="page-listar-perguntas.jsf" style="text-decoration: none">
+                                    <p>
+                                        <span class="w3-xxlarge w3-text-blue">
+                                            <b class="font">#{controladorPergunta.listarPerguntas().size()}
+                                                perguntas cadastradas</b>
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                        </div><br/>
+
+                        <div class="w3-center">
+                            <div class="w3-card-2 w3-light-grey w3-padding">
+                                <h4 class="font">Banco de Testes</h4>
+
+                                <a href="page-listar-testes.jsf" style="text-decoration: none">
+                                    <p>
+                                        <span class="w3-xxlarge w3-text-green">
+                                            <b class="font">#{controladorExercicio.testesCadastrados().size()} 
+                                                testes cadastrados</b>
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </main>
         </div>

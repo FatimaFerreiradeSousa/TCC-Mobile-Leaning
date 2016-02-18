@@ -5,7 +5,7 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Horario;
 import com.br.entidades.Presenca;
 import com.br.entidades.Turma;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,7 +24,7 @@ import javax.ejb.EJB;
 public class ControladorTurma implements Serializable {
 
     @EJB
-    private Fachada fachada;
+    private Service fachada;
     private Turma turma;
     private Aluno aluno;
     private String mensagem;

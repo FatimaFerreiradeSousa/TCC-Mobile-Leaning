@@ -58,11 +58,14 @@ public class DaoResposta implements InterfaceDaoResposta {
     }
 
     @Override
-    public List<Resposta> listarResposta(String codigoQuestao) {
-        List<Resposta> respostas = new ArrayList();
-        Query query = em.createQuery("select r from Resposta r, Pergunta p where r.pergunta.codigo = :codigo and r.pergunta.codigo = p.codigo");
-        query.setParameter("codigo", codigoQuestao);
-        respostas = (List<Resposta>) query.getResultList();
-        return respostas;
+    public boolean removerResp(Resposta resposta) {
+
+        try {
+            em.remove(em.merge(resposta));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.br.controladores;
 
 import com.br.entidades.Aluno;
 import com.br.entidades.Pessoa;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -24,7 +24,7 @@ import org.primefaces.model.StreamedContent;
 public class ControladorFotos implements Serializable {
 
     @EJB
-    Fachada fachada;
+    Service fachada;
     private StreamedContent content;
 
     public ControladorFotos() {

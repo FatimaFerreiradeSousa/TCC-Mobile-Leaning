@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
     </h:head>
 
-    <h:body>
+    <h:body class="font">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
@@ -31,6 +31,8 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+
+                    <br/>
 
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
@@ -79,11 +81,15 @@
 
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Adicionar Resposta
+                            <div class="mdl-cell--12-col">
+
+                                <i><b>Alterar Resposta</b></i><br/>
+
+                            </div>
                             <hr/>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:inputText value="#{controladorPergunta.resposta.conteudo}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input font" 
                                              id="conteudo"/>
 
                                 <label class="mdl-textfield__label" for="conteudo">Conteúdo</label>

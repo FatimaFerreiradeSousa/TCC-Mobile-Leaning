@@ -15,6 +15,6 @@ public interface InterfaceDaoResposta {
     
     public boolean removerResposta(List<Resposta> respostas);
     
-    public List<Resposta> listarResposta(String codigoQuestao);
-   
+    public boolean removerResp(Resposta resposta);
+    
 }

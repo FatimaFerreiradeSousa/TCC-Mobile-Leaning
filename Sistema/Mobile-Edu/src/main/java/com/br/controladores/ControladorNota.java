@@ -3,7 +3,7 @@ package com.br.controladores;
 import com.br.daos.DaoNota;
 import com.br.entidades.Nota;
 import com.br.entidades.Turma;
-import com.br.fachada.Fachada;
+import com.br.fachada.Service;
 import com.br.sessao.PegarUsuarioSessao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -21,7 +21,7 @@ import javax.ejb.EJB;
 public class ControladorNota implements Serializable {
 
     @EJB
-    private Fachada fachada;
+    private Service fachada;
     private Nota nota;
     private Turma turma;
 

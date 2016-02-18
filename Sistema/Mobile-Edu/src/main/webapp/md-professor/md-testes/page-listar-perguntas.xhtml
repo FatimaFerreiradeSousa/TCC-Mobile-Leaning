@@ -19,7 +19,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -32,7 +32,7 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
+                    <br/>
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -77,10 +77,16 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="w3-container w3-margin-8">
-                    <h4 class="w3-text-blue w3-center">Perguntas Cadastradas</h4>
+
+                    <h4 class="w3-text-blue w3-center text-config">
+                        <h:outputText value="Perguntas Cadastradas"
+                                      rendered="#{controladorPergunta.listarPerguntas().size() > 0}"/>
+                    </h4>
+
                     <h:form>
                         <h:dataTable value="#{controladorPergunta.listarPerguntas()}" var="pergunta" 
-                                     class="w3-table w3-striped w3-border w3-hoverable">
+                                     class="w3-table w3-striped w3-border w3-hoverable"
+                                     rendered="#{controladorPergunta.listarPerguntas().size() > 0}">
 
                             <div class="w3-center">
                                 <h:column>
@@ -90,6 +96,11 @@
                             </div>
                         </h:dataTable>
                     </h:form>
+
+                    <h4 class="w3-text-red text-config">
+                        <h:outputText value="Nenhuma Pergunta Cadastrada"
+                                      rendered="#{controladorPergunta.listarPerguntas().size() ==0}"/>
+                    </h4>
                 </div>
             </main>
         </div>

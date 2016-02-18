@@ -1,6 +1,5 @@
 package com.br.fachada;
 
-import com.br.daos.DaoHorario;
 import com.br.entidades.*;
 import com.br.interfaces.*;
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import javax.ejb.Stateful;
  * @author Fatinha de Sousa
  */
 @Stateful
-public class Fachada implements Serializable {
+public class Service implements Serializable {
 
     @EJB
     private InterfaceDaoProfessor daoProfessor;
@@ -47,7 +46,7 @@ public class Fachada implements Serializable {
     @EJB
     private InterfaceDaoNota daoNota;
     
-    public Fachada() {
+    public Service() {
     }
 
     /*Crud Professor*/
@@ -123,16 +122,16 @@ public class Fachada implements Serializable {
         return daoResposta.salvarResposta(resposta);
     }
 
-    public List<Resposta> listarRespostas(String codigoQuestao) {
-        return daoResposta.listarResposta(codigoQuestao);
-    }
-
     public boolean atualizarResposta(Resposta resposta) {
         return daoResposta.atualizarResposta(resposta);
     }
 
     public boolean removerResposta(List<Resposta> respostas) {
         return daoResposta.removerResposta(respostas);
+    }
+    
+    public boolean removerResp(Resposta r){
+        return daoResposta.removerResp(r);
     }
 
     /*CRUD Aluno*/

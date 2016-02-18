@@ -16,7 +16,7 @@
         <link href="../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../w3-css/w3.css"/>
-
+        <link href="../assets/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
         <script src="../mdl/material.min.js"/>
         <script src="../mdl/material.js"/>
 
@@ -83,28 +83,45 @@
                                         <div class="w3-container">
                                             <p>
                                                 <p:graphicImage value="#{professor.content}" styleClass="avatar-picture-config w3-circle"
-                                                                style="margin-top: 2%;"/>
+                                                                style="margin-top: 1%;"/>
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div class="w3-center">
+                                    <div class="w3-center text-config">
+
                                         <h3 class="text-config">#{professor.sobrenome}, #{professor.nome}</h3>
-                                        <p class="text-config w3-center">Membro desde
+
+                                        <p class="text-config w3-center">
+                                            Membro desde
                                             <h:outputText value="#{professor.dataParticipacao}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                             </h:outputText>
-                                        </p>
-                                        <p class="text-config w3-center">#{professor.instituicao}</p>
-                                        <p class="text-config w3-center">#{professor.login}</p>
-                                        <p class="text-config w3-center">#{professor.email}</p>
-                                        <p class="text-config w3-center">#{professor.descricao}</p>
 
-                                        <button class="mdl-button mdl-js-button font" onclick="document.getElementById('md-config').style.display = 'block'">
+                                            <hr/>
+                                            #{professor.instituicao}
+
+                                            <hr/>
+                                            #{professor.email}
+
+                                            <hr/>
+                                            #{professor.login}
+
+                                            <hr/>
+                                            <h:outputText value="#{professor.dataNascimento}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+
+                                            <hr/>
+                                            #{professor.descricao}
+
+                                        </p>
+
+                                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-config').style.display = 'block'">
                                             Alterar
                                         </button>
 
-                                        <button class="mdl-button mdl-js-button font" onclick="document.getElementById('md-foto').style.display = 'block'">
+                                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-foto').style.display = 'block'">
                                             Foto
                                         </button>
                                     </div>
