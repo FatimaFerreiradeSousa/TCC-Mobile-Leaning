@@ -20,7 +20,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -34,8 +34,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -72,7 +73,7 @@
                 <h:form class="" acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid text-config">
-                            Novo Grupo
+                            <i><b>Novo Grupo</b></i>
                             <hr />
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">

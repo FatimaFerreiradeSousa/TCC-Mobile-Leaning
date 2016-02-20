@@ -20,7 +20,7 @@
         <script src="../../mdl/material.js"/>
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -56,8 +56,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -91,7 +92,7 @@
             </div>
 
             <main class="mdl-layout__content mdl-main">
-                <h5 class="w3-center">Alunos</h5>
+                <h5 class="w3-center text-config">Alunos</h5>
                 <br />
                 <h:form>
                     <p:dataGrid var="membro" value="#{controladorGrupo.listarMembrosGrupo()}" 

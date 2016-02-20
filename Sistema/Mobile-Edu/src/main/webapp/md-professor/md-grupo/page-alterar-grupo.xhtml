@@ -19,7 +19,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
@@ -54,8 +54,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -92,13 +93,13 @@
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Novo Grupo
+                            <i><b>Alterar Grupo</b></i>
                             <hr />
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="nome" errorClass="erros"/>
                                 <h:inputText value="#{controladorGrupo.grupo.nome}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="nome"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -108,7 +109,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="descricao" errorClass="erros"/>
                                 <h:inputText value="#{controladorGrupo.grupo.descricao}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="descricao"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>

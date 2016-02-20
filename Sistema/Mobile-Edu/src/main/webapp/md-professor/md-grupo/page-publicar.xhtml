@@ -20,7 +20,7 @@
         <script src="../../mdl/material.js"/>
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -56,8 +56,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -104,7 +105,7 @@
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
-                                                     class="mdl-textfield__input" 
+                                                     class="mdl-textfield__input text-config" 
                                                      id="conteudo" rows="5"
                                                      required="true"
                                                      requiredMessage="Campo obrigatório"/>

@@ -21,7 +21,7 @@
         <script src="../../mdl/material.js"/>
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -57,8 +57,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 

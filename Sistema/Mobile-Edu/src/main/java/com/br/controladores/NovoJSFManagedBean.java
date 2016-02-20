@@ -1,4 +1,3 @@
-
 package com.br.controladores;
 
 import javax.inject.Named;
@@ -12,28 +11,24 @@ import javax.faces.context.FacesContext;
  *
  * @author Fatinha de Sousa
  */
-
 @Named(value = "novoJSFManagedBean")
 @SessionScoped
 public class NovoJSFManagedBean implements Serializable {
 
-    private Date data;
+    private String message;
 
-    public NovoJSFManagedBean() {
+    public String getMessage() {
+        return message;
     }
 
-    public Date getData() {
-        return data;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-    
-    public String enviarData(){
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", 
-                "Salvo Com Sucesso"));
+    public void saveMessage() {
+        FacesContext context = FacesContext.getCurrentInstance();
 
-        return null;
+        context.addMessage(null, new FacesMessage("Successful", "Your message: " + message));
+        context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
     }
 }
