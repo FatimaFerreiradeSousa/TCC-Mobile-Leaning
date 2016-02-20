@@ -21,10 +21,11 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
+
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
                 </div>
@@ -34,6 +35,8 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+
+                    <br/>
 
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
@@ -82,14 +85,27 @@
                     <div class="mdl-grid demo-content">
 
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <h5>Enviar Teste</h5>
+                            <div class="mdl-cell--12-col font">
+
+                                <h4 class="font w3-text-red">Enviar Teste</h4>
+
+                            </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                Teste: #{controladorExercicio.exercicio.assunto}<br/>
-                                Disciplina: #{controladorExercicio.exercicio.disciplina}<br/>
-                                Entrega: <h:outputText value="#{controladorExercicio.exercicio.dataEntrega}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputText>
+                                Teste: 
+                                <label class="font w3-text-green">
+                                    #{controladorExercicio.exercicio.assunto}
+                                </label><br/>
+                                Disciplina: 
+                                <label class="font w3-text-green">
+                                    #{controladorExercicio.exercicio.disciplina}
+                                </label><br/>
+                                Entrega: 
+                                <label class="font w3-text-green">
+                                    <h:outputText value="#{controladorExercicio.exercicio.dataEntrega}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
@@ -98,7 +114,7 @@
                                 <p>Escolha o grupo para enviar o teste</p>
 
                                 <h:selectOneMenu value="#{controladorExercicio.codigoGrupo}"
-                                                 id="grupoCodigo" class="w3-select">
+                                                 id="grupoCodigo" class="w3-select font w3-center">
                                     <f:selectItem itemValue="Selecione" />
                                     <f:selectItems value="#{controladorExercicio.meusGrupos()}"
                                                    rendered="#{controladorExercicio.meusGrupos().size() > 0}"/>

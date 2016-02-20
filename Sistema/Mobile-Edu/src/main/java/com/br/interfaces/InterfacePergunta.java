@@ -20,4 +20,6 @@ public interface InterfacePergunta {
     public List<Pergunta> listarQuestoes(String login);
     
     public List<Pergunta> listarPerguntasPorCategoria(String categoria, int qtd);
+    
+    public List<String> listarCategoriasPerguntas(String loginProfessor);
 }

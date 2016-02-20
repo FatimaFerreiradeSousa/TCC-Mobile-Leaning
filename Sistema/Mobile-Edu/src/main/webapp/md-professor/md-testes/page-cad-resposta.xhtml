@@ -115,8 +115,13 @@
 
                         </div>
 
+                        <h4 class="w3-text-red">
+                            <h:outputText value="Respostas" 
+                                          rendered="#{controladorPergunta.pergunta.respostas.size() > 0}"/>
+                        </h4>
                         <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
-                                     class="w3-table w3-bordered w3-striped w3-border w3-hoverable" var="resposta">
+                                     class="w3-table w3-striped w3-hoverable" var="resposta"
+                                     rendered="#{controladorPergunta.pergunta.respostas.size() > 0}">
                             <h:column>
                                 <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" class="w3-text w3-text-blue"/>
                                 <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>

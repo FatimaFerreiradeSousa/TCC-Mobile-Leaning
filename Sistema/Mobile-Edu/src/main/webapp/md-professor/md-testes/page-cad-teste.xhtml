@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Cadastrar Teste</title>
@@ -29,7 +28,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
@@ -42,6 +41,7 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -86,45 +86,14 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
 
-            </main>
-        </div>
-
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <header class="mdl-layout__header demo-header">
-                <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer"></div>
-                </div>
-            </header>
-
-            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-                <header class="demo-drawer-header">
-                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" styleClass="demo-avatar"/>
-
-                    <div class="demo-avatar-dropdown">
-                        <span>dasds</span>
-                    </div>
-                </header>
-
-                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-                        Inbox
-                    </a>
-                </nav>
-            </div>
-
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <h:form acceptcharset="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1" class="w3-form">
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Novo Teste
+                            <i><b>Novo Teste</b></i>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="assunto" styleClass="erros"/>
                                 <h:inputText value="#{controladorExercicio.exercicio.assunto}" 
-                                             class="mdl-textfield__input"
+                                             class="mdl-textfield__input font"
                                              id="assunto"
                                              required="true"
                                              requiredMessage="Campo Obrigatório"/>
@@ -134,39 +103,37 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="disciplina" styleClass="erros"/>
                                 <h:inputText value="#{controladorExercicio.exercicio.disciplina}" 
-                                             class="mdl-textfield__input"
+                                             class="mdl-textfield__input font"
                                              id="disciplina"
                                              required="true"
                                              requiredMessage="Campo Obrigatório"/>
                                 <label class="mdl-textfield__label" for="disciplina">Disciplina</label>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <div class="mdl-cell--12-col">
                                 <h:message for="dataEntrega" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" 
-                                             class="mdl-textfield__input"
-                                             id="dataEntrega"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:inputText>
-                                <label class="mdl-textfield__label" for="dataEntrega">Entrega:</label>
+                                <label class="text-config w3-text-blue-grey" for="dataEntrega">Entrega:</label>
+                                <p:calendar value="#{controladorExercicio.exercicio.dataEntrega}" 
+                                            pattern="dd-MM-yyyy" mask="true"
+                                            id="dataEntrega"
+                                            styleClass="w3-margin-left"/>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="categoria" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.categoria}" 
-                                             class="mdl-textfield__input"
-                                             id="categoria"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório"/>
-                                <label class="mdl-textfield__label" for="categoria">Categoria</label>
+                                <label class="w3-text-blue-grey" for="categoria">Categoria </label>
+                                <h:selectOneListbox value="#{controladorExercicio.exercicio.categoria}" id="categoria"
+                                                    size="1" class="w3-select font">
+                                    <f:selectItem itemValue="Selecione"/>
+                                    <f:selectItems value="#{controladorExercicio.listarCategorias()}"
+                                                   rendered="#{controladorExercicio.listarCategorias().size() > 0}"/>
+                                </h:selectOneListbox>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <label class="" for="assunto">Perguntas </label>
+                                <label class="w3-text-blue-grey" for="assunto">Perguntas </label>
                                 <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
-                                                    size="1" class="w3-select">
+                                                    size="1" class="w3-select font">
                                     <f:selectItem itemValue="1"/>
                                     <f:selectItem itemValue="2"/>
                                     <f:selectItem itemValue="3"/>
@@ -186,9 +153,14 @@
                             </div>
                         </div>
 
-                        <h3>Perguntas</h3>
+                        <h3 class="font">
+                            <h:outputText value="Perguntas"
+                                          rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
+                        </h3>
+                        
                         <h:dataTable value="#{controladorExercicio.exercicio.questoesExercicios}" 
-                                     var="pergunta" class="w3-table w3-hoverable">
+                                     var="pergunta" class="w3-table w3-hoverable w3-striped"
+                                     rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}">
 
                             <h:column>
 
@@ -199,13 +171,17 @@
                         </h:dataTable>
                         <br /><br />
                         <h:commandButton action="#{controladorExercicio.salvarTeste()}"
-                                         class="w3-btn w3-blue btn-formularios" value="Salvar"/>
+                                         class="w3-btn w3-blue btn-formularios" value="Salvar"
+                                         rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
                         <h:commandButton action="#{controladorExercicio.cancelarEnvio()}" 
-                                         class="w3-btn w3-green btn-formularios" value="Cancelar"/>
+                                         class="w3-btn w3-green btn-formularios" value="Cancelar"
+                                         rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
                     </div>
                 </h:form>
+
             </main>
         </div>
+
     </h:body>
 </html>
 

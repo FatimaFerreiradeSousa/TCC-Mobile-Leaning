@@ -85,15 +85,17 @@
 
                     <h:form>
                         <h:dataTable value="#{controladorPergunta.listarPerguntas()}" var="pergunta" 
-                                     class="w3-table w3-striped w3-border w3-hoverable"
+                                     class="w3-table w3-striped w3-hoverable"
                                      rendered="#{controladorPergunta.listarPerguntas().size() > 0}">
 
-                            <div class="w3-center">
-                                <h:column>
+                            <h:column>
+                                <div class="w3-center">
+
                                     <h:commandLink value="#{pergunta.enunciado}" style="text-decoration: none;"
                                                    action="#{controladorPergunta.paginaAtualizar(pergunta)}"/>
-                                </h:column>
-                            </div>
+                                </div>
+                            </h:column>
+
                         </h:dataTable>
                     </h:form>
 

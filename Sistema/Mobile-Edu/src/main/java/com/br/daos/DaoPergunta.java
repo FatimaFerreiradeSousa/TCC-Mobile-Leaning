@@ -80,4 +80,12 @@ public class DaoPergunta implements InterfacePergunta {
         
         return (List<Pergunta>) query.setMaxResults(qtd).setFirstResult(0).getResultList();
     }
+    
+    @Override
+    public List<String> listarCategoriasPerguntas(String loginProfessor) {
+        Query q = em.createQuery("SELECT DISTINCT p.categoria FROM Pergunta p WHERE p.professor.login = :login");
+        q.setParameter("login", loginProfessor);
+        
+        return (List<String>) q.getResultList();
+    }
 }

@@ -69,6 +69,10 @@ public class ControladorExercicio implements Serializable {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
+    
+    public List<String> listarCategorias(){
+        return fachada.categoriaPerguntas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+    }
 
     public String salvarTeste() {
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());

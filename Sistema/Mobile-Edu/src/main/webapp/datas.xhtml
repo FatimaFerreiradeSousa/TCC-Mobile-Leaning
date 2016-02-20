@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="assets/jquery/jquery-ui.css"/>
+        <link href="assets/jquery/jquery-ui.min.css"/>
+        <script src="assets/jquery/jquery-ui.js"/>
+        <script src="assets/jquery/jquery-ui.min.js"/>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            
+            <i class="ui-icon-refresh"></i>
+            
+            <p:remoteCommand name="rc" update="msgs" actionListener="#{novoJSFManagedBean.enviarData()}" />
+
+            <p:growl id="msgs" showDetail="true" />
+            <p:commandButton type="button" onclick="rc()" value="Alerta" icon="ui-icon-refresh" />
+        </h:form>
+    </h:body>
+</html>
+

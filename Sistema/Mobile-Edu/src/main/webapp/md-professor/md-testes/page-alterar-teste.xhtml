@@ -21,7 +21,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -35,8 +35,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="font">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -81,11 +82,11 @@
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Alterar
+                            <i><b>Alterar Teste</b></i>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="assunto" styleClass="erros"/>
                                 <h:inputText value="#{controladorExercicio.exercicio.assunto}" 
-                                             class="mdl-textfield__input"
+                                             class="mdl-textfield__input font"
                                              id="assunto"
                                              required="true"
                                              requiredMessage="Campo Obrigatório"/>
@@ -95,39 +96,37 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="disciplina" styleClass="erros"/>
                                 <h:inputText value="#{controladorExercicio.exercicio.disciplina}" 
-                                             class="mdl-textfield__input"
+                                             class="mdl-textfield__input font"
                                              id="disciplina"
                                              required="true"
                                              requiredMessage="Campo Obrigatório"/>
                                 <label class="mdl-textfield__label" for="disciplina">Disciplina</label>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <div class="mdl-cell--12-col">
                                 <h:message for="dataEntrega" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" 
-                                             class="mdl-textfield__input"
-                                             id="dataEntrega"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:inputText>
-                                <label class="mdl-textfield__label" for="dataEntrega">Entrega:</label>
+                                <label class="text-config w3-text-blue-grey" for="dataEntrega">Entrega:</label>
+                                <p:calendar value="#{controladorExercicio.exercicio.dataEntrega}" 
+                                            pattern="dd-MM-yyyy" mask="true"
+                                            id="dataEntrega"
+                                            styleClass="w3-margin-left font"/>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="categoria" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.categoria}" 
-                                             class="mdl-textfield__input"
-                                             id="categoria"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório"/>
-                                <label class="mdl-textfield__label" for="categoria">Categoria</label>
+                                <label class="w3-text-blue-grey" for="categoria">Categoria </label>
+                                <h:selectOneListbox value="#{controladorExercicio.exercicio.categoria}" id="categoria"
+                                                    size="1" class="w3-select font">
+                                    <f:selectItem itemValue="Selecione"/>
+                                    <f:selectItems value="#{controladorExercicio.listarCategorias()}"
+                                                   rendered="#{controladorExercicio.listarCategorias().size() > 0}"/>
+                                </h:selectOneListbox>
                             </div>
-
+                            
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <label class="w3-margin-right" for="assunto">Perguntas: </label>
+                                <label class="w3-margin-right w3-text-blue-grey" for="assunto">Perguntas: </label>
                                 <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
-                                                    size="1" class="w3-select">
+                                                    size="1" class="w3-select font">
                                     <f:selectItem itemValue="1"/>
                                     <f:selectItem itemValue="2"/>
                                     <f:selectItem itemValue="3"/>
@@ -154,7 +153,7 @@
                         </div>
                     </div>
                 </h:form>
-                
+
             </main>
         </div>
     </h:body>

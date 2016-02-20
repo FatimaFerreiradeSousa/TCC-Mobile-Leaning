@@ -20,7 +20,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="font">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -34,8 +34,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="font">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -78,20 +79,28 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="container w3-margin-8">
-                    <h4>Perguntas</h4>
+                    
+                    <h4 class="w3-center font">
+                        <i>Perguntas do teste #{controladorExercicio.exercicio.assunto}</i>
+                    </h4>
+                    
                     <h:form class="" acceptcharset="ISO-8859-1">
                         <h:dataTable value="#{controladorExercicio.exercicio.questoesExercicios}" var="pergunta" 
-                                     class="w3-table w3-responsive w3-hoverable">
+                                     class="w3-table w3-responsive w3-hoverable w3-striped">
 
                             <h:column>
-                                #{pergunta.enunciado}
+                                <div class="w3-center">
+                                    <h5 class="w3-text-teal font"> #{pergunta.enunciado} </h5>
+                                </div>
                             </h:column>
                         </h:dataTable>
 
                         <hr />
 
-                        <h:commandButton value="Remover teste" action="#{controladorExercicio.removerTeste()}" 
-                                         class="w3-btn w3-pink btn-formularios"/>
+                        <div class="w3-center">
+                            <h:commandButton value="Remover teste" action="#{controladorExercicio.removerTeste()}" 
+                                             class="w3-btn w3-pink btn-formularios"/>
+                        </div>
 
                     </h:form>
                 </div>

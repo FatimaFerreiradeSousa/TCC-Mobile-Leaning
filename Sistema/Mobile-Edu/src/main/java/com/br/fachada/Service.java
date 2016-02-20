@@ -36,8 +36,6 @@ public class Service implements Serializable {
     @EJB
     private InterfaceDaoRespondeExercicio daoRespondeExercicio;
     @EJB
-    private InterfaceNotificacao daoNotificacao;
-    @EJB
     private InterfaceDaoTurma daoTurma;
     @EJB
     private InterfaceDaoPresenca daoPresenca;
@@ -94,6 +92,10 @@ public class Service implements Serializable {
     
     public List<Pergunta> listarPerguntasCategoria(String categoria, int qtd){
         return daoQuestao.listarPerguntasPorCategoria(categoria, qtd);
+    }
+    
+    public List<String> categoriaPerguntas(String login){
+        return daoQuestao.listarCategoriasPerguntas(login);
     }
 
     /*Crud Teste*/
