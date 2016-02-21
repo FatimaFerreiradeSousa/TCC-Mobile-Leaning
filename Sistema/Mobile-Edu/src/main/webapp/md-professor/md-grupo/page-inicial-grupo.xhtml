@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
+        <link href="../../assets/semantic/semantic.css" rel="stylesheet"/>
+        <link href="../../assets/semantic/semantic.min.css" rel="stylesheet"/>
+        <script src="../../assets/semantic/semantic.min.js" type="text/javascript"/>
+        <script src="../../assets/semantic/semantic.js" type="text/javascript"/>
+
+
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
     </h:head>
@@ -33,17 +39,17 @@
                            class="mdl-layout__tab is-active">
                             Inicio
                         </a>
-                        
+
                         <a href="page-listar-membros.jsf" style="text-decoration: none"
                            class="mdl-layout__tab">
                             Alunos
                         </a>
-                        
+
                         <a href="page-listar-testes.jsf" style="text-decoration: none"
                            class="mdl-layout__tab">
                             Testes
                         </a>
-                        
+
                         <a href="page-alterar-grupo.jsf" style="text-decoration: none"
                            class="mdl-layout__tab">
                             Configurações
@@ -56,6 +62,7 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -105,55 +112,54 @@
 
                         <hr/>
 
-                        <p:dataGrid var="topico" value="#{controladorGrupo.listarPublicacoes()}" 
-                                    columns="3" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
-                                    layout="grid" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
+                        <div class="centered">
+                            <p:dataGrid var="topico" value="#{controladorGrupo.listarPublicacoes()}" 
+                                        columns="1" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
+                                        layout="grid" rendered="#{controladorGrupo.listarPublicacoes().size() > 0}">
 
+                                <div class="ui comments mdl-color--grey-100">
+                                    <div class="comment">
+                                        <div class="avatar w3-margin">
+                                            <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                            styleClass="w3-circle demo-avatar">
+                                                <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                            </p:graphicImage>
+                                        </div>
+                                        <div class="content"><br/>
+                                            <a class="author text-config">#{topico.loginUsuario}</a>
 
-                            <div class="w3-pale-blue w3-leftbar w3-sand">
-                                <div class="w3-col s2 text-center w3-margin-left">
-                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
-                                                    styleClass="w3-circle demo-avatar">
-                                        <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
-                                    </p:graphicImage>
+                                            <div class="metadata">
+                                                <div class="date">
+                                                    <h:outputText value="#{topico.dataCriacao}" style="font-size: 10px">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:outputText>
+                                                </div>
+                                            </div>
+                                            <div class="text w3-justify text-config w3-margin-right">
+                                                #{topico.conteudo}
+
+                                                <div class="actions">
+                                                    <hr/>
+                                                    <h:commandLink value="Comentar" 
+                                                                   action="#{controladorGrupo.pageComentarioTopico(topico)}" 
+                                                                   style="text-decoration: none;"
+                                                                   class="reply"/>
+
+                                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
+                                                                   style="text-decoration: none;"
+                                                                   class="save"
+                                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"/>
+
+                                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
+                                                                   style="text-decoration: none;"
+                                                                   class="hide"/>
+                                                </div><br/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <h5 style="font-size: 16px;" class="text-config">
-                                    Postado por #{topico.loginUsuario}, 
-                                    <h:outputText value="#{topico.dataCriacao}" style="font-size: 10px">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputText>
-                                </h5>
-
-                                <p class="w3-justify">
-                                    #{topico.conteudo}
-                                </p>
-
-                                <hr/>
-
-                                <p style="font-size: 12px">
-
-
-                                    <h:commandLink value="Comentar" 
-                                                   action="#{controladorGrupo.pageComentarioTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left w3-hoverable"/>
-                                    <span class="">1</span> 
-
-                                    |
-
-                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"
-                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"/>|
-
-                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerTopico(topico)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
-
-                                </p>
-                            </div>
-                        </p:dataGrid>
+                            </p:dataGrid>
+                        </div>
                     </div>
                 </h:form>
 

@@ -56,8 +56,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -95,6 +96,16 @@
                 <h4 class="w3-center text-config">Resultado do teste #{controladorTeste.teste.assunto}</h4>
                 <hr />
 
+                <h:outputLabel value="#{controladorTeste.resultadoTestes().size()}
+                               aluno respondeu esse teste" 
+                               rendered="#{controladorTeste.resultadoTestes().size() == 1}"
+                               class="w3-text-red w3-center"/>
+                
+                <h:outputLabel value="#{controladorTeste.resultadoTestes().size()}
+                               alunos respondeu esse teste" 
+                               rendered="#{controladorTeste.resultadoTestes().size() > 1}"
+                               class="w3-text-red w3-center"/>
+                
                 <p:dataGrid var="membro" value="#{controladorTeste.resultadoTestes()}" 
                             columns="4" rows="" id="membro" styleClass=".ui-datagrid .ui-datagrid-content teste"
                             layout="grid" style="border: none !important"
@@ -125,7 +136,7 @@
 
                 </p:dataGrid>
 
-                <h:outputLabel value="Nenhum resultado encontrado" 
+                <h:outputLabel value="Nenhum aluno respondeu esse teste" 
                                rendered="#{controladorTeste.resultadoTestes().size() == 0}"
                                class="w3-text-red w3-center"/>
 

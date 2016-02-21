@@ -34,8 +34,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -76,7 +77,8 @@
                             <label>Add Turma</label>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="nome" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.nome}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.nome}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="nome"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -86,7 +88,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="codigo" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.codigo}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.codigo}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="codigo"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -96,7 +99,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="categoria" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.categoria}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.categoria}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="categoria"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -106,7 +110,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="descricao" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.descricao}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.descricao}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="descricao"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -119,7 +124,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="dataInicio" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.dataInicio}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.dataInicio}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="dataInicio"
                                              required="true"
                                              requiredMessage="Campo obrigatório">
@@ -131,7 +137,8 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="dataTerminio" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.dataTerminio}" class="mdl-textfield__input" 
+                                <h:inputText value="#{controladorTurma.turma.dataTerminio}" 
+                                             class="mdl-textfield__input text-config" 
                                              id="dataTerminio"
                                              required="true"
                                              requiredMessage="Campo obrigatório">

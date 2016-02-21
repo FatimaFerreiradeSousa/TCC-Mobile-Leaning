@@ -17,6 +17,9 @@
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
+        <link href="../../assets/semantic/semantic.css" rel="stylesheet"/>
+        <link href="../../assets/semantic/semantic.min.css" rel="stylesheet"/>
+
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
     </h:head>
@@ -92,7 +95,7 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
+            <main class="mdl-layout__content mdl-main">
                 <h:form>
                     <div class="w3-container">
 
@@ -106,47 +109,48 @@
                         <h:outputText value="Nenhum Comentário"
                                       rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
 
-                        <p:dataGrid var="comentario" value="#{controladorGrupo.comentariosTopico()}" 
-                                    columns="1" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
-                                    layout="grid" rendered="#{controladorGrupo.comentariosTopico().size() > 0}">
+                        <h:dataTable var="comentario" value="#{controladorGrupo.comentariosTopico()}" 
+                                     id="aluno" class="w3-table"
+                                     rendered="#{controladorGrupo.comentariosTopico().size() > 0}">
 
+                            <h:column>
 
-                            <div class="w3-pale-blue w3-leftbar w3-border-blue">
-                                <div class="w3-col s1 text-center">
-                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
-                                                    styleClass="w3-circle demo-avatar">
-                                        <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
-                                    </p:graphicImage>
+                                <div class="ui comments">
+                                    <div class="comment">
+                                        <div class="avatar">
+                                            <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                            styleClass="w3-circle demo-avatar">
+                                                <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
+                                            </p:graphicImage>
+                                        </div>
+                                        <div class="content">
+                                            <label class="author">#{comentario.loginUsuario}</label>
+                                            <div class="metadata">
+                                                <div class="date">
+                                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                    </h:outputText>
+                                                </div>
+                                            </div>
+                                            <div class="text w3-justify">
+                                                <p>#{comentario.conteudo}</p>
+                                            </div>
+                                            <div class="actions">
+                                                <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
+                                                               style="text-decoration: none;"
+                                                               class="reply"/>|
+
+                                                <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
+                                                               style="text-decoration: none;"
+                                                               class="save"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <h5 style="font-size: 14px;" class="text-config">
-                                    Comentado por #{comentario.loginUsuario}, 
-                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputText>
-                                </h5>
-
-                                <p class="w3-justify">
-                                    #{comentario.conteudo}
-                                </p>
-
                                 <hr/>
-
-                                <p style="font-size: 12px">
-
-                                    <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>|
-
-                                    <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
-                                                   style="text-decoration: none;"
-                                                   class="w3-margin-right w3-margin-left"/>
-                                </p>
-                            </div>
-                        </p:dataGrid>
-
+                            </h:column>
+                        </h:dataTable>
                     </div>
-
                 </h:form>
 
             </main> 

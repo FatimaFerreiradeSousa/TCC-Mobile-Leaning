@@ -61,8 +61,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -99,11 +100,11 @@
                 <h:form acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content  w3-center">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <h5 class="w3-center">Atualizar Horário</h5>
+                            <h5 class="w3-center text-config">Atualizar Horário</h5>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="horarioInicial" errorClass="erros"/>
                                 <h:inputText value="#{controladorHorario.temp.horarioInicial}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="horarioInicial"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -114,7 +115,7 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="horarioFinal" errorClass="erros"/>
                                 <h:inputText value="#{controladorHorario.temp.horarioFinal}" 
-                                             class="mdl-textfield__input" 
+                                             class="mdl-textfield__input text-config" 
                                              id="horarioFinal"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
@@ -126,7 +127,7 @@
 
                                 <h:selectOneListbox value="#{controladorHorario.temp.dia}" 
                                                     id="qtdPergunta"
-                                                    size="1" class="w3-select">
+                                                    size="1" class="w3-select text-config">
                                     <f:selectItem itemValue="Dia da Semana"/>
                                     <f:selectItem itemValue="Segunda-Feira"/>
                                     <f:selectItem itemValue="Terça-Feira"/>

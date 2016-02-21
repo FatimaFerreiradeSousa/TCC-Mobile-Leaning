@@ -28,7 +28,7 @@
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
 
-                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
+                    <div class="mdl-layout-spacer text-config">Turma de #{controladorTurma.turma.nome}</div>
 
                     <nav class="mdl-navigation">
                         <h:form>
@@ -60,8 +60,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 

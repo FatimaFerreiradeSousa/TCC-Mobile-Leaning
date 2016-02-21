@@ -61,8 +61,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -98,16 +99,10 @@
             <main class="mdl-layout__content mdl-color--grey-100">
 
                 <div class="w3-container text-config">
-                    <h4>Horario da Turma de #{controladorHorario.turma.nome}</h4>
-
-                    <button onclick="document.getElementById('id01').style.display = 'block'" 
-                            class="w3-btn w3-purple" style="width: 325px">
-                        Add Horário
-                    </button>
+                    <h4 class="text-config">Horario da Turma de #{controladorHorario.turma.nome}</h4>
                 </div>
 
-                <br />
-
+                <hr/>
                 <h:form>
                     <div class="w3-row-padding">
 
@@ -115,7 +110,7 @@
                             <div class="w3-quarter w3-center">
                                 <div class="w3-card">
                                     <div class="w3-container w3-red">
-                                        <h4>Segunda-Feira</h4>
+                                        <h4 class="text-config">Segunda-Feira</h4>
                                     </div>
 
                                     <div class="w3-container w3-xlarge w3-center">
@@ -124,9 +119,11 @@
                                                      rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
 
                                             <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;" class="w3-center text-config"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                                </div>
                                             </h:column>
 
                                         </h:dataTable>
@@ -216,12 +213,13 @@
                     </div>
 
                     <div class="w3-row-padding">
+
                         <h:panelGroup rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
 
                             <div class="w3-quarter w3-center">
                                 <div class="w3-card">
                                     <div class="w3-container w3-green">
-                                        <h4>Sexta-Feira</h4>
+                                        <h4 class="text-config">Sexta-Feira</h4>
                                     </div>
 
                                     <div class="w3-container w3-xlarge">
@@ -229,10 +227,13 @@
                                                      class="w3-table"
                                                      rendered="#{controladorHorario.buscarHorario('Sexta-Feira').size() > 0}">
 
-                                            <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            <h:column>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"
+                                                                   class="text-config"/>
+                                                </div>
                                             </h:column>
 
                                         </h:dataTable>
@@ -242,6 +243,16 @@
                         </h:panelGroup>
                     </div>
                 </h:form>
+                
+                <br/>
+
+                <div class="w3-container">
+                    <button onclick="document.getElementById('id01').style.display = 'block'" 
+                            class="w3-btn w3-purple" style="width: 325px">
+                        Add Horário
+                    </button>
+                </div>
+
             </main>
         </div>
 
@@ -259,7 +270,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="horarioInicial" errorClass="erros"/>
                             <h:inputText value="#{controladorHorario.horario.horarioInicial}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="horarioInicial"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -270,7 +281,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="horarioFinal" errorClass="erros"/>
                             <h:inputText value="#{controladorHorario.horario.horarioFinal}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="horarioFinal"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>

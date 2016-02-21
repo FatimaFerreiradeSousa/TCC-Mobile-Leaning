@@ -20,36 +20,36 @@
         <script src="../../mdl/material.js"/>
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer">
-                        <h5>#{controladorGrupo.grupo.nome}</h5>
-
-                        <nav class="mdl-navigation">
-                            <a href="page-inicial-grupo.jsf" style="text-decoration: none"
-                               class="mdl-layout__tab is-active">
-                                Inicio
-                            </a>
-
-                            <a href="page-listar-membros.jsf" style="text-decoration: none"
-                               class="mdl-layout__tab">
-                                Alunos
-                            </a>
-
-                            <a href="page-listar-testes.jsf" style="text-decoration: none"
-                               class="mdl-layout__tab">
-                                Testes
-                            </a>
-
-                            <a href="page-alterar-grupo.jsf" style="text-decoration: none"
-                               class="mdl-layout__tab">
-                                Configurações
-                            </a>
-                        </nav>
+                    <div class="mdl-layout-spacer text-config">
+                        #{controladorGrupo.grupo.nome}
                     </div>
+
+                    <nav class="mdl-navigation">
+                        <a href="page-inicial-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Inicio
+                        </a>
+
+                        <a href="page-listar-membros.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Alunos
+                        </a>
+
+                        <a href="page-listar-testes.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Testes
+                        </a>
+
+                        <a href="page-alterar-grupo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Configurações
+                        </a>
+                    </nav>
                 </div>
 
             </header>
@@ -58,8 +58,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -98,6 +99,8 @@
 
                         <p>Comentar</p>
 
+                        <hr/>
+
                         <div class="w3-row">
 
                             <div class="w3-col w3-container">
@@ -105,7 +108,7 @@
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                     <h:message for="conteudo" errorClass="erros"/>
                                     <h:inputTextarea value="#{controladorGrupo.comentarioTopico.conteudo}" 
-                                                     class="mdl-textfield__input" 
+                                                     class="mdl-textfield__input text-config" 
                                                      id="conteudo" rows="5"
                                                      required="true"
                                                      requiredMessage="Campo obrigatório"/>

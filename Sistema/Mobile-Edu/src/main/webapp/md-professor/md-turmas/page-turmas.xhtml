@@ -21,7 +21,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -35,8 +35,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -63,7 +64,7 @@
                 <div class="container w3-margin">
 
                     <h5 class="w3-center">
-                        <h:outputText value="Suas Turmas"
+                        <h:outputText value="Suas Turmas" class="text-config"
                                       rendered="#{controladorTurma.listarTurmas().size() > 0}"/>
                     </h5>
                     <div class="w3-row-padding">
@@ -76,10 +77,10 @@
                                 <div class="w3-col m10 w3-center w3-margin-top">
                                     <div class="w3-card">
                                         <div class="w3-container w3-red">
-                                            <h4>#{turma.nome}</h4>
+                                            <h4 class="text-config">#{turma.nome}</h4>
                                         </div>
                                         <div class="w3-container w3-xlarge">
-                                            <p>#{turma.descricao}<br/>
+                                            <p class="text-config">#{turma.descricao}<br/>
                                                 <i>
                                                     <b>
                                                         Inicio:

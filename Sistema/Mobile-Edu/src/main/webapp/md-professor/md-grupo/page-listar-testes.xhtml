@@ -95,7 +95,10 @@
                 <div class="w3-container w3-center">
                     <h:form>
 
-                        <h3 class="text-config">Testes</h3>
+                        <h3 class="text-config">
+                            <h:outputText value="Testes"
+                                          rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}"/>
+                        </h3>
 
                         <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
                                      class="w3-table w3-hoverable w3-striped"
@@ -104,7 +107,7 @@
                             <h:column>
 
                                 <div class="w3-center">
-                                    <span class="w3-xxlarge w3-text-red">
+                                    <span class="w3-xxlarge w3-text-red text-config">
                                         <b>
                                             <h:commandLink value="#{teste.assunto}" 
                                                            action="#{controladorTeste.resultadoIndividual(teste)}" 
@@ -112,7 +115,7 @@
                                         </b>
                                     </span>
 
-                                    <p>
+                                    <p class="text-config">
                                         Por #{teste.professor.login},
 
                                         <h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">

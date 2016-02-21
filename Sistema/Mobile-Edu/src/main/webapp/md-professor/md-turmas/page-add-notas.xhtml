@@ -22,7 +22,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
@@ -59,8 +59,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{professor.login}</span>
                     </div>
                 </header>
 
@@ -95,24 +96,25 @@
 
             <main class="mdl-layout__content">
 
-                <h:form>
-                    <div class="w3-container w3-margin-8">
-                        <button onclick="document.getElementById('id01').style.display = 'block'" 
-                                class="w3-btn w3-purple btn-presenca-pag">
-                            Add Nota
-                        </button>
 
-                        <hr />
-                        <h4>Notas da turma de  #{controladorTurma.turma.nome}</h4>
+                <div class="w3-container w3-margin-8 text-config">
+                    <button onclick="document.getElementById('id01').style.display = 'block'" 
+                            class="w3-btn w3-purple btn-presenca-pag">
+                        Add Nota
+                    </button>
 
+                    <hr />
+                    <h4 class="text-config">Notas da turma de  #{controladorTurma.turma.nome}</h4>
+
+                    <h:form>
                         <p:dataGrid var="nota" value="#{controladorNota.listarNotas()}" 
                                     columns="3" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                     layout="grid" rendered="#{controladorNota.listarNotas().size() > 0}">
 
                             <div class="w3-col m10 ">
-                                <div class="w3-container w3-light-grey">
-                                    <h2>#{nota.titulo}</h2>
-                                    <h6>Por #{nota.professor}</h6>
+                                <div class="w3-container w3-light-grey text-config">
+                                    <h2 class="text-config w3-justify">#{nota.titulo}</h2>
+                                    <h6><i>Por #{nota.professor}</i></h6>
 
                                     <p class="w3-justify">
                                         #{nota.introducao}
@@ -137,8 +139,9 @@
                                 </div><br />
                             </div>
                         </p:dataGrid>
-                    </div>
-                </h:form>
+                    </h:form>
+                </div>
+
             </main>
         </div>
 
@@ -157,7 +160,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="titulo" errorClass="erros"/>
                             <h:inputText value="#{controladorNota.nota.titulo}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="titulo"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -168,18 +171,18 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="introducao" errorClass="erros"/>
                             <h:inputText value="#{controladorNota.nota.introducao}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="introducao"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
 
-                            <label class="mdl-textfield__label" for="introducao">Introdução</label>
+                            <label class="mdl-textfield__label" for="introducao">Resumo</label>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="desenvolvimento" errorClass="erros"/>
                             <h:inputTextarea value="#{controladorNota.nota.desenvolvimento}" 
-                                             class="mdl-textfield__input" rows="5"
+                                             class="mdl-textfield__input text-config" rows="5"
                                              id="desenvolvimento"
                                              required="true"
                                              requiredMessage="Campo obrigatório"/>
