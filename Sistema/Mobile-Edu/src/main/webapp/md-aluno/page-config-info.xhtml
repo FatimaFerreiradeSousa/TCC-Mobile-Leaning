@@ -36,8 +36,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
@@ -46,13 +47,14 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox
+                    <a class="mdl-navigation__link" href="md-turmas/page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>
-                        Updates
+                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
                     </a>
 
                     <a class="mdl-navigation__link" href="page-config-aluno.jsf">
@@ -76,7 +78,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="login" errorClass="erros"/>
                             <h:inputText value="#{aluno.login}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="login"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -87,7 +89,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="nome" errorClass="erros"/>
                             <h:inputText value="#{aluno.nome}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="nome"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -96,9 +98,20 @@
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="sobrenome" errorClass="erros"/>
+                            <h:inputText value="#{aluno.sobrenome}" 
+                                         class="mdl-textfield__input text-config" 
+                                         id="sobrenome"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="sobrenome">Sobrenome</label>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="curso" errorClass="erros"/>
                             <h:inputText value="#{aluno.curso}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="curso"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -109,7 +122,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="email" errorClass="erros"/>
                             <h:inputText value="#{aluno.email}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="email"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -120,7 +133,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="instituicao" errorClass="erros"/>
                             <h:inputText value="#{aluno.instituicao}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="instituicao"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -131,7 +144,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="senha" errorClass="erros"/>
                             <h:inputText value="#{aluno.senha}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="senha"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -140,8 +153,19 @@
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                            <h:message for="descricao" errorClass="erros"/>
+                            <h:inputTextarea value="#{aluno.descricao}" 
+                                             class="mdl-textfield__input text-config" 
+                                             id="descricao" rows="2"
+                                             required="true"
+                                             requiredMessage="Campo obrigatório"/>
+
+                            <label class="mdl-textfield__label" for="descricao">Descrição</label>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:commandButton value="Atualizar" action="#{controladorUsuario.atualizarAluno()}"
-                                             class="w3-btn w3-green btn-aluno"/>
+                                             class="w3-btn w3-green" style="width: 300px"/>
                         </div>
                     </div>
                 </h:form>

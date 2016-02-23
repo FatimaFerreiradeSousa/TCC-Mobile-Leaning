@@ -19,4 +19,6 @@ public interface InterfaceDaoTurma {
     
     public List<Turma> listarTurmas(String login);
     
+    public List<Turma> listarAulasDia(String login, String dia);
+    
 }

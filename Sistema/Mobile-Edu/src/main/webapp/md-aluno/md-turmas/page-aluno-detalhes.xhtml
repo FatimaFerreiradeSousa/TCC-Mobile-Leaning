@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Turma | Aluno | Detalhes</title>
+        <title>Aluno | Turma | Aluno | Detalhes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -39,15 +39,17 @@
                                 <a href="page-listar-alunos.jsf" style="text-decoration: none">Alunos</a>
                             </li>
                             <li class="mdl-menu__item">
-                                <h:commandLink value="Publicações"
+                                <h:commandLink value="Notas"
                                                style="text-decoration: none;"
                                                action="#{controladorNota.pageNotaAluno(controladorTurma.turma)}"/>
                             </li>
                             <li class="mdl-menu__item">
-                                <a href="page-listar-testes.jsf" style="text-decoration: none">Horários</a>
+                                <h:commandLink value="Horários" style="text-decoration: none;" 
+                                               action="#{controladorHorario.pageHorarioAluno(controladorTurma.turma)}"/>
                             </li>
                             <li class="mdl-menu__item">
-                                <a href="page-listar-testes.jsf" style="text-decoration: none">Desempenho</a>
+                                <h:commandLink value="Desempenho" style="text-decoration: none;" 
+                                               action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"/>
                             </li>
                             <li class="mdl-menu__item">
                                 <a href="page-listar-testes.jsf" style="text-decoration: none">Plano de Aula</a>
@@ -60,26 +62,30 @@
 
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
-                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-
-                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-
-                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
-                        Nova Turma
+                    <a class="mdl-navigation__link" href="md-turmas/page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
+                    <a class="mdl-navigation__link" href="../md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -125,11 +131,25 @@
                         </span>
                     </p>
 
+                    Resumo Total:
+                    <input class="mdl-slider mdl-js-slider" type="range"
+                           min="0" max="100" 
+                           value="#{controladorTurma.qtdFaltasAluno()}" 
+                           tabindex="0"/>
+
+                    <hr/>
+
                     <p class="w3-text-green">Presenças: 
                         <span class="w3-xxlarge w3-text-green">
                             <b>#{controladorTurma.qtdPresencasAluno()}</b>
                         </span>
                     </p>
+
+                    Resumo Total:
+                    <input class="mdl-slider mdl-js-slider" type="range"
+                           min="0" max="100" 
+                           value="#{controladorTurma.qtdPresencasAluno()}" 
+                           tabindex="0"/>
 
                 </div>
             </main>

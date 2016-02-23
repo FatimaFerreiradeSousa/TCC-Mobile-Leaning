@@ -70,4 +70,12 @@ public class DaoTurma implements InterfaceDaoTurma {
 
         return (List<Turma>) query.getResultList();
     }
+
+    @Override
+    public List<Turma> listarAulasDia(String login, String dia) {
+        Query query = em.createQuery("select t from Turma t WHERE EXISTS (select h from t.horarios h where h.dia = :dia) AND t.professor.login = :login");
+        query.setParameter("login", login);
+        query.setParameter("dia", dia);
+        return (List<Turma>) query.getResultList();
+    }
 }

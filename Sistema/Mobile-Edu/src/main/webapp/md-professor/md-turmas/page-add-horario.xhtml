@@ -118,7 +118,7 @@
                                                      class="w3-table"
                                                      rendered="#{controladorHorario.buscarHorario('Segunda-Feira').size() > 0}">
 
-                                            <h:column class="w3-center">
+                                            <h:column>
                                                 <div class="w3-center">
                                                     <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
                                                                    style="text-decoration: none;" class="w3-center text-config"
@@ -146,10 +146,12 @@
                                                      class="w3-table"
                                                      rendered="#{controladorHorario.buscarHorario('Terça-Feira').size() > 0}">
 
-                                            <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            <h:column>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                                </div>
                                             </h:column>
 
                                         </h:dataTable>
@@ -172,10 +174,12 @@
                                                      class="w3-table"
                                                      rendered="#{controladorHorario.buscarHorario('Quarta-Feira').size() > 0}">
 
-                                            <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            <h:column>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                                </div>
                                             </h:column>
 
                                         </h:dataTable>
@@ -198,10 +202,12 @@
                                                      class="w3-table"
                                                      rendered="#{controladorHorario.buscarHorario('Quinta-Feira').size() > 0}">
 
-                                            <h:column class="w3-center">
-                                                <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
-                                                               style="text-decoration: none;"
-                                                               action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                            <h:column>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"/>
+                                                </div>
                                             </h:column>
 
                                         </h:dataTable>
@@ -243,7 +249,7 @@
                         </h:panelGroup>
                     </div>
                 </h:form>
-                
+
                 <br/>
 
                 <div class="w3-container">

@@ -1,110 +1,157 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <h:head>
         <title>Facelet Title</title>
 
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="w3-css/w3.css" rel="stylesheet"/>
-        <link href="assets/semantic/semantic.css" rel="stylesheet"/>
-        <link href="assets/semantic/semantic.min.css" rel="stylesheet"/>
-        <script src="assets/semantic/semantic.min.js" type="text/javascript"/>
-        <script src="assets/semantic/semantic.js" type="text/javascript"/>
+        <link href="mdl/material-icons.css" rel="stylesheet"/>
+        <link href="mdl/material.css" rel="stylesheet"/>
+        <link href="mdl/material.min.css" rel="stylesheet"/>
+        <link href="assets/css/css-grupos.css" rel="stylesheet"/>
+        <script src="mdl/material.js" type="text/javascript"/>
+        <script src="mdl/material.min.js" type="text/javascript"/>
 
     </h:head>
     <h:body>
 
-        <div class="w3-container s5">
+        <div class="">
 
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">Linha do Tempo do Projeto</div>
-                </div>
-                <div class="content">
-                    <h4 class="ui sub header">Atividade</h4>
-                    <div class="ui small feed">
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Elliot Fu</a> adicionou <a>Jenny Hess</a> ao projeto </div>
+            <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+                <main class="mdl-layout__content">
+                    <div class="demo-blog__posts mdl-grid">
+                        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                                <form>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <textarea rows="1" class="mdl-textfield__input" id="comment"></textarea>
+                                        <label for="comment" class="mdl-textfield__label">Join the discussion</label>
+                                    </div>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
+                                    </button>
+                                </form>
+                                <div class="comment mdl-color-text--grey-700">
+                                    <header class="comment__header">
+                                        <img src="img/instagram_15.jpg" class="comment__avatar"/>
+                                        <div class="comment__author">
+                                            <strong>James Splayd</strong>
+                                            <span>2 days ago</span>
+                                        </div>
+                                    </header>
+                                    <div class="comment__text">
+                                        In in culpa nulla elit esse. Ex cillum enim aliquip sit sit ullamco ex eiusmod fugiat. Cupidatat ad minim officia mollit laborum magna dolor tempor cupidatat mollit. Est velit sit ad aliqua ullamco laborum excepteur dolore proident incididunt in labore elit.
+                                    </div>
+                                    <nav class="comment__actions">
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">create</i><span class="visuallyhidden">like comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">delete</i><span class="visuallyhidden">dislike comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">mode_comment</i><span class="visuallyhidden">share comment</span>
+                                        </button>
+                                    </nav>
+                                    <div class="comment__answers">
+                                        <div class="comment">
+                                            <header class="comment__header">
+                                                <img src="img/instagram_15.jpg" class="comment__avatar"/>
+                                                <div class="comment__author">
+                                                    <strong>John Dufry</strong>
+                                                    <span>2 days ago</span>
+                                                </div>
+                                            </header>
+                                            <div class="comment__text">
+                                                Yep, agree!
+                                            </div>
+                                            <nav class="comment__actions">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
+                                                </button>
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">thumb_down</i><span class="visuallyhidden">dislike comment</span>
+                                                </button>
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
+                                                </button>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Stevie Feliciano</a> was added as an <a>Administrator</a> </div>
+                    </div>
+
+                    <div class="demo-blog__posts mdl-grid">
+                        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                                <form>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <textarea rows="1" class="mdl-textfield__input" id="comment"></textarea>
+                                        <label for="comment" class="mdl-textfield__label">Join the discussion</label>
+                                    </div>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
+                                    </button>
+                                </form>
+                                <div class="comment mdl-color-text--grey-700">
+                                    <header class="comment__header">
+                                        <img src="img/instagram_15.jpg" class="comment__avatar"/>
+                                        <div class="comment__author">
+                                            <strong>James Splayd</strong>
+                                            <span>2 days ago</span>
+                                        </div>
+                                    </header>
+                                    <div class="comment__text">
+                                        In in culpa nulla elit esse. Ex cillum enim aliquip sit sit ullamco ex eiusmod fugiat. Cupidatat ad minim officia mollit laborum magna dolor tempor cupidatat mollit. Est velit sit ad aliqua ullamco laborum excepteur dolore proident incididunt in labore elit.
+                                    </div>
+                                    <nav class="comment__actions">
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">create</i><span class="visuallyhidden">like comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">delete</i><span class="visuallyhidden">dislike comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">mode_comment</i><span class="visuallyhidden">share comment</span>
+                                        </button>
+                                    </nav>
+                                    <div class="comment__answers">
+                                        <div class="comment">
+                                            <header class="comment__header">
+                                                <img src="img/instagram_15.jpg" class="comment__avatar"/>
+                                                <div class="comment__author">
+                                                    <strong>John Dufry</strong>
+                                                    <span>2 days ago</span>
+                                                </div>
+                                            </header>
+                                            <div class="comment__text">
+                                                Yep, agree!
+                                            </div>
+                                            <nav class="comment__actions">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
+                                                </button>
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">thumb_down</i><span class="visuallyhidden">dislike comment</span>
+                                                </button>
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
+                                                </button>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="event">
-                            <div class="content">
-                                <div class="summary"><a>Helen Troy</a> adicionou duas images </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="extra content">
-                    <button class="ui button">Join Project</button>
-                </div>
+                </main>
             </div>
-
-            <div class="ui six doubling cards">
-                <div class="card">
-                    <div class="image">
-                        <img src="img/perfil.png"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ui card">
-                <div class="image">
-                    <img src="img/perfil.png"/>
-                </div>
-                <div class="content">
-                    <a class="header">Kristy</a>
-                    <div class="meta">
-                        <span class="date">Entrou em 2013</span>
-                    </div>
-                    <div class="description">Kristy is an art director living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <a><i class="user icon"></i> 22 Friends </a>
-                </div>
-            </div>
-
-
-            <div class="ui cards">
-                <div class="card">
-                    <div class="content">
-                        <img class="right floated mini ui image" src="img/perfil.png"/>
-                        <div class="header">Elliot Fu </div>
-                        <div class="meta">Amigos de Veronika </div>
-                        <div class="description">Elliot requested permission to view your contact details </div>
-                    </div>
-                    <div class="extra content">
-                        <div class="ui two buttons">
-                            <div class="ui basic green button">Aprovar</div>
-                            <div class="ui basic red button">Rejeitar</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="content">
-                        <img class="right floated mini ui image" src="img/perfil.png"/>
-                        <div class="header">Jenny Hess </div>
-                        <div class="meta">Novo Membro </div>
-                        <div class="description">Jenny wants to add you to the group <b>best friends</b> </div>
-                    </div>
-                    <div class="extra content">
-                        <div class="ui two buttons">
-                            <div class="ui basic green button">Aprovar</div>
-                            <div class="ui basic red button">Rejeitar</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </h:body>
 </html>

@@ -22,9 +22,10 @@
 
         <br />
 
-        <h:form class="form-horizontal">
 
-            <div class="w3-container w3-center container">
+        <div class="w3-container w3-center container">
+
+            <h:form class="form-horizontal">
                 <div class="w3-row">
 
                     <div class="form-group">
@@ -68,10 +69,10 @@
                     </div>
                 </div>  <br/>
 
-                <div class="form-group">
+                <div class="form-group w3-center">
                     <div class="col-sm-6 col-sm-offset-3 w3-center">
                         <h:commandButton action="#{controladorUsuario.loginUsuario()}" 
-                                         id="login-submit" 
+                                         id="login-submit"
                                          class="w3-btn w3-teal button-login" value="Entrar">
                             <f:ajax execute="username password tipo" render="erroLogin"/>
                         </h:commandButton>
@@ -81,15 +82,16 @@
                 <div class="form-group">
 
                     <div class="col-sm-6 col-sm-offset-3 w3-center">    
-                        <a class="w3-btn w3-red button-group button-group-form" href="page-cadastro.jsf"> Criar Conta</a>
+                        <a class="w3-btn w3-red button-group" href="page-cadastro.jsf"> Criar Conta</a>
                         <a class="w3-btn w3-blue button-group" href="recuperar-senha.jsf"> Esqueceu a senha </a>
                     </div>
 
                 </div>
 
-            </div>
 
-        </h:form>
+            </h:form>
+        </div>
+
     </h:body>
 
 </html>

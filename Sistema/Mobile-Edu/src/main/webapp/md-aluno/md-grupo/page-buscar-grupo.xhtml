@@ -35,8 +35,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
@@ -46,12 +47,12 @@
                         Inicio
                     </a>
 
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="../md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                    <a class="mdl-navigation__link" href="page-listar-grupos.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
@@ -79,7 +80,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="grupo" errorClass="erros"/>
                             <h:inputText value="#{controladorGrupo.nomeGrupo}" 
-                                         class="mdl-textfield__input" 
+                                         class="mdl-textfield__input text-config" 
                                          id="grupo"
                                          required="true"
                                          requiredMessage="Campo obrigatório"/>
@@ -107,7 +108,7 @@
                                     <h6 class="w3-center">
                                         <h:commandLink value="#{grupo.nome}" 
                                                        action="#{controladorGrupo.paginaSolicitacaoGrupo(grupo)}"
-                                                       class="w3-text-green" 
+                                                       class="w3-text-green text-config" 
                                                        style="text-decoration: none;" />
                                     </h6>
                                     

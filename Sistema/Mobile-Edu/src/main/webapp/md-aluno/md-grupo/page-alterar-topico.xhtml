@@ -27,6 +27,26 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
 
+                    <button id="demo-menu-lower-right"
+                            class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-right">
+                        <li class="mdl-menu__item">
+                            <a href="page-publicar-arquivo.jsf" style="text-decoration: none">Arquivos</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-membros.jsf" style="text-decoration: none">Membros</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-testes-grupo.jsf" style="text-decoration: none">Testes</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
+                        </li>
+                    </ul>
                 </div>
 
             </header>
@@ -35,8 +55,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
@@ -45,18 +66,17 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="../md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                    <a class="mdl-navigation__link" href="page-listar-grupos.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -79,10 +99,10 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                             <h:message for="topico" errorClass="erros"/>
                             <h:inputTextarea value="#{controladorGrupo.topicoTemp.conteudo}" 
-                                         class="mdl-textfield__input text-config" 
-                                         id="topico" rows="5"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
+                                             class="mdl-textfield__input text-config w3-justify" 
+                                             id="topico" rows="5"
+                                             required="true"
+                                             requiredMessage="Campo obrigatório"/>
 
                             <label class="mdl-textfield__label" for="topico">Topico</label>
                         </div>

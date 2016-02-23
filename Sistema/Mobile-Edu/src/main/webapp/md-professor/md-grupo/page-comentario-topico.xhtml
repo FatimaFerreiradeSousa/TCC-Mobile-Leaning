@@ -13,12 +13,10 @@
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-grupos.css" rel="stylesheet"/>
         <link href="../../assets/css/font-awesome.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
-
-        <link href="../../assets/semantic/semantic.css" rel="stylesheet"/>
-        <link href="../../assets/semantic/semantic.min.css" rel="stylesheet"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -95,65 +93,105 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main">
-                <h:form>
-                    <div class="w3-container">
 
-                        <h6 class="w3-opacity">
-                            <h:commandLink value="Comentar" class="mdl-button mdl-js-button"
-                                           action="#{controladorGrupo.comentarTopico()}"/>
-                        </h6>
+            <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
+                <main class="mdl-layout__content mdl-color--grey-100">
+
+                    <h:form acceptcharset="ISO-8859-1">
+                        <div class="w3-container w3-center form-comments">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <h:message for="conteudo" errorClass="erros" class="text-config"/>
+                                <h:inputTextarea value="#{controladorGrupo.comentarioTopico.conteudo}" 
+                                                 class="mdl-textfield__input text-config" 
+                                                 id="conteudo" rows="1"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório"/>
+
+                                <label for="comment" class="mdl-textfield__label">Participar da discussão</label>
+                            </div>
+
+                            <div class="w3-margin-top">
+                                <h:commandLink  class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+                                                action="#{controladorGrupo.salvarComentarioProfessor()}"
+                                                style="margin-top: 50%">
+                                    <i class="material-icons" role="presentation">check</i>
+                                    <span class="visuallyhidden">add comment</span>
+                                </h:commandLink>
+                            </div>
+                        </div>
 
                         <hr/>
 
-                        <h:outputText value="Nenhum Comentário"
+                    </h:form>
+
+                    <div class="w3-container w3-center">
+                        <h:outputText value="Nenhum Comentário" class="text-config"
                                       rendered="#{controladorGrupo.comentariosTopico().size() == 0}"/>
 
-                        <h:dataTable var="comentario" value="#{controladorGrupo.comentariosTopico()}" 
-                                     id="aluno" class="w3-table"
-                                     rendered="#{controladorGrupo.comentariosTopico().size() > 0}">
+                    </div>
 
-                            <h:column>
+                    <div class="w3-container w3-center">
+                        <h:outputText value="Discussão" class="text-config"
+                                      rendered="#{controladorGrupo.comentariosTopico().size() > 0}"/>
 
-                                <div class="ui comments">
-                                    <div class="comment">
-                                        <div class="avatar">
-                                            <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
-                                                            styleClass="w3-circle demo-avatar">
-                                                <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
-                                            </p:graphicImage>
-                                        </div>
-                                        <div class="content">
-                                            <label class="author">#{comentario.loginUsuario}</label>
-                                            <div class="metadata">
-                                                <div class="date">
-                                                    <h:outputText value="#{comentario.dataComentario}" style="font-size: 10px">
-                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                    </h:outputText>
+                    </div>
+
+                    <h:dataTable var="comentario" value="#{controladorGrupo.comentariosTopico()}" 
+                                 id="aluno" class="w3-table"
+                                 rendered="#{controladorGrupo.comentariosTopico().size() > 0}">
+
+                        <h:column>
+
+                            <div class="demo-blog__posts mdl-grid">
+                                <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                                        <div class="comment mdl-color-text--grey-700">
+                                            <header class="comment__header">
+                                                <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                                styleClass="comment__avatar">
+                                                    <f:param name="loginUsuario" value="#{comentario.loginUsuario}"/>
+                                                </p:graphicImage>
+                                                <div class="comment__author">
+                                                    <strong>#{comentario.loginUsuario}</strong>
+                                                    <span><h:outputText value="#{comentario.dataComentario}" 
+                                                                        style="font-size: 10px">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                        </h:outputText></span>
                                                 </div>
+                                            </header>
+                                            <div class="comment__text">
+                                                #{comentario.conteudo}
                                             </div>
-                                            <div class="text w3-justify">
-                                                <p>#{comentario.conteudo}</p>
-                                            </div>
-                                            <div class="actions">
-                                                <h:commandLink value="Alterar" action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
-                                                               style="text-decoration: none;"
-                                                               class="reply"/>|
 
-                                                <h:commandLink value="Remover" action="#{controladorGrupo.removerComentario(comentario)}" 
-                                                               style="text-decoration: none;"
-                                                               class="save"/>
-                                            </div>
+                                            <h:form>
+                                                <nav class="comment__actions">
+                                                    <h:commandLink action="#{controladorGrupo.pageAlterarComentario(comentario)}" 
+                                                                   style="text-decoration: none;"
+                                                                   rendered="#{comentario.loginUsuario.equalsIgnoreCase(professor.login)}"
+                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                        <i class="material-icons" role="presentation">create</i>
+                                                        <span class="visuallyhidden">share comment</span>
+                                                    </h:commandLink>
+
+                                                    <h:commandLink action="#{controladorGrupo.removerComentario(comentario)}" 
+                                                                   style="text-decoration: none;"
+                                                                   rendered="#{comentario.loginUsuario.equalsIgnoreCase(professor.login)}"
+                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                        <i class="material-icons" role="presentation">delete</i>
+                                                        <span class="visuallyhidden">share comment</span>
+                                                    </h:commandLink>
+
+                                                </nav>
+                                            </h:form>
                                         </div>
                                     </div>
                                 </div>
-                                <hr/>
-                            </h:column>
-                        </h:dataTable>
-                    </div>
-                </h:form>
-
-            </main> 
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </main>
+            </div>
         </div>
     </h:body>
 </html>

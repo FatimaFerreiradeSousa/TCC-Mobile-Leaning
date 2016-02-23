@@ -1,0 +1,229 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/02/2016, 09:37:49
+    Author     : Fatinha de Sousa
+*/
+
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+
+body .demo-blog {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.demo-blog .demo-blog__posts {
+    max-width: 900px;
+    padding: 0;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.demo-blog.mdl-layout .mdl-layout__content {
+    padding-top: 10px;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+.demo-blog .mdl-card__media a,
+.demo-blog .mdl-card__title a {
+    color: inherit;
+}
+
+.demo-blog .mdl-card__supporting-text {
+    width: 100%;
+    padding: 16px;
+    min-height: 64px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.demo-blog .mdl-card__supporting-text strong {
+    font-weight: 400;
+}
+.demo-blog .mdl-card__media ~ .mdl-card__supporting-text {
+    min-height: 64px;
+}
+.demo-blog .mdl-card__supporting-text:not(:last-child) {
+    box-sizing: border-box;
+    min-height: 76px;
+}
+.demo-blog:not(.demo-blog--blogpost) .mdl-card__supporting-text ~ .mdl-card__supporting-text {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.demo-blog .mdl-card__actions:first-child {
+    margin-left: 0;
+}
+
+.demo-blog .meta {
+    box-sizing: border-box;
+    padding: 16px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    height: auto;
+}
+
+.demo-blog--blogpost .comments {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.form-comments {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+
+.demo-blog--blogpost .mdl-textfield {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-right: 16px;
+    color: rgb(97, 97, 97);
+}
+
+.demo-blog--blogpost .mdl-textfield input,
+.demo-blog--blogpost .mdl-textfield textarea {
+    resize: none;
+}
+
+.demo-blog--blogpost button {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.24);
+    color: white;
+}
+
+.demo-blog--blogpost .comments .comment {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__header {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__header > .comment__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-right: 16px;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__header > .comment__author {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__text {
+    line-height: 1.5em;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__actions {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 0.8em;
+    margin-top: 16px;
+}
+
+.demo-blog--blogpost .comments .comment > .comment__actions button {
+    margin-right: 16px;
+    color: rgba(0, 0, 0, 0.24);
+}
+.demo-blog--blogpost .comments .comment > .comment__answers {
+    padding-top: 32px;
+    padding-left: 48px;
+}
+
+.demo-blog--blogpost .demo-back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: white;
+    z-index: 9999;
+}
+
+.mdl-grid {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}

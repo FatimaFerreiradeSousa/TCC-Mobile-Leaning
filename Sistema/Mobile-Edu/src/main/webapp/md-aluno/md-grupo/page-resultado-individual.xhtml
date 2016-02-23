@@ -35,6 +35,9 @@
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                         for="demo-menu-lower-right">
                         <li class="mdl-menu__item">
+                            <a href="page-publicar-arquivo.jsf" style="text-decoration: none">Arquivos</a>
+                        </li>
+                        <li class="mdl-menu__item">
                             <a href="page-listar-membros.jsf" style="text-decoration: none">Membros</a>
                         </li>
                         <li class="mdl-menu__item">
@@ -52,8 +55,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
@@ -62,17 +66,17 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="../md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                    <a class="mdl-navigation__link" href="page-listar-grupos.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -88,22 +92,36 @@
 
             <main class="mdl-layout__content mdl-main mdl-color--grey-100">
                 <div class="w3-content w3-center">
-                    <p class="w3-center w3-text-red">Resultado do teste #{controladorTeste.teste.assunto}</p>
+                    <p class="w3-center">Resultado do teste <b>#{controladorTeste.teste.assunto}</b></p>
                     <hr />
 
                     <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro" 
                                  class="w3-table" 
                                  rendered="#{controladorTeste.resultadoTestes().size() > 0}">
                         <h:column>
-                            <div>
-                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                styleClass="demo-avatar">
-                                    <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
-                                </p:graphicImage>
 
-                                <label class="text-config">#{membro.aluno.login}</label>
-                                <small style="font-size: 12px;" class="w3-margin-left">Pontuação: #{membro.nota}</small>
+                            <div class="w3-col m10 w3-margin-top">
+                                <div class="w3-card-2 w3-round w3-white">
+                                    <div class="w3-container w3-center">
+                                        <br />
+                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                        styleClass="w3-image w3-circle" 
+                                                        style="width: 40%;">
+                                            <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
+                                        </p:graphicImage>
+
+                                        <p style="margin-top: 2%;">#{membro.aluno.login}</p>
+
+                                        <label class="text-config">Nota:</label>
+                                        <span class="w3-xxlarge w3-text-red">
+                                            <b>
+                                                <h:outputText value="#{membro.nota}"/>
+                                            </b>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+
                         </h:column>
                     </h:dataTable>
 

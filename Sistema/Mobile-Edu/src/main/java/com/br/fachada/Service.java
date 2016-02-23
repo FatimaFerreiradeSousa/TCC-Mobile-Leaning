@@ -323,6 +323,10 @@ public class Service implements Serializable {
         return daoTurma.listarTurmas(login);
     }
     
+    public List<Turma> listarTurmasHorario(String login, String dia){
+        return daoTurma.listarAulasDia(login, dia);
+    }
+    
     /*CRUD PRESENCA*/
     public boolean salvarPresenca(Presenca presenca){
         return daoPresenca.salvarPresenca(presenca);

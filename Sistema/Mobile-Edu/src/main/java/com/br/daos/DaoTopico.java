@@ -69,7 +69,7 @@ public class DaoTopico implements InterfaceDaoTopico {
 
     @Override
     public List<Comentario> comentariosTopico(int codigoTopico) {
-        Query query = em.createQuery("select c from Comentario c where c.topico.codigo = :codigo");
+        Query query = em.createQuery("select c from Comentario c where c.topico.codigo = :codigo ORDER BY c.codigo DESC");
         query.setParameter("codigo", codigoTopico);
 
         return (List<Comentario>) query.getResultList();

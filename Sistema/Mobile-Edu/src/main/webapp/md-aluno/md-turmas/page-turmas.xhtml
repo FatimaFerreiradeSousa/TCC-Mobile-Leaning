@@ -22,7 +22,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body class="text-config">
 
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
@@ -37,13 +37,14 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
@@ -83,7 +84,7 @@
                                 <div class="w3-col m10 w3-center w3-margin-top">
                                     <div class="w3-card">
                                         <div class="w3-container w3-red">
-                                            <h4>#{turma.nome}</h4>
+                                            <h4 class="text-config">#{turma.nome}</h4>
                                         </div>
                                         <div class="w3-container w3-xlarge">
                                             <p>#{turma.descricao}<br/>

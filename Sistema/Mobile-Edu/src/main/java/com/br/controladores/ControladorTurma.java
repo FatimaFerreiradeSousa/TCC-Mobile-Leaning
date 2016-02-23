@@ -133,6 +133,11 @@ public class ControladorTurma implements Serializable {
 
         return "page-inicial-turma?faces-redirect=true";
     }
+    
+    public String paginaTurma(Turma turma){
+        this.turma = turma;
+        return "page-inicial-turma?faces-redirect=true;";
+    }
 
     public String atualizarTurma() {
 
@@ -270,11 +275,21 @@ public class ControladorTurma implements Serializable {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
         return fachada.buscarHorario(dia, turma.getCodigo());
     }
+    
+    public List<Horario> buscarHorarioDia(Turma turma) {
+        String dia = FormatData.verificarDia(FormatData.pegarDia());
+        return fachada.buscarHorario(dia, turma.getCodigo());
+    }
 
     public String diaDaSemana() {
         return FormatData.verificarDia(FormatData.pegarDia());
     }
 
+    public List<Turma> listarTurmasDia(){
+        String dia = FormatData.verificarDia(FormatData.pegarDia());
+        return fachada.listarTurmasHorario(PegarUsuarioSessao.pegarProfessorSessao().getLogin(), dia);
+    }
+    
     /*ALUNO*/
     public String paginaDesempenhoAluno(Aluno aluno) {
         this.aluno = aluno;

@@ -35,8 +35,9 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
@@ -45,13 +46,14 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox
+                    <a class="mdl-navigation__link" href="md-turmas/page-turmas.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
+                        Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>
-                        Updates
+                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
                     </a>
 
                     <a class="mdl-navigation__link" href="page-config-aluno.jsf">
@@ -71,7 +73,7 @@
             <main class="mdl-layout__content mdl-color--grey-100 ">
                 <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
                     <div class="mdl-grid">
-                        <div class="w3-container w3-center w3-margin-top w3-margin-left">
+                        <div class="w3-container w3-center w3-margin-top">
 
                             <p:graphicImage value="#{aluno.content}" id="figure-0q1"
                                             styleClass="w3-circle avatar-picture-config"/><br /><br />
@@ -89,9 +91,9 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:commandButton value="Atualizar" action="#{controladorUsuario.uploadAluno()}"
-                                                 class="w3-btn w3-green btn-formularios"/>
+                                                 class="w3-btn w3-green btn-aluno"/>
                             </div>
-                            
+
                         </div>
                     </div>
                 </h:form>

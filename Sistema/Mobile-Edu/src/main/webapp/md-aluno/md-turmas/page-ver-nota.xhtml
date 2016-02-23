@@ -25,41 +25,70 @@
     <h:body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
-                <div class="mdl-layout__header-row">
-                    <div class="mdl-layout-spacer">#{controladorTurma.turma.nome}</div>
+                <div class="mdl-layout__header-row"><div class="mdl-layout-spacer">#{controladorTurma.turma.nome}</div>
+
+                    <button id="demo-menu-lower-right"
+                            class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <h:form>
+                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                            for="demo-menu-lower-right">
+                            <li class="mdl-menu__item">
+                                <a href="page-listar-alunos.jsf" style="text-decoration: none">Alunos</a>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <h:commandLink value="Notas"
+                                               style="text-decoration: none;"
+                                               action="#{controladorNota.pageNotaAluno(controladorTurma.turma)}"/>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <h:commandLink value="Horários" style="text-decoration: none;" 
+                                               action="#{controladorHorario.pageHorarioAluno(controladorTurma.turma)}"/>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <h:commandLink value="Desempenho" style="text-decoration: none;" 
+                                               action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"/>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <a href="page-listar-testes.jsf" style="text-decoration: none">Plano de Aula</a>
+                            </li>
+                        </ul>
+                    </h:form>
                 </div>
 
             </header>
 
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
-                    <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
+                    <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{professor.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-                        Nova Turma
-                    </a>
-
-                    <a class="mdl-navigation__link" href="page-turmas.jsf">
+                    <a class="mdl-navigation__link" href="md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="../page-config-professor.jsf">
+                    <a class="mdl-navigation__link" href="../md-grupo/page-listar-grupos.jsf">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        Grupos
+                    </a>
+
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
-
 
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
@@ -75,27 +104,28 @@
                     <div class="w3-container w3-margin-16">
 
                         <div class="w3-light-grey w3-padding-jumbo w3-center">
-                            <h3>#{controladorNota.nota.titulo}</h3>
+                            <h3 class="text-config">#{controladorNota.nota.titulo}</h3>
                         </div>
 
                         <div class="w3-row-padding">
                             <div class="w3-justify">
-                                <h4>#{controladorNota.nota.titulo}</h4>
-                                <h6>Por #{controladorNota.nota.professor} - 
-                                    <h:outputText value="#{controladorNota.nota.dataNota}" style="font-size: 10px">
+                                <h4 class="text-config">#{controladorNota.nota.titulo}</h4>
+                                <h6 class="text-config">Por #{controladorNota.nota.professor} - 
+                                    <h:outputText value="#{controladorNota.nota.dataNota}" style="font-size: 10px"
+                                                  class="text-config">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h6>
 
-                                <p>#{controladorNota.nota.introducao}</p>
-                                <p>#{controladorNota.nota.desenvolvimento}</p>
+                                <p class="text-config">#{controladorNota.nota.introducao}</p>
+                                <p class="text-config">#{controladorNota.nota.desenvolvimento}</p>
                             </div>
                         </div>
 
                         <hr />
 
-                        <a href="page-listar-notas.jsf" class="w3-btn w3-pink btn-presenca-pag"
-                           style="text-decoration: none;">
+                        <a href="page-listar-notas.jsf" class="w3-btn w3-pink"
+                           style="text-decoration: none; width: 270px">
                             Voltar
                         </a>
                     </div>
