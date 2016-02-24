@@ -215,6 +215,12 @@ public class GerenciadorGrupo implements Serializable {
         fachada.removerTopico(topico);
         return "page-inicial-grupo?faces-redirect=true";
     }
+    
+    public String removerArquivo(Topico topico) {
+
+        fachada.removerTopico(topico);
+        return "page-arquivo?faces-redirect=true";
+    }
 
     public String pageAlterarTopico(Topico topico) {
         topicoTemp = topico;

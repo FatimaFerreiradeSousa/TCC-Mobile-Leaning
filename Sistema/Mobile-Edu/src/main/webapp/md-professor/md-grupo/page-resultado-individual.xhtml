@@ -103,7 +103,7 @@
                                    class="w3-text-red w3-center"/>
 
                     <h:outputLabel value="#{controladorTeste.resultadoTestes().size()}
-                                   alunos respondeu esse teste" 
+                                   alunos responderam esse teste" 
                                    rendered="#{controladorTeste.resultadoTestes().size() > 1}"
                                    class="w3-text-red w3-center"/>
 
@@ -121,8 +121,8 @@
                         <div class="w3-card-2 w3-round w3-white">
                             <div class="w3-container">
                                 <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                styleClass="w3-image w3-circle" 
-                                                style="width: 40%; margin-top: 5%; margin-bottom: 2%">
+                                                styleClass="w3-circle avatar-picture-config" 
+                                                style="margin-top: 5%; margin-bottom: 2%">
                                     <f:param value="#{membro.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage><br />
 

@@ -10,6 +10,7 @@
         <meta charset="UTF-8"/>
         <link href="../mdl/material.css" rel="stylesheet"/>
         <link href="../mdl/material.min.css" rel="stylesheet"/>
+        <link href="../assets/css/css-styles.css" rel="stylesheet"/>
         <link href="../mdl/styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../w3-css/w3.css"/>
@@ -26,7 +27,7 @@
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
-                    
+
                 </div>
 
             </header>
@@ -55,7 +56,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
-                    
+
                     <a class="mdl-navigation__link" href="page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
@@ -71,7 +72,64 @@
             </div>
 
             <main class="mdl-layout__content mdl-color--grey-100">
-                
+
+                <div class="container w3-margin">
+
+                    <h5 class="w3-center">
+                        <h:outputText value="Aulas da #{controladorTurma.diaDaSemana()}" class="text-config"
+                                      rendered="#{controladorTurma.horarioAluno().size() > 0}"/>
+                    </h5>
+                    <div class="w3-row-padding">
+
+                        <h:form>
+                            <h:dataTable var="turma" value="#{controladorTurma.horarioAluno()}" 
+                                         id="aluno" rendered="#{controladorTurma.horarioAluno().size() > 0}">
+
+                                <h:column>
+
+                                    <div class="w3-col m10 w3-center w3-margin-top">
+                                        <div class="w3-card">
+                                            <div class="w3-container w3-green">
+                                                <h4 class="text-config">#{turma.nome} - Horário</h4>
+                                            </div>
+                                            <div class="w3-container w3-xlarge">
+                                                <h:dataTable value="#{controladorTurma.buscarHorarioDia(turma)}" var="horario"
+                                                             class="w3-table">
+                                                    <h:column>
+                                                        <div class="w3-center text-config">
+                                                            <i>
+                                                                <b style="font-size: 1em" class="w3-text-red text-config">
+                                                                    #{horario.horarioInicial} - #{horario.horarioFinal}
+
+                                                                </b>
+                                                            </i>
+                                                        </div>
+                                                    </h:column>
+                                                </h:dataTable>
+
+                                            </div>
+                                            <div class="w3-container w3-green">
+                                                <p class="w3-opacity w3-margin-top">
+                                                    <h:commandLink value="Ver Turma" style="text-decoration: none;"
+                                                                   class="w3-text-white-opacity"
+                                                                   action="#{controladorTurma.paginaTurma(turma)}"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </h:column>
+                            </h:dataTable>
+
+                            <div class="w3-center">
+                                <h:outputText value="Você não possui nenhuma turma" class="w3-text-indigo text-config"
+                                              rendered="#{controladorTurma.horarioAluno().size() == 0}"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+
+
             </main>
         </div>
     </h:body>

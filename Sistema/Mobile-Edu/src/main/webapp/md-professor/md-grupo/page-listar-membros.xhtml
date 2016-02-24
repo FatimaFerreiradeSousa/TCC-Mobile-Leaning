@@ -96,7 +96,7 @@
                 <br />
                 <h:form>
                     <p:dataGrid var="membro" value="#{controladorGrupo.listarMembrosGrupo()}" 
-                                columns="6" rows="" id="membro" styleClass=".ui-datagrid .ui-datagrid-content teste"
+                                columns="4" rows="" id="membro" styleClass=".ui-datagrid .ui-datagrid-content teste"
                                 layout="grid" style="border: none !important"
                                 rendered="#{controladorGrupo.listarMembrosGrupo().size() > 0}">
 
@@ -105,8 +105,7 @@
                                 <div class="w3-container">
                                     <br />
                                     <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                    styleClass="w3-image w3-circle" 
-                                                    style="width: 40%;">
+                                                    styleClass="w3-circle avatar-picture-config">
                                         <f:param value="#{membro.login}" name="loginUsuario"/>
                                     </p:graphicImage>
 

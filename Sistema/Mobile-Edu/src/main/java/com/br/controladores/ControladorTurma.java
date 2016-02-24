@@ -133,8 +133,8 @@ public class ControladorTurma implements Serializable {
 
         return "page-inicial-turma?faces-redirect=true";
     }
-    
-    public String paginaTurma(Turma turma){
+
+    public String paginaTurma(Turma turma) {
         this.turma = turma;
         return "page-inicial-turma?faces-redirect=true;";
     }
@@ -275,7 +275,7 @@ public class ControladorTurma implements Serializable {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
         return fachada.buscarHorario(dia, turma.getCodigo());
     }
-    
+
     public List<Horario> buscarHorarioDia(Turma turma) {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
         return fachada.buscarHorario(dia, turma.getCodigo());
@@ -285,11 +285,11 @@ public class ControladorTurma implements Serializable {
         return FormatData.verificarDia(FormatData.pegarDia());
     }
 
-    public List<Turma> listarTurmasDia(){
+    public List<Turma> listarTurmasDia() {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
         return fachada.listarTurmasHorario(PegarUsuarioSessao.pegarProfessorSessao().getLogin(), dia);
     }
-    
+
     /*ALUNO*/
     public String paginaDesempenhoAluno(Aluno aluno) {
         this.aluno = aluno;
@@ -305,16 +305,34 @@ public class ControladorTurma implements Serializable {
 
         return fachada.qtdPresencas(aluno.getLogin(), turma.getCodigo());
     }
-    
-    public String paginaListarAlunos(){
+
+    public List<Turma> horarioAluno() {
+        String dia = FormatData.verificarDia(FormatData.pegarDia());
+
+        List<Turma> turmas = new ArrayList<>();
+       
+        for (Turma turma1 : PegarUsuarioSessao.pegarAlunoSessao().getTurmas()) {
+
+            for (Horario h : turma1.getHorarios()) {
+                if (h.getDia().equalsIgnoreCase(dia)) {
+                    turmas.add(turma1);
+                    break;
+                }
+            }
+        }
+
+        return turmas;
+    }
+
+    public String paginaListarAlunos() {
         return "page-listar-alunos?faces-redirect=true";
     }
-    
-    public String paginaConfiguracoesTurma(){
+
+    public String paginaConfiguracoesTurma() {
         return "page-alterar-turma?faces-redirect=true";
     }
-    
-    public String paginaInicial(){
+
+    public String paginaInicial() {
         return "page-inicial-turma?faces-redirect=true";
     }
 }

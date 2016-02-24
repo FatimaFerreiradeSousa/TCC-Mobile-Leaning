@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Aluno | Grupo | Topico</title>
@@ -12,6 +13,7 @@
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-grupos.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
@@ -27,6 +29,26 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer">#{controladorGrupo.grupo.nome}</div>
 
+                    <button id="demo-menu-lower-right"
+                            class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-right">
+                        <li class="mdl-menu__item">
+                            <a href="page-publicar-arquivo.jsf" style="text-decoration: none">Arquivos</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-membros.jsf" style="text-decoration: none">Membros</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-testes-grupo.jsf" style="text-decoration: none">Testes</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
+                        </li>
+                    </ul>
                 </div>
 
             </header>
@@ -35,28 +57,28 @@
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{aluno.content}" styleClass="demo-avatar"/>
 
+                    <br/>
                     <div class="demo-avatar-dropdown">
-                        <span>#{aluno.login}</span>
+                        <span class="text-config">#{aluno.login}</span>
                     </div>
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="page-inicial-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-inicial-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-
-                    <a class="mdl-navigation__link" href="">
+                    <a class="mdl-navigation__link" href="../md-turmas/page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
                         Turmas
                     </a>
 
-                    <a class="mdl-navigation__link" href="md-grupo/page-listar-grupos.jsf">
+                    <a class="mdl-navigation__link" href="page-listar-grupos.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-config-aluno.jsf">
+                    <a class="mdl-navigation__link" href="../page-config-aluno.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
@@ -70,26 +92,27 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
-                    <div class="w3-container w3-margin-top w3-center">
+            <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
+                <main class="mdl-layout__content mdl-color--grey-100">
 
-                        <h5 class="text-config">Arquivo</h5>
+                    <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+                        <div class="w3-container w3-center form-comments">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <h:message for="topico" errorClass="erros"/>
+                                <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
+                                                 class="mdl-textfield__input text-config" 
+                                                 id="topico" rows="1"
+                                                 required="true"
+                                                 requiredMessage="Campo obrigatório"/>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="topico" errorClass="erros"/>
-                            <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="topico" rows="5"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="topico">Arquivo</label>
+                                <label class="mdl-textfield__label" for="topico">Arquivo</label>
+                            </div>
                         </div>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center"
+                             style="margin-top: -10%">
                             <div class="fileUpload buttons-formulario">
-                                <label class="text-black">Arquivo</label>
+                                <label class="text-black">Selecione um Arquivo</label>
                                 <p:fileUpload 
                                     value="#{controladorGrupo.fileUpload}"
                                     allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
@@ -97,14 +120,61 @@
                                     styleClass="upload"
                                     />
                             </div>
+
+                            <h:commandButton value="Publicar" action="#{controladorGrupo.uploadAluno()}"
+                                             class="w3-btn w3-indigo btn-aluno"/>
                         </div>
 
-                        <h:commandButton value="Publicar" action="#{controladorGrupo.uploadAluno()}"
-                                         class="w3-btn w3-indigo btn-aluno"/>
 
-                    </div>
-                </h:form>
-            </main>
+                        <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="topico"
+                                     class="w3-table">
+
+                            <h:column>
+                                <div class="demo-blog__posts mdl-grid">
+                                    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                                        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                                            <div class="comment mdl-color-text--grey-700">
+                                                <header class="comment__header">
+                                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                                    styleClass="comment__avatar">
+                                                        <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                    </p:graphicImage>
+                                                    <div class="comment__author">
+                                                        <strong>#{topico.loginUsuario}</strong>
+                                                        <span><h:outputText value="#{topico.dataCriacao}" 
+                                                                            style="font-size: 10px">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                            </h:outputText></span>
+                                                    </div>
+                                                </header>
+                                                <div class="comment__text">
+                                                    #{topico.conteudo}<br/>
+                                                    <h:commandLink value="#{topico.nome}"
+                                                                   action="#{controladorGrupo.donwload(topico.caminho, 
+                                                                             topico.nome, topico.codigo)}"
+                                                                   style="text-decoration: none;"/>
+                                                </div>
+
+                                                <nav class="comment__actions">
+                                                    <h:commandLink action="#{controladorGrupo.removerArquivo(topico)}"
+                                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(aluno.login)}"
+                                                                   style="text-decoration: none;"
+                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                        <i class="material-icons" role="presentation">delete</i>
+                                                        <span class="visuallyhidden">share comment</span>
+                                                    </h:commandLink>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+
+
+                    </h:form>
+                </main>
+            </div>
         </div>
     </h:body>
 </html>

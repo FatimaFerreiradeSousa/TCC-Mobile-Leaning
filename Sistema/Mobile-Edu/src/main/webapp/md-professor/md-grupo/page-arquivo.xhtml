@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
         <title>Professor | Topico | Arquivo</title>
@@ -12,7 +13,7 @@
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
-        <link href="../../assets/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-grupos.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
@@ -29,8 +30,13 @@
 
                     <nav class="mdl-navigation">
                         <a href="page-inicial-grupo.jsf" style="text-decoration: none"
-                           class="mdl-layout__tab is-active">
+                           class="mdl-layout__tab">
                             Inicio
+                        </a>
+
+                        <a href="page-arquivo.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab is-active">
+                            Arquivos
                         </a>
 
                         <a href="page-listar-membros.jsf" style="text-decoration: none"
@@ -90,21 +96,68 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main">
+            <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
+                <main class="mdl-layout__content mdl-color--grey-100">
 
-                <div class="w3-container">
+                    <div class="w3-container w3-center form-comments">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                    <button onclick="document.getElementById('id01').style.display = 'block'" 
-                            class="w3-btn">Arquivo</button>
 
-                    <hr />
+                            <button onclick="document.getElementById('id01').style.display = 'block'" 
+                                    class="w3-btn">Arquivo</button>
+                        </div>
 
-                    <h:form>
+                        <hr />
+                    </div>
 
+                    <h:form enctype="multipart/form-data">
+                        <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="topico"
+                                     class="w3-table">
+
+                            <h:column>
+                                <div class="demo-blog__posts mdl-grid">
+                                    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                                        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                                            <div class="comment mdl-color-text--grey-700">
+                                                <header class="comment__header">
+                                                    <p:graphicImage value="#{controladorFotos.mostrarFoto()}" 
+                                                                    styleClass="comment__avatar">
+                                                        <f:param name="loginUsuario" value="#{topico.loginUsuario}"/>
+                                                    </p:graphicImage>
+                                                    <div class="comment__author">
+                                                        <strong>#{topico.loginUsuario}</strong>
+                                                        <span><h:outputText value="#{topico.dataCriacao}" 
+                                                                            style="font-size: 10px">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                            </h:outputText></span>
+                                                    </div>
+                                                </header>
+                                                <div class="comment__text">
+                                                    #{topico.conteudo}<br/>
+                                                    <h:commandLink value="#{topico.nome}"
+                                                                   action="#{controladorGrupo.donwload(topico.caminho, 
+                                                                             topico.nome, topico.codigo)}"
+                                                                   style="text-decoration: none;"/>
+                                                </div>
+
+                                                <nav class="comment__actions">
+                                                    <h:commandLink action="#{controladorGrupo.removerArquivo(topico)}"
+                                                                   rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"
+                                                                   style="text-decoration: none;"
+                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                                        <i class="material-icons" role="presentation">delete</i>
+                                                        <span class="visuallyhidden">share comment</span>
+                                                    </h:commandLink>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
                     </h:form>
-
-                </div>
-            </main> 
+                </main>
+            </div>
         </div>
 
         <div id="id01" class="w3-modal">

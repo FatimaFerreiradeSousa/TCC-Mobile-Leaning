@@ -73,34 +73,33 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
 
-                <div class="mdl-grid">
-                    <div class="w3-container">
-                        <div class="w3-col w3-center">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="">
-                                    <div class="w3-center w3-responsive" >
+                <div class="w3-container w3-margin-top w3-margin-bottom">
+                    <div class="w3-card-2 w3-round w3-white" style="width: 100%">
+                        <div class="w3-container">
+                            <div class="w3-center w3-responsive" >
 
-                                        <p:graphicImage value="#{aluno.content}" styleClass="avatar-picture-config w3-circle"
-                                                        style="margin-top: 8%;"/>
+                                <p:graphicImage value="#{aluno.content}" styleClass="avatar-picture-config w3-circle"
+                                                style="margin-top: 8%;"/>
 
-                                        <h3 class="text-config">#{aluno.login}</h3>
-                                        <p class="text-config">#{controladorUsuario.aluno.nome}</p>
-                                        <p class="text-config">#{controladorUsuario.aluno.email}</p>
-                                        <p class="text-config w3-center">#{aluno.instituicao}</p>
-                                        <p class="text-config">#{controladorUsuario.aluno.curso}</p>
-                                        <p class="text-config">#{controladorUsuario.aluno.descricao}</p>
+                                <h3 class="text-config">#{aluno.login}</h3>
+                                <p class="text-config">
+                                    #{controladorUsuario.aluno.nome}
+                                    #{controladorUsuario.aluno.sobrenome}
+                                </p>
+                                <p class="text-config">#{controladorUsuario.aluno.email}</p>
+                                <p class="text-config w3-center">#{aluno.instituicao}</p>
+                                <p class="text-config">#{controladorUsuario.aluno.curso}</p>
+                                <p class="text-config">#{controladorUsuario.aluno.descricao}</p>
 
 
-                                        <div class="w3-margin-32">
-                                            <a class="mdl-button mdl-js-button" href="page-config-info.jsf">
-                                                Perfil
-                                            </a>
+                                <div class="w3-margin-32">
+                                    <a class="mdl-button mdl-js-button" href="page-config-info.jsf">
+                                        Perfil
+                                    </a>
 
-                                            <a class="mdl-button mdl-js-button" href="page-config-foto.jsf">
-                                                Foto
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <a class="mdl-button mdl-js-button" href="page-config-foto.jsf">
+                                        Foto
+                                    </a>
                                 </div>
                             </div>
                         </div>
