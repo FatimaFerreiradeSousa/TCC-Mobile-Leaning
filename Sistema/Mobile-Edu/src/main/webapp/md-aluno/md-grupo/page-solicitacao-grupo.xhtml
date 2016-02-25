@@ -103,11 +103,11 @@
                             
                             <br/> <br/> 
 
-                            <h:commandButton value="Enviar solicitação" class="w3-btn w3-pink btn-aluno" 
+                            <h:commandButton value="Enviar solicitação" class="w3-btn w3-pink w3-btn-block" 
                                              rendered="#{controladorGrupo.aceito == false}"
                                              action="#{controladorGrupo.participarGrupo()}"/>
                             
-                            <h:commandButton value="Cancelar solicitação" class="w3-btn w3-red btn-aluno" 
+                            <h:commandButton value="Cancelar solicitação" class="w3-btn w3-red w3-btn-block" 
                                              rendered="#{controladorGrupo.aceito == true}"
                                              action="#{controladorGrupo.cancelarSolicitacao()}"/>
 

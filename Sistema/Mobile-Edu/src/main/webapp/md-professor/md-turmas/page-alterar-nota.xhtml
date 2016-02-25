@@ -51,7 +51,7 @@
                                            action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
                         </h:form>
                     </nav>
-                    
+
                 </div>
 
             </header>
@@ -137,11 +137,14 @@
                             </div>
 
                             <hr />
-                            <h:commandButton value="Alterar" action="#{controladorNota.alterarNota()}" 
-                                             class="w3-btn w3-blue btn-presenca text-config" style="margin-right: 1%"/>
 
-                            <h:commandButton value="Cancelar" action="#{controladorNota.cancelarEdicao()}" 
-                                             class="w3-btn w3-red btn-presenca text-config"/>
+                            <div class="w3-btn-group">
+                                <h:commandButton value="Alterar" action="#{controladorNota.alterarNota()}" 
+                                                 class="w3-btn w3-blue w3-btn-block text-config" style="width: 50%"/>
+
+                                <h:commandButton value="Cancelar" action="#{controladorNota.cancelarEdicao()}" 
+                                                 class="w3-btn w3-red w3-btn-block text-config" style="width: 50%"/>
+                            </div>
 
                         </div>
                     </h:form>

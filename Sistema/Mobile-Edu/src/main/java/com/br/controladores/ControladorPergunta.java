@@ -67,7 +67,6 @@ public class ControladorPergunta implements Serializable {
     }
 
     public String salvarResposta() {
-        this.fachada.salvarResposta(resposta);
         pergunta.getRespostas().add(resposta);
         pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         pergunta.setQtdRespostas(pergunta.getRespostas().size());
@@ -123,6 +122,7 @@ public class ControladorPergunta implements Serializable {
     
     public String removerResposta(){
         this.pergunta.getRespostas().remove(resposta);
+        pergunta.setQtdRespostas(pergunta.getRespostas().size());
         fachada.atualizarQuestao(pergunta);
         fachada.removerResp(resposta);
         

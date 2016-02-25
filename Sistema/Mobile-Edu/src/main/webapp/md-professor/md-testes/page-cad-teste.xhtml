@@ -147,17 +147,17 @@
                                 </h:selectOneListbox>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
+                            <div class="mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorExercicio.buscarPerguntas()}" 
-                                                 class="w3-btn w3-red btn-formularios" value="Buscar perguntas"/>
+                                                 class="w3-btn w3-red w3-btn-block" value="Buscar perguntas"/>
                             </div>
                         </div>
 
                         <h3 class="font">
-                            <h:outputText value="Perguntas"
+                            <h:outputText value="Perguntas (#{controladorExercicio.exercicio.questoesExercicios.size()})"
                                           rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
                         </h3>
-                        
+
                         <h:dataTable value="#{controladorExercicio.exercicio.questoesExercicios}" 
                                      var="pergunta" class="w3-table w3-hoverable w3-striped"
                                      rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}">
@@ -170,12 +170,15 @@
 
                         </h:dataTable>
                         <br /><br />
-                        <h:commandButton action="#{controladorExercicio.salvarTeste()}"
-                                         class="w3-btn w3-blue btn-formularios" value="Salvar"
-                                         rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
-                        <h:commandButton action="#{controladorExercicio.cancelarEnvio()}" 
-                                         class="w3-btn w3-green btn-formularios" value="Cancelar"
-                                         rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
+
+                        <div class="w3-btn-group mdl-cell--12-col w3-margin-top w3-center">
+                            <h:commandButton action="#{controladorExercicio.salvarTeste()}"
+                                             class="w3-btn w3-blue w3-btn-block" style="width: 50%" value="Salvar"
+                                             rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
+                            <h:commandButton action="#{controladorExercicio.cancelarEnvio()}" 
+                                             class="w3-btn w3-green w3-btn-block" style="width: 50%" value="Cancelar"
+                                             rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>
+                        </div>
                     </div>
                 </h:form>
 

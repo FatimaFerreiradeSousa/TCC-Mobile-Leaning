@@ -77,6 +77,7 @@ public class ControladorExercicio implements Serializable {
     public String salvarTeste() {
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         exercicio.setDisponivel(true);
+        exercicio.setQtdPerguntas(exercicio.getQuestoesExercicios().size());
         fachada.salvarExercicio(exercicio);
 
         exercicio = new Teste();
@@ -85,7 +86,8 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String buscarPerguntas() {
-        exercicio.setQuestoesExercicios(fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas()));
+        exercicio.setQuestoesExercicios(fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas(),
+                PegarUsuarioSessao.pegarProfessorSessao().getLogin()));
         return "page-cad-teste?faces-redirect=true";
     }
 

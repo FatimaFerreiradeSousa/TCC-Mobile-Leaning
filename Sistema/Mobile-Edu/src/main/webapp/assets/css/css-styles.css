@@ -115,24 +115,6 @@ p{
 .ui-datagrid{border: none !important;}  
 .ui-datagrid-content {border: none !important;}  
 
-.btn-presenca-pag{
-    width: 315px;
-}
-
-.btn-presenca{
-    width: 220px;
-    font-family: "Raleway", sans-serif;
-}
-
-.btn-formularios{
-    width: 220px;
-    margin-right: 1%;
-}
-
-.btn-aluno{
-    width: 300px;
-}
-
 .fileUpload {
     position: relative;
     overflow: hidden;

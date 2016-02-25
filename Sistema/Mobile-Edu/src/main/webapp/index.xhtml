@@ -73,7 +73,7 @@
                     <div class="col-sm-6 col-sm-offset-3 w3-center">
                         <h:commandButton action="#{controladorUsuario.loginUsuario()}" 
                                          id="login-submit"
-                                         class="w3-btn w3-teal button-login" value="Entrar">
+                                         class="w3-btn w3-teal w3-btn-block" value="Entrar">
                             <f:ajax execute="username password tipo" render="erroLogin"/>
                         </h:commandButton>
                     </div>
@@ -81,16 +81,20 @@
 
                 <div class="form-group">
 
-                    <div class="col-sm-6 col-sm-offset-3 w3-center">    
-                        <a class="w3-btn w3-red button-group" href="page-cadastro.jsf"> Criar Conta</a>
-                        <a class="w3-btn w3-blue button-group" href="recuperar-senha.jsf"> Esqueceu a senha </a>
+                    <div class="col-sm-6 col-sm-offset-3 w3-center w3-btn-group">    
+                        <a class="w3-btn w3-red w3-btn-block" style="width: 50%"
+                           href="page-cadastro.jsf"> Criar Conta</a>
+                        <a class="w3-btn w3-black w3-btn-block" style="width: 50%"
+                           href="recuperar-senha.jsf"> Esqueceu a senha </a>
                     </div>
 
                 </div>
 
 
             </h:form>
+
         </div>
+
 
     </h:body>
 

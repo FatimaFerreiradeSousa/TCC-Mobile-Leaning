@@ -90,8 +90,8 @@ public class Service implements Serializable {
         return daoQuestao.listarQuestoes(login);
     }
     
-    public List<Pergunta> listarPerguntasCategoria(String categoria, int qtd){
-        return daoQuestao.listarPerguntasPorCategoria(categoria, qtd);
+    public List<Pergunta> listarPerguntasCategoria(String categoria, int qtd, String login){
+        return daoQuestao.listarPerguntasPorCategoria(categoria, qtd, login);
     }
     
     public List<String> categoriaPerguntas(String login){

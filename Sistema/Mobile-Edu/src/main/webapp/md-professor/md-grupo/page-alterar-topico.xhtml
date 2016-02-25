@@ -101,7 +101,7 @@
                         <div class="w3-row text-config">
                             <div class="w3-col text-center">
                                 <p> Alterar </p>
-                                
+
                                 <hr/>
                             </div>
 
@@ -120,11 +120,14 @@
                                 </div>
                                 <br/>
 
-                                <h:commandButton value="Atualizar" class="w3-btn w3-green btn-formularios"
-                                                 action="#{controladorGrupo.alterarTopico()}"/>
+                                <div class="w3-btn-group">
 
-                                <h:commandButton value="Cancelar" class="w3-btn w3-red btn-formularios"
-                                                 action="#{controladorGrupo.cancelarAtualizacaoTopico()}"/>
+                                    <h:commandButton value="Atualizar" class="w3-btn w3-green w3-btn-block" style="width: 50%"
+                                                     action="#{controladorGrupo.alterarTopico()}"/>
+
+                                    <h:commandButton value="Cancelar" class="w3-btn w3-red w3-btn-block" style="width: 50%"
+                                                     action="#{controladorGrupo.cancelarAtualizacaoTopico()}"/>
+                                </div>
 
                             </div>
                         </div>

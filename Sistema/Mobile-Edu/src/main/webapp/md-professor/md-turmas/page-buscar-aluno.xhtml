@@ -107,38 +107,39 @@
                         <label class="mdl-textfield__label" for="sample3">Login...</label>
                     </div>
 
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating mdl-cell--12-col">
                         <h:commandLink action="#{controladorTurma.buscarAluno()}"
-                                       class="w3-btn w3-indigo btn-presenca" value="Buscar"/>
+                                       class="w3-btn w3-indigo w3-btn-block" style="width: 50%" value="Buscar"/>
                     </div>
 
                     <c:if test="#{controladorTurma.aluno.login != null}">
+                        <div class="w3-container">
+                            <p>
+                                <p:graphicImage id="picture5" 
+                                                value="#{controladorFotos.mostrarFotoMembro()}" 
+                                                styleClass="avatar-img w3-circle">
+                                    <f:param value="#{controladorTurma.aluno.login}" name="loginAluno"/>
+                                </p:graphicImage>
+                            </p>
 
-                        <p>
-                            <p:graphicImage id="picture5" 
-                                            value="#{controladorFotos.mostrarFotoMembro()}" 
-                                            styleClass="avatar-img w3-circle">
-                                <f:param value="#{controladorTurma.aluno.login}" name="loginAluno"/>
-                            </p:graphicImage>
-                        </p>
+                            <p>#{controladorTurma.aluno.login}</p>
+                            <p>#{controladorTurma.aluno.curso}</p>
 
-                        <p>#{controladorTurma.aluno.login}</p>
-                        <p>#{controladorTurma.aluno.curso}</p>
+                            <h:commandButton value="Adicionar" class="w3-btn w3-pink w3-btn-block" style="width: 50%" 
+                                             rendered="#{controladorTurma.verificarMembro() == true}" 
+                                             action="#{controladorTurma.adicionarMembro()}">
+                            </h:commandButton>
 
-                        <h:commandButton value="Adicionar" class="w3-btn w3-pink btn-presenca" 
-                                         rendered="#{controladorTurma.verificarMembro() == true}" 
-                                         action="#{controladorTurma.adicionarMembro()}">
-                        </h:commandButton>
+                            <h:outputLabel value="Este aluno já é membro" 
+                                           rendered="#{controladorTurma.verificarMembro() == false}" 
+                                           class="w3-center w3-text-red w3-margin-bottom"/><br />
 
-                        <h:outputLabel value="Este aluno já é membro" 
-                                       rendered="#{controladorTurma.verificarMembro() == false}" 
-                                       class="w3-center w3-text-red"/><br />
+                            <h:commandButton value="Remover" class="w3-btn w3-red w3-btn-block w3-margin-top" style="width: 50%" 
+                                             rendered="#{controladorTurma.verificarMembro() == false}" 
+                                             action="#{controladorTurma.removerMembro()}">
+                            </h:commandButton>
 
-                        <h:commandButton value="Remover" class="w3-btn w3-red btn-presenca" 
-                                         rendered="#{controladorTurma.verificarMembro() == false}" 
-                                         action="#{controladorTurma.removerMembro()}">
-                        </h:commandButton>
-
+                        </div>
                     </c:if>
 
                     <c:if test="#{controladorTurma.aluno.login == null}">

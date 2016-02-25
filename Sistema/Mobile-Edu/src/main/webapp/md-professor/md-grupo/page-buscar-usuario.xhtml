@@ -104,7 +104,7 @@
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                         <h:commandLink action="#{controladorGrupo.buscarAluno()}"
-                                       class="w3-btn w3-red btn-formularios" value="Buscar"/>
+                                       class="w3-btn w3-red w3-btn-block" style="width: 50%" value="Buscar"/>
                     </div>
 
                 </h:form>
@@ -122,7 +122,7 @@
                         <p>#{controladorGrupo.aluno.login}</p>
                         <p>#{controladorGrupo.aluno.instituicao}</p>
 
-                        <h:commandButton value="Adicionar" class="w3-btn btn-formularios" 
+                        <h:commandButton value="Adicionar" class="w3-btn w3-btn-block" style="width: 50%" 
                                          rendered="#{controladorGrupo.verificarMembro() == true}" 
                                          action="#{controladorGrupo.adicionarMembro()}">
                         </h:commandButton>
@@ -131,7 +131,7 @@
                                        rendered="#{controladorGrupo.verificarMembro() == false}" 
                                        class="w3-text-red"/><br /><br />
 
-                        <h:commandButton value="Remover" class="w3-btn w3-indigo btn-formularios" 
+                        <h:commandButton value="Remover" class="w3-btn w3-indigo w3-btn-block" style="width: 50%" 
                                          rendered="#{controladorGrupo.verificarMembro() == false}" 
                                          action="#{controladorGrupo.removerMembro()}">
                         </h:commandButton>

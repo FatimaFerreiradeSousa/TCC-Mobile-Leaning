@@ -94,7 +94,6 @@
 
             <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
                 <main class="mdl-layout__content mdl-color--grey-100">
-
                     <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
                         <div class="w3-container w3-center form-comments">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
@@ -109,8 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center"
-                             style="margin-top: -10%">
+                        <div class="w3-container w3-margin-top mdl-cell--12-col w3-center">
                             <div class="fileUpload buttons-formulario">
                                 <label class="text-black">Selecione um Arquivo</label>
                                 <p:fileUpload 
@@ -120,12 +118,13 @@
                                     styleClass="upload"
                                     />
                             </div>
-
-                            <h:commandButton value="Publicar" action="#{controladorGrupo.uploadAluno()}"
-                                             class="w3-btn w3-indigo btn-aluno"/>
                         </div>
 
+                        <div class="w3-container">
+                            <h:commandButton value="Publicar" action="#{controladorGrupo.uploadAluno()}"
+                                             class="w3-btn w3-indigo w3-btn-block"/>
 
+                        </div>
                         <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="topico"
                                      class="w3-table">
 

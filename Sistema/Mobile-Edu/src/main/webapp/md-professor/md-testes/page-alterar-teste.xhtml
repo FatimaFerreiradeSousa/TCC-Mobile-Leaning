@@ -122,7 +122,7 @@
                                                    rendered="#{controladorExercicio.listarCategorias().size() > 0}"/>
                                 </h:selectOneListbox>
                             </div>
-                            
+
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <label class="w3-margin-right w3-text-blue-grey" for="assunto">Perguntas: </label>
                                 <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
@@ -140,14 +140,16 @@
                                 </h:selectOneListbox>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
-
+                            <div class="mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorExercicio.atualizarTeste()}" 
-                                                 class="w3-btn w3-blue btn-formularios" value="Atualizar"/>
+                                                 class="w3-btn w3-blue w3-btn-block w3-margin-bottom" value="Atualizar"/>
+                            </div>
+
+                            <div class="mdl-cell--12-col w3-center w3-btn-group">
                                 <h:commandButton action="#{controladorExercicio.visualizarPerguntas()}" 
-                                                 class="w3-btn w3-green btn-formularios" value="Perguntas"/>
+                                                 class="w3-btn w3-btn-block" style="width: 50%" value="Perguntas"/>
                                 <h:commandButton action="#{controladorExercicio.paginaEnviar()}" 
-                                                 class="w3-btn w3-red btn-formularios" value="Enviar teste"/>
+                                                 class="w3-btn w3-red" style="width: 50%" value="Enviar teste"/>
                             </div>
 
                         </div>

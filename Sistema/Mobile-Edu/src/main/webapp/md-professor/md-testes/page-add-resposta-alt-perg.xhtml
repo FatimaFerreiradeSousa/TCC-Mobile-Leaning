@@ -81,9 +81,11 @@
 
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <div class="mdl-cell--12-col">
+                            <h3 class="w3-text-teal font w3-justify">#{controladorPergunta.pergunta.enunciado}</h3>
 
-                                <i><b>Adicionar Resposta</b></i><br/>
+                            <div class="mdl-cell--12-col">
+                                
+                                <i><b>Nova Resposta</b></i><br/>
 
                             </div>
 
@@ -102,11 +104,13 @@
                                                          value="#{controladorPergunta.resposta.respostaCerta}"/>
                             </div>                            
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
+                            <div class="mdl-cell--12-col w3-center w3-btn-group">
                                 <h:commandButton action="#{controladorPergunta.novaResposta()}" 
-                                                 class="w3-btn w3-indigo btn-formularios" value="Salvar resposta"/>
+                                                 class="w3-btn w3-red w3-btn-block" 
+                                                 value="Salvar resposta" style="width: 50%;"/>
                                 <h:commandButton action="#{controladorPergunta.addRespostaAlterarPergunta()}" 
-                                                 class="w3-btn w3-teal btn-formularios" value="Alterar pergunta"/>
+                                                 class="w3-btn w3-teal w3-btn-block" style="width: 50%"
+                                                 value="Alterar pergunta"/>
 
                             </div>
 

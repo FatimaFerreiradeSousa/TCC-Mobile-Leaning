@@ -104,13 +104,16 @@
                                                          value="#{controladorPergunta.resposta.respostaCerta}"/>
                             </div>                            
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
+                            <div class="mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorPergunta.salvarResposta()}" 
-                                                 class="w3-btn w3-black btn-formularios" value="Salvar resposta"/>
+                                                 class="w3-btn w3-black w3-btn-block w3-margin-bottom" style="width: 100%" value="Salvar resposta"/>
+                            </div>
+
+                            <div class="w3-btn-group mdl-cell--12-col">
                                 <h:commandButton action="#{controladorPergunta.salvarPergunta()}" 
-                                                 class="w3-btn w3-green btn-formularios" value="Salvar pergunta"/>
+                                                 class="w3-btn w3-green w3-btn-block" style="width: 50%" value="Salvar pergunta"/>
                                 <h:commandButton action="#{controladorPergunta.cancelarPergunta()}" 
-                                                 class="w3-btn w3-indigo btn-formularios" value="Cancelar"/>
+                                                 class="w3-btn w3-red w3-btn-block" style="width: 50%" value="Cancelar"/>
                             </div>
 
                         </div>

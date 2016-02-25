@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Pergunta implements Serializable {
     private int qtdRespostas;
     private String categoria;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Resposta> respostas;
     private float peso;
     @ManyToMany(mappedBy = "questoesExercicios")

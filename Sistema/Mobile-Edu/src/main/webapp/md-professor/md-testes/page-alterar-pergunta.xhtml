@@ -113,11 +113,13 @@
                                 <label class="mdl-textfield__label" for="peso">Peso</label>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
+                            <div class="w3-btn-group mdl-cell--12-col w3-center">
                                 <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" 
-                                                 class="w3-btn w3-blue btn-formularios" value="Atualizar"/>
+                                                 class="w3-btn w3-btn-block" value="Atualizar"
+                                                 style="width: 50%"/>
                                 <h:commandButton action="#{controladorPergunta.removerPergunta()}" 
-                                                 class="w3-btn w3-red btn-cons btn-formularios" value="Remover"/>
+                                                 class="w3-btn w3-red w3-btn-block" value="Remover"
+                                                 style="width: 50%"/>
                             </div>
                         </div>
 
@@ -135,10 +137,11 @@
                             </h:column>
                         </h:dataTable>
 
-                        <div class="w3-margin-top">
+                        <div class="w3-margin-top mdl-cell--12-col w3-center">
 
                             <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
-                                             class="w3-btn btn-formularios" value="Nova resposta"/>
+                                             class="w3-btn w3-btn-block w3-teal" style="width: 40%"
+                                             value="Nova resposta"/>
                         </div>
                     </div>
                 </h:form>

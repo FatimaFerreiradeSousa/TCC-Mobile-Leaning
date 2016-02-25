@@ -72,29 +72,28 @@
 
             <main class="mdl-layout__content mdl-color--grey-100 ">
                 <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
-                    <div class="mdl-grid">
-                        <div class="w3-container w3-center w3-margin-top">
 
-                            <p:graphicImage value="#{aluno.content}" id="figure-0q1"
-                                            styleClass="w3-circle avatar-picture-config"/><br /><br />
+                    <div class="w3-container w3-center w3-margin-top">
 
-                            <div class="fileUpload buttons-formulario">
-                                <label class="text-black">Nova Foto</label>
-                                <p:fileUpload 
-                                    value="#{controladorUsuario.file}"
-                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
-                                    mode="simple" 
-                                    styleClass="upload"
-                                    />
-                            </div>
+                        <p:graphicImage value="#{aluno.content}" id="figure-0q1"
+                                        styleClass="w3-circle avatar-picture-config"/><br /><br />
 
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:commandButton value="Atualizar" action="#{controladorUsuario.uploadAluno()}"
-                                                 class="w3-btn w3-green btn-aluno"/>
-                            </div>
-
+                        <div class="fileUpload buttons-formulario w3-margin-bottom">
+                            <label class="text-black">Nova Foto</label>
+                            <p:fileUpload 
+                                value="#{controladorUsuario.file}"
+                                allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                mode="simple" 
+                                styleClass="upload"
+                                />
                         </div>
+
+
+                        <div class="mdl-textfield--floating-label">
+                            <h:commandButton value="Atualizar" action="#{controladorUsuario.uploadAluno()}"
+                                             class="w3-btn w3-green w3-btn-block" style="width: 100%"/>
+                        </div>
+
                     </div>
                 </h:form>
             </main>

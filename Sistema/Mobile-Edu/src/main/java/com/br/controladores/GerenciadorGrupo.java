@@ -444,6 +444,11 @@ public class GerenciadorGrupo implements Serializable {
         return alunos;
     }
     
+    public List<Aluno> listarAlunosGrupo(Grupo g) {
+        List<Aluno> alunos = fachada.listarMembrosGrupo(g.getCodigo());
+        return alunos;
+    }
+    
     public int qtdMembrosGrupo(Grupo g) {
         List<Aluno> alunos = fachada.listarMembrosGrupo(g.getCodigo());
         return alunos.size();

@@ -95,9 +95,13 @@
                                         </div>
                                         <div class="w3-container w3-xlarge">
                                             <p>#{participaGrupo.grupo.descricao}<br/>
+
+                                                Criado por #{participaGrupo.grupo.professorGrupos.nome}
+                                                #{participaGrupo.grupo.professorGrupos.sobrenome}
+                                                <br/>
                                                 <i>
                                                     <b>
-                                                        Criado em 
+                                                        em 
                                                         <h:outputText value="#{participaGrupo.grupo.dataCriacao}">
                                                             <f:convertDateTime parent="dd/MM/yyyy"/>
                                                         </h:outputText>
@@ -108,7 +112,7 @@
                                                 Alunos
 
                                                 <span class="w3-xxlarge w3-text-red">
-                                                    <b>0</b>
+                                                    <b>#{controladorGrupo.listarAlunosGrupo(participaGrupo.grupo).size()}</b>
                                                 </span>
                                             </p>
                                         </div>
@@ -131,7 +135,7 @@
                         </div>
 
                         <hr />
-                        <a value="Novo Grupo" class="w3-btn w3-blue btn-aluno" href="page-buscar-grupo.jsf">
+                        <a value="Novo Grupo" class="w3-btn w3-blue w3-btn-block w3-margin-bottom" href="page-buscar-grupo.jsf">
                             Buscar Grupo
                         </a>
                     </div>

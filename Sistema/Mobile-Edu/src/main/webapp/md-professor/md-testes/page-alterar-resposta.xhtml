@@ -101,11 +101,13 @@
                                                          value="#{controladorPergunta.resposta.respostaCerta}"/>
                             </div>                            
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
+                            <div class="mdl-cell--12-col w3-btn-group w3-center">
                                 <h:commandButton action="#{controladorPergunta.atualizarResposta()}" 
-                                                 class="w3-btn w3-green btn-formularios" value="Atualizar"/>
+                                                 class="w3-btn w3-green w3-btn-block" style="width: 50%" 
+                                                 value="Atualizar"/>
                                 <h:commandButton action="#{controladorPergunta.removerResposta()}" 
-                                                 class="w3-btn w3-black btn-formularios" value="Remover"/>
+                                                 class="w3-btn w3-black w3-btn-block" style="width: 50%"
+                                                 value="Remover"/>
                             </div>
                         </div>
                     </div>
