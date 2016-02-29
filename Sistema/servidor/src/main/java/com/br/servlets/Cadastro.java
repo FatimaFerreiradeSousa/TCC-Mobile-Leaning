@@ -22,12 +22,9 @@ public class Cadastro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        DaoAluno dao = new DaoAluno();
-        Aluno al = dao.buscarAluno("aliu");
-        
+
         OutputStream os = response.getOutputStream();
-        os.write(al.getNome().getBytes());
+        os.write("Salvo Com Sucesso".getBytes());
         os.flush();
         os.close();
     }
@@ -39,20 +36,20 @@ public class Cadastro extends HttpServlet {
         if (request.getMethod().equals("POST")) {
             String jsonString = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(jsonString);
-            
+
             Aluno aluno = new Aluno();
             aluno.setNome(jSONObject.getString("nome"));
             aluno.setSobrenome(jSONObject.getString("sobrenome"));
             aluno.setEmail(jSONObject.getString("email"));
             aluno.setLogin(jSONObject.getString("login"));
             aluno.setSenha(jSONObject.getString("senha"));
-            
+            String caminho
+                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
+            aluno.setFoto(caminho);
+
             DaoAluno daoAluno = new DaoAluno();
             daoAluno.salvarAluno(aluno);
-            
-            System.out.print("Salvo!");
         }
-
     }
 
     @Override

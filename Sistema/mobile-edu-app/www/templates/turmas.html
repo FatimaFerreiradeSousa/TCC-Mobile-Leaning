@@ -1,0 +1,46 @@
+
+<ion-view view-title="Mobile-Edu - Login" ng-controller="app-controller">
+
+	<div class="bar bar-header bar-positive has-header">
+		  <h1 class="title">Suas Turmas</h1>
+	</div>
+
+	<ion-content style="margin-top: 30%">
+
+		<ol>
+            <li ng-repeat="turma in turmas">
+          		{{turma.nome}}
+          	</li>
+        </ol>
+
+		<div class="card">
+		  <div class="item item-text-wrap">
+		    This is a basic Card which contains an item that has wrapping text.
+		  </div>
+		</div>
+
+	</ion-content>
+
+	<ion-tabs class="tabs-positive tabs-icon-top">
+		
+		<ion-tab title="Inicio" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/home">
+		    <!-- Tab 1 content -->
+		</ion-tab>
+
+		<ion-tab title="Turmas" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" href="#/turmas">
+		    <!-- Tab 1 content -->
+		</ion-tab>
+
+		<ion-tab title="Grupo" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" href="#/grupos">
+		    <!-- Tab 2 content -->
+		</ion-tab>
+
+		<ion-tab title="Perfil" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" href="#/configuracoes">
+		    <!-- Tab 3 content -->
+		</ion-tab>
+
+	</ion-tabs>
+
+
+</ion-view>
+

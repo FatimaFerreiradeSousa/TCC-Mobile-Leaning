@@ -11,7 +11,8 @@ var aluno = {
     dataParticipacao:'',
     foto:'',
     email:'',
-    instituicao:''
+    instituicao:'',
+    foto:''
 }
 
 angular.module('starter.controllers', [])
@@ -100,7 +101,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, $state, fac) {
+.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, $state, $http) {
     
     $scope.$parent.clearFabs();
     
@@ -112,9 +113,55 @@ angular.module('starter.controllers', [])
 
 
     $scope.cadastrarAluno = function(aluno){
-        fac.salvarAluno(aluno);
-        delete $scope.aluno;
-    }
 
+        var url = "http://192.168.2.10:8080/servidor/Cadastro";
+        
+        $http.post(url, aluno).success(function(status) {
+
+            alert("Salvo Com Sucesso!");
+            delete $scope.aluno;
+            $state.go("app.login");
+
+        });
+    };
+
+    $scope.loginAluno = function(al){
+        var url = "http://192.168.2.10:8080/servidor/Login";
+        
+        $http.post(url, al).success(function(status) {
+            delete $scope.al;
+            $state.go("app.profile");
+        });
+
+        $http.get(url).then(function(response){
+            $scope.aluno = response.data;
+            $state.go("app.profile");   
+        })
+    }
+})
+
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $http) {
+    // Set Header
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+            startVelocity: 3000
+        });
+    }, 700);
+
+
+    ionicMaterialInk.displayEffect();
 });
 

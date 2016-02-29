@@ -1,20 +1,21 @@
-<ion-view view-title="Login" align-title="left">
+<ion-view view-title="Login" align-title="left" ng-controller="LoginCtrl">
     <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
         <div class="hero no-header flat">
             <div class="content">
-                <h1>Mobile-Edu</h1>
+                <div class="app-icon"></div>
+                <h1>Thronester</h1>
             </div>
         </div>
         <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+            <ion-md-input placeholder="Username" highlight-color="balanced" type="text" ng-model="aluno.login"></ion-md-input>
+            <ion-md-input placeholder="Password" highlight-color="energized" type="password" ng-model="aluno.senha"></ion-md-input>
         </div>
         <div class="padding">
-            <button ui-sref="app.profile" class="button button-full button-assertive ink">Login</button>
+            <button class="button button-full button-assertive ink" ng-click="loginAluno(aluno)">Login</button>
         </div>
         <div class="button-bar social-login">
             <button class="button button-small button-border icon-left button-assertive-900" ui-sref="app.cadastro">Criar Conta</button>
-            <button class="button button-small button-border icon-left button-positive-900" ui-sref="app.recuperarSenha">Recuperar Senha</button>
+            <button class="button button-small button-border icon-left button-positive-900">Recuperar Senha</button>
         </div>
     </ion-content>
 </ion-view>

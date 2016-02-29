@@ -1,0 +1,42 @@
+<ion-view view-title="Cadastro">
+
+    <div class="bar bar-header bar-assertive has-header">
+      <h1 class="title">Mobile-Edu</h1>
+    </div>
+
+    <ion-content ng-controller="app-controller" class="has-header"  style="margin-top: 5%;">
+
+        <div class="list">
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Nome</span>
+            <input type="text" placeholder="Nome" ng-model="aluno.nome" required="true">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Sobrenome</span>
+            <input type="text" placeholder="Sobrenome" ng-model="aluno.sobrenome" required="true">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="text" placeholder="Email" ng-model="aluno.email" required="true">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Login</span>
+            <input type="text" placeholder="Login" ng-model="aluno.login" required="true">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Senha</span>
+            <input placeholder="Senha" ng-model="aluno.senha" type="password" required="true">
+          </label>
+
+        </div>
+
+        <div class="padding">
+            <button class="button button-full button-assertive ink" ng-click="cadastrarAluno(aluno)">Cadastrar</button>
+        </div>
+    </ion-content>
+</ion-view>
