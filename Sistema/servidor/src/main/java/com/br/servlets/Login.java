@@ -25,12 +25,12 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DaoAluno daoAluno = new DaoAluno();
+        /*DaoAluno daoAluno = new DaoAluno();
         Aluno al = daoAluno.loginAluno("aliu", "12345");
         JSONObject jSONObject = UtilTest.getJSONObject(al);
-        
+         */
         OutputStream os = response.getOutputStream();
-        os.write(jSONObject.toString().getBytes());
+        os.write("Ei, okay".getBytes());
 
         os.flush();
         os.close();
@@ -44,16 +44,28 @@ public class Login extends HttpServlet {
 
             String jsonString = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(jsonString);
-
+            
             Aluno al = new Aluno();
             al.setLogin(jSONObject.getString("login"));
             al.setSenha(jSONObject.getString("senha"));
 
             DaoAluno daoAluno = new DaoAluno();
+            aluno = new Aluno();
             aluno = daoAluno.loginAluno(al.getLogin(), al.getSenha());
-
+            
             if (aluno != null) {
-                System.out.println("Aluno Recebido: " + aluno.getNome());
+                JSONObject jsono = UtilTest.getJSONObject(aluno);
+                System.out.println("Aluno Recebido: " + aluno.getLogin());
+                response.setContentType("text/html");
+                PrintWriter printWriter = response.getWriter();
+                printWriter.write(jsono.toString());
+                printWriter.flush();
+                printWriter.close();
+            } else {
+                PrintWriter printWriter = response.getWriter();
+                printWriter.write("Error!");
+                printWriter.flush();
+                printWriter.close();
             }
         }
     }

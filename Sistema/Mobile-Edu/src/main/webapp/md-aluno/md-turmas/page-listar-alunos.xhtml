@@ -117,13 +117,12 @@
                                         <div class="w3-container">
                                             <br />
                                             <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                            styleClass="w3-image w3-circle" 
-                                                            style="width: 40%;">
+                                                            styleClass="w3-circle avatar-picture-config">
                                                 <f:param value="#{aluno.login}" name="loginUsuario"/>
                                             </p:graphicImage>
 
                                             <p style="margin-top: 2%;">
-                                                <h:commandLink value="#{aluno.login}" style="text-decoration: none;" 
+                                                <h:commandLink value="#{aluno.nome} #{aluno.sobrenome}" style="text-decoration: none;" 
                                                                action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"/>
                                             </p>
                                         </div>

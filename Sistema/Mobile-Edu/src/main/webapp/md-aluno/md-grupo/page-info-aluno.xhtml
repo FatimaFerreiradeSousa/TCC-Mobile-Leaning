@@ -90,7 +90,7 @@
                     </h:form>
                 </nav>
             </div>
-            
+
             <main class="mdl-layout__content mdl-color--grey-100 mdl-main">
 
                 <div class="w3-container w3-center">    
@@ -104,7 +104,7 @@
                                             <f:param value="#{controladorGrupo.aluno.login}" name="loginUsuario"/>
                                         </p:graphicImage>
                                     </p>
-                                    <p>#{controladorGrupo.aluno.login}</p>
+                                    <p>#{controladorGrupo.aluno.nome} #{controladorGrupo.aluno.sobrenome}</p>
                                     <p>#{controladorGrupo.aluno.curso}</p>
                                     <p>#{controladorGrupo.aluno.instituicao}</p>
 
@@ -119,19 +119,32 @@
                                     <div class="">
                                         <div class="w3-container w3-padding w3-left-align text-config">
                                             <p contenteditable="true">
-                                                Testes Respondidos: #{controladorGrupo.listarRespondeExercicios().size()}</p>
+                                                Testes Respondidos: 
+                                                <span class="w3-xxlarge w3-text-red">
+                                                    <b>
+                                                        <h:outputText value="#{controladorGrupo.listarRespondeExercicios().size()}"/>
+                                                    </b>
+                                                </span>
+                                            </p>
+
                                             <p contenteditable="true">Pontuação Total: #{controladorGrupo.buscarParticipaGrupo().pontuacao}</p>
 
-                                            Resumo Total:
+                                            Resumo Total: #{controladorGrupo.listarRespondeExercicios().size()} - 
+                                            #{controladorGrupo.grupo.testesGrupo.size()}
                                             <input class="mdl-slider mdl-js-slider" type="range"
-                                                   min="0" max="100" 
+                                                   min="0" max="#{controladorGrupo.grupo.testesGrupo.size()}" 
                                                    value="#{controladorGrupo.listarRespondeExercicios().size()}" 
                                                    tabindex="0"/>
 
                                             <hr />
 
                                             <p contenteditable="true">
-                                                Publicações Feitas: #{controladorGrupo.topicosPublicados()}
+                                                Publicações Feitas: 
+                                                <span class="w3-xxlarge w3-text-green">
+                                                    <b>
+                                                        <h:outputText value="#{controladorGrupo.topicosPublicados()}"/>
+                                                    </b>
+                                                </span>
                                             </p>
 
                                         </div>

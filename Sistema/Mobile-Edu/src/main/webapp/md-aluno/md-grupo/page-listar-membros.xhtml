@@ -105,13 +105,12 @@
                                         <div class="w3-container">
                                             <br />
                                             <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                            styleClass="w3-image w3-circle" 
-                                                            style="width: 40%;">
+                                                            styleClass="avatar-picture-config w3-circle">
                                                 <f:param value="#{membro.login}" name="loginUsuario"/>
                                             </p:graphicImage>
 
                                             <p style="margin-top: 2%;">
-                                                <h:commandLink value="#{membro.login}" action="#{controladorGrupo.pageInfoAluno(membro)}"
+                                                <h:commandLink value="#{membro.nome} #{membro.sobrenome}" action="#{controladorGrupo.pageInfoAluno(membro)}"
                                                                class="text-config w3-text-blue" 
                                                                style="text-decoration: none"/>
                                             </p>
