@@ -1,7 +1,10 @@
-var aluno = {
+
+angular.module('starter').controller("app-controller", function($scope, $state, $stateParams, $http, fac) {
+    
+    $scope.aluno = {
         nome:'',
         sobrenome:'',
-        login:'',
+        login:'Fatinha',
         senha:'',
         curso:'',
         descricao:'',
@@ -10,15 +13,11 @@ var aluno = {
         email:'',
         instituicao:'',
         foto:''
-}
+    }
 
-angular.module('starter')
-
-.controller("app-controller", function($scope, $state, $stateParams, $http) {
-
-	$scope.cadastrarAluno = function(aluno){
+    $scope.cadastrarAluno = function(aluno){
 		
-		var url = "http://192.168.2.10:8080/servidor/Cadastro";
+		var url = "http://192.168.2.5:8080/servidor/Cadastro";
         
         $http.post(url, aluno).success(function(status) {
 
@@ -30,36 +29,29 @@ angular.module('starter')
     };
 
     $scope.loginAluno = function(al){
-        var url = "http://192.168.2.10:8080/servidor/Login";
+       fac.salvar(al);
+
+        $scope.aluno = angular.copy(al);
+       //alert($scope.aluno.login);
+       // $scope.aluno = al;
+        /*var url = "http://192.168.2.5:8080/servidor/Login";
         
         $http.post(url, al)
 
         .then(function(response) {
             $scope.aluno = response.data;
+            $scope.$apply();
             alert($scope.aluno.login);
             $state.go("home"); 
         });
-
+        
         /*
         $http.get(url).then(function(response){
         	$scope.aluno = response.data;
         	$state.go("home");   
         })*/
 
-        ///$state.go("home");
-    }
-
-/*
-    var url = "http://192.168.2.10:8080/servidor/Turmas";
-        
-    $http.get(url).then(function(response){
-        	$scope.turmas = response.data;
-    })	
-
-    var url = "http://192.168.2.10:8080/servidor/Login";
-
-    $http.get(url).then(function(response){
-        $scope.aluno = response.data;
-    })*/
+        $state.go("home");
+    };
 
 });

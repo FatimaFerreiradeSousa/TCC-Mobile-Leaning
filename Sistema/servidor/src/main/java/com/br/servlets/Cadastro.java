@@ -1,6 +1,6 @@
 package com.br.servlets;
 
-import com.br.dao.DaoAluno;
+import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,6 +34,7 @@ public class Cadastro extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getMethod().equals("POST")) {
+            
             String jsonString = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(jsonString);
 
@@ -47,7 +48,7 @@ public class Cadastro extends HttpServlet {
                 = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
             aluno.setFoto(caminho);
 
-            DaoAluno daoAluno = new DaoAluno();
+            Dao daoAluno = new Dao();
             daoAluno.salvarAluno(aluno);
         }
     }

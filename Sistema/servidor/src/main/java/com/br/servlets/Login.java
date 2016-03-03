@@ -1,6 +1,6 @@
 package com.br.servlets;
 
-import com.br.dao.DaoAluno;
+import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,12 +25,12 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        /*DaoAluno daoAluno = new DaoAluno();
+        Dao daoAluno = new Dao();
         Aluno al = daoAluno.loginAluno("aliu", "12345");
         JSONObject jSONObject = UtilTest.getJSONObject(al);
-         */
+         
         OutputStream os = response.getOutputStream();
-        os.write("Ei, okay".getBytes());
+        os.write(jSONObject.toString().getBytes());
 
         os.flush();
         os.close();
@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
             al.setLogin(jSONObject.getString("login"));
             al.setSenha(jSONObject.getString("senha"));
 
-            DaoAluno daoAluno = new DaoAluno();
+            Dao daoAluno = new Dao();
             aluno = new Aluno();
             aluno = daoAluno.loginAluno(al.getLogin(), al.getSenha());
             

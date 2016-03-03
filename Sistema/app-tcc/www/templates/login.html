@@ -1,0 +1,37 @@
+
+<ion-view view-title="Mobile-Edu - Login" ng-controller="alunoCtrl">
+	<div class="bar bar-header bar-positive has-header">
+		  <h1 class="title">Mobile-Edu</h1>
+	</div>
+
+	<ion-content style="margin-top: 30%">
+
+		<div class="list">
+	        <label class="item item-input">
+	              <span class="input-label">Login</span>
+	              <input type="text" ng-model="aluno.login">
+	        </label>
+	        
+	        <label class="item item-input">
+	              <span class="input-label">Senha</span>
+	              <input type="password" ng-model="aluno.senha">
+	        </label>
+	    </div>
+
+	    <div class="padding">
+	        
+	        <button class="button button-block button-positive" ng-click="login()">
+	              Entrar
+	        </button>
+
+	        <div class="button-bar">
+				  <a class="button button-positive" href="#/cadastro">Criar Conta</a>
+				  <a class="button button-assertive" href="#/senha">Recuperar Senha</a>
+			</div>
+		</div>
+
+		<p>{{aluno.login}}</p>
+	</ion-content>
+</ion-view>
+
+   

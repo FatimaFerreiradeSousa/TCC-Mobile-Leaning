@@ -15,4 +15,5 @@
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/UP-Mobile-Edu" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/bd" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/Mobile-Edu-BD" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/Mobile-Edu" object-type="user" pool-name="post-gre-sql_Mobile-Edu-BD_postgresPool"/>
 </resources>
