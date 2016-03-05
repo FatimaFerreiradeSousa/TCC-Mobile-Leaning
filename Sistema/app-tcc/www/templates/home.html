@@ -1,20 +1,21 @@
-<ion-view view-title="Mobile-Edu - Login" ng-controller="alunoCtrl">
-
-	<div class="bar bar-header bar-positive has-header">
-		  <h1 class="title">Mobile-Edu</h1>
-	</div>
-
+<ion-view view-title="" ng-controller="horrarioCtrl">
+	
 	<ion-content style="margin-top: 20%">
 
 		<h4 style="text-align: center;">Horários do Dia</h4>
 
-		<div class="card">
+		<div class="card" ng-repeat="t in turmas">
 		  <div class="item item-text-wrap">
-		    This is a basic Card which contains an item that has wrapping text.
+		  	{{t.nome}}
+		  	<br/>
+		  	Professor: {{t.professor.nome}}
+		  	<br/>
+		  	Hora:
+		  	<div class="" ng-repeat="h in t.horarios">
+		  		{{h.horarioInicial}} - {{h.horarioFinal}}
+		  	</div>
 		  </div>
 		</div>
-
-		<p>Aluno: {{aluno.login}}</p>
 	</ion-content>
 
 	<ion-tabs class="tabs-positive tabs-icon-top">
@@ -23,7 +24,7 @@
 		    <!-- Tab 1 content -->
 		</ion-tab>
 
-		<ion-tab title="Turmas" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" ng-click="listarTurmas()">
+		<ion-tab title="Turmas" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" href="#/turmas">
 		    <!-- Tab 1 content -->
 		</ion-tab>
 

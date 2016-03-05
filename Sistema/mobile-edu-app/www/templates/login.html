@@ -1,35 +1,33 @@
+<ion-view title="Login" ng-controller="alunoCtrl">
+    
+    <ion-pane>
 
-<ion-view view-title="Mobile-Edu - Login" ng-controller="app-controller">
-	<div class="bar bar-header bar-positive has-header">
-		  <h1 class="title">Mobile-Edu</h1>
-	</div>
+      <ion-header-bar class="bar-stable bar-positive">
+        <h1 class="title">Login</h1>
+      </ion-header-bar>
 
-	<ion-content style="margin-top: 30%">
+      <ion-content padding="true" class="has-header">
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="">
+                </label>
+            </ion-list>
+            
+            <div class="spacer" style="height: 40px;"></div>
+            <button class="button button-positive button-block " ng-click="salvarAluno()">Entrar</button>
 
-		<div class="list">
-	        <label class="item item-input">
-	              <span class="input-label">Username</span>
-	              <input type="text" ng-model="aluno.login">
-	        </label>
-	        
-	        <label class="item item-input">
-	              <span class="input-label">Password</span>
-	              <input type="password" ng-model="aluno.senha">
-	        </label>
-	    </div>
-
-	    <div class="padding">
-	        
-	        <button class="button button-block button-positive" ng-click="salvar(aluno)">
-	              Entrar
-	        </button>
-
-	        <div class="button-bar">
-				  <a class="button button-positive" href="#/cadastro">Criar Conta</a>
-				  <a class="button button-assertive" href="#/forgot-password">Recuperar Senha</a>
-			</div>
-		</div>
-	</ion-content>
+            <div class="button-bar">
+                  <a class="button button-positive" href="#/cadastro">Criar Conta</a>
+                  <a class="button button-assertive" href="#/senha">Recuperar Senha</a>
+            </div>
+        </form>
+      </ion-content>
+    
+    </ion-pane>
 </ion-view>
-
-   

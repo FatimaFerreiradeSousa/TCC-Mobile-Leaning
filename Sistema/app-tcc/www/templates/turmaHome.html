@@ -1,0 +1,30 @@
+<ion-view view-title="Mobile-Edu - Login" ng-controller="turmaSelectCtrl">
+
+	<div class="bar bar-header bar-positive has-header">
+		  <h1 class="title">Turma de {{turma.nome}}</h1>
+	</div>
+
+	<ion-content style="margin-top: 15%">
+
+		<h4 style="text-align: center;">Seu Horário de Hoje</h4>
+
+		<div class="card" ng-repeat="h in horariosTurma">
+		  <div class="item item-text-wrap">
+		  	
+		  	{{h.horarioInicial}} - {{h.horarioFinal}}
+
+		  </div>
+		</div>
+
+		<div class="button-bar">
+			<a class="button button-positive" href="#/alunosTurma">Alunos</a>
+			<a class="button button-assertive" href="#/notasTurma">Notas</a>
+			<a class="button button-positive" href="#/horarioTurma">Horarios</a>
+		</div>
+
+	</ion-content>
+
+
+</ion-view>
+
+

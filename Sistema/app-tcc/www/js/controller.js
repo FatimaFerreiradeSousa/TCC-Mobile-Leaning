@@ -1,4 +1,6 @@
-angular.module('starter').controller('alunoCtrl', function($scope, $state, $stateParams, $http){
+angular.module('starter')
+
+.controller('alunoCtrl', function($scope, $state, $stateParams, $http){
 	
 	$scope.aluno = {
         nome:'',
@@ -15,7 +17,7 @@ angular.module('starter').controller('alunoCtrl', function($scope, $state, $stat
     }
 
     function buscarAluno(){
-        var url = "http://192.168.2.5:8080/servidor/Login"
+        var url = "http://192.168.2.9:8080/Server/Login"
         $http.get(url).then(function(response){
             $scope.aluno = response.data;
         })
@@ -33,7 +35,7 @@ angular.module('starter').controller('alunoCtrl', function($scope, $state, $stat
 
     $scope.cadastrarAluno = function(){
         
-        var url = "http://192.168.2.5:8080/servidor/Cadastro";
+        var url = "http://192.168.2.9:8080/Server/Cadastro";
         
         $http.post(url, $scope.aluno).success(function(status) {
 
@@ -43,11 +45,69 @@ angular.module('starter').controller('alunoCtrl', function($scope, $state, $stat
 
         });
     };
-
-    var url = "http://192.168.2.5:8080/servidor/Turmas";
-        
-    $http.post(url, $scope.aluno).then(function(response) {
-        $scope.turmas = response.data;
-    });
     
 })
+
+.controller('horrarioCtrl', function($scope, $state, $stateParams, $http){
+
+    var url = "http://192.168.2.9:8080/Server/Horarios";
+        
+    $http.get(url).then(function(response) {
+        $scope.turmas = response.data;
+    });
+})
+
+.controller('turmasCtrl', function($scope, $state, $stateParams, $http){
+
+    var url = "http://192.168.2.9:8080/Server/Turmas";
+        
+    $http.get(url).then(function(response) {
+        $scope.turmasAluno = response.data;
+    });
+})
+
+.controller('turmaSelectCtrl', function($scope, $state, $stateParams, $http){
+
+    var url = "http://192.168.2.9:8080/Server/TurmaSelect";
+        
+    $http.get(url).then(function(response) {
+        $scope.turma = response.data;
+    });
+
+    var url = "http://192.168.2.9:8080/Server/HorarioDia";
+        
+    $http.get(url).then(function(response) {
+        $scope.horariosTurma = response.data;
+    });
+
+    var url = "http://192.168.2.9:8080/Server/AlunosTurma";
+        
+    $http.get(url).then(function(response) {
+        $scope.alunos = response.data;
+    });
+
+    var url = "http://192.168.2.9:8080/Server/NotasTurma";
+        
+    $http.get(url).then(function(response) {
+        $scope.notas = response.data;
+    });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
