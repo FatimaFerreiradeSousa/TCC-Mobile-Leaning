@@ -21,13 +21,25 @@ angular.module('starter', ['ionic'])
     .state('login', {
         url: '/login',
         templateUrl: 'templates/login.html',
-        controller: 'alunoCtrl'
+        controller: 'loginCtrl'
     })
 
     .state('home', {
-        url: '/home',
+        url: '/home/:login',
         templateUrl: 'templates/home.html',
         controller: 'alunoCtrl'
+    })
+
+    .state('cadastro', {
+        url: '/cadastro',
+        templateUrl: 'templates/cadastro.html',
+        controller: 'alunoCtrl'
+    })
+
+    .state('turmas', {
+        url: '/turmas/:alunoLogin',
+        templateUrl: 'templates/turmas.html',
+        controller: 'turmasCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');

@@ -31,6 +31,56 @@ public class Dao {
         }
     }
 
+    /*Salvar*/
+    public Aluno buscarAluno(String login) {
+
+        try {
+            return em.find(Aluno.class, login);
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    public Aluno buscarAlunoEmail(String email) {
+        Query query = em.createQuery("select a from Aluno a where a.email = :email");
+        query.setParameter("email", email);
+
+        List<Aluno> alunos = (List<Aluno>) query.getResultList();
+
+        if (!alunos.isEmpty()) {
+            return alunos.get(0);
+        } else {
+            return null;
+        }
+    }
+    
+    public Professor buscarProfessor(String login) {
+
+        try {
+            return em.find(Professor.class, login);
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+    
+    public Professor buscarProfessorEmail(String email) {
+        Query query = em.createQuery("select p from Professor p where p.email = :email");
+        query.setParameter("email", email);
+
+        List<Professor> professores = (List<Professor>) query.getResultList();
+
+        if (!professores.isEmpty()) {
+            return professores.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * ************************************************************************/
+    
     public boolean atualizarAluno(Aluno aluno) {
 
         em.getTransaction().begin();
@@ -42,12 +92,6 @@ public class Dao {
             em.getTransaction().rollback();
             return false;
         }
-    }
-
-    public Aluno buscarAluno(String login) {
-
-        return em.find(Aluno.class, login);
-
     }
 
     public boolean removerAluno(Aluno aluno) {
@@ -96,17 +140,14 @@ public class Dao {
             return null;
         }
     }
-    
-    /*PARTICIPA GRUPO*/
 
+    /*PARTICIPA GRUPO*/
     public List<Grupo> pesquisarGrupoPorNome(String nome) {
         Query query = em.createQuery("select g from Grupo g where g.nome = :nome");
         query.setParameter("nome", nome);
 
         return (List<Grupo>) query.getResultList();
     }
-    
-    
 
     public List<Topico> topicosGrupo(int codigoGrupo) {
         Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo ORDER BY t.codigo DESC");

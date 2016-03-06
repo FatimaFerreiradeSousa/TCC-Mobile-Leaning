@@ -3,8 +3,10 @@ package com.br.server;
 import com.br.util.UtilTest;
 import com.br.dao.Dao;
 import com.br.entidades.Aluno;
+import com.br.entidades.Professor;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,11 +24,6 @@ public class Cadastro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        OutputStream os = response.getOutputStream();
-        os.write("Salvo Com Sucesso".getBytes());
-        os.flush();
-        os.close();
     }
 
     @Override
@@ -34,7 +31,9 @@ public class Cadastro extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getMethod().equals("POST")) {
-            
+            PrintWriter printWriter = response.getWriter();
+            response.setContentType("text/html");
+                
             String jsonString = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(jsonString);
 
@@ -45,11 +44,24 @@ public class Cadastro extends HttpServlet {
             aluno.setLogin(jSONObject.getString("login"));
             aluno.setSenha(jSONObject.getString("senha"));
             String caminho
-                = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
+                    = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
             aluno.setFoto(caminho);
 
             Dao daoAluno = new Dao();
-            daoAluno.salvarAluno(aluno);
+
+            if (daoAluno.buscarAluno(aluno.getLogin()) == null && daoAluno.buscarAlunoEmail(aluno.getEmail()) == null &&
+                    daoAluno.buscarProfessor(aluno.getLogin()) == null && daoAluno.buscarProfessorEmail(aluno.getEmail()) == null) {
+
+                daoAluno.salvarAluno(aluno);
+                printWriter.write("true");
+                printWriter.flush();
+                printWriter.close();
+
+            }else{
+                printWriter.write("false");
+                printWriter.flush();
+                printWriter.close();
+            }
         }
     }
 

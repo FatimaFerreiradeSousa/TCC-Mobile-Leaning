@@ -1,30 +1,31 @@
-<ion-view title="Login" ng-controller="alunoCtrl">
+<ion-view title="Login" ng-controller="loginCtrl">
     
     <ion-pane>
 
       <ion-header-bar class="bar-stable bar-positive">
-        <h1 class="title">Login</h1>
+        <h1 class="title" style="text-align: center;">Mobile-Edu - Login</h1>
       </ion-header-bar>
 
       <ion-content padding="true" class="has-header">
         <form class="list">
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
+                    <span class="input-label">Login</span>
+                    <input type="text" placeholder="" required="true" ng-model="aluno.login">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
+                    <span class="input-label">Senha</span>
+                    <input type="password" placeholder="" required="true" ng-model="aluno.senha">
                 </label>
             </ion-list>
             
             <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-positive button-block " ng-click="salvarAluno()">Entrar</button>
+            
+            <button class="button button-positive button-block " ng-click="loginAl()">Entrar</button>
 
             <div class="button-bar">
-                  <a class="button button-positive" href="#/cadastro">Criar Conta</a>
-                  <a class="button button-assertive" href="#/senha">Recuperar Senha</a>
+                  <a class="button button-balanced button-outline" href="#/cadastro">Criar Conta</a>
+                  <a class="button button-assertive button-outline" href="#/senha">Recuperar Senha</a>
             </div>
         </form>
       </ion-content>
