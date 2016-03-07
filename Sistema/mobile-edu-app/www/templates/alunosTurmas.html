@@ -4,9 +4,24 @@
         <h1 class="title" style="text-align: left;">Alunos</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header">
-        {{turmaAluno}}
+    <ion-content class="has-header">
         
+        <div class="list">
+
+          <div ng-repeat="al in alunosTurma" class="item-avatar item">
+
+                <img src="data:image/jpeg;base64, {{al.foto}}">
+                
+                <a href="#/alunoDetalhe/{{al.login}}">
+                    <h2>{{al.nome}} {{al.sobrenome}}</h2>
+                </a>
+                
+                <p>{{al.curso}}</p>
+            
+          </div>
+
+        </div>
+
         <br/>
     </ion-content>
 </ion-view>

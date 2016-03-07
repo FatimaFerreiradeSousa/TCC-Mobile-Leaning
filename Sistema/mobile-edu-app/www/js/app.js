@@ -54,10 +54,28 @@ angular.module('starter', ['ionic'])
         controller: 'turmaHorarioCtrl'
     })
 
-    .state('alunosTurma', {
-        url: '/alunosTurma/:codTurma',
-        templateUrl: 'templates/alunosTurma.html',
+    .state('alunosTurmas', {
+        url: '/alunosTurmas/:codigoTurma',
+        templateUrl: 'templates/alunosTurmas.html',
         controller: 'turmaAlunosCtrl'
+    })
+
+    .state('alunoDetalhe', {
+        url: '/alunoDetalhe/:alunoId',
+        templateUrl: 'templates/alunoDetalhe.html',
+        controller: 'turmaAlunosCtrl'
+    })
+
+    .state('notasTurma', {
+        url: '/notasTurma/:turmaCod',
+        templateUrl: 'templates/notasTurma.html',
+        controller: 'turmaNotasCtrl'
+    })
+
+    .state('verNota', {
+        url: '/verNota/:notaId',
+        templateUrl: 'templates/verNota.html',
+        controller: 'verNotasCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');
