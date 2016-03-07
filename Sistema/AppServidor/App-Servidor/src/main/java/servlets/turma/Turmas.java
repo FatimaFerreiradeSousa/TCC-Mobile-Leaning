@@ -25,9 +25,12 @@ public class Turmas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        String login = request.getParameter("loginAl");
 
         Dao daoAluno = new Dao();
-        Aluno al = daoAluno.buscarAluno("aliu");
+        Aluno al = daoAluno.buscarAluno(login);
         
         List<Turma> turmas = new ArrayList();
         List<Turma> tAluno = al.getTurmas();

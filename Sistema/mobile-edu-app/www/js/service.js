@@ -39,7 +39,6 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.9:8080/App-Servidor/Login"
         $http.post(url, aluno).then(function(response){
             alunoObj = response.data;
-            alert(alunoObj.nome);
             $state.go("home", {login:alunoObj.login})
         });
       }
@@ -48,3 +47,13 @@ angular.module('starter').factory('fac', function($state, $http) {
     return obj;
 
 })
+
+
+
+
+
+
+
+
+
+

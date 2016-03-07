@@ -42,6 +42,24 @@ angular.module('starter', ['ionic'])
         controller: 'turmasCtrl'
     })
 
+    .state('pageTurma', {
+        url: '/pageTurma/:turmaCodigo',
+        templateUrl: 'templates/pageTurma.html',
+        controller: 'turmaHomeCtrl'
+    })
+
+    .state('horariosTurma', {
+        url: '/horariosTurma/:codTurma',
+        templateUrl: 'templates/horariosTurma.html',
+        controller: 'turmaHorarioCtrl'
+    })
+
+    .state('alunosTurma', {
+        url: '/alunosTurma/:codTurma',
+        templateUrl: 'templates/alunosTurma.html',
+        controller: 'turmaAlunosCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

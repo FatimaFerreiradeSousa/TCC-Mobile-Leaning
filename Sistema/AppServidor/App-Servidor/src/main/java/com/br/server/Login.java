@@ -25,9 +25,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        request.setCharacterEncoding("UTF-8");
+        String login = request.getParameter("loginAl");
+        
         Dao daoAluno = new Dao();
-        Aluno al = daoAluno.loginAluno("aliu", "12345");
+        Aluno al = daoAluno.buscarAluno(login);
+        
         JSONObject jSONObject = UtilTest.getJSONObject(al);
          
         OutputStream os = response.getOutputStream();
@@ -56,7 +60,6 @@ public class Login extends HttpServlet {
             
             if (aluno != null) {
                 JSONObject jsono = UtilTest.getJSONObject(aluno);
-                System.out.println("Aluno Recebido: " + aluno.getLogin());
                 response.setContentType("text/html");
                 PrintWriter printWriter = response.getWriter();
                 printWriter.write(jsono.toString());

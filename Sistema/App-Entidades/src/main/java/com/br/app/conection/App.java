@@ -12,12 +12,11 @@ public class App {
     
     public static void main(String[] args) {
         
-        Dao daoAluno = new Dao();
-        List<Grupo> t = daoAluno.pesquisarGrupoPorNome("História");
+        Dao dao = new Dao();
+        List<Horario> horariosTurma = dao.consultarHorario("Segunda-Feira", "GEO-2016");
         
-        for (Grupo grupo : t) {
-            System.out.println(grupo.getNome());
-        }
+        System.out.println("Size: "+horariosTurma.size());
+
         
     }
     

@@ -1,26 +1,32 @@
 <ion-view title="Mobile-Edu" ng-controller="alunoCtrl">
 
     <ion-header-bar class="bar-stable bar-balanced">
-        <h1 class="title" style="text-align: left;">Home</h1>
+        <h1 class="title" style="text-align: left;">Mobile-Edu</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header" style="margin-bottom: 15%; margin-top: 10%">
+    <ion-content padding="true" class="has-header" style="margin-bottom: 15%; margin-top: 8%">
 
-        {{login}}
+        {{alunoSessao.nome}}
 
         <h4 style="text-align: center;">Horário de Hoje</h4>
         
-        <ion-list>
-            <ion-item class="item-divider">Item</ion-item>
-            <ion-item class="item-divider">Item</ion-item>
-            <ion-item class="item-divider">Item</ion-item>
+        <ion-list ng-repeat="t in turmas">
+            <ion-item class="item-divider" style="text-align: center;">
+                {{t.nome}} <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
+                <hr/>
+                <div class="" ng-repeat="h in t.horarios">
+                    {{h.horarioInicial}} - {{h.horarioFinal}}
+                </div>
+            </ion-item>
+
+            <br/>
         </ion-list>
     </ion-content>
    
 	   <ion-tabs class="tabs-balanced tabs-icon-top">
-	        <ion-tab title="Home" icon="ion-ios-home" href="/home"></ion-tab>
+	        <ion-tab title="Home" icon="ion-ios-home" href="/home/{{alunoSessao.login}}"></ion-tab>
 
-	        <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{aluno.login}}"></ion-tab>
+	        <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{alunoSessao.login}}"></ion-tab>
 
 	        <ion-tab title="Grupos" icon="ion-android-chat"></ion-tab>
 

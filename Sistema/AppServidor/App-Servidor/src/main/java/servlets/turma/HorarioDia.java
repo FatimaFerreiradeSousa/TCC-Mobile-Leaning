@@ -26,9 +26,12 @@ public class HorarioDia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        request.setCharacterEncoding("UTF-8");
+        String cod = request.getParameter("codigo");
+        
         Dao dao = new Dao();
-        Turma turma = dao.buscarTurma("GEO-2016");
+        Turma turma = dao.buscarTurma(cod);
 
         List<Horario> horarios = new ArrayList<>();
         String dia = FormatData.verificarDia(FormatData.pegarDia());

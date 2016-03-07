@@ -47,6 +47,7 @@ public class UtilTest {
         Professor professor = new Professor();
         professor.setNome(turma.getProfessor().getNome());
         jSONObject.put("professor", professor);
+        jSONObject.put("descricao", turma.getDescricao());
 
         return jSONObject;
     }
@@ -63,6 +64,24 @@ public class UtilTest {
         jSONObject.put("foto", FotosServices.converteArquivoEmStringBase64(json.getFoto()));
         jSONObject.put("email", json.getEmail());
         jSONObject.put("curso", json.getCurso());
+
+        return jSONObject;
+    }
+    
+    public static JSONObject getJSONAluno(Aluno json, int presenca, int faltas) throws IOException {
+
+        jSONObject = new JSONObject();
+        jSONObject.put("nome", json.getSobrenome());
+        jSONObject.put("sobrenome", json.getNome());
+        jSONObject.put("login", json.getLogin());
+        jSONObject.put("senha", json.getSenha());
+        jSONObject.put("instituicao", json.getInstituicao());
+        jSONObject.put("descricao", json.getDescricao());
+        jSONObject.put("foto", FotosServices.converteArquivoEmStringBase64(json.getFoto()));
+        jSONObject.put("email", json.getEmail());
+        jSONObject.put("curso", json.getCurso());
+        jSONObject.put("presenca", presenca);
+        jSONObject.put("faltas", faltas);
 
         return jSONObject;
     }

@@ -1,10 +1,8 @@
 package servlets.turma;
 
 import com.br.dao.Dao;
-import com.br.entidades.Aluno;
 import com.br.entidades.Horario;
 import com.br.entidades.Turma;
-import com.br.util.FotosServices;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -27,12 +25,16 @@ public class HorariosTurma extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        String cod = request.getParameter("codigo");
+        String dia = request.getParameter("dia");
+        
         Dao dao = new Dao();
-        Turma turma = dao.buscarTurma("GEO-2016");
+        List<Horario> horariosTurma = dao.consultarHorario(dia, cod);
 
         List<Horario> horarios = new ArrayList<>();
 
-        for (Horario horario : turma.getHorarios()) {
+        for (Horario horario : horariosTurma) {
 
             Horario h = new Horario();
             h.setDia(horario.getDia());

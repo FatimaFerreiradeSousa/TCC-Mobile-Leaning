@@ -140,6 +140,34 @@ public class Dao {
             return null;
         }
     }
+    
+    public List<Horario> consultarHorario(String dia, String turma) {
+        Query query = em.createQuery("SELECT h FROM Horario h where h.dia = :dia and h.turma.codigo = :turma");
+        query.setParameter("dia", dia);
+        query.setParameter("turma", turma);
+        
+        return (List<Horario>) query.getResultList();
+    }
+    
+    public int qtdFaltas(String login, String turma) {
+        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login and p.status = false and p.turma.codigo = :turma");
+        query.setParameter("login", login);
+        query.setParameter("turma", turma);
+
+        List<Presenca> list = query.getResultList();
+
+        return list.size();
+    }
+    
+    public int qtdPresencas(String login, String turma) {
+        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login and p.status = true and p.turma.codigo = :turma");
+        query.setParameter("login", login);
+        query.setParameter("turma", turma);
+
+        List<Presenca> list = query.getResultList();
+
+        return list.size();
+    }
 
     /*PARTICIPA GRUPO*/
     public List<Grupo> pesquisarGrupoPorNome(String nome) {

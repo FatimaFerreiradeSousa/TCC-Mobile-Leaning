@@ -24,9 +24,13 @@ public class NotasTurma extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        String codigo = request.getParameter("codigo");
 
         Dao dao = new Dao();
-        Turma turma = dao.buscarTurma("GEO-2016");
+        Turma turma = dao.buscarTurma(codigo);
 
         List<Nota> notas = new ArrayList<>();
 

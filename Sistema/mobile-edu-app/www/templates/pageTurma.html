@@ -1,0 +1,35 @@
+<ion-view title="Mobile-Edu" ng-controller="turmaHomeCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: left;">Turma de {{turma.nome}}</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header" style="margin-top: 8%">
+
+        <div class="card" style="text-align: center;">
+          <div class="item item-text-wrap">
+            <label>{{turma.descricao}}</label>
+            <p>Professor {{turma.professor.nome}}</p>
+          </div>
+        </div>
+
+        <h4 style="text-align: center;">Seu Horário Hoje</h4>
+        
+        <ion-list ng-repeat="h in horarioDia" style="text-align: center">
+            <ion-item class="item-divider">
+                <label>{{h.horarioInicial}} - {{h.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+        
+    </ion-content>
+   
+	   <ion-tabs class="tabs-balanced tabs-icon-top">
+            <ion-tab title="Alunos" icon="ion-ios-home" href="/alunosTurma/{{turma.codigo}}"></ion-tab>
+
+	        <ion-tab title="Notas" icon="ion-ios-compose" href="/turmas/{{login}}"></ion-tab>
+
+	        <ion-tab title="Horários" icon="ion-android-chat" href="/horariosTurma/{{turma.codigo}}"></ion-tab>
+	    </ion-tabs>
+</ion-view>

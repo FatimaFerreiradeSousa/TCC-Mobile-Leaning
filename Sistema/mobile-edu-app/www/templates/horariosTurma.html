@@ -1,0 +1,69 @@
+<ion-view title="Mobile-Edu" ng-controller="turmaHorarioCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: left;">Horários</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        <ion-item class="item-divider" style="text-align: center;">
+            <label>Segunda-Feira</label>
+        </ion-item>
+        
+        <ion-list ng-repeat="s in horariosSegunda" style="text-align: center">
+            <ion-item>
+                <label>{{s.horarioInicial}} - {{s.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+
+        <ion-item class="item-divider" style="text-align: center;">
+            <label>Terça-Feira</label>
+        </ion-item>
+        
+        <ion-list ng-repeat="t in horariosTerca" style="text-align: center">
+            <ion-item>
+                <label>{{t.horarioInicial}} - {{t.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+
+        <ion-item class="item-divider" style="text-align: center;">
+            <label>Quarta-Feira</label>
+        </ion-item>
+        
+        <ion-list ng-repeat="q in horariosQuarta" style="text-align: center">
+            <ion-item>
+                <label>{{q.horarioInicial}} - {{q.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+        
+        <ion-item class="item-divider" style="text-align: center;">
+            <label>Quinta-Feira</label>
+        </ion-item>
+        
+        <ion-list ng-repeat="qi in horariosQuinta" style="text-align: center">
+            <ion-item>
+                <label>{{qi.horarioInicial}} - {{qi.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+
+        <ion-item class="item-divider" style="text-align: center;">
+            <label>Sexta-Feira</label>
+        </ion-item>
+        
+        <ion-list ng-repeat="s in horariosSexta" style="text-align: center">
+            <ion-item>
+                <label>{{s.horarioInicial}} - {{s.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>
+    </ion-content>
+</ion-view>
