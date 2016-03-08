@@ -186,14 +186,6 @@ public class Service implements Serializable {
         return daoGrupo.topicosGrupo(codigoGrupo);
     }
     
-    public List<Topico> arquivosGrupo(int codigoGrupo){
-        return daoTopico.listarArquivos(codigoGrupo);
-    }
-    
-    public List<Topico> postagensGrupo(int codigo){
-        return daoTopico.listarTopicos(codigo);
-    }
-    
     /*CRUD participar Grupo*/
     public boolean adicionarMembro(ParticipaGrupo participaGrupo){
         return daoPaGrupo.addMembro(participaGrupo);
@@ -288,6 +280,15 @@ public class Service implements Serializable {
     public Comentario buscarComentario(int codigo){
         return daoComentario.consultar(codigo);
     }
+    
+    public List<Topico> arquivosGrupo(int codigoGrupo){
+        return daoTopico.listarArquivos(codigoGrupo);
+    }
+    
+    public List<Topico> postagensGrupo(int codigo){
+        return daoTopico.listarTopicos(codigo);
+    }
+
     
     /*CRUD Responde Teste*/
     public boolean salvarRespondeTeste(RespondeExercicio respondeExercicio){

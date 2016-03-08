@@ -1,46 +1,39 @@
-package servlets.turma;
+package servlets.grupo;
 
 import com.br.dao.Dao;
-import com.br.entidades.Nota;
-import com.br.util.UtilTest;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 
 /**
  *
  * @author Fatinha de Sousa
  */
-@WebServlet(name = "VerNota", urlPatterns = {"/VerNota"})
-public class VerNota extends HttpServlet {
+@WebServlet(name = "GruposTestes", urlPatterns = {"/GruposTestes"})
+public class GruposTestes extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String id = request.getParameter("codigo");
-        
-        Dao dao = new Dao();
-        Nota nota = dao.buscarNota(Integer.parseInt(id));
-        
-        JSONObject jSONObject = UtilTest.getJSONNota(nota);
-        
-        OutputStream os = response.getOutputStream();
-        os.write(jSONObject.toString().getBytes());
 
-        os.flush();
-        os.close();
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+
+        Dao dao = new Dao();
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

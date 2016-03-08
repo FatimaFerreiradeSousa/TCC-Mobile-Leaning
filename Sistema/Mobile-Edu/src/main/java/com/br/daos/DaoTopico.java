@@ -76,6 +76,16 @@ public class DaoTopico implements InterfaceDaoTopico {
     }
 
     @Override
+    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo) {
+
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.loginUsuario = :login");
+        query.setParameter("codigoGrupo", codigoGrupo);
+        query.setParameter("login", login);
+
+        return (List<Topico>) query.getResultList();
+    }
+    
+    @Override
     public List<Topico> listarArquivos(int codigoGrupo) {
         Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Arquivo' ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);
@@ -91,13 +101,4 @@ public class DaoTopico implements InterfaceDaoTopico {
         return (List<Topico>) query.getResultList();
     }
 
-    @Override
-    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo) {
-
-        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.loginUsuario = :login");
-        query.setParameter("codigoGrupo", codigoGrupo);
-        query.setParameter("login", login);
-
-        return (List<Topico>) query.getResultList();
-    }
 }

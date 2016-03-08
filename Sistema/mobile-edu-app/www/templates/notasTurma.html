@@ -6,15 +6,17 @@
 
     <ion-content padding="true" class="has-header">
 
-        <div class="card" ng-repeat="n in notas" style="margin-bottom: 5%">
+        <div class="card" ng-repeat="n in notas" style="margin-bottom: 5%; text-align: justify;">
+          
           <div class="item item-text-wrap">
-            <p>{{n.titulo}}</p>
+            <h2>{{n.titulo}}</h2>
             <br/>
-            {{n.introducao}}
+            <p>{{n.introducao}}</p>
           </div>
 
-          <hr/>
-          <a href="#/verNota/{{n.id}}">Ver Nota</a>
+          <div style="text-align: center;">
+            <a href="#/verNota/{{n.id}}" class="button button-clear button-positive">Ver Nota</a>
+          </div>
         </div>
         
         <br/>

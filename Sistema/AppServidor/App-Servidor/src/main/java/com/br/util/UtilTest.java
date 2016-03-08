@@ -44,9 +44,7 @@ public class UtilTest {
         jSONObject.put("codigo", turma.getCodigo());
         jSONObject.put("dataInicio", turma.getDataInicio());
         jSONObject.put("dataTerminio", turma.getDataTerminio());
-        Professor professor = new Professor();
-        professor.setNome(turma.getProfessor().getNome());
-        jSONObject.put("professor", professor);
+        jSONObject.put("professor", turma.getProfessor().getNome());
         jSONObject.put("descricao", turma.getDescricao());
 
         return jSONObject;
@@ -71,8 +69,8 @@ public class UtilTest {
     public static JSONObject getJSONAluno(Aluno json, int presenca, int faltas) throws IOException {
 
         jSONObject = new JSONObject();
-        jSONObject.put("nome", json.getSobrenome());
-        jSONObject.put("sobrenome", json.getNome());
+        jSONObject.put("sobrenome", json.getSobrenome());
+        jSONObject.put("nome", json.getNome());
         jSONObject.put("login", json.getLogin());
         jSONObject.put("senha", json.getSenha());
         jSONObject.put("instituicao", json.getInstituicao());
@@ -85,5 +83,31 @@ public class UtilTest {
 
         return jSONObject;
     }
+    
+    public static JSONObject getJSONNota(Nota nota) throws IOException {
+
+        jSONObject = new JSONObject();
+        jSONObject.put("titulo", nota.getTitulo());
+        jSONObject.put("data", FormatData.parseDateString(nota.getDataNota()));
+        jSONObject.put("introducao", nota.getIntroducao());
+        jSONObject.put("desenvolvimento", nota.getDesenvolvimento());
+        jSONObject.put("professor", nota.getProfessor());
+
+        return jSONObject;
+    }
+    
+    public static JSONObject getJSONGrupo(Grupo grupo) throws IOException {
+
+        jSONObject = new JSONObject();
+        jSONObject.put("codigo", grupo.getCodigo());
+        jSONObject.put("data", FormatData.parseDateString(grupo.getDataCriacao()));
+        jSONObject.put("introducao", grupo.getDescricao());
+        jSONObject.put("desenvolvimento", grupo.getNome());
+        jSONObject.put("professorNome", grupo.getProfessorGrupos().getNome());
+        jSONObject.put("professorSobremome", grupo.getProfessorGrupos().getSobrenome());
+
+        return jSONObject;
+    }
+    
 
 }

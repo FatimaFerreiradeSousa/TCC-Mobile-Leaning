@@ -20,10 +20,11 @@ public interface InterfaceDaoTopico {
     
     public List<Comentario> comentariosTopico(int codigoTopico);
     
+    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo);
+    
     public List<Topico> listarArquivos(int codigoGrupo);
     
     public List<Topico> listarTopicos(int codigoGrupo);
     
-    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo);
     
 }

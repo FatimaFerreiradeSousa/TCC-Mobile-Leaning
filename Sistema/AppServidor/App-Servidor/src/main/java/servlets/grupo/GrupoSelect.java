@@ -1,7 +1,7 @@
-package servlets.turma;
+package servlets.grupo;
 
 import com.br.dao.Dao;
-import com.br.entidades.Nota;
+import com.br.entidades.Grupo;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,31 +16,29 @@ import org.json.JSONObject;
  *
  * @author Fatinha de Sousa
  */
-@WebServlet(name = "VerNota", urlPatterns = {"/VerNota"})
-public class VerNota extends HttpServlet {
+@WebServlet(name = "GrupoSelect", urlPatterns = {"/GrupoSelect"})
+public class GrupoSelect extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = request.getParameter("codigo");
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
         
         Dao dao = new Dao();
-        Nota nota = dao.buscarNota(Integer.parseInt(id));
+        Grupo grupo = dao.consultarGrupo(codigo);
         
-        JSONObject jSONObject = UtilTest.getJSONNota(nota);
+        JSONObject jSONObject = UtilTest.getJSONGrupo(grupo);
         
         OutputStream os = response.getOutputStream();
         os.write(jSONObject.toString().getBytes());
 
         os.flush();
         os.close();
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
 }

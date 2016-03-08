@@ -3,10 +3,9 @@ package com.br.server;
 import com.br.util.UtilTest;
 import com.br.dao.Dao;
 import com.br.entidades.Aluno;
-import com.br.entidades.Professor;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +45,7 @@ public class Cadastro extends HttpServlet {
             String caminho
                     = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\imagens_padrao\\perfil.png";
             aluno.setFoto(caminho);
+            aluno.setDataParticipacao(new Date());
 
             Dao daoAluno = new Dao();
 

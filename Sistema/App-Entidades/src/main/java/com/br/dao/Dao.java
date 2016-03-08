@@ -176,11 +176,49 @@ public class Dao {
 
         return (List<Grupo>) query.getResultList();
     }
+    
+    public List<ParticipaGrupo> listarGruposAluno(String login) {
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = true");
+        query.setParameter("login", login);
 
-    public List<Topico> topicosGrupo(int codigoGrupo) {
-        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo ORDER BY t.codigo DESC");
+        return (List<ParticipaGrupo>) query.getResultList();
+    }
+    
+    public Grupo consultarGrupo(int codigo) {
+
+        try {
+            return em.find(Grupo.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<Aluno> listarMembros(int codigoGrupo) {
+        Query query = em.createQuery("select a from ParticipaGrupo p INNER JOIN p.aluno a where p.aceito = TRUE and p.grupo.codigo = :codGrupo");
+        query.setParameter("codGrupo", codigoGrupo);
+
+        return (List<Aluno>) query.getResultList();
+    }
+    
+    public List<Topico> listarArquivos(int codigoGrupo) {
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Arquivo' ORDER BY t.codigo DESC");
         query.setParameter("codigoGrupo", codigoGrupo);
 
         return (List<Topico>) query.getResultList();
+    }
+
+    public List<Topico> listarTopicos(int codigoGrupo) {
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.tipo = 'Publicacao' ORDER BY t.codigo DESC");
+        query.setParameter("codigoGrupo", codigoGrupo);
+
+        return (List<Topico>) query.getResultList();
+    }
+    
+    public List<Comentario> comentariosTopico(int codigoTopico) {
+        Query query = em.createQuery("select c from Comentario c where c.topico.codigo = :codigo ORDER BY c.codigo DESC");
+        query.setParameter("codigo", codigoTopico);
+
+        return (List<Comentario>) query.getResultList();
     }
 }

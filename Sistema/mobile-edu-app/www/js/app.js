@@ -63,7 +63,7 @@ angular.module('starter', ['ionic'])
     .state('alunoDetalhe', {
         url: '/alunoDetalhe/:alunoId',
         templateUrl: 'templates/alunoDetalhe.html',
-        controller: 'turmaAlunosCtrl'
+        controller: 'alunoDetalheCtrl'
     })
 
     .state('notasTurma', {

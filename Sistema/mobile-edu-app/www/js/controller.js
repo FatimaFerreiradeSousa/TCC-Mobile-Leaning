@@ -162,12 +162,12 @@ angular.module('starter')
 
     $scope.alunoId = $stateParams.alunoId;
 
-	/*var caminho = "http://192.168.2.8:8080/App-Servidor/AlunosTurma?codigo=";
-	var url = caminho.concat($stateParams.codigoTurma)
+	var caminho = "http://192.168.2.8:8080/App-Servidor/AlunoDetalhe?login=";
+	var url = caminho.concat($stateParams.alunoId)
         
     $http.get(url).then(function(response) {
-        $scope.alunosTurma = response.data;
-    })*/    
+        $scope.alunoTurma = response.data;
+    })    
 
 })
 
@@ -188,13 +188,12 @@ angular.module('starter')
 
     $scope.notaCod = $stateParams.notaId;
 
-    /*
-	var caminho = "http://192.168.2.8:8080/App-Servidor/NotasTurma?codigo=";
-	var url = caminho.concat($stateParams.turmaCod)
+	var caminho = "http://192.168.2.8:8080/App-Servidor/VerNota?codigo=";
+	var url = caminho.concat($stateParams.notaId)
         
     $http.get(url).then(function(response) {
-        $scope.notas = response.data;
-    })*/    
+        $scope.nota = response.data;
+    })    
 
 })
 
