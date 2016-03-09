@@ -4,6 +4,8 @@ import com.br.dao.Dao;
 import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
 import com.br.entidades.Teste;
+import com.br.util.FormatData;
+import com.br.util.TesteAux;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -30,16 +32,16 @@ public class Testes extends HttpServlet {
         Dao dao = new Dao();
         
         Grupo grupo = dao.consultarGrupo(codigo);
-        List<Teste> testes = new ArrayList();
+        List<TesteAux> testes = new ArrayList();
         
         for (Teste teste : grupo.getTestesGrupo()) {
             
-            Teste t = new Teste();
+            TesteAux t = new TesteAux();
             t.setAssunto(teste.getAssunto());
             t.setCategoria(teste.getCategoria());
             t.setDisciplina(teste.getDisciplina());
             t.setCodigo(teste.getCodigo());
-            t.setDataEntrega(teste.getDataEntrega());
+            t.setDataEntrega(FormatData.parseDateString(teste.getDataEntrega()));
             t.setDisponivel(teste.isDisponivel());
             t.setQtdPerguntas(teste.getQtdPerguntas());
             
@@ -47,7 +49,8 @@ public class Testes extends HttpServlet {
             professor.setNome(teste.getProfessor().getNome());
             professor.setSobrenome(teste.getProfessor().getSobrenome());
             
-            t.setProfessor(professor);
+            t.setNomeProfessor(professor.getNome());
+            t.setSobrenomeProfessor(professor.getSobrenome());
             
             testes.add(t);
         }

@@ -1,7 +1,12 @@
 package servlets.grupo;
 
 import com.br.dao.Dao;
+import com.br.entidades.Pessoa;
 import com.br.entidades.Topico;
+import com.br.util.FormatData;
+import com.br.util.FotosServices;
+import com.br.util.Servicos;
+import com.br.util.TopicoAux;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -28,19 +33,26 @@ public class Arquivos extends HttpServlet {
         
         Dao dao = new Dao();
         List<Topico> topicos = dao.listarArquivos(codigo);
-        List<Topico> temp = new ArrayList();
+        List<TopicoAux> temp = new ArrayList();
         
         for (Topico topico : topicos) {
             
-            Topico t = new Topico();
+            TopicoAux t = new TopicoAux();
             t.setCaminho(topico.getCaminho());
             t.setCodigo(topico.getCodigo());
             t.setConteudo(topico.getConteudo());
-            t.setDataCriacao(topico.getDataCriacao());
+            t.setDataCriacao(FormatData.parseDateString(topico.getDataCriacao()));
             t.setLoginUsuario(topico.getLoginUsuario());
             t.setNome(topico.getNome());
             t.setTipo(topico.getTipo());
-            //t.setComentarios(topico.getComentarios());
+            
+           // t.setComentarios(topico.getComentarios());
+            Pessoa pessoa = new Pessoa();
+            pessoa = Servicos.buscarUsuario(topico.getLoginUsuario());
+            
+            t.setNomeUsuario(pessoa.getNome());
+            t.setSobrenomeUsuario(pessoa.getSobrenome());
+            t.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
             
             temp.add(t);
         }

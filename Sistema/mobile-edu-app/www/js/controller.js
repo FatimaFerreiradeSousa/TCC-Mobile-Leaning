@@ -221,6 +221,62 @@ angular.module('starter')
         $scope.grupo = response.data;
     })    
 
+    var caminhoTopico = "http://192.168.2.3:8080/App-Servidor/Topicos?grupo=";
+    var urlTopico = caminhoTopico.concat($stateParams.codGrupo)
+        
+    $http.get(urlTopico).then(function(response) {
+        $scope.topicos = response.data;
+    })
+
+})
+
+.controller('alunosGrupoCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.grupoCod = $stateParams.codGrupo;
+
+    var caminho = "http://192.168.2.3:8080/App-Servidor/MembrosGrupo?codigo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.membros = response.data;
+    })    
+})
+
+.controller('arquivosGrupoCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.grupoCodArquivo = $stateParams.codGrupo;
+
+    
+    var caminho = "http://192.168.2.3:8080/App-Servidor/Arquivos?grupo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.arquivos = response.data;
+    })    
+})
+
+.controller('testesGrupoGrupoCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.grupoCodTestes = $stateParams.codGrupo;
+
+    var caminho = "http://192.168.2.3:8080/App-Servidor/Testes?grupo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.testes = response.data;
+    })    
+})
+
+.controller('infoGrupoCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.grupoInfo = $stateParams.codGrupo;
+
+    /*var caminho = "http://192.168.2.3:8080/App-Servidor/Testes?grupo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.testes = response.data;
+    })*/    
 })
 
 

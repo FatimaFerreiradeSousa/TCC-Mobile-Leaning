@@ -2,7 +2,6 @@ package servlets.grupo;
 
 import com.br.dao.Dao;
 import com.br.entidades.Aluno;
-import com.br.entidades.ParticipaGrupo;
 import com.br.util.FotosServices;
 import java.io.IOException;
 import java.io.OutputStream;

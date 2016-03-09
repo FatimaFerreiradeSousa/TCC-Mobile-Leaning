@@ -1,0 +1,51 @@
+<ion-view title="Mobile-Edu" ng-controller="arquivosGrupoCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Arquivos Enviados</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        <div class="list">
+
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Escreva Algo...">
+            </label>
+            <button class="button button-small">
+              Enviar
+            </button>
+          </div>
+
+        </div>
+
+        <div class="list card" ng-repeat="topico in arquivos">
+
+          <div class="item item-avatar">
+            <img src="data:image/jpeg;base64, {{topico.fotoUsuario}}">
+            <h2>{{topico.nomeUsuario}} {{topico.sobrenomeUsuario}}</h2>
+            <p style="font-size: 10px">Em {{topico.dataCriacao}}</p>
+          </div>
+
+          <div class="item item-body">
+            <p style="text-align: justify;">
+                {{topico.conteudo}}
+            </p>
+
+            <p style="text-align: justify;">
+                <a href="#" class="subdued">{{topico.nome}}</a>
+            </p>            
+
+            <p>
+              <a href="#" class="subdued">1 Like</a>
+              <a href="#" class="subdued">5 Comentários</a>
+            </p>
+          </div>
+
+        </div>
+
+        <br/>
+        
+    </ion-content>
+
+</ion-view>

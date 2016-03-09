@@ -90,6 +90,36 @@ angular.module('starter', ['ionic'])
         controller: 'homeGrupoCtrl'
     })
 
+    .state('alunosGrupo', {
+        url: '/alunosGrupo/:codGrupo',
+        templateUrl: 'templates/alunosGrupo.html',
+        controller: 'alunosGrupoCtrl'
+    })
+
+    .state('arquivos', {
+        url: '/arquivos/:codGrupo',
+        templateUrl: 'templates/arquivos.html',
+        controller: 'arquivosGrupoCtrl'
+    })
+
+    .state('testesGrupo', {
+        url: '/testesGrupo/:codGrupo',
+        templateUrl: 'templates/testesGrupo.html',
+        controller: 'testesGrupoGrupoCtrl'
+    })
+
+    .state('testesResultados', {
+        url: '/testesResultados/:codGrupo',
+        templateUrl: 'templates/testesResultados.html',
+        controller: 'testesGrupoGrupoCtrl'
+    })
+
+    .state('infoGrupo', {
+        url: '/infoGrupo/:codGrupo',
+        templateUrl: 'templates/infoGrupo.html',
+        controller: 'infoGrupoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

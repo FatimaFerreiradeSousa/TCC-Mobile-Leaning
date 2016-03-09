@@ -1,37 +1,60 @@
-<ion-view title="Mobile-Edu" ng-controller="turmaHomeCtrl">
+<ion-view title="Mobile-Edu" ng-controller="homeGrupoCtrl">
 
     <ion-header-bar class="bar-stable bar-balanced">
         <h1 class="title" style="text-align: center;">Grupo de {{grupo.nome}}</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="true" class="has-header" style="margin-top: 8%">
 
-        {{grupoCodigo}}
+        <div class="list">
 
-        <!--
-        
-        <ion-list ng-repeat="h in horarioDia" style="text-align: center">
-            <ion-item class="item-divider">
-                <label>{{h.horarioInicial}} - {{h.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Publicar">
+            </label>
+            <button class="button button-small">
+              Publicar
+            </button>
+          </div>
 
-        <br/>-->
+        </div>
+
+        <div class="list card" ng-repeat="topico in topicos">
+
+          <div class="item item-avatar">
+            <img src="data:image/jpeg;base64, {{topico.fotoUsuario}}">
+            <h2>{{topico.nomeUsuario}} {{topico.sobrenomeUsuario}}</h2>
+            <p style="font-size: 10px">Em {{topico.dataCriacao}}</p>
+          </div>
+
+          <div class="item item-body">
+            <p style="text-align: justify;">
+                {{topico.conteudo}}
+            </p>
+            <p>
+              <a href="#" class="subdued">1 Like</a>
+              <a href="#" class="subdued">5 Comentários</a>
+            </p>
+          </div>
+
+        </div>
+
+        <br/>
         
     </ion-content>
 
        <ion-tabs class="tabs-balanced tabs-icon-top">
             <ion-tab title="Home" icon="ion-ios-home" href="/home/{{login}}"></ion-tab>
 
-            <ion-tab title="Alunos" icon="ion-person-stalker" href="/turmas/{{login}}"></ion-tab>
+            <ion-tab title="Alunos" icon="ion-person-stalker" href="/alunosGrupo/{{grupoCodigo}}"></ion-tab>
 
-            <ion-tab title="Arquivos" icon="ion-document" href="/turmas/{{login}}"></ion-tab>
+            <ion-tab title="Arquivos" icon="ion-document" href="/arquivos/{{grupoCodigo}}"></ion-tab>
 
-            <ion-tab title="Testes" icon="ion-ios-compose"></ion-tab>
+            <ion-tab title="Testes" icon="ion-ios-compose" href="/testesGrupo/{{grupoCodigo}}"></ion-tab>
 
-            <ion-tab title="Resultads" icon="ion-ribbon-a"></ion-tab>
+            <ion-tab title="Resultads" icon="ion-ribbon-a" href="/testesResultados/{{grupoCodigo}}"></ion-tab>
 
-            <ion-tab title="Info" icon="ion-ios-gear-outline"></ion-tab>
+            <ion-tab title="Info" icon="ion-ios-gear-outline" href="/infoGrupo/{{grupoCodigo}}"></ion-tab>
         </ion-tabs>
 
 </ion-view>

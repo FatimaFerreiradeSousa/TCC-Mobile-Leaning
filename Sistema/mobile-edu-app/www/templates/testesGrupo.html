@@ -1,0 +1,26 @@
+<ion-view title="Mobile-Edu" ng-controller="testesGrupoGrupoCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Testes</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+      <div class="card" ng-repeat="teste in testes" style="text-align: center;">
+        <div class="item item-text-wrap">
+           <h2>{{teste.assunto}}</h2>
+           
+           Enviado por {{teste.nome}} {{teste.nomeProfessor}}
+
+           <p style="font-size: 12px">Entregar em {{teste.dataEntrega}}</p>
+        </div>
+        <div class="item item-divider">
+          <p>
+              <a href="#" class="subdued">Ver Teste</a>
+          </p>
+        </div>
+      </div>
+        
+    </ion-content>
+
+</ion-view>

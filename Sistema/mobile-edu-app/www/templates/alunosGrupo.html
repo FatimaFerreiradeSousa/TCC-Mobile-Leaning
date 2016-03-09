@@ -1,0 +1,27 @@
+<ion-view title="Mobile-Edu" ng-controller="alunosGrupoCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Membros</h1>
+    </ion-header-bar>
+
+    <ion-content class="has-header">
+
+        <div class="list">
+
+          <div ng-repeat="membro in membros" class="item-avatar item">
+
+                <img src="data:image/jpeg;base64, {{membro.foto}}">
+                
+                <a href="#/alunoDetalhe/{{al.login}}">
+                    <h2>{{membro.login}}</h2>
+                </a>
+                
+                <p style="font-size: 11px;">{{membro.nome}} {{membro.sobrenome}}</p>
+            
+          </div>
+
+        </div>
+
+        <br/>
+    </ion-content>
+</ion-view>
