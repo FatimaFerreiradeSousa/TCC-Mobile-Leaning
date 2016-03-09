@@ -96,7 +96,7 @@ public class UtilTest {
         return jSONObject;
     }
     
-    public static JSONObject getJSONGrupo(Grupo grupo) throws IOException {
+    public static JSONObject getJSONGrupo(Grupo grupo, int membros) throws IOException {
 
         jSONObject = new JSONObject();
         jSONObject.put("codigo", grupo.getCodigo());
@@ -105,6 +105,7 @@ public class UtilTest {
         jSONObject.put("nome", grupo.getNome());
         jSONObject.put("professorNome", grupo.getProfessorGrupos().getNome());
         jSONObject.put("professorSobremome", grupo.getProfessorGrupos().getSobrenome());
+        jSONObject.put("membros", membros);
 
         return jSONObject;
     }

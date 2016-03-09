@@ -52,6 +52,8 @@ public class Testes extends HttpServlet {
             t.setNomeProfessor(professor.getNome());
             t.setSobrenomeProfessor(professor.getSobrenome());
             
+            t.setQtdAlunos(dao.resultados(teste.getCodigo()).size());
+            
             testes.add(t);
         }
         

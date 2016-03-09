@@ -120,6 +120,12 @@ angular.module('starter', ['ionic'])
         controller: 'infoGrupoCtrl'
     })
 
+    .state('resultados', {
+        url: '/resultados/:codTeste',
+        templateUrl: 'templates/resultados.html',
+        controller: 'resultadosCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

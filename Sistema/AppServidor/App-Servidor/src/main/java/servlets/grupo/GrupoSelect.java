@@ -1,10 +1,12 @@
 package servlets.grupo;
 
 import com.br.dao.Dao;
+import com.br.entidades.Aluno;
 import com.br.entidades.Grupo;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +31,9 @@ public class GrupoSelect extends HttpServlet {
         
         Dao dao = new Dao();
         Grupo grupo = dao.consultarGrupo(codigo);
+        List<Aluno> membros = dao.listarMembros(codigo);
         
-        JSONObject jSONObject = UtilTest.getJSONGrupo(grupo);
+        JSONObject jSONObject = UtilTest.getJSONGrupo(grupo, membros.size());
         
         OutputStream os = response.getOutputStream();
         os.write(jSONObject.toString().getBytes());

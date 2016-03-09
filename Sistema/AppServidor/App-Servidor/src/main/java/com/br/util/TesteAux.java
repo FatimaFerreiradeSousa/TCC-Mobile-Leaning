@@ -19,6 +19,7 @@ public class TesteAux implements Serializable{
     private String nomeProfessor;
     private String sobrenomeProfessor;
     private int codigoGrupo;
+    private int qtdAlunos;
     
     public TesteAux(){
     
@@ -102,5 +103,13 @@ public class TesteAux implements Serializable{
 
     public void setCodigoGrupo(int codigoGrupo) {
         this.codigoGrupo = codigoGrupo;
+    }
+
+    public int getQtdAlunos() {
+        return qtdAlunos;
+    }
+
+    public void setQtdAlunos(int qtdAlunos) {
+        this.qtdAlunos = qtdAlunos;
     }
 }

@@ -6,7 +6,7 @@
 
     <ion-content padding="true" class="has-header">
 
-      <p>Selecione o teste para ver o resultado</p>
+      <p style="text-align: center;">Selecione o teste para ver o resultado</p>
       
       <div class="card" ng-repeat="teste in testes" style="text-align: center;">
         <div class="item item-text-wrap">
@@ -14,11 +14,13 @@
            
            Enviado por {{teste.nome}} {{teste.nomeProfessor}}
 
-           <p style="font-size: 12px">Entregar em {{teste.dataEntrega}}</p>
+           <p style="font-size: 12px" ng-if="teste.qtdAlunos > 1">{{teste.qtdAlunos}} alunos responderam esse teste</p>
+           <p style="font-size: 12px" ng-if="teste.qtdAlunos == 1">{{teste.qtdAlunos}} aluno respondeu esse teste</p>
+           <p style="font-size: 12px" ng-if="teste.qtdAlunos == 0">Nenhum aluno respondeu esse teste</p>
         </div>
         <div class="item item-divider">
           <p>
-              <a href="#" class="subdued">Ver Teste</a>
+              <a href="#/resultados/{{teste.codigo}}" class="subdued">Ver Resultado</a>
           </p>
         </div>
       </div>

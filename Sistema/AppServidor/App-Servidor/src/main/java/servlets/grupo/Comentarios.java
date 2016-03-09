@@ -2,6 +2,11 @@ package servlets.grupo;
 
 import com.br.dao.Dao;
 import com.br.entidades.Comentario;
+import com.br.entidades.Pessoa;
+import com.br.util.ComentarioAux;
+import com.br.util.FormatData;
+import com.br.util.FotosServices;
+import com.br.util.Servicos;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -28,15 +33,22 @@ public class Comentarios extends HttpServlet {
         Dao dao = new Dao();
         
         List<Comentario> comentarios = dao.comentariosTopico(topicoCod);
-        List<Comentario> temp = new ArrayList();
+        List<ComentarioAux> temp = new ArrayList();
         
         for (Comentario comentario : comentarios) {
             
-            Comentario c = new Comentario();
+            ComentarioAux c = new ComentarioAux();
             c.setCodigo(comentario.getCodigo());
             c.setConteudo(comentario.getConteudo());
-            c.setDataComentario(comentario.getDataComentario());
+            c.setDataComentario(FormatData.parseDateString(comentario.getDataComentario()));
             c.setLoginUsuario(comentario.getLoginUsuario());
+            
+            Pessoa pessoa = new Pessoa();
+            pessoa = Servicos.buscarUsuario(comentario.getLoginUsuario());
+            
+            c.setNomeUsuario(pessoa.getNome());
+            c.setSobrenomeUsuario(pessoa.getSobrenome());
+            c.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
             
             temp.add(c);
         }
