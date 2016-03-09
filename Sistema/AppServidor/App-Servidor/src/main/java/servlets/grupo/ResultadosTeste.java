@@ -4,6 +4,7 @@ import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import com.br.entidades.RespondeExercicio;
 import com.br.util.FormatData;
+import com.br.util.FotosServices;
 import com.br.util.RespondeExercicioAux;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -47,6 +48,7 @@ public class ResultadosTeste extends HttpServlet {
             aux.setAlunoLogin(aluno.getLogin());
             aux.setAlunoNome(aluno.getNome());
             aux.setAlunoSobrenome(aluno.getSobrenome());
+            aux.setFotoAluno(FotosServices.converteArquivoEmStringBase64(aluno.getFoto()));
             
             temp.add(aux);
         }

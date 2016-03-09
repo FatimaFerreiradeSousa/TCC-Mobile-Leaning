@@ -283,13 +283,12 @@ angular.module('starter')
 
     $scope.testeCod = $stateParams.codTeste;
 
-    /*
-    var caminho = "http://192.168.2.4:8080/App-Servidor/GrupoSelect?codigo=";
-    var url = caminho.concat($stateParams.codGrupo)
+    var caminho = "http://192.168.2.4:8080/App-Servidor/ResultadosTeste?teste=";
+    var url = caminho.concat($stateParams.codTeste)
         
     $http.get(url).then(function(response) {
-        $scope.grupoSelecionado = response.data;
-    })*/    
+        $scope.resultados = response.data;
+    })
 })
 
 

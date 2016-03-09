@@ -228,4 +228,34 @@ public class Dao {
 
         return query.getResultList();
     }
+    
+    public List<Topico> listarTopicosUsuario(String login, int codigoGrupo) {
+
+        Query query = em.createQuery("select t from Topico t where t.grupo.codigo = :codigoGrupo and t.loginUsuario = :login");
+        query.setParameter("codigoGrupo", codigoGrupo);
+        query.setParameter("login", login);
+
+        return (List<Topico>) query.getResultList();
+    }
+    
+    public List<RespondeExercicio> listarExcerciciosAluno(String login) {
+        Query query = em.createQuery("select r from RespondeExercicio r where r.aluno.login = :login");
+        query.setParameter("login", login);
+
+        return query.getResultList();
+    }
+    
+    public ParticipaGrupo buscarParticipaGrupo(String loginAluno, int codGrupo){
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :loginAluno and p.grupo.codigo = :codGrupo");
+        query.setParameter("loginAluno", loginAluno);
+        query.setParameter("codGrupo", codGrupo);
+        
+        List<ParticipaGrupo> participaGrupo = query.getResultList();
+        
+        if(!participaGrupo.isEmpty()){
+            return participaGrupo.get(0);
+        }else{
+            return null;
+        }
+    }
 }

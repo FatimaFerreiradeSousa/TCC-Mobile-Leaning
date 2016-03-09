@@ -69,8 +69,6 @@ public class GruposAluno extends HttpServlet {
 
         os.flush();
         os.close();
-        
-
     }
 
     @Override

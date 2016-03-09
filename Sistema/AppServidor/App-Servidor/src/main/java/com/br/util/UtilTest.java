@@ -110,5 +110,20 @@ public class UtilTest {
         return jSONObject;
     }
     
+    public static JSONObject getJSONAlunoInfo(ParticipaGrupo participaGrupo, int testes, int publicacoes, int testesGrupo) 
+            throws IOException {
 
+        jSONObject = new JSONObject();
+        jSONObject.put("codigo", participaGrupo.getId());
+        jSONObject.put("data", FormatData.parseDateString(participaGrupo.getDataParticipacao()));
+        jSONObject.put("pontuacao", participaGrupo.getPontuacao());
+        jSONObject.put("testes", testes);
+        jSONObject.put("publicacoes", publicacoes);
+        jSONObject.put("testesGrupo", testesGrupo);
+        jSONObject.put("alunoNome", participaGrupo.getAluno().getNome());
+        jSONObject.put("alunoSobrenome", participaGrupo.getAluno().getSobrenome());
+        jSONObject.put("foto", FotosServices.converteArquivoEmStringBase64(participaGrupo.getAluno().getFoto()));
+        
+        return jSONObject;
+    }
 }

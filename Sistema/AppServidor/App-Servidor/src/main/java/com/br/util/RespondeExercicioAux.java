@@ -1,14 +1,6 @@
 package com.br.util;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -25,6 +17,7 @@ public class RespondeExercicioAux implements Serializable{
     private String alunoLogin;
     private String alunoNome;
     private String alunoSobrenome;
+    private String fotoAluno;
     
     public RespondeExercicioAux(){
     
@@ -92,5 +85,13 @@ public class RespondeExercicioAux implements Serializable{
 
     public void setAlunoSobrenome(String alunoSobrenome) {
         this.alunoSobrenome = alunoSobrenome;
+    }
+
+    public String getFotoAluno() {
+        return fotoAluno;
+    }
+
+    public void setFotoAluno(String fotoAluno) {
+        this.fotoAluno = fotoAluno;
     }
 }
