@@ -1,0 +1,37 @@
+<ion-view title="Mobile-Edu" ng-controller="turmaHomeCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Grupo de {{grupo.nome}}</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        {{grupoCodigo}}
+
+        <!--
+        
+        <ion-list ng-repeat="h in horarioDia" style="text-align: center">
+            <ion-item class="item-divider">
+                <label>{{h.horarioInicial}} - {{h.horarioFinal}}</label>
+            </ion-item>
+        </ion-list>
+
+        <br/>-->
+        
+    </ion-content>
+
+       <ion-tabs class="tabs-balanced tabs-icon-top">
+            <ion-tab title="Home" icon="ion-ios-home" href="/home/{{login}}"></ion-tab>
+
+            <ion-tab title="Alunos" icon="ion-person-stalker" href="/turmas/{{login}}"></ion-tab>
+
+            <ion-tab title="Arquivos" icon="ion-document" href="/turmas/{{login}}"></ion-tab>
+
+            <ion-tab title="Testes" icon="ion-ios-compose"></ion-tab>
+
+            <ion-tab title="Resultads" icon="ion-ribbon-a"></ion-tab>
+
+            <ion-tab title="Info" icon="ion-ios-gear-outline"></ion-tab>
+        </ion-tabs>
+
+</ion-view>

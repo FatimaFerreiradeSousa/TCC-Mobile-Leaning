@@ -101,8 +101,8 @@ public class UtilTest {
         jSONObject = new JSONObject();
         jSONObject.put("codigo", grupo.getCodigo());
         jSONObject.put("data", FormatData.parseDateString(grupo.getDataCriacao()));
-        jSONObject.put("introducao", grupo.getDescricao());
-        jSONObject.put("desenvolvimento", grupo.getNome());
+        jSONObject.put("descricao", grupo.getDescricao());
+        jSONObject.put("nome", grupo.getNome());
         jSONObject.put("professorNome", grupo.getProfessorGrupos().getNome());
         jSONObject.put("professorSobremome", grupo.getProfessorGrupos().getSobrenome());
 

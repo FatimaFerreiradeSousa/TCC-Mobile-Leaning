@@ -53,6 +53,7 @@ public class GruposAluno extends HttpServlet {
             g.setCodigo(participaGrupo.getGrupo().getCodigo());
             g.setNome(participaGrupo.getGrupo().getNome());
             g.setDescricao(participaGrupo.getGrupo().getDescricao());
+            g.setDataCriacao(participaGrupo.getDataParticipacao());
             Professor professor = new Professor();
             professor.setNome(participaGrupo.getGrupo().getProfessorGrupos().getNome());
             professor.setSobrenome(participaGrupo.getGrupo().getProfessorGrupos().getSobrenome());

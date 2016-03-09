@@ -78,6 +78,18 @@ angular.module('starter', ['ionic'])
         controller: 'verNotasCtrl'
     })
 
+    .state('grupos', {
+        url: '/grupos/:loginAluno',
+        templateUrl: 'templates/grupos.html',
+        controller: 'gruposCtrl'
+    })
+
+    .state('homeGrupo', {
+        url: '/homeGrupo/:codGrupo',
+        templateUrl: 'templates/homeGrupo.html',
+        controller: 'homeGrupoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

@@ -23,6 +23,8 @@ public class GrupoSelect extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        response.setCharacterEncoding("UTF-8");
+        
         int codigo = Integer.parseInt(request.getParameter("codigo"));
         
         Dao dao = new Dao();

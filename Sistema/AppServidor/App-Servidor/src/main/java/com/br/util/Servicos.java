@@ -1,7 +1,9 @@
 package com.br.util;
 
+import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import com.br.entidades.Horario;
+import com.br.entidades.Pessoa;
 import com.br.entidades.Turma;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +30,15 @@ public class Servicos {
         }
 
         return turmas;
+    }
+    
+    public static Pessoa buscarUsuario(String login){
+        Dao dao = new Dao();
+        
+        if(dao.buscarAluno(login) != null){
+            return dao.buscarAluno(login);
+        }else{
+            return dao.buscarProfessor(login);
+        }
     }
 }

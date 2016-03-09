@@ -3,7 +3,7 @@ angular.module('starter').factory('fac', function($state, $http) {
     var obj =  {
       
       salvar: function(aluno) {
-        var url = "http://192.168.2.8:8080/App-Servidor/Cadastro";
+        var url = "http://192.168.2.3:8080/App-Servidor/Cadastro";
         var status = "";
 
         $http.post(url, aluno).then(function(response) {
@@ -36,7 +36,7 @@ angular.module('starter').factory('fac', function($state, $http) {
           foto:''
         }
 
-        var url = "http://192.168.2.8:8080/App-Servidor/Login"
+        var url = "http://192.168.2.3:8080/App-Servidor/Login"
         $http.post(url, aluno).then(function(response){
             alunoObj = response.data;
             $state.go("home", {login:alunoObj.login})
