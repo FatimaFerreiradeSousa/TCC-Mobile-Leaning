@@ -26,6 +26,7 @@ public class HorariosTurma extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         String cod = request.getParameter("codigo");
         String dia = request.getParameter("dia");
         

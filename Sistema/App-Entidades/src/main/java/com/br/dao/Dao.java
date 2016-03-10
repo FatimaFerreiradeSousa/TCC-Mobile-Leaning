@@ -238,9 +238,10 @@ public class Dao {
         return (List<Topico>) query.getResultList();
     }
     
-    public List<RespondeExercicio> listarExcerciciosAluno(String login) {
-        Query query = em.createQuery("select r from RespondeExercicio r where r.aluno.login = :login");
+    public List<RespondeExercicio> listarExcerciciosAluno(String login, int grupo) {
+        Query query = em.createQuery("select r from RespondeExercicio r where r.aluno.login = :login AND r.grupo.codigo = :codigo");
         query.setParameter("login", login);
+        query.setParameter("codigo", grupo);
 
         return query.getResultList();
     }

@@ -3,7 +3,6 @@ package com.br.controladores;
 import com.br.entidades.Aluno;
 import com.br.entidades.Comentario;
 import com.br.entidades.Grupo;
-import com.br.entidades.Notificacao;
 import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.RespondeExercicio;
 import com.br.entidades.Topico;

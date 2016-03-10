@@ -25,6 +25,9 @@ public class MembrosGrupo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
+        
         int codigo = Integer.parseInt(request.getParameter("codigo"));
         
         Dao dao = new Dao();

@@ -24,11 +24,14 @@ public class AlunoInfo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
+        
         String login = request.getParameter("login");
         Dao dao = new Dao();
         
         ParticipaGrupo participaGrupo = dao.buscarParticipaGrupo(login, 1);
-        int testesRespondidos = dao.listarExcerciciosAluno(login).size();
+        int testesRespondidos = dao.listarExcerciciosAluno(login, 1).size();
         int publicacoesFeitas = dao.listarTopicosUsuario(login, 1).size();
         Grupo grupo = dao.consultarGrupo(1);
         int testesGrupo = grupo.getTestesGrupo().size();

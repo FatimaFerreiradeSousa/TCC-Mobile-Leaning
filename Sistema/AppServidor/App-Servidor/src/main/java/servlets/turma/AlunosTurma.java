@@ -25,17 +25,18 @@ public class AlunosTurma extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         String cod = request.getParameter("codigo");
-        
+
         Dao dao = new Dao();
         Turma turma = dao.buscarTurma(cod);
-        
+
         List<Aluno> alunos = new ArrayList<>();
-        
+
         for (Aluno aluno : turma.getAlunos()) {
-            
+
             Aluno al = new Aluno();
             al.setCurso(aluno.getCurso());
             al.setDataParticipacao(aluno.getDataParticipacao());
@@ -47,12 +48,12 @@ public class AlunosTurma extends HttpServlet {
             al.setNome(aluno.getNome());
             al.setSenha(aluno.getSenha());
             al.setSobrenome(aluno.getSobrenome());
-            
+
             alunos.add(al);
         }
-        
+
         JSONArray jsonArray = new JSONArray(alunos);
-        
+
         OutputStream os = response.getOutputStream();
         os.write(jsonArray.toString().getBytes());
 

@@ -28,6 +28,9 @@ public class Comentarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         
         int topicoCod = Integer.parseInt(request.getParameter("topico"));
         Dao dao = new Dao();

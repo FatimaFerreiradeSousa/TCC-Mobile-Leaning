@@ -26,6 +26,7 @@ public class GruposPesquisa extends HttpServlet {
             throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         String nome = request.getParameter("grupo");
         
         Dao dao = new Dao();

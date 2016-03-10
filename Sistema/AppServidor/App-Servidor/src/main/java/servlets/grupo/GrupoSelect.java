@@ -25,7 +25,8 @@ public class GrupoSelect extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         
         int codigo = Integer.parseInt(request.getParameter("codigo"));
         

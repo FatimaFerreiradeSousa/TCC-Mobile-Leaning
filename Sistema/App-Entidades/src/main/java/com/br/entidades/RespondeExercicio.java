@@ -28,17 +28,11 @@ public class RespondeExercicio implements Serializable{
     private boolean respondido;
     @ManyToOne
     private Aluno aluno;
+    @ManyToOne
+    private Grupo grupo;
     
     public RespondeExercicio(){
     
-    }
-
-    public RespondeExercicio(float nota, Date dataResposta, int codTeste, boolean respondido, Aluno aluno) {
-        this.nota = nota;
-        this.dataResposta = dataResposta;
-        this.codTeste = codTeste;
-        this.respondido = respondido;
-        this.aluno = aluno;
     }
 
     public int getId() {
@@ -87,5 +81,13 @@ public class RespondeExercicio implements Serializable{
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 }

@@ -126,6 +126,12 @@ angular.module('starter', ['ionic'])
         controller: 'resultadosCtrl'
     })
 
+    .state('alunoDetalheGrupo', {
+        url: '/alunoDetalheGrupo/:loginAluno',
+        templateUrl: 'templates/alunoDetalheGrupo.html',
+        controller: 'alunoDetalheGrupoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })
