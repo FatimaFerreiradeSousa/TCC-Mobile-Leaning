@@ -51,9 +51,6 @@
                                 <h:commandLink value="Desempenho" style="text-decoration: none;" 
                                                action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"/>
                             </li>
-                            <li class="mdl-menu__item">
-                                <a href="page-listar-testes.jsf" style="text-decoration: none">Plano de Aula</a>
-                            </li>
                         </ul>
                     </h:form>
                 </div>
@@ -112,8 +109,8 @@
                                     <f:param value="#{controladorTurma.aluno.login}" name="loginUsuario"/>
                                 </p:graphicImage>
 
-                                <p style="margin-top: 2%;">
-                                    #{controladorTurma.aluno.nome}
+                                <p style="margin-top: 5%;">
+                                    #{controladorTurma.aluno.nome} #{controladorTurma.aluno.sobrenome}
                                 </p>
                             </div>
                         </div>

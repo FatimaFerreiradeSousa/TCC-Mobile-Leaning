@@ -95,7 +95,9 @@
                 <h:form>
                     <div class="w3-container w3-center text-config w3-margin-top">
 
-                        <h:commandButton class="w3-btn w3-teal btn-aluno" value="Ver resultado" 
+                        <h:commandButton class="w3-btn w3-teal w3-btn-group" value="Ver resultado" 
+                                         style="width: 100%"
+                                         rendered="#{controladorTeste.comecar == true}"
                                          action="#{controladorTeste.salvarTesteResolvido()}">
 
                             <f:param name="codGrupo" value="#{controladorGrupo.grupo.codigo}"/>

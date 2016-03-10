@@ -99,18 +99,38 @@
             <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
                 <main class="mdl-layout__content mdl-color--grey-100">
 
-                    <div class="w3-container w3-center form-comments">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+                        <div class="w3-container w3-center form-comments">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
+                                                 class="mdl-textfield__input text-config" 
+                                                 id="topico" rows="1"/>
 
-
-                            <button onclick="document.getElementById('id01').style.display = 'block'" 
-                                    class="w3-btn">Arquivo</button>
+                                <label class="mdl-textfield__label" for="topico">Arquivo</label>
+                            </div>
                         </div>
 
-                        <hr />
-                    </div>
+                        <div class="w3-container w3-margin-top mdl-cell--12-col w3-center">
+                            <div class="fileUpload buttons-formulario">
+                                <label class="text-black">Selecione um Arquivo</label>
+                                <p:fileUpload 
+                                    value="#{controladorGrupo.fileUpload}"
+                                    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                    mode="simple" 
+                                    styleClass="upload"
+                                    />
+                            </div>
+                        </div>
 
-                    <h:form enctype="multipart/form-data">
+                        <div class="w3-container w3-center">
+                            <h:commandButton value="Publicar" action="#{controladorGrupo.uploadProfessor()}"
+                                             class="w3-btn w3-indigo"/>
+
+                        </div>
+                    </h:form>
+
+                    <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+
                         <h:dataTable value="#{controladorGrupo.listarArquivos()}" var="topico"
                                      class="w3-table">
 

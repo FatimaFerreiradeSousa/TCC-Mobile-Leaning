@@ -435,7 +435,7 @@ public class GerenciadorGrupo implements Serializable {
     }
 
     public List<RespondeExercicio> listarRespondeExercicios() {
-        return fachada.listarRespondeExercicio(aluno.getLogin());
+        return fachada.listarRespondeExercicio(aluno.getLogin(), grupo.getCodigo());
     }
 
     /*Membros Grupo*/

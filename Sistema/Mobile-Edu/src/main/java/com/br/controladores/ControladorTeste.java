@@ -153,11 +153,13 @@ public class ControladorTeste implements Serializable {
 
     public String comecarAResponder() {
         //disponivel = false;
+        resultado = 0;
         comecar = true;
         tamanho = 0;
         pergunta = teste.getQuestoesExercicios().get(tamanho);
         tamanho++;
         respondeExercicio = new RespondeExercicio();
+        salvarTeste = false;
         return "page-responder-teste?faces-redirect=true";
     }
 
@@ -185,12 +187,16 @@ public class ControladorTeste implements Serializable {
     }
 
     public String salvarTesteResolvido() {
+        String codGrupo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codGrupo");
+        Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codGrupo));
+        
         respondeExercicio.setCodTeste(teste.getCodigo());
         respondeExercicio.setDataResposta(new Date());
         respondeExercicio.setNota(resultado);
         respondeExercicio.setRespondido(true);
         Aluno aluno = PegarUsuarioSessao.pegarAlunoSessao();
         respondeExercicio.setAluno(aluno);
+        respondeExercicio.setGrupo(grupo);
 
         fachada.salvarRespondeTeste(respondeExercicio);
         atualizarPontuacao();

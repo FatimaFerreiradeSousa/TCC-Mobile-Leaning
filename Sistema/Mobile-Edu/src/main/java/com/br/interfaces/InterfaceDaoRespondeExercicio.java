@@ -21,5 +21,5 @@ public interface InterfaceDaoRespondeExercicio {
     
     public List<RespondeExercicio> resultados(int codTeste);
     
-    public List<RespondeExercicio> listarExcerciciosAluno(String login);
+    public List<RespondeExercicio> listarExcerciciosAluno(String login, int grupo);
 }

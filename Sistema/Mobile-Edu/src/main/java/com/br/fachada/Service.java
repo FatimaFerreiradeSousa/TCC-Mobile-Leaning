@@ -303,8 +303,8 @@ public class Service implements Serializable {
         return daoRespondeExercicio.resultados(codTeste);
     }
     
-    public List<RespondeExercicio> listarRespondeExercicio(String login){
-        return daoRespondeExercicio.listarExcerciciosAluno(login);
+    public List<RespondeExercicio> listarRespondeExercicio(String login, int grupo){
+        return daoRespondeExercicio.listarExcerciciosAluno(login, grupo);
     }
     
     /*CRUD TURMA*/
