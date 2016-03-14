@@ -276,7 +276,7 @@ public class Dao {
     public boolean removerTopico(Topico topico) {
         em.getTransaction().begin();
         try {
-            em.remove(topico);
+            em.remove(em.merge(topico));
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {

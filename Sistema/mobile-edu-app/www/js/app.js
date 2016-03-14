@@ -132,6 +132,12 @@ angular.module('starter', ['ionic'])
         controller: 'alunoDetalheGrupoCtrl'
     })
 
+    .state('comentarios', {
+        url: '/comentarios',
+        templateUrl: 'templates/comentarios.html',
+        controller: 'comentariosCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

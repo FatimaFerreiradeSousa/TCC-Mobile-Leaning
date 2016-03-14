@@ -20,8 +20,17 @@ public class TopicoAux implements Serializable{
     private String fotoUsuario;
     private String nomeUsuario;
     private String sobrenomeUsuario;
+    private int codigoGrupo;
     
     public TopicoAux(){
+    }
+
+    public int getCodigoGrupo() {
+        return codigoGrupo;
+    }
+
+    public void setCodigoGrupo(int codigoGrupo) {
+        this.codigoGrupo = codigoGrupo;
     }
 
     public int getCodigo() {

@@ -62,6 +62,7 @@ public class Topicos extends HttpServlet {
             t.setSobrenomeUsuario(pessoa.getSobrenome());
             t.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
 
+            t.setCodigoGrupo(topico.getGrupo().getCodigo());
             temp.add(t);
         }
 

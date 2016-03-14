@@ -1,5 +1,6 @@
 package com.br.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -69,6 +70,11 @@ public class FormatData {
     public static String parseDateString(Date data){
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(data);
+    }
+    
+    public static Date parseStringDate(String data) throws ParseException{
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.parse(data);
     }
     
     public static boolean verificarData(Date data){

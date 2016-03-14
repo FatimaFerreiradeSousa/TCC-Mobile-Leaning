@@ -213,11 +213,6 @@ angular.module('starter')
 
 })
 
-
-
-
-
-
 .controller('homeGrupoCtrl', function($scope, $state, $stateParams, $http, fac){
 
     $scope.grupoCodigo = $stateParams.codGrupo;
@@ -237,11 +232,7 @@ angular.module('starter')
     }
 
     $scope.removerTopico = function(topicoRemover){
-        alert("Topico: " +topicoRemover.codigo);
-    }
-
-    $scope.alterarTopico = function(topicoAlterar){
-        alert("Topico: " +topicoAlterar.codigo);
+        fac.removerTopicos(topicoRemover);
     }
 
     var caminho = "http://192.168.2.4:8080/App-Servidor/GrupoSelect?codigo=";
@@ -261,21 +252,6 @@ angular.module('starter')
     }, 2000);
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .controller('alunosGrupoCtrl', function($scope, $state, $stateParams, $http){
 
@@ -361,6 +337,12 @@ angular.module('starter')
     $http.get(url).then(function(response) {
         $scope.membroGrupo = response.data;
     })
+})
+
+.controller('comentariosCtrl', function($scope, $state, $stateParams, $http){
+
+    //$scope.topicoCodigo = $stateParams.topicoCod;
+    
 })
 
 

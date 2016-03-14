@@ -13,11 +13,12 @@ public class App {
     public static void main(String[] args) {
         
         Dao dao = new Dao();
-        List<Horario> horariosTurma = dao.consultarHorario("Segunda-Feira", "GEO-2016");
-        
-        System.out.println("Size: "+horariosTurma.size());
 
+        Topico topico = new Topico();
+        topico.setCodigo(24);
+        topico.setConteudo("A morte não e nada, eu somente passei para o outro lado do caminho...");
         
+        System.out.println(dao.alterarTopico(topico));
     }
     
 }

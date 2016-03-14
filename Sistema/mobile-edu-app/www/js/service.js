@@ -50,11 +50,22 @@ angular.module('starter').factory('fac', function($state, $http) {
         }); 
       },
 
-      removerTopico: function(topico){
-        var url = "http://192.168.2.4:8080/App-Servidor/Topicos"
+      removerTopicos: function(topico){
+        var url = "http://192.168.2.4:8080/App-Servidor/RemoverTopico"
         $http.post(url, topico).then(function(response){
+            alert(response.data);
             $state.go("homeGrupo")
         });
+      },
+
+      alterarTopicos: function(topico){
+        alert("Topico Alterar: " +topico.codigo);
+        var url = "http://192.168.2.4:8080/App-Servidor/AtualizarTopico"
+        $http.post(url, topico).then(function(response){
+            alert(response.data);
+            $state.go("homeGrupo")
+        });
+        
       }
     }
 
