@@ -1,15 +1,19 @@
 package servlets.grupo;
 
 import com.br.dao.Dao;
+import com.br.entidades.Grupo;
 import com.br.entidades.Pessoa;
 import com.br.entidades.Topico;
 import com.br.util.FormatData;
 import com.br.util.FotosServices;
 import com.br.util.Servicos;
 import com.br.util.TopicoAux;
+import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -31,7 +36,7 @@ public class Topicos extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
-        
+
         int codigo = Integer.parseInt(request.getParameter("grupo"));
 
         Dao dao = new Dao();
@@ -48,15 +53,15 @@ public class Topicos extends HttpServlet {
             t.setLoginUsuario(topico.getLoginUsuario());
             t.setNome(topico.getNome());
             t.setTipo(topico.getTipo());
-            
-           // t.setComentarios(topico.getComentarios());
+
+            // t.setComentarios(topico.getComentarios());
             Pessoa pessoa = new Pessoa();
             pessoa = Servicos.buscarUsuario(topico.getLoginUsuario());
-            
+
             t.setNomeUsuario(pessoa.getNome());
             t.setSobrenomeUsuario(pessoa.getSobrenome());
             t.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
-            
+
             temp.add(t);
         }
 
@@ -71,5 +76,38 @@ public class Topicos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        if (request.getMethod().equals("POST")) {
+
+            PrintWriter printWriter = response.getWriter();
+            response.setContentType("text/html");
+
+            Dao dao = new Dao();
+
+            String json = UtilTest.streamToString(request.getInputStream());
+            JSONObject jSONObject = UtilTest.getJSON(json);
+
+            Topico topico = new Topico();
+            topico.setConteudo(jSONObject.getString("conteudo"));
+            topico.setDataCriacao(new Date());
+            topico.setLoginUsuario(jSONObject.getString("loginUsuario"));
+            topico.setTipo("Publicacao");
+
+            Grupo grupo = dao.consultarGrupo(Integer.parseInt(jSONObject.getString("grupoCod")));
+            topico.setGrupo(grupo);
+
+            if (topico.getConteudo() != null) {
+                dao.salvarTopico(topico);
+                printWriter.write("true");
+                printWriter.flush();
+                printWriter.close();
+            } else {
+                printWriter.write("false");
+                printWriter.flush();
+                printWriter.close();
+            }
+
+        }
+
     }
 }

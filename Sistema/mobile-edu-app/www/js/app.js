@@ -85,7 +85,7 @@ angular.module('starter', ['ionic'])
     })
 
     .state('homeGrupo', {
-        url: '/homeGrupo/:codGrupo',
+        url: '/homeGrupo/:codGrupo/:loginAluno',
         templateUrl: 'templates/homeGrupo.html',
         controller: 'homeGrupoCtrl'
     })
