@@ -6,19 +6,24 @@
 
     <ion-content padding="true" class="has-header" style="margin-bottom: 15%; margin-top: 8%">
 
-        <h4 style="text-align: center;">Horário de Hoje</h4>
-        
-        <ion-list ng-repeat="t in turmas">
-            <ion-item class="item-divider" style="text-align: center;">
-                {{t.nome}} <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
-                <hr/>
-                <div class="" ng-repeat="h in t.horarios">
-                    {{h.horarioInicial}} - {{h.horarioFinal}}
-                </div>
-            </ion-item>
+        <form  accept-charset="ISO-8859-1">
+                
+            <h4 style="text-align: center;">Horário de Hoje</h4>
+            
+            <ion-list ng-repeat="t in turmas">
+                <ion-item class="item-divider" style="text-align: center;">
+                    {{t.nome}} <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
+                    <hr/>
+                    <div class="" ng-repeat="h in t.horarios">
+                        {{h.horarioInicial}} - {{h.horarioFinal}}
+                    </div>
+                </ion-item>
 
-            <br/>
-        </ion-list>
+                <br/>
+            </ion-list>
+
+        </form>
+
     </ion-content>
    
 	   <ion-tabs class="tabs-balanced tabs-icon-top">

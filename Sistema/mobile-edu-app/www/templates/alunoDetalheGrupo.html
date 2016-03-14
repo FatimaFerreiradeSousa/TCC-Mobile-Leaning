@@ -4,17 +4,13 @@
         <h1 class="title" style="text-align: center;">Desempenho</h1>
     </ion-header-bar>
 
-    <ion-content class="has-header">
+    <ion-content class="has-header" style="text-align: center;">
 
-        <div class="list">
-
-          <div class="item-avatar item">
-
-            <img src="data:image/jpeg;base64, {{membroGrupo.foto}}">
-            <h2>{{membroGrupo.alunoNome}} {{membroGrupo.alunoSobrenome}}</h2>
-            <p style="font-size: 12px;">{{membroGrupo.login}}</p>
-            
+          <div id="logo">
+              <img src="data:image/jpeg;base64, {{membroGrupo.foto}}" class="foto">
           </div>
+        
+          <h3>{{membroGrupo.alunoNome}} {{membroGrupo.alunoSobrenome}}</h3>        
 
           <div  style="text-align: center; color:red; margin-top: 5%">
 
@@ -25,8 +21,6 @@
               <h4>Publicações Feitas: {{membroGrupo.publicacoes}}</h4>
               
           </div>
-
-        </div>
 
         <br/>
     </ion-content>

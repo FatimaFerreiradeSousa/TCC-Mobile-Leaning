@@ -8,15 +8,13 @@
 
       <p style="text-align: center; margin-top: 4%">Alunos que responderam esse teste</p>
       
-      <div class="list" ng-repeat="r in resultados">
-
-          <div class="item item-thumbnail-left item-avatar">
-            <img src="data:image/jpeg;base64, {{r.fotoAluno}}">
+      <ion-list>
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="r in resultados" type="item-text-wrap">
+            <img ng-src="data:image/jpeg;base64, {{r.fotoAluno}}">
             <h2>{{r.alunoNome}} {{r.alunoSobrenome}}</h2>
             <p>Pontuação {{r.nota}}</p>
-          </div>
-
-      </div>
+          </ion-item>
+        </ion-list>
     
     </ion-content>
 

@@ -28,13 +28,16 @@ public class AlunoInfo extends HttpServlet {
         response.setCharacterEncoding("ISO-8859-1");
         
         String login = request.getParameter("login");
+        int grupo = Integer.parseInt(request.getParameter("grupo"));
+                
         Dao dao = new Dao();
         
-        ParticipaGrupo participaGrupo = dao.buscarParticipaGrupo(login, 1);
-        int testesRespondidos = dao.listarExcerciciosAluno(login, 1).size();
-        int publicacoesFeitas = dao.listarTopicosUsuario(login, 1).size();
-        Grupo grupo = dao.consultarGrupo(1);
-        int testesGrupo = grupo.getTestesGrupo().size();
+        ParticipaGrupo participaGrupo = dao.buscarParticipaGrupo(login, grupo);
+        int testesRespondidos = dao.listarExcerciciosAluno(login, grupo).size();
+        int publicacoesFeitas = dao.listarTopicosUsuario(login, grupo).size();
+        
+        Grupo g = dao.consultarGrupo(grupo);
+        int testesGrupo = g.getTestesGrupo().size();
         
         JSONObject jSONObject = UtilTest.getJSONAlunoInfo(participaGrupo, testesRespondidos, publicacoesFeitas, testesGrupo);
         

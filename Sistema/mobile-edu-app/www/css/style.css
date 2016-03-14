@@ -29,3 +29,12 @@ input{
 label{
 	font-family: "Raleway", sans-serif;
 }
+
+.foto {
+  height: 90px;
+  width: 90px;
+}
+
+#logo {
+  margin: 30px 0px;
+}

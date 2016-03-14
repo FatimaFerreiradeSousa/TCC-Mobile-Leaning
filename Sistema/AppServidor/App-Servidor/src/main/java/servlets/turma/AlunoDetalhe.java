@@ -26,15 +26,15 @@ public class AlunoDetalhe extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("login");
-        //String turma = request.getParameter("turma");
+        String turma = request.getParameter("turma");
         
         Dao dao = new Dao();
         
         Aluno aluno = dao.buscarAluno(login);
-        //int presenca = dao.qtdPresencas(login, turma);
-        //int faltas = dao.qtdFaltas(login, turma);
+        int presenca = dao.qtdPresencas(login, turma);
+        int faltas = dao.qtdFaltas(login, turma);
         
-        JSONObject jSONObject = UtilTest.getJSONAluno(aluno, 0, 0);
+        JSONObject jSONObject = UtilTest.getJSONAluno(aluno, presenca, faltas);
         
         OutputStream os = response.getOutputStream();
         os.write(jSONObject.toString().getBytes());

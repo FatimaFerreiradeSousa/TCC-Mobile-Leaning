@@ -6,19 +6,24 @@
 
     <ion-content padding="true" class="has-header">
 
-        <div class="list">
+          <div class="list">
 
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-              <input type="text" placeholder="Escreva Algo...">
+            <!--<input type="file" id="file" name="file" ng-model="file"/>-->
+
+            <input type="file" file-model="file.arquivo"/><br/>
+
+            <label class="item item-input">
+              <textarea placeholder="Comments" ng-model="file.conteudo"></textarea>
             </label>
-            <button class="button button-small">
-              Enviar
-            </button>
+
+              <button class="button button-block button-positive" ng-click="enviar()">
+                Enviar
+              </button>
+
+            
           </div>
-
-        </div>
-
+        
+        
         <div class="list card" ng-repeat="topico in arquivos">
 
           <div class="item item-avatar">
@@ -37,8 +42,7 @@
             </p>            
 
             <p>
-              <a href="#" class="subdued">1 Like</a>
-              <a href="#" class="subdued">5 Comentários</a>
+              <a href="#" class="subdued">Remover</a>
             </p>
           </div>
 

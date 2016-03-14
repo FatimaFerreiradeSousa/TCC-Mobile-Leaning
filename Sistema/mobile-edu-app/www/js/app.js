@@ -61,7 +61,7 @@ angular.module('starter', ['ionic'])
     })
 
     .state('alunoDetalhe', {
-        url: '/alunoDetalhe/:alunoId',
+        url: '/alunoDetalhe/:alunoId/:turmaId',
         templateUrl: 'templates/alunoDetalhe.html',
         controller: 'alunoDetalheCtrl'
     })
@@ -127,7 +127,7 @@ angular.module('starter', ['ionic'])
     })
 
     .state('alunoDetalheGrupo', {
-        url: '/alunoDetalheGrupo/:loginAluno',
+        url: '/alunoDetalheGrupo/:loginAluno/:grupoId',
         templateUrl: 'templates/alunoDetalheGrupo.html',
         controller: 'alunoDetalheGrupoCtrl'
     })

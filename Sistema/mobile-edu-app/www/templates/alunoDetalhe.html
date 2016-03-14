@@ -4,10 +4,27 @@
         <h1 class="title" style="text-align: center;">Desempenho</h1>
     </ion-header-bar>
 
-    <ion-content class="has-header">
-    	{{alunoId}}
+    <ion-content class="has-header" style="text-align: center;">
+    	
+        <div id="logo">
+        	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto">
+        </div>
+        
+        <h3>{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h3>
+           	
+        <p>
+        	{{alunoTurma.curso}}
+        	<br />
+			{{alunoTurma.instituicao}}
+        </p>
 
-    	{{alunoTurma.nome}}
-        <br/>
+        <p>
+        	Presenças:	<label style="color: red; font-size: 3em">{{alunoTurma.presenca}}</label>
+        </p>
+
+        <p>
+        	Faltas: <label style="color: red; font-size: 3em">{{alunoTurma.faltas}}</label>
+        </p>
+        
     </ion-content>
 </ion-view>

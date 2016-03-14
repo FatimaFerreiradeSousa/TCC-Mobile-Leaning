@@ -6,30 +6,26 @@
 
     <ion-content padding="true" class="has-header" style="margin-top: 8%">
 
-        <div class="list">
-
-          <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-              <input type="text" placeholder="Publicar">
-            </label>
-            <button class="button button-small">
-              Publicar
-            </button>
-          </div>
-
+        <div class="bar bar-header item-input-inset" >
+              <label class="item-input-wrapper" style="margin-bottom: 6px;">
+                <i class="icon ion-chatbubble-working placeholder-icon"></i>
+                <input type="search" placeholder="Escreva Algo" ng-model="topico.conteudo">
+              </label>
+              <button class="button button-positive button-clear icon ion-ios-paperplane" ng-click="publicar()" >
+              </button>
         </div>
 
-        <div class="list card" ng-repeat="topico in topicos">
+        <div class="list card" ng-repeat="t in topicos">
 
           <div class="item item-avatar">
-            <img src="data:image/jpeg;base64, {{topico.fotoUsuario}}">
-            <h2>{{topico.nomeUsuario}} {{topico.sobrenomeUsuario}}</h2>
-            <p style="font-size: 10px">Em {{topico.dataCriacao}}</p>
+            <img src="data:image/jpeg;base64, {{t.fotoUsuario}}">
+            <h2>{{t.nomeUsuario}} {{t.sobrenomeUsuario}}</h2>
+            <p style="font-size: 10px">Em {{t.dataCriacao}}</p>
           </div>
 
           <div class="item item-body">
             <p style="text-align: justify;">
-                {{topico.conteudo}}
+                {{t.conteudo}}
             </p>
             <p>
               <a href="#" class="subdued">1 Like</a>
