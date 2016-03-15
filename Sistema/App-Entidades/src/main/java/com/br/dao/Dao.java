@@ -259,6 +259,10 @@ public class Dao {
             return null;
         }
     }
+    
+    /**************************TOPICO
+     * @param topicoS*
+     * @return ****************************************/
 
     public boolean salvarTopico(Topico topico) {
 
@@ -296,6 +300,16 @@ public class Dao {
             return false;
         }
     }
+    
+    public Topico consultarTopico(int codigo) {
+
+        try {
+            return em.find(Topico.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public boolean salvarComentario(Comentario comentario) {
 
@@ -306,6 +320,27 @@ public class Dao {
             return true;
         } catch (Exception e) {
             em.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    public Comentario consultarComentario(int codigo) {
+
+        try {
+            return em.find(Comentario.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public boolean atualizarComentario(Comentario comentario) {
+
+        try {
+            em.merge(comentario);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

@@ -3,7 +3,7 @@ angular.module('starter').factory('fac', function($state, $http) {
     var obj =  {
       
       salvar: function(aluno) {
-        var url = "http://192.168.2.4:8080/App-Servidor/Cadastro";
+        var url = "http://192.168.2.5:8080/App-Servidor/Cadastro";
         var status = "";
 
         $http.post(url, aluno).then(function(response) {
@@ -36,7 +36,7 @@ angular.module('starter').factory('fac', function($state, $http) {
           foto:''
         }
 
-        var url = "http://192.168.2.4:8080/App-Servidor/Login"
+        var url = "http://192.168.2.5:8080/App-Servidor/Login"
         $http.post(url, aluno).then(function(response){
             alunoObj = response.data;
             $state.go("home", {login:alunoObj.login})
@@ -44,14 +44,14 @@ angular.module('starter').factory('fac', function($state, $http) {
       },
 
       salvarTopico: function(topico){
-        var url = "http://192.168.2.4:8080/App-Servidor/Topicos"
+        var url = "http://192.168.2.5:8080/App-Servidor/Topicos"
         $http.post(url, topico).then(function(response){
             $state.go("homeGrupo")
         }); 
       },
 
       removerTopicos: function(topico){
-        var url = "http://192.168.2.4:8080/App-Servidor/RemoverTopico"
+        var url = "http://192.168.2.5:8080/App-Servidor/RemoverTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
             $state.go("homeGrupo")
@@ -60,12 +60,27 @@ angular.module('starter').factory('fac', function($state, $http) {
 
       alterarTopicos: function(topico){
         alert("Topico Alterar: " +topico.codigo);
-        var url = "http://192.168.2.4:8080/App-Servidor/AtualizarTopico"
+        var url = "http://192.168.2.5:8080/App-Servidor/AtualizarTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
             $state.go("homeGrupo")
         });
         
+      },
+
+      salvarComentario: function(comentario){
+        var url = "http://192.168.2.5:8080/App-Servidor/Comentarios"
+        $http.post(url, comentario).then(function(response){
+            $state.go("comentarios")
+        });
+      },
+
+      removerComentario: function(comentario){
+        var url = "http://192.168.2.5:8080/App-Servidor/RemoverTopico"
+        $http.post(url, comentario).then(function(response){
+            alert(response.data);
+            $state.go("comentarios")
+        });
       }
     }
 

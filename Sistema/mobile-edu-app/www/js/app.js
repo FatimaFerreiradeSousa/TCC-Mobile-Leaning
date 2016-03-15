@@ -133,7 +133,7 @@ angular.module('starter', ['ionic'])
     })
 
     .state('comentarios', {
-        url: '/comentarios',
+        url: '/comentarios/:codigoTopico/:loginAluno',
         templateUrl: 'templates/comentarios.html',
         controller: 'comentariosCtrl'
     })

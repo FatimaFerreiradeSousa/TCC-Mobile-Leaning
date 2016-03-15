@@ -37,41 +37,45 @@ public class Topicos extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
 
-        int codigo = Integer.parseInt(request.getParameter("grupo"));
+        String aux = request.getParameter("grupo");
 
-        Dao dao = new Dao();
-        List<Topico> topicos = dao.listarTopicos(codigo);
-        List<TopicoAux> temp = new ArrayList();
+        if (!aux.equalsIgnoreCase("undefined")) {
+            int codigo = Integer.parseInt(aux);
+            
+            Dao dao = new Dao();
+            List<Topico> topicos = dao.listarTopicos(codigo);
+            List<TopicoAux> temp = new ArrayList();
 
-        for (Topico topico : topicos) {
+            for (Topico topico : topicos) {
 
-            TopicoAux t = new TopicoAux();
-            t.setCaminho(topico.getCaminho());
-            t.setCodigo(topico.getCodigo());
-            t.setConteudo(topico.getConteudo());
-            t.setDataCriacao(FormatData.parseDateString(topico.getDataCriacao()));
-            t.setLoginUsuario(topico.getLoginUsuario());
-            t.setNome(topico.getNome());
-            t.setTipo(topico.getTipo());
+                TopicoAux t = new TopicoAux();
+                t.setCaminho(topico.getCaminho());
+                t.setCodigo(topico.getCodigo());
+                t.setConteudo(topico.getConteudo());
+                t.setDataCriacao(FormatData.parseDateString(topico.getDataCriacao()));
+                t.setLoginUsuario(topico.getLoginUsuario());
+                t.setNome(topico.getNome());
+                t.setTipo(topico.getTipo());
 
-            // t.setComentarios(topico.getComentarios());
-            Pessoa pessoa = new Pessoa();
-            pessoa = Servicos.buscarUsuario(topico.getLoginUsuario());
+                // t.setComentarios(topico.getComentarios());
+                Pessoa pessoa = new Pessoa();
+                pessoa = Servicos.buscarUsuario(topico.getLoginUsuario());
 
-            t.setNomeUsuario(pessoa.getNome());
-            t.setSobrenomeUsuario(pessoa.getSobrenome());
-            t.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
+                t.setNomeUsuario(pessoa.getNome());
+                t.setSobrenomeUsuario(pessoa.getSobrenome());
+                t.setFotoUsuario(FotosServices.converteArquivoEmStringBase64(pessoa.getFoto()));
 
-            t.setCodigoGrupo(topico.getGrupo().getCodigo());
-            temp.add(t);
+                t.setCodigoGrupo(topico.getGrupo().getCodigo());
+                temp.add(t);
+            }
+
+            JSONArray jSONArray = new JSONArray(temp);
+            OutputStream os = response.getOutputStream();
+            os.write(jSONArray.toString().getBytes());
+
+            os.flush();
+            os.close();
         }
-
-        JSONArray jSONArray = new JSONArray(temp);
-        OutputStream os = response.getOutputStream();
-        os.write(jSONArray.toString().getBytes());
-
-        os.flush();
-        os.close();
     }
 
     @Override

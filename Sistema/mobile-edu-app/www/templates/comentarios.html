@@ -6,41 +6,36 @@
 
     <ion-content padding="true" class="has-header">
 
-        <!--
         <div class="bar bar-header item-input-inset" >
               <label class="item-input-wrapper" style="margin-bottom: 6px;">
                 <i class="icon ion-chatbubble-working placeholder-icon"></i>
-                <input type="search" placeholder="Escreva Algo">
+                <input type="search" placeholder="Comentar..." ng-model="comentario.conteudo">
               </label>
-              <button class="button button-positive button-clear icon ion-ios-paperplane"></button>
+              <button class="button button-positive button-clear icon ion-ios-paperplane" ng-click="comentar()"></button>
         </div>
-
         
-        
-
-        <div class="list card" ng-repeat="t in topicos">
+        <div class="list card" ng-repeat="c in comentarios">
 
           <div class="item item-avatar">
-            <img src="data:image/jpeg;base64, {{t.fotoUsuario}}">
-            <h2>{{t.nomeUsuario}} {{t.sobrenomeUsuario}}</h2>
-            <p style="font-size: 10px">Em {{t.dataCriacao}}</p>
+            <img src="data:image/jpeg;base64, {{c.fotoUsuario}}">
+            <h2>{{c.nomeUsuario}} {{c.sobrenomeUsuario}}</h2>
+            <p style="font-size: 10px">Em {{c.dataComentario}}</p>
           </div>
 
           <div class="item item-body">
             <p style="text-align: justify; color: black;">
-                {{t.conteudo}}
+                {{c.conteudo}}
             </p>
 
             <p>
-              <a href="#/comentarios/{{t.codigo}}" class="subdued">Comentar</a>
-              <a ng-click="removerTopico(t)" class="subdued">Remover</a>
+              <a href="#" class="subdued">Remover</a>
               <a href="#" class="subdued">Alterar</a>
             </p>
           </div>
 
         </div>
 
-        <br/>-->
+        <br/>
         
     </ion-content>
 </ion-view>
