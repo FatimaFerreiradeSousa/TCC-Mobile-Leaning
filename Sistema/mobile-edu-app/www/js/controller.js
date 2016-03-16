@@ -366,9 +366,55 @@ angular.module('starter')
             $scope.comentarios = response.data;
         })
     }, 2000);
+
+    $scope.removerComentarios = function(comentario){
+        fac.removerComentario(comentario);
+    }
     
 })
 
+.controller('alterarComentarioCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.comentarioCodigo = $stateParams.codigoComentario;
+
+    $scope.tempComentario = {
+        conteudo:'',
+        codigo:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/AlterarComentario?comentario=";
+    var url = caminho.concat($stateParams.codigoComentario)
+            
+    $http.get(url).then(function(response) {
+        $scope.tempComentario = response.data;
+    })
+
+    $scope.alterarComent = function(){
+        fac.alterarComentarios($scope.tempComentario);
+    }
+})
+
+.controller('alterarTopicoCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.codigoTopicoTem = $stateParams.codigoTopico;
+
+    $scope.tempTopico = {
+        conteudo:'',
+        codigo:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarTopico?topico=";
+    var url = caminho.concat($stateParams.codigoTopico)
+            
+    $http.get(url).then(function(response) {
+        $scope.tempTopico = response.data;
+    })
+
+    
+    $scope.alterarTopico = function(){
+        fac.alterarTopicos($scope.tempTopico);
+    }
+})
 
 
 

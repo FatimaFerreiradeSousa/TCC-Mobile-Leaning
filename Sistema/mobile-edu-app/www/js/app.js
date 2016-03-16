@@ -138,6 +138,18 @@ angular.module('starter', ['ionic'])
         controller: 'comentariosCtrl'
     })
 
+    .state('alterarComentario', {
+        url: '/alterarComentario/:codigoComentario',
+        templateUrl: 'templates/alterarComentario.html',
+        controller: 'alterarComentarioCtrl'
+    })
+
+    .state('alterarTopico', {
+        url: '/alterarTopico/:codigoTopico',
+        templateUrl: 'templates/alterarTopico.html',
+        controller: 'alterarTopicoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

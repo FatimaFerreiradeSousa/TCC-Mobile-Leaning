@@ -1,16 +1,12 @@
 package servlets.grupo;
 
 import com.br.dao.Dao;
-import com.br.entidades.Grupo;
-import com.br.entidades.Topico;
+import com.br.entidades.Comentario;
 import com.br.util.FormatData;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,27 +18,27 @@ import org.json.JSONObject;
  *
  * @author Fatinha de Sousa
  */
-@WebServlet(name = "AtualizarTopico", urlPatterns = {"/AtualizarTopico"})
-public class AtualizarTopico extends HttpServlet {
+@WebServlet(name = "AlterarComentario", urlPatterns = {"/AlterarComentario"})
+public class AlterarComentario extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        String codigo = request.getParameter("topico");
+        String coment = request.getParameter("comentario");
 
-        if (!codigo.equalsIgnoreCase("undefined")) {
+        if (!coment.equalsIgnoreCase("undefined")) {
             Dao dao = new Dao();
-            Topico topico = dao.consultarTopico(Integer.parseInt(codigo));
-            
+
+            int codigo = Integer.parseInt(coment);
+            Comentario comentario = dao.consultarComentario(codigo);
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("codigo", topico.getCodigo());
-            jSONObject.put("conteudo", topico.getConteudo());
-            jSONObject.put("data", FormatData.parseDateString(topico.getDataCriacao()));
-            jSONObject.put("loginUsuario", topico.getLoginUsuario());
-            jSONObject.put("tipo", topico.getTipo());
-            
+            jSONObject.put("codigo", comentario.getCodigo());
+            jSONObject.put("conteudo", comentario.getConteudo());
+            jSONObject.put("loginUsuario", comentario.getLoginUsuario());
+            jSONObject.put("data", FormatData.parseDateString(comentario.getDataComentario()));
+
             OutputStream os = response.getOutputStream();
             os.write(jSONObject.toString().getBytes());
 
@@ -57,25 +53,37 @@ public class AtualizarTopico extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getMethod().equalsIgnoreCase("POST")) {
-            PrintWriter printWriter = response.getWriter();
+
             response.setContentType("text/html");
+            PrintWriter printWriter = response.getWriter();
 
             String json = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(json);
 
             Dao dao = new Dao();
-            Topico topico = dao.consultarTopico(jSONObject.getInt("codigo"));
-            topico.setConteudo(jSONObject.getString("conteudo"));
-            
-            if (dao.alterarTopico(topico)) {
+            Comentario comentario = dao.consultarComentario(jSONObject.getInt("codigo"));
+            comentario.setConteudo(jSONObject.getString("conteudo"));
+
+            if (dao.atualizarComentario(comentario)) {
                 printWriter.write("Alterado!");
                 printWriter.flush();
                 printWriter.close();
-            } else {
+            }else{
                 printWriter.write("Erro!");
                 printWriter.flush();
                 printWriter.close();
             }
         }
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

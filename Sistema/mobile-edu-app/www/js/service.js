@@ -63,7 +63,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.5:8080/App-Servidor/AtualizarTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
-            $state.go("homeGrupo")
+            $state.go("alterarTopico")
         });
         
       },
@@ -76,12 +76,20 @@ angular.module('starter').factory('fac', function($state, $http) {
       },
 
       removerComentario: function(comentario){
-        var url = "http://192.168.2.5:8080/App-Servidor/RemoverTopico"
+        var url = "http://192.168.2.5:8080/App-Servidor/RemoverComentario"
         $http.post(url, comentario).then(function(response){
             alert(response.data);
             $state.go("comentarios")
         });
-      }
+      },
+
+      alterarComentarios: function(comentario){
+        var url = "http://192.168.2.5:8080/App-Servidor/AlterarComentario"
+        $http.post(url, comentario).then(function(response){
+            alert(response.data);
+            $state.go("comentarios")
+        });
+      }      
     }
 
     return obj;

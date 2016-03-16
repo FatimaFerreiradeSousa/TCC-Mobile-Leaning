@@ -32,53 +32,54 @@ public class Horarios extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("loginAl");
-        
-        Dao daoAluno = new Dao();
-        Aluno al = daoAluno.buscarAluno(login);
-        
-        List<Turma> turmas = new ArrayList();
-        List<Turma> tAluno = Servicos.horarioAluno(al);
 
-        for (Turma turma : tAluno) {
-            Turma t = new Turma();
-            t.setCategoria(turma.getCategoria());
-            t.setCodigo(turma.getCodigo());
-            t.setDataInicio(turma.getDataInicio());
-            t.setDataTerminio(turma.getDataTerminio());
-            t.setDescricao(turma.getDescricao());
-            t.setNome(turma.getNome());
+        if (! login.equalsIgnoreCase("undefined")) {
+            Dao daoAluno = new Dao();
+            Aluno al = daoAluno.buscarAluno(login);
 
-            Professor p = new Professor();
-            p.setNome(turma.getProfessor().getNome());
-            t.setProfessor(p);
+            List<Turma> turmas = new ArrayList();
+            List<Turma> tAluno = Servicos.horarioAluno(al);
 
-            List<Horario> horarios = new ArrayList();
-            String dia = FormatData.verificarDia(FormatData.pegarDia());
+            for (Turma turma : tAluno) {
+                Turma t = new Turma();
+                t.setCategoria(turma.getCategoria());
+                t.setCodigo(turma.getCodigo());
+                t.setDataInicio(turma.getDataInicio());
+                t.setDataTerminio(turma.getDataTerminio());
+                t.setDescricao(turma.getDescricao());
+                t.setNome(turma.getNome());
 
-            for (Horario h : turma.getHorarios()) {
+                Professor p = new Professor();
+                p.setNome(turma.getProfessor().getNome());
+                t.setProfessor(p);
 
-                if (h.getDia().equalsIgnoreCase(dia)) {
-                    Horario temp = new Horario();
+                List<Horario> horarios = new ArrayList();
+                String dia = FormatData.verificarDia(FormatData.pegarDia());
 
-                    temp.setHorarioInicial(h.getHorarioInicial());
-                    temp.setHorarioFinal(h.getHorarioFinal());
+                for (Horario h : turma.getHorarios()) {
 
-                    horarios.add(temp);
+                    if (h.getDia().equalsIgnoreCase(dia)) {
+                        Horario temp = new Horario();
+
+                        temp.setHorarioInicial(h.getHorarioInicial());
+                        temp.setHorarioFinal(h.getHorarioFinal());
+
+                        horarios.add(temp);
+                    }
                 }
+
+                t.setHorarios(horarios);
+                turmas.add(t);
             }
 
-            t.setHorarios(horarios);
-            turmas.add(t);
+            JSONArray jSONArray = new JSONArray(turmas);
+
+            OutputStream os = response.getOutputStream();
+            os.write(jSONArray.toString().getBytes());
+
+            os.flush();
+            os.close();
         }
-
-        JSONArray jSONArray = new JSONArray(turmas);
-
-        OutputStream os = response.getOutputStream();
-        os.write(jSONArray.toString().getBytes());
-
-        os.flush();
-        os.close();
-
     }
 
     @Override

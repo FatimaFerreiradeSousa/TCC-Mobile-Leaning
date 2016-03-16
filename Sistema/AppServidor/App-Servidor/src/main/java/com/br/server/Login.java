@@ -25,20 +25,23 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         String login = request.getParameter("loginAl");
-        
-        Dao daoAluno = new Dao();
-        Aluno al = daoAluno.buscarAluno(login);
-        
-        JSONObject jSONObject = UtilTest.getJSONObject(al);
-         
-        OutputStream os = response.getOutputStream();
-        os.write(jSONObject.toString().getBytes());
 
-        os.flush();
-        os.close();
+        if (!login.equalsIgnoreCase("undefined")) {
+
+            Dao daoAluno = new Dao();
+            Aluno al = daoAluno.buscarAluno(login);
+
+            JSONObject jSONObject = UtilTest.getJSONObject(al);
+
+            OutputStream os = response.getOutputStream();
+            os.write(jSONObject.toString().getBytes());
+
+            os.flush();
+            os.close();
+        }
     }
 
     @Override
@@ -49,7 +52,7 @@ public class Login extends HttpServlet {
 
             String jsonString = UtilTest.streamToString(request.getInputStream());
             JSONObject jSONObject = UtilTest.getJSON(jsonString);
-            
+
             Aluno al = new Aluno();
             al.setLogin(jSONObject.getString("login"));
             al.setSenha(jSONObject.getString("senha"));
@@ -57,7 +60,7 @@ public class Login extends HttpServlet {
             Dao daoAluno = new Dao();
             aluno = new Aluno();
             aluno = daoAluno.loginAluno(al.getLogin(), al.getSenha());
-            
+
             if (aluno != null) {
                 JSONObject jsono = UtilTest.getJSONObject(aluno);
                 response.setContentType("text/html");

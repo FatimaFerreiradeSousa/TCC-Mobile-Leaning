@@ -259,11 +259,14 @@ public class Dao {
             return null;
         }
     }
-    
-    /**************************TOPICO
-     * @param topicoS*
-     * @return ****************************************/
 
+    /**
+     * ************************TOPICO
+     *
+     * @param topicoS
+     *
+     * @return ***************************************
+     */
     public boolean salvarTopico(Topico topico) {
 
         em.getTransaction().begin();
@@ -288,7 +291,7 @@ public class Dao {
             return false;
         }
     }
-    
+
     public boolean alterarTopico(Topico topico) {
         em.getTransaction().begin();
         try {
@@ -300,7 +303,7 @@ public class Dao {
             return false;
         }
     }
-    
+
     public Topico consultarTopico(int codigo) {
 
         try {
@@ -323,7 +326,7 @@ public class Dao {
             return false;
         }
     }
-    
+
     public Comentario consultarComentario(int codigo) {
 
         try {
@@ -333,14 +336,28 @@ public class Dao {
             return null;
         }
     }
-    
+
     public boolean atualizarComentario(Comentario comentario) {
 
+        em.getTransaction().begin();
         try {
             em.merge(comentario);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    public boolean removerComentarios(Comentario comentario) {
+        em.getTransaction().begin();
+        try {
+            em.remove(em.merge(comentario));
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
             return false;
         }
     }
