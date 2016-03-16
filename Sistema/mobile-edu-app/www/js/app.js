@@ -103,7 +103,7 @@ angular.module('starter', ['ionic'])
     })
 
     .state('testesGrupo', {
-        url: '/testesGrupo/:codGrupo',
+        url: '/testesGrupo/:codGrupo/:loginAluno',
         templateUrl: 'templates/testesGrupo.html',
         controller: 'testesGrupoGrupoCtrl'
     })
@@ -148,6 +148,12 @@ angular.module('starter', ['ionic'])
         url: '/alterarTopico/:codigoTopico',
         templateUrl: 'templates/alterarTopico.html',
         controller: 'alterarTopicoCtrl'
+    })
+
+    .state('verTeste', {
+        url: '/verTeste/:alunoLogin/:testeCodigo',
+        templateUrl: 'templates/verTeste.html',
+        controller: 'verTesteCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');

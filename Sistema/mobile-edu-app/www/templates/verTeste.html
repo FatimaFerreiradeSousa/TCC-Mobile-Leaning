@@ -1,0 +1,28 @@
+<ion-view title="Mobile-Edu" ng-controller="verTesteCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Responder Teste</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+      <div class="card" style="text-align: center;">
+        <div class="item item-text-wrap">
+           <h2>{{testeTemp.assunto}}</h2>
+           
+           Enviado por {{testeTemp.professor}}
+
+           <p style="font-size: 12px">Entregar em {{testeTemp.dataEntrega}}</p>
+        </div>
+        <div class="item item-divider">
+          <p>
+              <label ng-if="testeTemp.disponivel == 1" style="color: red; font-size: 1em">Você ja respondeu este teste!</label>
+              <label ng-if="testeTemp.disponivel == 2" style="color: red; font-size: 1em">Este teste estava disponivel ate o dia {{testeTemp.dataEntrega}}</label>
+              <a href="#" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
+          </p>
+        </div>
+      </div>
+
+    </ion-content>
+
+</ion-view>

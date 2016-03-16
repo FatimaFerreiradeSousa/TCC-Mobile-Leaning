@@ -247,19 +247,6 @@ angular.module('starter')
     })    
 })
 
-
-.controller('testesGrupoGrupoCtrl', function($scope, $state, $stateParams, $http){
-
-    $scope.grupoCodTestes = $stateParams.codGrupo;
-
-    var caminho = "http://192.168.2.5:8080/App-Servidor/Testes?grupo=";
-    var url = caminho.concat($stateParams.codGrupo)
-        
-    $http.get(url).then(function(response) {
-        $scope.testes = response.data;
-    })    
-})
-
 .controller('infoGrupoCtrl', function($scope, $state, $stateParams, $http){
 
     $scope.grupoInfo = $stateParams.codGrupo;
@@ -416,6 +403,45 @@ angular.module('starter')
     }
 })
 
+.controller('testesGrupoGrupoCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.grupoCodTestes = $stateParams.codGrupo;
+    $scope.alCodigo = $stateParams.loginAluno;
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/Testes?grupo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.testes = response.data;
+    })    
+})
+
+.controller('verTesteCtrl', function($scope, $state, $stateParams, $http){
+
+    $scope.alunoCod = $stateParams.alunoLogin;
+    $scope.testeCodigo = $stateParams.testeCodigo;
+
+    $scope.testeTemp = {
+        codigo:'',
+        assunto:'',
+        categoria:'',
+        dataEntrega:'',
+        disciplina:'',
+        professor:'',
+        qtdPerguntas:'',
+        disponivel:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/VerTeste?teste=";
+    var urlTeste = caminho.concat($stateParams.testeCodigo);
+    var urlAluno = urlTeste.concat("&aluno=");
+    var url = urlAluno.concat($stateParams.alunoLogin)
+        
+    $http.get(url).then(function(response) {
+        $scope.testeTemp = response.data;
+    })  
+        
+})
 
 
 

@@ -361,4 +361,68 @@ public class Dao {
             return false;
         }
     }
+    
+    //RESPONDE TESTE
+    public Teste consultarTeste(int codigo) {
+
+        try {
+            return em.find(Teste.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public RespondeExercicio consultarRespondeExercicio(String codigo) {
+
+        try {
+            return em.find(RespondeExercicio.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public boolean respondeTeste(int codTeste, String loginAluno) {
+        Query query = em.createQuery("select r from RespondeExercicio r where r.codTeste = :codTeste and r.aluno.login = :loginAluno");
+        query.setParameter("codTeste", codTeste);
+        query.setParameter("loginAluno", loginAluno);
+
+        List<RespondeExercicio> list = query.getResultList();
+
+        return list.isEmpty();
+    }
+    
+    public boolean salvarRespondeTeste(RespondeExercicio responde) {
+
+        try {
+            em.persist(responde);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean atualizarRespondeTeste(RespondeExercicio responde) {
+
+        try {
+            em.merge(responde);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean removerRespondeTeste(RespondeExercicio responde) {
+
+        try {
+            em.remove(em.merge(responde));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
