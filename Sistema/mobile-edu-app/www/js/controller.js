@@ -420,6 +420,7 @@ angular.module('starter')
 
     $scope.alunoCod = $stateParams.alunoLogin;
     $scope.testeCodigo = $stateParams.testeCodigo;
+    $scope.codigoGrupo = $stateParams.codGrupo;
 
     $scope.testeTemp = {
         codigo:'',
@@ -441,6 +442,55 @@ angular.module('starter')
         $scope.testeTemp = response.data;
     })  
         
+})
+
+.controller('responderTesteCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.alunoTesteCodigo = $stateParams.alunoLogin;
+    $scope.testeCodigoTeste = $stateParams.testeCodigo;
+    $scope.grupoTesteCodigo = $stateParams.codGrupo; 
+    $scope.contador = 0;
+    $scope.pontuacao = 0;
+    $scope.acertos = 0;
+    $scope.erros = 0;
+    $scope.opcao = false;
+    $scope.respondeTeste = {
+        grupo: '',
+        aluno: '',
+        teste: '',
+        nota: ''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/ResponderTeste?teste=";  
+    var url = caminho.concat($stateParams.testeCodigo);
+
+    $http.get(url).then(function(response) {
+        $scope.testeAux = response.data;
+    }) 
+
+    $scope.proxima = function(nota, respostaCerta){
+        if($scope.contador <= $scope.testeAux.length){
+
+            if(respostaCerta == true){
+                $scope.pontuacao = $scope.pontuacao + nota;
+                $scope.acertos++;
+            }else{
+                $scope.erros++;
+            }
+
+            $scope.contador++;
+        }
+    }
+
+    $scope.verResultado = function(){
+        $scope.opcao = true;
+        $scope.respondeTeste.grupo = $stateParams.codGrupo;
+        $scope.respondeTeste.aluno = $stateParams.alunoLogin; 
+        $scope.respondeTeste.teste = $stateParams.testeCodigo; 
+        $scope.respondeTeste.nota = $scope.pontuacao;
+
+        fac.enviarRespostas($scope.respondeTeste);
+    }
 })
 
 

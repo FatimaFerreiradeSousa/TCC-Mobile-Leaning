@@ -396,32 +396,25 @@ public class Dao {
     public boolean salvarRespondeTeste(RespondeExercicio responde) {
 
         try {
+            em.getTransaction().begin();
             em.persist(responde);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            em.getTransaction().rollback();
             return false;
         }
     }
 
-    public boolean atualizarRespondeTeste(RespondeExercicio responde) {
+    public boolean atualizarPontuacao(ParticipaGrupo participaGrupo) {
 
         try {
-            em.merge(responde);
+            em.getTransaction().begin();
+            em.merge(participaGrupo);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean removerRespondeTeste(RespondeExercicio responde) {
-
-        try {
-            em.remove(em.merge(responde));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+            em.getTransaction().rollback();
             return false;
         }
     }

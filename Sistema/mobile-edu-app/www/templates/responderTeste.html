@@ -1,0 +1,36 @@
+<ion-view title="Mobile-Edu" ng-controller="responderTesteCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Responder Teste</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+      <div class="list">
+
+          <p ng-if="testeAux.length != contador" style="text-align: right; color: red">Pontuação: {{pontuacao}}</p>
+
+          <h5 ng-if="testeAux.length != contador" style="text-align: justify;" class="positive">
+              Pergunta: {{testeAux[contador].enunciado}}
+          </h5>
+
+          <ion-list>
+              <ion-item ng-repeat="r in testeAux[contador].respostas">
+                <a href="" ng-click="proxima(testeAux[contador].peso, r.respostaCerta)" class="royal" 
+                  style="text-align: justify; font-size: 0.9em">
+                  {{r.conteudo}}
+                </a>
+              </ion-item>
+          </ion-list>
+
+          <button class="button button-block button-assertive" ng-click="verResultado()" 
+          ng-if="testeAux.length == contador && opcao == false">Ver Resultado</button>
+
+          <h1 ng-if="opcao == true" style="color: blue; text-align: center;">Resultado {{pontuacao}}</h1>
+          <p ng-if="opcao == true" class="calm" style="text-align: center;">Quantidade de Acertos: {{acertos}}</p>
+          <p ng-if="opcao == true" class="assertive" style="text-align: center;">Quantidade de Erros: {{erros}}</p>
+
+      </div>
+    </ion-content>
+
+</ion-view>

@@ -18,7 +18,7 @@
           <p>
               <label ng-if="testeTemp.disponivel == 1" style="color: red; font-size: 1em">Você ja respondeu este teste!</label>
               <label ng-if="testeTemp.disponivel == 2" style="color: red; font-size: 1em">Este teste estava disponivel ate o dia {{testeTemp.dataEntrega}}</label>
-              <a href="#" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
+              <a href="#/responderTeste/{{alunoCod}}/{{testeCodigo}}/{{codigoGrupo}}" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
           </p>
         </div>
       </div>

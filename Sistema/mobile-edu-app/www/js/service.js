@@ -59,11 +59,10 @@ angular.module('starter').factory('fac', function($state, $http) {
       },
 
       alterarTopicos: function(topico){
-        alert("Topico Alterar: " +topico.codigo);
         var url = "http://192.168.2.5:8080/App-Servidor/AtualizarTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
-            $state.go("alterarTopico")
+            $state.go("homeGrupo")
         });
         
       },
@@ -88,6 +87,14 @@ angular.module('starter').factory('fac', function($state, $http) {
         $http.post(url, comentario).then(function(response){
             alert(response.data);
             $state.go("comentarios")
+        });
+      },
+
+      enviarRespostas: function(respondeTeste){
+        var url = "http://192.168.2.5:8080/App-Servidor/ResponderTeste"
+        $http.post(url, respondeTeste).then(function(response){
+            alert(response.data);
+            $state.go("responderTeste")
         });
       }      
     }

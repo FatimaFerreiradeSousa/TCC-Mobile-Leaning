@@ -151,10 +151,16 @@ angular.module('starter', ['ionic'])
     })
 
     .state('verTeste', {
-        url: '/verTeste/:alunoLogin/:testeCodigo',
+        url: '/verTeste/:alunoLogin/:testeCodigo/:codGrupo',
         templateUrl: 'templates/verTeste.html',
         controller: 'verTesteCtrl'
     })
+
+    .state('responderTeste', {
+        url: '/responderTeste/:alunoLogin/:testeCodigo/:codGrupo',
+        templateUrl: 'templates/responderTeste.html',
+        controller: 'responderTesteCtrl'
+    })    
 
     $urlRouterProvider.otherwise('/login');
 
