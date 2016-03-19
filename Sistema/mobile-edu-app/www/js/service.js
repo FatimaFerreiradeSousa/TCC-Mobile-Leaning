@@ -104,7 +104,15 @@ angular.module('starter').factory('fac', function($state, $http) {
             alert(response.data);
             $state.go("configuracoesInfo")
         });
-      }      
+      },
+
+      atualizarFoto: function(alunoFoto){
+        var url = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno"
+        $http.post(url, alunoFoto).then(function(response){
+            alert(response.data);
+            $state.go("alterarFoto")
+        });
+      }
     }
 
     return obj;

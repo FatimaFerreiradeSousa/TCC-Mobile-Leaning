@@ -550,30 +550,54 @@ angular.module('starter')
     }
 })
 
-.controller('alterarFotoCtrl', function($scope, $state, $stateParams, $http, fac){
+.controller('alterarFotoCtrl', function($scope, $state, $stateParams, $http, fac, $cordovaCamera){
 
     $scope.loginUserFoto = $stateParams.alunoLogin;
 
+    $scope.alunoPerfilFoto = {
+        nome:'',
+        sobrenome:'',
+        login:'',
+        senha:'',
+        curso:'',
+        descricao:'',
+        dataParticipacao:'',
+        foto:'',
+        email:'',
+        instituicao:'',
+        foto:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var url = caminho.concat($stateParams.alunoLogin);
+
+    $http.get(url).then(function(response) {
+        $scope.alunoPerfilFoto = response.data;
+    })
+
     $scope.pegarFoto = function () {
         var option = {
-        quality: 75,
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
+        targetWidth: 612,
+        targetHeight: 612,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
+        saveToPhotoAlbum: true
       };
 
       $cordovaCamera.getPicture(option).then(function(imageDate){
-          $scope.imgURI = "data:image/jpeg;base64, " +imageDate;
+          $scope.fotoPerfil = imageDate;
       }, function(err){
           alert("Erro" + err);
-      });
-      
-    };
+      }); 
+    }
+
+    $scope.enviarFoto = function(){
+        $scope.alunoPerfilFoto.foto = $scope.fotoPerfil;
+        fac.atualizarFoto($scope.alunoPerfilFoto);
+    }
 
 })
 

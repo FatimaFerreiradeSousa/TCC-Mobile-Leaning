@@ -7,21 +7,22 @@
     <ion-content padding="true" class="has-header">
 
         <div class="list" style="text-align: center;">
-        {{loginUserFoto}}
-
-        <button class="button button-full button-assertive" ng-click="pegarFoto()">Alterar Foto</button>
-
-        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
-        <!--
+          
           <div id="logo">
-              <img src="data:image/jpeg;base64, {{alunoPerfil.foto}}" class="foto">
+              <img src="data:image/jpeg;base64, {{alunoPerfilFoto.foto}}" class="foto" ng-show="fotoPerfil === undefined">
+              <img src="data:image/jpeg;base64, {{fotoPerfil}}" class="foto" ng-show="fotoPerfil !== undefined">
           </div>
+          
+          <button class="button button-full button-assertive" ng-click="pegarFoto()" 
+                  ng-show="fotoPerfil === undefined">
+                  Escolher Foto
+          </button>
+          
+          <button class="button button-full button-royal" ng-click="enviarFoto()" 
+                  ng-show="fotoPerfil !== undefined">
+                  Enviar Foto
+          </button>
         
-          <div class="button-bar">
-            <a class="button button-assertive" href="#/configuracoesInfo/{{alunoPerfil.login}}">Perfil</a>
-            <a class="button button-positive">Foto</a>
-          </div>
-        -->
         </div>
 
     </ion-content>
