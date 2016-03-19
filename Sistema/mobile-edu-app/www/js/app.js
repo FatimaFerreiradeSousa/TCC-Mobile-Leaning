@@ -162,6 +162,24 @@ angular.module('starter', ['ionic'])
         controller: 'responderTesteCtrl'
     })    
 
+    .state('perfil', {
+        url: '/perfil/:alunoLogin',
+        templateUrl: 'templates/perfil.html',
+        controller: 'perfilCtrl'
+    })
+
+    .state('configuracoesInfo', {
+        url: '/configuracoesInfo/:alunoLogin',
+        templateUrl: 'templates/configuracoesInfo.html',
+        controller: 'configuracoesInfoCtrl'
+    })
+
+    .state('alterarFoto', {
+        url: '/alterarFoto/:alunoLogin',
+        templateUrl: 'templates/alterarFoto.html',
+        controller: 'alterarFotoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

@@ -1,0 +1,29 @@
+<ion-view title="Mobile-Edu" ng-controller="perfilCtrl">
+
+    <ion-header-bar class="bar-stable bar-balanced">
+        <h1 class="title" style="text-align: center;">Configurações</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        <div class="list" style="text-align: center;">
+
+          <div id="logo">
+              <img src="data:image/jpeg;base64, {{alunoPerfil.foto}}" class="foto">
+          </div>
+        
+          <h3>{{alunoPerfil.nome}} {{alunoPerfil.sobrenome}}</h3>
+          <p>{{alunoPerfil.descricao}}</p>
+          <p>{{alunoPerfil.instituicao}}</p>
+          <p>{{alunoPerfil.curso}}</p>
+        
+          <div class="button-bar">
+            <a class="button button-assertive" href="#/configuracoesInfo/{{alunoPerfil.login}}">Perfil</a>
+            <a class="button button-positive" href="#/alterarFoto/{{alunoPerfil.login}}">Foto</a>
+          </div>
+        
+        </div>
+
+    </ion-content>
+
+</ion-view>

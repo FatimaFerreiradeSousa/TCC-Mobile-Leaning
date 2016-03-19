@@ -96,6 +96,14 @@ angular.module('starter').factory('fac', function($state, $http) {
             alert(response.data);
             $state.go("responderTeste")
         });
+      },
+
+      atualizarPerfil: function(alunoPerfil){
+        var url = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno"
+        $http.post(url, alunoPerfil).then(function(response){
+            alert(response.data);
+            $state.go("configuracoesInfo")
+        });
       }      
     }
 

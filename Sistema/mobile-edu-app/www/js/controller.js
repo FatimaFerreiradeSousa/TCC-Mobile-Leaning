@@ -493,6 +493,89 @@ angular.module('starter')
     }
 })
 
+.controller('perfilCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.loginUser = $stateParams.alunoLogin;
+
+    $scope.alunoPerfil = {
+        nome:'',
+        sobrenome:'',
+        login:'',
+        senha:'',
+        curso:'',
+        descricao:'',
+        dataParticipacao:'',
+        foto:'',
+        email:'',
+        instituicao:'',
+        foto:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var url = caminho.concat($stateParams.alunoLogin);
+
+    $http.get(url).then(function(response) {
+        $scope.alunoPerfil = response.data;
+    })
+    
+})
+
+.controller('configuracoesInfoCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.loginUserApp = $stateParams.alunoLogin;
+
+    $scope.alunoPerfilInfo = {
+        nome:'',
+        sobrenome:'',
+        login:'',
+        senha:'',
+        curso:'',
+        descricao:'',
+        dataParticipacao:'',
+        foto:'',
+        email:'',
+        instituicao:'',
+        foto:''
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var url = caminho.concat($stateParams.alunoLogin);
+
+    $http.get(url).then(function(response) {
+        $scope.alunoPerfilInfo = response.data;
+    })
+
+    $scope.alterarPerfil = function(){
+        fac.atualizarPerfil($scope.alunoPerfilInfo);
+    }
+})
+
+.controller('alterarFotoCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.loginUserFoto = $stateParams.alunoLogin;
+
+    $scope.pegarFoto = function () {
+        var option = {
+        quality: 75,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 300,
+        targetHeight: 300,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
+      };
+
+      $cordovaCamera.getPicture(option).then(function(imageDate){
+          $scope.imgURI = "data:image/jpeg;base64, " +imageDate;
+      }, function(err){
+          alert("Erro" + err);
+      });
+      
+    };
+
+})
 
 
 

@@ -1,6 +1,5 @@
 package com.br.util;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Base64;
-import java.util.Date;
+
 /**
  *
  * @author Fatinha de Sousa
@@ -17,17 +16,21 @@ import java.util.Date;
 public class FotosServices {
 
     /*Recebe uma string no formato base 64 e converte em arquivo do disco*/
-    public static String converteStringBase64EmArquivo(String imageDataString) {
+    public static String converteStringBase64EmArquivo(String imageDataString, String loginUsuario) {
         byte[] imageByteArray = decodeImage(imageDataString);
 
-        Date date = new Date();
-        long i = System.currentTimeMillis();
-        String path = String.valueOf(i);
-        String caminho = "D:\\Documents\\NetBeansProjects\\MsgServerApp\\src\\fotos\\"+path+".jpeg";
+        String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\" + loginUsuario + "\\";
         // Escreve um array de bytes de imagem em sistema de arquivos
+        File file = new File(caminho);
+        file.mkdir();
+
+        String temp = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\" + loginUsuario + "\\"
+                + loginUsuario + ".jpeg";
+
         try {
+
             FileOutputStream imageOutFile = new FileOutputStream(
-                    caminho);
+                    temp);
             imageOutFile.write(imageByteArray);
             imageOutFile.close();
 
@@ -36,7 +39,7 @@ public class FotosServices {
         } catch (IOException ex) {
             Logger.getLogger(FotosServices.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return caminho;
+        return temp;
     }
 
     /*Converter o arquivo local em string base 64*/
@@ -49,11 +52,11 @@ public class FotosServices {
             imageInFile.read(imageData);
 
             imageDataString = FotosServices.encodeImage(imageData);
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FotosServices.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return imageDataString;
     }
 
