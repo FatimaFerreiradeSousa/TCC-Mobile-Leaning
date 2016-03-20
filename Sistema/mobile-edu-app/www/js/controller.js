@@ -601,7 +601,59 @@ angular.module('starter')
 
 })
 
+.controller('pesquisarGrupoCtrl', function($scope, $state, $stateParams, $http, fac){
 
+    $scope.alunoGrupoBuscar = $stateParams.alunoLogin;
+    $scope.grupo = {
+        nome:''
+    }
+
+    $scope.buscarGrupo = function(){
+        var caminho = "http://192.168.2.5:8080/App-Servidor/GruposPesquisa?grupo=";  
+        var url = caminho.concat($scope.grupo.nome);
+
+        $http.get(url).then(function(response) {
+            $scope.gruposEncontrados = response.data;
+            delete $scope.grupo;
+        })
+        
+    }
+})
+
+.controller('solicitacaoGrupoCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.codigoGrupoSelecionado = $stateParams.grupoCodigo;
+    $scope.alunoGrupoLogin = $stateParams.loginAluno;
+    $scope.participaGrupo = {
+        grupo: $scope.codigoGrupoSelecionado,
+        aluno: $scope.alunoGrupoLogin
+    }
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/GrupoSelect?codigo=";  
+    var url = caminho.concat($scope.codigoGrupoSelecionado);
+
+    $http.get(url).then(function(response) {
+        $scope.grupoSelect = response.data;
+    })
+
+    $scope.enviarSolicitacao = function(){
+        fac.solicitacaoGrupo($scope.participaGrupo);
+    }
+
+    $scope.removerSolicitacao = function(){
+        fac.removerSolicitacaoGrupo($scope.participaGrupo);
+    }
+
+    var caminhoAux = "http://192.168.2.5:8080/App-Servidor/RemoverSolicitacao?login=";  
+    var urlAux = caminho.concat($scope.alunoGrupoLogin);
+    var temp = urlAux.concat("&grupo=");
+    var urlTemp = temp.concat($scope.codigoGrupoSelecionado);
+
+    $http.get(urlTemp).then(function(response) {
+        $scope.opcao = response.data;
+    })
+
+})
 
 
 

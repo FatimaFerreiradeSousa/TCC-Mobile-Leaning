@@ -112,6 +112,22 @@ angular.module('starter').factory('fac', function($state, $http) {
             alert(response.data);
             $state.go("alterarFoto")
         });
+      },
+
+      solicitacaoGrupo: function(participaGrupo){
+        var url = "http://192.168.2.5:8080/App-Servidor/GruposPesquisa"
+        $http.post(url, participaGrupo).then(function(response){
+            alert(response.data);
+            $state.go("solicitacaoGrupo")
+        });
+      },
+
+      removerSolicitacaoGrupo: function(participaGrupo){
+        var url = "http://192.168.2.5:8080/App-Servidor/RemoverSolicitacao"
+        $http.post(url, participaGrupo).then(function(response){
+            alert(response.data);
+            $state.go("solicitacaoGrupo")
+        });
       }
     }
 

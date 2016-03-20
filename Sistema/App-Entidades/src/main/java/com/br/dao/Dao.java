@@ -418,4 +418,56 @@ public class Dao {
             return false;
         }
     }
+    
+    public List<ParticipaGrupo> listarGruposPendentes(String login) {
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.aceito = false");
+        query.setParameter("login", login);
+
+        return (List<ParticipaGrupo>) query.getResultList();
+    }
+    
+    public boolean participaGrupo(ParticipaGrupo participaGrupo) {
+
+        try {
+            em.getTransaction().begin();
+            em.persist(participaGrupo);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    public boolean removerSolicitacao(String login, int codigoGrupo) {
+
+        try {
+            
+            em.getTransaction().begin();
+            Query query = em.createQuery("delete from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigo");
+            query.setParameter("login", login);
+            query.setParameter("codigo", codigoGrupo);
+            query.executeUpdate();
+            em.getTransaction().commit();
+
+            return true;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    public boolean verificaSolicitacao(String login, int codigoGrupo) {
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = false");
+        query.setParameter("login", login);
+        query.setParameter("codigoGrupo", codigoGrupo);
+
+        List<ParticipaGrupo> participaGrupos = query.getResultList();
+
+        if (participaGrupos.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

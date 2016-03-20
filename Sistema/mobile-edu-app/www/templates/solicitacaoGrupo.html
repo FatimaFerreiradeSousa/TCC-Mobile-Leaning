@@ -1,0 +1,35 @@
+<ion-view title="Mobile-Edu" ng-controller="solicitacaoGrupoCtrl">
+
+    <ion-header-bar class="bar-stable bar-assertive">
+        <h1 class="title" style="text-align: center;">Enviar Solicitação</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        <ion-item class="item-divider" style="text-align: center;">
+            <h2>{{grupoSelect.nome}}</h2> 
+            <p style="font-size: 11px">Professor: {{grupoSelect.professorNome}} {{grupoSelect.professorSobremome}}</p>
+            <p>{{grupoSelect.descricao}}</p>
+        </ion-item>
+
+        <div class="list list-inset">
+
+            {{opcao}}
+
+            <h4 ng-if="opcao == false">Envie uma solicitação para ver as publicações</h4>
+
+            <button class="button button-block button-royal" ng-click="enviarSolicitacao()" ng-if="opcao == false">
+                Enviar Solicitação
+            </button>
+
+            <h4 ng-if="opcao == true">Cancelar solicitação</h4>
+
+            <button class="button button-block button-assertive" ng-click="removerSolicitacao()" ng-if="opcao == true">
+              Cancelar Solicitação
+            </button>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

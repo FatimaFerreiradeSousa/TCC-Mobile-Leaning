@@ -1,0 +1,41 @@
+<ion-view title="Mobile-Edu" ng-controller="pesquisarGrupoCtrl">
+
+    <ion-header-bar class="bar-stable bar-assertive">
+        <h1 class="title" style="text-align: left;">Pesquisar Grupo</h1>
+    </ion-header-bar>
+
+    <ion-content padding="true" class="has-header">
+
+        <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Nome" ng-model="grupo.nome">
+          </label>
+
+          <button class="button button-block button-stable" ng-click="buscarGrupo()">
+              Buscar
+          </button>
+        </div>
+
+        <ion-list ng-repeat="grupo in gruposEncontrados" style="text-align: center" ng-if="gruposEncontrados.length > 0">
+        
+            <ion-item class="item-divider">
+                {{grupo.nome}} 
+                <p style="font-size: 11px">Professor: {{grupo.professorGrupos.nome}} {{grupo.professorGrupos.sobrenome}}</p>
+                <p>{{grupo.descricao}}</p>
+                <hr/>
+
+                <a class="button button-clear button-positive" href="#/solicitacaoGrupo/{{grupo.codigo}}/{{alunoGrupoBuscar}}">
+                    Ver Grupo
+                </a>
+
+            </ion-item>
+
+            <br/>
+        </ion-list>
+
+        <h4 ng-if="gruposEncontrados.length == 0" style="text-align: center;">Nenhum resultado encontrado</h4>
+
+    </ion-content>
+
+</ion-view>

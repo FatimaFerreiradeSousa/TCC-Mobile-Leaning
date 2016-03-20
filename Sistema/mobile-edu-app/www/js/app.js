@@ -180,6 +180,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
         controller: 'alterarFotoCtrl'
     })
 
+    .state('pesquisarGrupo', {
+        url: '/pesquisarGrupo/:alunoLogin',
+        templateUrl: 'templates/pesquisarGrupo.html',
+        controller: 'pesquisarGrupoCtrl'
+    })
+
+    .state('solicitacaoGrupo', {
+        url: '/solicitacaoGrupo/:grupoCodigo/:loginAluno',
+        templateUrl: 'templates/solicitacaoGrupo.html',
+        controller: 'solicitacaoGrupoCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })
