@@ -464,10 +464,17 @@ public class Dao {
 
         List<ParticipaGrupo> participaGrupos = query.getResultList();
 
-        if (participaGrupos.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return participaGrupos.size() > 0;
     }
+    
+    public boolean verificaSeJaEhMembro(String login, int codigoGrupo) {
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.aluno.login = :login and p.grupo.codigo = :codigoGrupo and p.aceito = true");
+        query.setParameter("login", login);
+        query.setParameter("codigoGrupo", codigoGrupo);
+
+        List<ParticipaGrupo> participaGrupos = query.getResultList();
+        
+        return participaGrupos.size() > 0;
+    }
+    
 }

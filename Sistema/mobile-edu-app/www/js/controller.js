@@ -618,6 +618,8 @@ angular.module('starter')
         })
         
     }
+
+    
 })
 
 .controller('solicitacaoGrupoCtrl', function($scope, $state, $stateParams, $http, fac){
@@ -630,7 +632,7 @@ angular.module('starter')
     }
 
     var caminho = "http://192.168.2.5:8080/App-Servidor/GrupoSelect?codigo=";  
-    var url = caminho.concat($scope.codigoGrupoSelecionado);
+    var url = caminho.concat($stateParams.grupoCodigo);
 
     $http.get(url).then(function(response) {
         $scope.grupoSelect = response.data;
@@ -645,7 +647,7 @@ angular.module('starter')
     }
 
     var caminhoAux = "http://192.168.2.5:8080/App-Servidor/RemoverSolicitacao?login=";  
-    var urlAux = caminho.concat($scope.alunoGrupoLogin);
+    var urlAux = caminhoAux.concat($scope.alunoGrupoLogin);
     var temp = urlAux.concat("&grupo=");
     var urlTemp = temp.concat($scope.codigoGrupoSelecionado);
 

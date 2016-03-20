@@ -1,14 +1,10 @@
 package servlets.grupo;
 
 import com.br.dao.Dao;
-import com.br.entidades.Aluno;
-import com.br.entidades.Grupo;
-import com.br.entidades.ParticipaGrupo;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

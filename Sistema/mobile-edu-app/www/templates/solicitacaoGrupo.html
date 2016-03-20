@@ -14,17 +14,14 @@
 
         <div class="list list-inset">
 
-            {{opcao}}
+            <p ng-if="opcao.opcao == false" style="text-align: center;">Para ver as publicações envie uma solicitação!</p>
 
-            <h4 ng-if="opcao == false">Envie uma solicitação para ver as publicações</h4>
-
-            <button class="button button-block button-royal" ng-click="enviarSolicitacao()" ng-if="opcao == false">
+            <button class="button button-block button-royal" ng-click="enviarSolicitacao()" ng-if="opcao.opcao == false">
                 Enviar Solicitação
             </button>
 
-            <h4 ng-if="opcao == true">Cancelar solicitação</h4>
-
-            <button class="button button-block button-assertive" ng-click="removerSolicitacao()" ng-if="opcao == true">
+            <p ng-if="opcao.opcao == true" style="text-align: center;">Solicitação enviada, Aguardando Confirmação!</p>
+            <button class="button button-block button-assertive" ng-click="removerSolicitacao()" ng-if="opcao.opcao == true">
               Cancelar Solicitação
             </button>
 
