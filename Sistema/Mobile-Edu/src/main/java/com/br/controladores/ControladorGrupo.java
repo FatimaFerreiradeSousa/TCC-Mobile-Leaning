@@ -20,6 +20,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -31,7 +33,7 @@ import org.primefaces.model.UploadedFile;
  */
 @Named(value = "controladorGrupo")
 @SessionScoped
-public class GerenciadorGrupo implements Serializable {
+public class ControladorGrupo implements Serializable {
 
     @EJB
     private Service fachada;
@@ -48,8 +50,10 @@ public class GerenciadorGrupo implements Serializable {
     private ParticipaGrupo participaGrupo;
     private String nomeGrupo;
     private boolean aceito;
+    private FacesContext context;
+    private boolean opcao;
 
-    public GerenciadorGrupo() {
+    public ControladorGrupo() {
         grupo = new Grupo();
         topico = new Topico();
         topicoTemp = new Topico();
@@ -60,6 +64,7 @@ public class GerenciadorGrupo implements Serializable {
         participaGrupo = new ParticipaGrupo();
         nomeGrupo = null;
         aceito = false;
+        opcao = false;
     }
 
     public Grupo getGrupo() {
@@ -142,6 +147,14 @@ public class GerenciadorGrupo implements Serializable {
         this.comentarioAlterar = comentarioAlterar;
     }
 
+    public boolean isOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(boolean opcao) {
+        this.opcao = opcao;
+    }
+
     /*operações da entidade grupo*/
     public String paginaAddGrupo() {
         grupo = new Grupo();
@@ -157,7 +170,15 @@ public class GerenciadorGrupo implements Serializable {
             grupo = new Grupo();
             return "page-grupo?faces-redirect=true";
         } else {
-            return "page-cad-grupo?faces-redirect=true";
+
+            this.context = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Erro ao realizar cadastro",
+                    "");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+            return null;
         }
     }
 
@@ -214,7 +235,7 @@ public class GerenciadorGrupo implements Serializable {
         fachada.removerTopico(topico);
         return "page-inicial-grupo?faces-redirect=true";
     }
-    
+
     public String removerArquivo(Topico topico) {
 
         fachada.removerTopico(topico);
@@ -442,12 +463,12 @@ public class GerenciadorGrupo implements Serializable {
         List<Aluno> alunos = fachada.listarMembrosGrupo(this.grupo.getCodigo());
         return alunos;
     }
-    
+
     public List<Aluno> listarAlunosGrupo(Grupo g) {
         List<Aluno> alunos = fachada.listarMembrosGrupo(g.getCodigo());
         return alunos;
     }
-    
+
     public int qtdMembrosGrupo(Grupo g) {
         List<Aluno> alunos = fachada.listarMembrosGrupo(g.getCodigo());
         return alunos.size();

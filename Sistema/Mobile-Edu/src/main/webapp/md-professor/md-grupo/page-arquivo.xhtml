@@ -78,7 +78,7 @@
                     </a>
 
                     <a class="mdl-navigation__link" href="page-grupo.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">reorder</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
@@ -111,8 +111,8 @@
                         </div>
 
                         <div class="w3-container w3-margin-top mdl-cell--12-col w3-center">
-                            <div class="fileUpload buttons-formulario">
-                                <label class="text-black">Selecione um Arquivo</label>
+                            <div class="fileUpload w3-btn w3-white">
+                                <label class="text-black"> Arquivo</label>
                                 <p:fileUpload 
                                     value="#{controladorGrupo.fileUpload}"
                                     allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
@@ -124,7 +124,7 @@
 
                         <div class="w3-container w3-center">
                             <h:commandButton value="Publicar" action="#{controladorGrupo.uploadProfessor()}"
-                                             class="w3-btn w3-indigo"/>
+                                             class="w3-btn w3-indigo w3-btn-block"/>
 
                         </div>
                     </h:form>
@@ -152,12 +152,17 @@
                                                             </h:outputText></span>
                                                     </div>
                                                 </header>
+
                                                 <div class="comment__text">
                                                     #{topico.conteudo}<br/>
-                                                    <h:commandLink value="#{topico.nome}"
-                                                                   action="#{controladorGrupo.donwload(topico.caminho, 
-                                                                             topico.nome, topico.codigo)}"
-                                                                   style="text-decoration: none;"/>
+                                                    #{topico.nome}
+                                                    <p:commandButton value="Download" ajax="false" 
+                                                                     styleClass="w3-btn w3-white w3-btn-block"
+                                                                     onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                                        <span class="visuallyhidden">share comment</span>
+                                                        <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, 
+                                                                                 topico.nome, topico.codigo)}" />
+                                                    </p:commandButton>
                                                 </div>
 
                                                 <nav class="comment__actions">

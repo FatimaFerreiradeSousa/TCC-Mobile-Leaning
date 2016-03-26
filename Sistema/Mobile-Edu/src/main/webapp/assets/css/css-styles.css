@@ -117,8 +117,8 @@ p{
 
 .fileUpload {
     position: relative;
-    overflow: hidden;
     margin-bottom: 2%;
+    text-align: center;
 }
 
 .fileUpload .upload {
