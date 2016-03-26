@@ -46,6 +46,9 @@
                         <li class="mdl-menu__item">
                             <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
                         </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-rancking.jsf" style="text-decoration: none">Ranking</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -94,6 +97,18 @@
                 <div class="w3-content w3-center">
                     <p class="w3-center">Resultado do teste <b>#{controladorTeste.teste.assunto}</b></p>
                     <hr />
+                    <p>
+                        <h:outputText value="#{controladorTeste.resultadoTestes().size()} 
+                                      alunos responderam esse teste"
+                                      rendered="#{controladorTeste.resultadoTestes().size() > 1}"/>
+
+                        <h:outputText value="#{controladorTeste.resultadoTestes().size()} 
+                                      aluno respondeu esse teste"
+                                      rendered="#{controladorTeste.resultadoTestes().size() == 1}"/>
+                        
+                        <h:outputText value="Nenhum aluno respondeu esse teste"
+                                      rendered="#{controladorTeste.resultadoTestes().size() == 0}"/>
+                    </p>
 
                     <h:dataTable value="#{controladorTeste.resultadoTestes()}" var="membro" 
                                  class="w3-table" 
@@ -123,12 +138,7 @@
 
                         </h:column>
                     </h:dataTable>
-
-                    <h:outputLabel value="Nenhum resultado encontrado" 
-                                   rendered="#{controladorTeste.resultadoTestes().size() == 0}"
-                                   class="w3-text-red w3-center"/>
                 </div>
-
             </main> 
         </div>
     </h:body>

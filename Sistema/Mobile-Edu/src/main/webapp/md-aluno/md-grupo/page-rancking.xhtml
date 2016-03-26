@@ -6,18 +6,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Aluno | Testes</title>
+        <title>Aluno | Ranking</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-grupos.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
+
     </h:head>
 
     <h:body>
@@ -93,42 +95,40 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
-                <div class="w3-container w3-center">
-                    <h:form>
+            <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
+                <main class="mdl-layout__content mdl-color--grey-100">
 
-                        <h:outputText value="Testes" class="text-config w3-center" style="font-size: 16px;"
-                                      rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}"/>
+                    <h:form acceptcharset="ISO-8859-1">
+                        <h3 class="w3-center w3-text-purple">Ranking Geral</h3>
+                        <div class="w3-container w3-section">
 
-                        <hr />
+                            <h:dataTable var="aluno" value="#{controladorGrupo.listaRanckingGrupo()}"
+                                         class="w3-table">
 
-                        <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
-                                     class="w3-table w3-hoverable" 
-                                     rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
-                            <h:column>
-                                <div class="w3-center">
-                                    <h4 class="w3-center w3-text-red text-config">
-                                        <h:commandLink value="#{teste.assunto}" 
-                                                       action="#{controladorTeste.resultadoIndividual(teste)}" 
-                                                       style="text-decoration: none;"/>
-                                    </h4>
+                                <h:column>
+                                    <div class="w3-row">
+                                        <div class="w3-col s3">
+                                            <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                            styleClass="avatar-picture-config w3-circle">
+                                                <f:param value="#{aluno.aluno.login}" name="loginUsuario"/>
+                                            </p:graphicImage>
+                                        </div>
+                                        <div class="w3-col s9 w3-container" style="margin-top: -10px; padding-left: 10%">
+                                            <span class="w3-xlarge text-config">#{aluno.aluno.nome}</span><br />
+                                            <span class="text-config">Pontuação:</span>
+                                            <span class="w3-xlarge w3-text-red text-config">#{aluno.pontuacao}</span>
+                                        </div>
+                                    </div>  
+                                    <hr/>
+                                </h:column>
 
-                                    <label>Por #{teste.professor.login}</label><br />
+                            </h:dataTable>
 
-                                    <h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputLabel>
-                                </div>
-                            </h:column>
-                        </h:dataTable>
-
-                        <h:outputLabel value="Nenhum resultado encontrado" 
-                                       rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
-                                       class="w3-text-red w3-center text-config"/>
-
+                        </div>
                     </h:form>
-                </div>
-            </main> 
+
+                </main>
+            </div>
         </div>
     </h:body>
 </html>

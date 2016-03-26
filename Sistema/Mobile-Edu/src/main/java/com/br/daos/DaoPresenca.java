@@ -62,9 +62,10 @@ public class DaoPresenca implements InterfaceDaoPresenca {
     }
 
     @Override
-    public List<Presenca> listarPresencasAluno(String login) {
-        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login");
+    public List<Presenca> listarPresencasAluno(String login, String turma) {
+        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login and p.turma.codigo = :turma");
         query.setParameter("login", login);
+        query.setParameter("turma", turma);
 
         return (List<Presenca>) query.getResultList();
 

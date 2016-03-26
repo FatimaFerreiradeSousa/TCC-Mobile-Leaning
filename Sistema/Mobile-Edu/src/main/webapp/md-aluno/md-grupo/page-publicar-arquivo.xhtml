@@ -48,6 +48,9 @@
                         <li class="mdl-menu__item">
                             <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
                         </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-rancking.jsf" style="text-decoration: none">Ranking</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -95,7 +98,7 @@
             <div class="demo-blog demo-blog--blogpost mdl-layout has-drawer is-upgraded">
                 <main class="mdl-layout__content mdl-color--grey-100">
                     <h:form acceptcharset="ISO-8859-1" enctype="multipart/form-data">
-                        <div class="w3-container w3-center form-comments">
+                        <div class="w3-container w3-center form-comments" style="margin-bottom: -1em">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="topico" errorClass="erros"/>
                                 <h:inputTextarea value="#{controladorGrupo.topico.conteudo}" 
@@ -106,9 +109,9 @@
                             </div>
                         </div>
 
-                        <div class="w3-container w3-margin-top mdl-cell--12-col w3-center">
-                            <div class="fileUpload buttons-formulario">
-                                <label class="text-black">Selecione um Arquivo</label>
+                        <div class="w3-container w3-margin-top w3-center">
+                            <div class="fileUpload w3-btn w3-light-grey w3-btn-block">
+                                <label class="text-black">Selecionar Arquivo</label>
                                 <p:fileUpload 
                                     value="#{controladorGrupo.fileUpload}"
                                     allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
@@ -146,19 +149,22 @@
                                                 </header>
                                                 <div class="comment__text">
                                                     #{topico.conteudo}<br/>
-                                                    <h:commandLink value="#{topico.nome}"
-                                                                   action="#{controladorGrupo.donwload(topico.caminho, 
-                                                                             topico.nome, topico.codigo)}"
-                                                                   style="text-decoration: none;"/>
-                                                </div>
+                                                    #{topico.nome}
+                                                    <p:commandButton value="Download" ajax="false" 
+                                                                     styleClass="w3-btn w3-white w3-btn-block"
+                                                                     onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                                                        <span class="visuallyhidden">share comment</span>
+                                                        <p:fileDownload value="#{controladorGrupo.donwload(topico.caminho, 
+                                                                                 topico.nome, topico.codigo)}" />
+                                                    </p:commandButton>
+                                                </div><br />
 
-                                                <nav class="comment__actions">
+                                                <nav class="comment__text">
+                                                   
                                                     <h:commandLink action="#{controladorGrupo.removerArquivo(topico)}"
                                                                    rendered="#{topico.loginUsuario.equalsIgnoreCase(aluno.login)}"
                                                                    style="text-decoration: none;"
-                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                                        <i class="material-icons" role="presentation">delete</i>
-                                                        <span class="visuallyhidden">share comment</span>
+                                                                   class="w3-btn w3-red w3-btn-block" value="Remover">
                                                     </h:commandLink>
                                                 </nav>
                                             </div>

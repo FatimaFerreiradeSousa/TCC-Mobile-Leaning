@@ -619,7 +619,7 @@ public class ControladorGrupo implements Serializable {
             }
         }
 
-        return "page-inicial-grupo?faces-redirect=true";
+        return "page-publicar-arquivo?faces-redirect=true";
     }
 
     public List<ParticipaGrupo> gruposAluno() {

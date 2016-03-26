@@ -35,7 +35,7 @@
                             <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
                                            class="mdl-layout__tab is-active" value="Alunos"/>
 
-                            <h:commandLink value="Artigos" class="mdl-layout__tab"
+                            <h:commandLink value="Notas" class="mdl-layout__tab"
                                            action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
 
                             <h:commandLink value="Frequencia" class="mdl-layout__tab"
@@ -69,10 +69,12 @@
                         Inicio
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
-                        Nova Turma
-                    </a>
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
+                            Nova Turma
+                        </h:commandLink>
+                    </h:form>
 
                     <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
@@ -116,36 +118,40 @@
 
                             <div class="w3-row-padding">
                                 <div class="w3-col m12">
-                                    <div class="">
-                                        <div class="w3-container w3-padding w3-left-align">
+                                    <div class="w3-container w3-padding w3-left-align">
 
-                                            <p class="w3-text-red">Faltas: 
-                                                <span class="w3-xxlarge w3-text-red">
-                                                    <b>#{controladorTurma.qtdFaltasAluno()}</b>
-                                                </span>
-                                            </p>
+                                        <p class="w3-text-red">Faltas: 
+                                            <span class="w3-xxlarge w3-text-red">
+                                                <b>#{controladorTurma.qtdFaltasAluno()}</b>
+                                            </span>
+                                        </p>
 
-                                            Resumo Total:
-                                            <input class="mdl-slider mdl-js-slider" type="range"
-                                                   min="0" max="100" 
-                                                   value="#{controladorTurma.qtdFaltasAluno()}" 
-                                                   tabindex="0"/>
+                                        Resumo Total:
+                                        <input class="mdl-slider mdl-js-slider" type="range"
+                                               min="0" max="100" 
+                                               value="#{controladorTurma.qtdFaltasAluno()}" 
+                                               tabindex="0"/>
 
-                                            <hr/>
+                                        <hr/>
 
-                                            <p class="w3-text-green">Presenças: 
-                                                <span class="w3-xxlarge w3-text-green">
-                                                    <b>#{controladorTurma.qtdPresencasAluno()}</b>
-                                                </span>
-                                            </p>
+                                        <p class="w3-text-green">Presenças: 
+                                            <span class="w3-xxlarge w3-text-green">
+                                                <b>#{controladorTurma.qtdPresencasAluno()}</b>
+                                            </span>
+                                        </p>
 
-                                            Resumo Total:
-                                            <input class="mdl-slider mdl-js-slider" type="range"
-                                                   min="0" max="100" 
-                                                   value="#{controladorTurma.qtdPresencasAluno()}" 
-                                                   tabindex="0"/>
-                                        </div>
-                                    </div>
+                                        Resumo Total:
+                                        <input class="mdl-slider mdl-js-slider" type="range"
+                                               min="0" max="100" 
+                                               value="#{controladorTurma.qtdPresencasAluno()}" 
+                                               tabindex="0"/>
+                                    </div><br />
+
+                                    <h:form>
+                                        <a class="w3-btn w3-btn-block w3-light-grey" href="page-historico.jsf">
+                                            Ver Histórico
+                                        </a>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>

@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Professor | Alterar Nota</title>
-
+        <title>Professor | Turma | Aluno | Detalhes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -15,20 +15,17 @@
         <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
-        <link rel="stylesheet" href="../../assets/css/font-awesome.css"/>
+        <link rel="stylesheet" href="../../assets/css/font-awesome.min.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
-
     </h:head>
 
-    <h:body>
-
+    <h:body class="text-config">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header demo-header">
                 <div class="mdl-layout__header-row">
-
-                    <div class="mdl-layout-spacer text-config">Turma de #{controladorTurma.turma.nome}</div>
+                    <div class="mdl-layout-spacer">Turma de #{controladorTurma.turma.nome}</div>
 
                     <nav class="mdl-navigation">
                         <h:form>
@@ -36,9 +33,9 @@
                                            action="#{controladorTurma.paginaInicial()}"/>
 
                             <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
-                                           class="mdl-layout__tab" value="Alunos"/>
+                                           class="mdl-layout__tab is-active" value="Alunos"/>
 
-                            <h:commandLink value="Notas" class="mdl-layout__tab is-active"
+                            <h:commandLink value="Notas" class="mdl-layout__tab"
                                            action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
 
                             <h:commandLink value="Frequencia" class="mdl-layout__tab"
@@ -51,12 +48,11 @@
                                            action="#{controladorTurma.paginaConfiguracoesTurma()}"/>
                         </h:form>
                     </nav>
-
                 </div>
 
             </header>
 
-            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50 text-config">
+            <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
@@ -67,22 +63,18 @@
                 </header>
 
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+
                     <a class="mdl-navigation__link" href="../page-inicial-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
                             Nova Turma
                         </h:commandLink>
                     </h:form>
-                    
-                    <a class="mdl-navigation__link" href="page-turmas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>
-                        Turmas
-                    </a>
 
                     <a class="mdl-navigation__link" href="../page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
@@ -98,61 +90,48 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content">
+            <main class="mdl-layout__content mdl-color--grey-100 mdl-main">
+                <div class="w3-container w3-center">
+                    
+                    <h3>
+                        Histórico de presença do aluno #{controladorTurma.aluno.nome} #{controladorTurma.aluno.sobrenome}
+                    </h3>
 
-                <div class="w3-container w3-margin-8">
+                    <h:dataTable var="presenca" value="#{controladorTurma.listarPresencas()}"
+                                 class="w3-table w3-striped w3-border w3-hoverable">
+                        <h:column>
+                            <f:facet name="header" class="w3-red">
+                                <div class="w3-center">
+                                    <h:outputText value="Dia"/>
+                                </div>
+                            </f:facet>
 
-                    <h:form acceptcharset="ISO-8859-1">
-
-                        <h3 class="w3-center text-config">Alterar Nota</h3>
-                        <div class="w3-container">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="titulo" errorClass="erros"/>
-                                <h:inputText value="#{controladorNota.nota.titulo}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="titulo"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
-
-                                <label class="mdl-textfield__label" for="titulo">Titulo</label>
+                            <div class="w3-center">
+                                <h:outputText value="#{presenca.dataPreseca}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
                             </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="introducao" errorClass="erros"/>
-                                <h:inputTextarea value="#{controladorNota.nota.introducao}" 
-                                                 class="mdl-textfield__input text-config" 
-                                                 id="introducao" rows="5"
-                                                 required="true"
-                                                 requiredMessage="Campo obrigatório"/>
+                        </h:column>
 
-                                <label class="mdl-textfield__label" for="introducao">Introdução</label>
+                        <h:column>
+                            <f:facet name="header">
+                                <div class="w3-center">
+                                    <h:outputText value="Status"/>
+                                </div>
+                            </f:facet>
+
+                            <div class="w3-center">
+                                <h:outputText value="Presente" class="w3-text-blue"
+                                              rendered="#{presenca.status == true}"/>
+
+                                <h:outputText value="Presente" class="w3-text-blue"
+                                              rendered="#{presenca.status == false}"/>
                             </div>
+                        </h:column>
+                    </h:dataTable>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="desenvolvimento" errorClass="erros"/>
-                                <h:inputTextarea value="#{controladorNota.nota.desenvolvimento}" 
-                                                 class="mdl-textfield__input text-config" rows="5"
-                                                 id="desenvolvimento"
-                                                 required="true"
-                                                 requiredMessage="Campo obrigatório"/>
-
-                                <label class="mdl-textfield__label" for="desenvolvimento">Desenvolvimento</label>
-                            </div>
-
-                            <hr />
-
-                            <div class="w3-btn-group">
-                                <h:commandButton value="Alterar" action="#{controladorNota.alterarNota()}" 
-                                                 class="w3-btn w3-blue w3-btn-block text-config" style="width: 50%"/>
-
-                                <h:commandButton value="Cancelar" action="#{controladorNota.cancelarEdicao()}" 
-                                                 class="w3-btn w3-red w3-btn-block text-config" style="width: 50%"/>
-                            </div>
-
-                        </div>
-                    </h:form>
                 </div>
-
             </main>
         </div>
     </h:body>

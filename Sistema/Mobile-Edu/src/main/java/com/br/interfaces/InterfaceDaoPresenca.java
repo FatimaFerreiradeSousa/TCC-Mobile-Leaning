@@ -18,7 +18,7 @@ public interface InterfaceDaoPresenca {
     
     public List<Presenca> listarPresencasPorData(Date data);
     
-    public List<Presenca> listarPresencasAluno(String login);
+    public List<Presenca> listarPresencasAluno(String login, String turma);
     
     public List<Presenca> listarPresencasTurma(String turma);
     

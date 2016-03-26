@@ -6,16 +6,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Aluno | Turma | Alunos</title>
-
+        <title>Professor | Turma | Aluno | Detalhes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
         <link href="../../mdl/material.min.css" rel="stylesheet"/>
         <link href="../../mdl/styles.css" rel="stylesheet"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
-        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../../assets/css/font-awesome.min.css"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -95,52 +95,50 @@
                     </h:form>
                 </nav>
             </div>
-
-            <main class="mdl-layout__content mdl-color--grey-100">
+            
+            <main class="mdl-layout__content mdl-color--grey-100 mdl-main">
                 <div class="w3-container w3-center">
-                    <h:form>
-                        <h5>
-                            <h:outputText class="w3-margin-4 text-config" value="Alunos" 
-                                          rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
-                        </h5>
 
-                        <h:dataTable var="aluno" value="#{controladorTurma.turma.alunos}" 
-                                     rendered="#{controladorTurma.turma.alunos.size() > 0}"
-                                     class="w3-table">
+                    <h5>
+                        Histórico 
+                    </h5>
 
-                            <h:column>
-                                <div class="w3-col m10 w3-center w3-margin-top">
-                                    <div class="w3-card-2 w3-round w3-white">
-                                        <div class="w3-container">
-                                            <br />
-                                            <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                            styleClass="w3-circle avatar-picture-config">
-                                                <f:param value="#{aluno.login}" name="loginUsuario"/>
-                                            </p:graphicImage>
-
-                                            <p style="margin-top: 2%;">
-                                                
-                                                <h:commandLink value="#{aluno.nome} #{aluno.sobrenome}" style="text-decoration: none;" 
-                                                               action="#{controladorTurma.paginaDesempenhoAluno(aluno)}"
-                                                               class="w3-text-red"
-                                                               rendered="#{controladorTurma.alunoDaSessao().login.equalsIgnoreCase(aluno.login)}"/>
-                                                
-                                                <h:outputText value="#{aluno.nome} #{aluno.sobrenome}" style="text-decoration: none;" 
-                                                               rendered="#{!controladorTurma.alunoDaSessao().login.equalsIgnoreCase(aluno.login)}"/>
-                                            </p>
-                                        </div>
-                                    </div>
+                    <h:dataTable var="presenca" value="#{controladorTurma.listarPresencas()}"
+                                 class="w3-table w3-striped  w3-hoverable">
+                        <h:column>
+                            <f:facet name="header" class="w3-red">
+                                <div class="w3-center">
+                                    <h:outputText value="Dia" class="w3-text-red"/>
+                                    <hr/>
                                 </div>
-                            </h:column>
-                        </h:dataTable>
+                            </f:facet>
 
-                        <hr/> 
+                            <div class="w3-center">
+                                <h:outputText value="#{presenca.dataPreseca}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </div>
 
-                        <h:outputLabel value="Esta turma não possui nenhum aluno" 
-                                       rendered="#{controladorTurma.turma.alunos.size() == 0}"
-                                       class="w3-center w3-text-red"/>
+                        </h:column>
 
-                    </h:form>
+                        <h:column>
+                            <f:facet name="header">
+                                <div class="w3-center">
+                                    <h:outputText value="Status" class="w3-text-red"/>
+                                    <hr/>
+                                </div>
+                            </f:facet>
+
+                            <div class="w3-center">
+                                <h:outputText value="Presente" class="w3-text-blue"
+                                              rendered="#{presenca.status == true}"/>
+
+                                <h:outputText value="Presente" class="w3-text-blue"
+                                              rendered="#{presenca.status == false}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+
                 </div>
             </main>
         </div>

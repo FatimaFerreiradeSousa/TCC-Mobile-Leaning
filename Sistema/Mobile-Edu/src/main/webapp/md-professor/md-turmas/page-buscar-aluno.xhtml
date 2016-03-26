@@ -39,7 +39,7 @@
                             <h:commandLink action="#{controladorTurma.paginaListarAlunos()}" 
                                            class="mdl-layout__tab is-active" value="Alunos"/>
 
-                            <h:commandLink value="Artigos" class="mdl-layout__tab"
+                            <h:commandLink value="Notas" class="mdl-layout__tab"
                                            action="#{controladorNota.pageNota(controladorTurma.turma)}"/>
 
                             <h:commandLink value="Frequencia" class="mdl-layout__tab"
@@ -69,10 +69,13 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-add-turma.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
-                        Nova Turma
-                    </a>
+                    
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
+                            Nova Turma
+                        </h:commandLink>
+                    </h:form>
 
                     <a class="mdl-navigation__link" href="page-turmas.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">supervisor_account</i>

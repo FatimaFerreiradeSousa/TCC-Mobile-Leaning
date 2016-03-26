@@ -46,6 +46,9 @@
                         <li class="mdl-menu__item">
                             <a href="page-listar-testes.jsf" style="text-decoration: none">Resultados</a>
                         </li>
+                        <li class="mdl-menu__item">
+                            <a href="page-rancking.jsf" style="text-decoration: none">Ranking</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -118,7 +121,7 @@
                         <div class="w3-center w3-margin-top">
                             <h:outputLabel value="Nenhum resultado encontrado"
                                            rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"
-                                           class="w3-red text-config"/>
+                                           class="w3-text-red"/>
                         </div>
                     </div>
                 </h:form>

@@ -353,6 +353,10 @@ public class Service implements Serializable {
         return daoPresenca.listarPresencaPorHorario(data, horaTurma);
     }
     
+    public List<Presenca> listarPresencasAluno(String login, String turma){
+        return daoPresenca.listarPresencasAluno(login, turma);
+    }
+    
     /*CRUD HORARIO*/
     public boolean salvarHorario(Horario horario){
         return daoHorario.salvarHorario(horario);

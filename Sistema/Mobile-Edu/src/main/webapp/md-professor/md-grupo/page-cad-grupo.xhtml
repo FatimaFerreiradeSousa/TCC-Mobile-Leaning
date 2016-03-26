@@ -46,10 +46,12 @@
                         Inicio
                     </a>
 
-                    <a class="mdl-navigation__link" href="page-cad-grupo.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">question_answer</i>
-                        Novo Grupo
-                    </a>
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorGrupo.paginaAddGrupo}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                            Novo Grupo
+                        </h:commandLink>
+                    </h:form>
 
                     <a class="mdl-navigation__link" href="page-grupo.jsf">
                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>

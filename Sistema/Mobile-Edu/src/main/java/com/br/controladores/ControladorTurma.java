@@ -310,7 +310,7 @@ public class ControladorTurma implements Serializable {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
 
         List<Turma> turmas = new ArrayList<>();
-       
+
         for (Turma turma1 : PegarUsuarioSessao.pegarAlunoSessao().getTurmas()) {
 
             for (Horario h : turma1.getHorarios()) {
@@ -324,6 +324,10 @@ public class ControladorTurma implements Serializable {
         return turmas;
     }
 
+    public List<Presenca> listarPresencas() {
+        return fachada.listarPresencasAluno(aluno.getLogin(), turma.getCodigo());
+    }
+
     public String paginaListarAlunos() {
         return "page-listar-alunos?faces-redirect=true";
     }
@@ -334,5 +338,22 @@ public class ControladorTurma implements Serializable {
 
     public String paginaInicial() {
         return "page-inicial-turma?faces-redirect=true";
+    }
+
+    public String paginaCadastrarTurma() {
+        this.turma = new Turma();
+        return "page-add-turma?faces-redirect=true";
+    }
+
+    public String paginaAlunoDetalhe() {
+        return "page-aluno-detalhe?faces-redirect=true";
+    }
+
+    public String paginaHistoricoAluno() {
+        return "page-historico?faces-redirect=true";
+    }
+    
+    public Aluno alunoDaSessao(){
+        return PegarUsuarioSessao.pegarAlunoSessao();
     }
 }
