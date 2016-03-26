@@ -32,7 +32,7 @@
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
 
                     <br/>
-                    
+
                     <div class="demo-avatar-dropdown">
                         <span>#{professor.login}</span>
                     </div>
@@ -43,36 +43,48 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-cad-pergunta.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-                        Nova Pergunta
-                    </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.cancelarPergunta()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                            Nova Pergunta
+                        </h:commandLink>
+                    </h:form>
+                    
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
                             account_balance_wallet
                         </i>
                         Perguntas
-                    </a>
-                    <a class="mdl-navigation__link" href="page-cad-teste.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
-                        Novo Teste
-                    </a>
-                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
-                        Testes
-                    </a>
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginaCadastrarTeste()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                            Novo Teste
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
+                            Testes
+                        </h:commandLink>
+                    </h:form>
+
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
                             Sair
                         </h:commandLink>
                     </h:form>
-
                 </nav>
             </div>
 
@@ -84,8 +96,19 @@
                             <h3 class="w3-text-teal font w3-justify">#{controladorPergunta.pergunta.enunciado}</h3>
 
                             <div class="mdl-cell--12-col">
-                                
+
                                 <i><b>Nova Resposta</b></i><br/>
+
+                                <h:panelGroup rendered="#{controladorPergunta.opcao == true}">
+                                    <div class="w3-container w3-section w3-blue">
+                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                        <p>
+                                            <h:messages showDetail="true" showSummary="true"
+                                                        errorStyle="color: white" infoStyle="color: white"
+                                                        warnStyle="color: white" fatalStyle="color: white" />
+                                        </p>
+                                    </div>
+                                </h:panelGroup>
 
                             </div>
 

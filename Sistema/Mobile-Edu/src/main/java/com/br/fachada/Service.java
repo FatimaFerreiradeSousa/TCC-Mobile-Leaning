@@ -70,12 +70,12 @@ public class Service implements Serializable {
     }
 
     /*Crud Questão*/
-    public void salvarQuestao(Pergunta questao) {
-        daoQuestao.salvar(questao);
+    public boolean salvarQuestao(Pergunta questao) {
+       return daoQuestao.salvar(questao);
     }
 
-    public void atualizarQuestao(Pergunta questao) {
-        daoQuestao.atualizar(questao);
+    public boolean atualizarQuestao(Pergunta questao) {
+        return daoQuestao.atualizar(questao);
     }
 
     public Pergunta consultarQuestao(int codigo) {
@@ -107,12 +107,12 @@ public class Service implements Serializable {
         return daoExercicio.consultar(codigo);
     }
 
-    public void removerExercicio(Teste exe) {
-        daoExercicio.remover(exe);
+    public boolean removerExercicio(Teste exe) {
+       return daoExercicio.remover(exe);
     }
 
-    public void atualizarExercicio(Teste exe) {
-        daoExercicio.atualizar(exe);
+    public boolean atualizarExercicio(Teste exe) {
+        return daoExercicio.atualizar(exe);
     }
 
     public List<Teste> listarTestes(String login) {

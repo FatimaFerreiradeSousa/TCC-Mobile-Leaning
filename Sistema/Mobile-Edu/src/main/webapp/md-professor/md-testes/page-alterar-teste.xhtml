@@ -46,29 +46,42 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-cad-pergunta.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-                        Nova Pergunta
-                    </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.cancelarPergunta()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                            Nova Pergunta
+                        </h:commandLink>
+                    </h:form>
+                    
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
                             account_balance_wallet
                         </i>
                         Perguntas
-                    </a>
-                    <a class="mdl-navigation__link" href="page-cad-teste.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
-                        Novo Teste
-                    </a>
-                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
-                        Testes
-                    </a>
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginaCadastrarTeste()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                            Novo Teste
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
+                            Testes
+                        </h:commandLink>
+                    </h:form>
+
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
@@ -82,16 +95,23 @@
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
                     <div class="mdl-grid demo-content">
                         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <i><b>Alterar Teste</b></i>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="assunto" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.assunto}" 
-                                             class="mdl-textfield__input font"
-                                             id="assunto"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório"/>
-                                <label class="mdl-textfield__label" for="assunto">Assunto</label>
+                            <div class="mdl-cell--12-col">
+
+                                <i><b>Alterar Teste</b></i><br/>
+
+                                <h:panelGroup rendered="#{controladorExercicio.opcao == true}">
+                                    <div class="w3-container w3-section w3-green">
+                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                        <p>
+                                            <h:messages showDetail="true" showSummary="true"
+                                                        errorStyle="color: white" infoStyle="color: white"
+                                                        warnStyle="color: white" fatalStyle="color: white" />
+                                        </p>
+                                    </div>
+                                </h:panelGroup>
+
                             </div>
+                            <hr />
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="disciplina" styleClass="erros"/>
@@ -103,13 +123,16 @@
                                 <label class="mdl-textfield__label" for="disciplina">Disciplina</label>
                             </div>
 
-                            <div class="mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
                                 <h:message for="dataEntrega" styleClass="erros"/>
-                                <label class="text-config w3-text-blue-grey" for="dataEntrega">Entrega:</label>
-                                <p:calendar value="#{controladorExercicio.exercicio.dataEntrega}" 
-                                            pattern="dd-MM-yyyy" mask="true"
-                                            id="dataEntrega"
-                                            styleClass="w3-margin-left font"/>
+                                <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" 
+                                             class="mdl-textfield__input font"
+                                             id="dataEntrega"
+                                             required="true"
+                                             requiredMessage="Campo Obrigatório">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                                <label class="mdl-textfield__label" for="dataEntrega">Data de entrega</label>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">

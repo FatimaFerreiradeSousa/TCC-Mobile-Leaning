@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -26,6 +28,8 @@ public class ControladorExercicio implements Serializable {
     private Pergunta pergunta;
     private String grupoCodigo;
     private String mensagem;
+    private FacesContext context;
+    private boolean opcao;
 
     @EJB
     Service fachada;
@@ -36,6 +40,7 @@ public class ControladorExercicio implements Serializable {
         pergunta = new Pergunta();
         codigoGrupo = new String();
         grupoCodigo = new String();
+        opcao = false;
     }
 
     public Teste getExercicio() {
@@ -69,20 +74,44 @@ public class ControladorExercicio implements Serializable {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-    
-    public List<String> listarCategorias(){
+
+    public boolean isOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(boolean opcao) {
+        this.opcao = opcao;
+    }
+
+    public List<String> listarCategorias() {
         return fachada.categoriaPerguntas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
     }
 
     public String salvarTeste() {
+        this.context = FacesContext.getCurrentInstance();
         exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
         exercicio.setDisponivel(true);
         exercicio.setQtdPerguntas(exercicio.getQuestoesExercicios().size());
-        fachada.salvarExercicio(exercicio);
 
-        exercicio = new Teste();
+        if (fachada.salvarExercicio(exercicio)) {
+            exercicio = new Teste();
 
-        return "page-cad-teste?faces-redirect=true";
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Cadastro efetuado.",
+                    "Teste cadastrado com sucesso.");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+        } else {
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Erro ao realizar cadastro.",
+                    "");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+        }
+
+        return null;
     }
 
     public String buscarPerguntas() {
@@ -96,8 +125,20 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String removerTeste() {
-        fachada.removerExercicio(exercicio);
-        return "page-listar-testes?faces-redirect=true";
+        this.context = FacesContext.getCurrentInstance();
+
+        if (fachada.removerExercicio(exercicio)) {
+            return "page-listar-testes?faces-redirect=true";
+        } else {
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Remoção não efetuada.",
+                    "Erro ao remover teste.");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+
+            return null;
+        }
     }
 
     public String visualizarTeste(Teste teste) {
@@ -107,8 +148,24 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String atualizarTeste() {
-        fachada.atualizarExercicio(exercicio);
-        return "page-alterar-teste?faces-redirect=true";
+        this.context = FacesContext.getCurrentInstance();
+
+        if (fachada.atualizarExercicio(exercicio)) {
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Atualização efetuada.",
+                    "Teste atualizado com sucesso.");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+        } else {
+            FacesMessage facesMessage = new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Atualização não efetuada.",
+                    "Erro ao atualizar o teste.");
+
+            context.addMessage(null, facesMessage);
+            opcao = true;
+        }
+        return null;
     }
 
     public String visualizarPerguntas() {
@@ -129,14 +186,14 @@ public class ControladorExercicio implements Serializable {
 
     public List<String> meusGrupos() {
         List<Grupo> gruposProfessor = fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
-        
+
         if (grupos.isEmpty() && gruposProfessor.size() > 0) {
 
             for (Grupo g : gruposProfessor) {
                 grupos.add(String.valueOf(g.getCodigo()) + " - " + g.getNome());
             }
         }
-        
+
         return grupos;
     }
 
@@ -156,19 +213,19 @@ public class ControladorExercicio implements Serializable {
         String codigo[] = codigoGrupo.split(" ");
 
         Grupo grupo = fachada.buscarGrupoPorCodigo(Integer.parseInt(codigo[0]));
-        
+
         if (grupo.getTestesGrupo().indexOf(exercicio) == -1) {
-            
+
             grupo.getTestesGrupo().add(exercicio);
             fachada.atualizarGrupo(grupo);
-            
+
             return "page-alterar-teste?faces-redirect=true";
-        }else{
-            
+        } else {
+
             this.mensagem = "Esse teste ja foi enviado ao grupo selecionado!";
             return "page-enviar-teste?faces-redirect=true";
         }
-        
+
     }
 
     public String cancelarEnvio() {
@@ -176,6 +233,17 @@ public class ControladorExercicio implements Serializable {
     }
 
     public String concluirEnvio() {
+        return "page-listar-testes?faces-redirect=true";
+    }
+    
+    public String paginaCadastrarTeste(){
+        this.exercicio = new Teste();
+        opcao = false;
+        return "page-cad-teste?faces-redirect=true";
+    }
+    
+    public String paginas(){
+        opcao = false;
         return "page-listar-testes?faces-redirect=true";
     }
 }

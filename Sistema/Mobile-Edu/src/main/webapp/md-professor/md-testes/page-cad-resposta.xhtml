@@ -43,36 +43,48 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    <a class="mdl-navigation__link" href="page-cad-pergunta.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
-                        Nova Pergunta
-                    </a>
 
-                    <a class="mdl-navigation__link" href="page-listar-perguntas.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.cancelarPergunta()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>
+                            Nova Pergunta
+                        </h:commandLink>
+                    </h:form>
+                    
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
                             account_balance_wallet
                         </i>
                         Perguntas
-                    </a>
-                    <a class="mdl-navigation__link" href="page-cad-teste.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
-                        Novo Teste
-                    </a>
-                    <a class="mdl-navigation__link" href="page-listar-testes.jsf">
-                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
-                        Testes
-                    </a>
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginaCadastrarTeste()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
+                            Novo Teste
+                        </h:commandLink>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandLink class="mdl-navigation__link" action="#{controladorExercicio.paginas()}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
+                            Testes
+                        </h:commandLink>
+                    </h:form>
+
                     <a class="mdl-navigation__link" href="page-config-professor.jsf">
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
                         Configurações
                     </a>
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorUsuario.logout()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">lock</i>
                             Sair
                         </h:commandLink>
                     </h:form>
-
                 </nav>
             </div>
 
@@ -88,6 +100,16 @@
 
                                 <i><b>Adicionar Resposta</b></i><br/>
 
+                                <h:panelGroup rendered="#{controladorPergunta.opcao == true}">
+                                    <div class="w3-container w3-section w3-blue">
+                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                        <p>
+                                            <h:messages showDetail="true" showSummary="true"
+                                                        errorStyle="color: white" infoStyle="color: white"
+                                                        warnStyle="color: white" fatalStyle="color: white" />
+                                        </p>
+                                    </div>
+                                </h:panelGroup>
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
@@ -110,7 +132,7 @@
                             </div>
 
                             <div class="w3-btn-group mdl-cell--12-col">
-                                <h:commandButton action="#{controladorPergunta.salvarPergunta()}" 
+                                <h:commandButton action="#{controladorPergunta.salvarPergunta()}"
                                                  class="w3-btn w3-green w3-btn-block" style="width: 50%" value="Salvar pergunta"/>
                                 <h:commandButton action="#{controladorPergunta.cancelarPergunta()}" 
                                                  class="w3-btn w3-red w3-btn-block" style="width: 50%" value="Cancelar"/>
@@ -130,6 +152,12 @@
                                 <h:outputLabel value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"/>
                             </h:column>
                         </h:dataTable>
+
+                        <div class="w3-btn-group mdl-cell--12-col">
+                            <h:commandButton action="#{controladorPergunta.paginaCadastrarPergunta()}" 
+                                             class="w3-btn w3-purple w3-btn-block" style="width: 100%; margin-left: 0.5em" value="Nova Pergunta"
+                                             rendered="#{controladorPergunta.opcao == true}"/>
+                        </div>
                     </div>
                 </h:form>  
             </main>
