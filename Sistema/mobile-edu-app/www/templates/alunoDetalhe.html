@@ -4,7 +4,7 @@
         <h1 class="title" style="text-align: center;">Desempenho</h1>
     </ion-header-bar>
 
-    <ion-content class="has-header" style="text-align: center;">
+    <ion-content padding="true" class="has-header"  style="text-align: center;">
     	
         <div id="logo">
         	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto">
@@ -25,6 +25,12 @@
         <p>
         	Faltas: <label style="color: red; font-size: 3em">{{alunoTurma.faltas}}</label>
         </p>
-        
+
+        <div class="list">
+            <a href="#/presencasAluno/{{turmaAlId}}/{{alunoId}}" 
+                class="button button-block button-positive button-outline">Ver Histórico
+            </a>
+        </div>
+
     </ion-content>
 </ion-view>

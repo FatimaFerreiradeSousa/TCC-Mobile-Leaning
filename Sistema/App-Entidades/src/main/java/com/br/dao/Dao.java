@@ -477,4 +477,19 @@ public class Dao {
         return participaGrupos.size() > 0;
     }
     
+    public List<Presenca> listarPresencasAluno(String login, String turma) {
+        Query query = em.createQuery("SELECT p FROM Presenca p where p.aluno.login = :login and p.turma.codigo = :turma");
+        query.setParameter("login", login);
+        query.setParameter("turma", turma);
+
+        return (List<Presenca>) query.getResultList();
+    }
+    
+    public List<ParticipaGrupo> listarRancking(int codGrupo) {
+        Query query = em.createQuery("select p from ParticipaGrupo p where p.grupo.codigo = :codGrupo ORDER BY p.pontuacao DESC");
+        query.setParameter("codGrupo", codGrupo);
+        
+        return query.getResultList();
+    }
+    
 }

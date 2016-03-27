@@ -7,13 +7,14 @@
     <ion-content padding="true" class="has-header" style="margin-top: 8%">
 
         <ion-list ng-repeat="t in turmasAluno" style="text-align: center">
+            
             <ion-item class="item-divider">
                 Turma {{t.nome}} <p style="font-size: 11px">Professor: {{t.professorNome}} {{t.professorSobrenome}}</p>
                 <p>{{t.descricao}}</p>
                 <p>Duração {{t.dataInicio}} - {{t.dataTerminio}}<p>
                 <hr/>
 
-                <a class="button button-clear button-positive" href="#/pageTurma/{{t.codigo}}">
+                <a class="button button-clear button-positive" href="#/pageTurma/{{t.codigo}}/{{login}}">
                     Ver Turma
                 </a>
 
@@ -23,7 +24,7 @@
         </ion-list>
     </ion-content>
 
-    <ion-tabs class="tabs-assertive">
+    <ion-tabs class="tabs-assertive tabs-icon-top">
         <ion-tab title="Home" icon="ion-ios-home" href="/home/{{login}}"></ion-tab>
 
         <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{login}}"></ion-tab>

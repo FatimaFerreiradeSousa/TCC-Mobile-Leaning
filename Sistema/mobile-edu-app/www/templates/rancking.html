@@ -1,0 +1,18 @@
+<ion-view title="Rancking" ng-controller="ranckingCtrl">
+
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-content class="has-header">
+
+      <p style="text-align: center; margin-top: 4%">Rancking do Grupo</p>
+      
+      <ion-list>
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="membro in rancking" type="item-text-wrap">
+            <img ng-src="data:image/jpeg;base64, {{membro.fotoAluno}}">
+            <h2>{{membro.alunoNome}} {{membro.alunoSobrenome}}</h2>
+            <p>Pontuação {{membro.pontuacao}}</p>
+          </ion-item>
+        </ion-list>
+    </ion-content>
+
+</ion-view>

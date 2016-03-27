@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
     })
 
     .state('pageTurma', {
-        url: '/pageTurma/:turmaCodigo',
+        url: '/pageTurma/:turmaCodigo/:loginAluno',
         templateUrl: 'templates/pageTurma.html',
         controller: 'turmaHomeCtrl'
     })
@@ -112,12 +112,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
         url: '/testesResultados/:codGrupo',
         templateUrl: 'templates/testesResultados.html',
         controller: 'testesGrupoGrupoCtrl'
-    })
-
-    .state('infoGrupo', {
-        url: '/infoGrupo/:codGrupo',
-        templateUrl: 'templates/infoGrupo.html',
-        controller: 'infoGrupoCtrl'
     })
 
     .state('resultados', {
@@ -190,6 +184,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
         url: '/solicitacaoGrupo/:grupoCodigo/:loginAluno',
         templateUrl: 'templates/solicitacaoGrupo.html',
         controller: 'solicitacaoGrupoCtrl'
+    })
+
+    .state('presencasAluno', {
+        url: '/presencasAluno/:turmaCodigo/:alunoLogin',
+        templateUrl: 'templates/presencasAluno.html',
+        controller: 'presencasAlunoCtrl'
+    })
+
+    .state('rancking', {
+        url: '/rancking/:codGrupo',
+        templateUrl: 'templates/rancking.html',
+        controller: 'ranckingCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');
