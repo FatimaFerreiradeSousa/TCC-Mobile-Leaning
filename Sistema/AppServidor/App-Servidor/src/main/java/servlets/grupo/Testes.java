@@ -5,7 +5,7 @@ import com.br.entidades.Grupo;
 import com.br.entidades.Professor;
 import com.br.entidades.Teste;
 import com.br.util.FormatData;
-import com.br.util.TesteAux;
+import com.br.util.TesteJson;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -35,11 +35,11 @@ public class Testes extends HttpServlet {
         Dao dao = new Dao();
         
         Grupo grupo = dao.consultarGrupo(codigo);
-        List<TesteAux> testes = new ArrayList();
+        List<TesteJson> testes = new ArrayList();
         
         for (Teste teste : grupo.getTestesGrupo()) {
             
-            TesteAux t = new TesteAux();
+            TesteJson t = new TesteJson();
             t.setAssunto(teste.getAssunto());
             t.setCategoria(teste.getCategoria());
             t.setDisciplina(teste.getDisciplina());

@@ -5,7 +5,6 @@ import com.br.entidades.Turma;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

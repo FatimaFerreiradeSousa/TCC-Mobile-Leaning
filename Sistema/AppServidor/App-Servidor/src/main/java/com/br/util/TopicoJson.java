@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Fatinha de Sousa
  */
 
-public class TopicoAux implements Serializable{
+public class TopicoJson implements Serializable{
     
     private int codigo;
     private String conteudo;
@@ -22,7 +22,7 @@ public class TopicoAux implements Serializable{
     private String sobrenomeUsuario;
     private int codigoGrupo;
     
-    public TopicoAux(){
+    public TopicoJson(){
     }
 
     public int getCodigoGrupo() {

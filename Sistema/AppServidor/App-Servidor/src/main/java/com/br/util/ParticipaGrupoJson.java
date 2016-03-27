@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Fatinha
  */
 
-public class ParticipaGrupoAux implements Serializable{
+public class ParticipaGrupoJson implements Serializable{
     
     private int id;
     private boolean aceito;
@@ -24,7 +24,7 @@ public class ParticipaGrupoAux implements Serializable{
     private int testesRespondidos;
     private int publicacoesFeitas;
     
-    public ParticipaGrupoAux(){
+    public ParticipaGrupoJson(){
     }
 
     public int getId() {

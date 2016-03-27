@@ -4,7 +4,7 @@ import com.br.dao.Dao;
 import com.br.entidades.Comentario;
 import com.br.entidades.Pessoa;
 import com.br.entidades.Topico;
-import com.br.util.ComentarioAux;
+import com.br.util.ComentarioJson;
 import com.br.util.FormatData;
 import com.br.util.FotosServices;
 import com.br.util.Servicos;
@@ -44,11 +44,11 @@ public class Comentarios extends HttpServlet {
             Dao dao = new Dao();
 
             List<Comentario> comentarios = dao.comentariosTopico(topicoCod);
-            List<ComentarioAux> temp = new ArrayList();
+            List<ComentarioJson> temp = new ArrayList();
 
             for (Comentario comentario : comentarios) {
 
-                ComentarioAux c = new ComentarioAux();
+                ComentarioJson c = new ComentarioJson();
                 c.setCodigo(comentario.getCodigo());
                 c.setConteudo(comentario.getConteudo());
                 c.setDataComentario(FormatData.parseDateString(comentario.getDataComentario()));

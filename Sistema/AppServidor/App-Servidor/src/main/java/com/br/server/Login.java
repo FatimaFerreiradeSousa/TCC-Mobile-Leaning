@@ -33,9 +33,15 @@ public class Login extends HttpServlet {
 
             Dao daoAluno = new Dao();
             Aluno al = daoAluno.buscarAluno(login);
+            JSONObject jSONObject;
 
-            JSONObject jSONObject = UtilTest.getJSONObject(al);
-
+            if (al != null) {
+                jSONObject = UtilTest.getJSONObject(al);
+            } else {
+                jSONObject = new JSONObject();
+                jSONObject.put("erro", "Login ou Senha Invalidos");
+            }
+            
             OutputStream os = response.getOutputStream();
             os.write(jSONObject.toString().getBytes());
 

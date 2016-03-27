@@ -7,7 +7,7 @@ import com.br.entidades.Topico;
 import com.br.util.FormatData;
 import com.br.util.FotosServices;
 import com.br.util.Servicos;
-import com.br.util.TopicoAux;
+import com.br.util.TopicoJson;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -44,11 +44,11 @@ public class Topicos extends HttpServlet {
             
             Dao dao = new Dao();
             List<Topico> topicos = dao.listarTopicos(codigo);
-            List<TopicoAux> temp = new ArrayList();
+            List<TopicoJson> temp = new ArrayList();
 
             for (Topico topico : topicos) {
 
-                TopicoAux t = new TopicoAux();
+                TopicoJson t = new TopicoJson();
                 t.setCaminho(topico.getCaminho());
                 t.setCodigo(topico.getCodigo());
                 t.setConteudo(topico.getConteudo());

@@ -39,7 +39,14 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.5:8080/App-Servidor/Login"
         $http.post(url, aluno).then(function(response){
             alunoObj = response.data;
-            $state.go("home", {login:alunoObj.login})
+
+            if(alunoObj.login != null){
+              $state.go("home", {login:alunoObj.login})
+            }else{
+              alert("Usuário inválido!");
+              $state.go("login");
+            }
+
         });
       },
 

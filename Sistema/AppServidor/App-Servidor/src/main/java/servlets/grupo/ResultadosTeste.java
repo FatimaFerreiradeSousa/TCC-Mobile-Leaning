@@ -5,7 +5,7 @@ import com.br.entidades.Aluno;
 import com.br.entidades.RespondeExercicio;
 import com.br.util.FormatData;
 import com.br.util.FotosServices;
-import com.br.util.RespondeExercicioAux;
+import com.br.util.RespondeExercicioJson;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -37,11 +37,11 @@ public class ResultadosTeste extends HttpServlet {
         Dao dao = new Dao();
         
         List<RespondeExercicio> testes = dao.resultados(teste);
-        List<RespondeExercicioAux> temp = new ArrayList();
+        List<RespondeExercicioJson> temp = new ArrayList();
         
         for (RespondeExercicio respondeExercicio : testes) {
             
-            RespondeExercicioAux aux = new RespondeExercicioAux();
+            RespondeExercicioJson aux = new RespondeExercicioJson();
             aux.setId(respondeExercicio.getId());
             aux.setDataResposta(FormatData.parseDateString(respondeExercicio.getDataResposta()));
             aux.setNota(respondeExercicio.getNota());

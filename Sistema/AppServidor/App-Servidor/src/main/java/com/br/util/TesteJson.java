@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Fatinha de Sousa
  */
 
-public class TesteAux implements Serializable{
+public class TesteJson implements Serializable{
     
     private int codigo;
     private String disciplina;
@@ -21,7 +21,7 @@ public class TesteAux implements Serializable{
     private int codigoGrupo;
     private int qtdAlunos;
     
-    public TesteAux(){
+    public TesteJson(){
     
     }
 

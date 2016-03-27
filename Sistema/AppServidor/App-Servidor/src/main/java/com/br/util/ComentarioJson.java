@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Fatinha de Sousa
  */
 
-public class ComentarioAux implements Serializable{
+public class ComentarioJson implements Serializable{
     
     private int codigo;
     private String conteudo;
@@ -17,7 +17,7 @@ public class ComentarioAux implements Serializable{
     private String sobrenomeUsuario;
     private String fotoUsuario;
     
-    public ComentarioAux(){
+    public ComentarioJson(){
     
     }
     

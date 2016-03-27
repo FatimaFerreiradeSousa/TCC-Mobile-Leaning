@@ -4,6 +4,8 @@ import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import com.br.entidades.Professor;
 import com.br.entidades.Turma;
+import com.br.util.FormatData;
+import com.br.util.TurmaJson;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -33,23 +35,22 @@ public class Turmas extends HttpServlet {
         Dao daoAluno = new Dao();
         Aluno al = daoAluno.buscarAluno(login);
         
-        List<Turma> turmas = new ArrayList();
+        List<TurmaJson> turmas = new ArrayList();
         List<Turma> tAluno = al.getTurmas();
         
         for (Turma turma : tAluno) {
-            Turma t = new Turma();
-            t.setCategoria(turma.getCategoria());
-            t.setCodigo(turma.getCodigo());
-            t.setDataInicio(turma.getDataInicio());
-            t.setDataTerminio(turma.getDataTerminio());
-            t.setDescricao(turma.getDescricao());
-            t.setNome(turma.getNome());
+            TurmaJson turmaJson = new TurmaJson();
+            turmaJson.setCategoria(turma.getCategoria());
+            turmaJson.setCodigo(turma.getCodigo());
+            turmaJson.setDataInicio(FormatData.parseDateString(turma.getDataInicio()));
+            turmaJson.setDataTerminio(FormatData.parseDateString(turma.getDataTerminio()));
+            turmaJson.setDescricao(turma.getDescricao());
+            turmaJson.setNome(turma.getNome());
+            turmaJson.setProfessorNome(turma.getProfessor().getNome());
+            turmaJson.setProfessoSobrenome(turma.getProfessor().getSobrenome());
+            turmaJson.setQtdAlunos(turma.getAlunos().size());
             
-            Professor p = new Professor();
-            p.setNome(turma.getProfessor().getNome());
-            
-            t.setProfessor(p);
-            turmas.add(t);
+            turmas.add(turmaJson);
         }
         
         JSONArray jSONArray = new JSONArray(turmas);

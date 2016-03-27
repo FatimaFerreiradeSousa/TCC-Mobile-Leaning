@@ -88,15 +88,6 @@ angular.module('starter')
     $http.get(url1).then(function(response) {
         $scope.horarioDia = response.data;
     });
-
-    /*
-    var caminho2 = "http://192.168.2.9:8080/App-Servidor/HorariosTurma?codigo=";
-    var url2 = caminho1.concat($stateParams.turmaCodigo)
-        
-    $http.get(url2).then(function(response) {
-        $scope.horarios = response.data;
-    });*/
-
 })
 
 .controller('turmaHorarioCtrl', function($scope, $state, $stateParams, $http){

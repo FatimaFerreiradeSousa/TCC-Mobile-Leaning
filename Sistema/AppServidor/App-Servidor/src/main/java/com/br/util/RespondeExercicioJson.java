@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Fatinha de Sousa
  */
 
-public class RespondeExercicioAux implements Serializable{
+public class RespondeExercicioJson implements Serializable{
 
     private int id;
     private float nota;
@@ -19,7 +19,7 @@ public class RespondeExercicioAux implements Serializable{
     private String alunoSobrenome;
     private String fotoAluno;
     
-    public RespondeExercicioAux(){
+    public RespondeExercicioJson(){
     
     }
 
