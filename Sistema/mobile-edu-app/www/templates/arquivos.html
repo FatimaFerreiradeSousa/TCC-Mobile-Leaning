@@ -1,4 +1,4 @@
-<ion-view title="Mobile-Edu" ng-controller="arquivosGrupoCtrl">
+<ion-view title="Arquivos Enviados" ng-controller="arquivosGrupoCtrl">
 
     <ion-header-bar class="bar-stable bar-assertive">
         <h1 class="title" style="text-align: center;">Arquivos Enviados</h1>
@@ -10,17 +10,21 @@
 
             <!--<input type="file" id="file" name="file" ng-model="file"/>-->
 
-            <input type="file" file-model="file.arquivo"/><br/>
+            <input type="file" fileread="arquivoURL"/><br />
 
             <label class="item item-input">
-              <textarea placeholder="Comments" ng-model="file.conteudo"></textarea>
+              <textarea placeholder="Comments" ng-model="arquivoURL"></textarea>
             </label>
 
               <button class="button button-block button-positive" ng-click="enviar()">
                 Enviar
               </button>
 
-            
+          </div>
+
+          <div class="button-bar">
+              <a class="button" ng-click="uploadFile()">Upload</a>
+              <a class="button" ng-click="">Download</a>
           </div>
         
         
@@ -34,16 +38,15 @@
 
           <div class="item item-body">
             <p style="text-align: justify;">
-                {{topico.conteudo}}
+                {{topico.conteudo}}<br />
+                {{topico.nome}}
             </p>
 
-            <p style="text-align: justify;">
-                <a href="#" class="subdued">{{topico.nome}}</a>
-            </p>            
+            <div class="button-bar">
+              <a class="button" ng-click="donwloadArquivo(topico.caminho)">Download</a>
+              <a class="button">Remover</a>
+            </div>
 
-            <p>
-              <a href="#" class="subdued">Remover</a>
-            </p>
           </div>
 
         </div>

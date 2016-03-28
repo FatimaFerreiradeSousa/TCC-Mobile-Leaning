@@ -2,6 +2,7 @@ package com.br.app.conection;
 
 import com.br.dao.Dao;
 import com.br.entidades.*;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -10,11 +11,15 @@ import java.util.List;
  */
 public class App {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        Dao dao = new Dao();
+        String doc = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\1 - História 1\\Morrer jovem é como interromper uma música.docx";
+        String base64 = ArquivoServices.converteArquivoEmStringBase64(doc);
         
-        System.out.println("Opção: " +dao.verificaSeJaEhMembro("aliu", 77));
+        System.out.println("Gravando arquivo em disco");
+        System.out.println("ARQUIVO: " +ArquivoServices.converteStringBase64EmArquivo(base64, 1, "Morrer jovem.docx"));
+        
+        
     }
     
 }

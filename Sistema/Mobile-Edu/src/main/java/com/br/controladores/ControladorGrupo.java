@@ -327,8 +327,8 @@ public class ControladorGrupo implements Serializable {
 
     public void uploadProfessor() {
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\"
-                + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
-
+                +grupo.getCodigo()+"\\";
+        
         File dir = new File(caminho);
         if (!dir.exists()) {
             dir.mkdir();
@@ -577,7 +577,7 @@ public class ControladorGrupo implements Serializable {
 
     public String uploadAluno() {
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\"
-                + grupo.getCodigo() + " - " + grupo.getNome() + "\\";
+                + grupo.getCodigo() + "\\";
 
         File dir = new File(caminho);
         if (!dir.exists()) {

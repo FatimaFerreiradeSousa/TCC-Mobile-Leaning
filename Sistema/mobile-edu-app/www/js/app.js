@@ -96,12 +96,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
         controller: 'alunosGrupoCtrl'
     })
 
-    .state('arquivos', {
-        url: '/arquivos/:codGrupo',
-        templateUrl: 'templates/arquivos.html',
-        controller: 'arquivosGrupoCtrl'
-    })
-
     .state('testesGrupo', {
         url: '/testesGrupo/:codGrupo/:loginAluno',
         templateUrl: 'templates/testesGrupo.html',
@@ -196,6 +190,12 @@ angular.module('starter', ['ionic', 'ngCordova'])
         url: '/rancking/:codGrupo',
         templateUrl: 'templates/rancking.html',
         controller: 'ranckingCtrl'
+    })
+
+    .state('arquivos', {
+        url: '/arquivos/:codGrupo/:loginAluno',
+        templateUrl: 'templates/arquivos.html',
+        controller: 'arquivosGrupoCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');

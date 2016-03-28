@@ -217,28 +217,6 @@ angular.module('starter')
     })    
 })
 
-.controller('arquivosGrupoCtrl', function($scope, $state, $stateParams, $http){
-
-    $scope.grupoCodArquivo = $stateParams.codGrupo;
-    
-    $scope.file = {
-        conteudo: '',
-        arquivo: ''
-    }
-    
-    $scope.enviar = function(){
-        alert("Descricao: " +$scope.file.arquivo);
-        delete $scope.file;
-    }
-
-    var caminho = "http://192.168.2.5:8080/App-Servidor/Arquivos?grupo=";
-    var url = caminho.concat($stateParams.codGrupo)
-        
-    $http.get(url).then(function(response) {
-        $scope.arquivos = response.data;
-    })    
-})
-
 .controller('resultadosCtrl', function($scope, $state, $stateParams, $http){
 
     $scope.testeCod = $stateParams.codTeste;
@@ -663,3 +641,35 @@ angular.module('starter')
         $scope.rancking = response.data;
     })    
 })
+
+.controller('arquivosGrupoCtrl', function($scope, $state, $stateParams, $http, $cordovaFileTransfer){
+
+    var caminho = "http://192.168.2.5:8080/App-Servidor/Arquivos?grupo=";
+    var url = caminho.concat($stateParams.codGrupo)
+        
+    $http.get(url).then(function(response) {
+        $scope.arquivos = response.data;
+    }) 
+
+    $scope.uploadFile = function() {
+
+        var options = {
+            fileKey: "avatar",
+            fileName: "arquivo.docx",
+            chunkedMode: false,
+            mimeType: 'text/plain'
+        };
+
+        var path = "/sdcard/Download/pensamentos.docx"
+        var temp = "http://192.168.2.5:8080/App-Servidor/DownloadArquivo";
+
+        $cordovaFileTransfer.upload(temp, path, options).then(function(result) {
+            alert("SUCCESS: " + path);
+        }, function(err) {
+            alert("ERROR: " + JSON.stringify(err));
+        }, function (progress) {
+            // constant progress updates
+        });
+    }
+})
+
