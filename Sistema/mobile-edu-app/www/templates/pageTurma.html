@@ -1,4 +1,4 @@
-<ion-view title="{{turma.nome}}" ng-controller="turmaHomeCtrl">
+<ion-view title="Turma de {{turma.nome}}" ng-controller="turmaHomeCtrl">
 
     <ion-header-bar class="bar-stable bar-assertive">
         <h1 class="title" style="text-align: center;">Turma de {{turma.nome}}</h1>
@@ -6,20 +6,18 @@
 
     <ion-content padding="true" class="has-header" style="margin-top: 8%">
 
-        <div class="card" style="text-align: center;">
-          <div class="item item-text-wrap">
-            <label>{{turma.descricao}}</label>
-            <p>Professor {{turma.professor}}</p>
-          </div>
+        <div class="well" style="text-align: center;">
+           <label>{{turma.descricao}}</label>
+           <p>Professor {{turma.professor}}</p>
         </div>
 
         <h4 style="text-align: center;">Seu Horário Hoje</h4>
         
-        <ion-list ng-repeat="h in horarioDia" style="text-align: center">
-            <ion-item class="item-divider">
-                <label>{{h.horarioInicial}} - {{h.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
+        <div ng-repeat="h in horarioDia" style="text-align: center">
+            <div class="alert alert-warning">
+              <strong><label>{{h.horarioInicial}} - {{h.horarioFinal}}</label></strong>
+            </div>
+        </div>
 
         <br/>
         

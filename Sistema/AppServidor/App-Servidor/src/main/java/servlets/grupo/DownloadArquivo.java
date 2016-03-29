@@ -7,6 +7,7 @@ import com.br.util.TopicoJson;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,34 +30,23 @@ public class DownloadArquivo extends HttpServlet {
         String caminho = request.getParameter("caminho");
 
         System.out.println("Caminho: " + caminho);
-        /*
-        if(!caminho.equalsIgnoreCase("undefined")){
+        */
+        //if(!caminho.equalsIgnoreCase("undefined")){
             Dao dao = new Dao();
-            System.out.println("Caminho: " +caminho);
-            
-            //Topico topico = dao.consultarTopico(Integer.parseInt(codigoTopico));
-            
+            System.out.println("GET");
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("path", ArquivoServices.converteArquivoEmStringBase64(caminho));
-            
+            jSONObject.put("path", "");
+            String arquivoBase64 = ArquivoServices.converteArquivoEmStringBase64("C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\1\\885446.pdf");
+            System.out.println(arquivoBase64);
             OutputStream os = response.getOutputStream();
-            os.write(jSONObject.toString().getBytes());
+            os.write(arquivoBase64.getBytes());
             os.flush();
             os.close();
-        }
-
-        OutputStream os = response.getOutputStream();
-        os.write("Arquivo Recebido".getBytes());
-        os.flush();
-        os.close();*/
+        //}
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String json = UtilTest.streamToString(request.getInputStream());
-        System.out.println("JSON RECEBIDO: " +json);
-
     }
 }

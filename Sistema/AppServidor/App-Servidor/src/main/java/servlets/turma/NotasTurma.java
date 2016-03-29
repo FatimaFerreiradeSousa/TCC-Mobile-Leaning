@@ -42,7 +42,7 @@ public class NotasTurma extends HttpServlet {
             n.setDesenvolvimento(nota.getDesenvolvimento());
             n.setId(nota.getId());
             n.setIntroducao(nota.getIntroducao());
-            n.setProfessor(n.getProfessor());
+            n.setProfessor(nota.getProfessor());
             n.setTitulo(nota.getTitulo());
 
             notas.add(n);

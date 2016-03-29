@@ -6,7 +6,7 @@
 
     <ion-content class="has-header">
 
-        <ion-list>
+        <ion-list style="text-decoration: none">
           <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="al in alunosTurma" type="item-text-wrap" href="#/alunoDetalhe/{{al.login}}/{{turmaAluno}}">
             <img ng-src="data:image/jpeg;base64, {{al.foto}}">
             <h2>{{al.nome}} {{al.sobrenome}}</h2>

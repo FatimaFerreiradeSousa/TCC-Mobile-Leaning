@@ -4,27 +4,20 @@
         <h1 class="title" style="text-align: center;">Desempenho</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header"  style="text-align: center;">
+    <ion-content padding="true" class="has-header">
     	
-        <div id="logo">
-        	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto">
+        <div id="logo" style="text-align: left;">
+        	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto img-circle">
         </div>
         
-        <h3>{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h3>
-           	
-        <p>
-        	{{alunoTurma.curso}}
-        	<br />
-			{{alunoTurma.instituicao}}
-        </p>
-
-        <p>
-        	Presenças:	<label style="color: red; font-size: 3em">{{alunoTurma.presenca}}</label>
-        </p>
-
-        <p>
-        	Faltas: <label style="color: red; font-size: 3em">{{alunoTurma.faltas}}</label>
-        </p>
+        <div style="margin-top: -30%;">
+            <h4 style="margin-left: 25%">{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h4>
+            
+            <p style="margin-left: 25%">
+            	Presenças:	<label style="color: red;">{{alunoTurma.presenca}}</label><br />
+                Faltas: <label style="color: red;">{{alunoTurma.faltas}}</label>
+            </p>
+        </div>
 
         <div class="list">
             <a href="#/presencasAluno/{{turmaAlId}}/{{alunoId}}" 

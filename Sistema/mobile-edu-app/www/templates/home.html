@@ -4,23 +4,32 @@
         <h1 class="title" style="text-align: center;">Mobile-Edu</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header" style="margin-bottom: 15%; margin-top: 8%">
+    <ion-content  class="has-header" padding="true" style="margin-top: 10%">
 
         <form  accept-charset="ISO-8859-1">
                 
             <h4 style="text-align: center;">Horário de Hoje</h4>
             
-            <ion-list ng-repeat="t in turmas">
-                <ion-item class="item-divider" style="text-align: center;">
-                    {{t.nome}} <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
-                    <hr/>
-                    <div class="" ng-repeat="h in t.horarios">
-                        {{h.horarioInicial}} - {{h.horarioFinal}}
+            <div ng-repeat="t in turmas">
+                <div style="text-align: center;">
+                    <div class="panel panel-success">
+                      <div class="panel-heading">
+                        <h4>
+                            {{t.nome}}
+                            <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
+                        </h4>
+                       </div>
+                    
+                        <div class="panel-body">
+                            <div class="" ng-repeat="h in t.horarios">
+                                <div class="alert alert-info">
+                                  <strong>{{h.horarioInicial}} - {{h.horarioFinal}}</strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </ion-item>
-
-                <br/>
-            </ion-list>
+                </div>
+            </div>
 
         </form>
 

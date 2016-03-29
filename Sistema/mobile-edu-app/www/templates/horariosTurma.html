@@ -6,64 +6,51 @@
 
     <ion-content padding="true" class="has-header">
 
-        <ion-item class="item-divider" style="text-align: center; color: red;">
-            <h2>Segunda-Feira</h2>
-        </ion-item>
-        
-        <ion-list ng-repeat="s in horariosSegunda" style="text-align: center">
-            <ion-item>
-                <label>{{s.horarioInicial}} - {{s.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
+        <div class="panel-group">
+            <div class="panel panel-default" ng-if="horariosSegunda.length > 0">
+              <div class="panel-heading" style="text-align: center;"><h4>Segunda-Feira</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-success" ng-repeat="s in horariosSegunda" style="text-align: center">
+                     {{s.horarioInicial}} - {{s.horarioFinal}}
+                   </div>
+              </div>
+            </div>
 
-        <br/>
+            <div class="panel panel-primary" ng-if="horariosTerca.length > 0">
+              <div class="panel-heading" style="text-align: center;"><h4>Terça-Feira</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-danger" ng-repeat="t in horariosTerca" style="text-align: center">
+                     {{t.horarioInicial}} - {{t.horarioFinal}}
+                   </div>
+              </div>
+            </div>
 
-        <ion-item class="item-divider" style="text-align: center;">
-            <h2>Terça-Feira</h2>
-        </ion-item>
-        
-        <ion-list ng-repeat="t in horariosTerca" style="text-align: center">
-            <ion-item>
-                <label>{{t.horarioInicial}} - {{t.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
+            <div class="panel panel-success" ng-if="horariosQuarta.length > 0">
+              <div class="panel-heading" style="text-align: center;"><h4>Quarta-Feira</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-info" ng-repeat="q in horariosQuarta" style="text-align: center">
+                     {{q.horarioInicial}} - {{q.horarioFinal}}
+                   </div>
+              </div>
+            </div>  
 
-        <br/>
+            <div class="panel panel-danger" ng-if="horariosQuinta.length > 0">
+              <div class="panel-heading" style="text-align: center;"><h4>Quinta-Feira</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-warning" ng-repeat="qi in horariosQuinta" style="text-align: center">
+                     {{qi.horarioInicial}} - {{qi.horarioFinal}}
+                   </div>
+              </div>
+            </div>  
 
-        <ion-item class="item-divider" style="text-align: center;">
-            <h2>Quarta-Feira</h2>
-        </ion-item>
-        
-        <ion-list ng-repeat="q in horariosQuarta" style="text-align: center">
-            <ion-item>
-                <label>{{q.horarioInicial}} - {{q.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
-
-        <br/>
-        
-        <ion-item class="item-divider" style="text-align: center;">
-            <h2>Quinta-Feira</h2>
-        </ion-item>
-        
-        <ion-list ng-repeat="qi in horariosQuinta" style="text-align: center">
-            <ion-item>
-                <label>{{qi.horarioInicial}} - {{qi.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
-
-        <br/>
-
-        <ion-item class="item-divider" style="text-align: center;">
-            <h2>Sexta-Feira</h2>
-        </ion-item>
-        
-        <ion-list ng-repeat="s in horariosSexta" style="text-align: center">
-            <ion-item>
-                <label>{{s.horarioInicial}} - {{s.horarioFinal}}</label>
-            </ion-item>
-        </ion-list>
-
-        <br/>
+            <div class="panel panel-warning" ng-if="horariosSexta.length > 0">
+              <div class="panel-heading" style="text-align: center;"><h4>Sexta-Feira</h4></div>
+              <div class="panel-body">
+                  <div class="alert alert-success" ng-repeat="s in horariosSexta" style="text-align: center">
+                     {{s.horarioInicial}} - {{s.horarioFinal}}
+                   </div>
+              </div>
+            </div>            
+        </div>
     </ion-content>
 </ion-view>

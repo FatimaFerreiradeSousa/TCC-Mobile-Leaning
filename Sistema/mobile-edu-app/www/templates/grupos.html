@@ -6,27 +6,31 @@
 
     <ion-content padding="true" class="has-header" style="margin-top: 10%;">
 
-        <ion-list ng-repeat="g in grupos" style="text-align: center">
-        
-            <ion-item class="item-divider">
-                {{g.grupo.nome}} 
-                <p style="font-size: 11px">Professor: {{g.grupo.professorGrupos.nome}} {{g.grupo.professorGrupos.sobrenome}}</p>
+        <div ng-repeat="g in grupos" style="text-align: center">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>
+                    Grupo {{g.grupo.nome}} 
+                    <p style="font-size: 12px">
+                        Professor: {{g.grupo.professorGrupos.nome}} {{g.grupo.professorGrupos.sobrenome}}
+                    </p>
+                <h4/>
+            </div>
+            
+            <div class="panel-body">
                 <p>{{g.grupo.descricao}}</p>
-                <hr/>
+            </div>
+            
+            <hr />
+              <a class="button button-block button-stable" href="#/homeGrupo/{{g.grupo.codigo}}/{{loginAlunoGrupo}}">
+                Ver Grupo
+              </a>
+            </div>
+        </div><br />
 
-                <a class="button button-clear button-positive" href="#/homeGrupo/{{g.grupo.codigo}}/{{loginAlunoGrupo}}">
-                    Ver Grupo
-                </a>
-
-            </ion-item>
-
-            <br/>
-        </ion-list>
-
-
-        <a class="button button-block button-positive" href="#/pesquisarGrupo/{{loginAlunoGrupo}}">
+        <a class="button button-block button-positive" href="#/pesquisarGrupo/{{loginAlunoGrupo}}" style="margin-bottom: 7%">
           Buscar Grupo
-        </a>
+        </a><br/>
 
     </ion-content>
    

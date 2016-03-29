@@ -9,7 +9,10 @@
         <div class="card" ng-repeat="n in notas" style="margin-bottom: 5%; text-align: justify;">
           
           <div class="item item-text-wrap">
-            <h2>{{n.titulo}}</h2>
+            <h2>
+                {{n.titulo}}.<br />
+                <p>(Por {{n.professor}})</p>
+            </h2>
             <br/>
           </div>
 

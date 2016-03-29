@@ -6,15 +6,13 @@
 
     <ion-content padding="true" class="has-header" style="text-align: center;">
     	
-        <ion-list ng-repeat="h in historico" style="text-align: center">
-            <ion-item class="item-divider">
+        <div ng-repeat="h in historico" style="text-align: center">
                 
-                {{h.horaAula}} - 
-                {{h.dataPreseca}} - 
-                <label ng-if="h.status == true">Presente</label>
-                <label ng-if="h.status == false">Faltou</label>
-                
-            </ion-item>
+                <div class="alert alert-warning">
+                    {{h.horaAula}} - {{h.dataPreseca}} -
+                    <label ng-if="h.status == true">Presente</label>
+                    <label ng-if="h.status == false">Faltou</label>
+                </div>
         </ion-list>
         
     </ion-content>

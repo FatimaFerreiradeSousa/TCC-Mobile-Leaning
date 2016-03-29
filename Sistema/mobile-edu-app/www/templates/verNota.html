@@ -6,21 +6,22 @@
 
     <ion-content padding="true" class="has-header">
 
-        <div style="text-align: justify;" class="card">
+        <div style="text-align: justify;">
 
-          <div class="item item-text-wrap">
+          <div class="text-font">
             
             <h3>{{nota.titulo}}</h3>
-            <p>Por {{nota.professor}} - {{nota.data}}</p>
+            <p>Por {{nota.professor}}, <span style="font-size: 11px">{{nota.data}}</span></p>
             <br/>
-            <label>
+
+            <p>
               {{nota.introducao}}
               {{nota.desenvolvimento}}
-            </label>
+            </p>
 
           </div>
 
-        </div><br/><br/>
+        </div>
         
     </ion-content>
 

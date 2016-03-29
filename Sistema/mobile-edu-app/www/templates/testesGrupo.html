@@ -8,9 +8,9 @@
 
       <div class="card" ng-repeat="teste in testes" style="text-align: center;">
         <div class="item item-text-wrap">
-           <h2>{{teste.assunto}}</h2>
+           <h2 class="title" style="font-size: 1.6em">{{teste.assunto}}</h2>
            
-           Enviado por {{teste.nome}} {{teste.nomeProfessor}}
+           <p style="font-size: 1.2em">Enviado por {{teste.nome}} {{teste.nomeProfessor}}</p>
 
            <p style="font-size: 12px">Entregar em {{teste.dataEntrega}}</p>
         </div>
@@ -18,7 +18,7 @@
           <p>
               <a href="#/verTeste/{{alCodigo}}/{{teste.codigo}}/{{grupoCodTestes}}" class="subdued">Visualizar Teste</a>
           </p>
-        </div><br />
+        </div>
       </div>
         
     </ion-content>

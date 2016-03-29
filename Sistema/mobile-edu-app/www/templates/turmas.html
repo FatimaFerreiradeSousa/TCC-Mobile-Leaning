@@ -4,24 +4,26 @@
         <h1 class="title" style="text-align: center;">Suas Turmas</h1>
     </ion-header-bar>
 
-    <ion-content padding="true" class="has-header" style="margin-top: 8%">
+    <ion-content class="has-header" padding="true" style="margin-top: 15%">
 
-        <ion-list ng-repeat="t in turmasAluno" style="text-align: center">
+        <div ng-repeat="t in turmasAluno" style="text-align: center">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>Turma {{t.nome}} <p style="font-size: 12px">Professor: {{t.professorNome}} {{t.professorSobrenome}}</p><h4/>
+            </div>
             
-            <ion-item class="item-divider">
-                Turma {{t.nome}} <p style="font-size: 11px">Professor: {{t.professorNome}} {{t.professorSobrenome}}</p>
+            <div class="panel-body">
                 <p>{{t.descricao}}</p>
-                <p>Duração {{t.dataInicio}} - {{t.dataTerminio}}<p>
-                <hr/>
-
-                <a class="button button-clear button-positive" href="#/pageTurma/{{t.codigo}}/{{login}}">
-                    Ver Turma
-                </a>
-
-            </ion-item>
-
-            <br/>
-        </ion-list>
+                <p><strong>Duração</strong> <em>{{t.dataInicio}} - {{t.dataTerminio}}</em></p>
+            </div>
+            
+            <hr />
+              <a class="button button-block button-stable" href="#/pageTurma/{{t.codigo}}/{{login}}">
+                Ver Turma
+              </a>
+            </div>
+        </div><br />
+        
     </ion-content>
 
     <ion-tabs class="tabs-assertive tabs-icon-top">

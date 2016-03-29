@@ -9,8 +9,8 @@
         <div class="list" style="text-align: center;">
           
           <div id="logo">
-              <img src="data:image/jpeg;base64, {{alunoPerfilFoto.foto}}" class="foto" ng-show="fotoPerfil === undefined">
-              <img src="data:image/jpeg;base64, {{fotoPerfil}}" class="foto" ng-show="fotoPerfil !== undefined">
+              <img src="data:image/jpeg;base64, {{alunoPerfilFoto.foto}}" class="foto img-circle" ng-show="fotoPerfil === undefined">
+              <img src="data:image/jpeg;base64, {{fotoPerfil}}" class="foto img-circle" ng-show="fotoPerfil !== undefined">
           </div>
           
           <button class="button button-full button-assertive" ng-click="pegarFoto()" 
