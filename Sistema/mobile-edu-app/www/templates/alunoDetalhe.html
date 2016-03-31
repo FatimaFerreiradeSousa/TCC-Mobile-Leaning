@@ -1,27 +1,28 @@
-<ion-view title="Desempenho" ng-controller="alunoDetalheCtrl">
+<ion-view title="" ng-controller="alunoDetalheCtrl">
 
-    <ion-header-bar class="bar-stable bar-assertive">
-        <h1 class="title" style="text-align: center;">Desempenho</h1>
-    </ion-header-bar>
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-nav-bar class="bar-stable bar-assertive">
+      <ion-nav-back-button>Desempenho</ion-nav-back-button>
+    </ion-nav-bar>
 
     <ion-content padding="true" class="has-header">
-    	
-        <div id="logo" style="text-align: left;">
-        	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto img-circle">
-        </div>
-        
-        <div style="margin-top: -30%;">
-            <h4 style="margin-left: 25%">{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h4>
+    	<div class="list" style="text-align: center;">
+
+            <div id="logo">
+            	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto img-circle">
+            </div>
             
-            <p style="margin-left: 25%">
+            <h4 style="">{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h4>
+                
+            <p style="">
             	Presenças:	<label style="color: red;">{{alunoTurma.presenca}}</label><br />
                 Faltas: <label style="color: red;">{{alunoTurma.faltas}}</label>
             </p>
-        </div>
-
-        <div class="list">
+        
             <a href="#/presencasAluno/{{turmaAlId}}/{{alunoId}}" 
-                class="button button-block button-positive button-outline">Ver Histórico
+                class="button button-block button-positive button-outline">
+                Ver Histórico
             </a>
         </div>
 

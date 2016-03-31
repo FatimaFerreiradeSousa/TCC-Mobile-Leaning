@@ -135,6 +135,14 @@ angular.module('starter').factory('fac', function($state, $http) {
             alert(response.data);
             $state.go("solicitacaoGrupo")
         });
+      },
+
+      recuperarSenha: function(assunto){
+         var url = "http://192.168.2.5:8080/App-Servidor/RecuperarSenha"
+          $http.post(url, assunto).then(function(response){
+              alert(response.data);
+              $state.go("senha")
+          });
       }
     }
 

@@ -1,8 +1,10 @@
-<ion-view title="Grupo de {{grupo.nome}}" ng-controller="homeGrupoCtrl">
+<ion-view title="" ng-controller="homeGrupoCtrl">
 
-    <ion-header-bar class="bar-stable bar-assertive">
-        <h1 class="title" style="text-align: center;">Grupo de {{grupo.nome}}</h1>
-    </ion-header-bar>
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-nav-bar class="bar-stable bar-assertive">
+      <ion-nav-back-button>Grupo de {{grupo.nome}}</ion-nav-back-button>
+    </ion-nav-bar>
 
     <ion-content padding="true" class="has-header" style="margin-top: 8%">
 
@@ -28,10 +30,10 @@
                 {{t.conteudo}}
             </p>
 
-            <p>
-              <a href="#/comentarios/{{t.codigo}}/{{usuarioAluno}}" class="subdued">Comentar</a>
-              <a ng-click="removerTopico(t)" class="subdued">Remover</a>
-              <a href="#/alterarTopico/{{t.codigo}}" class="subdued">Alterar</a>
+            <p class="button-bar">
+              <a href="#/comentarios/{{t.codigo}}/{{usuarioAluno}}" class="button button-clear">Comentar</a>
+              <a ng-click="removerTopico(t)" class="button button-clear" ng-if="t.loginUsuario == usuarioAluno">Remover</a>
+              <a href="#/alterarTopico/{{t.codigo}}" class="button button-clear" ng-if="t.loginUsuario == usuarioAluno">Alterar</a>
             </p>
           </div>
 

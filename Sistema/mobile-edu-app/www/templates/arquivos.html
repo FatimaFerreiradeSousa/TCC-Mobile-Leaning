@@ -1,8 +1,10 @@
-<ion-view title="Arquivos Enviados" ng-controller="arquivosGrupoCtrl">
+<ion-view title="" ng-controller="arquivosGrupoCtrl">
 
-    <ion-header-bar class="bar-stable bar-assertive">
-        <h1 class="title" style="text-align: center;">Arquivos Enviados</h1>
-    </ion-header-bar>
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-nav-bar class="bar-stable bar-assertive">
+      <ion-nav-back-button>Arquivos Enviados</ion-nav-back-button>
+    </ion-nav-bar>
 
     <ion-content padding="true" class="has-header">
 
@@ -43,8 +45,8 @@
             </p>
 
             <div class="button-bar">
-              <a class="button" ng-click="donwloadArquivo(topico.caminho)">Download</a>
-              <a class="button">Remover</a>
+              <a class="button">Download</a>
+              <a class="button" ng-if="alunoArquivos == topico.loginUsuario">Remover</a>
             </div>
 
           </div>

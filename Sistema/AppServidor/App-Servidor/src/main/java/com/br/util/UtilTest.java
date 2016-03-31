@@ -65,7 +65,7 @@ public class UtilTest {
 
         return jSONObject;
     }
-    
+
     public static JSONObject getJSONAluno(Aluno json, int presenca, int faltas) throws IOException {
 
         jSONObject = new JSONObject();
@@ -83,7 +83,7 @@ public class UtilTest {
 
         return jSONObject;
     }
-    
+
     public static JSONObject getJSONNota(Nota nota) throws IOException {
 
         jSONObject = new JSONObject();
@@ -95,7 +95,7 @@ public class UtilTest {
 
         return jSONObject;
     }
-    
+
     public static JSONObject getJSONGrupo(Grupo grupo, int membros) throws IOException {
 
         jSONObject = new JSONObject();
@@ -109,8 +109,8 @@ public class UtilTest {
 
         return jSONObject;
     }
-    
-    public static JSONObject getJSONAlunoInfo(ParticipaGrupo participaGrupo, int testes, int publicacoes, int testesGrupo) 
+
+    public static JSONObject getJSONAlunoInfo(ParticipaGrupo participaGrupo, int testes, int publicacoes, int testesGrupo)
             throws IOException {
 
         jSONObject = new JSONObject();
@@ -123,7 +123,7 @@ public class UtilTest {
         jSONObject.put("alunoNome", participaGrupo.getAluno().getNome());
         jSONObject.put("alunoSobrenome", participaGrupo.getAluno().getSobrenome());
         jSONObject.put("foto", FotosServices.converteArquivoEmStringBase64(participaGrupo.getAluno().getFoto()));
-        
+
         return jSONObject;
     }
 }

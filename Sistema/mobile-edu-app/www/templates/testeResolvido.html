@@ -1,0 +1,50 @@
+<ion-view title="" ng-controller="testeResolvidoCtrl">
+
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-nav-bar class="bar-stable bar-assertive">
+      <ion-nav-back-button>Testes</ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content padding="true" class="has-header">
+
+      	<div class="panel panel-default">
+		  <div class="panel-body" style="text-align: center;">
+		    <p>
+		    	Teste: <span style="font-size: 1.1em">{{testeRespondido.assunto}}</span><br />
+	      		<span style="font-size: 0.8em">
+	      			Elaborado por {{testeRespondido.professorNome}}
+	      			{{testeRespondido.professorSobrenome}}
+	      		</span>
+      		</p>
+      	   </div>
+		</div>
+
+		<h4 style="text-align: center;">Solução</h4>
+
+		<div ng-repeat="pergunta in perguntas" style="text-align: justify;">
+			
+			<div class="alert alert-info" role="alert">
+				{{pergunta.enunciado}}
+			</div>
+
+			<div ng-repeat="resposta in pergunta.respostas">
+
+				<div class="panel panel-default" ng-if="resposta.respostaCerta == true" style="color: #5cb85c">
+				  <div class="panel-body">
+				    {{resposta.conteudo}}
+				  </div>
+				</div>
+
+				<div class="panel panel-default" ng-if="resposta.respostaCerta == false">
+				  <div class="panel-body">
+				   {{resposta.conteudo}}
+				  </div>
+				</div>
+
+			</div>
+		</div>
+        
+    </ion-content>
+
+</ion-view>

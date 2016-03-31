@@ -366,12 +366,15 @@ angular.module('starter')
     $scope.grupoCodTestes = $stateParams.codGrupo;
     $scope.alCodigo = $stateParams.loginAluno;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/Testes?grupo=";
-    var url = caminho.concat($stateParams.codGrupo)
-        
-    $http.get(url).then(function(response) {
-        $scope.testes = response.data;
-    })    
+
+     setInterval(function(){
+        var caminho = "http://192.168.2.5:8080/App-Servidor/Testes?grupo=";
+        var url = caminho.concat($stateParams.codGrupo)
+            
+        $http.get(url).then(function(response) {
+            $scope.testes = response.data;
+        })  
+    }, 2000);  
 })
 
 .controller('verTesteCtrl', function($scope, $state, $stateParams, $http){
@@ -651,25 +654,39 @@ angular.module('starter')
         $scope.arquivos = response.data;
     }) 
 
-    $scope.uploadFile = function() {
+    $scope.alunoArquivos = $stateParams.loginAluno;
+})
 
-        var options = {
-            fileKey: "avatar",
-            fileName: "arquivo.docx",
-            chunkedMode: false,
-            mimeType: 'text/plain'
-        };
+.controller('testeResolvidoCtrl', function($scope, $state, $stateParams, $http, $cordovaFileTransfer){
 
-        var path = "/sdcard/Download/pensamentos.docx"
-        var temp = "http://192.168.2.5:8080/App-Servidor/DownloadArquivo";
+    $scope.codigoTeste = $stateParams.codTeste;
 
-        $cordovaFileTransfer.upload(temp, path, options).then(function(result) {
-            alert("SUCCESS: " + path);
-        }, function(err) {
-            alert("ERROR: " + JSON.stringify(err));
-        }, function (progress) {
-            // constant progress updates
-        });
+    var caminho = "http://192.168.2.5:8080/App-Servidor/BuscarTeste?teste=";
+    var url = caminho.concat($stateParams.codTeste)
+        
+    $http.get(url).then(function(response) {
+        $scope.testeRespondido = response.data;
+    }) 
+
+    var caminhoAux = "http://192.168.2.5:8080/App-Servidor/TesteResolvido?teste=";
+    var urlAux = caminhoAux.concat($stateParams.codTeste)
+        
+    $http.get(urlAux).then(function(response) {
+        $scope.perguntas = response.data;
+    }) 
+})
+
+.controller('senhaCtrl', function($scope, $state, $stateParams, $http, fac){
+
+    $scope.assunto = {
+        login:''
     }
+
+    $scope.enviarEmail = function(){
+        
+        fac.recuperarSenha($scope.assunto);
+        delete $scope.assunto;
+    }
+
 })
 

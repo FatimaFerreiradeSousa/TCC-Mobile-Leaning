@@ -198,6 +198,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
         controller: 'arquivosGrupoCtrl'
     })
 
+    .state('testeResolvido', {
+        url: '/testeResolvido/:codTeste',
+        templateUrl: 'templates/testeResolvido.html',
+        controller: 'testeResolvidoCtrl'
+    })
+
+    .state('senha', {
+        url: '/senha',
+        templateUrl: 'templates/senha.html',
+        controller: 'senhaCtrl'
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

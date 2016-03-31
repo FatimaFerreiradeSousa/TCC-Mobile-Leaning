@@ -1,8 +1,10 @@
-<ion-view title="Mobile-Edu" ng-controller="responderTesteCtrl">
+<ion-view title="" ng-controller="responderTesteCtrl">
 
-    <ion-header-bar class="bar-stable bar-assertive">
-        <h1 class="title" style="text-align: center;">Responder Teste</h1>
-    </ion-header-bar>
+    <ion-header-bar class="bar-stable bar-assertive"></ion-header-bar>
+
+    <ion-nav-bar class="bar-stable bar-assertive">
+      <ion-nav-back-button>Responder Teste</ion-nav-back-button>
+    </ion-nav-bar>
 
     <ion-content padding="true" class="has-header">
 
@@ -14,14 +16,16 @@
               Pergunta: {{testeAux[contador].enunciado}}
           </h5>
 
-          <ion-list>
-              <ion-item ng-repeat="r in testeAux[contador].respostas">
-                <a href="" ng-click="proxima(testeAux[contador].peso, r.respostaCerta)" class="royal" 
-                  style="text-align: justify; font-size: 0.9em">
-                  {{r.conteudo}}
-                </a>
-              </ion-item>
-          </ion-list>
+          <div>
+              <div ng-repeat="r in testeAux[contador].respostas">
+                <div class="alert alert-warning" role="alert"  style="text-align: justify;">
+                  <a href="" ng-click="proxima(testeAux[contador].peso, r.respostaCerta)" class="royal" 
+                    style="text-align: justify; font-size: 0.9em; text-decoration: none;">
+                    {{r.conteudo}}
+                  </a>
+                </div>
+              </div>
+          </div>
 
           <button class="button button-block button-assertive" ng-click="verResultado()" 
           ng-if="testeAux.length == contador && opcao == false">Ver Resultado</button>
