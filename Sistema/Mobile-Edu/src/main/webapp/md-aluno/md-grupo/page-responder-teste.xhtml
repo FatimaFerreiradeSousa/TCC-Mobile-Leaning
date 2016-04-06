@@ -98,18 +98,31 @@
                 <h:form>
                     <div class="w3-container w3-center w3-margin-top text-config">
 
-                        <h6 class="text-config w3-text-pink">Teste #{controladorTeste.teste.assunto}</h6>
+                        <div class="w3-justify">
+                            <h5>
 
-                        Disciplina: #{controladorTeste.teste.disciplina}<br />
-                        Entrega: <h:outputText value="#{controladorTeste.teste.dataEntrega}" 
-                                               class="w3-text-blue text-config">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputText><hr />
+                                <h:outputLabel value="Pergunta: #{controladorTeste.pergunta.enunciado}" 
+                                               class="w3-text-deep-orange text-config"
+                                               rendered="#{controladorTeste.comecar == true}"/>
+                            </h5>
+
+                            <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" 
+                                         class="w3-table w3-hoverable"
+                                         rendered="#{controladorTeste.comecar == true}">
+                                <h:column>
+                                    <p class="w3-justify text-config">
+                                        <h:commandLink value="#{resposta.conteudo}" 
+                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.peso)}" 
+                                                       style="text-decoration: none"/>
+                                    </p>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
 
                         <div class="w3-center w3-margin-top">
                             <h:commandButton value="Começar" action="#{controladorTeste.comecarAResponder()}" 
                                              class="w3-btn w3-teal w3-btn-block" 
-                                             rendered="#{controladorTeste.disponivel == true}"/>
+                                             rendered="#{controladorTeste.comecar == false}"/>
 
                             <h:outputText value="Este teste não está mais disponivel" class="w3-text-green"
                                           rendered="#{controladorTeste.disponivel == false}"/><br /> <br />
@@ -123,27 +136,6 @@
                             <p><h:outputText value="#{controladorTeste.mensagem}" 
                                              id="testeDisponivel" class="w3-text-indigo"/></p>
 
-                        </div>
-
-                        <div class="w3-center">
-                            <h3>
-
-                                <h:outputLabel value="Pergunta: #{controladorTeste.pergunta.enunciado}" 
-                                               class="w3-text-deep-orange text-config"
-                                               rendered="#{controladorTeste.comecar == true}"/>
-                            </h3>
-
-                            <h:dataTable value="#{controladorTeste.pergunta.respostas}" var="resposta" 
-                                         class="w3-table w3-hoverable"
-                                         rendered="#{controladorTeste.comecar == true}">
-                                <h:column>
-                                    <h4 class="w3-center text-config">
-                                        <h:commandLink value="#{resposta.conteudo}" 
-                                                       action="#{controladorTeste.enviarRespostas(resposta, controladorTeste.pergunta.peso)}" 
-                                                       style="text-decoration: none"/>
-                                    </h4>
-                                </h:column>
-                            </h:dataTable>
                         </div>
                     </div>
                 </h:form>

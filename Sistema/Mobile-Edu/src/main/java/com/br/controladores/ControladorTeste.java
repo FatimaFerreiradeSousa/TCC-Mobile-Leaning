@@ -46,6 +46,7 @@ public class ControladorTeste implements Serializable {
         disponivel = true;
         respondeExercicio = new RespondeExercicio();
         mensagem = null;
+        comecar = false;
     }
 
     public Teste getTeste() {
