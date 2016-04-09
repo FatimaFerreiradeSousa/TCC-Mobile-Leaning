@@ -1,40 +1,38 @@
-<ion-view title="" ng-controller="pesquisarGrupoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Pesquisar Grupo</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Pesquisar Grupo" ng-controller="pesquisarGrupoCtrl">
 
     <ion-content padding="true" class="has-header">
 
-        <div class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Nome" ng-model="grupo.nome">
-          </label>
+        <div class="list">
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Grupo</span>
+              <input type="text" placeholder="Grupo" required="true" ng-model="grupo.nome">
+            </label>
 
           <button class="button button-block button-stable" ng-click="buscarGrupo()">
               Buscar
           </button>
         </div>
 
-        <ion-list ng-repeat="grupo in gruposEncontrados" style="text-align: center" ng-if="gruposEncontrados.length > 0">
+        <div ng-repeat="grupo in gruposEncontrados" style="text-align: center" ng-if="gruposEncontrados.length > 0">
         
-            <ion-item class="item-divider">
-                {{grupo.nome}} 
-                <p style="font-size: 11px">Professor: {{grupo.professorGrupos.nome}} {{grupo.professorGrupos.sobrenome}}</p>
-                <p>{{grupo.descricao}}</p>
+            <div class="card" style="background-color: #00BCD4">
+                <h4 style="color: #FAFAFA">{{grupo.nome}}</h4> 
+                <p style="font-size: 11px; color: #FAFAFA">
+                  Professor: {{grupo.professorGrupos.nome}} {{grupo.professorGrupos.sobrenome}}
+                </p>
+                
+                <p style="color: #FAFAFA">{{grupo.descricao}}</p>
                 <hr/>
 
-                <a class="button button-clear button-positive" href="#/solicitacaoGrupo/{{grupo.codigo}}/{{alunoGrupoBuscar}}">
+                <a class="button button-clear button-positive" href="#/app/solicitacaoGrupo/{{grupo.codigo}}/{{alunoGrupoBuscar}}" style="color: #FAFAFA">
                     Ver Grupo
                 </a>
 
-            </ion-item>
+            </div>
 
             <br/>
-        </ion-list>
+        </div>
 
         <h4 ng-if="gruposEncontrados.length == 0" style="text-align: center;">Nenhum resultado encontrado</h4>
 

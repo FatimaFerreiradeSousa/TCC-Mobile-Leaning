@@ -1,22 +1,16 @@
-<ion-view title="" ng-controller="solicitacaoGrupoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Enviar Solicitação</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Enviar Solicitação" ng-controller="solicitacaoGrupoCtrl">
 
     <ion-content padding="true" class="has-header">
 
-        <ion-item class="item-divider" style="text-align: center;">
-            <h2>{{grupoSelect.nome}}</h2> 
-            <p style="font-size: 11px">Professor: {{grupoSelect.professorNome}} {{grupoSelect.professorSobremome}}</p>
-            <p>{{grupoSelect.descricao}}</p>
-        </ion-item>
+        <div class="card" style="text-align: center; background-color: #4CAF50">
+            <h2 style="color: #FAFAFA">{{grupoSelect.nome}}</h2> 
+            <p style="font-size: 11px; color: #FAFAFA">Professor: {{grupoSelect.professorNome}} {{grupoSelect.professorSobremome}}</p>
+            <p style="color: #FAFAFA">{{grupoSelect.descricao}}</p>
+        </div>
 
-        <div class="list list-inset">
+            <br />
 
-            <p ng-if="opcao.opcao == false" style="text-align: center;">Para ver as publicações envie uma solicitação!</p>
+            <p ng-if="opcao.opcao == false" style="text-align: center; color: #FAFAFA">Para ver as publicações envie uma solicitação!</p>
 
             <button class="button button-block button-royal" ng-click="enviarSolicitacao()" ng-if="opcao.opcao == false">
                 Enviar Solicitação
@@ -26,8 +20,6 @@
             <button class="button button-block button-assertive" ng-click="removerSolicitacao()" ng-if="opcao.opcao == true">
               Cancelar Solicitação
             </button>
-
-        </div>
 
     </ion-content>
 

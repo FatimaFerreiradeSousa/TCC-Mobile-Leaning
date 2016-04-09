@@ -41,7 +41,7 @@ angular.module('starter').factory('fac', function($state, $http) {
             alunoObj = response.data;
 
             if(alunoObj.login != null){
-              $state.go("home", {login:alunoObj.login})
+              $state.go("app.home", {login:alunoObj.login})
             }else{
               alert("Usuário inválido!");
               $state.go("login");
@@ -53,7 +53,7 @@ angular.module('starter').factory('fac', function($state, $http) {
       salvarTopico: function(topico){
         var url = "http://192.168.2.6:8080/App-Servidor/Topicos"
         $http.post(url, topico).then(function(response){
-            $state.go("homeGrupo")
+            $state.go("app.homeGrupo")
         }); 
       },
 
@@ -61,7 +61,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/RemoverTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
-            $state.go("homeGrupo")
+            $state.go("app.homeGrupo")
         });
       },
 
@@ -69,7 +69,6 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/AtualizarTopico"
         $http.post(url, topico).then(function(response){
             alert(response.data);
-            $state.go("homeGrupo")
         });
         
       },
@@ -77,7 +76,6 @@ angular.module('starter').factory('fac', function($state, $http) {
       salvarComentario: function(comentario){
         var url = "http://192.168.2.6:8080/App-Servidor/Comentarios"
         $http.post(url, comentario).then(function(response){
-            $state.go("comentarios")
         });
       },
 
@@ -85,7 +83,6 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/RemoverComentario"
         $http.post(url, comentario).then(function(response){
             alert(response.data);
-            $state.go("comentarios")
         });
       },
 
@@ -93,7 +90,6 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/AlterarComentario"
         $http.post(url, comentario).then(function(response){
             alert(response.data);
-            $state.go("comentarios")
         });
       },
 
@@ -101,7 +97,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/ResponderTeste"
         $http.post(url, respondeTeste).then(function(response){
             alert(response.data);
-            $state.go("responderTeste")
+            $state.go("app.responderTeste")
         });
       },
 
@@ -109,7 +105,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/AtualizarAluno"
         $http.post(url, alunoPerfil).then(function(response){
             alert(response.data);
-            $state.go("configuracoesInfo")
+            $state.go("app.configuracoesInfo")
         });
       },
 
@@ -117,7 +113,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/AtualizarAluno"
         $http.post(url, alunoFoto).then(function(response){
             alert(response.data);
-            $state.go("alterarFoto")
+            $state.go("app.alterarFoto")
         });
       },
 
@@ -125,7 +121,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/GruposPesquisa"
         $http.post(url, participaGrupo).then(function(response){
             alert(response.data);
-            $state.go("solicitacaoGrupo")
+            $state.go("app.solicitacaoGrupo")
         });
       },
 
@@ -133,7 +129,7 @@ angular.module('starter').factory('fac', function($state, $http) {
         var url = "http://192.168.2.6:8080/App-Servidor/RemoverSolicitacao"
         $http.post(url, participaGrupo).then(function(response){
             alert(response.data);
-            $state.go("solicitacaoGrupo")
+            $state.go("app.solicitacaoGrupo")
         });
       },
 

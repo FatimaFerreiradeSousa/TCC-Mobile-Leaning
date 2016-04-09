@@ -1,48 +1,32 @@
-<ion-view title="" ng-controller="gruposCtrl">
+<ion-view title="Meus Grupos" ng-controller="gruposCtrl">
 
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
+    <ion-content padding="true" class="has-header">
 
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Meus Grupos</ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content padding="true" class="has-header" style="margin-top: 10%;">
-
-        <div ng-repeat="g in grupos" style="text-align: center">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-                <h4>
+        <div class="" ng-repeat="g in grupos">
+              <div class="list card" style="background-color: #7E57C2; text-align: center; color: #FAFAFA">
+                <h4 style="color: #FAFAFA">
                     Grupo {{g.grupo.nome}} 
-                    <p style="font-size: 12px">
-                        Professor: {{g.grupo.professorGrupos.nome}} {{g.grupo.professorGrupos.sobrenome}}
-                    </p>
                 <h4/>
+                
+                <h6 style="font-size: 12px ;color: #FAFAFA">
+                        Professor: {{g.grupo.professorGrupos.nome}} {{g.grupo.professorGrupos.sobrenome}}
+                </h6>
+                
+                <label style="color: #FAFAFA; font-size: 14px">{{g.grupo.descricao}}</label>
+                
+                <a class="button button-block button-clear" href="#/app/homeGrupo/{{g.grupo.codigo}}/{{loginAlunoGrupo}}">
+                    Ver Grupo
+                </a>
             </div>
-            
-            <div class="panel-body">
-                <p>{{g.grupo.descricao}}</p>
-            </div>
-            
-            <a class="button button-block button-stable" href="#/homeGrupo/{{g.grupo.codigo}}/{{loginAlunoGrupo}}">
-                Ver Grupo
-            </a>
-            </div>
-        </div><br />
-
-        <a class="button button-block button-assertive" href="#/pesquisarGrupo/{{loginAlunoGrupo}}" style="margin-bottom: 7%">
-          Buscar Grupo
-        </a><br/>
+        </div>
+        
+        <div class="list">
+            <button class="button button-block button-assertive" ng-click="paginabuscarGrupo()" style="margin-bottom: 7%">
+              Buscar Grupo
+            </button>
+        </div>
+        <br/>
 
     </ion-content>
-   
-    <ion-tabs class="tabs-positive tabs-icon-top">
-        <ion-tab title="Home" icon="ion-ios-home" href="/home/{{loginAlunoGrupo}}"></ion-tab>
-
-        <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{loginAlunoGrupo}}"></ion-tab>
-
-        <ion-tab title="Grupos" icon="ion-android-chat" href="/grupos/{{loginAlunoGrupo}}"></ion-tab>
-
-        <ion-tab title="Perfil" icon="ion-ios-settings" href="/perfil/{{loginAlunoGrupo}}"></ion-tab>
-    </ion-tabs>
 
 </ion-view>

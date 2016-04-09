@@ -1,19 +1,15 @@
-<ion-view title="" ng-controller="alunosGrupoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Membros</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Membros" ng-controller="alunosGrupoCtrl">
 
     <ion-content class="has-header">
-
+        <br />
         <ion-list>
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="membro in membros" type="item-text-wrap" href="#/alunoDetalheGrupo/{{membro.login}}/{{grupoCod}}">
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="membro in membros" type="item-text-wrap" 
+            href="#/app/alunoDetalheGrupo/{{membro.login}}/{{grupoCod}}">
             <img ng-src="data:image/jpeg;base64, {{membro.foto}}">
             <h2>{{membro.nome}} {{membro.sobrenome}}</h2>
             <p>{{membro.login}}</p>
             <i class="icon ion-chevron-right icon-accessory"></i>
+            <hr />
           </ion-item>
         </ion-list>
 

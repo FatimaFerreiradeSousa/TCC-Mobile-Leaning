@@ -1,19 +1,16 @@
-<ion-view title="" ng-controller="comentariosCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Comentários</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Comentários" ng-controller="comentariosCtrl">
 
     <ion-content padding="true" class="has-header">
 
-        <div class="bar bar-header item-input-inset" >
-              <label class="item-input-wrapper" style="margin-bottom: 6px;">
-                <i class="icon ion-chatbubble-working placeholder-icon"></i>
-                <input type="search" placeholder="Comentar..." ng-model="comentario.conteudo">
-              </label>
-              <button class="button button-positive button-clear icon ion-ios-paperplane" ng-click="comentar()"></button>
+        <div class="list">
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Escreva algo..</span>
+              <input type="text" placeholder="Comentar..." required="true" ng-model="comentario.conteudo">
+            </label>         
+
+            <button class="button button-positive-900 button-block " ng-click="comentar()">Comentar</button>
+
         </div>
         
         <div class="list card" ng-repeat="c in comentarios">
@@ -29,10 +26,18 @@
                 {{c.conteudo}}
             </p>
 
-            <p>
-              <a ng-click="removerComentarios(c)" class="subdued">Remover</a>
-              <a href="#/alterarComentario/{{c.codigo}}" class="subdued">Alterar</a>
-            </p>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                
+                <a class="tab-item" data-ink-color="#336699" data-ink-opacity="0.5" ng-click="removerComentarios(c)"
+                    ng-if="c.loginUsuario == alunoidLogin">
+                    <i class="icon ion-trash-a"></i> Remover
+                </a>
+
+                <a class="tab-item" data-ink-color="#336699" data-ink-opacity="0.5"
+                    href="#/app/alterarComentario/{{c.codigo}}" ng-if="c.loginUsuario == alunoidLogin">
+                    <i class="icon ion-edit"></i> Alterar
+                </a>
+            </div>
           </div>
 
         </div>

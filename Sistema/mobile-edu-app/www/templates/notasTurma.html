@@ -1,25 +1,19 @@
-<ion-view title="" ng-controller="turmaNotasCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Notas</ion-nav-back-button>
-    </ion-nav-bar>
-
+<ion-view title="Notas" ng-controller="turmaNotasCtrl">
+    
     <ion-content padding="true" class="has-header">
 
-        <div class="card" ng-repeat="n in notas" style="margin-bottom: 5%; text-align: justify;">
+        <div class="card" ng-repeat="n in notas" style="margin-bottom: 5%; text-align: justify; background-color: #009688">
           
           <div class="item item-text-wrap">
-            <h2>
+            <h2 style="color: #FAFAFA">
                 {{n.titulo}}.<br />
-                <p>(Por {{n.professor}})</p>
+                <p style="color: #FAFAFA">(Por {{n.professor}})</p>
             </h2>
             <br/>
           </div>
 
           <div style="text-align: center;">
-            <a href="#/verNota/{{n.id}}" class="button button-clear button-positive">Ver Nota</a>
+            <a href="#/app/verNota/{{n.id}}" class="button button-clear button-positive" style="color: #FAFAFA">Ver Nota</a>
           </div>
         </div>
         

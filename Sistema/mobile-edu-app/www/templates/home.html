@@ -1,47 +1,29 @@
-<ion-view title="" ng-controller="alunoCtrl">
+<ion-view title="Inicio" ng-controller="alunoCtrl">
 
-     <ion-header-bar class="bar-stable bar-positive">
-        <h1 class="title" style="text-align: center;">Mobile-Edu</h1>
-    </ion-header-bar>
+    <ion-content>
 
-    <ion-content  class="has-header" padding="true" style="margin-top: 10%">
+        <div class="bar bar-subheader bar-stable static text-center">
+            <strong class="title">Horário de Hoje</strong>
+        </div><br />
 
         <form  accept-charset="ISO-8859-1">
-                
-            <h4 style="text-align: center;">Horário de Hoje</h4>
             
-            <div ng-repeat="t in turmas">
-                <div style="text-align: center;">
-                    <div class="panel panel-success">
-                      <div class="panel-heading">
-                        <h4>
-                            {{t.nome}}
-                            <p style="font-size: 11px">Professor: {{t.professor.nome}}</p>
-                        </h4>
-                       </div>
-                    
-                        <div class="panel-body">
-                            <div class="" ng-repeat="h in t.horarios">
-                                <div class="alert alert-info">
-                                  <strong>{{h.horarioInicial}} - {{h.horarioFinal}}</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div ng-repeat="t in turmas" style="text-align: center;">
+                <div class="list card stable-bg">
+                    <h4>Turma de {{t.nome}}</h4>
+                    <h6 style="font-size: 0.9em">Professor: {{t.professor.nome}}</h6>
+                    <hr />
+
+                    <div ng-repeat="h in t.horarios">
+                        <label style="color: #E91E63; font-size: 1.5em">{{h.horarioInicial}} - {{h.horarioFinal}}<label>
+                    </div><br />
+
                 </div>
             </div>
 
-        </form>
+        </form><br />
 
     </ion-content>
 
-	   <ion-tabs class="tabs-positive tabs-icon-top">
-	        <ion-tab title="Home" icon="ion-ios-home" href="/home/{{alunoSessao.login}}"></ion-tab>
 
-	        <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{alunoSessao.login}}"></ion-tab>
-
-	        <ion-tab title="Grupos" icon="ion-android-chat" href="/grupos/{{alunoSessao.login}}"></ion-tab>
-
-	        <ion-tab title="Perfil" icon="ion-ios-settings" href="/perfil/{{alunoSessao.login}}"></ion-tab>
-	    </ion-tabs>
 </ion-view>

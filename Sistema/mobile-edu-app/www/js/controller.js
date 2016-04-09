@@ -1,7 +1,8 @@
 angular.module('starter')
 
 .controller('loginCtrl', function($scope, $state, $stateParams, $http, fac){
-	$scope.aluno = {
+
+    $scope.aluno = {
         nome:'',
         sobrenome:'',
         login:'',
@@ -71,8 +72,8 @@ angular.module('starter')
     $scope.codigoTurma = $stateParams.turmaCod;
 })
 
-.controller('turmaHomeCtrl', function($scope, $state, $stateParams, $http){
-
+.controller('turmaHomeCtrl', function($scope, $state, $stateParams, $http, $ionicModal, $ionicPopover){
+   
     $scope.codigoTurma = $stateParams.turmaCodigo;
     $scope.alunoTurmaLogin = $stateParams.loginAluno;
 
@@ -88,6 +89,27 @@ angular.module('starter')
         
     $http.get(url1).then(function(response) {
         $scope.horarioDia = response.data;
+    });
+
+     var template =  "<ion-popover-view>" +
+                    "   <ion-content>" +
+                    "       <a class='button button-clear button-block' href='#/app/alunosTurmas/{{turma.codigo}}'>Alunos</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/notasTurma/{{turma.codigo}}'>Notas</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/horariosTurma/{{turma.codigo}}'>Horários</a>" +
+                    "   </ion-content>" +
+                    "</ion-popover-view>";
+
+
+    $scope.popover = $ionicPopover.fromTemplate(template, {
+        scope: $scope
+    });
+
+    $scope.closePopover = function() {
+        $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.popover.remove();
     });
 })
 
@@ -155,27 +177,34 @@ angular.module('starter')
     $scope.alunoId = $stateParams.alunoId;
     $scope.turmaAlId = $stateParams.turmaId;
 
-	var caminho = "http://192.168.2.6:8080/App-Servidor/AlunoDetalhe?login=";
-    var aux = caminho.concat($stateParams.alunoId)
-    var temp = aux.concat("&turma=");
-    var url = temp.concat($stateParams.turmaId);
+    $scope.paginaDetalhe = function(){
+        $state.go("app.presencasAluno", {turmaCodigo:$scope.turmaAlId, alunoLogin:$scope.alunoId});
+    }
 
-    $http.get(url).then(function(response) {
-        $scope.alunoTurma = response.data;
-    })    
+    setInterval(function(){
+        var caminho = "http://192.168.2.6:8080/App-Servidor/AlunoDetalhe?login=";
+        var aux = caminho.concat($stateParams.alunoId)
+        var temp = aux.concat("&turma=");
+        var url = temp.concat($stateParams.turmaId);
 
+        $http.get(url).then(function(response) {
+            $scope.alunoTurma = response.data;
+        })
+    }, 2000); 
 })
 
 .controller('turmaNotasCtrl', function($scope, $state, $stateParams, $http){
 
     $scope.notasTurmaId = $stateParams.turmaCod;
 
-	var caminho = "http://192.168.2.6:8080/App-Servidor/NotasTurma?codigo=";
-	var url = caminho.concat($stateParams.turmaCod)
-        
-    $http.get(url).then(function(response) {
-        $scope.notas = response.data;
-    })    
+    setInterval(function(){
+        var caminho = "http://192.168.2.6:8080/App-Servidor/NotasTurma?codigo=";
+        var url = caminho.concat($stateParams.turmaCod)
+            
+        $http.get(url).then(function(response) {
+            $scope.notas = response.data;
+        })
+    }, 2000);    
 
 })
 
@@ -202,6 +231,10 @@ angular.module('starter')
     $http.get(url).then(function(response) {
         $scope.grupos = response.data;
     })    
+
+    $scope.paginabuscarGrupo = function(){
+        $state.go("app.pesquisarGrupo", {alunoLogin:$scope.loginAlunoGrupo});
+    }
 
 })
 
@@ -244,7 +277,7 @@ angular.module('starter')
     })
 })
 
-.controller('homeGrupoCtrl', function($scope, $state, $stateParams, $http, fac){
+.controller('homeGrupoCtrl', function($scope, $state, $stateParams, $http, fac, $ionicPopover){
 
     $scope.grupoCodigo = $stateParams.codGrupo;
     $scope.usuarioAluno = $stateParams.loginAluno;
@@ -281,6 +314,30 @@ angular.module('starter')
             $scope.topicos = response.data;
         })
     }, 2000);
+
+
+    var template =  "<ion-popover-view>" +
+                    "   <ion-content>" +
+                    "       <a class='button button-clear button-block' href='#/app/alunosGrupo/{{grupoCodigo}}'>Alunos</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/arquivos/{{grupoCodigo}}/{{usuarioAluno}}'>Arquivos</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/testesGrupo/{{grupoCodigo}}/{{usuarioAluno}}'>Testes</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/testesResultados/{{grupoCodigo}}'>Resultados</a>" +
+                    "       <a class='button button-clear button-block' href='#/app/rancking/{{grupoCodigo}}'>Rancking</a>" +
+                    "   </ion-content>" +
+                    "</ion-popover-view>";
+
+
+    $scope.popoverGrupo = $ionicPopover.fromTemplate(template, {
+        scope: $scope
+    });
+
+    $scope.closePopoverGrupo = function() {
+        $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+    });
 
 })
 
@@ -622,14 +679,16 @@ angular.module('starter')
     $scope.alunoPresenca = $stateParams.alunoLogin;
     $scope.turmaPresenca = $stateParams.turmaCodigo;
 
-    var temp = "http://192.168.2.6:8080/App-Servidor/Presencas?login=";  
-    var aux = temp.concat($stateParams.alunoLogin);
-    var caminho = aux.concat("&turma=");
-    var url = caminho.concat($stateParams.turmaCodigo);
+    setInterval(function(){
+        var temp = "http://192.168.2.6:8080/App-Servidor/Presencas?login=";  
+        var aux = temp.concat($stateParams.alunoLogin);
+        var caminho = aux.concat("&turma=");
+        var url = caminho.concat($stateParams.turmaCodigo);
 
-    $http.get(url).then(function(response) {
-        $scope.historico = response.data;
-    })
+        $http.get(url).then(function(response) {
+            $scope.historico = response.data;
+        })
+    }, 2000);
 
 })
 

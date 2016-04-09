@@ -2,34 +2,29 @@
     
     <ion-pane>
 
-      <ion-header-bar class="bar-stable bar-positive">
-        <h1 class="title" style="text-align: center;">Mobile-Edu - Login</h1>
-      </ion-header-bar>
-
-      <ion-content padding="true" class="has-header" style="margin-top: 20%">
+      <ion-content padding="true" class="has-header" style="margin-top: 10%">
         
-        <form class="list">
-            <ion-list>
-                <label class="item item-input">
-                    <span class="input-label">Login</span>
-                    <input type="text" placeholder="" required="true" ng-model="aluno.login">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Senha</span>
-                    <input type="password" placeholder="" required="true" ng-model="aluno.senha">
-                </label>
-            </ion-list>
-            
-            <div class="spacer" style="height: 40px;"></div>
-            
+        <h4 class="border-top" style="text-align: center;">Login</h4>
+        <div class="list">
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Login</span>
+              <input type="text" placeholder="Login" required="true" ng-model="aluno.login">
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Senha</span>
+              <input type="password" placeholder="Senha" required="true" ng-model="aluno.senha">
+            </label>          
+
             <button class="button button-positive button-block " ng-click="loginAl()">Entrar</button>
 
             <div class="button-bar">
-                  <a class="button button-balanced button-outline" href="#/cadastro">Criar Conta</a>
-                  <a class="button button-assertive button-outline" href="#/senha">Recuperar Senha</a>
+              <a class="button button-balanced button-outline" href="#/cadastro">Criar Conta</a>
+              <a class="button button-assertive button-outline" href="#/senha">Senha</a>
             </div>
-            
-        </form>
+
+        </div>
       </ion-content>    
     </ion-pane>
 </ion-view>

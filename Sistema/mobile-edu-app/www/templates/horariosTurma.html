@@ -1,58 +1,42 @@
-<ion-view title="" ng-controller="turmaHorarioCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Horários</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Horários" ng-controller="turmaHorarioCtrl">
 
     <ion-content padding="true" class="has-header">
 
-        <div class="panel-group">
-            <div class="panel panel-default" ng-if="horariosSegunda.length > 0">
-              <div class="panel-heading" style="text-align: center;"><h4>Segunda-Feira</h4></div>
-              <div class="panel-body">
-                  <div class="alert alert-success" ng-repeat="s in horariosSegunda" style="text-align: center">
-                     {{s.horarioInicial}} - {{s.horarioFinal}}
-                   </div>
-              </div>
-            </div>
-
-            <div class="panel panel-primary" ng-if="horariosTerca.length > 0">
-              <div class="panel-heading" style="text-align: center;"><h4>Terça-Feira</h4></div>
-              <div class="panel-body">
-                  <div class="alert alert-danger" ng-repeat="t in horariosTerca" style="text-align: center">
-                     {{t.horarioInicial}} - {{t.horarioFinal}}
-                   </div>
-              </div>
-            </div>
-
-            <div class="panel panel-success" ng-if="horariosQuarta.length > 0">
-              <div class="panel-heading" style="text-align: center;"><h4>Quarta-Feira</h4></div>
-              <div class="panel-body">
-                  <div class="alert alert-info" ng-repeat="q in horariosQuarta" style="text-align: center">
-                     {{q.horarioInicial}} - {{q.horarioFinal}}
-                   </div>
-              </div>
-            </div>  
-
-            <div class="panel panel-danger" ng-if="horariosQuinta.length > 0">
-              <div class="panel-heading" style="text-align: center;"><h4>Quinta-Feira</h4></div>
-              <div class="panel-body">
-                  <div class="alert alert-warning" ng-repeat="qi in horariosQuinta" style="text-align: center">
-                     {{qi.horarioInicial}} - {{qi.horarioFinal}}
-                   </div>
-              </div>
-            </div>  
-
-            <div class="panel panel-warning" ng-if="horariosSexta.length > 0">
-              <div class="panel-heading" style="text-align: center;"><h4>Sexta-Feira</h4></div>
-              <div class="panel-body">
-                  <div class="alert alert-success" ng-repeat="s in horariosSexta" style="text-align: center">
-                     {{s.horarioInicial}} - {{s.horarioFinal}}
-                   </div>
-              </div>
-            </div>            
+        
+        <div class="list card" ng-if="horariosSegunda.length > 0" style="background-color: #E91E63; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Segunda-Feira</h4><hr/>
+            <div class="alert alert-success" ng-repeat="s in horariosSegunda" style="text-align: center">
+                {{s.horarioInicial}} - {{s.horarioFinal}}
+            </div><br />
         </div>
+
+        <div class="list card" ng-if="horariosTerca.length > 0" style="background-color: #FF5722; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Terça-Feira</h4><hr/>
+            <div class="alert alert-success" ng-repeat="t in horariosTerca" style="text-align: center">
+                {{t.horarioInicial}} - {{t.horarioFinal}}
+            </div><br />
+        </div>
+
+        <div class="list card" ng-if="horariosQuarta.length > 0" style="background-color: #4CAF50; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Quarta-Feira</h4><hr/>
+            <div class="alert alert-success" ng-repeat="q in horariosQuarta" style="text-align: center">
+                {{q.horarioInicial}} - {{q.horarioFinal}}
+            </div><br />
+        </div>
+
+        <div class="list card" ng-if="horariosQuinta.length > 0" style="background-color: #AA00FF; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Quinta-Feira</h4><hr/>
+            <div class="alert alert-success" ng-repeat="qi in horariosQuinta" style="text-align: center">
+                {{qi.horarioInicial}} - {{qi.horarioFinal}}
+            </div><br />
+        </div>
+
+        <div class="list card" ng-if="horariosSexta.length > 0" style="background-color: #2196F3; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Sexta-Feira</h4><hr/>
+            <div class="alert alert-success" ng-repeat="s in horariosSexta" style="text-align: center">
+                {{s.horarioInicial}} - {{s.horarioFinal}}
+            </div><br />
+        </div>
+
     </ion-content>
 </ion-view>

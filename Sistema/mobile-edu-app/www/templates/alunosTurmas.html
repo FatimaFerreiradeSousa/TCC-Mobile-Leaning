@@ -1,18 +1,12 @@
-<ion-view title="" ng-controller="turmaAlunosCtrl">
+<ion-view title="Alunos" ng-controller="turmaAlunosCtrl">
 
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Alunos</ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content class="has-header">
+    <ion-content class="has-header"><br />
 
         <ion-list style="text-decoration: none">
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="al in alunosTurma" type="item-text-wrap" href="#/alunoDetalhe/{{al.login}}/{{turmaAluno}}">
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="al in alunosTurma" type="item-text-wrap" href="#/app/alunoDetalhe/{{al.login}}/{{turmaAluno}}">
             <img ng-src="data:image/jpeg;base64, {{al.foto}}">
             <h2>{{al.nome}} {{al.sobrenome}}</h2>
-            <p>{{al.login}}</p>
+            <p>{{al.login}}</p><hr />
             <i class="icon ion-chevron-right icon-accessory"></i>
           </ion-item>
         </ion-list>

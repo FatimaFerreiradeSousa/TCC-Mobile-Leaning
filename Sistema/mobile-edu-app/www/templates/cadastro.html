@@ -3,40 +3,40 @@
     <ion-pane>
 
       <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-list>
+        <h4 class="border-top" style="text-align: center;">Criar Conta</h4>
+        
+        <div class="list">
 
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <span class="input-label">Nome</span>
-                    <input type="text" placeholder="" required="true" ng-model="aluno.nome">
+                    <input type="text" placeholder="Nome" required="true" ng-model="aluno.nome">
                 </label>
 
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <span class="input-label">Sobrenome</span>
-                    <input type="text" placeholder="" required="true" ng-model="aluno.sobrenome">
+                    <input type="text" placeholder="Sobrenome" required="true" ng-model="aluno.sobrenome">
                 </label>
 
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <span class="input-label">Login</span>
-                    <input type="text" placeholder="" required="true" ng-model="aluno.login">
+                    <input type="text" placeholder="Login" required="true" ng-model="aluno.login">
                 </label>
 
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <span class="input-label">Senha</span>
-                    <input type="password" placeholder="" required="true" ng-model="aluno.senha">
+                    <input type="password" placeholder="**********" required="true" ng-model="aluno.senha">
                 </label>
             
-                <label class="item item-input">
+                <label class="item item-input item-floating-label">
                     <span class="input-label">E-mail</span>
-                    <input type="text" placeholder="" required="true" ng-model="aluno.email">
+                    <input type="text" placeholder="E-mail" required="true" ng-model="aluno.email">
                 </label>
-            
-            </ion-list>
             
             <div class="spacer" style="height: 40px;"></div>
             
-            <button class="button button-positive button-block " ng-click="salvarAluno()">Cadastrar</button>
-        </form>
+            <button class="button button-assertive button-block " ng-click="salvarAluno()">Cadastrar</button>
+        </div>
+
       </ion-content>
     
     </ion-pane>

@@ -1,10 +1,4 @@
-<ion-view title="" ng-controller="verNotasCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Nota</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Nota" ng-controller="verNotasCtrl">
 
     <ion-content padding="true" class="has-header">
 
@@ -13,7 +7,7 @@
           <div class="text-font">
             
             <h3>{{nota.titulo}}</h3>
-            <p>Por {{nota.professor}}, <span style="font-size: 11px">{{nota.data}}</span></p>
+            <p style="text-align: right;">Por {{nota.professor}}, <span style="font-size: 11px">{{nota.data}}</span></p>
             <br/>
 
             <p>

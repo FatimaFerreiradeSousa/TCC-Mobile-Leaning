@@ -1,20 +1,16 @@
-<ion-view title="" ng-controller="presencasAlunoCtrl">
+<ion-view title="Histórico" ng-controller="presencasAlunoCtrl">
 
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Histórico</ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content padding="true" class="has-header" style="text-align: center;">
+    <ion-content padding="true" style="text-align: center;"><br />
     	
         <div ng-repeat="h in historico" style="text-align: center">
                 
-                <div class="alert alert-warning">
-                    {{h.horaAula}} - {{h.dataPreseca}} -
+                <div class="energized-900 bold energized-100-bg" style="text-align: center">
+                    <br />
+                    {{h.horaAula}} - {{h.dataPreseca}} <br />
                     <label ng-if="h.status == true">Presente</label>
                     <label ng-if="h.status == false">Faltou</label>
-                </div>
+                    <br /><br />
+                </div><hr/>
         </ion-list>
         
     </ion-content>

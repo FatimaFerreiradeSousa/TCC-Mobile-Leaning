@@ -1,17 +1,11 @@
-<ion-view title="" ng-controller="alunoDetalheCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Desempenho</ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content padding="true" class="has-header">
+<ion-view title="Desempenho" ng-controller="alunoDetalheCtrl">
+    
+    <ion-content padding="true">
     	<div class="list" style="text-align: center;">
 
-            <div id="logo">
-            	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto img-circle">
-            </div>
+            <div style="text-align: center; margin-bottom: 20%;">
+            	<img src="data:image/jpeg;base64, {{alunoTurma.foto}}" class="foto avatar">
+            </div><br />
             
             <h4 style="">{{alunoTurma.nome}} {{alunoTurma.sobrenome}}</h4>
                 
@@ -19,12 +13,12 @@
             	Presenças:	<label style="color: red;">{{alunoTurma.presenca}}</label><br />
                 Faltas: <label style="color: red;">{{alunoTurma.faltas}}</label>
             </p>
-        
-            <a href="#/presencasAluno/{{turmaAlId}}/{{alunoId}}" 
-                class="button button-block button-positive button-outline">
-                Ver Histórico
-            </a>
+
         </div>
+
+        <button class="button button-block button-positive-900" ng-click="paginaDetalhe()">
+          Ver Histórico
+        </button>
 
     </ion-content>
 </ion-view>

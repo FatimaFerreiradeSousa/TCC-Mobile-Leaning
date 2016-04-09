@@ -1,40 +1,26 @@
 <ion-view title="Suas Turmas" ng-controller="turmasCtrl">
 
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content class="has-header" padding="true" style="margin-top: 15%">
+    <ion-content class="has-header" padding="true">
 
         <div ng-repeat="t in turmasAluno" style="text-align: center">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-                <h4>Turma {{t.nome}} <p style="font-size: 12px">Professor: {{t.professorNome}} {{t.professorSobrenome}}</p><h4/>
+
+            <div class="list card" style="background-color: #3F51B5">
+                
+                <h4 style="color: #FAFAFA">Turma de {{t.nome}}</h4>
+                <h6 style="font-size: 0.9em; color: #FAFAFA">Professor: {{t.professorNome}} {{t.professorSobrenome}}</h6>
+
+                
+                <p style="font-size: 0.9em; color: #FAFAFA">{{t.descricao}}<br />
+                <strong >Duração</strong> <em>{{t.dataInicio}} - {{t.dataTerminio}}</em></p>
+
+                <hr />
+                <a class="button button-clear button-dark" href="#/app/pageTurma/{{t.codigo}}/{{login}}" style="color: #FAFAFA">
+                    Ver Turma
+                </a>
             </div>
-            
-            <div class="panel-body">
-                <p>{{t.descricao}}</p>
-                <p><strong>Duração</strong> <em>{{t.dataInicio}} - {{t.dataTerminio}}</em></p>
-            </div>
-            
-            <hr />
-              <a class="button button-block button-stable" href="#/pageTurma/{{t.codigo}}/{{login}}">
-                Ver Turma
-              </a>
-            </div>
+
         </div><br />
         
     </ion-content>
 
-    <ion-tabs class="tabs-positive tabs-icon-top">
-        <ion-tab title="Home" icon="ion-ios-home" href="/home/{{login}}"></ion-tab>
-
-        <ion-tab title="Turmas" icon="ion-ios-compose" href="/turmas/{{login}}"></ion-tab>
-
-        <ion-tab title="Grupos" icon="ion-android-chat" href="/grupos/{{login}}"></ion-tab>
-
-        <ion-tab title="Perfil" icon="ion-ios-settings" href="/perfil/{{login}}"></ion-tab>
-    </ion-tabs>
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -18,82 +18,131 @@ angular.module('starter', ['ionic', 'ngCordova'])
   
   $stateProvider
     
-    .state('login', {
-        url: '/login',
-        templateUrl: 'templates/login.html',
-        controller: 'loginCtrl'
+    .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'alunoCtrl'
     })
 
-    .state('home', {
+    .state('app.home', {
         url: '/home/:login',
-        templateUrl: 'templates/home.html',
-        controller: 'alunoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/home.html',
+                controller: 'alunoCtrl'
+            }
+        }
     })
 
-    .state('cadastro', {
-        url: '/cadastro',
-        templateUrl: 'templates/cadastro.html',
-        controller: 'alunoCtrl'
-    })
-
-    .state('turmas', {
+    .state('app.turmas', {
         url: '/turmas/:alunoLogin',
-        templateUrl: 'templates/turmas.html',
-        controller: 'turmasCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/turmas.html',
+                controller: 'turmasCtrl'
+            }
+        }
     })
 
-    .state('pageTurma', {
+    .state('app.pageTurma', {
         url: '/pageTurma/:turmaCodigo/:loginAluno',
-        templateUrl: 'templates/pageTurma.html',
-        controller: 'turmaHomeCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/pageTurma.html',
+                controller: 'turmaHomeCtrl'
+            }
+        }
     })
 
-    .state('horariosTurma', {
+    .state('app.horariosTurma', {
         url: '/horariosTurma/:codTurma',
-        templateUrl: 'templates/horariosTurma.html',
-        controller: 'turmaHorarioCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/horariosTurma.html',
+                controller: 'turmaHorarioCtrl'
+            }
+        }
     })
 
-    .state('alunosTurmas', {
+    .state('app.alunosTurmas', {
         url: '/alunosTurmas/:codigoTurma',
-        templateUrl: 'templates/alunosTurmas.html',
-        controller: 'turmaAlunosCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alunosTurmas.html',
+                controller: 'turmaAlunosCtrl'
+            }
+        }
     })
 
-    .state('alunoDetalhe', {
+    .state('app.alunoDetalhe', {
         url: '/alunoDetalhe/:alunoId/:turmaId',
-        templateUrl: 'templates/alunoDetalhe.html',
-        controller: 'alunoDetalheCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alunoDetalhe.html',
+                controller: 'alunoDetalheCtrl'
+            }
+        }
     })
 
-    .state('notasTurma', {
+    .state('app.presencasAluno', {
+        url: '/presencasAluno/:turmaCodigo/:alunoLogin',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/presencasAluno.html',
+                controller: 'presencasAlunoCtrl'
+            }
+        }
+    })
+
+    .state('app.notasTurma', {
         url: '/notasTurma/:turmaCod',
-        templateUrl: 'templates/notasTurma.html',
-        controller: 'turmaNotasCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/notasTurma.html',
+                controller: 'turmaNotasCtrl'
+            }
+        }
     })
 
-    .state('verNota', {
+    .state('app.verNota', {
         url: '/verNota/:notaId',
-        templateUrl: 'templates/verNota.html',
-        controller: 'verNotasCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/verNota.html',
+                controller: 'verNotasCtrl'
+            }
+        }
     })
 
-    .state('grupos', {
+    .state('app.grupos', {
         url: '/grupos/:loginAluno',
-        templateUrl: 'templates/grupos.html',
-        controller: 'gruposCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/grupos.html',
+                controller: 'gruposCtrl'
+            }
+        }
     })
 
-    .state('homeGrupo', {
+    .state('app.homeGrupo', {
         url: '/homeGrupo/:codGrupo/:loginAluno',
-        templateUrl: 'templates/homeGrupo.html',
-        controller: 'homeGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/homeGrupo.html',
+                controller: 'homeGrupoCtrl'
+            }
+        }
     })
 
-    .state('alunosGrupo', {
+    .state('app.alunosGrupo', {
         url: '/alunosGrupo/:codGrupo',
-        templateUrl: 'templates/alunosGrupo.html',
-        controller: 'alunosGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alunosGrupo.html',
+                controller: 'alunosGrupoCtrl'
+            }
+        }
     })
 
     .state('testesGrupo', {
@@ -114,28 +163,44 @@ angular.module('starter', ['ionic', 'ngCordova'])
         controller: 'resultadosCtrl'
     })
 
-    .state('alunoDetalheGrupo', {
+    .state('app.alunoDetalheGrupo', {
         url: '/alunoDetalheGrupo/:loginAluno/:grupoId',
-        templateUrl: 'templates/alunoDetalheGrupo.html',
-        controller: 'alunoDetalheGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alunoDetalheGrupo.html',
+                controller: 'alunoDetalheGrupoCtrl'
+            }
+        }
     })
 
-    .state('comentarios', {
+    .state('app.comentarios', {
         url: '/comentarios/:codigoTopico/:loginAluno',
-        templateUrl: 'templates/comentarios.html',
-        controller: 'comentariosCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/comentarios.html',
+                controller: 'comentariosCtrl'
+            }
+        }
     })
 
-    .state('alterarComentario', {
+    .state('app.alterarComentario', {
         url: '/alterarComentario/:codigoComentario',
-        templateUrl: 'templates/alterarComentario.html',
-        controller: 'alterarComentarioCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alterarComentario.html',
+                controller: 'alterarComentarioCtrl'
+            }
+        }
     })
 
-    .state('alterarTopico', {
+    .state('app.alterarTopico', {
         url: '/alterarTopico/:codigoTopico',
-        templateUrl: 'templates/alterarTopico.html',
-        controller: 'alterarTopicoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alterarTopico.html',
+                controller: 'alterarTopicoCtrl'
+            }
+        }
     })
 
     .state('verTeste', {
@@ -168,28 +233,34 @@ angular.module('starter', ['ionic', 'ngCordova'])
         controller: 'alterarFotoCtrl'
     })
 
-    .state('pesquisarGrupo', {
+    .state('app.pesquisarGrupo', {
         url: '/pesquisarGrupo/:alunoLogin',
-        templateUrl: 'templates/pesquisarGrupo.html',
-        controller: 'pesquisarGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/pesquisarGrupo.html',
+                controller: 'pesquisarGrupoCtrl'
+            }
+        }
     })
 
-    .state('solicitacaoGrupo', {
+    .state('app.solicitacaoGrupo', {
         url: '/solicitacaoGrupo/:grupoCodigo/:loginAluno',
-        templateUrl: 'templates/solicitacaoGrupo.html',
-        controller: 'solicitacaoGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/solicitacaoGrupo.html',
+                controller: 'solicitacaoGrupoCtrl'
+            }
+        }
     })
 
-    .state('presencasAluno', {
-        url: '/presencasAluno/:turmaCodigo/:alunoLogin',
-        templateUrl: 'templates/presencasAluno.html',
-        controller: 'presencasAlunoCtrl'
-    })
-
-    .state('rancking', {
+    .state('app.rancking', {
         url: '/rancking/:codGrupo',
-        templateUrl: 'templates/rancking.html',
-        controller: 'ranckingCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/rancking.html',
+                controller: 'ranckingCtrl'
+            }
+        }
     })
 
     .state('arquivos', {
@@ -208,6 +279,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
         url: '/senha',
         templateUrl: 'templates/senha.html',
         controller: 'senhaCtrl'
+    })
+
+    .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+    })
+
+    .state('cadastro', {
+        url: '/cadastro',
+        templateUrl: 'templates/cadastro.html',
+        controller: 'alunoCtrl'
     })
 
     $urlRouterProvider.otherwise('/login');

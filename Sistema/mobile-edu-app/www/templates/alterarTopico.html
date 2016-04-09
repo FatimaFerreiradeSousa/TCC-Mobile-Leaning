@@ -1,19 +1,13 @@
-<ion-view title="" ng-controller="alterarTopicoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Alterar Topico</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Alterar Topico" ng-controller="alterarTopicoCtrl">
 
     <ion-content padding="true" class="has-header">
           <div class="list">
 
             <label class="item item-input">
-              <textarea ng-model="tempTopico.conteudo"></textarea>
+              <textarea ng-model="tempTopico.conteudo" rows="5"></textarea>
             </label>
 
-              <button class="button button-block button-positive" ng-click="alterarTopico()">
+              <button class="button button-block button-positive-900" ng-click="alterarTopico()">
                 Alterar
               </button>
             
