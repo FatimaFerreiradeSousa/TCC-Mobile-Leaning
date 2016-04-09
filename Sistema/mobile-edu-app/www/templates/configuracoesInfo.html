@@ -1,60 +1,53 @@
-<ion-view title="" ng-controller="configuracoesInfoCtrl">
+<ion-view title="Configurações" ng-controller="configuracoesInfoCtrl">
 
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Configurações</ion-nav-back-button>
-    </ion-nav-bar>
-
-    <ion-content class="has-header">
+    <ion-content class="has-header" padding="true">
 
         <div class="list">
         
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Nome</span>
-            <input type="text" placeholder="Nome" ng-model="alunoPerfilInfo.nome">
-          </label>
-        
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Sobrenome</span>
-            <input type="text" placeholder="Sobrenome" ng-model="alunoPerfilInfo.sobrenome">
-          </label>
-        
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Email</span>
-            <input type="text" placeholder="Email" ng-model="alunoPerfilInfo.email">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Nome</span>
+              <input type="text" placeholder="Nome" required="true" ng-model="alunoPerfilInfo.nome">
           </label>
 
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Login</span>
-            <input type="text" placeholder="Login" ng-model="alunoPerfilInfo.login">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Sobrenome</span>
+              <input type="text" placeholder="Sobrenome" required="true" ng-model="alunoPerfilInfo.sobrenome">
           </label>
 
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Senha</span>
-            <input type="text" placeholder="Senha" ng-model="alunoPerfilInfo.senha">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Email</span>
+              <input type="text" placeholder="Email" required="true" ng-model="alunoPerfilInfo.email">
           </label>
 
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Curso</span>
-            <input type="text" placeholder="Curso" ng-model="alunoPerfilInfo.curso">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Login</span>
+              <input type="text" placeholder="Login" required="true" ng-model="alunoPerfilInfo.login">
           </label>
-            
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Instituição</span>
-            <input type="text" placeholder="Instituição" ng-model="alunoPerfilInfo.instituicao">
+
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Senha</span>
+              <input type="text" placeholder="Senha" required="true" ng-model="alunoPerfilInfo.senha">
+          </label>
+
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Curso</span>
+              <input type="text" placeholder="Curso" required="true" ng-model="alunoPerfilInfo.curso">
+          </label>
+
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Instituição</span>
+              <input type="text" placeholder="Instituição" required="true" ng-model="alunoPerfilInfo.instituicao">
           </label>
 
           <label class="item item-input item-stacked-label">
             <span class="input-label">Descrição</span>
-            <input type="text" placeholder="Descrição" ng-model="alunoPerfilInfo.descricao">
+            <textarea type="text" placeholder="Descrição" ng-model="alunoPerfilInfo.descricao" rows="5"></textarea>
           </label>
-        </div>
 
-        <div class="list" padding="true">
-          <button class="button button-block button-positive" ng-click="alterarPerfil()">
+          <button class="button button-block button-positive-900" ng-click="alterarPerfil()">
               Atualizar Informações
           </button>
+
         </div>
     </ion-content>
 

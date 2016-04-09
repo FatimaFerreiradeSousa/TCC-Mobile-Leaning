@@ -1,10 +1,4 @@
-<ion-view title="" ng-controller="responderTesteCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Responder Teste</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Responder Teste" ng-controller="responderTesteCtrl">
 
     <ion-content padding="true" class="has-header">
 
@@ -18,7 +12,7 @@
 
           <div>
               <div ng-repeat="r in testeAux[contador].respostas">
-                <div class="alert alert-warning" role="alert"  style="text-align: justify;">
+                <div class="card" style="text-align: justify; padding: 5%">
                   <a href="" ng-click="proxima(testeAux[contador].peso, r.respostaCerta)" class="royal" 
                     style="text-align: justify; font-size: 0.9em; text-decoration: none;">
                     {{r.conteudo}}
@@ -27,7 +21,7 @@
               </div>
           </div>
 
-          <button class="button button-block button-assertive" ng-click="verResultado()" 
+          <button class="button button-block button-assertive-900" ng-click="verResultado()" 
           ng-if="testeAux.length == contador && opcao == false">Ver Resultado</button>
 
           <h1 ng-if="opcao == true" style="color: blue; text-align: center;">Resultado {{pontuacao}}</h1>

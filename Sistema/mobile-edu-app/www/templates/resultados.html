@@ -1,10 +1,4 @@
-<ion-view title="" ng-controller="resultadosCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Resultado Individual</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Resultado do Teste" ng-controller="resultadosCtrl">
 
     <ion-content class="has-header">
 
@@ -12,9 +6,12 @@
       
       <ion-list>
           <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="r in resultados" type="item-text-wrap">
+            
             <img ng-src="data:image/jpeg;base64, {{r.fotoAluno}}">
             <h2>{{r.alunoNome}} {{r.alunoSobrenome}}</h2>
             <p>Pontuação {{r.nota}}</p>
+
+            <hr />
           </ion-item>
         </ion-list>
     

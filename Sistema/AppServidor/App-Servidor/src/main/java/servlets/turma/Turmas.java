@@ -27,39 +27,41 @@ public class Turmas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("loginAl");
 
-        Dao daoAluno = new Dao();
-        Aluno al = daoAluno.buscarAluno(login);
-        
-        List<TurmaJson> turmas = new ArrayList();
-        List<Turma> tAluno = al.getTurmas();
-        
-        for (Turma turma : tAluno) {
-            TurmaJson turmaJson = new TurmaJson();
-            turmaJson.setCategoria(turma.getCategoria());
-            turmaJson.setCodigo(turma.getCodigo());
-            turmaJson.setDataInicio(FormatData.parseDateString(turma.getDataInicio()));
-            turmaJson.setDataTerminio(FormatData.parseDateString(turma.getDataTerminio()));
-            turmaJson.setDescricao(turma.getDescricao());
-            turmaJson.setNome(turma.getNome());
-            turmaJson.setProfessorNome(turma.getProfessor().getNome());
-            turmaJson.setProfessoSobrenome(turma.getProfessor().getSobrenome());
-            turmaJson.setQtdAlunos(turma.getAlunos().size());
-            
-            turmas.add(turmaJson);
-        }
-        
-        JSONArray jSONArray = new JSONArray(turmas);
-        
-        OutputStream os = response.getOutputStream();
-        os.write(jSONArray.toString().getBytes());
+        if (!login.equalsIgnoreCase("undefined")) {
+            Dao daoAluno = new Dao();
+            Aluno al = daoAluno.buscarAluno(login);
 
-        os.flush();
-        os.close();
+            List<TurmaJson> turmas = new ArrayList();
+            List<Turma> tAluno = al.getTurmas();
+
+            for (Turma turma : tAluno) {
+                TurmaJson turmaJson = new TurmaJson();
+                turmaJson.setCategoria(turma.getCategoria());
+                turmaJson.setCodigo(turma.getCodigo());
+                turmaJson.setDataInicio(FormatData.parseDateString(turma.getDataInicio()));
+                turmaJson.setDataTerminio(FormatData.parseDateString(turma.getDataTerminio()));
+                turmaJson.setDescricao(turma.getDescricao());
+                turmaJson.setNome(turma.getNome());
+                turmaJson.setProfessorNome(turma.getProfessor().getNome());
+                turmaJson.setProfessoSobrenome(turma.getProfessor().getSobrenome());
+                turmaJson.setQtdAlunos(turma.getAlunos().size());
+
+                turmas.add(turmaJson);
+            }
+
+            JSONArray jSONArray = new JSONArray(turmas);
+
+            OutputStream os = response.getOutputStream();
+            os.write(jSONArray.toString().getBytes());
+
+            os.flush();
+            os.close();
+        }
     }
 
     @Override

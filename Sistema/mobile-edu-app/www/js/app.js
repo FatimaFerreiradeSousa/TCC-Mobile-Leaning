@@ -12,6 +12,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
       StatusBar.styleDefault();
     }
   });
+
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -145,22 +147,34 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
         }
     })
 
-    .state('testesGrupo', {
+    .state('app.testesGrupo', {
         url: '/testesGrupo/:codGrupo/:loginAluno',
-        templateUrl: 'templates/testesGrupo.html',
-        controller: 'testesGrupoGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/testesGrupo.html',
+                controller: 'testesGrupoGrupoCtrl'
+            }
+        }
     })
 
-    .state('testesResultados', {
+    .state('app.testesResultados', {
         url: '/testesResultados/:codGrupo',
-        templateUrl: 'templates/testesResultados.html',
-        controller: 'testesGrupoGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/testesResultados.html',
+                controller: 'testesGrupoGrupoCtrl'
+            }
+        }
     })
 
-    .state('resultados', {
+    .state('app.resultados', {
         url: '/resultados/:codTeste',
-        templateUrl: 'templates/resultados.html',
-        controller: 'resultadosCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/resultados.html',
+                controller: 'resultadosCtrl'
+            }
+        }
     })
 
     .state('app.alunoDetalheGrupo', {
@@ -203,34 +217,54 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
         }
     })
 
-    .state('verTeste', {
+    .state('app.verTeste', {
         url: '/verTeste/:alunoLogin/:testeCodigo/:codGrupo',
-        templateUrl: 'templates/verTeste.html',
-        controller: 'verTesteCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/verTeste.html',
+                controller: 'verTesteCtrl'
+            }
+        }
     })
 
-    .state('responderTeste', {
+    .state('app.responderTeste', {
         url: '/responderTeste/:alunoLogin/:testeCodigo/:codGrupo',
-        templateUrl: 'templates/responderTeste.html',
-        controller: 'responderTesteCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/responderTeste.html',
+                controller: 'responderTesteCtrl'
+            }
+        }
     })    
 
-    .state('perfil', {
+    .state('app.perfil', {
         url: '/perfil/:alunoLogin',
-        templateUrl: 'templates/perfil.html',
-        controller: 'perfilCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/perfil.html',
+                controller: 'perfilCtrl'
+            }
+        }
     })
 
-    .state('configuracoesInfo', {
+    .state('app.configuracoesInfo', {
         url: '/configuracoesInfo/:alunoLogin',
-        templateUrl: 'templates/configuracoesInfo.html',
-        controller: 'configuracoesInfoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/configuracoesInfo.html',
+                controller: 'configuracoesInfoCtrl'
+            }
+        }
     })
 
-    .state('alterarFoto', {
+    .state('app.alterarFoto', {
         url: '/alterarFoto/:alunoLogin',
-        templateUrl: 'templates/alterarFoto.html',
-        controller: 'alterarFotoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/alterarFoto.html',
+                controller: 'alterarFotoCtrl'
+            }
+        }
     })
 
     .state('app.pesquisarGrupo', {
@@ -263,16 +297,24 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
         }
     })
 
-    .state('arquivos', {
+    .state('app.arquivos', {
         url: '/arquivos/:codGrupo/:loginAluno',
-        templateUrl: 'templates/arquivos.html',
-        controller: 'arquivosGrupoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/arquivos.html',
+                controller: 'arquivosGrupoCtrl'
+            }
+        }
     })
 
-    .state('testeResolvido', {
+    .state('app.testeResolvido', {
         url: '/testeResolvido/:codTeste',
-        templateUrl: 'templates/testeResolvido.html',
-        controller: 'testeResolvidoCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/testeResolvido.html',
+                controller: 'testeResolvidoCtrl'
+            }
+        }
     })
 
     .state('senha', {

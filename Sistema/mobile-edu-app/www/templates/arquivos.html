@@ -1,33 +1,23 @@
-<ion-view title="" ng-controller="arquivosGrupoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Arquivos Enviados</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Arquivos Enviados" ng-controller="arquivosGrupoCtrl">
 
     <ion-content padding="true" class="has-header">
 
-          <div class="list">
+        <div class="list">
 
             <!--<input type="file" id="file" name="file" ng-model="file"/>-->
 
-            <input type="file" fileread="arquivoURL"/><br />
+          <input type="file" fileread="arquivoURL"/><br />
 
-            <label class="item item-input">
-              <textarea placeholder="Comments" ng-model="arquivoURL"></textarea>
-            </label>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Escreva algo..</span>
+              <input type="text" placeholder="Escreva algo..." required="true" ng-model="topico.conteudo">
+          </label> 
 
-              <button class="button button-block button-positive" ng-click="enviar()">
-                Enviar
-              </button>
+            <button class="button button-block button-positive-900" ng-click="enviar()">
+              Enviar
+            </button>
 
-          </div>
-
-          <div class="button-bar">
-              <a class="button" ng-click="uploadFile()">Upload</a>
-              <a class="button" ng-click="">Download</a>
-          </div>
+        </div>
         
         
         <div class="list card" ng-repeat="topico in arquivos">

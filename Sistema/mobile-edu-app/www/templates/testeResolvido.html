@@ -1,10 +1,4 @@
-<ion-view title="" ng-controller="testeResolvidoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Testes</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Resolução" ng-controller="testeResolvidoCtrl">
 
     <ion-content padding="true" class="has-header">
 
@@ -24,20 +18,20 @@
 
 		<div ng-repeat="pergunta in perguntas" style="text-align: justify;">
 			
-			<div class="alert alert-info" role="alert">
+			<div class="card" style="padding: 5%">
 				{{pergunta.enunciado}}
 			</div>
 
 			<div ng-repeat="resposta in pergunta.respostas">
 
-				<div class="panel panel-default" ng-if="resposta.respostaCerta == true" style="color: #5cb85c">
-				  <div class="panel-body">
+				<div ng-if="resposta.respostaCerta == true" style="color: #5cb85c">
+				  <div class="card" style="padding: 5%"> 
 				    {{resposta.conteudo}}
 				  </div>
 				</div>
 
-				<div class="panel panel-default" ng-if="resposta.respostaCerta == false">
-				  <div class="panel-body">
+				<div ng-if="resposta.respostaCerta == false">
+				  <div class="card" style="padding: 5%">
 				   {{resposta.conteudo}}
 				  </div>
 				</div>

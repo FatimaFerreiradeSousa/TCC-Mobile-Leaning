@@ -1,26 +1,18 @@
-<ion-view title="" ng-controller="testesGrupoGrupoCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Testes</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Testes" ng-controller="testesGrupoGrupoCtrl">
 
     <ion-content padding="true" class="has-header">
 
-      <div class="card" ng-repeat="teste in testes" style="text-align: center;">
-        <div class="item item-text-wrap">
-           <h2 class="title" style="font-size: 1.0em">{{teste.assunto}}</h2>
-           
-           <p style="font-size: 0.9em">Enviado por {{teste.nome}} {{teste.nomeProfessor}}</p>
+      <div class="card" ng-repeat="teste in testes" style="text-align: center; background-color: #FAFAFA; padding-top: 3%">
 
-           <p style="font-size: 0.7em">Entregar em {{teste.dataEntrega}}</p>
-        </div>
-        <div class="item item-divider">
-          <p>
-              <a href="#/verTeste/{{alCodigo}}/{{teste.codigo}}/{{grupoCodTestes}}" class="subdued">Visualizar Teste</a>
-          </p>
-        </div>
+           <h2 style="font-size: 1.3em">Teste {{teste.assunto}}</h2>
+           
+           <p style="font-size: 0.9em">Enviado por {{teste.nome}} {{teste.nomeProfessor}}<br />
+            
+            <label style="font-size: 0.7em">Entregar em {{teste.dataEntrega}}</label></p>
+      
+          <hr />
+          <a href="#/app/verTeste/{{alCodigo}}/{{teste.codigo}}/{{grupoCodTestes}}" class="subdued">Visualizar Teste</a>
+          <br /><br />
       </div>
       <br />  
     </ion-content>

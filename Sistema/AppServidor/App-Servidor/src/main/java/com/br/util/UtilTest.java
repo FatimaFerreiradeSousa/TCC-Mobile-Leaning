@@ -53,8 +53,8 @@ public class UtilTest {
     public static JSONObject getJSONObject(Aluno json) throws IOException {
 
         jSONObject = new JSONObject();
-        jSONObject.put("nome", json.getSobrenome());
-        jSONObject.put("sobrenome", json.getNome());
+        jSONObject.put("nome", json.getNome());
+        jSONObject.put("sobrenome", json.getSobrenome());
         jSONObject.put("login", json.getLogin());
         jSONObject.put("senha", json.getSenha());
         jSONObject.put("instituicao", json.getInstituicao());

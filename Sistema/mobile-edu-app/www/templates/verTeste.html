@@ -1,34 +1,32 @@
-<ion-view title="" ng-controller="verTesteCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Responder Teste</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Responder Teste" ng-controller="verTesteCtrl">
 
     <ion-content padding="true" class="has-header">
 
-      <div class="card" style="text-align: center;">
-        <div class="item item-text-wrap">
-           <h2 style="font-size: 1.0em">{{testeTemp.assunto}}</h2>
+      <div class="card" style="text-align: center; padding-top: 3%">
+        
+           <h2 style="font-size: 1.3em">{{testeTemp.assunto}}</h2>
            
-           <p style="font-size: 0.9em">Enviado por {{testeTemp.nome}} {{testeTemp.nomeProfessor}}</p>
+           <p style="font-size: 0.9em">
+                Enviado por {{testeTemp.professor}}<br />
 
-           <p style="font-size: 0.7em">Entregar em {{testeTemp.dataEntrega}}</p>
-        </div>
-        <div class="item item-divider">
+                <label style="font-size: 0.7em">Entregar em {{testeTemp.dataEntrega}}</label>
+           </p>
+
+           <hr />
+        
           <p>
+              
               <label ng-if="testeTemp.disponivel == 1" style="color: red; font-size: 1em">Você ja respondeu este teste!</label>
               <label ng-if="testeTemp.disponivel == 2" style="color: red; font-size: 1em">Este teste estava disponivel ate o dia {{testeTemp.dataEntrega}}</label>
-              <a href="#/responderTeste/{{alunoCod}}/{{testeCodigo}}/{{codigoGrupo}}" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
+              
+              <a href="#/app/responderTeste/{{alunoCod}}/{{testeCodigo}}/{{codigoGrupo}}" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
           </p>
-        </div>
       </div>
 
-      <a class="button button-block button-stable" href="#/testeResolvido/{{testeCodigo}}" 
+      <button class="button button-block button-positive-900" ng-click="verTesteResolvido()" 
           ng-if="testeTemp.disponivel == 1 || testeTemp.disponivel == 2" >
         Ver Solução
-      </a>
+      </button>
 
     </ion-content>
 

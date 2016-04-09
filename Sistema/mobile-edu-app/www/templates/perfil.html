@@ -1,10 +1,4 @@
-<ion-view title="" ng-controller="perfilCtrl">
-
-    <ion-header-bar class="bar-stable bar-positive"></ion-header-bar>
-
-    <ion-nav-bar class="bar-stable bar-positive">
-      <ion-nav-back-button>Configurações</ion-nav-back-button>
-    </ion-nav-bar>
+<ion-view title="Configurações" ng-controller="perfilCtrl">
 
     <ion-content padding="true" class="has-header">
 
@@ -20,8 +14,8 @@
           <p>{{alunoPerfil.curso}}</p>
         
           <div class="button-bar">
-            <a class="button button-assertive" href="#/configuracoesInfo/{{alunoPerfil.login}}">Perfil</a>
-            <a class="button button-positive" href="#/alterarFoto/{{alunoPerfil.login}}">Foto</a>
+            <a class="button button-assertive" href="#/app/configuracoesInfo/{{alunoPerfil.login}}">Perfil</a>
+            <a class="button button-positive" href="#/app/alterarFoto/{{alunoPerfil.login}}">Foto</a>
           </div>
         
         </div>
