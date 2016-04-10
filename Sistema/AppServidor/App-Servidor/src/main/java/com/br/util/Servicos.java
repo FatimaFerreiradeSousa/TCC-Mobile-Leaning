@@ -5,6 +5,7 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Horario;
 import com.br.entidades.Pessoa;
 import com.br.entidades.Turma;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +41,13 @@ public class Servicos {
         }else{
             return dao.buscarProfessor(login);
         }
+    }
+    
+    public static String removeAcentos(String str) {
+
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        return str;
+
     }
 }

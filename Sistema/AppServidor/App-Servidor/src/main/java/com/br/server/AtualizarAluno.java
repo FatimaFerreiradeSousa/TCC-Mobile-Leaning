@@ -29,7 +29,7 @@ public class AtualizarAluno extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("login");
 
         if (!login.equalsIgnoreCase("undefined")) {

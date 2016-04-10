@@ -28,7 +28,7 @@ public class RecuperarSenha extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("ISO-8859-1");
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
 

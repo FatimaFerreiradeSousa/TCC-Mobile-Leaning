@@ -31,7 +31,7 @@ public class Turmas extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("loginAl");
-
+        
         if (!login.equalsIgnoreCase("undefined")) {
             Dao daoAluno = new Dao();
             Aluno al = daoAluno.buscarAluno(login);

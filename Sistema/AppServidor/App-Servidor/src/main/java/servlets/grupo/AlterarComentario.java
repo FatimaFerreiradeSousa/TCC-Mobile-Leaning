@@ -25,7 +25,7 @@ public class AlterarComentario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("ISO-8859-1");
         String coment = request.getParameter("comentario");
 
         if (!coment.equalsIgnoreCase("undefined")) {

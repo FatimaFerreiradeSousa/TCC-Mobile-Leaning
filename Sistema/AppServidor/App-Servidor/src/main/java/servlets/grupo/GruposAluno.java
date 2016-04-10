@@ -27,7 +27,7 @@ public class GruposAluno extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("ISO-8859-1");
         response.setCharacterEncoding("ISO-8859-1");
         String login = request.getParameter("login");
         
