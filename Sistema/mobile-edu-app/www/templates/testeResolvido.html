@@ -18,20 +18,20 @@
 
 		<div ng-repeat="pergunta in perguntas" style="text-align: justify;">
 			
-			<div class="card" style="padding: 5%">
-				{{pergunta.enunciado}}
+			<div class="card" style="padding: 5%; background-color: #9C27B0; color: #FAFAFA">
+				Pergunta: {{pergunta.enunciado}}
 			</div>
 
 			<div ng-repeat="resposta in pergunta.respostas">
 
-				<div ng-if="resposta.respostaCerta == true" style="color: #5cb85c">
-				  <div class="card" style="padding: 5%"> 
+				<div ng-if="resposta.respostaCerta == true" style="color: #FAFAFA">
+				  <div class="card" style="padding: 5%; background-color: #FF9800"> 
 				    {{resposta.conteudo}}
 				  </div>
 				</div>
 
 				<div ng-if="resposta.respostaCerta == false">
-				  <div class="card" style="padding: 5%">
+				  <div class="card" style="padding: 5%; background-color: #FAFAFA; color: #000000">
 				   {{resposta.conteudo}}
 				  </div>
 				</div>

@@ -1,9 +1,10 @@
 <ion-view title="Meus Grupos" ng-controller="gruposCtrl">
 
-    <ion-content padding="true" class="has-header">
+    <ion-content class="has-header">
 
         <div class="" ng-repeat="g in grupos">
-              <div class="list card" style="background-color: #7E57C2; text-align: center; color: #FAFAFA">
+            
+            <div class="card" style="background-color: #880E4F; text-align: center; color: #FAFAFA">
                 <h4 style="color: #FAFAFA">
                     Grupo {{g.grupo.nome}} 
                 <h4/>
@@ -20,8 +21,8 @@
             </div>
         </div>
         
-        <div class="list">
-            <button class="button button-block button-assertive" ng-click="paginabuscarGrupo()" style="margin-bottom: 7%">
+        <div class="list" style="padding: 2%">
+            <button class="button button-block button-positive-900" ng-click="paginabuscarGrupo()" style="margin-bottom: 7%">
               Buscar Grupo
             </button>
         </div>

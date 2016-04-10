@@ -2,16 +2,18 @@
 
     <ion-content padding="true" class="has-header">
 
-      <div class="card" ng-repeat="teste in testes" style="text-align: center; background-color: #FAFAFA; padding-top: 3%">
+      <div class="card" ng-repeat="teste in testes" style="text-align: center; background-color: #009688; padding-top: 3%">
 
-           <h2 style="font-size: 1.3em">Teste {{teste.assunto}}</h2>
+           <h2 style="font-size: 1.3em; color: #FAFAFA">Teste {{teste.assunto}}</h2>
            
-           <p style="font-size: 0.9em">Enviado por {{teste.nome}} {{teste.nomeProfessor}}<br />
+           <p style="font-size: 0.9em; color: #FAFAFA">Enviado por {{teste.nome}} {{teste.nomeProfessor}}<br />
             
-            <label style="font-size: 0.7em">Entregar em {{teste.dataEntrega}}</label></p>
+            <label style="font-size: 0.8em">Entregar em {{teste.dataEntrega}}</label></p>
       
           <hr />
-          <a href="#/app/verTeste/{{alCodigo}}/{{teste.codigo}}/{{grupoCodTestes}}" class="subdued">Visualizar Teste</a>
+            <a href="#/app/verTeste/{{alCodigo}}/{{teste.codigo}}/{{grupoCodTestes}}" class="subdued" style="color: #FAFAFA">
+              Visualizar Teste
+            </a>
           <br /><br />
       </div>
       <br />  

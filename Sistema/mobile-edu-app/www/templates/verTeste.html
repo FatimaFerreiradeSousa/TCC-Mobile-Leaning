@@ -2,28 +2,30 @@
 
     <ion-content padding="true" class="has-header">
 
-      <div class="card" style="text-align: center; padding-top: 3%">
+      <div class="card" style="text-align: center; padding-top: 3%; background-color: #3F51B5">
         
-           <h2 style="font-size: 1.3em">{{testeTemp.assunto}}</h2>
+           <h2 style="font-size: 1.3em; color: #FAFAFA">{{testeTemp.assunto}}</h2>
            
-           <p style="font-size: 0.9em">
+           <p style="font-size: 0.9em; color: #FAFAFA">
                 Enviado por {{testeTemp.professor}}<br />
 
-                <label style="font-size: 0.7em">Entregar em {{testeTemp.dataEntrega}}</label>
+                <label style="font-size: 0.8em; color: #FAFAFA">Entregar em {{testeTemp.dataEntrega}}</label>
            </p>
 
            <hr />
         
           <p>
+              <label ng-if="testeTemp.disponivel == 1" style="color: #FAFAFA; font-size: 1em">Você ja respondeu este teste!</label>
+              <label ng-if="testeTemp.disponivel == 2" style="color: #FAFAFA; font-size: 1em">Este teste estava disponivel ate o dia {{testeTemp.dataEntrega}}</label>
               
-              <label ng-if="testeTemp.disponivel == 1" style="color: red; font-size: 1em">Você ja respondeu este teste!</label>
-              <label ng-if="testeTemp.disponivel == 2" style="color: red; font-size: 1em">Este teste estava disponivel ate o dia {{testeTemp.dataEntrega}}</label>
-              
-              <a href="#/app/responderTeste/{{alunoCod}}/{{testeCodigo}}/{{codigoGrupo}}" class="subdued" ng-if="testeTemp.disponivel == 0" style="color: red;; font-size: 1em">Responder Teste</a>
+              <a href="#/app/responderTeste/{{alunoCod}}/{{testeCodigo}}/{{codigoGrupo}}" class="subdued" 
+                  ng-if="testeTemp.disponivel == 0" style="color: #FAFAFA;; font-size: 1em">
+                    Responder Teste
+              </a>
           </p>
       </div>
 
-      <button class="button button-block button-positive-900" ng-click="verTesteResolvido()" 
+      <button class="button button-block button-stable" ng-click="verTesteResolvido()" 
           ng-if="testeTemp.disponivel == 1 || testeTemp.disponivel == 2" >
         Ver Solução
       </button>

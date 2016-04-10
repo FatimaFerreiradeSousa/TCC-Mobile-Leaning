@@ -5,15 +5,15 @@
               <img src="data:image/jpeg;base64, {{membroGrupo.foto}}" class="foto img-circle">
           </div>
         
-          <h3>{{membroGrupo.alunoNome}} {{membroGrupo.alunoSobrenome}}</h3>        
+          <h4>{{membroGrupo.alunoNome}} {{membroGrupo.alunoSobrenome}}</h4> <hr/>       
 
-          <div  style="text-align: center; color:red; margin-top: 5%">
+          <div  style="text-align: center; color:red; margin-top: 5%; font-size: 0.8em">
 
-              <h4>Pontuação Total: {{membroGrupo.pontuacao}}</h4>
-              <h4 ng-if="membroGrupo.testes > 1">{{membroGrupo.testes}} testes respondidos de {{membroGrupo.testesGrupo}}</h4>
-              <h4 ng-if="membroGrupo.testes == 1">{{membroGrupo.testes}} teste respondido de {{membroGrupo.testesGrupo}}</h4>
-              <h4 ng-if="membroGrupo.testes == 0">{{membroGrupo.testes}} teste respondido de {{membroGrupo.testesGrupo}}</h4>
-              <h4>Publicações Feitas: {{membroGrupo.publicacoes}}</h4>
+              <h5>Pontuação Total: {{membroGrupo.pontuacao}}</h5>
+              <h5 ng-if="membroGrupo.testes > 1">{{membroGrupo.testes}} testes respondidos de {{membroGrupo.testesGrupo}}</h5>
+              <h5 ng-if="membroGrupo.testes == 1">{{membroGrupo.testes}} teste respondido de {{membroGrupo.testesGrupo}}</h5>
+              <h5 ng-if="membroGrupo.testes == 0">{{membroGrupo.testes}} teste respondido de {{membroGrupo.testesGrupo}}</h5>
+              <h5>Publicações Feitas: {{membroGrupo.publicacoes}}</h5>
               
           </div>
 
