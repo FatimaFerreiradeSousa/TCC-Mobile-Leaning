@@ -48,6 +48,11 @@
                            class="mdl-layout__tab">
                             Testes
                         </a>
+                        
+                        <a href="page-rancking.jsf" style="text-decoration: none"
+                           class="mdl-layout__tab">
+                            Ranking
+                        </a>
 
                         <a href="page-alterar-grupo.jsf" style="text-decoration: none"
                            class="mdl-layout__tab">
@@ -172,9 +177,7 @@
                                                     <h:commandLink action="#{controladorGrupo.removerArquivo(topico)}"
                                                                    rendered="#{topico.loginUsuario.equalsIgnoreCase(professor.login)}"
                                                                    style="text-decoration: none;"
-                                                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                                        <i class="material-icons" role="presentation">delete</i>
-                                                        <span class="visuallyhidden">share comment</span>
+                                                                   class="w3-btn w3-red w3-btn-block" value="Remover">
                                                     </h:commandLink>
                                                 </nav>
                                             </div>
