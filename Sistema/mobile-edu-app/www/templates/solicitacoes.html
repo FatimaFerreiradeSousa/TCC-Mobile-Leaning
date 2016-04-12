@@ -1,0 +1,15 @@
+<ion-view title="Solicitações Pendentes" ng-controller="solicitacoesCtrl">
+
+    <ion-content class="has-header">
+
+        <ion- style="text-align: center;">
+          <ion-item ng-repeat="s in solicitacoes">
+            <h2>
+                <a href="#/app/solicitacaoGrupo/{{s.codigoGrupo}}/{{s.alunoLogin}}" class="subdued">{{s.nomeGrupo}}</a>
+            </h2>
+          </ion-item>
+        </ion-list>
+
+    </ion-content>
+
+</ion-view>

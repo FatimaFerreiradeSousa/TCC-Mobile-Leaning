@@ -335,6 +335,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'ionic-material'])
         controller: 'alunoCtrl'
     })
 
+    .state('app.solicitacoes', {
+        url: '/solicitacoes/:loginAluno',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/solicitacoes.html',
+                controller: 'solicitacoesCtrl'
+            }
+        }
+    })
+
     $urlRouterProvider.otherwise('/login');
 
 })

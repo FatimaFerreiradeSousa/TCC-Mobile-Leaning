@@ -1,9 +1,6 @@
 package com.br.util;
 
-import com.br.entidades.Aluno;
-import com.br.entidades.Grupo;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *

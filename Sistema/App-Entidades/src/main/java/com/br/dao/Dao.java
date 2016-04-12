@@ -490,6 +490,5 @@ public class Dao {
         query.setParameter("codGrupo", codGrupo);
         
         return query.getResultList();
-    }
-    
+    }    
 }
