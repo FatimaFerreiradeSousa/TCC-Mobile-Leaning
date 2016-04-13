@@ -18,6 +18,7 @@ public class RespondeExercicioJson implements Serializable{
     private String alunoNome;
     private String alunoSobrenome;
     private String fotoAluno;
+    private String nomeTeste;
     
     public RespondeExercicioJson(){
     
@@ -93,5 +94,13 @@ public class RespondeExercicioJson implements Serializable{
 
     public void setFotoAluno(String fotoAluno) {
         this.fotoAluno = fotoAluno;
+    }
+
+    public String getNomeTeste() {
+        return nomeTeste;
+    }
+
+    public void setNomeTeste(String nomeTeste) {
+        this.nomeTeste = nomeTeste;
     }
 }

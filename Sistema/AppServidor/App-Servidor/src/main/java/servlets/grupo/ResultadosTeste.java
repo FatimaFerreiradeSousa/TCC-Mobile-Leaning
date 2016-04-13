@@ -3,6 +3,7 @@ package servlets.grupo;
 import com.br.dao.Dao;
 import com.br.entidades.Aluno;
 import com.br.entidades.RespondeExercicio;
+import com.br.entidades.Teste;
 import com.br.util.FormatData;
 import com.br.util.FotosServices;
 import com.br.util.RespondeExercicioJson;
@@ -46,6 +47,9 @@ public class ResultadosTeste extends HttpServlet {
             aux.setDataResposta(FormatData.parseDateString(respondeExercicio.getDataResposta()));
             aux.setNota(respondeExercicio.getNota());
             aux.setRespondido(respondeExercicio.isRespondido());
+            
+            Teste t = dao.consultarTeste(respondeExercicio.getCodTeste());
+            aux.setNomeTeste(t.getAssunto());
             
             Aluno aluno = respondeExercicio.getAluno();
             aux.setAlunoLogin(aluno.getLogin());
