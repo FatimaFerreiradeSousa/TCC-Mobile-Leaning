@@ -57,19 +57,5 @@ public class DownloadArquivo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        if (request.getMethod().equalsIgnoreCase("POST")) {
-
-            boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
-
-            if (!isMultipartContent) {
-                System.out.println("Voce nao enviou arquivo.");
-            } else {
-                System.out.println("JSON: " +UtilTest.streamToString(request.getInputStream()));
-                System.out.println("Arquivo Recebido.");
-
-                System.out.println("Part: " +request.getParts().size());
-            }
-        }
     }
 }

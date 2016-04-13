@@ -769,43 +769,22 @@ angular.module('starter')
         $scope.arquivos = response.data;
     }) 
 
-    $scope.removerArquivo = function(arquivoRemover){
-        fac.removerArquivos(arquivoRemover);
-    }
+    $scope.download = function(topicoNome){
 
-    $scope.alunoArquivos = $stateParams.loginAluno;
+        var url = "http://www.lpm.com.br/livros/Imagens/egito_antigo.pdf";
+        var targetPath = cordova.file.externalRootDirectory + "Download/" +topicoNome;
+        var trustHosts = true;
+        var options = {};
 
-    $scope.arquivo = {
-        descricaoArquivo:'',
-        nome:''
-    }
-
-
-    var servidor = "http://192.168.2.6:8080/App-Servidor/DownloadArquivo";
-    $scope.fileDownload = function () {
-        
-    }
-    
-    $scope.fileUpload = function (fileName) {
-        
-        var targetPath = "/sdcard/Download/itaporanga.pdf";
-        var fileName = targetPath.split("/").pop();
-        
-        var options = {
-            fileKey: 'file',
-            fileName: fileName,
-            chunkedMode: false,
-            mimeType: 'application/pdf',
-            params : {'directory': 'upload', fileName: fileName}
-        };
-
-        $cordovaFileTransfer.upload(servidor, targetPath, options).then(function(result){
-            alert("Success " +JSON.stringify(result.response));
-        }, function(err){
-            alert("Errp " +JSON.stringify(err));
-        }, function(progress){
-            
+        $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+          .then(function(result) {
+            alert(JSON.stringify(result));
+          }, function(err) {
+            alert(JSON.stringify(err));
+          }, function (progress) {
+                
         });
+
     }
 })
 

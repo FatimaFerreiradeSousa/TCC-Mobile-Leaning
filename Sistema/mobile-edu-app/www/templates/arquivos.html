@@ -1,27 +1,7 @@
 <ion-view title="Arquivos Enviados" ng-controller="arquivosGrupoCtrl">
 
-    <ion-content padding="true" class="has-header">
-
-        <div class="list">
-        
-          <form enctype="multipart/form-data">
-
-              <input type="file" id="fileUpload"/><br />
-
-              <label class="item item-input item-floating-label">
-                  <span class="input-label">Escreva algo..</span>
-                  <input type="text" placeholder="Escreva algo..." required="true" ng-model="arquivo.descricaoArquivo">
-              </label> 
-
-              <button class="button button-block button-positive-900" ng-click="fileUpload()">
-                Enviar
-              </button>
-
-            </form>
-
-        </div>
-        
-        
+    <ion-content padding="true" class="has-header">        
+          
         <div class="list card" ng-repeat="topico in arquivos">
 
           <div class="item item-avatar">
@@ -37,8 +17,7 @@
             </p>
 
             <div class="button-bar">
-              <a class="button">Download</a>
-              <a class="button" ng-if="alunoArquivos == topico.loginUsuario" ng-click="removerArquivo(topico)">Remover</a>
+              <a class="button" ng-click="download(topico.nome)">Download</a>
             </div>
 
           </div>
