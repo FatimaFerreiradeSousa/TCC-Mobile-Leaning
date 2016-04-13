@@ -60,17 +60,15 @@ public class DownloadArquivo extends HttpServlet {
 
         if (request.getMethod().equalsIgnoreCase("POST")) {
 
-            String json = UtilTest.streamToString(request.getInputStream());
-            //System.out.println("JSON Recebido: " +json);
-            String contextPath = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Arquivos\\";
             boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
 
             if (!isMultipartContent) {
-                System.out.println("Erro");
+                System.out.println("Voce nao enviou arquivo.");
             } else {
-                
-                System.out.println("Arquivo Recebido");
-                
+                System.out.println("JSON: " +UtilTest.streamToString(request.getInputStream()));
+                System.out.println("Arquivo Recebido.");
+
+                System.out.println("Part: " +request.getParts().size());
             }
         }
     }

@@ -786,7 +786,7 @@ angular.module('starter')
         
     }
     
-    $scope.fileUpload = function () {
+    $scope.fileUpload = function (fileName) {
         
         var targetPath = "/sdcard/Download/itaporanga.pdf";
         var fileName = targetPath.split("/").pop();

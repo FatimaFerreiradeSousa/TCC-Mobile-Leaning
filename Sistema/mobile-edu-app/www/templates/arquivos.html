@@ -3,17 +3,21 @@
     <ion-content padding="true" class="has-header">
 
         <div class="list">
+        
+          <form enctype="multipart/form-data">
 
-          <input type="file" fileread="arquivoURL"/><br />
+              <input type="file" id="fileUpload"/><br />
 
-          <label class="item item-input item-floating-label">
-              <span class="input-label">Escreva algo..</span>
-              <input type="text" placeholder="Escreva algo..." required="true" ng-model="arquivo.descricaoArquivo">
-          </label> 
+              <label class="item item-input item-floating-label">
+                  <span class="input-label">Escreva algo..</span>
+                  <input type="text" placeholder="Escreva algo..." required="true" ng-model="arquivo.descricaoArquivo">
+              </label> 
 
-            <button class="button button-block button-positive-900" ng-click="fileUpload()">
-              Enviar
-            </button>
+              <button class="button button-block button-positive-900" ng-click="fileUpload()">
+                Enviar
+              </button>
+
+            </form>
 
         </div>
         
