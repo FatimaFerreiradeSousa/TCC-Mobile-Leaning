@@ -26,6 +26,7 @@ public class ControladorPergunta implements Serializable {
     private String mensagem;
     private boolean opcao;
     private FacesContext context;
+    private String categoria;
 
     @EJB
     Service fachada;
@@ -65,6 +66,14 @@ public class ControladorPergunta implements Serializable {
         return opcao;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public String adicionarRespostas() {
 
         if (fachada.consultarQuestao(pergunta.getCodigo()) == null) {
@@ -77,7 +86,7 @@ public class ControladorPergunta implements Serializable {
 
     public String salvarResposta() {
         pergunta.getRespostas().add(resposta);
-        pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        pergunta.setProfessor(PegarUsuarioSessao.getProfessor());
         pergunta.setQtdRespostas(pergunta.getRespostas().size());
 
         this.resposta = new Resposta();
@@ -85,7 +94,7 @@ public class ControladorPergunta implements Serializable {
     }
 
     public List<Pergunta> listarPerguntas() {
-        return fachada.listarQuestoes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.listarQuestoes(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String removerPergunta() {
@@ -202,7 +211,7 @@ public class ControladorPergunta implements Serializable {
     }
 
     public String addRespostaAlterarPergunta() {
-        pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        pergunta.setProfessor(PegarUsuarioSessao.getProfessor());
         pergunta.setQtdRespostas(pergunta.getRespostas().size());
 
         fachada.atualizarQuestao(pergunta);
@@ -215,7 +224,7 @@ public class ControladorPergunta implements Serializable {
         this.context = FacesContext.getCurrentInstance();
         if (this.fachada.salvarResposta(resposta)) {;
             pergunta.getRespostas().add(resposta);
-            pergunta.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+            pergunta.setProfessor(PegarUsuarioSessao.getProfessor());
             pergunta.setQtdRespostas(pergunta.getRespostas().size());
 
             this.resposta = new Resposta();
@@ -246,6 +255,19 @@ public class ControladorPergunta implements Serializable {
     
     public String paginas(){
         opcao = false;
+        return "page-pergunta-categoria?faces-redirect=true";
+    }
+    
+    public List<Pergunta> perguntasCadastradasCategoria(){
+        return fachada.listarPerguntasCategoria(categoria, PegarUsuarioSessao.getProfessor().getLogin());
+    }
+    
+    public List<String> getCategorias(){
+        return fachada.categoriaPerguntas(PegarUsuarioSessao.getProfessor().getLogin());
+    }
+    
+    public String paginaListarPerguntas(String categoria){
+        this.categoria = categoria;
         return "page-listar-perguntas?faces-redirect=true";
     }
 }

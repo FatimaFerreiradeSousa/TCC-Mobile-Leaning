@@ -16,7 +16,7 @@ public class PegarUsuarioSessao {
     private static HttpSession session;
     private static String login;
     
-    public static Professor pegarProfessorSessao() {
+    public static Professor getProfessor() {
         context = FacesContext.getCurrentInstance().getExternalContext();
         session = (HttpSession) context.getSession(false);
         
@@ -27,7 +27,7 @@ public class PegarUsuarioSessao {
         
     }
 
-    public static Aluno pegarAlunoSessao() {
+    public static Aluno getAluno() {
         context = FacesContext.getCurrentInstance().getExternalContext();
         session = (HttpSession) context.getSession(false);
         Aluno aluno = (Aluno) session.getAttribute("aluno");

@@ -45,7 +45,7 @@ public class ControladorNota implements Serializable {
     }
 
     public String salvarNota() {
-        nota.setProfessor(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        nota.setProfessor(PegarUsuarioSessao.getProfessor().getLogin());
         nota.setTurma(turma);
         nota.setDataNota(new Date());
 

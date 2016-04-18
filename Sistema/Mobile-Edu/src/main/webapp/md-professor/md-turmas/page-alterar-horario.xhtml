@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
 
         <title>Professor | Horários | Alterar</title>
@@ -72,7 +73,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -99,54 +100,58 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content font">
                 <h:form acceptcharset="ISO-8859-1">
-                    <div class="mdl-grid demo-content  w3-center">
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <h5 class="w3-center text-config">Atualizar Horário</h5>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="horarioInicial" errorClass="erros"/>
-                                <h:inputText value="#{controladorHorario.temp.horarioInicial}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="horarioInicial"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
 
-                                <label class="mdl-textfield__label" for="horarioInicial">Início hh:mm</label>
-                            </div>
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="horarioFinal" errorClass="erros"/>
-                                <h:inputText value="#{controladorHorario.temp.horarioFinal}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="horarioFinal"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                        <div class="w3-center w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Alterar Horário</span>
+                        </div><hr />
 
-                                <label class="mdl-textfield__label" for="horarioFinal">Final hh:mm</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Inicio</label>
+                            <h:message for="horarioInicial" errorClass="erros"/>
+                            <h:inputText value="#{controladorHorario.temp.horarioInicial}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="horarioInicial"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"
+                                         pt:placeholder="hh:mm"/>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                        </div>
 
-                                <h:selectOneListbox value="#{controladorHorario.temp.dia}" 
-                                                    id="qtdPergunta"
-                                                    size="1" class="w3-select text-config">
-                                    <f:selectItem itemValue="Dia da Semana"/>
-                                    <f:selectItem itemValue="Segunda-Feira"/>
-                                    <f:selectItem itemValue="Terça-Feira"/>
-                                    <f:selectItem itemValue="Quarta-Feira"/>
-                                    <f:selectItem itemValue="Quinta-Feira"/>
-                                    <f:selectItem itemValue="Sexta-Feira"/>
-                                </h:selectOneListbox>
-                            </div>
+                        <div class="w3-group">
+                            <label>Final</label>
+                            <h:message for="horarioFinal" errorClass="erros"/>
+                            <h:inputText value="#{controladorHorario.temp.horarioFinal}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="horarioFinal"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"  pt:placeholder="hh:mm"/>
 
-                            <div class="mdl-cell--12-col w3-center w3-btn-group">
-                                <h:commandButton value="Atualizar" action="#{controladorHorario.atualizarHorario()}" 
-                                                 class="w3-btn w3-indigo w3-btn-block" style="width: 50%"/>
+                        </div>
 
-                                <h:commandButton value="Remover" action="#{controladorHorario.remover()}" 
-                                                 class="w3-btn w3-pink w3-btn-block" style="width: 50%"/>
-                            </div>
+                        <div class="w3-group">
+
+                            <h:selectOneListbox value="#{controladorHorario.temp.dia}" 
+                                                id="qtdPergunta"
+                                                size="1" class="w3-select text-config">
+                                <f:selectItem itemValue="Dia da Semana"/>
+                                <f:selectItem itemValue="Segunda-Feira"/>
+                                <f:selectItem itemValue="Terça-Feira"/>
+                                <f:selectItem itemValue="Quarta-Feira"/>
+                                <f:selectItem itemValue="Quinta-Feira"/>
+                                <f:selectItem itemValue="Sexta-Feira"/>
+                            </h:selectOneListbox>
+                        </div>
+
+                        <div class="w3-btn-group">
+                            <h:commandButton value="Atualizar" action="#{controladorHorario.atualizarHorario()}" 
+                                             class="w3-btn w3-indigo w3-btn-block" style="width: 50%"/>
+
+                            <h:commandButton value="Remover" action="#{controladorHorario.remover()}" 
+                                             class="w3-btn w3-pink w3-btn-block" style="width: 50%"/>
                         </div>
                     </div>
                 </h:form>

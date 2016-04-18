@@ -54,7 +54,7 @@
                     </h:form>
 
                     <a class="mdl-navigation__link" href="page-grupo.jsf">
-                       <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
@@ -72,54 +72,48 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content ">
                 <h:form class="" acceptcharset="ISO-8859-1">
-                    <div class="mdl-grid demo-content">
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid text-config">
-                            <div class="mdl-cell--12-col">
 
-                                <i><b>Nova Grupo</b></i><br/>
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
 
-                                <h:panelGroup rendered="#{controladorGrupo.opcao == true}">
-                                    <div class="w3-container w3-section w3-blue">
-                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
-                                        <p>
-                                            <h:messages showDetail="true" showSummary="true"
-                                                        errorStyle="color: white" infoStyle="color: white"
-                                                        warnStyle="color: white" fatalStyle="color: white" />
-                                        </p>
-                                    </div>
-                                </h:panelGroup>
+                        <div class="w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Novo Grupo</span>
+                        </div><hr />
 
+                        <h:panelGroup rendered="#{controladorGrupo.opcao == true}">
+                            <div class="w3-container w3-section w3-light-grey">
+                                <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                <p>
+                                    <h:messages showDetail="true" showSummary="true"
+                                                errorStyle="color: black" infoStyle="color: black"
+                                                warnStyle="color: black" fatalStyle="color: black" />
+                                </p>
                             </div>
-                            <hr />
+                        </h:panelGroup>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="nome" errorClass="erros"/>
-                                <h:inputText value="#{controladorGrupo.grupo.nome}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="nome"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
-                                <label class="mdl-textfield__label" for="nome">Nome...</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="descricao" errorClass="erros"/>
-                                <h:inputText value="#{controladorGrupo.grupo.descricao}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="descricao"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
-                                <label class="mdl-textfield__label" for="descricao">Descricao...</label>
-                            </div>
-
-                            <div class="mdl-cell--12-col w3-center">
-                                <h:commandButton action="#{controladorGrupo.salvarGrupo()}" 
-                                                 class="w3-btn w3-red w3-btn-block" value="Criar grupo"/>
-                            </div>
+                        <div class="w3-group">
+                            <label>Nome</label>
+                            <h:message for="nome" errorClass="erros"/>
+                            <h:inputText value="#{controladorGrupo.grupo.nome}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="nome"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
                         </div>
 
+                        <div class="w3-group">
+                            <label>Descrição</label><br/>
+                            <h:message for="descricao" errorClass="erros"/>
+                            <h:inputText value="#{controladorGrupo.grupo.descricao}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="descricao"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+                        </div>
+
+                        <h:commandButton action="#{controladorGrupo.salvarGrupo()}" 
+                                         class="w3-btn w3-red w3-btn-block" value="Criar grupo"/>
                     </div>
                 </h:form>
             </main>

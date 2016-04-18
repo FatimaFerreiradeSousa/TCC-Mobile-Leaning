@@ -93,34 +93,32 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-main mdl-color--grey-100">
+            <main class="mdl-layout__content mdl-main">
                 <div class="w3-container w3-center">
                     <h:form>
-
                         <h:outputText value="Testes" class="text-config w3-center" style="font-size: 16px;"
                                       rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}"/>
 
                         <hr />
 
-                        <h:dataTable value="#{controladorGrupo.grupo.testesGrupo}" var="teste" 
-                                     class="w3-table w3-hoverable" 
-                                     rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
-                            <h:column>
-                                <div class="w3-center">
-                                    <h4 class="w3-center w3-text-red text-config">
-                                        <h:commandLink value="#{teste.assunto}" 
+                        <p:dataGrid var="teste" value="#{controladorGrupo.grupo.testesGrupo}" 
+                                    columns="6" rows="12" styleClass="ui-datagrid ui-datagrid-content"
+                                    layout="grid" rendered="#{controladorGrupo.grupo.testesGrupo.size() > 0}">
+
+                            <div class="w3-row">
+                                <div class="w3-col w3-light-grey w3-padding-large">
+                                    <h6>
+                                        <h:commandLink value="#{teste.assunto}" class="w3-text-pink"
                                                        action="#{controladorTeste.resultadoIndividual(teste)}" 
                                                        style="text-decoration: none;"/>
-                                    </h4>
+                                    </h6>
+                                    
+                                    <p>Por #{teste.professor.login}</p>
 
-                                    <label>Por #{teste.professor.login}</label><br />
-
-                                    <h:outputLabel value="#{teste.dataEntrega}" style="font-size: 10px">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                    </h:outputLabel>
                                 </div>
-                            </h:column>
-                        </h:dataTable>
+                            </div>
+
+                        </p:dataGrid>
 
                         <h:outputLabel value="Nenhum resultado encontrado" 
                                        rendered="#{controladorGrupo.grupo.testesGrupo.size() == 0}"

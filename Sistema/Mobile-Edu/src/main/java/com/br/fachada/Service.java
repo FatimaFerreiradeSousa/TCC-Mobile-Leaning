@@ -97,6 +97,10 @@ public class Service implements Serializable {
     public List<String> categoriaPerguntas(String login){
         return daoQuestao.listarCategoriasPerguntas(login);
     }
+    
+    public List<Pergunta> listarPerguntasCategoria(String categoria, String login){
+        return daoQuestao.listarPerguntasCategoria(categoria, login);
+    }
 
     /*Crud Teste*/
     public boolean salvarExercicio(Teste exe) {

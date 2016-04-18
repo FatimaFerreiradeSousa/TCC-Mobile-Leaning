@@ -142,7 +142,7 @@ public class ControladorTeste implements Serializable {
         disponivel = teste.isDisponivel();
         perguntas = teste.getQuestoesExercicios();
 
-        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.getAluno().getLogin());
         boolean date = FormatData.verificarData(teste.getDataEntrega());
         
         if(opcao == false || date == true){
@@ -195,7 +195,7 @@ public class ControladorTeste implements Serializable {
         respondeExercicio.setDataResposta(new Date());
         respondeExercicio.setNota(resultado);
         respondeExercicio.setRespondido(true);
-        Aluno aluno = PegarUsuarioSessao.pegarAlunoSessao();
+        Aluno aluno = PegarUsuarioSessao.getAluno();
         respondeExercicio.setAluno(aluno);
         respondeExercicio.setGrupo(grupo);
 
@@ -211,7 +211,7 @@ public class ControladorTeste implements Serializable {
 
     public void atualizarPontuacao() {
         String codGrupo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codGrupo");
-        ParticipaGrupo pg = fachada.buscarParticipaGrupo(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), Integer.parseInt(codGrupo));
+        ParticipaGrupo pg = fachada.buscarParticipaGrupo(PegarUsuarioSessao.getAluno().getLogin(), Integer.parseInt(codGrupo));
 
         if (pg != null) {
             pg.setPontuacao(pg.getPontuacao() + resultado);
@@ -221,7 +221,7 @@ public class ControladorTeste implements Serializable {
     
     public void verificaTeste(){
         
-        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        boolean opcao = fachada.testeRespondido(teste.getCodigo(), PegarUsuarioSessao.getAluno().getLogin());
         
         if(opcao == false){
             mensagem = "Você já respondeu esse teste";

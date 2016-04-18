@@ -59,13 +59,13 @@
                             Nova Pergunta
                         </h:commandLink>
                     </h:form>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            account_balance_wallet
-                        </i>
-                        Perguntas
+                                account_balance_wallet
+                            </i>
+                            Perguntas
                         </h:commandLink>
                     </h:form>
 
@@ -97,92 +97,87 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
 
                 <h:form acceptcharset="ISO-8859-1" class="w3-form">
-                    <div class="mdl-grid demo-content">
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
+                        <div class="w3-center w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Novo Teste</span>
+                        </div><hr/>
 
-                            <div class="mdl-cell--12-col">
-                                <i><b>Novo Teste</b></i>
-
-                                <h:panelGroup rendered="#{controladorExercicio.opcao == true}">
-                                    <div class="w3-container w3-section w3-blue">
-                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
-                                        <p>
-                                            <h:messages showDetail="true" showSummary="true"
-                                                        errorStyle="color: white" infoStyle="color: white"
-                                                        warnStyle="color: white" fatalStyle="color: white" />
-                                        </p>
-                                    </div>
-                                </h:panelGroup>
+                        <h:panelGroup rendered="#{controladorExercicio.opcao == true}">
+                            <div class="w3-container w3-section w3-light-grey">
+                                <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                <p>
+                                    <h:messages showDetail="true" showSummary="true"
+                                                errorStyle="color: black" infoStyle="color: black"
+                                                warnStyle="color: black" fatalStyle="color: black" />
+                                </p>
                             </div>
+                        </h:panelGroup>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="assunto" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.assunto}" 
-                                             class="mdl-textfield__input font"
-                                             id="assunto"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório"/>
-                                <label class="mdl-textfield__label" for="assunto">Assunto</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="disciplina" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.disciplina}" 
-                                             class="mdl-textfield__input font"
-                                             id="disciplina"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório"/>
-                                <label class="mdl-textfield__label" for="disciplina">Disciplina</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="dataEntrega" styleClass="erros"/>
-                                <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" 
-                                             class="mdl-textfield__input font"
-                                             id="dataEntrega"
-                                             required="true"
-                                             requiredMessage="Campo Obrigatório">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:inputText>
-                                <label class="mdl-textfield__label" for="dataEntrega">Data de entrega</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="categoria" styleClass="erros"/>
-                                <label class="w3-text-blue-grey" for="categoria">Categoria </label>
-                                <h:selectOneListbox value="#{controladorExercicio.exercicio.categoria}" id="categoria"
-                                                    size="1" class="w3-select font">
-                                    <f:selectItem itemValue="Selecione"/>
-                                    <f:selectItems value="#{controladorExercicio.listarCategorias()}"
-                                                   rendered="#{controladorExercicio.listarCategorias().size() > 0}"/>
-                                </h:selectOneListbox>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <label class="w3-text-blue-grey" for="assunto">Perguntas </label>
-                                <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
-                                                    size="1" class="w3-select font">
-                                    <f:selectItem itemValue="1"/>
-                                    <f:selectItem itemValue="2"/>
-                                    <f:selectItem itemValue="3"/>
-                                    <f:selectItem itemValue="4"/>
-                                    <f:selectItem itemValue="5"/>
-                                    <f:selectItem itemValue="6"/>
-                                    <f:selectItem itemValue="7"/>
-                                    <f:selectItem itemValue="8"/>
-                                    <f:selectItem itemValue="9"/>
-                                    <f:selectItem itemValue="10"/>
-                                </h:selectOneListbox>
-                            </div>
-
-                            <div class="mdl-cell--12-col w3-center">
-                                <h:commandButton action="#{controladorExercicio.buscarPerguntas()}" 
-                                                 class="w3-btn w3-red w3-btn-block" value="Buscar perguntas"/>
-                            </div>
+                        <div class="w3-group">
+                            <label>Assunto</label><br />
+                            <h:message for="assunto" styleClass="erros"/>
+                            <h:inputText value="#{controladorExercicio.exercicio.assunto}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="assunto"
+                                         required="true"
+                                         requiredMessage="Campo Obrigatório"/>
                         </div>
+
+                        <div class="w3-group">
+                            <label>Disciplina</label><br />
+                            <h:message for="disciplina" styleClass="erros"/>
+                            <h:inputText value="#{controladorExercicio.exercicio.disciplina}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="disciplina"
+                                         required="true"
+                                         requiredMessage="Campo Obrigatório"/>
+                        </div>
+
+                        <div class="w3-group">
+                            <label>Data de Entrega</label><br />
+                            <h:message for="dataEntrega" styleClass="erros"/>
+                            <h:inputText value="#{controladorExercicio.exercicio.dataEntrega}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="dataEntrega"
+                                         required="true"
+                                         requiredMessage="Campo Obrigatório">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                        </div>
+
+                        <div class="w3-group">
+                            <h:message for="categoria" styleClass="erros"/>
+                            <label class="w3-text-blue-grey" for="categoria">Categoria </label>
+                            <h:selectOneListbox value="#{controladorExercicio.exercicio.categoria}" id="categoria"
+                                                size="1" class="w3-select font">
+                                <f:selectItem itemValue="Selecione"/>
+                                <f:selectItems value="#{controladorExercicio.listarCategorias()}"
+                                               rendered="#{controladorExercicio.listarCategorias().size() > 0}"/>
+                            </h:selectOneListbox>
+                        </div>
+
+                        <div class="w3-group">
+                            <label class="w3-text-blue-grey" for="assunto">Perguntas </label>
+                            <h:selectOneListbox value="#{controladorExercicio.exercicio.qtdPerguntas}" id="qtdPergunta"
+                                                size="1" class="w3-select font">
+                                <f:selectItem itemValue="1"/>
+                                <f:selectItem itemValue="2"/>
+                                <f:selectItem itemValue="3"/>
+                                <f:selectItem itemValue="4"/>
+                                <f:selectItem itemValue="5"/>
+                                <f:selectItem itemValue="6"/>
+                                <f:selectItem itemValue="7"/>
+                                <f:selectItem itemValue="8"/>
+                                <f:selectItem itemValue="9"/>
+                                <f:selectItem itemValue="10"/>
+                            </h:selectOneListbox>
+                        </div>
+
+                        <h:commandButton action="#{controladorExercicio.buscarPerguntas()}" 
+                                         class="w3-btn w3-red w3-btn-block" value="Buscar perguntas"/>
 
                         <h3 class="font">
                             <h:outputText value="Perguntas (#{controladorExercicio.exercicio.questoesExercicios.size()})"
@@ -190,19 +185,20 @@
                         </h3>
 
                         <h:dataTable value="#{controladorExercicio.exercicio.questoesExercicios}" 
-                                     var="pergunta" class="w3-table w3-hoverable w3-striped"
+                                     var="pergunta" class="w3-table"
                                      rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}">
 
                             <h:column>
-
-                                #{pergunta.enunciado}
-
+                                <div class="w3-container w3-pale-blue w3-leftbar w3-border-dark-grey">
+                                    <h5 class="font">
+                                        #{pergunta.enunciado}
+                                    </h5>
+                                </div>
                             </h:column>
 
                         </h:dataTable>
-                        <br /><br />
 
-                        <div class="w3-btn-group mdl-cell--12-col w3-margin-top w3-center">
+                        <div class="w3-btn-group">
                             <h:commandButton action="#{controladorExercicio.salvarTeste()}"
                                              class="w3-btn w3-blue w3-btn-block" style="width: 50%" value="Salvar"
                                              rendered="#{controladorExercicio.exercicio.questoesExercicios.size() > 0}"/>

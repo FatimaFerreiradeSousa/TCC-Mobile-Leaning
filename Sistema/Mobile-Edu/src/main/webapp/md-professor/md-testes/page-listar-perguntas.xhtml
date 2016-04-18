@@ -50,13 +50,13 @@
                             Nova Pergunta
                         </h:commandLink>
                     </h:form>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            account_balance_wallet
-                        </i>
-                        Perguntas
+                                account_balance_wallet
+                            </i>
+                            Perguntas
                         </h:commandLink>
                     </h:form>
 
@@ -92,20 +92,25 @@
                 <div class="w3-container w3-margin-8">
 
                     <h4 class="w3-text-blue w3-center text-config">
-                        <h:outputText value="Perguntas Cadastradas"
-                                      rendered="#{controladorPergunta.listarPerguntas().size() > 0}"/>
+                        <h:outputText value="Perguntas Cadastradas da categoria #{controladorPergunta.categoria}" 
+                                      rendered="#{controladorPergunta.perguntasCadastradasCategoria().size() > 0}"/>
                     </h4>
+                    
+                    <hr/>
 
                     <h:form>
-                        <h:dataTable value="#{controladorPergunta.listarPerguntas()}" var="pergunta" 
-                                     class="w3-table w3-striped w3-hoverable"
-                                     rendered="#{controladorPergunta.listarPerguntas().size() > 0}">
+                        <h:dataTable value="#{controladorPergunta.perguntasCadastradasCategoria()}" var="pergunta" 
+                                     class="w3-table"
+                                     rendered="#{controladorPergunta.perguntasCadastradasCategoria().size() > 0}">
 
                             <h:column>
-                                <div class="w3-center">
+                                <div class="w3-center w3-container w3-pale-blue w3-leftbar w3-border-red">
 
-                                    <h:commandLink value="#{pergunta.enunciado}" style="text-decoration: none;"
-                                                   action="#{controladorPergunta.paginaAtualizar(pergunta)}"/>
+                                    <h4>
+                                        <h:commandLink value="#{pergunta.enunciado}" style="text-decoration: none;"
+                                                       action="#{controladorPergunta.paginaAtualizar(pergunta)}"/>
+                                    </h4>
+
                                 </div>
                             </h:column>
 
@@ -114,7 +119,7 @@
 
                     <h4 class="w3-text-red text-config">
                         <h:outputText value="Nenhuma Pergunta Cadastrada"
-                                      rendered="#{controladorPergunta.listarPerguntas().size() ==0}"/>
+                                      rendered="#{controladorPergunta.perguntasCadastradasCategoria().size() ==0}"/>
                     </h4>
                 </div>
             </main>

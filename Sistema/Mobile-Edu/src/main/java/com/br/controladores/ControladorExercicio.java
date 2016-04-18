@@ -84,12 +84,12 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<String> listarCategorias() {
-        return fachada.categoriaPerguntas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.categoriaPerguntas(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String salvarTeste() {
         this.context = FacesContext.getCurrentInstance();
-        exercicio.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        exercicio.setProfessor(PegarUsuarioSessao.getProfessor());
         exercicio.setDisponivel(true);
         exercicio.setQtdPerguntas(exercicio.getQuestoesExercicios().size());
 
@@ -116,12 +116,12 @@ public class ControladorExercicio implements Serializable {
 
     public String buscarPerguntas() {
         exercicio.setQuestoesExercicios(fachada.listarPerguntasCategoria(exercicio.getCategoria(), exercicio.getQtdPerguntas(),
-                PegarUsuarioSessao.pegarProfessorSessao().getLogin()));
+                PegarUsuarioSessao.getProfessor().getLogin()));
         return "page-cad-teste?faces-redirect=true";
     }
 
     public List<Teste> testesCadastrados() {
-        return fachada.listarTestes(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.listarTestes(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String removerTeste() {
@@ -185,7 +185,7 @@ public class ControladorExercicio implements Serializable {
     }
 
     public List<String> meusGrupos() {
-        List<Grupo> gruposProfessor = fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        List<Grupo> gruposProfessor = fachada.meusGrupos(PegarUsuarioSessao.getProfessor().getLogin());
 
         if (grupos.isEmpty() && gruposProfessor.size() > 0) {
 

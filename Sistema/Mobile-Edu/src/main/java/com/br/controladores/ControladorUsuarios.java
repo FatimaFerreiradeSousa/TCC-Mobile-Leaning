@@ -168,7 +168,7 @@ public class ControladorUsuarios implements Serializable {
                 context.getSessionMap().put("aluno", a);
                 context.redirect(request.getContextPath() + loginPage);
 
-                aluno = PegarUsuarioSessao.pegarAlunoSessao();
+                aluno = PegarUsuarioSessao.getAluno();
                 mensagem = null;
 
             } else {
@@ -186,7 +186,7 @@ public class ControladorUsuarios implements Serializable {
                 session = (HttpSession) context.getSession(false);
                 context.getSessionMap().put("professor", p);
                 context.redirect(request.getContextPath() + loginPage);
-                professor = PegarUsuarioSessao.pegarProfessorSessao();
+                professor = PegarUsuarioSessao.getProfessor();
 
                 mensagem = null;
 
@@ -213,13 +213,13 @@ public class ControladorUsuarios implements Serializable {
 
     /*Professor*/
     public String atualizarProfessor() {
-        professor = PegarUsuarioSessao.pegarProfessorSessao();
+        professor = PegarUsuarioSessao.getProfessor();
         fachada.atualizarProfessor(professor);
         return "page-config-professor?faces-redirect=true";
     }
 
     public void uploadProfessor() {
-        professor = PegarUsuarioSessao.pegarProfessorSessao();
+        professor = PegarUsuarioSessao.getProfessor();
         String caminho = "C:\\Users\\Fatinha de Sousa\\Documents\\Repositorios\\TCC-Mobile-Learning\\Imagens\\"
                 + professor.getLogin() + "\\";
 
@@ -291,7 +291,7 @@ public class ControladorUsuarios implements Serializable {
     }
 
     public String atualizarAluno() {
-        aluno = PegarUsuarioSessao.pegarAlunoSessao();
+        aluno = PegarUsuarioSessao.getAluno();
         fachada.atualizarAluno(aluno);
 
         return "page-config-aluno?faces-redirect=true";

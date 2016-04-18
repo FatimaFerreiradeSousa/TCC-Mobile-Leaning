@@ -72,177 +72,145 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100 w3-center">
-                <div class="w3-container w3-margin-top w3-center" >
+            <main class="mdl-layout__content mdl-color--grey-100">
+                <div class="w3-container" >
                     <div class="w3-row">
-                        <div class="m7">
-                            <div class="w3-row-padding">
-                                <div class="w3-col m12 w3-center">
-
-                                    <div class="w3-white w3-center">
-                                        <div class="w3-container">
-                                            <p>
-                                                <p:graphicImage value="#{professor.content}" styleClass="avatar-picture-config w3-circle"
-                                                                style="margin-top: 1%;"/>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="w3-center text-config">
-
-                                        <h3 class="text-config">#{professor.sobrenome}, #{professor.nome}</h3>
-
-                                        <p class="text-config w3-center">
-                                            Membro desde
-                                            <h:outputText value="#{professor.dataParticipacao}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                            </h:outputText>
-
-                                            <hr/>
-                                            #{professor.instituicao}
-
-                                            <hr/>
-                                            #{professor.email}
-
-                                            <hr/>
-                                            #{professor.login}
-
-                                            <hr/>
-                                            <h:outputText value="#{professor.dataNascimento}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                            </h:outputText>
-
-                                            <hr/>
-                                            #{professor.descricao}
-
-                                        </p>
-
-                                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-config').style.display = 'block'">
-                                            Alterar
-                                        </button>
-
-                                        <button class="mdl-button mdl-js-button" onclick="document.getElementById('md-foto').style.display = 'block'">
-                                            Foto
-                                        </button>
-                                    </div>
+                        <div class="w3-half w3-blue-grey w3-container" style="height:700px">
+                            <div class="w3-padding-hor-64 w3-center">
+                                <h3>Resumo</h3>
+                                <p:graphicImage value="#{professor.content}" styleClass="w3-image w3-circle"
+                                                style="margin-top: 1%; width: 20%"/>
+                                <div class="w3-left-align w3-padding-xxlarge w3-center">
+                                    <p>
+                                        #{professor.nome} #{professor.sobrenome}<br />
+                                        Professor, membro desde 
+                                        <h:outputText value="#{professor.dataParticipacao}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>#{professor.instituicao}</p>
+                                    <p>#{professor.descricao}</p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="w3-half w3-black w3-container w3-center" style="height:700px">
+                            <div class="w3-padding-hor-64">
+                                <h3>Opções</h3>
+                            </div>
+                            <div class="w3-padding-hor-64">
+                                <a href="#perfil" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-hor-16">Perfil</a>
+
+                                <a href="#foto" class="w3-btn w3-btn-block w3-hover-teal w3-padding-hor-16"
+                                   onclick="document.getElementById('md-foto').style.display = 'block'">
+                                    Foto
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-row w3-margin-bottom" id="contact">
+                        
+                        <div class="w3-teal w3-container" style="height:850px" id="perfil">
+                            <div class="w3-padding-hor-64 ">
+                                <h3>Alterar Informações</h3>
+
+                                <h:form acceptcharset="ISO-8859-1" class="font">
+
+                                    <div class="w3-container w3-card-2 w3-padding-hor-32 w3-white" style="padding-bottom: 1%">
+                                        <div class="w3-group">
+                                            <label>Nome</label>
+                                            <h:message for="nome" errorClass="erros"/>
+                                            <h:inputText value="#{professor.nome}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="nome"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Sobrenome</label>
+                                            <h:message for="sobrenome" errorClass="erros"/>
+                                            <h:inputText value="#{professor.sobrenome}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="sobrenome"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Email</label>
+                                            <h:message for="email" errorClass="erros"/>
+                                            <h:inputText value="#{professor.email}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="email"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Instituição</label>
+                                            <h:message for="instituicao" errorClass="erros"/>
+                                            <h:inputText value="#{professor.instituicao}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="instituicao"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Login</label>
+                                            <h:message for="login" errorClass="erros"/>
+                                            <h:inputText value="#{professor.login}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="login"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório" disabled="true"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Senha</label>
+                                            <h:message for="senha" errorClass="erros"/>
+                                            <h:inputText value="#{professor.senha}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="senha"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Data de Nascimento</label>
+                                            <h:message for="dataNascimento" errorClass="erros"/>
+                                            <h:inputText value="#{professor.dataNascimento}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="dataNascimento"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:inputText>
+                                        </div>
+
+                                        <div class="w3-group">
+                                            <label>Descrição</label>
+                                            <h:message for="descricao" errorClass="erros"/>
+                                            <h:inputText value="#{professor.descricao}" 
+                                                         class="w3-input" style="width:100%;" 
+                                                         id="descricao"
+                                                         required="true"
+                                                         requiredMessage="Campo obrigatório"/>
+                                        </div>
+                                        <h:commandButton value="Alterar" style="width: 100%"
+                                                         class="w3-btn w3-left w3-theme w3-padding-bottom w3-btn-block"
+                                                         action="#{controladorUsuario.atualizarProfessor()}"/>
+                                    </div><br />
+
+                                </h:form>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </main>
-        </div>
-
-        <div id="md-config" class="w3-modal w3-margin-bottom">
-            <h:form acceptcharset="ISO-8859-1" class="font">
-                <div class="w3-modal-content w3-animate-top w3-card-8">
-                    <header class="w3-container w3-teal"> 
-                        <span onclick="document.getElementById('md-config').style.display = 'none'" 
-                              class="w3-closebtn">×</span>
-                        <h4 class="w3-center">Configurações</h4>
-                    </header>
-                    <div class="w3-container">
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="nome" errorClass="erros"/>
-                            <h:inputText value="#{professor.nome}" 
-                                         class="mdl-textfield__input font" 
-                                         id="nome"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="nome">Nome</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="sobrenome" errorClass="erros"/>
-                            <h:inputText value="#{professor.sobrenome}" 
-                                         class="mdl-textfield__input font" 
-                                         id="sobrenome"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="sobrenome">Sobrenome</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="email" errorClass="erros"/>
-                            <h:inputText value="#{professor.email}" 
-                                         class="mdl-textfield__input font" 
-                                         id="email"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="email">Email</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="instituicao" errorClass="erros"/>
-                            <h:inputText value="#{professor.instituicao}" 
-                                         class="mdl-textfield__input font" 
-                                         id="instituicao"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="instituicao">Instituição</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="login" errorClass="erros"/>
-                            <h:inputText value="#{professor.login}" 
-                                         class="mdl-textfield__input font" 
-                                         id="login"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="login">Login</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="dataNascimento" errorClass="erros"/>
-                            <h:inputText value="#{professor.dataNascimento}" 
-                                         class="mdl-textfield__input font" 
-                                         id="dataNascimento"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório">
-                                <f:convertDateTime pattern="dd/MM/yyyyy"/>
-                            </h:inputText>
-
-                            <label class="mdl-textfield__label" for="dataNascimento">Data de Nascimento</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="senha" errorClass="erros"/>
-                            <h:inputText value="#{professor.senha}" 
-                                         class="mdl-textfield__input font" 
-                                         id="senha"
-                                         required="true"
-                                         requiredMessage="Campo obrigatório">
-                            </h:inputText>
-
-                            <label class="mdl-textfield__label" for="senha">Senha</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                            <h:message for="descricao" errorClass="erros"/>
-                            <h:inputTextarea value="#{professor.descricao}" 
-                                             class="mdl-textfield__input font" rows="5"
-                                             id="descricao"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
-
-                            <label class="mdl-textfield__label" for="descricao">Descrição</label>
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col w3-center">
-
-                            <h:commandButton value="Alterar" class="w3-btn w3-pink w3-btn-block"
-                                             action="#{controladorUsuario.atualizarProfessor()}"/>
-                        </div>
-                    </div>
-                </div>
-            </h:form>
         </div>
 
         <div id="md-foto" class="w3-modal">

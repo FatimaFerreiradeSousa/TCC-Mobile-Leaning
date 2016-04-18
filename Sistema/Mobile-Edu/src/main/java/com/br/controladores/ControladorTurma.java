@@ -118,7 +118,7 @@ public class ControladorTurma implements Serializable {
 
     public String salvarTurma() {
 
-        turma.setProfessor(PegarUsuarioSessao.pegarProfessorSessao());
+        turma.setProfessor(PegarUsuarioSessao.getProfessor());
 
         if (fachada.salvarTurma(turma)) {
             turma = new Turma();
@@ -150,14 +150,14 @@ public class ControladorTurma implements Serializable {
 
     public String removerTurma() {
         if (fachada.removerTurma(turma)) {
-            return "page-listar-turmas?faces-redirect=true";
+            return "page-turmas?faces-redirect=true";
         }
 
         return "page-alterar-turma?faces-redirect=true";
     }
 
     public List<Turma> listarTurmas() {
-        return fachada.listarTurmas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.listarTurmas(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String buscarAluno() {
@@ -287,7 +287,7 @@ public class ControladorTurma implements Serializable {
 
     public List<Turma> listarTurmasDia() {
         String dia = FormatData.verificarDia(FormatData.pegarDia());
-        return fachada.listarTurmasHorario(PegarUsuarioSessao.pegarProfessorSessao().getLogin(), dia);
+        return fachada.listarTurmasHorario(PegarUsuarioSessao.getProfessor().getLogin(), dia);
     }
 
     /*ALUNO*/
@@ -311,7 +311,7 @@ public class ControladorTurma implements Serializable {
 
         List<Turma> turmas = new ArrayList<>();
 
-        for (Turma turma1 : PegarUsuarioSessao.pegarAlunoSessao().getTurmas()) {
+        for (Turma turma1 : PegarUsuarioSessao.getAluno().getTurmas()) {
 
             for (Horario h : turma1.getHorarios()) {
                 if (h.getDia().equalsIgnoreCase(dia)) {
@@ -354,6 +354,6 @@ public class ControladorTurma implements Serializable {
     }
     
     public Aluno alunoDaSessao(){
-        return PegarUsuarioSessao.pegarAlunoSessao();
+        return PegarUsuarioSessao.getAluno();
     }
 }

@@ -49,13 +49,13 @@
                             Nova Pergunta
                         </h:commandLink>
                     </h:form>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            account_balance_wallet
-                        </i>
-                        Perguntas
+                                account_balance_wallet
+                            </i>
+                            Perguntas
                         </h:commandLink>
                     </h:form>
 
@@ -87,86 +87,86 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
-                    <div class="mdl-grid demo-content">
 
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <div class="mdl-cell--12-col">
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
 
-                                <i><b>Alterar Pergunta</b></i><br/>
+                        <div class="w3-center w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Alterar Pergunta</span>
+                        </div>
+                        <hr/>
 
-                                <h:panelGroup rendered="#{controladorPergunta.opcao == true}">
-                                    <div class="w3-container w3-section w3-blue">
-                                        <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
-                                        <p>
-                                            <h:messages showDetail="true" showSummary="true"
-                                                        errorStyle="color: white" infoStyle="color: white"
-                                                        warnStyle="color: white" fatalStyle="color: white" />
-                                        </p>
-                                    </div>
-                                </h:panelGroup>
-
+                        <h:panelGroup rendered="#{controladorPergunta.opcao == true}">
+                            <div class="w3-container w3-section w3-light-grey">
+                                <span onclick="this.parentElement.style.display = 'none'" class="w3-closebtn">×</span>
+                                <p>
+                                    <h:messages showDetail="true" showSummary="true"
+                                                errorStyle="color: red" infoStyle="color: red"
+                                                warnStyle="color: red" fatalStyle="color: red" />
+                                </p>
                             </div>
-                            <hr />
+                        </h:panelGroup>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="enunciado" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.enunciado}"
-                                             class="mdl-textfield__input font" id="enunciado"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="enunciado">Enunciado</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Enunciado</label><br />
+                            <h:message for="enunciado" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.enunciado}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="enunciado"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório."/>
+                        </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="categoria" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.categoria}"
-                                             class="mdl-textfield__input font" id="categoria"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="categoria">Categoria</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Enunciado</label><br />
+                            <h:message for="categoria" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.categoria}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         id="categoria"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório."/>
+                        </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="peso" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.peso}"
-                                             class="mdl-textfield__input font" id="peso"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="peso">Peso</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Enunciado</label><br />
+                            <h:message for="peso" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.peso}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" id="peso"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório."/>
+                        </div>
 
-                            <div class="w3-btn-group mdl-cell--12-col w3-center">
-                                <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" 
-                                                 class="w3-btn w3-btn-block" value="Atualizar"
-                                                 style="width: 50%"/>
-                                <h:commandButton action="#{controladorPergunta.removerPergunta()}" 
-                                                 class="w3-btn w3-red w3-btn-block" value="Remover"
-                                                 style="width: 50%"/>
-                            </div>
+                        <div class="w3-btn-group">
+                            <h:commandButton action="#{controladorPergunta.atualizarPergunta()}" 
+                                             class="w3-btn w3-btn-block" value="Atualizar"
+                                             style="width: 50%"/>
+                            <h:commandButton action="#{controladorPergunta.removerPergunta()}" 
+                                             class="w3-btn w3-red w3-btn-block" value="Remover"
+                                             style="width: 50%"/>
                         </div>
 
                         <h3 class="font">Respostas</h3>
 
                         <h:dataTable value="#{controladorPergunta.pergunta.respostas}" 
-                                     class="w3-table w3-hoverable w3-striped" var="resposta">
+                                     class="w3-table" var="resposta">
                             <h:column>
-                                <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" 
-                                               style="text-decoration: none;" 
-                                               class="w3-text w3-text-blue" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"/>
-                                <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
-                                               action="#{controladorPergunta.paginaAtualizarResposta(resposta)}" 
-                                               style="text-decoration: none;"/>
+                                <div class="w3-container w3-pale-blue w3-leftbar w3-border-blue">
+                                    <h4>
+                                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == true}" 
+                                                       style="text-decoration: none;" 
+                                                       class="w3-text w3-text-blue" action="#{controladorPergunta.paginaAtualizarResposta(resposta)}"/>
+                                        <h:commandLink value="#{resposta.conteudo}" rendered="#{resposta.respostaCerta == false}"
+                                                       action="#{controladorPergunta.paginaAtualizarResposta(resposta)}" 
+                                                       style="text-decoration: none;"/>
+                                    </h4>
+                                </div>
                             </h:column>
-                        </h:dataTable>
+                        </h:dataTable><br />
 
-                        <div class="w3-margin-top mdl-cell--12-col w3-center">
-
-                            <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
-                                             class="w3-btn w3-btn-block w3-teal" style="width: 40%"
-                                             value="Nova resposta"/>
-                        </div>
+                        <h:commandButton action="#{controladorPergunta.paginaCadResposta()}" 
+                                         class="w3-btn w3-btn-block w3-teal" style="width: 40%"
+                                         value="Nova resposta"/>
                     </div>
                 </h:form>
             </main>

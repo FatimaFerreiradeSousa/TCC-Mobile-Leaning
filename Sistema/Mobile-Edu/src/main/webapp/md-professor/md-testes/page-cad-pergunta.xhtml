@@ -58,13 +58,13 @@
                             Nova Pergunta
                         </h:commandLink>
                     </h:form>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
-                            account_balance_wallet
-                        </i>
-                        Perguntas
+                                account_balance_wallet
+                            </i>
+                            Perguntas
                         </h:commandLink>
                     </h:form>
 
@@ -96,48 +96,47 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
-                    <div class="mdl-grid demo-content">
 
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            Nova Pergunta
-                           
-                            <hr />
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
+                        <div class="w3-center w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Nova Pergunta</span>
+                        </div><hr />
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="enunciado" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.enunciado}"
-                                             class="mdl-textfield__input font" id="enunciado"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="enunciado">Enunciado</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="categoria" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.categoria}"
-                                             class="mdl-textfield__input font" id="categoria"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="categoria">Categoria</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="peso" errorClass="erros"/>
-                                <h:inputText value="#{controladorPergunta.pergunta.peso}"
-                                             class="mdl-textfield__input font" id="peso"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório."/>
-                                <label class="mdl-textfield__label" for="peso">Peso</label>
-                            </div>
-
-                            <div class="mdl-cell--12-col w3-center">
-                                <h:commandButton action="#{controladorPergunta.adicionarRespostas()}" 
-                                                 class="w3-btn w3-red w3-btn-block" value="Add Respostas"
-                                                 style="width: 100%"/>
-                            </div>
+                        <div class="w3-group">
+                            <label>Enunciado</label><br />
+                            <h:message for="enunciado" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.enunciado}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         required="true"
+                                         id="enunciado"
+                                         requiredMessage="Campo obrigatório."/>
                         </div>
+
+                        <div class="w3-group">
+                            <label>Categoria</label><br />
+                            <h:message for="categoria" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.categoria}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         required="true"
+                                         id="categoria"
+                                         requiredMessage="Campo obrigatório."/>
+                        </div>
+
+                        <div class="w3-group">
+                            <label>Peso</label><br />
+                            <h:message for="peso" errorClass="erros"/>
+                            <h:inputText value="#{controladorPergunta.pergunta.peso}"
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;"
+                                         required="true"
+                                         id="peso"
+                                         requiredMessage="Campo obrigatório."/>
+                        </div>
+
+                        <h:commandButton action="#{controladorPergunta.adicionarRespostas()}" 
+                                         class="w3-btn w3-red w3-btn-block" value="Add Respostas"
+                                         style="width: 100%"/>
 
                     </div>
                 </h:form>

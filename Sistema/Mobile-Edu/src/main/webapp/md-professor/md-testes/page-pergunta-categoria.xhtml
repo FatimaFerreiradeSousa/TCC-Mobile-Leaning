@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
 
-        <title>Professor | Perguntas</title>
+        <title>Professor | Perguntas Cadastradas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
         <link href="../../mdl/material.css" rel="stylesheet"/>
@@ -13,7 +13,7 @@
         <link href="../../mdl/styles.css" rel="stylesheet"/>
         <link rel="stylesheet" href="../../mdl/material-icons.css"/>
         <link rel="stylesheet" href="../../w3-css/w3.css"/>
-        <link rel="stylesheet" href="../../assets/css/css-styles.css"/>
+        <link href="../../assets/css/css-styles.css" rel="stylesheet"/>
 
         <script src="../../mdl/material.min.js"/>
         <script src="../../mdl/material.js"/>
@@ -33,10 +33,9 @@
             <div class="mdl-layout__drawer demo-drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <p:graphicImage value="#{professor.content}" styleClass="demo-avatar"/>
-
                     <br/>
                     <div class="demo-avatar-dropdown">
-                        <span class="font">#{professor.login}</span>
+                        <span>#{professor.login}</span>
                     </div>
                 </header>
 
@@ -52,7 +51,7 @@
                             Nova Pergunta
                         </h:commandLink>
                     </h:form>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorPergunta.paginas()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
@@ -90,32 +89,40 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="container w3-margin-8">
+            <main class="mdl-layout__content">
+                <div class="w3-container w3-margin-8">
 
-                    <h4 class="w3-center font">
-                        <i>Perguntas do teste #{controladorExercicio.exercicio.assunto}</i>
+                    <h4 class="w3-text-blue w3-center text-config">
+                        <h:outputText value="Selecione uma categoria"
+                                      rendered="#{controladorPergunta.getCategorias().size() > 0}"/>
                     </h4>
+                    
+                    <hr />
 
-                    <h:form class="" acceptcharset="ISO-8859-1">
-                        <h:dataTable value="#{controladorExercicio.exercicio.questoesExercicios}" var="pergunta" 
-                                     class="w3-table">
+                    <h:form>
 
-                            <h:column>
-                                <div class="w3-center w3-container w3-pale-blue w3-leftbar w3-border-blue">
-                                    <h4 class="w3-text-red font"> #{pergunta.enunciado} </h4>
+                        <p:dataGrid var="categoria" value="#{controladorPergunta.getCategorias()}" 
+                                    columns="6" rows="12" id="pergunta" styleClass="ui-datagrid ui-datagrid-content"
+                                    layout="grid" rendered="#{controladorPergunta.getCategorias().size() > 0}">
+
+                            <div class="w3-center">
+
+                                <div class="w3-container w3-pale-blue w3-leftbar w3-border-green">
+                                    <h3>
+                                        <h:commandLink value="#{categoria}" style="text-decoration: none;"
+                                                       action="#{controladorPergunta.paginaListarPerguntas(categoria)}"/>
+                                    </h3>
                                 </div>
-                            </h:column>
-                        </h:dataTable>
 
-                        <hr />
+                            </div>
 
-                        <div class="w3-center">
-                            <h:commandButton value="Remover teste" action="#{controladorExercicio.removerTeste()}" 
-                                             class="w3-btn w3-hover-grey w3-btn-block"/>
-                        </div>
-
+                        </p:dataGrid>
                     </h:form>
+
+                    <h4 class="w3-text-red text-config">
+                        <h:outputText value="Nenhuma Pergunta Cadastrada"
+                                      rendered="#{controladorPergunta.getCategorias().size() ==0}"/>
+                    </h4>
                 </div>
             </main>
         </div>

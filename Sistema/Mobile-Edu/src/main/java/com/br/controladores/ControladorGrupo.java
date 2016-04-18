@@ -164,7 +164,7 @@ public class ControladorGrupo implements Serializable {
 
     public String salvarGrupo() {
         grupo.setDataCriacao(new Date());
-        grupo.setProfessorGrupos(PegarUsuarioSessao.pegarProfessorSessao());
+        grupo.setProfessorGrupos(PegarUsuarioSessao.getProfessor());
 
         if (fachada.salvarGrupo(grupo)) {
             grupo = new Grupo();
@@ -183,7 +183,7 @@ public class ControladorGrupo implements Serializable {
     }
 
     public List<Grupo> gruposCriados() {
-        return fachada.meusGrupos(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.meusGrupos(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String removerGrupo() {
@@ -216,7 +216,7 @@ public class ControladorGrupo implements Serializable {
 
         topico.setDataCriacao(new Date());
         topico.setGrupo(grupo);
-        topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        topico.setLoginUsuario(PegarUsuarioSessao.getProfessor().getLogin());
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
@@ -281,7 +281,7 @@ public class ControladorGrupo implements Serializable {
 
     public String salvarComentarioProfessor() {
         comentarioTopico.setDataComentario(new Date());
-        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.getProfessor().getLogin());
         comentarioTopico.setTopico(topicoTemp);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
@@ -351,7 +351,7 @@ public class ControladorGrupo implements Serializable {
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
-                topico.setLoginUsuario(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+                topico.setLoginUsuario(PegarUsuarioSessao.getProfessor().getLogin());
                 topico.setDataCriacao(new Date());
                 topico.setTipo("Arquivo");
 
@@ -432,7 +432,7 @@ public class ControladorGrupo implements Serializable {
     }
 
     public List<ParticipaGrupo> solicitacoesGrupoProfessor() {
-        return fachada.listarSolicitacoesRecebidas(PegarUsuarioSessao.pegarProfessorSessao().getLogin());
+        return fachada.listarSolicitacoesRecebidas(PegarUsuarioSessao.getProfessor().getLogin());
     }
 
     public String rejeitarSolicitacao(ParticipaGrupo participaGrupo) {
@@ -517,10 +517,10 @@ public class ControladorGrupo implements Serializable {
     public String paginaSolicitacaoGrupo(Grupo grupo) {
         this.grupo = grupo;
 
-        if (fachada.verificaMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo()) == false) {
+        if (fachada.verificaMembro(PegarUsuarioSessao.getAluno().getLogin(), grupo.getCodigo()) == false) {
             return "page-inicial-grupo?faces-redirect=true";
         } else {
-            this.aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+            this.aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.getAluno().getLogin(), this.grupo.getCodigo());
             return "page-solicitacao-grupo?faces-redirect=true";
         }
     }
@@ -529,25 +529,25 @@ public class ControladorGrupo implements Serializable {
 
         participaGrupo = new ParticipaGrupo();
         participaGrupo.setAceito(false);
-        participaGrupo.setAluno(PegarUsuarioSessao.pegarAlunoSessao());
+        participaGrupo.setAluno(PegarUsuarioSessao.getAluno());
         participaGrupo.setDataParticipacao(new Date());
         participaGrupo.setGrupo(grupo);
 
         fachada.adicionarMembro(participaGrupo);
         participaGrupo = new ParticipaGrupo();
 
-        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.getAluno().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo-solicitacao?faces-redirect=true";
     }
 
     public String cancelarSolicitacao() {
-        fachada.removerMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo());
-        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        fachada.removerMembro(PegarUsuarioSessao.getAluno().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.getAluno().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
     }
 
     public List<ParticipaGrupo> solicitacoesPendentes() {
-        return fachada.listarGruposPendentes(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        return fachada.listarGruposPendentes(PegarUsuarioSessao.getAluno().getLogin());
     }
 
     /*Topicos do grupo - aluno*/
@@ -565,7 +565,7 @@ public class ControladorGrupo implements Serializable {
 
         topico.setDataCriacao(new Date());
         topico.setGrupo(grupo);
-        topico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        topico.setLoginUsuario(PegarUsuarioSessao.getAluno().getLogin());
         topico.setTipo("Publicacao");
 
         fachada.salvarTopico(topico);
@@ -601,7 +601,7 @@ public class ControladorGrupo implements Serializable {
                 topico.setCaminho(caminho + fileUpload.getFileName());
                 topico.setNome(fileUpload.getFileName());
                 topico.setGrupo(grupo);
-                topico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+                topico.setLoginUsuario(PegarUsuarioSessao.getAluno().getLogin());
                 topico.setDataCriacao(new Date());
                 topico.setTipo("Arquivo");
 
@@ -623,7 +623,7 @@ public class ControladorGrupo implements Serializable {
     }
 
     public List<ParticipaGrupo> gruposAluno() {
-        return fachada.listarGruposAlunos(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        return fachada.listarGruposAlunos(PegarUsuarioSessao.getAluno().getLogin());
     }
 
     public String paginaGrupoAluno(Grupo grupo) {
@@ -639,7 +639,7 @@ public class ControladorGrupo implements Serializable {
 
     public String salvarComentarioAluno() {
         comentarioTopico.setDataComentario(new Date());
-        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.pegarAlunoSessao().getLogin());
+        comentarioTopico.setLoginUsuario(PegarUsuarioSessao.getAluno().getLogin());
         comentarioTopico.setTopico(topicoTemp);
 
         if (fachada.salvarComentario(comentarioTopico) == true) {
@@ -650,8 +650,8 @@ public class ControladorGrupo implements Serializable {
     }
 
     public String sairGrupo() {
-        fachada.removerMembro(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), grupo.getCodigo());
-        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.pegarAlunoSessao().getLogin(), this.grupo.getCodigo());
+        fachada.removerMembro(PegarUsuarioSessao.getAluno().getLogin(), grupo.getCodigo());
+        aceito = fachada.verificaSolicitacaoPendente(PegarUsuarioSessao.getAluno().getLogin(), this.grupo.getCodigo());
         return "page-solicitacao-grupo?faces-redirect=true";
     }
 

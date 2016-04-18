@@ -45,7 +45,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -72,89 +72,86 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content mdl-color--grey-100">
+            <main class="mdl-layout__content">
                 <h:form class="form-horizontal" acceptcharset="ISO-8859-1">
 
-                    <div class="mdl-grid demo-content">
-                        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                            <label>Add Turma</label>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="nome" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.nome}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="nome"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                    <div class="w3-content w3-container" style="max-width:1100px;margin-top:30px;margin-bottom:80px">
 
-                                <label class="mdl-textfield__label" for="nome">Nome</label>
-                            </div>
+                        <div class="w3-padding-hor-64">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Alterar Turma</span>
+                        </div><hr />
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="codigo" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.codigo}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="codigo"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                        <div class="w3-group">
+                            <label>Nome</label>
+                            <h:message for="nome" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.nome}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="nome"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+                        </div>
 
-                                <label class="mdl-textfield__label" for="codigo">Codigo</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Codigo</label>
+                            <h:message for="codigo" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.codigo}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="codigo"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+                        </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="categoria" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.categoria}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="categoria"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                        <div class="w3-group">
+                            <label>Categoria</label>
+                            <h:message for="categoria" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.categoria}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="categoria"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+                        </div>
 
-                                <label class="mdl-textfield__label" for="categoria">Categoria</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Descrição</label>
+                            <h:message for="descricao" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.descricao}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="descricao"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório"/>
+                        </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="descricao" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.descricao}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="descricao"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório"/>
+                        <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">Detalhes do Curso</span>
+                        <hr/>
 
-                                <label class="mdl-textfield__label" for="descricao">Descrição</label>
-                            </div>
+                        <div class="w3-group">
+                            <label>Início</label>
+                            <h:message for="dataInicio" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.dataInicio}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="dataInicio"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                        </div>
 
+                        <div class="w3-group">
+                            <label>Termínio</label>
+                            <h:message for="dataTerminio" errorClass="erros"/>
+                            <h:inputText value="#{controladorTurma.turma.dataTerminio}" 
+                                         class="w3-input w3-border w3-hover-border-black" style="width:100%;" 
+                                         id="dataTerminio"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                        </div>
 
-                            <label>Detalhes do Curso</label>
+                        <div class="w3-btn-group">
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="dataInicio" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.dataInicio}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="dataInicio"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:inputText>
-
-                                <label class="mdl-textfield__label" for="dataInicio">Início 11/11/1111</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
-                                <h:message for="dataTerminio" errorClass="erros"/>
-                                <h:inputText value="#{controladorTurma.turma.dataTerminio}" 
-                                             class="mdl-textfield__input text-config" 
-                                             id="dataTerminio"
-                                             required="true"
-                                             requiredMessage="Campo obrigatório">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:inputText>
-
-                                <label class="mdl-textfield__label" for="dataTerminio">Termínio 11/11/1111</label>
-                            </div>
-
-                            <div class="mdl-cell--12-col w3-center">
-                                <h:commandButton action="#{controladorTurma.salvarTurma()}" 
-                                                 class="w3-btn w3-indigo w3-btn-block" value="Salvar Turma"/>
-                            </div>
+                            <h:commandButton action="#{controladorTurma.salvarTurma()}" 
+                                             class="w3-btn w3-indigo w3-btn-block" value="Salvar Turma"/>
                         </div>
                     </div>
                 </h:form>
