@@ -2,6 +2,12 @@
 
     <ion-content class="has-header">
 
+    	<div padding="true" style="text-align: center;">
+    		<h5 ng-if="solicitacoes.length > 1">Você possui {{solicitacoes.length}} solicitações</h5>
+    		<h5 ng-if="solicitacoes.length == 0">Você não possui nenhuma solicitação</h5>
+    		<h5 ng-if="solicitacoes.length == 1">Você possui 1 solicitação</h5>
+    	</div>
+
         <ion- style="text-align: center;">
           <ion-item ng-repeat="s in solicitacoes">
             <h2>

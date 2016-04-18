@@ -5,6 +5,7 @@ import com.br.entidades.Aluno;
 import com.br.entidades.Grupo;
 import com.br.entidades.ParticipaGrupo;
 import com.br.entidades.Professor;
+import com.br.util.GrupoJson;
 import com.br.util.UtilTest;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -32,31 +33,29 @@ public class GruposPesquisa extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("ISO-8859-1");
-        response.setCharacterEncoding("ISO-8859-1");
+        response.setCharacterEncoding("utf-8");
         String nome = request.getParameter("grupo");
-
-        if (!nome.equalsIgnoreCase("undefined")) {
+        String aluno = request.getParameter("aluno");
+        
+        if (!nome.equalsIgnoreCase("undefined") && !aluno.equalsIgnoreCase("undefined")) {
 
             Dao dao = new Dao();
 
             List<Grupo> grupos = dao.pesquisarGrupoPorNome(nome);
-            List<Grupo> temp = new ArrayList();
+            List<GrupoJson> temp = new ArrayList();
 
             if (grupos.size() > 0) {
 
                 for (Grupo grupo : grupos) {
 
-                    Grupo aux = new Grupo();
-                    aux.setNome(grupo.getNome());
-                    aux.setCodigo(grupo.getCodigo());
-                    aux.setDescricao(grupo.getDescricao());
-
-                    Professor professor = new Professor();
-                    professor.setNome(grupo.getProfessorGrupos().getNome());
-                    professor.setSobrenome(grupo.getProfessorGrupos().getSobrenome());
-                    aux.setProfessorGrupos(professor);
-
-                    temp.add(aux);
+                    GrupoJson grupoJson = new GrupoJson();
+                    grupoJson.setNome(grupo.getNome());
+                    grupoJson.setCodigo(grupo.getCodigo());
+                    grupoJson.setDescricao(grupo.getDescricao());
+                    grupoJson.setProfessorNome(grupo.getProfessorGrupos().getNome());
+                    grupoJson.setProfessorSobrenome(grupo.getProfessorGrupos().getSobrenome());
+                    grupoJson.setStatus(dao.verificaSeJaEhMembro(aluno, grupo.getCodigo()));
+                    temp.add(grupoJson);
                 }
             }
 
@@ -77,7 +76,7 @@ public class GruposPesquisa extends HttpServlet {
             PrintWriter printWriter = response.getWriter();
 
             String json = UtilTest.streamToString(request.getInputStream());
-            
+
             JSONObject jSONObject = UtilTest.getJSON(json);
             Dao dao = new Dao();
             ParticipaGrupo participaGrupo = new ParticipaGrupo();
@@ -95,7 +94,7 @@ public class GruposPesquisa extends HttpServlet {
                 printWriter.write("Solicitacao enviada");
                 printWriter.flush();
                 printWriter.close();
-            }else{
+            } else {
                 printWriter.write("Erro desconhecido");
                 printWriter.flush();
                 printWriter.close();

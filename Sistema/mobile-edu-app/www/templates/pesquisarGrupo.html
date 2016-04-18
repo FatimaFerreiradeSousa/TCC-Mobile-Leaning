@@ -19,15 +19,20 @@
             <div class="card" style="background-color: #00BCD4">
                 <h4 style="color: #FAFAFA">{{grupo.nome}}</h4> 
                 <p style="font-size: 11px; color: #FAFAFA">
-                  Professor: {{grupo.professorGrupos.nome}} {{grupo.professorGrupos.sobrenome}}
+                  Professor: {{grupo.professorNome}} {{grupo.professorSobrenome}}
                 </p>
                 
                 <p style="color: #FAFAFA">{{grupo.descricao}}</p>
                 <hr/>
 
-                <a class="button button-clear button-positive" href="#/app/solicitacaoGrupo/{{grupo.codigo}}/{{alunoGrupoBuscar}}" style="color: #FAFAFA">
+                <a class="button button-clear button-positive" href="#/app/solicitacaoGrupo/{{grupo.codigo}}/{{alunoGrupoBuscar}}" 
+                    style="color: #FAFAFA" ng-if="grupo.status == false">
                     Ver Grupo
                 </a>
+
+                <p style="color: #FAFAFA" ng-if="grupo.status == true">
+                    Você já é membro deste grupo
+                </p>
 
             </div>
 
