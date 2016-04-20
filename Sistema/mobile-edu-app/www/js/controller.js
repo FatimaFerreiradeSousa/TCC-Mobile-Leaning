@@ -42,7 +42,7 @@ angular.module('starter')
         foto:''
     }
 
-	var caminho = "http://192.168.2.5:8080/App-Servidor/Login?loginAl="
+	var caminho = "http://192.168.2.6:8080/App-Servidor/Login?loginAl="
     var url = caminho.concat($stateParams.login);
 
     $http.get(url).then(function(response){
@@ -50,7 +50,7 @@ angular.module('starter')
     });
 
     /*Horario do dia*/
-    var aux = "http://192.168.2.5:8080/App-Servidor/Horarios?loginAl=";
+    var aux = "http://192.168.2.6:8080/App-Servidor/Horarios?loginAl=";
     var temp = aux.concat($stateParams.login);
 
     $http.get(temp).then(function(response) {
@@ -67,7 +67,7 @@ angular.module('starter')
 
 	$scope.login = $stateParams.alunoLogin;
 
-	var caminho = "http://192.168.2.5:8080/App-Servidor/Turmas?loginAl=";
+	var caminho = "http://192.168.2.6:8080/App-Servidor/Turmas?loginAl=";
     var url = caminho.concat($stateParams.alunoLogin);
 
     $http.get(url).then(function(response) {
@@ -82,14 +82,14 @@ angular.module('starter')
     $scope.codigoTurma = $stateParams.turmaCodigo;
     $scope.alunoTurmaLogin = $stateParams.loginAluno;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/TurmaSelect?codigo=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/TurmaSelect?codigo=";
     var url = caminho.concat($stateParams.turmaCodigo);
 
     $http.get(url).then(function(response) {
         $scope.turma = response.data;
     });
 
-    var caminho1 = "http://192.168.2.5:8080/App-Servidor/HorarioDia?codigo=";
+    var caminho1 = "http://192.168.2.6:8080/App-Servidor/HorarioDia?codigo=";
     var url1 = caminho1.concat($stateParams.turmaCodigo)
         
     $http.get(url1).then(function(response) {
@@ -122,7 +122,7 @@ angular.module('starter')
 
 	$scope.cod = $stateParams.codTurma;
 
-	var caminho = "http://192.168.2.5:8080/App-Servidor/HorariosTurma?codigo=";
+	var caminho = "http://192.168.2.6:8080/App-Servidor/HorariosTurma?codigo=";
 	var segunda = caminho.concat($stateParams.codTurma);
     var url = segunda.concat("&dia=Segunda-Feira")
         
@@ -130,7 +130,7 @@ angular.module('starter')
         $scope.horariosSegunda = response.data;
     })
 
-    var caminho1 = "http://192.168.2.5:8080/App-Servidor/HorariosTurma?codigo=";
+    var caminho1 = "http://192.168.2.6:8080/App-Servidor/HorariosTurma?codigo=";
 	var terca = caminho1.concat($stateParams.codTurma);
     var url1 = terca.concat("&dia=Terça-Feira")
         
@@ -138,7 +138,7 @@ angular.module('starter')
         $scope.horariosTerca = response.data;
     })
 
-    var caminho2 = "http://192.168.2.5:8080/App-Servidor/HorariosTurma?codigo=";
+    var caminho2 = "http://192.168.2.6:8080/App-Servidor/HorariosTurma?codigo=";
 	var quarta = caminho2.concat($stateParams.codTurma);
     var url2 = terca.concat("&dia=Quarta-Feira")
         
@@ -146,7 +146,7 @@ angular.module('starter')
         $scope.horariosQuarta = response.data;
     })
 
-    var caminho3 = "http://192.168.2.5:8080/App-Servidor/HorariosTurma?codigo=";
+    var caminho3 = "http://192.168.2.6:8080/App-Servidor/HorariosTurma?codigo=";
 	var quinta = caminho3.concat($stateParams.codTurma);
     var url3 = terca.concat("&dia=Quinta-Feira")
         
@@ -154,7 +154,7 @@ angular.module('starter')
         $scope.horariosQuinta = response.data;
     })
 
-    var caminho4 = "http://192.168.2.5:8080/App-Servidor/HorariosTurma?codigo=";
+    var caminho4 = "http://192.168.2.6:8080/App-Servidor/HorariosTurma?codigo=";
 	var sexta = caminho4.concat($stateParams.codTurma);
     var url4 = terca.concat("&dia=Sexta-Feira")
         
@@ -168,7 +168,7 @@ angular.module('starter')
 
     $scope.turmaAluno = $stateParams.codigoTurma;
 
-	var caminho = "http://192.168.2.5:8080/App-Servidor/AlunosTurma?codigo=";
+	var caminho = "http://192.168.2.6:8080/App-Servidor/AlunosTurma?codigo=";
 	var url = caminho.concat($stateParams.codigoTurma)
         
     $http.get(url).then(function(response) {
@@ -187,7 +187,7 @@ angular.module('starter')
     }
 
     setInterval(function(){
-        var caminho = "http://192.168.2.5:8080/App-Servidor/AlunoDetalhe?login=";
+        var caminho = "http://192.168.2.6:8080/App-Servidor/AlunoDetalhe?login=";
         var aux = caminho.concat($stateParams.alunoId)
         var temp = aux.concat("&turma=");
         var url = temp.concat($stateParams.turmaId);
@@ -203,7 +203,7 @@ angular.module('starter')
     $scope.notasTurmaId = $stateParams.turmaCod;
 
     setInterval(function(){
-        var caminho = "http://192.168.2.5:8080/App-Servidor/NotasTurma?codigo=";
+        var caminho = "http://192.168.2.6:8080/App-Servidor/NotasTurma?codigo=";
         var url = caminho.concat($stateParams.turmaCod)
             
         $http.get(url).then(function(response) {
@@ -217,7 +217,7 @@ angular.module('starter')
 
     $scope.notaCod = $stateParams.notaId;
 
-	var caminho = "http://192.168.2.5:8080/App-Servidor/VerNota?codigo=";
+	var caminho = "http://192.168.2.6:8080/App-Servidor/VerNota?codigo=";
 	var url = caminho.concat($stateParams.notaId)
         
     $http.get(url).then(function(response) {
@@ -230,7 +230,7 @@ angular.module('starter')
 
     $scope.loginAlunoGrupo = $stateParams.loginAluno;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/GruposAluno?login=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/GruposAluno?login=";
     var url = caminho.concat($stateParams.loginAluno)
         
     $http.get(url).then(function(response) {
@@ -247,7 +247,7 @@ angular.module('starter')
 
     $scope.grupoCod = $stateParams.codGrupo;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/MembrosGrupo?codigo=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/MembrosGrupo?codigo=";
     var url = caminho.concat($stateParams.codGrupo)
         
     $http.get(url).then(function(response) {
@@ -259,7 +259,7 @@ angular.module('starter')
 
     $scope.testeCod = $stateParams.codTeste;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/ResultadosTeste?teste=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/ResultadosTeste?teste=";
     var url = caminho.concat($stateParams.codTeste)
         
     $http.get(url).then(function(response) {
@@ -272,7 +272,7 @@ angular.module('starter')
     $scope.alunoGrupo = $stateParams.loginAluno;
     $scope.grupoId = $stateParams.grupoId;
     
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AlunoInfo?login=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AlunoInfo?login=";
     var temp = caminho.concat($stateParams.loginAluno);
     var aux = temp.concat("&grupo=");
     var url = aux.concat($stateParams.grupoId);
@@ -304,7 +304,7 @@ angular.module('starter')
         fac.removerTopicos(topicoRemover);
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/GrupoSelect?codigo=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/GrupoSelect?codigo=";
     var url = caminho.concat($stateParams.codGrupo)
         
     $http.get(url).then(function(response) {
@@ -312,7 +312,7 @@ angular.module('starter')
     })    
 
     setInterval(function(){
-        var caminhoTopico = "http://192.168.2.5:8080/App-Servidor/Topicos?grupo=";
+        var caminhoTopico = "http://192.168.2.6:8080/App-Servidor/Topicos?grupo=";
         var urlTopico = caminhoTopico.concat($stateParams.codGrupo)
             
         $http.get(urlTopico).then(function(response) {
@@ -366,7 +366,7 @@ angular.module('starter')
     }
 
     setInterval(function(){
-        var caminho = "http://192.168.2.5:8080/App-Servidor/Comentarios?topico=";
+        var caminho = "http://192.168.2.6:8080/App-Servidor/Comentarios?topico=";
         var url = caminho.concat($stateParams.codigoTopico)
             
         $http.get(url).then(function(response) {
@@ -389,7 +389,7 @@ angular.module('starter')
         codigo:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AlterarComentario?comentario=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AlterarComentario?comentario=";
     var url = caminho.concat($stateParams.codigoComentario)
             
     $http.get(url).then(function(response) {
@@ -410,7 +410,7 @@ angular.module('starter')
         codigo:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarTopico?topico=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AtualizarTopico?topico=";
     var url = caminho.concat($stateParams.codigoTopico)
             
     $http.get(url).then(function(response) {
@@ -430,7 +430,7 @@ angular.module('starter')
 
 
      setInterval(function(){
-        var caminho = "http://192.168.2.5:8080/App-Servidor/Testes?grupo=";
+        var caminho = "http://192.168.2.6:8080/App-Servidor/Testes?grupo=";
         var url = caminho.concat($stateParams.codGrupo)
             
         $http.get(url).then(function(response) {
@@ -456,7 +456,7 @@ angular.module('starter')
         disponivel:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/VerTeste?teste=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/VerTeste?teste=";
     var urlTeste = caminho.concat($stateParams.testeCodigo);
     var urlAluno = urlTeste.concat("&aluno=");
     var url = urlAluno.concat($stateParams.alunoLogin)
@@ -488,7 +488,7 @@ angular.module('starter')
         nota: ''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/ResponderTeste?teste=";  
+    var caminho = "http://192.168.2.6:8080/App-Servidor/ResponderTeste?teste=";  
     var url = caminho.concat($stateParams.testeCodigo);
 
     $http.get(url).then(function(response) {
@@ -538,7 +538,7 @@ angular.module('starter')
         foto:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AtualizarAluno?login=";  
     var url = caminho.concat($stateParams.alunoLogin);
 
     $http.get(url).then(function(response) {
@@ -565,7 +565,7 @@ angular.module('starter')
         foto:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AtualizarAluno?login=";  
     var url = caminho.concat($stateParams.alunoLogin);
 
     $http.get(url).then(function(response) {
@@ -595,7 +595,7 @@ angular.module('starter')
         foto:''
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/AtualizarAluno?login=";  
+    var caminho = "http://192.168.2.6:8080/App-Servidor/AtualizarAluno?login=";  
     var url = caminho.concat($stateParams.alunoLogin);
 
     $http.get(url).then(function(response) {
@@ -637,7 +637,7 @@ angular.module('starter')
     }
 
     $scope.buscarGrupo = function(){
-        var tempCaminho = "http://192.168.2.5:8080/App-Servidor/GruposPesquisa?grupo=";  
+        var tempCaminho = "http://192.168.2.6:8080/App-Servidor/GruposPesquisa?grupo=";  
         var temUrl = tempCaminho.concat($scope.grupo.nome);
         var caminho = temUrl.concat("&aluno=");
         var url = caminho.concat($stateParams.alunoLogin);
@@ -659,7 +659,7 @@ angular.module('starter')
         aluno: $scope.alunoGrupoLogin
     }
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/GrupoSelect?codigo=";  
+    var caminho = "http://192.168.2.6:8080/App-Servidor/GrupoSelect?codigo=";  
     var url = caminho.concat($stateParams.grupoCodigo);
 
     $http.get(url).then(function(response) {
@@ -674,7 +674,7 @@ angular.module('starter')
         fac.removerSolicitacaoGrupo($scope.participaGrupo);
     }
 
-    var caminhoAux = "http://192.168.2.5:8080/App-Servidor/RemoverSolicitacao?login=";  
+    var caminhoAux = "http://192.168.2.6:8080/App-Servidor/RemoverSolicitacao?login=";  
     var urlAux = caminhoAux.concat($scope.alunoGrupoLogin);
     var temp = urlAux.concat("&grupo=");
     var urlTemp = temp.concat($scope.codigoGrupoSelecionado);
@@ -689,7 +689,7 @@ angular.module('starter')
     $scope.loginTem = $stateParams.loginAluno;
 
     setInterval(function(){
-        var caminho = "http://192.168.2.5:8080/App-Servidor/Solicitacoes?login=";
+        var caminho = "http://192.168.2.6:8080/App-Servidor/Solicitacoes?login=";
         var url = caminho.concat($stateParams.loginAluno)
             
         $http.get(url).then(function(response) {
@@ -705,7 +705,7 @@ angular.module('starter')
     $scope.turmaPresenca = $stateParams.turmaCodigo;
 
     setInterval(function(){
-        var temp = "http://192.168.2.5:8080/App-Servidor/Presencas?login=";  
+        var temp = "http://192.168.2.6:8080/App-Servidor/Presencas?login=";  
         var aux = temp.concat($stateParams.alunoLogin);
         var caminho = aux.concat("&turma=");
         var url = caminho.concat($stateParams.turmaCodigo);
@@ -721,7 +721,7 @@ angular.module('starter')
 
     $scope.grupoInfo = $stateParams.codGrupo;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/Ranking?grupo=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/Ranking?grupo=";
     var url = caminho.concat($stateParams.codGrupo)
         
     $http.get(url).then(function(response) {
@@ -733,14 +733,14 @@ angular.module('starter')
 
     $scope.codigoTeste = $stateParams.codTeste;
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/BuscarTeste?teste=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/BuscarTeste?teste=";
     var url = caminho.concat($stateParams.codTeste)
         
     $http.get(url).then(function(response) {
         $scope.testeRespondido = response.data;
     }) 
 
-    var caminhoAux = "http://192.168.2.5:8080/App-Servidor/TesteResolvido?teste=";
+    var caminhoAux = "http://192.168.2.6:8080/App-Servidor/TesteResolvido?teste=";
     var urlAux = caminhoAux.concat($stateParams.codTeste)
         
     $http.get(urlAux).then(function(response) {
@@ -764,7 +764,7 @@ angular.module('starter')
 
 .controller('arquivosGrupoCtrl', function($scope, $state, $stateParams, $http, $cordovaFileTransfer, fac){
 
-    var caminho = "http://192.168.2.5:8080/App-Servidor/Arquivos?grupo=";
+    var caminho = "http://192.168.2.6:8080/App-Servidor/Arquivos?grupo=";
     var url = caminho.concat($stateParams.codGrupo)
         
     $http.get(url).then(function(response) {
@@ -773,7 +773,7 @@ angular.module('starter')
 
     $scope.download = function(topicoNome){
 
-        var url = "http://www.lpm.com.br/livros/Imagens/egito_antigo.pdf";
+        var url = "http://www.grupodehistoria.com.br/resumos/segundaguerra.pdf";
         var targetPath = cordova.file.externalRootDirectory + "Download/" +topicoNome;
         var trustHosts = true;
         var options = {};

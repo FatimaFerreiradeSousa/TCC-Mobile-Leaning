@@ -111,6 +111,8 @@
                                     <h3>
                                         <h:commandLink value="#{categoria}" style="text-decoration: none;"
                                                        action="#{controladorPergunta.paginaListarPerguntas(categoria)}"/>
+                                        
+                                        (<h:outputText value="#{controladorPergunta.getQtdPerguntas(categoria)}"/>)
                                     </h3>
                                 </div>
 

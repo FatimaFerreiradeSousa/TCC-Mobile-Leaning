@@ -262,6 +262,10 @@ public class ControladorPergunta implements Serializable {
         return fachada.listarPerguntasCategoria(categoria, PegarUsuarioSessao.getProfessor().getLogin());
     }
     
+    public int getQtdPerguntas(String categoria){
+        return fachada.listarPerguntasCategoria(categoria, PegarUsuarioSessao.getProfessor().getLogin()).size();
+    }
+    
     public List<String> getCategorias(){
         return fachada.categoriaPerguntas(PegarUsuarioSessao.getProfessor().getLogin());
     }
