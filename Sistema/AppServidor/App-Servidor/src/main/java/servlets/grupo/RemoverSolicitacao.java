@@ -54,7 +54,7 @@ public class RemoverSolicitacao extends HttpServlet {
             Dao dao = new Dao();
 
             if (dao.removerSolicitacao(jSONObject.getString("aluno"), jSONObject.getInt("grupo"))) {
-                printWriter.write("Solicitação Removida!");
+                printWriter.write("Solicitacao Removida!");
                 printWriter.flush();
                 printWriter.close();
             }else{

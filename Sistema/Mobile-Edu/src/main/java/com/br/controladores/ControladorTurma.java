@@ -34,6 +34,7 @@ public class ControladorTurma implements Serializable {
     private boolean status;
     private boolean code;
     private boolean checkChamada;
+    private boolean presente;
 
     public ControladorTurma() {
         this.turma = new Turma();
@@ -42,6 +43,7 @@ public class ControladorTurma implements Serializable {
         this.horarios = new ArrayList();
         this.status = false;
         this.checkChamada = false;
+        this.presente = false;
     }
 
     public Turma getTurma() {
@@ -114,6 +116,14 @@ public class ControladorTurma implements Serializable {
 
     public void setCheckChamada(boolean checkChamada) {
         this.checkChamada = checkChamada;
+    }
+
+    public boolean isPresente() {
+        return presente;
+    }
+
+    public void setPresente(boolean presente) {
+        this.presente = presente;
     }
 
     public String salvarTurma() {
@@ -209,7 +219,7 @@ public class ControladorTurma implements Serializable {
         presenca.setDescricao("Presente");
         if (fachada.salvarPresenca(presenca)) {
             presenca = new Presenca();
-
+            this.presente = true;
             return "page-add-presenca?faces-redirect=true";
         }
 
@@ -225,6 +235,7 @@ public class ControladorTurma implements Serializable {
 
         if (fachada.salvarPresenca(presenca)) {
             presenca = new Presenca();
+            this.presente = true;
             return "page-add-presenca?faces-redirect=true";
         }
 
