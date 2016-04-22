@@ -46,7 +46,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -66,10 +66,15 @@
             <main class="mdl-layout__content">
                 <div class="container w3-margin">
 
-                    <h5 class="w3-center">
-                        <h:outputText value="Suas Turmas" class="text-config"
-                                      rendered="#{controladorTurma.listarTurmas().size() > 0}"/>
-                    </h5>
+                    <div class="w3-center w3-margin-top">
+                        <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
+                            <h:outputText value="Suas Turmas" class="text-config"
+                                          rendered="#{controladorTurma.listarTurmas().size() > 0}"/>
+                            <h:outputText value="Você não possui nenhuma turma" class="w3-text-indigo"
+                                          rendered="#{controladorTurma.listarTurmas().size() == 0}"/>
+                        </span>
+                    </div><hr/>
+                    
                     <div class="w3-row-padding">
 
                         <h:form>
@@ -116,11 +121,7 @@
                                 </div>
 
                             </p:dataGrid>
-                            
-                            <div class="w3-center">
-                                <h:outputText value="Você não possui nenhuma turma" class="w3-text-indigo"
-                                              rendered="#{controladorTurma.listarTurmas().size() == 0}"/>
-                            </div>
+
                         </h:form>
                     </div>
                 </div>

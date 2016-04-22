@@ -72,7 +72,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -101,11 +101,11 @@
 
             <main class="mdl-layout__content mdl-color--grey-100">
 
-                <div class="w3-container text-config">
-                    <h4 class="text-config">Horario da Turma de #{controladorHorario.turma.nome}</h4>
-                </div>
-
-                <hr/>
+                <div class="w3-center w3-margin-top">
+                    <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
+                        Horario da Turma de #{controladorHorario.turma.nome}
+                    </span>
+                </div><hr/>
                 <h:form>
                     <div class="w3-row-padding">
 

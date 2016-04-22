@@ -45,7 +45,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorGrupo.paginaAddGrupo}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
@@ -54,7 +54,7 @@
                     </h:form>
 
                     <a class="mdl-navigation__link" href="page-grupo.jsf">
-                       <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>
                         Grupos
                     </a>
 
@@ -77,22 +77,16 @@
                 <div class="w3-container">
 
                     <h:form>
-                        <div class="w3-center w3-margin-16">
-                            <h:panelGroup rendered="#{controladorGrupo.gruposCriados().size() == 0}">
-                                <text class="w3-text-red">
-                                    Nenhum grupo cadastrado.
-                                </text>
-                            </h:panelGroup>
-                        </div>
 
-                        <div class="w3-center w3-margin-16">
-                            <h:panelGroup rendered="#{controladorGrupo.gruposCriados().size() > 0}">
-                                <text class="w3-text-red">
-                                    Meus Grupos
-                                </text>
-                            </h:panelGroup>
-                        </div>
-
+                        <div class="w3-center w3-margin-top">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
+                                <h:outputText value="Meus Grupos" class="text-config"
+                                              rendered="#{controladorGrupo.gruposCriados().size() > 0}"/>
+                                <h:outputText value=" Nenhum grupo cadastrado." class="w3-text-indigo"
+                                              rendered="#{controladorGrupo.gruposCriados().size() == 0}"/>
+                            </span>
+                        </div><hr/>
+                        
                         <p:dataGrid var="grupo" value="#{controladorGrupo.gruposCriados()}" 
                                     columns="4" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                     layout="grid" rendered="#{controladorGrupo.gruposCriados().size() > 0}">

@@ -780,7 +780,7 @@ angular.module('starter')
 
         $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
           .then(function(result) {
-            alert(JSON.stringify(result));
+            alert("Fazendo Download");
           }, function(err) {
             alert(JSON.stringify(err));
           }, function (progress) {

@@ -68,7 +68,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                   
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -101,10 +101,13 @@
                 <h:form>
                     <div class="w3-container w3-center">
                         <br />
-                        <p>
-                            <h:outputText class="w3-margin-4" value="Alunos"
-                                          rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
-                        </p>
+                        
+                        <div class="w3-center w3-margin-top">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
+                                <h:outputText class="w3-margin-4" value="Alunos"
+                                              rendered="#{controladorTurma.turma.alunos.size() > 0}"/>
+                            </span>
+                        </div><hr/>
 
                         <p:dataGrid var="aluno" value="#{controladorTurma.turma.alunos}" 
                                     columns="4" rows="12" id="aluno" styleClass=".ui-datagrid .ui-datagrid-content teste"

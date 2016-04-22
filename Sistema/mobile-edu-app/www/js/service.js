@@ -96,7 +96,7 @@ angular.module('starter').factory('fac', function($state, $http) {
       enviarRespostas: function(respondeTeste){
         var url = "http://192.168.2.6:8080/App-Servidor/ResponderTeste"
         $http.post(url, respondeTeste).then(function(response){
-            alert(response.data);
+            //alert(response.data);
             $state.go("app.responderTeste")
         });
       },

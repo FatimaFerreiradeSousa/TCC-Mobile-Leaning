@@ -46,7 +46,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorGrupo.paginaAddGrupo}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">spellcheck</i>
@@ -75,67 +75,65 @@
 
             <main class="mdl-layout__content">
 
-                <div class="w3-container text-config w3-center w3-margin-top">
+                <div class="w3-container text-config w3-margin-top">
 
                     <h:form>
                         <div class="w3-row">
 
-                            <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() == 0}">
-                                <text class="w3-text-red">
-                                    Nenhuma Solicitação
-                                </text>
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() > 0}">
-                                <text class="w3-text-blue">
-                                    Você possui #{controladorGrupo.solicitacoesGrupoProfessor().size()} solicitações.
-                                </text>
-                            </h:panelGroup>
-
                             <div class="w3-center">
+                                <h3>
+                                    <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() == 0}">
+                                        <text class="w3-text-red w3-center">
+                                            Nenhuma Solicitação
+                                        </text>
+                                    </h:panelGroup>
+
+                                    <h:panelGroup rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() > 0}">
+                                        <text class="w3-text-blue w3-center">
+                                            Você possui #{controladorGrupo.solicitacoesGrupoProfessor().size()} solicitações.
+                                        </text>
+                                    </h:panelGroup>
+                                </h3>
+                            </div>
+                            
+                            <hr />
+                            <div class="">
 
                                 <p:dataGrid var="notificacao" value="#{controladorGrupo.solicitacoesGrupoProfessor()}" 
                                             columns="4" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                             layout="grid" rendered="#{controladorGrupo.solicitacoesGrupoProfessor().size() > 0}">
 
-                                    <div class="w3-col m10 w3-center w3-margin-top text-config">
-                                        <div class="w3-card-8 w3-round w3-white">
-                                            <div class="w3-container">
 
-                                                <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                                styleClass="w3-circle avatar-picture-config" style="margin-top: 2%">
-                                                    <f:param value="#{notificacao.aluno.login}" name="loginUsuario"/>
-                                                </p:graphicImage>
+                                    <div class="w3-card-4">
 
-                                                <div>
-                                                    <br />
-                                                    <p>
-                                                        #{notificacao.aluno.login} solicitou participar do grupo
-                                                        #{notificacao.grupo.nome} -
+                                        <header class="w3-container w3-light-grey">
+                                            <h3>#{notificacao.aluno.nome} #{notificacao.aluno.sobrenome}</h3>
+                                        </header>
 
-                                                        <time style="font-size: 10px">
-                                                            <h:outputText value="#{notificacao.dataParticipacao}">
-                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                            </h:outputText>
-                                                        </time>
+                                        <div class="w3-container w3-margin-top">
+                                            <p>1 nova solicitação</p>
+                                            <hr/>
 
-                                                    </p>
-
-                                                    <p>
-                                                        <h:commandLink value="Aceitar" class="mdl-button mdl-js-button"
-                                                                       action="#{controladorGrupo.aceitarSolicitacao(notificacao)}" 
-                                                                       style="text-decoration: none; margin-right: 1em;"/>
-
-
-                                                        <h:commandLink value="Rejeitar" class="mdl-button mdl-js-button"
-                                                                       action="#{controladorGrupo.rejeitarSolicitacao(notificacao)}" 
-                                                                       style="text-decoration: none;"/>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                            styleClass="w3-circle avatar-picture-photo w3-left">
+                                                <f:param value="#{notificacao.aluno.login}" name="loginUsuario"/>
+                                            </p:graphicImage>
+                                            <p class="w3-margin-right w3-center">
+                                                #{notificacao.aluno.instituicao}
+                                            </p>
+                                            
                                         </div>
-                                    </div>
 
+                                        <h:commandLink value="Aceitar" class="w3-btn-block w3-dark-grey w3-margin-top"
+                                                       action="#{controladorGrupo.aceitarSolicitacao(notificacao)}" 
+                                                       style="text-decoration: none; margin-right: 1em;"/>
+
+
+                                        <h:commandLink value="Rejeitar" class="w3-btn-block w3-red"
+                                                       action="#{controladorGrupo.rejeitarSolicitacao(notificacao)}" 
+                                                       style="text-decoration: none;"/>
+
+                                    </div>
                                 </p:dataGrid>
                             </div>
                         </div>

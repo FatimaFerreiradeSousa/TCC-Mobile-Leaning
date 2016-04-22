@@ -75,10 +75,13 @@
 
                 <div class="container w3-margin">
 
-                    <h5 class="w3-center">
-                        <h:outputText value="Aulas de #{controladorTurma.diaDaSemana()}" class="text-config"
-                                      rendered="#{controladorTurma.listarTurmas().size() > 0}"/>
-                    </h5>
+                    <div class="w3-padding-top w3-center">
+                        <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
+                            <h:outputText value="Aulas de #{controladorTurma.diaDaSemana()}" class="text-config"
+                                          rendered="#{controladorTurma.listarTurmas().size() > 0}"/>
+                        </span>
+                    </div><hr />
+                    
                     <div class="w3-row-padding">
 
                         <h:form>

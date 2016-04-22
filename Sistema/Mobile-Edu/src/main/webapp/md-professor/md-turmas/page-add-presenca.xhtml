@@ -71,7 +71,7 @@
                         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
                         Inicio
                     </a>
-                    
+
                     <h:form>
                         <h:commandLink class="mdl-navigation__link" action="#{controladorTurma.paginaCadastrarTurma()}">
                             <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">class</i>
@@ -103,16 +103,15 @@
                 <h:form>
                     <div class="w3-container">
 
-                        <div class="w3-margin-top">
-                            <p>
+                        <div class="w3-center w3-margin-top">
+                            <span class="w3-xlarge w3-border-dark-grey w3-padding-hor-16">
                                 Presença 
 
                                 <h:outputText value="#{controladorTurma.presenca.dataPreseca}">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:outputText>
-
-                            </p>
-                        </div>
+                            </span>
+                        </div><hr/>
 
                         <div class="mdl-cell--12-col w3-btn-group">
                             <label class="w3-label">Aula:</label>
@@ -135,29 +134,32 @@
                                     columns="4" rows="12" id="aluno" styleClass="ui-datagrid ui-datagrid-content"
                                     layout="grid" rendered="#{controladorTurma.status == true}">
 
-                            <div class="w3-col m10 w3-center w3-margin-top text-config">
-                                <div class="w3-card-2 w3-round w3-white">
-                                    <div class="w3-container">
-                                        <p>#{aluno.nome} #{aluno.sobrenome}</p>
-                                        <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
-                                                        styleClass="avatar-picture-config w3-circle">
-                                            <f:param value="#{aluno.login}" name="loginUsuario"/>
-                                        </p:graphicImage>
+                            <div class="w3-card-4 w3-center">
 
-                                        <div class="text-config">
-                                            <br />
-                                            <p>
-                                                <h:commandButton class="mdl-button mdl-js-button text-config w3-text-red" 
-                                                                 value="Presente" 
-                                                                 action="#{controladorTurma.salvarPresenca(aluno)}"/>
+                                <header class="w3-container w3-light-grey">
+                                    <h3><p>#{aluno.nome} #{aluno.sobrenome}</p></h3>
+                                </header>
 
-                                                <h:commandButton class="mdl-button mdl-js-button text-config w3-text-blue" 
-                                                                 value="Faltou" 
-                                                                 action="#{controladorTurma.salvarFalta(aluno)}"/>
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div class="w3-container w3-margin-top w3-center">
+                                    <p:graphicImage value="#{controladorFotos.mostrarFotosUsuarios()}" 
+                                                    styleClass="avatar-picture-photo w3-circle">
+                                        <f:param value="#{aluno.login}" name="loginUsuario"/>
+                                    </p:graphicImage>
+                                    
+                                    <p class="w3-margin-right w3-center">
+                                        #{notificacao.aluno.instituicao}
+                                    </p>
+
                                 </div>
+
+                                <h:commandButton class="w3-btn-block w3-dark-grey w3-margin-top text-config" 
+                                                 value="Presente" 
+                                                 action="#{controladorTurma.salvarPresenca(aluno)}"/>
+
+                                <h:commandButton class="w3-btn-block w3-red text-config" 
+                                                 value="Faltou" 
+                                                 action="#{controladorTurma.salvarFalta(aluno)}"/>
+
                             </div>
 
                         </p:dataGrid>
