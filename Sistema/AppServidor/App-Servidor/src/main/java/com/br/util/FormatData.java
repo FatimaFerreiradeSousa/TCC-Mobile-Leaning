@@ -40,7 +40,7 @@ public class FormatData {
             case 6:
                 return "Sexta-Feira";
             case 7:
-                return "Domingo";
+                return "Sábado";
             default:
                 return "Opção Inválida!";
         }

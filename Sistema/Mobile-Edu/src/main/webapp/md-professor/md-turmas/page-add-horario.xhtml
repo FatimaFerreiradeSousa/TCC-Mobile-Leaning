@@ -250,6 +250,34 @@
                                 </div>
                             </div>
                         </h:panelGroup>
+
+                        <h:panelGroup rendered="#{controladorHorario.buscarHorario('Sábado').size() > 0}">
+
+                            <div class="w3-quarter w3-center">
+                                <div class="w3-card-8">
+                                    <div class="w3-container w3-blue-grey">
+                                        <h4 class="text-config">Sábado</h4>
+                                    </div>
+
+                                    <div class="w3-container w3-xlarge">
+                                        <h:dataTable value="#{controladorHorario.buscarHorario('Sábado')}" var="horario"
+                                                     class="w3-table"
+                                                     rendered="#{controladorHorario.buscarHorario('Sábado').size() > 0}">
+
+                                            <h:column>
+                                                <div class="w3-center">
+                                                    <h:commandLink value="#{horario.horarioInicial} - #{horario.horarioFinal}"
+                                                                   style="text-decoration: none;"
+                                                                   action="#{controladorHorario.paginaAlterarHorario(horario)}"
+                                                                   class="text-config"/>
+                                                </div>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
                     </div>
                 </h:form>
 
@@ -309,6 +337,7 @@
                                 <f:selectItem itemValue="Quarta-Feira"/>
                                 <f:selectItem itemValue="Quinta-Feira"/>
                                 <f:selectItem itemValue="Sexta-Feira"/>
+                                <f:selectItem itemValue="Sábado"/>
                             </h:selectOneListbox>
                         </div>
                     </div>

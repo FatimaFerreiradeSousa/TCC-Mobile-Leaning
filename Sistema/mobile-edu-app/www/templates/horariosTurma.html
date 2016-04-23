@@ -38,5 +38,12 @@
             </div><br />
         </div>
 
+        <div class="list card" ng-if="horariosSabado.length > 0" style="background-color: #9E9E9E; text-align: center; color: #FAFAFA">
+            <h4 style="color: #FAFAFA">Sábado</h4><hr/>
+            <div class="alert alert-success" ng-repeat="sa in horariosSabado" style="text-align: center">
+                {{sa.horarioInicial}} - {{sa.horarioFinal}}
+            </div><br />
+        </div>
+
     </ion-content>
 </ion-view>
